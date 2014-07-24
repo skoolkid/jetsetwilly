@@ -1,0 +1,8 @@
+*.pyc
+.emacs.desktop
+.emacs.desktop.lock
+build
+jet_set_willy
+jet_set_willy.ctl
+jet_set_willy.z80
+untracked
