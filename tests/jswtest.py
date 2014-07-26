@@ -16,17 +16,21 @@ from unittest import TestCase
 
 sys.path.insert(0, '../utils')
 
-SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
-if not SKOOLKIT_HOME:
-    sys.stderr.write('SKOOLKIT_HOME is not set; aborting\n')
-    sys.exit(1)
-if not os.path.isdir(SKOOLKIT_HOME):
-    sys.stderr.write('SKOOLKIT_HOME={}: directory not found\n'.format(SKOOLKIT_HOME))
-    sys.exit(1)
+try:
+    from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
+except ImportError:
+    SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
+    if not SKOOLKIT_HOME:
+        sys.stderr.write('SKOOLKIT_HOME is not set; aborting\n')
+        sys.exit(1)
+    if not os.path.isdir(SKOOLKIT_HOME):
+        sys.stderr.write('SKOOLKIT_HOME={}: directory not found\n'.format(SKOOLKIT_HOME))
+        sys.exit(1)
+    sys.path.insert(1, SKOOLKIT_HOME)
+    from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
 
 JSWZ80 = '../jet_set_willy.z80'
 JSWREF = '../jet_set_willy.ref'
-JSWMOD = '../skoolkit/jetsetwilly.py'
 
 XHTML_XSD = os.path.join(SKOOLKIT_HOME, 'XSD', 'xhtml1-strict.xsd')
 
@@ -128,7 +132,6 @@ class DisassembliesTestCase(TestCase):
         sys.stderr = self.err = Stream()
         self.tempfiles = []
         self.tempdirs = []
-        self._copy_skoolkit()
 
     def tearDown(self):
         for f in self.tempfiles:
@@ -139,23 +142,6 @@ class DisassembliesTestCase(TestCase):
                 shutil.rmtree(d, True)
         sys.stdout = self.stdout
         sys.stderr = self.stderr
-
-    def _copy_skoolkit(self):
-        tempdir = 'skoolkit-{}'.format(os.getpid())
-        self.tempdirs.append(tempdir)
-        skoolkitdir = os.path.join(tempdir, 'skoolkit')
-        os.makedirs(skoolkitdir)
-
-        skdevdir = os.path.join(SKOOLKIT_HOME, 'skoolkit')
-        for f in os.listdir(skdevdir):
-            if f.endswith('.py'):
-                shutil.copy2(os.path.join(skdevdir, f), skoolkitdir)
-        shutil.copy2(JSWMOD, skoolkitdir)
-
-        if sys.path[0] != tempdir:
-            sys.path.insert(0, tempdir)
-            global skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
-            from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
 
     def _to_lines(self, text):
         # Use rstrip() to remove '\r' characters (useful on Windows)
@@ -252,6 +238,8 @@ class HtmlTestCase(DisassembliesTestCase):
         skoolfile = self.write_jsw_skool()
         cssfile = self.write_text_file(suffix='.css')
         c_options = '-c Game/StyleSheet={}'.format(cssfile)
+        writer_class = '{}/skoolkit:jetsetwilly.JetSetWillyHtmlWriter'.format(dirname(os.getcwd()))
+        c_options += ' -c Config/HtmlWriterClass={}'.format(writer_class)
         c_options += ' -c Config/SkoolFile={}'.format(skoolfile)
         shutil.rmtree(self.odir, True)
 
