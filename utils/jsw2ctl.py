@@ -2,17 +2,18 @@
 import sys
 import os
 
-# Use the current development version of SkoolKit
-SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
-if not SKOOLKIT_HOME:
-    sys.stderr.write('SKOOLKIT_HOME is not set; aborting\n')
-    sys.exit(1)
-if not os.path.isdir(SKOOLKIT_HOME):
-    sys.stderr.write('SKOOLKIT_HOME={0}; directory not found\n'.format(SKOOLKIT_HOME))
-    sys.exit(1)
-sys.path.insert(0, SKOOLKIT_HOME)
-
-from skoolkit.snapshot import get_snapshot
+try:
+    from skoolkit.snapshot import get_snapshot
+except ImportError:
+    SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
+    if not SKOOLKIT_HOME:
+        sys.stderr.write('SKOOLKIT_HOME is not set; aborting\n')
+        sys.exit(1)
+    if not os.path.isdir(SKOOLKIT_HOME):
+        sys.stderr.write('SKOOLKIT_HOME={}; directory not found\n'.format(SKOOLKIT_HOME))
+        sys.exit(1)
+    sys.path.insert(0, SKOOLKIT_HOME)
+    from skoolkit.snapshot import get_snapshot
 
 TEMPLATE = """
 ;
@@ -577,8 +578,8 @@ class JetSetWilly:
 
         return '\n'.join(lines)
 
-    def write_ctl(self):
-        sys.stdout.write(TEMPLATE.format(
+    def get_ctl(self):
+        return TEMPLATE.format(
             foot=self.get_graphics(40000, 1, 6),
             barrel=self.get_graphics(40032, 1, 66),
             maria=self.get_graphics(40064, 4, 5),
@@ -589,7 +590,7 @@ class JetSetWilly:
             toilet=self.get_graphics(42496, 4, 7, 'toilet', 2, ('empty', 'full'), 10),
             guardians=self.get_guardian_graphics(),
             rooms=self.get_rooms()
-        ))
+        )
 
 def show_usage():
     sys.stderr.write("""Usage: {} jet_set_willy.[sna|z80|szx]
@@ -598,11 +599,11 @@ def show_usage():
 """.format(os.path.basename(sys.argv[0])))
     sys.exit(1)
 
-###############################################################################
-# Begin
-###############################################################################
-if len(sys.argv) < 2:
-    show_usage()
+def main(snapshot):
+    jsw = JetSetWilly(get_snapshot(snapshot))
+    return jsw.get_ctl()
 
-jsw = JetSetWilly(get_snapshot(sys.argv[1]))
-jsw.write_ctl()
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        show_usage()
+    sys.stdout.write(main(sys.argv[1]))

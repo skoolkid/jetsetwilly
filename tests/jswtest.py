@@ -8,14 +8,14 @@ else:
 import os
 from os.path import dirname
 import shutil
-from subprocess import Popen, PIPE
 import tempfile
 from lxml import etree
 from xml.dom.minidom import parse
 from xml.dom import Node
 from unittest import TestCase
 
-# Use the current development version of SkoolKit
+sys.path.insert(0, '../utils')
+
 SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
 if not SKOOLKIT_HOME:
     sys.stderr.write('SKOOLKIT_HOME is not set; aborting\n')
@@ -24,7 +24,6 @@ if not os.path.isdir(SKOOLKIT_HOME):
     sys.stderr.write('SKOOLKIT_HOME={}: directory not found\n'.format(SKOOLKIT_HOME))
     sys.exit(1)
 
-JSW2CTL = '../utils/jsw2ctl.py'
 JSWZ80 = '../jet_set_willy.z80'
 JSWREF = '../jet_set_willy.ref'
 JSWMOD = '../skoolkit/jetsetwilly.py'
@@ -185,21 +184,9 @@ class DisassembliesTestCase(TestCase):
         err = self._to_lines(self.err.getvalue()) if err_lines else self.err.getvalue()
         return out, err
 
-    def _run_cmd(self, cmd):
-        cmdline = cmd.split()
-        if sys.platform == 'win32':
-            cmdline.insert(0, 'python')
-        p = Popen(cmdline, stdout=PIPE, stderr=PIPE)
-        out, err = p.communicate()
-        if PY3:
-            out = out.decode()
-            err = err.decode()
-        return out, err
-
     def write_jsw_skool(self):
-        os.environ['SKOOLKIT_HOME'] = SKOOLKIT_HOME
-        ctl, error = self._run_cmd('{} {}'.format(JSW2CTL, JSWZ80))
-        self.assertEqual(len(error), 0)
+        import jsw2ctl
+        ctl = jsw2ctl.main(JSWZ80)
         options = '-c {}'.format(self.write_text_file(ctl))
         skool, error = self.run_skoolkit_command(sna2skool.main, '{} {}'.format(options, JSWZ80), out_lines=False)
         self.assertEqual(len(error), 0)
