@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright 2012 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -15,7 +15,10 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
-from .skoolhtml import HtmlWriter, Udg
+try:
+    from .skoolhtml import HtmlWriter, Udg
+except (ValueError, ImportError):
+    from skoolkit.skoolhtml import HtmlWriter, Udg
 
 class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
