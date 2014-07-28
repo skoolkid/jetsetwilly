@@ -134,7 +134,7 @@ D 39680 #UDGTABLE {{ #UDGARRAY2,65,,2;39680;39681,121;39696;39697(number_key0) |
 B 39680,128,16
 b 39808 Attributes for the code entry screen
 B 39808,128,16
-t 39936 Source code remnants
+u 39936 Source code remnants
 D 39936 The source code here corresponds to the code at #R35545.
 T 39936 [JR ]NZ,ENDPAUSE
 M 39947,9 INC E
@@ -153,6 +153,7 @@ M 39980,15 JR NZ,PAUSE
 W 39980
 B 39982
 T 39983,12,B1:2:B1:8
+M 39995,5 C[P 10]
 W 39995
 B 39997
 T 39998,2,B1:1
