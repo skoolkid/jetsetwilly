@@ -42,8 +42,11 @@ b 33825 Conveyor data
 b 33841 Triangle UDGs
 D 33841 #UDGTABLE {{ #UDG33841,56(triangle0) | #UDG33849,56(triangle1) | #UDG33857,56(triangle2) | #UDG33865,56(triangle3) }} TABLE#
 t 33873 'AIR'
+D 33873 This message is not used.
 t 33876 '+++++ Press ENTER to Start +++++'
+D 33876 Used by the routine at #R34762.
 t 33908 '#SPACE(2)JET-SET WILLY by Matthew Smith...'
+D 33908 Used by the routine at #R34762.
 B 33942 #CHR169
 T 33943
 T 33980
@@ -51,12 +54,19 @@ T 34024
 T 34050
 T 34100
 t 34132 'Items collected 000 Time 00:00 m'
+D 34132 Used by the routine at #R35068.
 t 34164 'GameOver'
+D 34164 Used by the routine at #R35914.
 t 34172 '000'
+D 34172 Used by the routines at #R34762, #R35245 and #R37841.
 t 34175 ' 7:00a'
+D 34175 Used by the routines at #R34762 and #R35245.
 t 34181 ' 7:00a'
+D 34181 Copied by the routine at #R34762 to #R34175.
 t 34187 'Enter Code at grid location#SPACE5'
+D 34187 Used by the routine at #R34463.
 t 34219 'Sorry, try code at location#SPACE5'
+D 34219 Used by the routine at #R34463.
 g 34251 Game status buffer
 B 34251,26,16
 b 34277 WRITETYPER
