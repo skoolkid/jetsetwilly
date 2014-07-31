@@ -205,7 +205,7 @@ Added POKEs:
   #POKE#noCodeSheetRequired()
   #POKE#infiniteLives()
 Added routine titles
-Added a description to each message entry that lists the routines that use it
+Added a description to each #LINK:MessagesMap(message entry) and #LINK:DataMap(data block) listing the routines that use it
 Added object locations to the entry at #R41984
 Listed the rooms in which each guardian appears (see #R40000, #R40064 and #R43776)
 Listed the rooms in which each guardian definition is used (see #R40960)

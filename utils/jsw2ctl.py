@@ -33,13 +33,17 @@ S 33024,64
 B 33088 Terminator
 s 33089
 w 33280 Screen buffer address lookup table
+D 33280 Used by the routines at #R35914, #R37310 and #R38455.
 W 33280,256,16
 b 33536 Rope animation table
+D 33536 Used by the routine at #R37310.
 B 33536,256,16
 c 33792 The game has just loaded
 g 33824 Current room number
 b 33825 Conveyor data
+D 33825 Used by the routine at #R36564.
 b 33841 Triangle UDGs
+D 33841 Used by the routine at #R34762.
 D 33841 #UDGTABLE {{ #UDG33841,56(triangle0) | #UDG33849,56(triangle1) | #UDG33857,56(triangle2) | #UDG33865,56(triangle3) }} TABLE#
 t 33873 'AIR'
 D 33873 This message is not used.
@@ -70,6 +74,7 @@ D 34219 Used by the routine at #R34463.
 g 34251 Game status buffer
 B 34251,26,16
 b 34277 WRITETYPER
+D 34277 Used by the routine at #R35245.
 B 34277,b2
 B 34279,b2 W
 B 34281,b2 R
@@ -82,8 +87,10 @@ B 34293,b2 P
 B 34295,b2 E
 B 34297,b2 R
 b 34299 Title screen tune data
+D 34299 Used by the routine at #R34762.
 B 34299,100,16
 b 34399 In-game tune data
+D 34399 Used by the routine at #R35245.
 B 34399,64,16
 c 34463 Give two chances to enter a correct code
 c 34499 Display the code entry screen
@@ -126,13 +133,17 @@ u 38644 Unused routine
 C 38644
 s 38680
 b 38912 Attributes for the top two-thirds of the title screen
+D 38912 Used by the routine at #R34762.
 B 38912,512,16
 b 39424 Attributes for the bottom third of the screen during gameplay
+D 39424 Used by the routine at #R35068.
 B 39424,256,16
 b 39680 Number key graphics
+D 39680 Used by the routine at #R34499.
 D 39680 #UDGTABLE {{ #UDGARRAY2,65,,2;39680;39681,121;39696;39697(number_key0) | #UDGARRAY2,66,,2;39712;39713,122;39728;39729(number_key1) | #UDGARRAY2,3,,2;39744;39745,59;39760;39761(number_key2) | #UDGARRAY2,4,,2;39776;39777,60;39792;39793(number_key3) }} TABLE#
 B 39680,128,16
 b 39808 Attributes for the code entry screen
+D 39808 Used by the routine at #R34499.
 B 39808,128,16
 u 39936 Source code remnants
 D 39936 The source code here corresponds to the code at #R35545.
@@ -158,35 +169,44 @@ W 39995
 B 39997
 T 39998,2,B1:1
 b 40000 Foot/barrel graphic data
-D 40000 The foot appears as a guardian in #R56576(The Nightmare Room).
+D 40000 Used by the routine at #R35914 to display the game over sequence.
+D 40000 The foot also appears as a guardian in #R56576(The Nightmare Room).
 {foot}
-D 40032 The barrel appears as a guardian in #R54272(Ballroom East) and #R57856(Top Landing).
+D 40032 The barrel also appears as a guardian in #R54272(Ballroom East) and #R57856(Top Landing).
 {barrel}
 b 40064 Maria sprite graphic data
-D 40064 Maria appears as a guardian in #R56576(The Nightmare Room).
+D 40064 Used by the routine at #R38196 to draw Maria in #R58112(Master Bedroom).
+D 40064 Maria also appears as a guardian in #R56576(The Nightmare Room).
 {maria}
 b 40192 Willy sprite graphic data
+D 40192 Used by the routines at #R35211 and #R38455.
 {willy}
 b 40448 Codes
+D 40448 Used by the routine at #R34499.
 {codes}
 u 40627
 C 40627
 S 40704
 b 40960 Guardian definitions
+D 40960 Used by the routine at #R35068.
 {guardian_defs}
 D 41856 The next 127 bytes are unused.
 B 41856,127,16
 b 41983 Index of first object
+D 41983 Used by the routines at #R34762 and #R37841.
 b 41984 Object table
-D 41984 The location of object N (173<=N<=255) is defined by a pair of bytes at addresses 41984+N and 42240+N. The meaning of the bits in each byte-pair is as follows:
+D 41984 Used by the routines at #R34762 and #R37841.
+D 41984 The location of object N (173<=N<=255) is defined by the pair of bytes at addresses 41984+N and 42240+N. The meaning of the bits in each byte-pair is as follows:
 D 41984 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning }} {{ 15 | Most significant bit of the y-coordinate }} {{ 14 | Collection flag (reset=collected, set=uncollected) }} {{ 8-13 | Room number }} {{ 5-7 | Least significant bits of the y-coordinate }} {{ 0-4 | x-coordinate }} TABLE#
 {object_table}
 b 42496 Toilet graphics
+D 42496 Used by the routine at #R38298.
 {toilet}
 u 42624
 B 42624,128,16
 S 42752
 b 43776 Guardian graphics
+D 43776 Used by the routine at #R37310.
 {guardians}
 {rooms}
 u 64768 Unused TRS-DOS code
@@ -476,6 +496,7 @@ class JetSetWilly:
                 room_image = '#ROOM{}(left_square_bracket)'.format(a)
             else:
                 room_image = '#ROOM{}'.format(a)
+            lines.append('D {} Used by the routine at #R35068.'.format(a))
             lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a, room_image))
             lines.append('D {} The first 128 bytes define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.'.format(a))
             lines.append('B {},128,8 Room layout'.format(a))
