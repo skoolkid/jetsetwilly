@@ -6,7 +6,6 @@ if PY3:
 else:
     from StringIO import StringIO
 import os
-from os.path import dirname
 import shutil
 import tempfile
 from lxml import etree
@@ -16,18 +15,17 @@ from unittest import TestCase
 
 sys.path.insert(0, '../utils')
 
-try:
-    from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
-except ImportError:
-    SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
-    if not SKOOLKIT_HOME:
-        sys.stderr.write('SKOOLKIT_HOME is not set; aborting\n')
-        sys.exit(1)
-    if not os.path.isdir(SKOOLKIT_HOME):
-        sys.stderr.write('SKOOLKIT_HOME={}: directory not found\n'.format(SKOOLKIT_HOME))
-        sys.exit(1)
-    sys.path.insert(1, SKOOLKIT_HOME)
-    from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
+SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
+if not SKOOLKIT_HOME:
+    sys.stderr.write('SKOOLKIT_HOME is not set; aborting\n')
+    sys.exit(1)
+if not os.path.isdir(SKOOLKIT_HOME):
+    sys.stderr.write('SKOOLKIT_HOME={}: directory not found\n'.format(SKOOLKIT_HOME))
+    sys.exit(1)
+sys.path.insert(1, SKOOLKIT_HOME)
+from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
+sk_resources = os.path.join(SKOOLKIT_HOME, 'resources')
+skool2html.SEARCH_DIRS += (sk_resources, '../resources')
 
 JSWZ80 = '../jet_set_willy.z80'
 JSWREF = '../jet_set_willy.ref'
@@ -39,7 +37,8 @@ Using skool file: {skoolfile}
 Using ref file: {reffile}
 Parsing {skoolfile}
 Creating directory {odir}/jet_set_willy
-Copying {cssfile} to {odir}/jet_set_willy/{cssfile}
+Copying {sk_resources}/skoolkit.css to {odir}/jet_set_willy/skoolkit.css
+Copying ../resources/jet_set_willy.css to {odir}/jet_set_willy/jet_set_willy.css
   Writing disassembly files in jet_set_willy/asm
   Writing jet_set_willy/maps/all.html
   Writing jet_set_willy/maps/routines.html
@@ -236,17 +235,14 @@ class HtmlTestCase(DisassembliesTestCase):
 
     def write_jsw(self, options):
         skoolfile = self.write_jsw_skool()
-        cssfile = self.write_text_file(suffix='.css')
-        c_options = '-c Game/StyleSheet={}'.format(cssfile)
-        writer_class = '{}/skoolkit:jetsetwilly.JetSetWillyHtmlWriter'.format(dirname(os.getcwd()))
-        c_options += ' -c Config/HtmlWriterClass={}'.format(writer_class)
+        c_options = '-c Config/HtmlWriterClass=../skoolkit:jetsetwilly.JetSetWillyHtmlWriter'
         c_options += ' -c Config/SkoolFile={}'.format(skoolfile)
         shutil.rmtree(self.odir, True)
 
         # Write the disassembly
         output, error = self.run_skoolkit_command(skool2html.main, '{} -d {} {} {}'.format(c_options, self.odir, options, JSWREF))
         self.assertEqual(len(error), 0)
-        reps = {'odir': self.odir, 'cssfile': cssfile, 'skoolfile': skoolfile, 'reffile': JSWREF}
+        reps = {'odir': self.odir, 'sk_resources': sk_resources, 'skoolfile': skoolfile, 'reffile': JSWREF}
         self.assertEqual(OUTPUT_JSW.format(**reps).split('\n'), output)
 
         self._validate_xhtml()
