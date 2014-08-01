@@ -6,19 +6,22 @@ try:
 except ImportError:
     from io import StringIO
 
-try:
-    from skoolkit import skool2html, sna2skool, tap2sna
-except ImportError:
-    SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
-    if not SKOOLKIT_HOME:
-        sys.stderr.write('SKOOLKIT_HOME is not set; aborting\n')
-        sys.exit(1)
+SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
+if SKOOLKIT_HOME:
     if not os.path.isdir(SKOOLKIT_HOME):
         sys.stderr.write('SKOOLKIT_HOME={}: directory not found\n'.format(SKOOLKIT_HOME))
         sys.exit(1)
     sys.path.insert(0, SKOOLKIT_HOME)
     from skoolkit import skool2html, sna2skool, tap2sna
     skool2html.SEARCH_DIRS += (os.path.join(SKOOLKIT_HOME, 'resources'),)
+else:
+    try:
+        from skoolkit import skool2html, sna2skool, tap2sna
+    except ImportError:
+        sys.stderr.write('Error: SKOOLKIT_HOME is not set, and SkoolKit is not installed\n')
+        sys.exit(1)
+
+sys.stderr.write("Found SkoolKit in {}\n".format(skool2html.PACKAGE_DIR))
 
 import jsw2ctl
 
