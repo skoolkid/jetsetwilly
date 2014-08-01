@@ -266,6 +266,7 @@ class JetSetWilly:
     def __init__(self, snapshot):
         self.snapshot = snapshot
         self.guardian_macros = self._get_guardian_macros()
+        self.room_names, self.room_names_wp = self._get_room_names()
         self.room_macros = self._get_room_macros()
         self.room_guardians = self._get_room_guardians()
 
@@ -287,12 +288,28 @@ class JetSetWilly:
                 guardian_macros[a] = '#UDGARRAY2,{},,2;{}-{}-1-16({})'.format(attrs.pop(0), a, a + 17, fname)
         return guardian_macros
 
+    def _get_room_names(self):
+        rooms = {}
+        rooms_wp = {}
+        for a in range(49152, 64768, 256):
+            room_num = a // 256 - 192
+            room_name = ''.join([chr(b) for b in self.snapshot[a + 128:a + 160]]).strip()
+            room_name_wp = room_name
+            while room_name_wp.find('  ') > 0:
+                start = room_name_wp.index('  ')
+                end = start + 2
+                while room_name_wp[end] == ' ':
+                    end += 1
+                room_name_wp = '{}#SPACE({}){}'.format(room_name_wp[:start], end - start, room_name_wp[end:])
+            rooms[room_num] = room_name
+            rooms_wp[room_num] = room_name_wp
+        return rooms, rooms_wp
+
     def _get_room_macros(self):
         room_macros = {}
         for room_num in range(61):
             addr = 256 * (room_num + 192)
-            name = ''.join([chr(b) for b in self.snapshot[addr + 128:addr + 160]]).strip()
-            room_macros[room_num] = '#R{}({})'.format(addr, name)
+            room_macros[room_num] = '#R{}({})'.format(addr, self.room_names_wp[room_num])
         return room_macros
 
     def _get_room_guardians(self):
@@ -459,35 +476,11 @@ class JetSetWilly:
             y = 8 * (b1 >> 7) + b2 // 32
             items.setdefault(room_num, []).append((x, y))
 
-        rooms = {}
-        rooms_wp = {}
-        for a in range(49152, 64768, 256):
-            room_num = a // 256 - 192
-            room_name = ''.join([chr(b) for b in self.snapshot[a + 128:a + 160]]).strip()
-            room_name_wp = room_name
-            if room_name.find('  ') > 0:
-                room_name_wp = ''
-                start = 0
-                in_word = False
-                for end, c in enumerate(room_name + ' '):
-                    if c == ' ':
-                        if in_word:
-                            room_name_wp += room_name[start:end]
-                            start = end
-                        in_word = False
-                    else:
-                        if not in_word:
-                            room_name_wp += '#SPACE({})'.format(end - start)
-                            start = end
-                        in_word = True
-            rooms[room_num] = room_name
-            rooms_wp[room_num] = room_name_wp
-
         for a in range(49152, 64768, 256):
             room = self.snapshot[a:a + 256]
             room_num = a // 256 - 192
-            room_name = rooms[room_num]
-            lines.append('b {} Room {}: {}'.format(a, room_num, rooms_wp[room_num]))
+            room_name = self.room_names[room_num]
+            lines.append('b {} Room {}: {}'.format(a, room_num, self.room_names_wp[room_num]))
             if a in (50688, 56320, 56576, 59904, 61440):
                 # Rooms with flashing cells
                 room_image = '#ROOM{}({}.gif)'.format(a, room_name.lower().replace(' ', '_'))
@@ -574,10 +567,10 @@ class JetSetWilly:
             lines.append('D {} The next 4 bytes specify the rooms to the left, to the right, above and below.'.format(a + 233))
             room_left, room_right, room_up, room_down = room[233:237]
             for addr, num, name, desc in (
-                (a + 233, room_left, rooms_wp.get(room_left), 'to the left'),
-                (a + 234, room_right, rooms_wp.get(room_right), 'to the right'),
-                (a + 235, room_up, rooms_wp.get(room_up), 'above'),
-                (a + 236, room_down, rooms_wp.get(room_down), 'below'),
+                (a + 233, room_left, self.room_names_wp.get(room_left), 'to the left'),
+                (a + 234, room_right, self.room_names_wp.get(room_right), 'to the right'),
+                (a + 235, room_up, self.room_names_wp.get(room_up), 'above'),
+                (a + 236, room_down, self.room_names_wp.get(room_down), 'below'),
             ):
                 if name and name != room_name:
                     lines.append('B {} Room {} (#R{}({}))'.format(addr, desc, 256 * (num + 192), name))
