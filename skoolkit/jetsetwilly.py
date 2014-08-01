@@ -17,7 +17,7 @@
 
 try:
     from .skoolhtml import HtmlWriter, Udg
-except (ValueError, ImportError):
+except (ValueError, SystemError, ImportError):
     from skoolkit.skoolhtml import HtmlWriter, Udg
 
 class JetSetWillyHtmlWriter(HtmlWriter):
