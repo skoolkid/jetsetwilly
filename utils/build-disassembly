@@ -1,0 +1,85 @@
+#!/bin/bash -e
+
+declare -A SK_VERSIONS
+SK_VERSIONS=(
+  [20131102]=3.6
+  [20130901]=3.5
+  [20121101]=3.2
+  [20120501]=3.0.2
+  [20120411]=3.0.1
+)
+
+if [ $# -lt 2 ]; then
+  echo "Usage: $(basename $0) VERSION SKOOLKIT_VERSION"
+  echo ""
+  echo "  Attempts to build a specific version of the Jet Set Willy disassembly using"
+  echo "  a specific version of SkoolKit."
+  echo ""
+  echo "  VERSION must be one of:"
+  echo ""
+  for v in ${!SK_VERSIONS[@]}; do
+    echo "    $v"
+  done | sort -r | column -c 80
+  echo ""
+  echo "  Environment variables:"
+  echo "    SKOOLKIT_ARCHIVE - directory containing SkoolKit release tarballs"
+  exit 1
+fi
+
+if [ -z "$SKOOLKIT_ARCHIVE" ]; then
+    echo 'SKOOLKIT_ARCHIVE is not set; aborting'
+    exit 1
+fi
+if [ ! -d "$SKOOLKIT_ARCHIVE" ]; then
+    echo "SKOOLKIT_ARCHIVE=$SKOOLKIT_ARCHIVE: directory not found"
+    exit 1
+fi
+
+D_VERSION=$1
+SK_VERSION=$2
+
+SK_VERSION_INT=$(echo $SK_VERSION | tr -d . )0
+SK_VERSION_INT=${SK_VERSION_INT:0:3}
+
+D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
+if [ -z "$D_SK_VERSION" ]; then
+  echo "Disassembly version not recognised: $D_VERSION"
+  exit 1
+fi
+
+D_SK_VERSION_INT=$(echo $D_SK_VERSION | tr -d . )0
+D_SK_VERSION_INT=${D_SK_VERSION_INT:0:3}
+
+if [ $SK_VERSION_INT -lt 300 ]; then
+  echo "Building the Jet Set Willy disassembly is not supported with SkoolKit < 3.0"
+  exit 1
+fi
+
+odir=jsw-$D_VERSION-$SK_VERSION
+rm -rf $odir
+mkdir $odir
+cd $odir
+
+D_SK_DIR=skoolkit-$D_SK_VERSION
+tar xf $SKOOLKIT_ARCHIVE/$D_SK_DIR.tar.*
+D_DIR=$D_SK_DIR-src
+mv $D_SK_DIR $D_DIR
+SK_DIR=skoolkit-$SK_VERSION
+tar xf $SKOOLKIT_ARCHIVE/$SK_DIR.tar.*
+
+cd $SK_DIR
+
+cp -a $JETSETWILLY_HOME/jet_set_willy.z80 .
+cp -a ../$D_DIR/examples/jet_set_willy.{ctl,ref} .
+cp -a ../$D_DIR/examples/jet_set_willy*.css . &>/dev/null || true
+mv examples examples-$SK_VERSION
+mkdir examples
+cp -a jet_set_willy*.css examples &>/dev/null || true
+
+./sna2skool.py -c jet_set_willy.ctl jet_set_willy.z80 > jet_set_willy.skool
+
+HTML_OPTS="-d .."
+if [ $SK_VERSION_INT -ge 302 ]; then
+  HTML_OPTS="$HTML_OPTS -t"
+fi
+./skool2html.py $HTML_OPTS jet_set_willy.ref
