@@ -187,6 +187,15 @@ Alternatively, to bypass the code entry screen altogether:
 
 POKE #R33796(33797),135: POKE #R33799(33800),202
 
+[Poke:moreLives:More lives]
+To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=7):
+
+POKE #R34784(34785),N
+
+Note that the routine at #R35211 tries to draw all remaining lives at the bottom of the screen, which means that for large N, there is screen corruption and the game slows down considerably; to avoid this, disable the routine:
+
+POKE #R35211,201
+
 [Poke:infiniteLives:Infinite lives]
 To give Willy infinite lives:
 
@@ -203,6 +212,7 @@ Added trivia entries:
 Documented a bug: #BUG#invalidGridLocation()
 Added POKEs:
   #POKE#noCodeSheetRequired()
+  #POKE#moreLives()
   #POKE#infiniteLives()
 Added routine titles
 Added a description to each #LINK:MessagesMap(message entry) and #LINK:DataMap(data block) listing the routines that use it
