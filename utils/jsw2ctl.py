@@ -196,7 +196,7 @@ b 38912 Attributes for the top two-thirds of the title screen
 D 38912 Used by the routine at #R34762.
 B 38912,512,16
 b 39424 Attributes for the bottom third of the screen during gameplay
-D 39424 Used by the routine at #R35068.
+D 39424 Used by the routines at #R35068 and #R35591.
 B 39424,256,16
 b 39680 Number key graphics
 D 39680 Used by the routine at #R34499.
