@@ -60,7 +60,7 @@ D 33536 Used by the routine at #R37310.
 B 33536,256,16
 c 33792 The game has just loaded
 g 33824 Current room number
-D 33824 Used by the routines at #R34762, #R35068, #R35245, #R37310, #R37841, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38298 and #R38455.
+D 33824 Used by the routines at #R34762, #R35068, #R35591, #R37310, #R37841, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38298 and #R38455.
 b 33825 Conveyor data
 D 33825 Used by the routine at #R36564.
 b 33841 Triangle UDGs
@@ -95,17 +95,17 @@ D 34219 Used by the routine at #R34463.
 g 34251 Minute counter
 D 34251 Used by the routines at #R34762, #R35245, #R37841, #R38196, #R38276 and #R38298.
 g 34252 Lives remaining
-D 34252 Used by the routines at #R34762, #R35211, #R35245 and #R35841.
+D 34252 Used by the routines at #R34762, #R35211, #R35591 and #R35841.
 g 34253 Screen flash counter
 D 34253 Unused and always zero; the code at #R35339 makes the screen flash in Manic Miner fashion if this address holds a non-zero value.
 g 34254 Kempston joystick indicator
 D 34254 Initialised by the routine at #R34762, and checked by the routines at #R36564 and #R38601. Holds 1 if a joystick is present, 0 otherwise.
 g 34255 Willy's pixel y-coordinate
-D 34255 Used by the routines at #R34762, #R35245, #R36307, #R36564, #R37310, #R38064, #R38098, #R38196, #R38344 and #R38455.
+D 34255 Used by the routines at #R34762, #R35245, #R35591, #R36307, #R36564, #R37310, #R38064, #R38098, #R38196, #R38344 and #R38455.
 g 34256 Various flags
 D 34256 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R38455 }} {{ 1 | Unknown | #R36564, #R37310 }} {{ 2-7 | Unused | }} TABLE#
 g 34257 Airborne status indicator
-D 34257 Used by the routines at #R34762, #R35245, #R36307, #R36564, #R37046, #R37310, #R38064, #R38098 and #R38344.
+D 34257 Used by the routines at #R34762, #R35591, #R36307, #R36564, #R37046, #R37310, #R38064, #R38098 and #R38344.
 g 34258 Willy's animation frame
 D 34258 Used by the routines at #R35245, #R36564, #R37310, #R38344 and #R38455.
 g 34259 Willy's coordinates in the attribute buffer at 23552
@@ -122,17 +122,17 @@ g 34271 Game mode indicator
 D 34271 Used by the routines at #R34762, #R35245, #R36564, #R37841, #R38196, #R38276 and #R38298.
 D 34271 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Normal }} {{ 1 | All objects collected }} {{ 2 | Willy is running to the toilet }} {{ 3 | Willy's head is down the toilet }} TABLE#
 g 34272 Inactivity timer
-D 34272 Initialised by the routine at #R34762, and updated by the routines at #R35245 and #R36564 (only when the in-game music is not playing).
+D 34272 Initialised by the routine at #R34762, and updated by the routines at #R35245, #R35591 and #R36564 (only when the in-game music is not playing).
 g 34273 In-game music note index
-D 34273 Initialised by the routine at #R34762, used by the routine at #R35211, and updated by the routine at #R35245.
+D 34273 Initialised by the routine at #R34762, used by the routine at #R35211, and updated by the routine at #R35591.
 g 34274 Sound flags
-D 34274 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Keypress flag (reset=H-ENTER being pressed, set=no key pressed) | #R34762, #R35245 }} {{ 1 | In-game music flag (reset=music on, set=music off) | #R35245 }} {{ 2-7 | Unused | }} TABLE#
+D 34274 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Keypress flag (reset=H-ENTER being pressed, set=no key pressed) | #R34762, #R35591 }} {{ 1 | In-game music flag (reset=music on, set=music off) | #R35591 }} {{ 2-7 | Unused | }} TABLE#
 g 34275 WRITETYPER key counter
-D 34275 Used by the routine at #R35245.
+D 34275 Used by the routines at #R35245 and #R35591.
 g 34276 Temporary workspace
 D 34276 Used by the routines at #R34499 and #R34620 to hold the entry code; also used by the routines at #R34762 and #R35914.
 b 34277 WRITETYPER
-D 34277 Used by the routine at #R35245.
+D 34277 Used by the routine at #R35591.
 B 34277,b2
 B 34279,b2 W
 B 34281,b2 R
@@ -148,7 +148,7 @@ b 34299 Title screen tune data
 D 34299 Used by the routine at #R34762.
 B 34299,100,16
 b 34399 In-game tune data
-D 34399 Used by the routine at #R35245.
+D 34399 Used by the routine at #R35591.
 B 34399,64,16
 c 34463 Give two chances to enter a correct code
 c 34499 Display the code entry screen
@@ -156,7 +156,9 @@ c 34620 Read a code from the keyboard
 c 34762 Display the title screen and play the theme tune
 c 35068 Start the game
 c 35211 Draw remaining lives
-c 35245 Main loop
+c 35245 Main loop (1)
+c 35563 Cycle the INK and PAPER colours
+c 35591 Main loop (2)
 c 35841 Lose a life
 c 35914 Display the game over sequence
 c 36147 Draw the current room to the screen buffer at 28672
