@@ -75,6 +75,7 @@ cp -a ../$D_DIR/examples/jet_set_willy*.css . &>/dev/null || true
 mv examples examples-$SK_VERSION
 mkdir examples
 cp -a jet_set_willy*.css examples &>/dev/null || true
+cp -a ../$D_DIR/skoolkit/jetsetwilly.py skoolkit &>/dev/null || true
 
 ./sna2skool.py -c jet_set_willy.ctl jet_set_willy.z80 > jet_set_willy.skool
 
