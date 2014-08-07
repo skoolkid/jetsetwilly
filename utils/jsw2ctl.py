@@ -27,8 +27,28 @@ TEMPLATE = """
 ; @start:32768
 ; @org:32768=32768
 g 32768 Room buffer
-S 32768,256
+D 32768 Initialised upon entry to a room by the routine at #R35068.
+S 32768,128 Room layout (used by the routines at #R35068 and #R36203)
+S 32896,32 Room name (used by the routine at #R35068)
+S 32928,9 Background tile (used by the routines at #R36147, #R36307 and #R38430, and also by the unused routine at #R37819)
+S 32937,9 Floor tile (used by the routine at #R36147)
+S 32946,9 Wall tile (used by the routines at #R36147, #R36307 and #R36564)
+S 32955,9 Nasty tile (used by the routines at #R36147, #R36307 and #R38430)
+S 32964,9 Ramp tile (used by the routines at #R36147, #R36203, #R36564 and #R38344)
+S 32973,9 Conveyor tile (used by the routines at #R36147, #R36203 and #R36564)
+S 32982,4 Conveyor definition (used by the routines at #R36564 and #R38137)
+S 32986,4 Ramp definition (used by the routines at #R36203, #R36564 and #R38344)
+B 32990,1 Border colour (used by the routine at #R35068)
+S 32991,2 Unused
+S 32993,8 Object graphic (used by the routine at #R37841)
+B 33001,1 Room to the left (used by the routine at #R38026)
+B 33002,1 Room to the right (used by the routine at #R38046)
+B 33003,1 Room above (used by the routines at #R37310 and #R38064)
+B 33004,1 Room below (used by the routine at #R38098)
+S 33005,3 Unused
+S 33008,16 Guardian definitions (used by the routine at #R35068)
 g 33024 Guardian buffer
+D 33024 Used by the routines at #R35068, #R37056 and #R37310.
 S 33024,64
 B 33088 Terminator
 s 33089
@@ -40,6 +60,7 @@ D 33536 Used by the routine at #R37310.
 B 33536,256,16
 c 33792 The game has just loaded
 g 33824 Current room number
+D 33824 Used by the routines at #R34762, #R35068, #R35245, #R37310, #R37841, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38298 and #R38455.
 b 33825 Conveyor data
 D 33825 Used by the routine at #R36564.
 b 33841 Triangle UDGs
@@ -71,8 +92,45 @@ t 34187 'Enter Code at grid location#SPACE5'
 D 34187 Used by the routine at #R34463.
 t 34219 'Sorry, try code at location#SPACE5'
 D 34219 Used by the routine at #R34463.
-g 34251 Game status buffer
-B 34251,26,16
+g 34251 Minute counter
+D 34251 Used by the routines at #R34762, #R35245, #R37841, #R38196, #R38276 and #R38298.
+g 34252 Lives remaining
+D 34252 Used by the routines at #R34762, #R35211, #R35245 and #R35841.
+g 34253 Screen flash counter
+D 34253 Unused and always zero; the code at #R35339 makes the screen flash in Manic Miner fashion if this address holds a non-zero value.
+g 34254 Kempston joystick indicator
+D 34254 Initialised by the routine at #R34762, and checked by the routines at #R36564 and #R38601. Holds 1 if a joystick is present, 0 otherwise.
+g 34255 Willy's pixel y-coordinate
+D 34255 Used by the routines at #R34762, #R35245, #R36307, #R36564, #R37310, #R38064, #R38098, #R38196, #R38344 and #R38455.
+g 34256 Various flags
+D 34256 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R38455 }} {{ 1 | Unknown | #R36564, #R37310 }} {{ 2-7 | Unused | }} TABLE#
+g 34257 Airborne status indicator
+D 34257 Used by the routines at #R34762, #R35245, #R36307, #R36564, #R37046, #R37310, #R38064, #R38098 and #R38344.
+g 34258 Willy's animation frame
+D 34258 Used by the routines at #R35245, #R36564, #R37310, #R38344 and #R38455.
+g 34259 Willy's coordinates in the attribute buffer at 23552
+D 34259 Used by the routines at #R34762, #R36307, #R36564, #R37310, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38344 and #R38455.
+g 34261 Jumping animation counter
+D 34261 Used by the routines at #R36307 and #R36564.
+g 34262 Rope status indicator
+D 34262 Initialised by the routine at #R35068, checked by the routine at #R36307, and checked and set by the routines at #R36564 and #R37310.
+g 34263 Willy's state on entry to the room
+D 34263 Initialised by the routine at #R35068, and copied back into #LINK:GameStatusBuffer#34255(34255-34261) by the routine at #R35841.
+g 34270 256 minus the number of objects remaining
+D 34270 Used by the routines at #R34762 and #R37841.
+g 34271 Game mode indicator
+D 34271 Used by the routines at #R34762, #R35245, #R36564, #R37841, #R38196, #R38276 and #R38298.
+D 34271 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Normal }} {{ 1 | All objects collected }} {{ 2 | Willy is running to the toilet }} {{ 3 | Willy's head is down the toilet }} TABLE#
+g 34272 Inactivity timer
+D 34272 Initialised by the routine at #R34762, and updated by the routines at #R35245 and #R36564 (only when the in-game music is not playing).
+g 34273 In-game music note index
+D 34273 Initialised by the routine at #R34762, used by the routine at #R35211, and updated by the routine at #R35245.
+g 34274 Sound flags
+D 34274 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Keypress flag (reset=H-ENTER being pressed, set=no key pressed) | #R34762, #R35245 }} {{ 1 | In-game music flag (reset=music on, set=music off) | #R35245 }} {{ 2-7 | Unused | }} TABLE#
+g 34275 WRITETYPER key counter
+D 34275 Used by the routine at #R35245.
+g 34276 Temporary workspace
+D 34276 Used by the routines at #R34499 and #R34620 to hold the entry code; also used by the routines at #R34762 and #R35914.
 b 34277 WRITETYPER
 D 34277 Used by the routine at #R35245.
 B 34277,b2
