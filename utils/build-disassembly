@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+D_VERSIONS=(20140807)
+
 declare -A SK_VERSIONS
 SK_VERSIONS=(
   [20131102]=3.6
@@ -9,6 +11,8 @@ SK_VERSIONS=(
   [20120411]=3.0.1
 )
 
+JSWZ80=$JETSETWILLY_HOME/jet_set_willy.z80
+
 if [ $# -lt 2 ]; then
   echo "Usage: $(basename $0) VERSION SKOOLKIT_VERSION"
   echo ""
@@ -17,7 +21,7 @@ if [ $# -lt 2 ]; then
   echo ""
   echo "  VERSION must be one of:"
   echo ""
-  for v in ${!SK_VERSIONS[@]}; do
+  for v in ${D_VERSIONS[@]} ${!SK_VERSIONS[@]}; do
     echo "    $v"
   done | sort -r | column -c 80
   echo ""
@@ -41,15 +45,6 @@ SK_VERSION=$2
 SK_VERSION_INT=$(echo $SK_VERSION | tr -d . )0
 SK_VERSION_INT=${SK_VERSION_INT:0:3}
 
-D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
-if [ -z "$D_SK_VERSION" ]; then
-  echo "Disassembly version not recognised: $D_VERSION"
-  exit 1
-fi
-
-D_SK_VERSION_INT=$(echo $D_SK_VERSION | tr -d . )0
-D_SK_VERSION_INT=${D_SK_VERSION_INT:0:3}
-
 if [ $SK_VERSION_INT -lt 300 ]; then
   echo "Building the Jet Set Willy disassembly is not supported with SkoolKit < 3.0"
   exit 1
@@ -60,24 +55,40 @@ rm -rf $odir
 mkdir $odir
 cd $odir
 
-D_SK_DIR=skoolkit-$D_SK_VERSION
-tar xf $SKOOLKIT_ARCHIVE/$D_SK_DIR.tar.*
-D_DIR=$D_SK_DIR-src
-mv $D_SK_DIR $D_DIR
 SK_DIR=skoolkit-$SK_VERSION
 tar xf $SKOOLKIT_ARCHIVE/$SK_DIR.tar.*
+SK_BUILD_DIR=${SK_DIR}-build
+mv $SK_DIR $SK_BUILD_DIR
 
-cd $SK_DIR
-
-cp -a $JETSETWILLY_HOME/jet_set_willy.z80 .
-cp -a ../$D_DIR/examples/jet_set_willy.{ctl,ref} .
-cp -a ../$D_DIR/examples/jet_set_willy*.css . &>/dev/null || true
-mv examples examples-$SK_VERSION
-mkdir examples
-cp -a jet_set_willy*.css examples &>/dev/null || true
+if [ $D_VERSION -ge 20140807 ]; then
+  wget https://github.com/skoolkid/jetsetwilly/archive/${D_VERSION}.tar.gz -O - | tar xzf -
+  D_DIR=jetsetwilly-$D_VERSION
+  cd $SK_BUILD_DIR
+  ../$D_DIR/utils/jsw2ctl.py $JSWZ80 > jet_set_willy.ctl
+  cp -a ../$D_DIR/jet_set_willy.ref .
+  cp -a ../$D_DIR/resources/jet_set_willy*.css .
+else
+  D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
+  if [ -z "$D_SK_VERSION" ]; then
+    echo "Disassembly version not recognised: $D_VERSION"
+    exit 1
+  fi
+  D_SK_VERSION_INT=$(echo $D_SK_VERSION | tr -d . )0
+  D_SK_VERSION_INT=${D_SK_VERSION_INT:0:3}
+  D_SK_DIR=skoolkit-$D_SK_VERSION
+  tar xf $SKOOLKIT_ARCHIVE/$D_SK_DIR.tar.*
+  D_DIR=$D_SK_DIR-src
+  mv $D_SK_DIR $D_DIR
+  cd $SK_BUILD_DIR
+  cp -a ../$D_DIR/examples/jet_set_willy.{ctl,ref} .
+  cp -a ../$D_DIR/examples/jet_set_willy*.css . &>/dev/null || true
+  mv examples examples-$SK_VERSION
+  mkdir examples
+  cp -a jet_set_willy*.css examples &>/dev/null || true
+fi
 cp -a ../$D_DIR/skoolkit/jetsetwilly.py skoolkit &>/dev/null || true
 
-./sna2skool.py -c jet_set_willy.ctl jet_set_willy.z80 > jet_set_willy.skool
+./sna2skool.py -c jet_set_willy.ctl $JSWZ80 > jet_set_willy.skool
 
 HTML_OPTS="-d .."
 if [ $SK_VERSION_INT -ge 302 ]; then
