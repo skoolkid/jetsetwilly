@@ -11,7 +11,7 @@ SK_VERSIONS=(
   [20120411]=3.0.1
 )
 
-JSWZ80=$JETSETWILLY_HOME/jet_set_willy.z80
+JSWZ80=$JETSETWILLY_HOME/build/jet_set_willy.z80
 
 if [ $# -lt 2 ]; then
   echo "Usage: $(basename $0) VERSION SKOOLKIT_VERSION"

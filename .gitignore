@@ -2,10 +2,6 @@
 .emacs.desktop
 .emacs.desktop.lock
 build
-jet_set_willy
-jet_set_willy.ctl
-jet_set_willy.skool
-jet_set_willy.z80
 tests/test_asm.py
 tests/test_ctl.py
 tests/test_html.py

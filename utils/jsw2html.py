@@ -25,14 +25,18 @@ sys.stderr.write("Found SkoolKit in {}\n".format(skool2html.PACKAGE_DIR))
 
 import jsw2ctl
 
-# Write jet_set_willy.z80
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-jswz80 = os.path.join(parent_dir, 'jet_set_willy.z80')
+build_dir = os.path.join(parent_dir, 'build')
+if not os.path.isdir(build_dir):
+    os.mkdir(build_dir)
+
+# Write jet_set_willy.z80
+jswz80 = os.path.join(build_dir, 'jet_set_willy.z80')
 if not os.path.isfile(jswz80):
-    tap2sna.main(('-d', parent_dir, '@{}/jet_set_willy.t2s'.format(parent_dir)))
+    tap2sna.main(('-d', build_dir, '@{}/jet_set_willy.t2s'.format(parent_dir)))
 
 # Write jet_set_willy.ctl
-ctlfile = os.path.join(parent_dir, 'jet_set_willy.ctl')
+ctlfile = os.path.join(build_dir, 'jet_set_willy.ctl')
 with open(ctlfile, 'wt') as f:
     f.write(jsw2ctl.main(jswz80))
 
@@ -40,13 +44,13 @@ with open(ctlfile, 'wt') as f:
 stdout = sys.stdout
 sys.stdout = StringIO()
 sna2skool.main(('-c', ctlfile, jswz80))
-skoolfile = os.path.join(parent_dir, 'jet_set_willy.skool')
+skoolfile = os.path.join(build_dir, 'jet_set_willy.skool')
 with open(skoolfile, 'wt') as f:
     f.write(sys.stdout.getvalue())
 sys.stdout = stdout
 
 # Build the HTML disassembly
 writer_class = '{}/skoolkit:jetsetwilly.JetSetWillyHtmlWriter'.format(parent_dir)
-c_option = '-c Config/HtmlWriterClass={}'.format(writer_class)
-args = c_option.split() + sys.argv[1:] + [os.path.join(parent_dir, 'jet_set_willy.ref')]
+options = '-c Config/HtmlWriterClass={} -d {}/html'.format(writer_class, build_dir)
+args = options.split() + sys.argv[1:] + [skoolfile]
 skool2html.main(args)
