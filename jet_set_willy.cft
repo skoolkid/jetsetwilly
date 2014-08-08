@@ -179,7 +179,18 @@ c 38455 Draw Willy to the screen buffer at 24576
 c 38528 Print a message
 c 38545 Print a single character
 c 38562 Play the theme tune
-c 38601 Check whether Enter or Fire is being pressed
+c 38601 Check whether ENTER, 0 or the fire button is being pressed
+D 38601 Used by the routine at #R38562. Returns with the zero flag reset if ENTER, 0 or the fire button on the joystick is being pressed.
+  38601 Collect the Kempston joystick indicator from #R34254
+  38604 Is the joystick connected?
+  38605 Jump if not
+  38607 Collect input from the joystick
+  38609 Is the fire button being pressed?
+  38611 Return (with the zero flag reset) if so
+  38612,5 Read keys H-J-K-L-ENTER and 6-7-8-9-0
+  38617 Keep only bit 0 of the result (ENTER, 0)
+  38619 Reset the zero flag if ENTER or 0 is being pressed
+  38621
 c 38622 Play an intro message sound effect
 u 38644 Unused routine
 C 38644
