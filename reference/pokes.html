@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Jet Set Willy: Pokes</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Pokes">
+<table class="header">
+<tr>
+<td class="logo"><a class="link" href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Pokes</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a class="link" href="#noCodeSheetRequired">No code sheet required</a></li>
+<li><a class="link" href="#moreLives">More lives</a></li>
+<li><a class="link" href="#infiniteLives">Infinite lives</a></li>
+</ul>
+<div><a name="noCodeSheetRequired"></a></div>
+<div class="box box-1">
+<div class="box-title">No code sheet required</div>
+<div class="paragraph">
+To make any combination work on the code entry screen:
+</div>
+<div class="paragraph">
+POKE <a class="link" href="../asm/34463.html#34483">34483</a>,195
+</div>
+<div class="paragraph">
+Alternatively, to bypass the code entry screen altogether:
+</div>
+<div class="paragraph">
+POKE <a class="link" href="../asm/33792.html#33796">33797</a>,135: POKE <a class="link" href="../asm/33792.html#33799">33800</a>,202
+</div>
+</div>
+<div><a name="moreLives"></a></div>
+<div class="box box-2">
+<div class="box-title">More lives</div>
+<div class="paragraph">
+To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=7):
+</div>
+<div class="paragraph">
+POKE <a class="link" href="../asm/34762.html#34784">34785</a>,N
+</div>
+<div class="paragraph">
+Note that the routine at <a class="link" href="../asm/35211.html">35211</a> tries to draw all remaining lives at the bottom of the screen, which means that for large N, there is screen corruption and the game slows down considerably; to avoid this, disable the routine:
+</div>
+<div class="paragraph">
+POKE <a class="link" href="../asm/35211.html">35211</a>,201
+</div>
+</div>
+<div><a name="infiniteLives"></a></div>
+<div class="box box-1">
+<div class="box-title">Infinite lives</div>
+<div class="paragraph">
+To give Willy infinite lives:
+</div>
+<div class="paragraph">
+POKE <a class="link" href="../asm/35841.html#35899">35899</a>,0
+</div>
+</div>
+<div class="footer">
+<div class="release"></div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+</div>
+</body>
+</html>

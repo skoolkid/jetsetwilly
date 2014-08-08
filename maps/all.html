@@ -28,9 +28,9 @@
 <tr>
 <td class="map-page-1">128</td>
 <td class="map-byte-1">0</td>
-<td class="map-b"><a name="32768"></a><a class="link" href="../asm/32768.html">32768</a></td>
+<td class="map-g"><a name="32768"></a><a class="link" href="../asm/32768.html">32768</a></td>
 <td class="map-length-0">256</td>
-<td class="map-b-desc">
+<td class="map-g-desc">
 <div class="map-entry-title-10">Room buffer</div>
 <div class="map-entry-desc-0">
 
@@ -40,9 +40,9 @@
 <tr>
 <td class="map-page-1">129</td>
 <td class="map-byte-1">0</td>
-<td class="map-b"><a name="33024"></a><a class="link" href="../asm/33024.html">33024</a></td>
+<td class="map-g"><a name="33024"></a><a class="link" href="../asm/33024.html">33024</a></td>
 <td class="map-length-0">65</td>
-<td class="map-b-desc">
+<td class="map-g-desc">
 <div class="map-entry-title-10">Guardian buffer</div>
 <div class="map-entry-desc-0">
 
@@ -91,7 +91,7 @@
 <td class="map-c"><a name="33792"></a><a class="link" href="../asm/33792.html">33792</a></td>
 <td class="map-length-0">32</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Start</div>
+<div class="map-entry-title-10">The game has just loaded</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -100,9 +100,9 @@
 <tr>
 <td class="map-page-1">132</td>
 <td class="map-byte-1">32</td>
-<td class="map-b"><a name="33824"></a><a class="link" href="../asm/33824.html">33824</a></td>
+<td class="map-g"><a name="33824"></a><a class="link" href="../asm/33824.html">33824</a></td>
 <td class="map-length-0">1</td>
-<td class="map-b-desc">
+<td class="map-g-desc">
 <div class="map-entry-title-10">Current room number</div>
 <div class="map-entry-desc-0">
 
@@ -257,9 +257,225 @@
 <td class="map-page-1">133</td>
 <td class="map-byte-1">203</td>
 <td class="map-g"><a name="34251"></a><a class="link" href="../asm/34251.html">34251</a></td>
-<td class="map-length-0">26</td>
+<td class="map-length-0">1</td>
 <td class="map-g-desc">
-<div class="map-entry-title-10">Game status buffer</div>
+<div class="map-entry-title-10">Minute counter</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">204</td>
+<td class="map-g"><a name="34252"></a><a class="link" href="../asm/34252.html">34252</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Lives remaining</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">205</td>
+<td class="map-g"><a name="34253"></a><a class="link" href="../asm/34253.html">34253</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Screen flash counter</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">206</td>
+<td class="map-g"><a name="34254"></a><a class="link" href="../asm/34254.html">34254</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Kempston joystick indicator</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">207</td>
+<td class="map-g"><a name="34255"></a><a class="link" href="../asm/34255.html">34255</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Willy's pixel y-coordinate</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">208</td>
+<td class="map-g"><a name="34256"></a><a class="link" href="../asm/34256.html">34256</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Various flags</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">209</td>
+<td class="map-g"><a name="34257"></a><a class="link" href="../asm/34257.html">34257</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Airborne status indicator</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">210</td>
+<td class="map-g"><a name="34258"></a><a class="link" href="../asm/34258.html">34258</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Willy's animation frame</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">211</td>
+<td class="map-g"><a name="34259"></a><a class="link" href="../asm/34259.html">34259</a></td>
+<td class="map-length-0">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Willy's coordinates in the attribute buffer at 23552</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">213</td>
+<td class="map-g"><a name="34261"></a><a class="link" href="../asm/34261.html">34261</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Jumping animation counter</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">214</td>
+<td class="map-g"><a name="34262"></a><a class="link" href="../asm/34262.html">34262</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Rope status indicator</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">215</td>
+<td class="map-g"><a name="34263"></a><a class="link" href="../asm/34263.html">34263</a></td>
+<td class="map-length-0">7</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Willy's state on entry to the room</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">222</td>
+<td class="map-g"><a name="34270"></a><a class="link" href="../asm/34270.html">34270</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">256 minus the number of objects remaining</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">223</td>
+<td class="map-g"><a name="34271"></a><a class="link" href="../asm/34271.html">34271</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Game mode indicator</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">224</td>
+<td class="map-g"><a name="34272"></a><a class="link" href="../asm/34272.html">34272</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Inactivity timer</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">225</td>
+<td class="map-g"><a name="34273"></a><a class="link" href="../asm/34273.html">34273</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">In-game music note index</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">226</td>
+<td class="map-g"><a name="34274"></a><a class="link" href="../asm/34274.html">34274</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Sound flags</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">227</td>
+<td class="map-g"><a name="34275"></a><a class="link" href="../asm/34275.html">34275</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">WRITETYPER key counter</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">133</td>
+<td class="map-byte-1">228</td>
+<td class="map-g"><a name="34276"></a><a class="link" href="../asm/34276.html">34276</a></td>
+<td class="map-length-0">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-10">Temporary workspace</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -307,7 +523,7 @@
 <td class="map-c"><a name="34463"></a><a class="link" href="../asm/34463.html">34463</a></td>
 <td class="map-length-0">36</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 34463</div>
+<div class="map-entry-title-10">Give two chances to enter a correct code</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -319,7 +535,7 @@
 <td class="map-c"><a name="34499"></a><a class="link" href="../asm/34499.html">34499</a></td>
 <td class="map-length-0">121</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 34499</div>
+<div class="map-entry-title-10">Display the code entry screen</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -331,7 +547,7 @@
 <td class="map-c"><a name="34620"></a><a class="link" href="../asm/34620.html">34620</a></td>
 <td class="map-length-0">142</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 34620</div>
+<div class="map-entry-title-10">Read a code from the keyboard</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -341,9 +557,21 @@
 <td class="map-page-1">135</td>
 <td class="map-byte-1">202</td>
 <td class="map-c"><a name="34762"></a><a class="link" href="../asm/34762.html">34762</a></td>
-<td class="map-length-0">449</td>
+<td class="map-length-0">306</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 34762</div>
+<div class="map-entry-title-10">Display the title screen and play the theme tune</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">136</td>
+<td class="map-byte-1">252</td>
+<td class="map-c"><a name="35068"></a><a class="link" href="../asm/35068.html">35068</a></td>
+<td class="map-length-0">143</td>
+<td class="map-c-desc">
+<div class="map-entry-title-10">Start the game</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -355,7 +583,7 @@
 <td class="map-c"><a name="35211"></a><a class="link" href="../asm/35211.html">35211</a></td>
 <td class="map-length-0">34</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 35211</div>
+<div class="map-entry-title-10">Draw remaining lives</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -365,9 +593,33 @@
 <td class="map-page-1">137</td>
 <td class="map-byte-1">173</td>
 <td class="map-c"><a name="35245"></a><a class="link" href="../asm/35245.html">35245</a></td>
-<td class="map-length-0">596</td>
+<td class="map-length-0">318</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 35245</div>
+<div class="map-entry-title-10">Main loop (1)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">138</td>
+<td class="map-byte-1">235</td>
+<td class="map-c"><a name="35563"></a><a class="link" href="../asm/35563.html">35563</a></td>
+<td class="map-length-0">28</td>
+<td class="map-c-desc">
+<div class="map-entry-title-10">Cycle the INK and PAPER colours</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">139</td>
+<td class="map-byte-1">7</td>
+<td class="map-c"><a name="35591"></a><a class="link" href="../asm/35591.html">35591</a></td>
+<td class="map-length-0">250</td>
+<td class="map-c-desc">
+<div class="map-entry-title-10">Main loop (2)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -379,7 +631,7 @@
 <td class="map-c"><a name="35841"></a><a class="link" href="../asm/35841.html">35841</a></td>
 <td class="map-length-0">73</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 35841</div>
+<div class="map-entry-title-10">Lose a life</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -391,7 +643,7 @@
 <td class="map-c"><a name="35914"></a><a class="link" href="../asm/35914.html">35914</a></td>
 <td class="map-length-0">233</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 35914</div>
+<div class="map-entry-title-10">Display the game over sequence</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -403,7 +655,7 @@
 <td class="map-c"><a name="36147"></a><a class="link" href="../asm/36147.html">36147</a></td>
 <td class="map-length-0">56</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36147</div>
+<div class="map-entry-title-10">Draw the current room to the screen buffer at 28672</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -415,7 +667,7 @@
 <td class="map-c"><a name="36203"></a><a class="link" href="../asm/36203.html">36203</a></td>
 <td class="map-length-0">85</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36203</div>
+<div class="map-entry-title-10">Fill the buffer at 24064 with attribute bytes for the current room</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -427,7 +679,7 @@
 <td class="map-c"><a name="36288"></a><a class="link" href="../asm/36288.html">36288</a></td>
 <td class="map-length-0">19</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36288</div>
+<div class="map-entry-title-10">Copy a room attribute byte into the buffer at 24064</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -439,7 +691,7 @@
 <td class="map-c"><a name="36307"></a><a class="link" href="../asm/36307.html">36307</a></td>
 <td class="map-length-0">257</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36307</div>
+<div class="map-entry-title-10">Move Willy (1)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -449,9 +701,21 @@
 <td class="map-page-1">142</td>
 <td class="map-byte-1">212</td>
 <td class="map-c"><a name="36564"></a><a class="link" href="../asm/36564.html">36564</a></td>
-<td class="map-length-0">492</td>
+<td class="map-length-0">482</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 36564</div>
+<div class="map-entry-title-10">Move Willy (2)</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">144</td>
+<td class="map-byte-1">182</td>
+<td class="map-c"><a name="37046"></a><a class="link" href="../asm/37046.html">37046</a></td>
+<td class="map-length-0">10</td>
+<td class="map-c-desc">
+<div class="map-entry-title-10">Kill Willy</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -463,7 +727,7 @@
 <td class="map-c"><a name="37056"></a><a class="link" href="../asm/37056.html">37056</a></td>
 <td class="map-length-0">254</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37056</div>
+<div class="map-entry-title-10">Move guardians</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -475,7 +739,7 @@
 <td class="map-c"><a name="37310"></a><a class="link" href="../asm/37310.html">37310</a></td>
 <td class="map-length-0">509</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37310</div>
+<div class="map-entry-title-10">Draw guardians to the screen buffer at 24576</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -484,10 +748,10 @@
 <tr>
 <td class="map-page-1">147</td>
 <td class="map-byte-1">187</td>
-<td class="map-c"><a name="37819"></a><a class="link" href="../asm/37819.html">37819</a></td>
+<td class="map-u"><a name="37819"></a><a class="link" href="../asm/37819.html">37819</a></td>
 <td class="map-length-0">22</td>
-<td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37819</div>
+<td class="map-u-desc">
+<div class="map-entry-title-10">Unused routine</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -499,7 +763,7 @@
 <td class="map-c"><a name="37841"></a><a class="link" href="../asm/37841.html">37841</a></td>
 <td class="map-length-0">133</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37841</div>
+<div class="map-entry-title-10">Draw objects</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -511,7 +775,7 @@
 <td class="map-c"><a name="37974"></a><a class="link" href="../asm/37974.html">37974</a></td>
 <td class="map-length-0">52</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 37974</div>
+<div class="map-entry-title-10">Draw a sprite</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -523,7 +787,7 @@
 <td class="map-c"><a name="38026"></a><a class="link" href="../asm/38026.html">38026</a></td>
 <td class="map-length-0">20</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38026</div>
+<div class="map-entry-title-10">Move Willy into the room to the left</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -535,7 +799,7 @@
 <td class="map-c"><a name="38046"></a><a class="link" href="../asm/38046.html">38046</a></td>
 <td class="map-length-0">18</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38046</div>
+<div class="map-entry-title-10">Move Willy into the room to the right</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -547,7 +811,7 @@
 <td class="map-c"><a name="38064"></a><a class="link" href="../asm/38064.html">38064</a></td>
 <td class="map-length-0">34</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38064</div>
+<div class="map-entry-title-10">Move Willy into the room above</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -559,7 +823,7 @@
 <td class="map-c"><a name="38098"></a><a class="link" href="../asm/38098.html">38098</a></td>
 <td class="map-length-0">39</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38098</div>
+<div class="map-entry-title-10">Move Willy into the room below</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -571,7 +835,7 @@
 <td class="map-c"><a name="38137"></a><a class="link" href="../asm/38137.html">38137</a></td>
 <td class="map-length-0">59</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38137</div>
+<div class="map-entry-title-10">Move conveyors</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -583,7 +847,7 @@
 <td class="map-c"><a name="38196"></a><a class="link" href="../asm/38196.html">38196</a></td>
 <td class="map-length-0">80</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38196</div>
+<div class="map-entry-title-10">Deal with special rooms (Master Bedroom, The Bathroom)</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -595,7 +859,7 @@
 <td class="map-c"><a name="38276"></a><a class="link" href="../asm/38276.html">38276</a></td>
 <td class="map-length-0">22</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38276</div>
+<div class="map-entry-title-10">Check whether Willy has reached the toilet</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -607,7 +871,7 @@
 <td class="map-c"><a name="38298"></a><a class="link" href="../asm/38298.html">38298</a></td>
 <td class="map-length-0">46</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38298</div>
+<div class="map-entry-title-10">Animate the toilet in The Bathroom</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -619,7 +883,7 @@
 <td class="map-c"><a name="38344"></a><a class="link" href="../asm/38344.html">38344</a></td>
 <td class="map-length-0">86</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38344</div>
+<div class="map-entry-title-10">Set the attribute bytes for Willy's sprite in the buffer at 23552</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -631,7 +895,7 @@
 <td class="map-c"><a name="38430"></a><a class="link" href="../asm/38430.html">38430</a></td>
 <td class="map-length-0">25</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38430</div>
+<div class="map-entry-title-10">Set the attribute byte for a tile of Willy's sprite</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -641,21 +905,9 @@
 <td class="map-page-1">150</td>
 <td class="map-byte-1">55</td>
 <td class="map-c"><a name="38455"></a><a class="link" href="../asm/38455.html">38455</a></td>
-<td class="map-length-0">49</td>
+<td class="map-length-0">73</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38455</div>
-<div class="map-entry-desc-0">
-
-</div>
-</td>
-</tr>
-<tr>
-<td class="map-page-1">150</td>
-<td class="map-byte-1">104</td>
-<td class="map-c"><a name="38504"></a><a class="link" href="../asm/38504.html">38504</a></td>
-<td class="map-length-0">24</td>
-<td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38504</div>
+<div class="map-entry-title-10">Draw Willy to the screen buffer at 24576</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -667,7 +919,7 @@
 <td class="map-c"><a name="38528"></a><a class="link" href="../asm/38528.html">38528</a></td>
 <td class="map-length-0">17</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38528</div>
+<div class="map-entry-title-10">Print a message</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -679,7 +931,7 @@
 <td class="map-c"><a name="38545"></a><a class="link" href="../asm/38545.html">38545</a></td>
 <td class="map-length-0">17</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38545</div>
+<div class="map-entry-title-10">Print a single character</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -689,9 +941,21 @@
 <td class="map-page-1">150</td>
 <td class="map-byte-1">162</td>
 <td class="map-c"><a name="38562"></a><a class="link" href="../asm/38562.html">38562</a></td>
-<td class="map-length-0">60</td>
+<td class="map-length-0">39</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38562</div>
+<div class="map-entry-title-10">Play the theme tune</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">150</td>
+<td class="map-byte-1">201</td>
+<td class="map-c"><a name="38601"></a><a class="link" href="../asm/38601.html">38601</a></td>
+<td class="map-length-0">21</td>
+<td class="map-c-desc">
+<div class="map-entry-title-10">Check whether Enter or Fire is being pressed</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -701,9 +965,21 @@
 <td class="map-page-1">150</td>
 <td class="map-byte-1">222</td>
 <td class="map-c"><a name="38622"></a><a class="link" href="../asm/38622.html">38622</a></td>
-<td class="map-length-0">58</td>
+<td class="map-length-0">22</td>
 <td class="map-c-desc">
-<div class="map-entry-title-10">Routine at 38622</div>
+<div class="map-entry-title-10">Play an intro message sound effect</div>
+<div class="map-entry-desc-0">
+
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-page-1">150</td>
+<td class="map-byte-1">244</td>
+<td class="map-u"><a name="38644"></a><a class="link" href="../asm/38644.html">38644</a></td>
+<td class="map-length-0">36</td>
+<td class="map-u-desc">
+<div class="map-entry-title-10">Unused routine</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -763,7 +1039,7 @@
 <td class="map-b"><a name="39808"></a><a class="link" href="../asm/39808.html">39808</a></td>
 <td class="map-length-0">128</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Attributes for the password screen</div>
+<div class="map-entry-title-10">Attributes for the code entry screen</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -772,9 +1048,9 @@
 <tr>
 <td class="map-page-1">156</td>
 <td class="map-byte-1">0</td>
-<td class="map-t"><a name="39936"></a><a class="link" href="../asm/39936.html">39936</a></td>
+<td class="map-u"><a name="39936"></a><a class="link" href="../asm/39936.html">39936</a></td>
 <td class="map-length-0">64</td>
-<td class="map-t-desc">
+<td class="map-u-desc">
 <div class="map-entry-title-10">Source code remnants</div>
 <div class="map-entry-desc-0">
 
@@ -821,20 +1097,20 @@
 <td class="map-page-1">158</td>
 <td class="map-byte-1">0</td>
 <td class="map-b"><a name="40448"></a><a class="link" href="../asm/40448.html">40448</a></td>
-<td class="map-length-0">256</td>
+<td class="map-length-0">179</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Password codes</div>
+<div class="map-entry-title-10">Codes</div>
 <div class="map-entry-desc-0">
 
 </div>
 </td>
 </tr>
 <tr>
-<td class="map-page-1">159</td>
-<td class="map-byte-1">0</td>
-<td class="map-s"><a name="40704"></a><a class="link" href="../asm/40704.html">40704</a></td>
-<td class="map-length-0">256</td>
-<td class="map-s-desc">
+<td class="map-page-1">158</td>
+<td class="map-byte-1">179</td>
+<td class="map-u"><a name="40627"></a><a class="link" href="../asm/40627.html">40627</a></td>
+<td class="map-length-0">333</td>
+<td class="map-u-desc">
 <div class="map-entry-title-10">Unused</div>
 <div class="map-entry-desc-0">
 
@@ -1183,7 +1459,7 @@
 <td class="map-b"><a name="54784"></a><a class="link" href="../asm/54784.html">54784</a></td>
 <td class="map-length-0">256</td>
 <td class="map-b-desc">
-<div class="map-entry-title-10">Room 22: To&#160;the&#160;Kitchens&#160;&#160;&#160;&#160;Main&#160;Stairway</div>
+<div class="map-entry-title-10">Room 22: To the Kitchens&#160;&#160;&#160;&#160;Main Stairway</div>
 <div class="map-entry-desc-0">
 
 </div>
@@ -1660,7 +1936,7 @@
 </table>
 <div class="footer">
 <div class="release"></div>
-<div class="copyright"></div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
 <div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
 </div>
 </body>

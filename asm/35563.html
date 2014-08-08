@@ -4,7 +4,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Jet Set Willy: Routine at 38504</title>
+<title>Jet Set Willy: Routine at 35563</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
 
@@ -18,18 +18,18 @@
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a class="link" href="38455.html">38455</a></span></td>
-<td class="up">Up: <a class="link" href="../maps/all.html#38504">Map</a></td>
-<td class="next"><span class="next-1">Next: <a class="link" href="38528.html">38528</a></span></td>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="35245.html">35245</a></span></td>
+<td class="up">Up: <a class="link" href="../maps/all.html#35563">Map</a></td>
+<td class="next"><span class="next-1">Next: <a class="link" href="35591.html">35591</a></span></td>
 </tr>
 </table>
-<div class="description">38504: Routine at 38504</div>
+<div class="description">35563: Cycle the INK and PAPER colours</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a class="link" href="38298.html">38298</a>.
+Used by the routines at <a class="link" href="34762.html">34762</a> and <a class="link" href="35245.html">35245</a>.
 </div>
 </div>
 <table class="input-0">
@@ -48,117 +48,123 @@ Used by the routine at <a class="link" href="38298.html">38298</a>.
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-2"><a name="38504"></a>38504</td>
-<td class="instruction">LD A,(IX+0)</td>
+<td class="address-2"><a name="35563"></a>35563</td>
+<td class="instruction">LD HL,22528</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38507"></a>38507</td>
-<td class="instruction">LD H,(IX+1)</td>
+<td class="address-1"><a name="35566"></a>35566</td>
+<td class="instruction">LD A,(HL)</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38510"></a>38510</td>
-<td class="instruction">OR C</td>
+<td class="address-1"><a name="35567"></a>35567</td>
+<td class="instruction">AND 7</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38511"></a>38511</td>
-<td class="instruction">LD L,A</td>
+<td class="address-1"><a name="35569"></a>35569</td>
+<td class="instruction">OUT (254),A</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38512"></a>38512</td>
-<td class="instruction">LD A,(DE)</td>
+<td class="address-2"><a name="35571"></a>35571</td>
+<td class="instruction">LD A,(HL)</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38513"></a>38513</td>
-<td class="instruction">OR (HL)</td>
+<td class="address-1"><a name="35572"></a>35572</td>
+<td class="instruction">ADD A,3</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38514"></a>38514</td>
+<td class="address-1"><a name="35574"></a>35574</td>
+<td class="instruction">AND 7</td>
+<td class="comment-10" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35576"></a>35576</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-10" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35577"></a>35577</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-10" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35578"></a>35578</td>
+<td class="instruction">ADD A,24</td>
+<td class="comment-10" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35580"></a>35580</td>
+<td class="instruction">AND 184</td>
+<td class="comment-10" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35582"></a>35582</td>
+<td class="instruction">OR D</td>
+<td class="comment-10" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="35583"></a>35583</td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38515"></a>38515</td>
+<td class="address-1"><a name="35584"></a>35584</td>
 <td class="instruction">INC HL</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38516"></a>38516</td>
-<td class="instruction">INC DE</td>
+<td class="address-1"><a name="35585"></a>35585</td>
+<td class="instruction">LD A,H</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38517"></a>38517</td>
-<td class="instruction">LD A,(DE)</td>
+<td class="address-1"><a name="35586"></a>35586</td>
+<td class="instruction">CP 91</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38518"></a>38518</td>
-<td class="instruction">OR (HL)</td>
+<td class="address-1"><a name="35588"></a>35588</td>
+<td class="instruction">JR NZ,35571</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="38519"></a>38519</td>
-<td class="instruction">LD (HL),A</td>
-<td class="comment-10" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><a name="38520"></a>38520</td>
-<td class="instruction">INC IX</td>
-<td class="comment-10" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><a name="38522"></a>38522</td>
-<td class="instruction">INC IX</td>
-<td class="comment-10" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><a name="38524"></a>38524</td>
-<td class="instruction">INC DE</td>
-<td class="comment-10" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><a name="38525"></a>38525</td>
-<td class="instruction">DJNZ 38504</td>
-<td class="comment-10" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><a name="38527"></a>38527</td>
+<td class="address-1"><a name="35590"></a>35590</td>
 <td class="instruction">RET</td>
 <td class="comment-10" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a class="link" href="38455.html">38455</a></span></td>
-<td class="up">Up: <a class="link" href="../maps/all.html#38504">Map</a></td>
-<td class="next"><span class="next-1">Next: <a class="link" href="38528.html">38528</a></span></td>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="35245.html">35245</a></span></td>
+<td class="up">Up: <a class="link" href="../maps/all.html#35563">Map</a></td>
+<td class="next"><span class="next-1">Next: <a class="link" href="35591.html">35591</a></span></td>
 </tr>
 </table>
 <div class="footer">
 <div class="release"></div>
-<div class="copyright"></div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
 <div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
 </div>
 </body>

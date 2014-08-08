@@ -17,16 +17,33 @@
 </tr>
 </table>
 <ul class="contents">
+<li><a class="link" href="#unusedGridLocation">Unused grid location</a></li>
 <li><a class="link" href="#unusedObjects">Unused objects</a></li>
 <li><a class="link" href="#unusedNasties">Unused nasties</a></li>
 <li><a class="link" href="#unusedFloor">Unused floor</a></li>
 <li><a class="link" href="#unusedRamp">Unused ramp</a></li>
 <li><a class="link" href="#unusedConveyor">Unused conveyor</a></li>
+<li><a class="link" href="#unusedGuardian">Unused guardian</a></li>
+<li><a class="link" href="#uniqueGuardians">Unique guardians</a></li>
+<li><a class="link" href="#commonestGuardian">Commonest guardian</a></li>
 <li><a class="link" href="#emptiestRooms">The emptiest rooms</a></li>
 <li><a class="link" href="#mostObjects">The most objects</a></li>
 </ul>
-<div><a name="unusedObjects"></a></div>
+<div><a name="unusedGridLocation"></a></div>
 <div class="box box-1">
+<div class="box-title">Unused grid location</div>
+<div class="paragraph">
+The routine at <a class="link" href="../asm/34499.html">34499</a>, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
+</div>
+<div class="paragraph">
+To give the code at grid location R9 a chance of being asked for:
+</div>
+<div class="paragraph">
+POKE <a class="link" href="../asm/34499.html#34555">34556</a>,180
+</div>
+</div>
+<div><a name="unusedObjects"></a></div>
+<div class="box box-2">
 <div class="box-title">Unused objects</div>
 <div class="paragraph">
 There are five rooms in which nontrivial object graphics are defined, but not used.
@@ -57,7 +74,7 @@ There are five rooms in which nontrivial object graphics are defined, but not us
 </div>
 </div>
 <div><a name="unusedNasties"></a></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Unused nasties</div>
 <div class="paragraph">
 There are seven rooms in which nontrivial nasty graphics are defined, but not used.
@@ -96,7 +113,7 @@ There are seven rooms in which nontrivial nasty graphics are defined, but not us
 </div>
 </div>
 <div><a name="unusedFloor"></a></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Unused floor</div>
 <div class="paragraph">
 There is one room in which a nontrivial floor graphic is defined, but not used.
@@ -111,7 +128,7 @@ There is one room in which a nontrivial floor graphic is defined, but not used.
 </div>
 </div>
 <div><a name="unusedRamp"></a></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Unused ramp</div>
 <div class="paragraph">
 There is one room in which a nontrivial ramp graphic is defined, but not used.
@@ -126,7 +143,7 @@ There is one room in which a nontrivial ramp graphic is defined, but not used.
 </div>
 </div>
 <div><a name="unusedConveyor"></a></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Unused conveyor</div>
 <div class="paragraph">
 There is one room in which a nontrivial conveyor graphic is defined, but not used.
@@ -138,6 +155,89 @@ There is one room in which a nontrivial conveyor graphic is defined, but not use
 <td><img alt="conveyor27" src="../images/udgs/conveyor27.png" /></td>
 </tr>
 </table>
+</div>
+</div>
+<div><a name="unusedGuardian"></a></div>
+<div class="box box-1">
+<div class="box-title">Unused guardian</div>
+<div class="paragraph">
+The guardian whose graphic data lives at <a class="link" href="../asm/43776.html#45312">45312</a> is unused.
+</div>
+<div class="paragraph">
+<table>
+<tr>
+<td><img alt="guardian177_4-0" src="../images/udgs/guardian177_4-0.png" /></td>
+<td><img alt="guardian177_5-1" src="../images/udgs/guardian177_5-1.png" /></td>
+<td><img alt="guardian177_6-2" src="../images/udgs/guardian177_6-2.png" /></td>
+<td><img alt="guardian177_7-3" src="../images/udgs/guardian177_7-3.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+However, this guardian made an appearance later on in the room 'Macaroni Ted' in Jet Set Willy II.
+</div>
+</div>
+<div><a name="uniqueGuardians"></a></div>
+<div class="box box-2">
+<div class="box-title">Unique guardians</div>
+<div class="paragraph">
+There are seven rooms that contain a unique guardian (that is, a guardian that does not appear in any other room).
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td><a class="link" href="../asm/49152.html">The Off Licence</a></td>
+<td><img alt="guardian190_4" src="../images/udgs/guardian190_4.png" /></td>
+</tr>
+<tr>
+<td><a class="link" href="../asm/49408.html">The Bridge</a></td>
+<td><img alt="guardian185_4" src="../images/udgs/guardian185_4.png" /></td>
+</tr>
+<tr>
+<td><a class="link" href="../asm/52736.html">Rescue Esmerelda</a></td>
+<td><img alt="guardian176_4" src="../images/udgs/guardian176_4.png" /></td>
+</tr>
+<tr>
+<td><a class="link" href="../asm/55552.html">Cold Store</a></td>
+<td><img alt="guardian189_0" src="../images/udgs/guardian189_0.png" /></td>
+</tr>
+<tr>
+<td><a class="link" href="../asm/56576.html">The Nightmare Room</a></td>
+<td><img alt="foot" src="../images/udgs/foot.png" /></td>
+</tr>
+<tr>
+<td><a class="link" href="../asm/59648.html">The Attic</a></td>
+<td><img alt="guardian176_0" src="../images/udgs/guardian176_0.png" /> <img alt="guardian176_2" src="../images/udgs/guardian176_2.png" /></td>
+</tr>
+<tr>
+<td><a class="link" href="../asm/60672.html">Under the Drive</a></td>
+<td><img alt="guardian174_4" src="../images/udgs/guardian174_4.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+<div><a name="commonestGuardian"></a></div>
+<div class="box box-1">
+<div class="box-title">Commonest guardian</div>
+<div class="paragraph">
+The commonest guardian is the bird, whose graphic data lives at <a class="link" href="../asm/43776.html#48128">48128</a>.
+</div>
+<div class="paragraph">
+<table>
+<tr>
+<td><img alt="guardian188_0" src="../images/udgs/guardian188_0.png" /></td>
+<td><img alt="guardian188_1" src="../images/udgs/guardian188_1.png" /></td>
+<td><img alt="guardian188_2" src="../images/udgs/guardian188_2.png" /></td>
+<td><img alt="guardian188_3" src="../images/udgs/guardian188_3.png" /></td>
+<td><img alt="guardian188_4" src="../images/udgs/guardian188_4.png" /></td>
+<td><img alt="guardian188_5" src="../images/udgs/guardian188_5.png" /></td>
+<td><img alt="guardian188_6" src="../images/udgs/guardian188_6.png" /></td>
+<td><img alt="guardian188_7" src="../images/udgs/guardian188_7.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+There are 23 instances of this guardian spread over 18 rooms: four in <a class="link" href="../asm/50176.html">The Drive</a>, two in each of <a class="link" href="../asm/49408.html">The Bridge</a> and <a class="link" href="../asm/51200.html">Inside the MegaTrunk</a>, and one in each of <a class="link" href="../asm/51968.html">The Hall</a>, <a class="link" href="../asm/52224.html">Tree Top</a>, <a class="link" href="../asm/52480.html">Out on a limb</a>, <a class="link" href="../asm/52736.html">Rescue Esmerelda</a>, <a class="link" href="../asm/52992.html">I'm sure I've seen this before..</a>, <a class="link" href="../asm/53248.html">We must perform a Quirkafleeg</a>, <a class="link" href="../asm/54272.html">Ballroom East</a>, <a class="link" href="../asm/54784.html">To the Kitchens Main Stairway</a>, <a class="link" href="../asm/58368.html">A bit of tree</a>, <a class="link" href="../asm/58880.html">Priests' Hole</a>, <a class="link" href="../asm/60672.html">Under the Drive</a>, <a class="link" href="../asm/61440.html">Nomen Luni</a>, <a class="link" href="../asm/61952.html">Watch Tower</a>, <a class="link" href="../asm/62976.html">West  Wing</a> and <a class="link" href="../asm/63488.html">West Wing Roof</a>.
 </div>
 </div>
 <div><a name="emptiestRooms"></a></div>
@@ -168,7 +268,7 @@ The room with the most objects is <a class="link" href="../asm/49152.html">The O
 </div>
 <div class="footer">
 <div class="release"></div>
-<div class="copyright"></div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
 <div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
 </div>
 </body>
