@@ -44,6 +44,12 @@ b 33536 Rope animation table
 D 33536 Used by the routine at #R37310.
 B 33536,256,16
 c 33792 The game has just loaded
+D 33792 After the game has loaded, this is where it all starts.
+  33792 Disable interrupts
+  33793,11 Place the address of the routine at #R34463 on the stack
+  33804,9 Set #REGhl=34048 in a roundabout way
+  33813,10 Read through addresses 34048-65535, without changing their contents; perhaps this code was once used to descramble the contents of pages 133-255, but now all it does is introduce a pause of about 0.47s before displaying the code entry screen
+  33823 Make an indirect jump to #R34463
 g 33824 Current room number
 D 33824 Used by the routines at #R34762, #R35068, #R35591, #R37310, #R37841, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38298 and #R38455.
 b 33825 Conveyor data
@@ -136,6 +142,7 @@ b 34399 In-game tune data
 D 34399 Used by the routine at #R35591.
 B 34399,64,16
 c 34463 Give two chances to enter a correct code
+D 34463 Used by the routine at #R33792.
 c 34499 Display the code entry screen
 c 34620 Read a code from the keyboard
 c 34762 Display the title screen and play the theme tune
