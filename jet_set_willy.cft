@@ -145,12 +145,68 @@ c 34463 Give two chances to enter a correct code
 D 34463 Used by the routine at #R33792.
 c 34499 Display the code entry screen
 c 34620 Read a code from the keyboard
+  34620,5 Read keys 1-2-3-4-5
+  34625,4 Is '1', '2', '3' or '4' being pressed?
+  34629 Jump if so
+  34631,4 Read keys H-J-K-L-ENTER
+  34635 Is ENTER being pressed?
+  34637,2 Jump if not
+  34709,5 Read keys 1-2-3-4-5
+  34714,2 Keep only bits 0-3 (keys 1-2-3-4)
+  34716 #REGe=8 (INK 0: PAPER 1)
+  34718 Is '1' alone being pressed?
+  34720 Jump if so
+  34722 #REGe=16 (INK 0: PAPER 2)
+  34724 Is '2' alone being pressed?
+  34726 Jump if so
+  34728 #REGe=24 (INK 0: PAPER 3)
+  34730 Is '3' alone being pressed?
+  34732 Jump if so
+  34734 #REGe=32 (INK 0: PAPER 4)
+  34736 Is '4' alone being pressed?
+  34738,3 Jump if not
 c 34762 Display the title screen and play the theme tune
+  35043,5 Read keys H-J-K-L-ENTER and 6-7-8-9-0
+  35048 Keep only bit 0 of the result (ENTER, 0)
+  35050 Was ENTER or 0 pressed?
+  35052,2 Jump if so to start the game
 c 35068 Start the game
 c 35211 Draw remaining lives
 c 35245 Main loop (1)
+  35499,5 Read keys SHIFT-Z-X-C-V
+  35504 Save the result in #REGe
+  35505,4 Read keys B-N-M-SS-SPACE
+  35509 Combine the results
+  35510 Are SHIFT and SPACE being pressed?
+  35512,3 Jump if so to quit the game
+  35524,4 Read keys A-S-D-F-G
+  35528,4 Are any of these keys being pressed?
+  35532,2 Jump if not
+  35537,4 Read every half-row of keys except A-S-D-F-G
+  35541,4 Are any of these keys being pressed?
+  35545,2 Jump if so
 c 35563 Cycle the INK and PAPER colours
 c 35591 Main loop (2)
+  35620 Read keys H-J-K-L-ENTER
+  35622,4 Are any of these keys being pressed?
+  35626,2 Jump if not
+  35696,5 Read keys 6-7-8-9-0
+  35701 Is '9' being pressed?
+  35703 Jump if not
+  35706 Keep only bit 4 (corresponding to the '6' key)
+  35708 Flip bit 4
+  35710 Move it into bit 5
+  35711,1 Now bit 5 of #REGd is set if '6' is being pressed
+  35720,5 Read keys 1-2-3-4-5
+  35725,3 Keep only bits 0-4 and flip them
+  35728 Copy bit 5 of #REGd into #REGa; now #REGa holds the number of the room to teleport to
+  35729,3 Store the room number at #R33824
+  35772,5 Read keys Q-W-E-R-T
+  35784 Are any of these keys (Q-W-E-R-T) being pressed?
+  35786,3 If not, jump back to the start of the main loop
+  35802,4 Read keys Y-U-I-O-P
+  35813 Are any of these keys (Y-U-I-O-P) being pressed?
+  35815,3 If not, jump back to the start of the main loop
 c 35841 Lose a life
 c 35914 Display the game over sequence
 c 36147 Draw the current room to the screen buffer at 28672
@@ -158,6 +214,29 @@ c 36203 Fill the buffer at 24064 with attribute bytes for the current room
 c 36288 Copy a room attribute byte into the buffer at 24064
 c 36307 Move Willy (1)
 c 36564 Move Willy (2)
+  36602,5 Read keys Y-U-I-O-P
+  36621,5 Read keys Q-W-E-R-T
+  36634,4 Read keys 1-2-3-4-5 and 6-7-8-9-0
+  36643,4 Read keys 6-7-8-9-0
+  36651,2 Read keys 6-7-8-9-0
+  36658 Collect the Kempston joystick indicator from #R34254
+  36661 Is the joystick connected?
+  36662 Jump if not
+  36664,5 Collect input from the joystick
+  36669,2 Keep only bits 0 (right) and 1 (left)
+  36717,5 Read keys SHIFT-Z-X-C-V and B-N-M-SS-SPACE
+  36722,4 Are any of these keys being pressed?
+  36726 Jump if so
+  36728,4 Read keys 6-7-8-9-0
+  36732 Is '0' being pressed?
+  36734,2 Jump if so
+  36736 Collect the Kempston joystick indicator from #R34254
+  36739 Is the joystick connected?
+  36740 Jump if not
+  36742,5 Collect input from the joystick
+  36747 Is the fire button being pressed?
+  36749,2 Jump if not
+D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
 c 37046 Kill Willy
 c 37056 Move guardians
 c 37310 Draw guardians to the screen buffer at 24576
@@ -189,11 +268,15 @@ D 38601 Used by the routine at #R38562. Returns with the zero flag reset if ENTE
   38611 Return (with the zero flag reset) if so
   38612,5 Read keys H-J-K-L-ENTER and 6-7-8-9-0
   38617 Keep only bit 0 of the result (ENTER, 0)
-  38619 Reset the zero flag if ENTER or 0 is being pressed
-  38621
+  38619,2 Reset the zero flag if ENTER or 0 is being pressed
 c 38622 Play an intro message sound effect
 u 38644 Unused routine
 C 38644
+C 38668 Prepare #REGbc for reading keys SHIFT-Z-X-C-V
+C 38671 Read these keys
+C 38673 Is 'X' being pressed?
+C 38675 Jump if so to reset the machine
+C 38678 Otherwise jump back to read the keyboard again
 s 38680
 b 38912 Attributes for the top two-thirds of the title screen
 D 38912 Used by the routine at #R34762.
