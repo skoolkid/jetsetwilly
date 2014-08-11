@@ -143,6 +143,14 @@ D 34399 Used by the routine at #R35591.
 B 34399,64,16
 c 34463 Give two chances to enter a correct code
 D 34463 Used by the routine at #R33792.
+  34463,13 Clear the display file
+  34476 Point #REGix at the message at #R34187 ("Enter Code at grid location#SPACE(5)")
+  34480 Display the code entry screen and collect a four-digit code from the user
+  34483 Start the game if the code is correct
+  34486 Point #REGix at the message at #R34219 ("Sorry, try code at location#SPACE(5)")
+  34490 Display the code entry screen and collect another four-digit code from the user
+  34493 Start the game if the code is correct
+  34496 Otherwise reset the machine
 c 34499 Display the code entry screen
 c 34620 Read a code from the keyboard
   34620,5 Read keys 1-2-3-4-5
