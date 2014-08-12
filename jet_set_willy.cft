@@ -175,7 +175,7 @@ R 34499 IX Address of the message to print (#R34187 or #R34219)
   34583,7 Print the grid location number at (8,30)
   34590,3 Calculate the ASCII code of the grid location letter (A-R) in #REGa
   34593,6 Print the grid location letter at (8,29)
-D 34599 Here we enter a loop that prints a 2x2 flashing coloured block at (10,16), (10,19), (10,22) or (10,25) whenever '1', '2', '3' or '4' is pressed, or returns to the calling routine at #R34463 if ENTER is pressed.
+D 34599 Here we enter a loop that prints a 2x2 coloured block at (10,16), (10,19), (10,22) or (10,25) whenever '1', '2', '3' or '4' is pressed, or returns to the calling routine at #R34463 if ENTER is pressed.
   34599 Point #REGix at the attribute file location of the first coloured block at (10,16)
   34603 Print a coloured block when '1', '2', '3' or '4' is pressed, or return to #R34463 if ENTER is pressed
   34606,6 Move #REGix along to the location of the next coloured block
@@ -183,12 +183,29 @@ D 34599 Here we enter a loop that prints a 2x2 flashing coloured block at (10,16
   34616 If not, jump back to print the next one
   34618 Otherwise rewind #REGix to the location of the first coloured block
 c 34620 Read the keyboard during code entry
+R 34620 IX Attribute file address of the flashing 2x2 block
+D 34620 Used by the routine at #R34499. Waits for '1', '2', '3', '4' or ENTER to be pressed and either prints a coloured block or validates the entered code. Returns to the routine at #R34463 if ENTER is being pressed, with the zero flag reset if the entered code is correct.
   34620,5 Read keys 1-2-3-4-5
-  34625,4 Is '1', '2', '3' or '4' being pressed?
-  34629 Jump if so
+  34625,4 Is '1', '2', '3' or '4' (still) being pressed?
+  34629 Jump back if so
   34631,4 Read keys H-J-K-L-ENTER
   34635 Is ENTER being pressed?
   34637,2 Jump if not
+  34639 Pick up the attribute byte of the fourth 2x2 block at (10,25)
+  34642,4 Has the fourth digit been entered yet?
+  34646 Jump if not
+D 34648 We have four coloured blocks, and ENTER is being pressed. Time to validate the entered code.
+  34648,8 Compute bits 0 and 1 of the entered code from the attribute byte of the fourth coloured block at (10,25) and store them in #REGc
+  34656,10 Compute bits 4 and 5 of the entered code from the attribute byte of the second coloured block at (10,19) and store them in #REGc (alongside bits 0 and 1)
+  34666,10 Compute bits 2 and 3 of the entered code from the attribute byte of the third coloured block at (10,22) and store them in #REGc (alongside bits 0, 1, 4 and 5)
+  34676,10 Compute bits 6 and 7 of the entered code from the attribute byte of the first coloured block at (10,16) in #REGa
+  34686 Drop the return address from the stack
+  34687 Merge bits 0-5 of the entered code into #REGa; now #REGa holds all 8 bits of the entered code
+  34688 Point #REGhl at #R34276 (where the correct entry code is stored)
+  34691 Set the zero flag if the entered code matches
+  34692 Return to the routine at #R34463
+D 34693 Here we check whether '1', '2', '3' or '4' is being pressed.
+  34693,16 Make sure the current 2x2 block is flashing
   34709,5 Read keys 1-2-3-4-5
   34714,2 Keep only bits 0-3 (keys 1-2-3-4)
   34716 #REGe=8 (INK 0: PAPER 1)
@@ -202,7 +219,10 @@ c 34620 Read the keyboard during code entry
   34732 Jump if so
   34734 #REGe=32 (INK 0: PAPER 4)
   34736 Is '4' alone being pressed?
-  34738,3 Jump if not
+  34738,3 If not, jump back to check the ENTER key
+D 34741 Exactly one of the number keys '1', '2', '3' or '4' is being pressed. #REGe holds the corresponding attribute byte to use for the coloured block.
+  34741,12 Set the colour of the 2x2 block (no longer flashing)
+  34753,8 Pause for about 0.02s
 c 34762 Display the title screen and play the theme tune
   35043,5 Read keys H-J-K-L-ENTER and 6-7-8-9-0
   35048 Keep only bit 0 of the result (ENTER, 0)
