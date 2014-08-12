@@ -143,7 +143,7 @@ D 34399 Used by the routine at #R35591.
 B 34399,64,16
 c 34463 Give two chances to enter a correct code
 D 34463 Used by the routine at #R33792.
-  34463,13 Clear the display file
+  34463,13 Clear the display file and attribute file
   34476 Point #REGix at the message at #R34187 ("Enter Code at grid location#SPACE(5)")
   34480 Display the code entry screen and collect a four-digit code from the user
   34483 Start the game if the code is correct
@@ -152,7 +152,37 @@ D 34463 Used by the routine at #R33792.
   34493 Start the game if the code is correct
   34496 Otherwise reset the machine
 c 34499 Display the code entry screen
-c 34620 Read a code from the keyboard
+D 34499 Used by the routine at #R34463. Displays the code entry screen and waits for a code to be entered. Returns with the zero flag set if the code entered is correct.
+R 34499 IX Address of the message to print (#R34187 or #R34219)
+  34499,8 Print the message pointed to by #REGix at (8,0)
+  34507,11 Print the graphic for the '1' key at (10,2)
+  34518,6 Print the graphic for the '2' key at (10,5)
+  34524,6 Print the graphic for the '3' key at (10,8)
+  34530,6 Print the graphic for the '4' key at (10,11)
+  34536,11 Copy the 128 attribute bytes from #R39808 to the screen (lines 8, 9, 10 and 11)
+  34547 Collect the LSB of the system variable FRAMES
+  34550,5 Add 37 to this value and replace it; this ensures that the value collected on the second pass through this routine is different from the value collected on the first pass
+  34555 Is the value between 0 and 178?
+  34557 Jump if so
+  34559 Otherwise subtract 180; note that if the original value of the LSB of the system variable FRAMES was 142, this leaves #REGa holding 255, which is a #BUG#invalidGridLocation
+  34561 Now #REGl holds either 255 or some number between 0 and 178
+  34562 Point #REGhl at one of the entries in the table at #R40448 (or at 40703 if #REGl=255)
+  34564 Pick up the table entry
+  34565 Add #REGl to obtain the actual code
+  34566 Store the code at #R34276
+  34569 Copy the code index to #REGc; this will be used to compute the grid location
+  34570,13 Calculate the ASCII code of the grid location number (0-9) in #REGe
+  34583,7 Print the grid location number at (8,30)
+  34590,3 Calculate the ASCII code of the grid location letter (A-R) in #REGa
+  34593,6 Print the grid location letter at (8,29)
+D 34599 Here we enter a loop that prints a 2x2 flashing coloured block at (10,16), (10,19), (10,22) or (10,25) whenever '1', '2', '3' or '4' is pressed, or returns to the calling routine at #R34463 if ENTER is pressed.
+  34599 Point #REGix at the attribute file location of the first coloured block at (10,16)
+  34603 Print a coloured block when '1', '2', '3' or '4' is pressed, or return to #R34463 if ENTER is pressed
+  34606,6 Move #REGix along to the location of the next coloured block
+  34612,4 Have we just printed the fourth coloured block at (10,25)?
+  34616 If not, jump back to print the next one
+  34618 Otherwise rewind #REGix to the location of the first coloured block
+c 34620 Read the keyboard during code entry
   34620,5 Read keys 1-2-3-4-5
   34625,4 Is '1', '2', '3' or '4' being pressed?
   34629 Jump if so
