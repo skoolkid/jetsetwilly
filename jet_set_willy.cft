@@ -329,7 +329,8 @@ D 38601 Used by the routine at #R38562. Returns with the zero flag reset if ENTE
   38619,2 Reset the zero flag if ENTER or 0 is being pressed
 c 38622 Play an intro message sound effect
 u 38644 Unused routine
-C 38644
+C 38644,11 Copy the attribute buffer at 24064 to the top two-thirds of the screen
+C 38655,13 Fill the top two-thirds of the display file with the byte value 24 (00011000)
 C 38668 Prepare #REGbc for reading keys SHIFT-Z-X-C-V
 C 38671 Read these keys
 C 38673 Is 'X' being pressed?
