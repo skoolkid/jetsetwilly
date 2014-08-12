@@ -299,7 +299,21 @@ c 37046 Kill Willy
 c 37056 Move guardians
 c 37310 Draw guardians to the screen buffer at 24576
 u 37819 Unused routine
-C 37819
+D 37819 This routine is not used, but if it were, it would set the ink colour for a 3x2 block of cells, maintaining the paper, bright and flash attributes of the current room background.
+R 37819 A INK colour (0-7)
+R 37819 HL Attribute file or attribute buffer address
+C 37819 Store the ink colour (bits 0-2)
+C 37820 Collect the current room's background tile attribute from #R32928
+C 37823 Keep only bits 3-7 (PAPER, BRIGHT, FLASH)
+C 37825 Merge the INK bits
+C 37826 Store the resultant attribute byte
+C 37827 Prepare #REGde for later addition
+C 37830,2 Move right one cell and store the attribute byte there
+C 37832,2 Move left one cell and down a row and store the attribute byte there
+C 37834,2 Move right one cell and store the attribute byte there
+C 37836,2 Move left one cell and down a row and store the attribute byte there
+C 37838,2 Move right one cell and store the attribute byte there
+C 37840
 c 37841 Draw objects
 c 37974 Draw a sprite
 c 38026 Move Willy into the room to the left
