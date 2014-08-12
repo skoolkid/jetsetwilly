@@ -73,12 +73,14 @@ t 34132 'Items collected 000 Time 00:00 m'
 D 34132 Used by the routine at #R35068.
 t 34164 'GameOver'
 D 34164 Used by the routine at #R35914.
-t 34172 '000'
-D 34172 Used by the routines at #R34762, #R35245 and #R37841.
-t 34175 ' 7:00a'
-D 34175 Used by the routines at #R34762 and #R35245.
+g 34172 Number of items collected
+D 34172 Initialised by the routine at #R34762, printed by the routine at #R35245, and updated by the routine at #R37841.
+T 34172
+g 34175 Current time
+D 34175 Initialised by the routine at #R35068, and printed and updated by the routine at #R35245.
+T 34175
 t 34181 ' 7:00a'
-D 34181 Copied by the routine at #R34762 to #R34175.
+D 34181 Copied by the routine at #R35068 to #R34175.
 t 34187 'Enter Code at grid location#SPACE5'
 D 34187 Used by the routine at #R34463.
 t 34219 'Sorry, try code at location#SPACE5'
@@ -224,13 +226,18 @@ D 34741 Exactly one of the number keys '1', '2', '3' or '4' is being pressed. #R
   34741,12 Set the colour of the 2x2 block (no longer flashing)
   34753,8 Pause for about 0.02s
 c 34762 Display the title screen and play the theme tune
+  34869,12 Print "+++++ Press ENTER to Start +++++" (see #R33876) at (19,0)
   35043,5 Read keys H-J-K-L-ENTER and 6-7-8-9-0
   35048 Keep only bit 0 of the result (ENTER, 0)
   35050 Was ENTER or 0 pressed?
   35052,2 Jump if so to start the game
 c 35068 Start the game
+  35173,12 Print the room name at (16,0)
+  35185,12 Print "Items collected 000 Time 00:00 m" (see #R34132) at (19,0)
 c 35211 Draw remaining lives
 c 35245 Main loop (1)
+  35377,12 Print the current time (see #R34175) at (19,25)
+  35389,12 Print the number of items collected (see #R34172) at (19,16)
   35499,5 Read keys SHIFT-Z-X-C-V
   35504 Save the result in #REGe
   35505,4 Read keys B-N-M-SS-SPACE
@@ -267,6 +274,8 @@ c 35591 Main loop (2)
   35815,3 If not, jump back to the start of the main loop
 c 35841 Lose a life
 c 35914 Display the game over sequence
+  36043,12 Print "Game" (see #R34164) at (6,10)
+  36055,12 Print "Over" at (6,18)
 c 36147 Draw the current room to the screen buffer at 28672
 c 36203 Fill the buffer at 24064 with attribute bytes for the current room
 c 36288 Copy a room attribute byte into the buffer at 24064
@@ -328,6 +337,15 @@ c 38344 Set the attribute bytes for Willy's sprite in the buffer at 23552
 c 38430 Set the attribute byte for a tile of Willy's sprite
 c 38455 Draw Willy to the screen buffer at 24576
 c 38528 Print a message
+R 38528 IX Address of the message
+R 38528 C Length of the message
+R 38528 DE Display file address
+  38528 Collect a character from the message
+  38531 Print it
+  38534 Point #REGix at the next character in the message
+  38536,5 Point #REGde at the next character cell (subtracting 8 from #REGd compensates for the operations performed by the routine at #R38545)
+  38541 Have we printed the entire message yet?
+  38542,2 If not, jump back to print the next character
 c 38545 Print a single character
 c 38562 Play the theme tune
 c 38601 Check whether ENTER, 0 or the fire button is being pressed
