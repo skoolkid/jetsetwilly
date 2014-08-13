@@ -230,6 +230,8 @@ c 34762 Display the title screen and play the theme tune
   34984 Point #REGhl at the theme tune data at #R34299
   34987 Play the theme tune
   34990,3 Start the game if ENTER, 0 or the fire button was pressed
+  35033,7 Prepare a value between 50 and 81 in #REGa (for the routine at #R38622)
+  35040 Make a sound effect
   35043,5 Read keys H-J-K-L-ENTER and 6-7-8-9-0
   35048 Keep only bit 0 of the result (ENTER, 0)
   35050 Was ENTER or 0 pressed?
@@ -384,6 +386,21 @@ D 38601 Used by the routine at #R38562. Returns with the zero flag reset if ENTE
   38617 Keep only bit 0 of the result (ENTER, 0)
   38619,2 Reset the zero flag if ENTER or 0 is being pressed
 c 38622 Play an intro message sound effect
+R 38622 A Value between 50 and 81
+  38622 Save the value of #REGa in #REGe for later retrieval
+  38623 We will output to port 254
+  38625 Copy #REGa into #REGd; bits 0-2 of #REGd determine the initial border colour
+  38626 Reset bit 4 of #REGd (initial speaker state)
+  38628 Reset bit 3 of #REGd (initial MIC state)
+  38630,1 Initialise #REGb (delay counter for the inner loop)
+  38631 Is it time to flip the MIC and speaker and make the border black?
+  38632 Jump if not
+  38634 Set bits 3 (MIC) and 4 (speaker) of #REGd, and reset bits 0-2 (black border)
+  38636 Set the MIC state, speaker state and border colour
+  38638 Jump back until the inner loop is finished
+  38640 Is the outer loop finished too?
+  38641 Jump back if not
+  38643
 u 38644 Unused routine
 C 38644,11 Copy the attribute buffer at 24064 to the top two-thirds of the screen
 C 38655,13 Fill the top two-thirds of the display file with the byte value 24 (00011000)
