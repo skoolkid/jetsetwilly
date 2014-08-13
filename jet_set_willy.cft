@@ -138,7 +138,7 @@ B 34293,b2 P
 B 34295,b2 E
 B 34297,b2 R
 b 34299 Title screen tune data
-D 34299 Used by the routine at #R34762.
+D 34299 Used by the routine at #R38562.
 B 34299,100,16
 b 34399 In-game tune data
 D 34399 Used by the routine at #R35591.
@@ -227,6 +227,9 @@ D 34741 Exactly one of the number keys '1', '2', '3' or '4' is being pressed. #R
   34753,8 Pause for about 0.02s
 c 34762 Display the title screen and play the theme tune
   34869,12 Print "+++++ Press ENTER to Start +++++" (see #R33876) at (19,0)
+  34984 Point #REGhl at the theme tune data at #R34299
+  34987 Play the theme tune
+  34990,3 Start the game if ENTER, 0 or the fire button was pressed
   35043,5 Read keys H-J-K-L-ENTER and 6-7-8-9-0
   35048 Keep only bit 0 of the result (ENTER, 0)
   35050 Was ENTER or 0 pressed?
@@ -348,6 +351,27 @@ R 38528 DE Display file address
   38542,2 If not, jump back to print the next character
 c 38545 Print a single character
 c 38562 Play the theme tune
+D 38562 Used by the routine at #R34762. For each of the 99 bytes in the tune data table at #R34299, this routine produces two notes, each lasting approximately 0.15s; the second note is played at half the frequency of the first. Returns with the zero flag reset if ENTER, 0 or the fire button is pressed while the tune is being played.
+R 38562 HL #R34299
+  38562 Pick up the next byte of tune data from the table at #R34299
+  38563 Has the tune finished?
+  38565 Return (with the zero flag set) if so
+  38566 #REGb=0 (short note duration counter), #REGc=100 (short note counter)
+  38569 #REGa=0 (border colour and speaker state)
+  38570 Save the byte of tune data in #REGe for retrieval during the short note loop
+  38571 Initialise #REGd (pitch delay counter)
+  38572,10 Produce a short note (approximately 0.003s) whose pitch is determined by the value in #REGe
+  38582 Save #REGa briefly
+  38583,3 Is the short note counter in #REGc (which starts off at 100) down to 50 yet?
+  38586 Jump if not
+  38588 Otherwise double the value in #REGe (which halves the note frequency)
+  38590 Restore the value of #REGa
+  38591 Decrement the short note counter in #REGc
+  38592 Jump back unless we've finished playing 50 short notes at the lower frequency
+  38594 Check whether ENTER, 0 or the fire button is being pressed
+  38597 Return (with the zero flag reset) if it is
+  38598 Move #REGhl along to the next byte of tune data
+  38599 Jump back to play the next batch of 100 short notes
 c 38601 Check whether ENTER, 0 or the fire button is being pressed
 D 38601 Used by the routine at #R38562. Returns with the zero flag reset if ENTER, 0 or the fire button on the joystick is being pressed.
   38601 Collect the Kempston joystick indicator from #R34254
