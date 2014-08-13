@@ -227,6 +227,8 @@ D 34741 Exactly one of the number keys '1', '2', '3' or '4' is being pressed. #R
   34753,8 Pause for about 0.02s
 c 34762 Display the title screen and play the theme tune
   34869,12 Print "+++++ Press ENTER to Start +++++" (see #R33876) at (19,0)
+  34952 There are eight pixel rows in a triangle UDG
+  34954,3 Draw a triangle UDG on the screen
   34984 Point #REGhl at the theme tune data at #R34299
   34987 Play the theme tune
   34990,3 Start the game if ENTER, 0 or the fire button was pressed
@@ -328,7 +330,12 @@ C 37834,2 Move right one cell and store the attribute byte there
 C 37836,2 Move left one cell and down a row and store the attribute byte there
 C 37838,2 Move right one cell and store the attribute byte there
 C 37840
-c 37841 Draw objects
+c 37841 Draw objects in the current room
+  37960 Save #REGhl briefly
+  37961 Point #REGhl at the object graphic for the current room (at #R32993)
+  37964 There are eight pixel rows to copy
+  37966 Draw the object to the screen buffer at 24576
+  37969,1 Restore #REGhl
 c 37974 Draw a sprite
 c 38026 Move Willy into the room to the left
 c 38046 Move Willy into the room to the right
@@ -352,6 +359,12 @@ R 38528 DE Display file address
   38541 Have we printed the entire message yet?
   38542,2 If not, jump back to print the next character
 c 38545 Print a single character
+R 38545 A ASCII code of the character
+R 38545 DE Display file address
+  38545,8 Point #REGhl at the bitmap for the character (in the ROM)
+  38553 There are eight pixel rows in a character bitmap
+D 38555 This entry point is used by the routine at #R34762 to draw a triangle UDG on the title screen, and by the routine at #R37841 to draw an object in the current room.
+  38555,6 Copy the character bitmap (or triangle UDG, or object graphic) to the screen (or screen buffer)
 c 38562 Play the theme tune
 D 38562 Used by the routine at #R34762. For each of the 99 bytes in the tune data table at #R34299, this routine produces two notes, each lasting approximately 0.15s; the second note is played at half the frequency of the first. Returns with the zero flag reset if ENTER, 0 or the fire button is pressed while the tune is being played.
 R 38562 HL #R34299
