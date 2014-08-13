@@ -314,6 +314,10 @@ D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
   36874 Collect Willy's coordinates from #R34259
   36877,3 Is Willy's screen x-coordinate 0 (on the far left)?
   36880,3 If so, move Willy into the room to the left
+  36984 Collect Willy's coordinates from #R34259
+  36987 Add or subtract 32
+  36988,5 Is Willy's screen x-coordinate 30 (on the far right)?
+  36993,3 If so, move Willy into the room on the right
 c 37046 Kill Willy
 c 37056 Move guardians
 c 37310 Draw guardians to the screen buffer at 24576
@@ -347,6 +351,11 @@ c 38026 Move Willy into the room to the left
   38042 Drop the return address (#R35281, in the main loop) from the stack
   38043 Draw the room and re-enter the main loop
 c 38046 Move Willy into the room to the right
+  38046 Pick up the number of the room to the right from #R33002
+  38049 Make it the current room number by copying it to #R33824
+  38052,8 Adjust Willy's screen x-coordinate (at #R34259) to 0 (on the far left)
+  38060 Drop the return address (#R35281, in the main loop) from the stack
+  38061 Draw the room and re-enter the main loop
 c 38064 Move Willy into the room above
 c 38098 Move Willy into the room below
 c 38137 Move conveyors
