@@ -71,8 +71,10 @@ T 34050
 T 34100
 t 34132 'Items collected 000 Time 00:00 m'
 D 34132 Used by the routine at #R35068.
-t 34164 'GameOver'
+t 34164 'Game'
 D 34164 Used by the routine at #R35914.
+t 34168 'Over'
+D 34168 Used by the routine at #R35914.
 g 34172 Number of items collected
 D 34172 Initialised by the routine at #R34762, printed by the routine at #R35245, and updated by the routine at #R37841.
 T 34172
@@ -282,7 +284,7 @@ c 35591 Main loop (2)
 c 35841 Lose a life
 c 35914 Display the game over sequence
   36043,12 Print "Game" (see #R34164) at (6,10)
-  36055,12 Print "Over" at (6,18)
+  36055,12 Print "Over" (see #R34168) at (6,18)
 c 36147 Draw the current room to the screen buffer at 28672
 c 36203 Fill the buffer at 24064 with attribute bytes for the current room
 c 36288 Copy a room attribute byte into the buffer at 24064
