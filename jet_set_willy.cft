@@ -59,12 +59,10 @@ D 33841 Used by the routine at #R34762.
 D 33841 #UDGTABLE {{ #UDG33841,56(triangle0) | #UDG33849,56(triangle1) | #UDG33857,56(triangle2) | #UDG33865,56(triangle3) }} TABLE#
 t 33873 'AIR'
 D 33873 This message is not used.
-t 33876 '+++++ Press ENTER to Start +++++'
+t 33876 '+++++ Press ENTER to Start +++++...'
 D 33876 Used by the routine at #R34762.
-t 33908 '#SPACE(2)JET-SET WILLY by Matthew Smith...'
-D 33908 Used by the routine at #R34762.
-B 33942 #CHR169
-T 33943
+T 33908
+T 33942,38,B1:37
 T 33980
 T 34024
 T 34050
