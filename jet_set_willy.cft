@@ -243,6 +243,9 @@ c 35068 Start the game
   35185,12 Print "Items collected 000 Time 00:00 m" (see #R34132) at (19,0)
 c 35211 Draw remaining lives
 c 35245 Main loop (1)
+  35281 Pick up Willy's pixel y-coordinate from #R34255
+  35284 Is it 225 or greater?
+  35286,3 If so, move Willy into the room above
   35377,12 Print the current time (see #R34175) at (19,25)
   35389,12 Print the number of items collected (see #R34172) at (19,16)
   35499,5 Read keys SHIFT-Z-X-C-V
@@ -287,6 +290,12 @@ c 36147 Draw the current room to the screen buffer at 28672
 c 36203 Fill the buffer at 24064 with attribute bytes for the current room
 c 36288 Copy a room attribute byte into the buffer at 24064
 c 36307 Move Willy (1)
+  36323 Pick up the jumping animation counter (0-18) from #R34261
+  36326 Discard bit 0
+  36328 Now -8<=#REGa<=10 (and #REGa is even)
+  36330,5 Adjust Willy's pixel y-coordinate (at #R34255)
+  36335 Is the new y-coordinate 240 or greater?
+  36337,3 If so, move Willy into the room above
 c 36564 Move Willy (2)
   36602,5 Read keys Y-U-I-O-P
   36621,5 Read keys Q-W-E-R-T
@@ -357,6 +366,13 @@ c 38046 Move Willy into the room to the right
   38060 Drop the return address (#R35281, in the main loop) from the stack
   38061 Draw the room and re-enter the main loop
 c 38064 Move Willy into the room above
+  38064 Pick up the number of the room above from #R33003
+  38067 Make it the current room number by copying it to #R33824
+  38070,15 Willy should now appear on the bottom floor of the room, so adjust his coordinates (at #R34259) accordingly
+  38085,5 Set Willy's pixel y-coordinate (at #R34255) to 208
+  38090,4 Reset the airborne status indicator at #R34257
+  38094 Drop the return address (either #R35281 or #R35289, in the main loop) from the stack
+  38095 Draw the room and re-enter the main loop
 c 38098 Move Willy into the room below
 c 38137 Move conveyors
 c 38196 Deal with special rooms (Master Bedroom, The Bathroom)
