@@ -343,6 +343,9 @@ c 36307 Move Willy (1)
   36420 Is this location below the floor of the current room?
   36422,3 If so, move Willy into the room below
 c 36564 Move Willy (2)
+  36574 Pick up the airborne status indicator from #R34257
+  36577 Is it 12 or greater?
+  36579,3 If so, kill Willy
   36602,5 Read keys Y-U-I-O-P
   36621,5 Read keys Q-W-E-R-T
   36634,4 Read keys 1-2-3-4-5 and 6-7-8-9-0
@@ -374,6 +377,12 @@ D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
   36988,5 Is Willy's screen x-coordinate 30 (on the far right)?
   36993,3 If so, move Willy into the room on the right
 c 37046 Kill Willy
+D 37046 Used by the routine at #R38430 when Willy hits a nasty.
+  37046 Drop the return address from the stack
+D 37047 This entry point is used by the routines at #R36564, #R37310 (when Willy hits a guardian) and #R38196 (when Willy gets too close to Maria).
+  37047 Drop the return address from the stack
+  37048,5 Set the airborne status indicator at #R34257 to 255 (meaning Willy has had a fatal accident)
+  37053 Jump back into the main loop
 c 37056 Move guardians
 c 37310 Draw guardians to the screen buffer at 24576
   37422 Draw the guardian
@@ -522,6 +531,10 @@ c 38298 Animate the toilet in The Bathroom
   38303 Return if not
 c 38344 Set the attribute bytes for Willy's sprite in the buffer at 23552
 c 38430 Set the attribute byte for a tile of Willy's sprite
+R 38430 HL Address of the attribute byte in the buffer at 23552
+  38447 Pick up the attribute byte of the nasty tile in the current room from #R32955
+  38450 Has Willy hit a nasty?
+  38451,3 Jump if so
 c 38455 Draw Willy to the screen buffer at 24576
 c 38528 Print a message
 R 38528 IX Address of the message
