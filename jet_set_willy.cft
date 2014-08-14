@@ -261,7 +261,10 @@ D 35220 The sprite-drawing loop begins.
 c 35245 Main loop (1)
   35281 Pick up Willy's pixel y-coordinate from #R34255
   35284 Is it 225 or greater?
-  35286,3 If so, move Willy into the room above
+  35286 If so, move Willy into the room above
+  35289 Pick up the game mode indicator from #R34271
+  35292 Is Willy's head down the toilet?
+  35294 If not, check and set the attribute bytes for Willy's sprite in the buffer at 23552
   35297 Pick up the game mode indicator from #R34271
   35300 Is Willy on his way to the toilet?
   35302 If so, check whether he's reached it yet
@@ -529,12 +532,57 @@ c 38298 Animate the toilet in The Bathroom
   38334 #REGh=#REGl=7 (INK 7: PAPER 0)
   38337,6 Set the attribute bytes for the toilet in the buffer at 23552
   38303 Return if not
-c 38344 Set the attribute bytes for Willy's sprite in the buffer at 23552
-c 38430 Set the attribute byte for a tile of Willy's sprite
+c 38344 Check and set the attribute bytes for Willy's sprite in the buffer at 23552
+D 38344 Used by the routine at #R35245. Sets the attribute bytes in the buffer at 23552 for the six cells (in three rows of two) occupied by or under Willy's sprite, or kills Willy if any of the cells contains a nasty.
+  38344 Pick up Willy's coordinates in the attribute buffer at 23552 from #R34259
+  38347 Initialise #REGb to 0 (in case Willy is not standing on a ramp)
+  38349 Pick up the direction byte of the ramp definition for the current room from #R32986
+  38352,8 Point #REGhl at one of the cells under Willy's feet (the one on the left if the ramp goes up to the left, the one on the right if the ramp goes up to the right)
+  38360 Pick up the ramp's attribute byte from #R32964
+  38363 Is Willy on or just above the ramp?
+  38364 Jump if not
+  38366 Pick up the airborne status indicator from #R34257
+  38369 Is Willy airborne?
+  38370 Jump if so
+D 38372 Willy is standing on a ramp. Calculate the offset that needs to be added to the y-coordinate stored at #R34255 to obtain Willy's true pixel y-coordinate.
+  38372 Pick up Willy's current animation frame (0-3) from #R34258
+  38375,5 #REGb=0, 4, 8 or 12
+  38380 Pick up the direction byte of the ramp definition for the current room from #R32986
+  38383,8 #REGa=#REGb (if the ramp goes up to the left) or 12-#REGb (if the ramp goes up to the right)
+  38391 Copy this value to #REGb
+D 38392 Now #REGb holds a y-coordinate offset of 0, 4, 8 or 12 if Willy is standing on a ramp, or 0 otherwise.
+  38392 Pick up Willy's coordinates in the attribute buffer at 23552 from #R34259
+  38395,3 Prepare #REGde for later addition
+  38398 Set #REGc=15 for the top two rows of cells (to make the routine at #R38430 force white INK)
+  38400 Check and set the attribute byte for the top-left cell
+  38403 Move #REGhl to the next cell to the right
+  38404 Check and set the attribute byte for the top-right cell
+  38407 Move #REGhl down a row and back one cell to the left
+  38408 Check and set the attribute byte for the mid-left cell
+  38411 Move #REGhl to the next cell to the right
+  38412 Check and set the attribute byte for the mid-right cell
+  38415,3 Pick up Willy's pixel y-coordinate from #R34255
+  38418,2 Add the y-coordinate offset calculated earlier (to get Willy's true pixel y-coordinate if he's standing on a ramp) and transfer the result to #REGc
+  38420 Move #REGhl down a row and back one cell to the left
+  38421 Check and set the attribute byte for the bottom-left cell
+  38424 Move #REGhl to the next cell to the right
+  38425 Check and set the attribute byte for the bottom-right cell
+  38428 Draw Willy to the screen buffer at 24576
+c 38430 Check and set the attribute byte for a cell occupied by Willy's sprite
+D 38430 Used by the routine at #R38344. Sets the attribute byte in the buffer at 23552 for one of the six cells (in three rows of two) occupied by or under Willy's sprite, or kills Willy if the cell contains a nasty. On entry, #REGc holds either 15 if the cell is in the top two rows, or Willy's pixel y-coordinate if the cell is in the bottom row.
+R 38430 C 15 or Willy's pixel y-coordinate
 R 38430 HL Address of the attribute byte in the buffer at 23552
+  38430 Pick up the attribute byte of the background tile in the current room from #R32928
+  38433 Does this cell contain a background tile?
+  38434 Jump if not
+  38436,3 Set the zero flag if we are going to retain the INK colour in this cell; this happens only if the cell is in the bottom row and Willy's pixel y-coordinate is a multiple of 16
+  38439 Jump if we are going to retain the current INK colour in this cell
+  38441 Pick up the attribute byte of the background tile in the current room from #R32928
+  38444 Set bits 0-2, making the INK white
+  38446 Set the attribute byte for this cell in the buffer at 23552
   38447 Pick up the attribute byte of the nasty tile in the current room from #R32955
   38450 Has Willy hit a nasty?
-  38451,3 Jump if so
+  38451,3 Kill Willy if so
 c 38455 Draw Willy to the screen buffer at 24576
 c 38528 Print a message
 R 38528 IX Address of the message
