@@ -232,6 +232,7 @@ c 34762 Display the title screen and play the theme tune
   34984 Point #REGhl at the theme tune data at #R34299
   34987 Play the theme tune
   34990,3 Start the game if ENTER, 0 or the fire button was pressed
+  34997,3 Cycle the INK and PAPER colours
   35033,7 Prepare a value between 50 and 81 in #REGa (for the routine at #R38622)
   35040 Make a sound effect
   35043,5 Read keys H-J-K-L-ENTER and 6-7-8-9-0
@@ -279,7 +280,26 @@ c 35245 Main loop (1)
   35537,4 Read every half-row of keys except A-S-D-F-G
   35541,4 Are any of these keys being pressed?
   35545,2 Jump if so
+  35553 Pick up the WRITETYPER key counter from #R34275
+  35556 Has WRITETYPER been keyed in yet?
+  35558,3 If not, cycle the INK and PAPER colours
 c 35563 Cycle the INK and PAPER colours
+D 35563 Used by the routines at #R34762 (while scrolling the instructions across the screen) and #R35245 (while the game is paused).
+  35563 Point #REGhl at the first byte of the attribute file
+  35566 Pick up this byte
+  35567 Keep only bits 0-2 (the INK colour)
+  35569 Set the border colour to match
+D 35571 Now we loop over every byte in the attribute file.
+  35571 Pick up an attribute file byte
+  35572,4 Cycle the INK colour forward by three
+  35576 Save the new INK colour in #REGd
+  35577 Pick up the attribute file byte again
+  35578,4 Cycle the PAPER colour forward by three (and turn off any BRIGHT colours)
+  35582 Merge in the new INK colour
+  35583 Save the new attribute byte
+  35584 Point #REGhl at the next byte in the attribute file
+  35585,3 Have we reached the end of the attribute file yet?
+  35588,2 If not, jump back to modify the next byte
 c 35591 Main loop (2)
   35620 Read keys H-J-K-L-ENTER
   35622,4 Are any of these keys being pressed?
