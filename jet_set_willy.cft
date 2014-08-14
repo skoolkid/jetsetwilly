@@ -441,8 +441,35 @@ c 38098 Move Willy into the room below
   38134 Draw the room and re-enter the main loop
 c 38137 Move conveyors
 c 38196 Deal with special rooms (Master Bedroom, The Bathroom)
-  38238,8 Draw Maria to the screen buffer at 24576
+  38196 Pick up the number of the current room from #R33824
+  38199 Are we in #R58112(Master Bedroom)?
+  38201 Jump if not
+  38203 Pick up the game mode indicator from #R34271
+  38206 Has Willy collected all the items?
+  38207 Jump if so
+D 38209 Willy hasn't collected all the items yet, so Maria is on guard.
+  38209 Pick up the minute counter from #R34251; this will determine Maria's animation frame
+  38212,8 Keep only bit 1, move it to bit 5, and set bit 7
+  38220 Now #REGe=128 (foot down) or 160 (foot raised)
+  38221 Pick up Willy's pixel y-coordinate from #R34255
+  38224 Is Willy on the floor below the ramp?
+  38226 Jump if so
+  38228 #REGe=192 (raising arm)
+  38230 Is Willy on the ramp?
+  38232 Jump if so
+  38234 #REGe=224 (arm raised)
+  38236 Point #REGde at the sprite graphic data (#R40064, #R40096, #R40128 or #R40160)
+  38238,8 Draw Maria at (11,14) in the screen buffer at 24576
   38246,3 Kill Willy if Maria collided with him
+  38249 #REGh=#REGl=69 (INK 5: PAPER 0: BRIGHT 1)
+  38252 Set the attribute bytes for the top half of Maria's sprite in the buffer at 23552
+  38255 #REGh=#REGl=7 (INK 7: PAPER 0: BRIGHT 0)
+  38258,3 Set the attribute bytes for the bottom half of Maria's sprite in the buffer at 23552
+D 38262 Willy has collected all the items, so Maria is gone.
+  38262,5 Pick up Willy's screen x-coordinate from #R34259
+  38267 Has Willy reached the bed (at x=5) yet?
+  38269 Return if not
+  38270,5 Update the game mode indicator at #R34271 to 2 (Willy is running to the toilet)
 c 38276 Check whether Willy has reached the toilet
 c 38298 Animate the toilet in The Bathroom
   38298 Pick up the number of the current room from #R33824
