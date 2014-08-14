@@ -445,6 +445,20 @@ c 38196 Deal with special rooms (Master Bedroom, The Bathroom)
   38246,3 Kill Willy if Maria collided with him
 c 38276 Check whether Willy has reached the toilet
 c 38298 Animate the toilet in The Bathroom
+  38298 Pick up the number of the current room from #R33824
+  38301 Are we in #R57600(The Bathroom)?
+  38304 Pick up the minute counter from #R34251; this will determine the animation frame to use for the toilet
+  38307,5 Keep only bit 0 and move it to bit 5
+  38312 Now #REGe=0 or 32
+  38313 Pick up the game mode indicator from #R34271
+  38316 Is Willy's head down the toilet?
+  38318 Jump if not
+  38320 Now #REGe=64 or 96
+  38322 Point #REGde at the sprite to use (#R42496, #R42528, #R42560 or #R42592)
+  38324,10 Draw the toilet at (13,28) in the screen buffer at 24576
+  38334 #REGh=#REGl=7 (INK 7: PAPER 0)
+  38337,6 Set the attribute bytes for the toilet in the buffer at 23552
+  38303 Return if not
 c 38344 Set the attribute bytes for Willy's sprite in the buffer at 23552
 c 38430 Set the attribute byte for a tile of Willy's sprite
 c 38455 Draw Willy to the screen buffer at 24576
