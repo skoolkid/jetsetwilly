@@ -242,6 +242,21 @@ c 35068 Start the game
   35173,12 Print the room name at (16,0)
   35185,12 Print "Items collected 000 Time 00:00 m" (see #R34132) at (19,0)
 c 35211 Draw remaining lives
+  35211 Pick up the number of lives remaining from #R34252
+  35214 Set #REGhl to the display file address at which to draw the first Willy sprite
+  35217 Are there any lives remaining?
+  35218 Return if not
+  35219 Initialise #REGb to the number of lives remaining
+D 35220 The sprite-drawing loop begins.
+  35220 #REGc=0; this tells the sprite-drawing routine at #R37974 to overwrite any existing graphics
+  35222,2 Save #REGhl and #REGbc briefly
+  35224 Pick up the in-game music note index from #R34273; this will determine the animation frame for the Willy sprites
+  35227,5 Now #REGa=0 (frame 0), 32 (frame 1), 64 (frame 2) or 96 (frame 3)
+  35232,3 Point #REGde at the corresponding Willy sprite (at #R40192, #R40224, #R40256 or #R40288)
+  35235 Draw the Willy sprite on the screen
+  35238,2 Restore #REGhl and #REGbc
+  35240,2 Move #REGhl along to the location at which to draw the next Willy sprite
+  35242,2 Jump back to draw any remaining sprites
 c 35245 Main loop (1)
   35281 Pick up Willy's pixel y-coordinate from #R34255
   35284 Is it 225 or greater?
@@ -357,6 +372,10 @@ c 37841 Draw objects in the current room
   37966 Draw the object to the screen buffer at 24576
   37969,1 Restore #REGhl
 c 37974 Draw a sprite
+D 37974 Used by the routines at #R34499 (to draw the number key graphics on the code entry screen), #R35211 (to draw the remaining lives), #R35914 (to draw Willy, the boot and the barrel during the game over sequence), #R37310 (to draw guardians in the current room) and #R38196 (to draw Maria in #R58112(Master Bedroom)).
+R 37974 C Drawing mode: 0 (overwrite) or 1 (blend)
+R 37974 DE Address of sprite graphic data
+R 37974 HL Address to draw at
 c 38026 Move Willy into the room to the left
   38026 Pick up the number of the room to the left from #R33001
   38029 Make it the current room number by copying it to #R33824
@@ -459,8 +478,7 @@ R 38622 A Value between 50 and 81
   38636 Set the MIC state, speaker state and border colour
   38638 Jump back until the inner loop is finished
   38640 Is the outer loop finished too?
-  38641 Jump back if not
-  38643
+  38641,2 Jump back if not
 u 38644 Unused routine
 C 38644,11 Copy the attribute buffer at 24064 to the top two-thirds of the screen
 C 38655,13 Fill the top two-thirds of the display file with the byte value 24 (00011000)
