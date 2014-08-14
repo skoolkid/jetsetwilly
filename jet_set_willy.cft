@@ -299,6 +299,9 @@ c 35591 Main loop (2)
   35815,3 If not, jump back to the start of the main loop
 c 35841 Lose a life
 c 35914 Display the game over sequence
+  35931,11 Draw Willy at (12,15)
+  35942,11 Draw the barrel underneath Willy at (14,15)
+  35968,8 Draw the foot
   36043,12 Print "Game" (see #R34164) at (6,10)
   36055,12 Print "Over" (see #R34168) at (6,18)
 c 36147 Draw the current room to the screen buffer at 28672
@@ -349,6 +352,8 @@ D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
 c 37046 Kill Willy
 c 37056 Move guardians
 c 37310 Draw guardians to the screen buffer at 24576
+  37422 Draw the guardian
+  37425,3 Kill Willy if the guardian collided with him
 u 37819 Unused routine
 D 37819 This routine is not used, but if it were, it would set the ink colour for a 3x2 block of cells, maintaining the paper, bright and flash attributes of the current room background.
 R 37819 A INK colour (0-7)
@@ -372,10 +377,37 @@ c 37841 Draw objects in the current room
   37966 Draw the object to the screen buffer at 24576
   37969,1 Restore #REGhl
 c 37974 Draw a sprite
-D 37974 Used by the routines at #R34499 (to draw the number key graphics on the code entry screen), #R35211 (to draw the remaining lives), #R35914 (to draw Willy, the boot and the barrel during the game over sequence), #R37310 (to draw guardians in the current room) and #R38196 (to draw Maria in #R58112(Master Bedroom)).
+D 37974 Used by the routines at #R34499 (to draw the number key graphics on the code entry screen), #R35211 (to draw the remaining lives), #R35914 (to draw Willy, the boot and the barrel during the game over sequence), #R37310 (to draw guardians in the current room) and #R38196 (to draw Maria in #R58112(Master Bedroom)). If #REGc=1 on entry, this routine returns with the zero flag reset if any of the set bits in the sprite being drawn collides with a set bit in the background.
 R 37974 C Drawing mode: 0 (overwrite) or 1 (blend)
 R 37974 DE Address of sprite graphic data
 R 37974 HL Address to draw at
+  37974 There are 16 rows of pixels to draw
+  37976 Set the zero flag if we're in overwrite mode
+  37978 Pick up a sprite graphic byte
+  37979 Jump if we're in overwrite mode
+  37981,2 Return with the zero flag reset if any of the set bits in the sprite graphic byte collide with a set bit in the background (e.g. in Willy's sprite)
+  37983 Pick up the sprite graphic byte again
+  37984 Blend it with the background byte
+  37985 Copy the graphic byte to its destination cell
+  37986 Move #REGhl along to the next cell on the right
+  37987 Point #REGde at the next sprite graphic byte
+  37988 Set the zero flag if we're in overwrite mode
+  37990 Pick up a sprite graphic byte
+  37991 Jump if we're in overwrite mode
+  37993,2 Return with the zero flag reset if any of the set bits in the sprite graphic byte collide with a set bit in the background (e.g. in Willy's sprite)
+  37995 Pick up the sprite graphic byte again
+  37996 Blend it with the background byte
+  37997 Copy the graphic byte to its destination cell
+  37998,2 Move #REGhl to the next pixel row down in the cell on the left
+  38000 Point #REGde at the next sprite graphic byte
+  38001,3 Have we drawn all eight pixel rows in this pair of cells yet?
+  38004 Jump if not
+  38006,8 Otherwise move #REGhl to the top pixel row in the cell below
+  38014 Was the last pair of cells at y-coordinate 7 or 15?
+  38016 Jump if not
+  38018,4 Otherwise adjust #REGhl to account for the movement from the top or middle third of the screen to the next one down
+  38022 Jump back until all 16 rows of pixels have been drawn
+  38024,1 Set the zero flag (to indicate no collision)
 c 38026 Move Willy into the room to the left
   38026 Pick up the number of the room to the left from #R33001
   38029 Make it the current room number by copying it to #R33824
@@ -409,6 +441,8 @@ c 38098 Move Willy into the room below
   38134 Draw the room and re-enter the main loop
 c 38137 Move conveyors
 c 38196 Deal with special rooms (Master Bedroom, The Bathroom)
+  38238,8 Draw Maria to the screen buffer at 24576
+  38246,3 Kill Willy if Maria collided with him
 c 38276 Check whether Willy has reached the toilet
 c 38298 Animate the toilet in The Bathroom
 c 38344 Set the attribute bytes for Willy's sprite in the buffer at 23552
