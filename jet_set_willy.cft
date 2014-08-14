@@ -261,6 +261,10 @@ c 35245 Main loop (1)
   35281 Pick up Willy's pixel y-coordinate from #R34255
   35284 Is it 225 or greater?
   35286,3 If so, move Willy into the room above
+  35297 Pick up the game mode indicator from #R34271
+  35300 Is Willy on his way to the toilet?
+  35302 If so, check whether he's reached it yet
+  35305,3 Deal with special rooms (#R58112(Master Bedroom), #R57600(The Bathroom))
   35377,12 Print the current time (see #R34175) at (19,25)
   35389,12 Print the number of items collected (see #R34172) at (19,16)
   35499,5 Read keys SHIFT-Z-X-C-V
@@ -471,6 +475,16 @@ D 38262 Willy has collected all the items, so Maria is gone.
   38269 Return if not
   38270,5 Update the game mode indicator at #R34271 to 2 (Willy is running to the toilet)
 c 38276 Check whether Willy has reached the toilet
+D 38276 Called by the routine at #R35245 when Willy is on his way to the toilet.
+  38276 Pick up the number of the current room from #R33824
+  38279 Are we in #R57600(The Bathroom)?
+  38281 Return if not
+  38282 Pick up Willy's coordinates from #R34259
+  38285 Is Willy's screen x-coordinate 28 (where the toilet is)?
+  38287 Return if not
+D 38288 Willy has reached the toilet.
+  38288,4 Reset the minute counter at #R34251 to 0
+  38292,5 Update the game mode indicator at #R34271 to 3 (Willy's head is down the toilet)
 c 38298 Animate the toilet in The Bathroom
   38298 Pick up the number of the current room from #R33824
   38301 Are we in #R57600(The Bathroom)?
