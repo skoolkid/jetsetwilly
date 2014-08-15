@@ -15,10 +15,10 @@ g 32768 Room buffer
 D 32768 Initialised upon entry to a room by the routine at #R35068.
 S 32768,128 Room layout (used by the routines at #R35068 and #R36203)
 S 32896,32 Room name (used by the routine at #R35068)
-S 32928,9 Background tile (used by the routines at #R36147, #R36307 and #R38430, and also by the unused routine at #R37819)
-S 32937,9 Floor tile (used by the routine at #R36147)
-S 32946,9 Wall tile (used by the routines at #R36147, #R36307 and #R36564)
-S 32955,9 Nasty tile (used by the routines at #R36147, #R36307 and #R38430)
+S 32928,9 Background tile (used by the routines at #R36147, #R36288, #R36307 and #R38430, and also by the unused routine at #R37819)
+S 32937,9 Floor tile (used by the routines at #R36147 and #R36288)
+S 32946,9 Wall tile (used by the routines at #R36147, #R36288, #R36307 and #R36564)
+S 32955,9 Nasty tile (used by the routines at #R36147, #R36288, #R36307 and #R38430)
 S 32964,9 Ramp tile (used by the routines at #R36147, #R36203, #R36564 and #R38344)
 S 32973,9 Conveyor tile (used by the routines at #R36147, #R36203 and #R36564)
 S 32982,4 Conveyor definition (used by the routines at #R36564 and #R38137)
@@ -334,6 +334,14 @@ c 35914 Display the game over sequence
 c 36147 Draw the current room to the screen buffer at 28672
 c 36203 Fill the buffer at 24064 with attribute bytes for the current room
 c 36288 Copy a room attribute byte into the buffer at 24064
+D 36288 Used by the routine at #R36203. On entry, #REGa holds a room layout byte, rotated such that the bit-pair corresponding to the tile of interest is in bits 0 and 1.
+R 36288 A Room layout byte (rotated)
+R 36288 IX Attribute buffer address (24064-24575)
+  36288 Keep only bits 0 and 1; #REGa=0 (background), 1 (floor), 2 (wall) or 3 (nasty)
+  36290,7 Multiply by 9 and add 160; now #REGa=160 (background), 169 (floor), 178 (wall) or 187 (nasty)
+  36297,3 Point #REGde at the attribute byte for the background, floor, wall or nasty tile in the room buffer at #R32768
+  36300,4 Copy the attribute byte into the buffer at 24064
+  36304,2 Move #REGix along to the next byte in the attribute buffer
 c 36307 Move Willy (1)
   36323 Pick up the jumping animation counter (0-18) from #R34261
   36326 Discard bit 0
