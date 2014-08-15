@@ -240,6 +240,7 @@ c 34762 Display the title screen and play the theme tune
   35050 Was ENTER or 0 pressed?
   35052,2 Jump if so to start the game
 c 35068 Start the game
+  35157,3 Draw the current room to the screen buffer at 28672 and the attribute buffer at 24064
   35173,12 Print the room name at (16,0)
   35185,12 Print "Items collected 000 Time 00:00 m" (see #R34132) at (19,0)
 c 35211 Draw remaining lives
@@ -332,6 +333,25 @@ c 35914 Display the game over sequence
   36043,12 Print "Game" (see #R34164) at (6,10)
   36055,12 Print "Over" (see #R34168) at (6,18)
 c 36147 Draw the current room to the screen buffer at 28672
+  36147 Fill the buffer at 24064 with attribute bytes for the current room
+  36150 Point #REGix at the first byte of the attribute buffer at 24064
+  36154,5 Set the operand of the 'LD D,n' instruction at 36188 (below) to 112
+  36159 Draw the tiles for the top half of the room to the screen buffer at 28672
+  36162 Point #REGix at the 256th byte of the attribute buffer at 24064 in preparation for drawing the bottom half of the room; this instruction is redundant, since #REGix already holds 24320
+  36166,5 Set the operand of the 'LD D,n' instruction at 36188 (below) to 120
+  36171 #REGc will count 256 tiles
+D 36173 The following loop draws 256 tiles (for either the top half or the bottom half of the room) to the screen buffer at 28672.
+  36173 #REGe holds the LSB of the screen buffer address
+  36174 Pick up an attribute byte from the buffer at 24064; this identifies the type of tile (background, floor, wall, nasty, ramp or conveyor) to be drawn
+  36177 Point #REGhl at the attribute byte of the background tile at #R32928
+  36180,5 Move #REGhl through the attribute bytes and graphic data of the background, floor, wall, nasty, ramp and conveyor tiles until we find a byte that matches the attribute byte of the tile to be drawn
+  36185 Restore the value of the tile counter in #REGc
+  36186 There are eight bytes in the tile
+  36188 This instruction is set to either 'LD D,112' or 'LD D,120' above; now #REGde holds the appropriate address in the screen buffer at 28672
+  36190,6 Copy the tile graphic data to the screen buffer at 28762
+  36196 Move #REGix along to the next byte in the attribute buffer
+  36198 Have we drawn 256 tiles yet?
+  36199,3 If not, jump back to draw the next one
 c 36203 Fill the buffer at 24064 with attribute bytes for the current room
 D 36203 Used by the routine at #R36147. Fills the buffer at 24064 with attribute bytes for the background, floor, wall, nasty, conveyor and ramp tiles in the current room.
   36203 Point #REGhl at the first room layout byte in the room buffer at #R32768
