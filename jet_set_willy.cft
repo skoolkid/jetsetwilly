@@ -240,9 +240,32 @@ c 34762 Display the title screen and play the theme tune
   35050 Was ENTER or 0 pressed?
   35052,2 Jump if so to start the game
 c 35068 Start the game
+  35068,11 Initialise the time by copying the text at #R34181 (" 7:00a") to #R34175
+  35079,11 Copy the attribute bytes from #R39424 to the bottom third of the screen
+D 35090 This entry point is used by the routines at #R35591 (to teleport into a room), #R35841 (to reinitialise the room after Willy has lost a life), #R38026 (when Willy has entered the room from the right), #R38046 (when Willy has entered the room from the left), #R38064 (when Willy has entered the room from below) and #R38098 (when Willy has entered the room from above).
+  35090 Pick up the current room number from #R33824
+  35093,5 Point #REGhl at the first byte of the room definition
+  35098,8 Copy the room definition into the buffer at #R32768
+  35106 Point #REGix at the first byte of the first guardian specification for the current room at #R33008
+  35110 Point #REGde at the first byte of the guardian buffer at #R33024
+  35113 There are at most eight guardian specifications in a room
+  35115 Pick up the first byte of the guardian specification
+  35118,7 Point #REGhl at the corresponding entry in the table of guardian definitions at #R40960
+  35125,5 Copy the first two bytes of the guardian definition into the guardian buffer
+  35130,4 Copy the second byte of the guardian specification into the third byte of the guardian definition
+  35134,5 Copy the remaining six bytes of the guardian definition into the guardian buffer
+  35139,4 Point #REGix at the first byte of the next guardian specification
+  35143 Have we copied all eight guardian definitions into the guardian buffer yet?
+  35144 If not, jump back to copy the next one
+  35146,11 Copy the seven bytes that define Willy's state (position, animation frame etc.) on entry to this room from #LINK:GameStatusBuffer#34255(34255-34261) to #R34263
+  35160,13 Clear the bottom third of the display file
   35157,3 Draw the current room to the screen buffer at 28672 and the attribute buffer at 24064
   35173,12 Print the room name at (16,0)
   35185,12 Print "Items collected 000 Time 00:00 m" (see #R34132) at (19,0)
+  35197 Pick up the border colour for the current room from #R32990
+  35200,4 Set the border colour
+  35204,4 Initialise the rope status indicator at #R34262 to 0
+  35208 Enter the main loop
 c 35211 Draw remaining lives
   35211 Pick up the number of lives remaining from #R34252
   35214 Set #REGhl to the display file address at which to draw the first Willy sprite
