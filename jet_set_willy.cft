@@ -333,6 +333,43 @@ c 35914 Display the game over sequence
   36055,12 Print "Over" (see #R34168) at (6,18)
 c 36147 Draw the current room to the screen buffer at 28672
 c 36203 Fill the buffer at 24064 with attribute bytes for the current room
+D 36203 Used by the routine at #R36147. Fills the buffer at 24064 with attribute bytes for the background, floor, wall, nasty, conveyor and ramp tiles in the current room.
+  36203 Point #REGhl at the first room layout byte in the room buffer at #R32768
+  36206 Point #REGix at the first byte of the attribute buffer at 24064
+D 36210 The following loop copies the attribute bytes for the background, floor, wall and nasty tiles into the buffer at 24064.
+  36210 Pick up a room layout byte
+  36211,2 Move bits 6 and 7 into bits 0 and 1
+  36213 Copy the attribute byte for this tile into the buffer at 24064
+  36216 Pick up the room layout byte again
+  36217,4 Move bits 4 and 5 into bits 0 and 1
+  36221 Copy the attribute byte for this tile into the buffer at 24064
+  36224 Pick up the room layout byte again
+  36225,2 Move bits 2 and 3 into bits 0 and 1
+  36227 Copy the attribute byte for this tile into the buffer at 24064
+  36230 Pick up the room layout byte again; this time the required bit-pair is already in bits 0 and 1
+  36231 Copy the attribute byte for this tile into the buffer at 24064
+  36234 Point #REGhl at the next room layout byte
+  36235,3 Have we processed all 128 room layout bytes yet?
+  36238 If not, jump back to process the next one
+D 36240 Next consider the conveyor tiles (if any).
+  36240 Pick up the length of the conveyor
+  36243 Is there a conveyor in the room?
+  36244 Jump if not
+  36246 Pick up the coordinates of the left end of the conveyor
+  36249 #REGb will count the conveyor tiles
+  36250 Pick up the attribute byte for the conveyor tile from #R32973
+  36253,4 Copy the attribute bytes for the conveyor tiles into the buffer at 24064
+D 36257 And finally consider the ramp tiles (if any).
+  36257 Pick up the length of the ramp
+  36260 Is there a ramp in the room?
+  36261 Return if not
+  36262 Pick up the coordinates of the bottom of the ramp
+  36265,5 Pick up the direction byte of the ramp definition; #REGa=0 (ramp goes up to the left) or 1 (ramp goes up to the right)
+  36270,6 Now #REGde=-33 (ramp goes up to the left) or -31 (ramp goes up to the right)
+  36276 Pick up the length of the ramp
+  36279 #REGb will count the ramp tiles
+  36280 Pick up the attribute byte for the ramp tile from #R32964
+  36283,4 Copy the attribute bytes for the ramp tiles into the buffer at 24064
 c 36288 Copy a room attribute byte into the buffer at 24064
 D 36288 Used by the routine at #R36203. On entry, #REGa holds a room layout byte, rotated such that the bit-pair corresponding to the tile of interest is in bits 0 and 1.
 R 36288 A Room layout byte (rotated)
