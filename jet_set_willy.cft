@@ -649,6 +649,34 @@ R 38430 HL Address of the attribute byte in the buffer at 23552
   38450 Has Willy hit a nasty?
   38451,3 Kill Willy if so
 c 38455 Draw Willy to the screen buffer at 24576
+R 38455 B y-coordinate offset (0, 4, 8 or 12)
+  38455 Pick up Willy's pixel y-coordinate from #R34255
+  38458 Add the y-coordinate offset (to get Willy's true pixel y-coordinate if he's standing on a ramp)
+  38459,5 Point #REGix at the entry in the screen buffer address lookup table at #R33280 that corresponds to Willy's y-coordinate
+  38464 Pick up the flags from #R34256
+  38467,4 Now #REGe=0 if Willy is facing right, or 128 if he's facing left
+  38471 Pick up Willy's animation frame from #R34258
+  38474,9 Point #REGde at the sprite graphic data for Willy's current animation frame (#R40192, #R40224, #R40256, #R40288, #R40320, #R40352, #R40384 or #R40416)
+  38483 Pick up the number of the current room from #R33824
+  38486 Are we in the #R56576(The Nightmare Room)?
+  38488 Jump if not
+  38490 Point #REGde at the graphic data for the flying pig sprite (#R46592, #R46624, #R46656, #R46688, #R46720, #R46752, #R46784 or #R46816)
+  38496 There are 16 rows of pixels to copy
+  38498,5 Pick up Willy's screen x-coordinate (0-31) from #R34259
+  38503 Copy it to #REGc
+D 38504 This entry point is used by the routine at #R38298 to draw the toilet in #R57600(The Bathroom).
+  38504,8 Set #REGhl to the address in the screen buffer at 24576 that corresponds to the location of the sprite graphic tile we are going to draw
+  38512 Pick up a sprite graphic byte
+  38513 Merge it with the background
+  38514 Save the resultant byte to the screen buffer
+  38515 Move #REGhl along to the next cell to the right
+  38516 Point #REGde at the next sprite graphic byte
+  38517 Pick it up in #REGa
+  38518 Merge it with the background
+  38519 Save the resultant byte to the screen buffer
+  38520,4 Point #REGix at the next entry in the screen buffer address lookup table at #R33280
+  38524 Point #REGde at the next sprite graphic byte
+  38525,2 Jump back until all 16 rows of pixels have been drawn
 c 38528 Print a message
 R 38528 IX Address of the message
 R 38528 C Length of the message
