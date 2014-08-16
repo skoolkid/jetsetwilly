@@ -328,6 +328,9 @@ D 35571 Now we loop over every byte in the attribute file.
   35585,3 Have we reached the end of the attribute file yet?
   35588,2 If not, jump back to modify the next byte
 c 35591 Main loop (2)
+  35607 Pick up the airborne status indicator from #R34257
+  35610 Has Willy had a fatal accident?
+  35612,3 Lose a life if so
   35620 Read keys H-J-K-L-ENTER
   35622,4 Are any of these keys being pressed?
   35626,2 Jump if not
@@ -341,7 +344,8 @@ c 35591 Main loop (2)
   35720,5 Read keys 1-2-3-4-5
   35725,3 Keep only bits 0-4 and flip them
   35728 Copy bit 5 of #REGd into #REGa; now #REGa holds the number of the room to teleport to
-  35729,3 Store the room number at #R33824
+  35729 Store the room number at #R33824
+  35732,3 Teleport into the room
   35772,5 Read keys Q-W-E-R-T
   35784 Are any of these keys (Q-W-E-R-T) being pressed?
   35786,3 If not, jump back to the start of the main loop
@@ -349,6 +353,26 @@ c 35591 Main loop (2)
   35813 Are any of these keys (Y-U-I-O-P) being pressed?
   35815,3 If not, jump back to the start of the main loop
 c 35841 Lose a life
+  35841 #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
+D 35843 The following loop fills the top two thirds of the attribute file with a single value (71 TO 64 STEP -1) and makes a sound effect.
+  35843,12 Fill the top two thirds of the attribute file with the value in #REGa
+  35855 Save the attribute byte (64-71) in #REGe for later retrieval
+  35856,9 #REGd=7+8*(7-(#REGe AND 7)); this value determines the pitch of the short note that will be played
+  35865,7 #REGc=8+32*(#REGe AND 7); this value determines the duration of the short note that will be played
+  35872 Set bit 4 of #REGa (for no apparent reason)
+  35874 Set #REGa=0 (this will make the border black)
+  35875,10 Produce a short note whose pitch is determined by #REGd and whose duration is determined by #REGc
+  35885 Restore the attribute byte (originally 71) to #REGa
+  35886 Decrement it (effectively decrementing the INK colour)
+  35887 Have we used attribute value 64 (INK 0) yet?
+  35889 If not, jump back to update the INK colour in the top two thirds of the screen and make another sound effect
+D 35891 Now check whether any lives remain.
+  35891,4 Pick up the number of lives remaining from #R34252
+  35895 Are there any lives remaining?
+  35896 If not, display the game over sequence
+  35899 Decrease the number of lives remaining by one
+  35900,11 Restore Willy's state upon entry to the room by copying the seven bytes at #R34263 back into #LINK:GameStatusBuffer#34255(34255-34261)
+  35911 Reinitialise the room and resume the game
 c 35914 Display the game over sequence
   35931,11 Draw Willy at (12,15)
   35942,11 Draw the barrel underneath Willy at (14,15)
