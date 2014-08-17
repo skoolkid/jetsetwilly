@@ -90,7 +90,7 @@ D 34251 Used by the routines at #R34762, #R35245, #R37841, #R38196, #R38276 and 
 g 34252 Lives remaining
 D 34252 Used by the routines at #R34762, #R35211, #R35591 and #R35841.
 g 34253 Screen flash counter
-D 34253 Unused and always zero; the code at #R35339 makes the screen flash in Manic Miner fashion if this address holds a non-zero value.
+D 34253 Initialised to zero by the routine at #R34762, but never used; the code at #R35339 makes the screen flash in Manic Miner fashion if this address holds a non-zero value.
 g 34254 Kempston joystick indicator
 D 34254 Initialised by the routine at #R34762, and checked by the routines at #R36564 and #R38601. Holds 1 if a joystick is present, 0 otherwise.
 g 34255 Willy's pixel y-coordinate
@@ -226,19 +226,98 @@ D 34741 Exactly one of the number keys '1', '2', '3' or '4' is being pressed. #R
   34741,12 Set the colour of the 2x2 block (no longer flashing)
   34753,8 Pause for about 0.02s
 c 34762 Display the title screen and play the theme tune
+D 34762 Used by the routines at #R34463, #R35245 and #R35914.
+D 34762 The first thing this routine does is initialise some game status buffer variables in preparation for the next game.
+  34762 #REGa=0
+  34763 Initialise the Kempston joystick indicator at #R34254
+  34766 Initialise the in-game music note index at #R34273
+  34769 Initialise the (unused) screen flash counter at #R34253
+  34772 Initialise the airborne status indicator at #R34257
+  34775 Initialise the minute counter at #R34251
+  34778 Initialise the inactivity timer at #R34272
+  34781 Initialise the game mode indicator at #R34271
+  34784,5 Initialise the number of lives remaining at #R34252
+  34789,5 Initialise Willy's pixel y-coordinate at #R34255
+  34794,5 Initialise the current room number at #R33824 to 33 (#R57600(The Bathroom))
+  34799,6 Initialise Willy's coordinates at #R34259 to (13,20)
+  34805,11 Initialise the number of items collected at #R34172 to "000"
+  34816 Page #R41984(164) holds the first byte of each entry in the object table
+  34818 Pick up the index of the first object from #R41983
+  34821 Point #REGhl at the entry for the first object
+  34822 Initialise the counter of objects remaining at #R34270
+  34825,5 Set the collection flag for every object in the object table at #R41984
+  34830,5 Initialise the keypress flag in bit 0 at #R34274
+D 34835 Next, prepare the screen.
+  34835,13 Clear the entire display file
+  34848,8 Copy the attribute bytes for the top two-thirds of the title screen from #R38912 to the attribute file
+  34856,13 Copy the attribute value 70 (INK 6: PAPER 0: BRIGHT 1) into the row of 32 cells from (19,0) to (19,31) on the screen
   34869,12 Print "+++++ Press ENTER to Start +++++" (see #R33876) at (19,0)
+  34881 Point #REGde at the first byte of the attribute file
+D 34884 The following loop scans the top two-thirds of the attribute file, which contains values 0, 4, 5, 8, 9, 36, 37, 40, 41, 44, 45 and 211 (copied from #R38912). Whenever a value other than 0, 9, 36, 45 or 211 is found, a triangle UDG is drawn at the corresponding location in the display file.
+  34884 Pick up a byte from the attribute file
+  34885 Is it 0 (INK 0: PAPER 0)?
+  34886 If so, jump to consider the next byte in the attribute file
+  34888 Is it 211 (INK 3: PAPER 2: BRIGHT 1: FLASH 1)?
+  34890 If so, jump to consider the next byte in the attribute file
+  34892 Is it 9 (INK 1: PAPER 1)?
+  34894 If so, jump to consider the next byte in the attribute file
+  34896 Is it 45 (INK 5: PAPER 5)?
+  34898 If so, jump to consider the next byte in the attribute file
+  34900 Is it 36 (INK 4: PAPER 4)?
+  34902 If so, jump to consider the next byte in the attribute file
+  34904 #REGc=0; this will be used as an offset from the triangle UDG base address (#R33841)
+  34906 Is the attribute value 8 (INK 0: PAPER 1)?
+  34908 Jump if so
+  34910 Is it 41 (INK 1: PAPER 5)?
+  34912 Jump if so
+  34914 Is it 44 (INK 4: PAPER 5)?
+  34916 Jump if so
+  34918 Is it 5 (INK 5: PAPER 0)?
+  34920 Jump if so
+  34922,2 Set the triangle UDG offset to 16
+  34926,3 Change the attribute byte here from 44 (INK 4: PAPER 5) to 37 (INK 5: PAPER 4)
+  34929,14 Point #REGhl at the triangle UDG to draw (#R33841, #R33849, #R33857 or #R33865)
+  34943 Save the attribute file address briefly
+  34944 Set the zero flag if we're still in the top third of the attribute file
+  34946 Point #REGde at the top third of the display file
+  34948 Jump if we're still in the top third of the attribute file
+  34950 Point #REGde at the middle third of the display file
   34952 There are eight pixel rows in a triangle UDG
-  34954,3 Draw a triangle UDG on the screen
+  34954 Draw a triangle UDG on the screen
+  34957 Restore the attribute file address to #REGde
+  34958 Point #REGde at the next byte in the attribute file
+  34959,3 Have we finished scanning the top two-thirds of the attribute file yet?
+  34962 If not, jump back to examine the next byte
+D 34965 Now check whether there is a joystick connected.
+  34965 #REGb=0, #REGc=31 (joystick port)
+  34968 Disable interrupts (which are already disabled)
+  34969 #REGa=0
+  34970,5 Combine 256 readings of the joystick port in #REGa
+  34975 Is a joystick connected (bit 5 reset)?
+  34977 Jump if not
+  34979,5 Set the Kempston joystick indicator at #R34254 to 1
+D 34984 And finally, play the theme tune and check for keypresses.
   34984 Point #REGhl at the theme tune data at #R34299
   34987 Play the theme tune
-  34990,3 Start the game if ENTER, 0 or the fire button was pressed
+  34990 Start the game if ENTER, 0 or the fire button was pressed
+  34993,4 Initialise the temporary game status buffer variable at #R34276 to 0; this will be used as an index for the message scrolled across the screen (see #R33876)
   34997,3 Cycle the INK and PAPER colours
+  35000,13 Copy the attribute value 79 (INK 7: PAPER 1: BRIGHT 1) into the row of 32 cells from (19,0) to (19,31) on the screen
+  35013 Pick up the message index from #R34276
+  35016,9 Point #REGix at the corresponding location in the message at #R33876
+  35025,8 Print 32 characters of the message at (19,0)
   35033,7 Prepare a value between 50 and 81 in #REGa (for the routine at #R38622)
   35040 Make a sound effect
   35043,5 Read keys H-J-K-L-ENTER and 6-7-8-9-0
   35048 Keep only bit 0 of the result (ENTER, 0)
   35050 Was ENTER or 0 pressed?
-  35052,2 Jump if so to start the game
+  35052 Jump if so to start the game
+  35054 Pick up the message index from #R34276
+  35057 Increment it
+  35058 Set the zero flag if we've reached the end of the message
+  35060 Store the new message index at #R34276
+  35063 Jump back unless we've finished scrolling the message across the screen
+  35065 Jump back to prepare the screen and play the theme tune again
 c 35068 Start the game
   35068,11 Initialise the time by copying the text at #R34181 (" 7:00a") to #R34175
   35079,11 Copy the attribute bytes from #R39424 to the bottom third of the screen
