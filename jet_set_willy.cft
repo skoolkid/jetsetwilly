@@ -293,6 +293,7 @@ c 35245 Main loop (1)
   35300 Is Willy on his way to the toilet?
   35302 If so, check whether he's reached it yet
   35305,3 Deal with special rooms (#R58112(Master Bedroom), #R57600(The Bathroom))
+  35311,3 Move the conveyor in the current room (if there is one)
   35377,12 Print the current time (see #R34175) at (19,25)
   35389,12 Print the number of items collected (see #R34172) at (19,16)
   35499,5 Read keys SHIFT-Z-X-C-V
@@ -587,7 +588,30 @@ c 38098 Move Willy into the room below
   38120,13 Willy should now appear at the top of the room, so adjust his coordinates (at #R34259) accordingly
   38133 Drop the return address (#R35281, in the main loop) from the stack
   38134 Draw the room and re-enter the main loop
-c 38137 Move conveyors
+c 38137 Move the conveyor in the current room
+  38137 Pick up the coordinates of the left end of the conveyor
+  38140,11 Point #REGde and #REGhl at the location of the left end of the conveyor in the screen buffer at 28672
+  38151 Pick up the length of the conveyor
+  38154 Is there a conveyor in the room?
+  38155 Return if not
+  38156 #REGb will count the conveyor tiles
+  38157 Pick up the direction of the conveyor (0=left, 1=right)
+  38160 Is the conveyor moving right?
+  38161 Jump if so
+D 38163 The conveyor is moving left.
+  38163 Copy the first pixel row of the conveyor tile to #REGa
+  38164,4 Rotate it left twice
+  38168,2 Point #REGhl at the third pixel row of the conveyor tile
+  38170 Copy this pixel row to #REGc
+  38171,4 Rotate it right twice
+  38175,6 Update the first and third pixel rows of every conveyor tile in the screen buffer at 28672
+D 38182 The conveyor is moving right.
+  38182 Copy the first pixel row of the conveyor tile to #REGa
+  38183,4 Rotate it right twice
+  38187,2 Point #REGhl at the third pixel row of the conveyor tile
+  38189 Copy this pixel row to #REGc
+  38190,4 Rotate it left twice
+  38194 Jump back to update the first and third pixel rows of every conveyor tile
 c 38196 Deal with special rooms (Master Bedroom, The Bathroom)
   38196 Pick up the number of the current room from #R33824
   38199 Are we in #R58112(Master Bedroom)?
