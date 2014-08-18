@@ -122,8 +122,8 @@ g 34274 Sound flags
 D 34274 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Keypress flag (reset=H-ENTER being pressed, set=no key pressed) | #R34762, #R35591 }} {{ 1 | In-game music flag (reset=music on, set=music off) | #R35591 }} {{ 2-7 | Unused | }} TABLE#
 g 34275 WRITETYPER key counter
 D 34275 Used by the routines at #R35245 and #R35591.
-g 34276 Temporary workspace
-D 34276 Used by the routines at #R34499 and #R34620 to hold the entry code; also used by the routines at #R34762 and #R35914.
+g 34276 Temporary variable
+D 34276 Used by the routines at #R34499 and #R34620 to hold the entry code, by the routine at #R34762 to hold the index into the message scrolled across the screen after the theme tune has finished playing, and by the routine at #R35914 to hold the distance of the foot from the top of the screen as it descends onto Willy.
 b 34277 WRITETYPER
 D 34277 Used by the routine at #R35591.
 B 34277,b2
@@ -454,11 +454,52 @@ D 35891 Now check whether any lives remain.
   35900,11 Restore Willy's state upon entry to the room by copying the seven bytes at #R34263 back into #LINK:GameStatusBuffer#34255(34255-34261)
   35911 Reinitialise the room and resume the game
 c 35914 Display the game over sequence
+  35914,13 Clear the top two-thirds of the display file
+  35927,4 Initialise the temporary game status buffer variable at #R34276; this variable will determine the distance of the foot from the top of the screen
   35931,11 Draw Willy at (12,15)
   35942,11 Draw the barrel underneath Willy at (14,15)
-  35968,8 Draw the foot
+D 35953 The following loop draws the foot's descent onto the barrel that supports Willy.
+  35953 Pick up the distance variable from #R34276
+  35956,3 Point #REGbc at the corresponding entry in the screen buffer address lookup table at #R33280
+  35959,9 Point #REGhl at the corresponding location in the display file
+  35968,8 Draw the foot at this location, without erasing the foot at the previous location; this leaves the portion of the foot sprite that's above the ankle in place, and makes the foot appear as if it's at the end of a long, extending leg
+  35976 Pick up the distance variable from #R34276
+  35979 #REGa=255-#REGa
+  35980 Store this value (63-255) in #REGe; it determines the (rising) pitch of the sound effect that will be made
+  35981 #REGa=0 (black border)
+  35982 #REGc=64; this value determines the duration of the sound effect
+  35985,10 Produce a short note whose pitch is determined by #REGe
+  35995,9 Prepare #REGbc, #REGde and #REGhl for setting the attribute bytes in the top two-thirds of the screen
+  36004 Pick up the distance variable from #R34276
+  36007 Keep only bits 2 and 3
+  36009 Shift bits 2 and 3 into bits 3 and 4; these bits determine the PAPER colour: 0, 1, 2 or 3
+  36010 Set bits 0-2 (INK 7) and 6 (BRIGHT 1)
+  36012,3 Copy this attribute value into the top two-thirds of the screen
+  36015 Reset bits 0 and 2, and retain all other bits
+  36017 Set bit 1 (INK 2)
+  36019,12 Copy this attribute value to the cells at (14,15), (14,16), (15, 15) and (15, 16) (where the barrel is, so that it remains red)
+  36031,8 Add 4 to the distance variable at #R34276; this will move the foot sprite down two pixel rows
+  36039 Has the foot met the barrel yet?
+  36041 Jump back if not
+D 36043 Now print the "Game Over" message, just to drive the point home.
   36043,12 Print "Game" (see #R34164) at (6,10)
   36055,12 Print "Over" (see #R34168) at (6,18)
+  36067,5 Prepare the delay counters for the following loop; the counter in #REGc will also determine the INK colours to use for the "Game Over" message
+D 36072 The following loop makes the "Game Over" message glisten for about 1.57s.
+  36072 Delay for about a millisecond
+  36074,8 Change the INK colour of the "G" in "Game" at (6,10)
+  36082,8 Change the INK colour of the "a" in "Game" at (6,11)
+  36090,8 Change the INK colour of the "m" in "Game" at (6,12)
+  36098,8 Change the INK colour of the "e" in "Game" at (6,13)
+  36106,8 Change the INK colour of the "O" in "Over" at (6,18)
+  36114,8 Change the INK colour of the "v" in "Over" at (6,19)
+  36122,8 Change the INK colour of the "e" in "Over" at (6,20)
+  36130,8 Change the INK colour of the "r" in "Over" at (6,21)
+  36138 Decrement the counter in #REGc
+  36139 Jump back unless it's zero
+  36141 Decrement the counter in #REGd (initially 6)
+  36142 Jump back unless it's zero
+  36144 Display the title screen and play the theme tune
 c 36147 Draw the current room to the screen buffer at 28672
   36147 Fill the buffer at 24064 with attribute bytes for the current room
   36150 Point #REGix at the first byte of the attribute buffer at 24064
@@ -628,7 +669,7 @@ R 37974 HL Address to draw at
   37997 Copy the graphic byte to its destination cell
   37998,2 Move #REGhl to the next pixel row down in the cell on the left
   38000 Point #REGde at the next sprite graphic byte
-  38001,3 Have we drawn all eight pixel rows in this pair of cells yet?
+  38001,3 Have we drawn the bottom pixel row in this pair of cells yet?
   38004 Jump if not
   38006,8 Otherwise move #REGhl to the top pixel row in the cell below
   38014 Was the last pair of cells at y-coordinate 7 or 15?
