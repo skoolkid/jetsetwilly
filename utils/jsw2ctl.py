@@ -248,12 +248,12 @@ class JetSetWilly:
             room_link = self._get_room_links([b1 & 63])
             index = a % 256
             items[index] = (room_link, (x, y))
-            lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, x, y, room_link))
+            lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, y, x, room_link))
         lines.append('S 42240 Unused')
         for a in range(42413, 42496):
             index = a % 256
             room_link, (x, y) = items[index]
-            lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, x, y, room_link))
+            lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, y, x, room_link))
         return '\n'.join(lines)
 
     def get_rooms(self):
