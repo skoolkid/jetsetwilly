@@ -26,7 +26,7 @@ from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
 sk_resources = os.path.join(SKOOLKIT_HOME, 'resources')
 skool2html.SEARCH_DIRS += (sk_resources, '../resources')
 
-JSWZ80 = '../jet_set_willy.z80'
+JSWZ80 = '../build/jet_set_willy.z80'
 JSWREF = '../jet_set_willy.ref'
 
 XHTML_XSD = os.path.join(SKOOLKIT_HOME, 'XSD', 'xhtml1-strict.xsd')
