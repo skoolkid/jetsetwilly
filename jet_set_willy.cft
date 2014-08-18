@@ -25,7 +25,7 @@ S 32982,4 Conveyor definition (used by the routines at #R36564 and #R38137)
 S 32986,4 Ramp definition (used by the routines at #R36203, #R36564 and #R38344)
 B 32990,1 Border colour (used by the routine at #R35068)
 S 32991,2 Unused
-S 32993,8 Object graphic (used by the routine at #R37841)
+S 32993,8 Item graphic (used by the routine at #R37841)
 B 33001,1 Room to the left (used by the routine at #R38026)
 B 33002,1 Room to the right (used by the routine at #R38046)
 B 33003,1 Room above (used by the routines at #R37310 and #R38064)
@@ -109,11 +109,11 @@ g 34262 Rope status indicator
 D 34262 Initialised by the routine at #R35068, checked by the routine at #R36307, and checked and set by the routines at #R36564 and #R37310.
 g 34263 Willy's state on entry to the room
 D 34263 Initialised by the routine at #R35068, and copied back into #LINK:GameStatusBuffer#34255(34255-34261) by the routine at #R35841.
-g 34270 256 minus the number of objects remaining
+g 34270 256 minus the number of items remaining
 D 34270 Used by the routines at #R34762 and #R37841.
 g 34271 Game mode indicator
 D 34271 Used by the routines at #R34762, #R35245, #R36564, #R37841, #R38196, #R38276 and #R38298.
-D 34271 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Normal }} {{ 1 | All objects collected }} {{ 2 | Willy is running to the toilet }} {{ 3 | Willy's head is down the toilet }} TABLE#
+D 34271 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Normal }} {{ 1 | All items collected }} {{ 2 | Willy is running to the toilet }} {{ 3 | Willy's head is down the toilet }} TABLE#
 g 34272 Inactivity timer
 D 34272 Initialised by the routine at #R34762, and updated by the routines at #R35245, #R35591 and #R36564 (only when the in-game music is not playing).
 g 34273 In-game music note index
@@ -241,11 +241,11 @@ D 34762 The first thing this routine does is initialise some game status buffer 
   34794,5 Initialise the current room number at #R33824 to 33 (#R57600(The Bathroom))
   34799,6 Initialise Willy's coordinates at #R34259 to (13,20)
   34805,11 Initialise the number of items collected at #R34172 to "000"
-  34816 Page #R41984(164) holds the first byte of each entry in the object table
-  34818 Pick up the index of the first object from #R41983
-  34821 Point #REGhl at the entry for the first object
-  34822 Initialise the counter of objects remaining at #R34270
-  34825,5 Set the collection flag for every object in the object table at #R41984
+  34816 Page #R41984(164) holds the first byte of each entry in the item table
+  34818 Pick up the index of the first item from #R41983
+  34821 Point #REGhl at the entry for the first item
+  34822 Initialise the counter of items remaining at #R34270
+  34825,5 Set the collection flag for every item in the item table at #R41984
   34830,5 Initialise the keypress flag in bit 0 at #R34274
 D 34835 Next, prepare the screen.
   34835,13 Clear the entire display file
@@ -639,11 +639,11 @@ C 37834,2 Move right one cell and store the attribute byte there
 C 37836,2 Move left one cell and down a row and store the attribute byte there
 C 37838,2 Move right one cell and store the attribute byte there
 C 37840
-c 37841 Draw objects in the current room
+c 37841 Draw items in the current room
   37960 Save #REGhl briefly
-  37961 Point #REGhl at the object graphic for the current room (at #R32993)
+  37961 Point #REGhl at the item graphic for the current room (at #R32993)
   37964 There are eight pixel rows to copy
-  37966 Draw the object to the screen buffer at 24576
+  37966 Draw the item to the screen buffer at 24576
   37969,1 Restore #REGhl
 c 37974 Draw a sprite
 D 37974 Used by the routines at #R34499 (to draw the number key graphics on the code entry screen), #R35211 (to draw the remaining lives), #R35914 (to draw Willy, the boot and the barrel during the game over sequence), #R37310 (to draw guardians in the current room) and #R38196 (to draw Maria in #R58112(Master Bedroom)). If #REGc=1 on entry, this routine returns with the zero flag reset if any of the set bits in the sprite being drawn collides with a set bit in the background.
@@ -883,8 +883,8 @@ R 38545 A ASCII code of the character
 R 38545 DE Display file address
   38545,8 Point #REGhl at the bitmap for the character (in the ROM)
   38553 There are eight pixel rows in a character bitmap
-D 38555 This entry point is used by the routine at #R34762 to draw a triangle UDG on the title screen, and by the routine at #R37841 to draw an object in the current room.
-  38555,6 Copy the character bitmap (or triangle UDG, or object graphic) to the screen (or screen buffer)
+D 38555 This entry point is used by the routine at #R34762 to draw a triangle UDG on the title screen, and by the routine at #R37841 to draw an item in the current room.
+  38555,6 Copy the character bitmap (or triangle UDG, or item graphic) to the screen (or screen buffer)
 c 38562 Play the theme tune
 D 38562 Used by the routine at #R34762. For each of the 99 bytes in the tune data table at #R34299, this routine produces two notes, each lasting approximately 0.15s; the second note is played at half the frequency of the first. Returns with the zero flag reset if ENTER, 0 or the fire button is pressed while the tune is being played.
 R 38562 HL #R34299
@@ -1002,13 +1002,13 @@ D 40960 Used by the routine at #R35068.
 {guardian_defs}
 D 41856 The next 127 bytes are unused.
 B 41856,127,16
-b 41983 Index of first object
+b 41983 Index of the first item
 D 41983 Used by the routines at #R34762 and #R37841.
-b 41984 Object table
+b 41984 Item table
 D 41984 Used by the routines at #R34762 and #R37841.
-D 41984 The location of object N (173<=N<=255) is defined by the pair of bytes at addresses 41984+N and 42240+N. The meaning of the bits in each byte-pair is as follows:
+D 41984 The location of item N (173<=N<=255) is defined by the pair of bytes at addresses 41984+N and 42240+N. The meaning of the bits in each byte-pair is as follows:
 D 41984 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning }} {{ 15 | Most significant bit of the y-coordinate }} {{ 14 | Collection flag (reset=collected, set=uncollected) }} {{ 8-13 | Room number }} {{ 5-7 | Least significant bits of the y-coordinate }} {{ 0-4 | x-coordinate }} TABLE#
-{object_table}
+{item_table}
 b 42496 Toilet graphics
 D 42496 Used by the routine at #R38298.
 {toilet}

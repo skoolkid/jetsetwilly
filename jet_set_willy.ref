@@ -79,15 +79,15 @@ To give the code at grid location R9 a chance of being asked for:
 
 POKE #R34555(34556),180
 
-[Fact:unusedObjects:Unused objects]
-There are five rooms in which nontrivial object graphics are defined, but not used.
+[Fact:unusedItems:Unused items]
+There are five rooms in which nontrivial item graphics are defined, but not used.
 
 #UDGTABLE(gallery)
-{ #R54497(Ballroom East)   | #UDG54497,3(object20) }
-{ #R55265(The Kitchen)     | #UDG55265,3(object23) }
-{ #R59873(The Attic)       | #UDG59873,3(object41) }
-{ #R60897(Under the Drive) | #UDG60897,3(object45) }
-{ #R61665(Nomen Luni)      | #UDG61665,3(object48) }
+{ #R54497(Ballroom East)   | #UDG54497,3(item20) }
+{ #R55265(The Kitchen)     | #UDG55265,3(item23) }
+{ #R59873(The Attic)       | #UDG59873,3(item41) }
+{ #R60897(Under the Drive) | #UDG60897,3(item45) }
+{ #R61665(Nomen Luni)      | #UDG61665,3(item48) }
 TABLE#
 
 [Fact:unusedNasties:Unused nasties]
@@ -166,16 +166,16 @@ The commonest guardian is the bird, whose graphic data lives at #R48128.
 There are 23 instances of this guardian spread over 18 rooms: four in #R50176(The Drive), two in each of #R49408(The Bridge) and #R51200(Inside the MegaTrunk), and one in each of #R51968(The Hall), #R52224(Tree Top), #R52480(Out on a limb), #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..), #R53248(We must perform a Quirkafleeg), #R54272(Ballroom East), #R54784(To the Kitchens Main Stairway), #R58368(A bit of tree), #R58880(Priests' Hole), #R60672(Under the Drive), #R61440(Nomen Luni), #R61952(Watch Tower), #R62976(West  Wing) and #R63488(West Wing Roof).
 
 [Fact:emptiestRooms:The emptiest rooms]
-#R62720(Back Door) is the only room that has no objects, nasties or guardians.
+#R62720(Back Door) is the only room that has no items, nasties or guardians.
 
 #ROOM62720
 
-#R51712(The Front Door) is the only other room that has no guardians; it also has no nasties, but does contain an object.
+#R51712(The Front Door) is the only other room that has no guardians; it also has no nasties, but does contain an item.
 
 #ROOM51712
 
-[Fact:mostObjects:The most objects]
-The room with the most objects is #R49152(The Off Licence) with 12.
+[Fact:mostItems:The most items]
+The room with the most items is #R49152(The Off Licence) with 12.
 
 #ROOM49152
 
@@ -217,7 +217,7 @@ Added POKEs:
   #POKE#infiniteLives()
 Added routine titles
 Added a description to each #LINK:GameStatusBuffer(game status buffer entry), #LINK:MessagesMap(message entry) and #LINK:DataMap(data block) listing the routines that use it
-Added object locations to the entry at #R41984
+Added item locations to the entry at #R41984
 Listed the rooms in which each guardian appears (see #R40000, #R40064 and #R43776)
 Listed the rooms in which each guardian definition is used (see #R40960)
 Added the code for each grid location to the entry at #R40448
@@ -237,13 +237,13 @@ Annotated the source code remnants at #R39936
 Included in SkoolKit 3.2.
 
 Added the first seven trivia entries:
-  #FACT#unusedObjects()
+  #FACT#unusedItems()
   #FACT#unusedNasties()
   #FACT#unusedFloor()
   #FACT#unusedRamp()
   #FACT#unusedConveyor()
   #FACT#emptiestRooms()
-  #FACT#mostObjects()
+  #FACT#mostItems()
 
 [Changelog:20120501]
 Included in SkoolKit 3.0.2.

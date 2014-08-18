@@ -239,21 +239,21 @@ class JetSetWilly:
                 lines.append('S {},256'.format(a))
         return '\n'.join(lines)
 
-    def get_object_table(self):
+    def get_item_table(self):
         lines = ['S 41984 Unused']
-        objects = {}
+        items = {}
         for a in range(42157, 42240):
             b1, b2 = self.snapshot[a], self.snapshot[a + 256]
             x, y = b2 & 31, 8 * (b1 >> 7) + b2 // 32
             room_link = self._get_room_links([b1 & 63])
             index = a % 256
-            objects[index] = (room_link, (x, y))
-            lines.append('B {} Object {} at ({},{}) in {}'.format(a, index, x, y, room_link))
+            items[index] = (room_link, (x, y))
+            lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, x, y, room_link))
         lines.append('S 42240 Unused')
         for a in range(42413, 42496):
             index = a % 256
-            room_link, (x, y) = objects[index]
-            lines.append('B {} Object {} at ({},{}) in {}'.format(a, index, x, y, room_link))
+            room_link, (x, y) = items[index]
+            lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, x, y, room_link))
         return '\n'.join(lines)
 
     def get_rooms(self):
@@ -351,10 +351,10 @@ class JetSetWilly:
             lines.append('B {} Border colour'.format(a + 222))
             lines.append('B {} Unused'.format(a + 223))
 
-            # Object graphic
-            lines.append('D {} The next 8 bytes define the object graphic.'.format(a + 225))
-            lines.append('D {0} #UDGTABLE {{ #UDG{0},{1}(object{2:02d}) }} TABLE#'.format(a + 225, room_paper + 3, room_num))
-            lines.append('B {},8,8 Object graphic{}'.format(a + 225, '' if items.get(room_num) else ' (unused)'))
+            # Item graphic
+            lines.append('D {} The next 8 bytes define the item graphic.'.format(a + 225))
+            lines.append('D {0} #UDGTABLE {{ #UDG{0},{1}(item{2:02d}) }} TABLE#'.format(a + 225, room_paper + 3, room_num))
+            lines.append('B {},8,8 Item graphic{}'.format(a + 225, '' if items.get(room_num) else ' (unused)'))
 
             # Rooms to the left, to the right, above and below
             lines.append('D {} The next 4 bytes specify the rooms to the left, to the right, above and below.'.format(a + 233))
@@ -410,7 +410,7 @@ class JetSetWilly:
             willy=self.get_graphics(40192, 8, 7, 'willy', 2, ('r', 'l')),
             codes=self.get_codes(),
             guardian_defs=self.get_guardian_definitions(),
-            object_table=self.get_object_table(),
+            item_table=self.get_item_table(),
             toilet=self.get_graphics(42496, 4, 7, 'toilet', 2, ('empty', 'full'), 10),
             guardians=self.get_guardian_graphics(),
             rooms=self.get_rooms()
