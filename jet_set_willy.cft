@@ -23,7 +23,7 @@ S 32964,9 Ramp tile (used by the routines at #R36147, #R36203, #R36564 and #R383
 S 32973,9 Conveyor tile (used by the routines at #R36147, #R36203 and #R36564)
 S 32982,4 Conveyor definition (used by the routines at #R36564 and #R38137)
 S 32986,4 Ramp definition (used by the routines at #R36203, #R36564 and #R38344)
-B 32990,1 Border colour (used by the routine at #R35068)
+B 32990,1 Border colour (used by the routines at #R35068 and #R37841)
 S 32991,2 Unused
 S 32993,8 Item graphic (used by the routine at #R37841)
 B 33001,1 Room to the left (used by the routine at #R38026)
@@ -372,7 +372,8 @@ c 35245 Main loop (1)
   35300 Is Willy on his way to the toilet?
   35302 If so, check whether he's reached it yet
   35305,3 Deal with special rooms (#R58112(Master Bedroom), #R57600(The Bathroom))
-  35311,3 Move the conveyor in the current room (if there is one)
+  35311 Move the conveyor in the current room (if there is one)
+  35314,3 Draw the items in the current room (if there are any) and collect any that Willy is touching
   35377,12 Print the current time (see #R34175) at (19,25)
   35389,12 Print the number of items collected (see #R34172) at (19,16)
   35499,5 Read keys SHIFT-Z-X-C-V
@@ -639,12 +640,50 @@ C 37834,2 Move right one cell and store the attribute byte there
 C 37836,2 Move left one cell and down a row and store the attribute byte there
 C 37838,2 Move right one cell and store the attribute byte there
 C 37840
-c 37841 Draw items in the current room
+c 37841 Draw the items in the current room and collect any that Willy is touching
+  37841 Page #R41984(164) holds the first byte of each entry in the item table
+  37843 Pick up the index of the first item from #R41983
+  37846 Point #REGhl at the first byte of the first entry in the item table
+D 37847 The item-drawing loop begins here.
+  37847 Pick up the first byte of the current entry in the item table
+  37848 Reset bit 7; bit 6 holds the collection flag, and bits 0-5 hold the room number
+  37850 Pick up the number of the current room from #R33824
+  37853 Set bit 6 (corresponding to the collection flag)
+  37855 Is the item in the current room and still uncollected?
+  37856 If not, jump to consider the next entry in the item table
+  37858 Pick up the first byte of the current entry in the item table
+D 37858 This item is in the current room and has not been collected yet.
+  37859,9 Point #REGde at the location of the item in the attribute buffer at 23552
+  37868 Pick up the item's current attribute byte
+  37869,4 Is the INK white (which can happen only if Willy is touching the item)?
+  37873 Jump if not
+D 37875 Willy is touching this item, so add it to his collection.
+  37875 Point #REGix at the number of items collected at #R34172
+  37879 Increment a digit of the number of items collected
+  37882,5 Was the digit originally '9'?
+  37887 Jump if not
+  37889 Set the digit to '0'
+  37893 Move back to the digit on the left
+  37895 Jump back to increment this digit
+  37897 Pick up the border colour for the current room from #R32990
+  37900,18 Produce the sound effect for collecting an item
+  37918,7 Update the counter of items remaining at #R34270, and set the zero flag if there are no more items to collect
+  37925 Jump if there are any items still to be collected
+  37927,5 Update the game mode indicator at #R34271 to 1 (all items collected)
+  37932 Reset bit 6 of the first byte of the entry in the item table, indicating that the item has been collected
+  37934 Jump to consider the next entry in the item table
+D 37936 Willy is not touching this item, so draw it and cycle its INK colour.
+  37936,9 Generate the INK colour for the item from the value of the minute counter at #R34251 (0-255) and the index of the item in the item table (173-255)
+  37945,5 Change the INK colour of the item in the attribute buffer at 23552
+  37950,10 Point #REGde at the location of the item in the screen buffer at 24576
   37960 Save #REGhl briefly
   37961 Point #REGhl at the item graphic for the current room (at #R32993)
   37964 There are eight pixel rows to copy
   37966 Draw the item to the screen buffer at 24576
-  37969,1 Restore #REGhl
+  37969 Restore the item table pointer to #REGhl
+D 37970 The current item has been dealt with (skipped, collected or drawn) as appropriate. Time to consider the next one.
+  37970 Point #REGhl at the first byte of the next entry in the item table
+  37971,2 Jump back unless we've examined every entry
 c 37974 Draw a sprite
 D 37974 Used by the routines at #R34499 (to draw the number key graphics on the code entry screen), #R35211 (to draw the remaining lives), #R35914 (to draw Willy, the boot and the barrel during the game over sequence), #R37310 (to draw guardians in the current room) and #R38196 (to draw Maria in #R58112(Master Bedroom)). If #REGc=1 on entry, this routine returns with the zero flag reset if any of the set bits in the sprite being drawn collides with a set bit in the background.
 R 37974 C Drawing mode: 0 (overwrite) or 1 (blend)
