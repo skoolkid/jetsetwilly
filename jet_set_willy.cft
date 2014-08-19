@@ -23,7 +23,7 @@ S 32964,9 Ramp tile (used by the routines at #R36147, #R36203, #R36564 and #R383
 S 32973,9 Conveyor tile (used by the routines at #R36147, #R36203 and #R36564)
 S 32982,4 Conveyor definition (used by the routines at #R36564 and #R38137)
 S 32986,4 Ramp definition (used by the routines at #R36203, #R36564 and #R38344)
-B 32990,1 Border colour (used by the routines at #R35068 and #R37841)
+B 32990,1 Border colour (used by the routines at #R35068, #R37310 and #R37841)
 S 32991,2 Unused
 S 32993,8 Item graphic (used by the routine at #R37841)
 B 33001,1 Room to the left (used by the routine at #R38026)
@@ -665,6 +665,43 @@ D 37334 We are dealing with a horizontal or vertical guardian.
   37425,3 Kill Willy if the guardian collided with him
   37428 Jump to consider the next guardian definition
 D 37431 We are dealing with an arrow.
+  37431 Is the arrow travelling left to right?
+  37435 Jump if so
+  37437 Decrement the arrow's x-coordinate
+  37440,2 The sound effect for an arrow travelling right to left is made when the x-coordinate is 44
+  37444 Increment the arrow's x-coordinate
+  37447 The sound effect for an arrow travelling left to right is made when the x-coordinate is 244
+  37449 Pick up the arrow's x-coordinate (0-255)
+  37452 Is it time to make the arrow sound effect?
+  37453 Jump if not
+  37455 Prepare the delay counters (#REGb=2, #REGc=128) for the arrow sound effect
+  37458 Pick up the border colour for the current room from #R32990
+  37461,10 Produce the arrow sound effect
+  37471 Jump to consider the next guardian definition
+  37474 Is the arrow's x-coordinate in the range 0-31 (i.e. on-screen)?
+  37476 If not, jump to consider the next guardian definition
+  37479,5 Point #REGde at the entry in the screen buffer address lookup table at #R33280 that corresponds to the arrow's y-coordinate
+  37484 Pick up the LSB of the screen buffer address
+  37485 Adjust it for the arrow's x-coordinate
+  37488,8 Point #REGhl at the arrow's current location in the attribute buffer at 23552
+  37496 Initialise the collision detection byte (0=off, 255=on)
+  37500 Pick up the room attribute byte at the arrow's location
+  37501 Keep only bits 0-2 (INK colour)
+  37503 Is the INK white?
+  37505 Jump if not
+  37507 Activate collision detection
+  37510,4 Set the INK colour to white at the arrow's location
+  37514,2 Pick up the MSB of the screen buffer address for the arrow's location
+  37516,2 Point #REGhl at the top pixel row of the arrow's location in the screen buffer at 24576
+  37518,4 Draw the top pixel row of the arrow
+  37522 Point #REGhl at the middle pixel row of the arrow's location in the screen buffer at 24576
+  37523 Pick up the graphic byte that's already here
+  37524 Has the arrow hit anything that has white INK (e.g. Willy)?
+  37527 If so, kill Willy
+  37530 Draw the shaft of the arrow
+  37532 Point #REGhl at the bottom pixel row of the arrow's location in the screen buffer at 24576
+  37533,4 Draw the bottom pixel row of the arrow
+  37537 Jump to consider the next guardian definition
 D 37540 We are dealing with a rope.
 D 37811 The current guardian definition has been dealt with. Time for the next one.
   37811,5 Point #REGix at the first byte of the next guardian definition
