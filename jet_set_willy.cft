@@ -371,7 +371,8 @@ c 35245 Main loop (1)
   35297 Pick up the game mode indicator from #R34271
   35300 Is Willy on his way to the toilet?
   35302 If so, check whether he's reached it yet
-  35305,3 Deal with special rooms (#R58112(Master Bedroom), #R57600(The Bathroom))
+  35305 Deal with special rooms (#R58112(Master Bedroom), #R57600(The Bathroom))
+  35308 Draw the rope, arrows and guardians in the current room
   35311 Move the conveyor in the current room (if there is one)
   35314,3 Draw the items in the current room (if there are any) and collect any that Willy is touching
   35377,12 Print the current time (see #R34175) at (19,25)
@@ -616,14 +617,58 @@ D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
 c 37046 Kill Willy
 D 37046 Used by the routine at #R38430 when Willy hits a nasty.
   37046 Drop the return address from the stack
-D 37047 This entry point is used by the routines at #R36564, #R37310 (when Willy hits a guardian) and #R38196 (when Willy gets too close to Maria).
+D 37047 This entry point is used by the routines at #R36564, #R37310 (when an arrow or guardian hits Willy) and #R38196 (when Willy gets too close to Maria).
   37047 Drop the return address from the stack
   37048,5 Set the airborne status indicator at #R34257 to 255 (meaning Willy has had a fatal accident)
   37053 Jump back into the main loop
 c 37056 Move guardians
-c 37310 Draw guardians to the screen buffer at 24576
+c 37310 Draw the rope, arrows and guardians in the current room
+D 37310 Used by the routine at #R35245. Draws the rope, arrows and guardians in the current room to the screen buffer at 24576.
+  37310 Point #REGix at the first byte of the guardian buffer at #R33024
+D 37314 The drawing loop begins here.
+  37314 Pick up the first byte of the current guardian definition
+  37317 Have we reached the end of the guardian buffer?
+  37319 Return if so
+  37320 Keep only bits 0-2 (which determine the type of guardian)
+  37322 Jump to consider the next guardian definition if this one is empty
+  37325 Is this a rope?
+  37327 Jump if so
+  37330 Is this an arrow?
+  37332 Jump if so
+D 37334 We are dealing with a horizontal or vertical guardian.
+  37334,5 Point #REGde at the entry in the screen buffer address lookup table at #R33280 that corresponds to the guardian's y-coordinate
+  37339,2 Copy the LSB of the screen buffer address to #REGl
+  37341 Pick up the third byte of the guardian definition
+  37344 Keep only bits 0-4; now #REGa holds the guardian's x-coordinate
+  37346,2 Adjust the LSB of the screen buffer address in #REGl for the guardian's x-coordinate
+  37348 Copy the fourth byte of the guardian definition to #REGa
+  37349,6 #REGh=92 or 93; now #REGhl holds the address of the guardian's current location in the attribute buffer at 23552
+  37355 Prepare #REGde for later addition
+  37358 Pick up the second byte of the guardian definition
+  37361 Keep only bits 0-2 (INK colour) and 3 (BRIGHT value)
+  37363 Push bit 3 up to bit 6
+  37365 Keep only bits 0-2 (INK colour) and 6 (BRIGHT value)
+  37367 Save this value in #REGc temporarily
+  37368 Pick up the room attribute byte at the guardian's location from the buffer at 23552
+  37369 Keep only bits 3-5 (PAPER colour)
+  37371 Merge the INK colour and BRIGHT value from #REGc
+  37372 Copy this attribute value to #REGc
+  37373,7 Set the attribute bytes in the buffer at 23552 for the top two rows of cells occupied by the guardian's sprite
+  37380 Pick up the fourth byte of the guardian definition
+  37383 Does the guardian's sprite occupy only two rows of cells at the moment?
+  37385 Jump if so
+  37387,4 Set the attribute bytes in the buffer at 23552 for the third row of cells occupied by the guardian's sprite
+  37391 Prepare #REGc for the call to #R37974 later on
+  37393,15 Point #REGde at the graphic data for the guardian's current animation frame (see #R43776)
+  37408,14 Point #REGhl at the guardian's current location in the screen buffer at 24576
   37422 Draw the guardian
   37425,3 Kill Willy if the guardian collided with him
+  37428 Jump to consider the next guardian definition
+D 37431 We are dealing with an arrow.
+D 37540 We are dealing with a rope.
+D 37811 The current guardian definition has been dealt with. Time for the next one.
+  37811,5 Point #REGix at the first byte of the next guardian definition
+  37816 Jump back to deal with it
 u 37819 Unused routine
 D 37819 This routine is not used, but if it were, it would set the ink colour for a 3x2 block of cells, maintaining the paper, bright and flash attributes of the current room background.
 R 37819 A INK colour (0-7)
