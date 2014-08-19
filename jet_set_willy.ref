@@ -188,6 +188,17 @@ Alternatively, to bypass the code entry screen altogether:
 
 POKE #R33796(33797),135: POKE #R33799(33800),202
 
+[Poke:dealWithMaria:Deal with Maria]
+To get rid of Maria entirely, leaving the bedroom free to enter without collecting any items:
+
+POKE #R38207,24
+
+Or if that makes things a little too easy, try the following POKE that gets rid of Maria after N items have been collected:
+
+POKE #R41983,256-N (1<=N<=83)
+
+Exactly which N items need to be collected is determined by the item table at #R41984. When N=1, the only item that needs to be collected is the one in #R57600(The Bathroom).
+
 [Poke:moreLives:More lives]
 To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=7):
 
@@ -201,6 +212,11 @@ POKE #R35211,201
 To give Willy infinite lives:
 
 POKE #R35899,0
+
+[Changelog:YYYYMMDD]
+-
+
+Added a POKE: #POKE#dealWithMaria()
 
 [Changelog:20140807]
 -
