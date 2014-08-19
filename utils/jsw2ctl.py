@@ -61,7 +61,7 @@ class JetSetWilly:
         self.guardian_macros = self._get_guardian_macros()
         self.room_names, self.room_names_wp = self._get_room_names()
         self.room_macros = self._get_room_macros()
-        self.room_guardians = self._get_room_guardians()
+        self.room_entities = self._get_room_entities()
 
     def _get_guardian_macros(self):
         guardian_macros = {
@@ -105,16 +105,16 @@ class JetSetWilly:
             room_macros[room_num] = '#R{}({})'.format(addr, self.room_names_wp[room_num])
         return room_macros
 
-    def _get_room_guardians(self):
-        room_guardians = {}
+    def _get_room_entities(self):
+        room_entities = {}
         for room_num in range(61):
             addr = 256 * (room_num + 192)
             for a in range(addr + 240, addr + 256, 2):
                 num, start = self.snapshot[a:a + 2]
                 if num == 255:
                     break
-                room_guardians.setdefault(room_num, []).append((num, start))
-        return room_guardians
+                room_entities.setdefault(room_num, []).append((num, start))
+        return room_entities
 
     def _get_room_links(self, room_nums):
         macros = [self.room_macros[n] for n in room_nums]
@@ -132,10 +132,10 @@ class JetSetWilly:
             lines.append('B {},1 {}: {}'.format(addr, grid_loc, code))
         return '\n'.join(lines)
 
-    def get_guardian_definitions(self):
+    def get_entity_definitions(self):
         defs = {}
         sprite_addrs = {}
-        for room_num, specs in self.room_guardians.items():
+        for room_num, specs in self.room_entities.items():
             for num, start in specs:
                 defs.setdefault(num, set()).add(room_num)
                 def_addr = 40960 + num * 8
@@ -155,9 +155,9 @@ class JetSetWilly:
                     def_id = '{}: rope'.format(num)
                 elif num in (60, 69):
                     def_id = '{}: arrow'.format(num)
-                comment = 'The following guardian definition ({}) is used in {}.'.format(def_id, room_links)
+                comment = 'The following entity definition ({}) is used in {}.'.format(def_id, room_links)
             else:
-                comment = 'The following guardian definition ({}) is not used.'.format(num)
+                comment = 'The following entity definition ({}) is not used.'.format(num)
             lines.append('D {} {}'.format(addr, comment))
             if num in sprite_addrs:
                 sprites = [self.guardian_macros[a] for a in sorted(sprite_addrs[num])]
@@ -209,7 +209,7 @@ class JetSetWilly:
 
     def get_guardian_graphics(self):
         guardians = {}
-        for room_num, specs in self.room_guardians.items():
+        for room_num, specs in self.room_entities.items():
             for num, start in specs:
                 def_addr = 40960 + num * 8
                 guardian_def = self.snapshot[def_addr:def_addr + 8]
@@ -376,21 +376,33 @@ class JetSetWilly:
 
             # Guardians
             start = a + 240
-            end = a + 256
-            for addr in range(start, end, 2):
-                if self.snapshot[addr] == 255:
-                    end = addr
+            entities = []
+            for addr in range(start, a + 256, 2):
+                num, coords = self.snapshot[addr:addr + 2]
+                if num == 255:
                     break
-            num_guardians = (end - start) // 2
-            if num_guardians:
-                lines.append('D {} The next {} bytes define the guardians.'.format(start, num_guardians * 2))
+                def_addr = 40960 + num * 8
+                entity_def = self.snapshot[def_addr:def_addr + 8]
+                guardian_type = entity_def[0] & 7
+                entities.append((num, coords, guardian_type, def_addr))
+            if entities:
+                lines.append('D {} The next {} bytes specify the entities (ropes, arrows, guardians) in this room.'.format(start, addr - start))
                 addr = start
-                for i in range(num_guardians):
-                    lines.append('B {},2 Guardian {}'.format(addr, i + 1))
+                for num, coords, guardian_type, def_addr in entities:
+                    if guardian_type == 3:
+                        desc = 'Rope at x={}'.format(coords & 31)
+                    elif guardian_type == 4:
+                        direction = ('right to left', 'left to right')[self.snapshot[def_addr] // 128]
+                        buf_addr = self.snapshot[coords + 33280] + 256 * self.snapshot[coords + 33281]
+                        y = ((buf_addr // 256 - 96) & 248) + (buf_addr % 256) // 32
+                        desc = 'Arrow travelling {} at y={}'.format(direction, y)
+                    else:
+                        desc = 'Guardian no. {}, initial x={}'.format(num, coords & 31)
+                    lines.append('B {},2 {} (#R{})'.format(addr, desc, def_addr))
                     addr += 2
             else:
-                lines.append('D {} There are no guardians in this room.'.format(start))
-            if num_guardians < 8:
+                lines.append('D {} There are no entities (ropes, arrows, guardians) in this room.'.format(start))
+            if len(entities) < 8:
                 lines.append('B {},1 Terminator'.format(addr))
                 lines.append('B {},{},{} Unused'.format(addr + 1, a + 255 - addr, a + 255 - addr))
 
@@ -409,7 +421,7 @@ class JetSetWilly:
             maria=self.get_graphics(40064, 4, 5),
             willy=self.get_graphics(40192, 8, 7, 'willy', 2, ('r', 'l')),
             codes=self.get_codes(),
-            guardian_defs=self.get_guardian_definitions(),
+            entity_defs=self.get_entity_definitions(),
             item_table=self.get_item_table(),
             toilet=self.get_graphics(42496, 4, 7, 'toilet', 2, ('empty', 'full'), 10),
             guardians=self.get_guardian_graphics(),

@@ -31,8 +31,8 @@ B 33002,1 Room to the right (used by the routine at #R38046)
 B 33003,1 Room above (used by the routines at #R37310 and #R38064)
 B 33004,1 Room below (used by the routine at #R38098)
 S 33005,3 Unused
-S 33008,16 Guardian definitions (used by the routine at #R35068)
-g 33024 Guardian buffer
+S 33008,16 Entity specifications (used by the routine at #R35068)
+g 33024 Entity buffer
 D 33024 Used by the routines at #R35068, #R37056 and #R37310.
 S 33024,64
 B 33088 Terminator
@@ -325,16 +325,16 @@ D 35090 This entry point is used by the routines at #R35591 (to teleport into a 
   35090 Pick up the current room number from #R33824
   35093,5 Point #REGhl at the first byte of the room definition
   35098,8 Copy the room definition into the buffer at #R32768
-  35106 Point #REGix at the first byte of the first guardian specification for the current room at #R33008
-  35110 Point #REGde at the first byte of the guardian buffer at #R33024
-  35113 There are at most eight guardian specifications in a room
-  35115 Pick up the first byte of the guardian specification
-  35118,7 Point #REGhl at the corresponding entry in the table of guardian definitions at #R40960
-  35125,5 Copy the first two bytes of the guardian definition into the guardian buffer
-  35130,4 Copy the second byte of the guardian specification into the third byte of the guardian definition
-  35134,5 Copy the remaining six bytes of the guardian definition into the guardian buffer
-  35139,4 Point #REGix at the first byte of the next guardian specification
-  35143 Have we copied all eight guardian definitions into the guardian buffer yet?
+  35106 Point #REGix at the first byte of the first entity specification for the current room at #R33008
+  35110 Point #REGde at the first byte of the entity buffer at #R33024
+  35113 There are at most eight entities in a room
+  35115 Pick up the first byte of the entity specification
+  35118,7 Point #REGhl at the corresponding entry in the table of entity definitions at #R40960
+  35125,5 Copy the first two bytes of the entity definition into the entity buffer
+  35130,4 Copy the second byte of the entity specification into the third byte of the entity definition
+  35134,5 Copy the remaining six bytes of the entity definition into the entity buffer
+  35139,4 Point #REGix at the first byte of the next entity specification
+  35143 Have we copied all eight entity definitions into the entity buffer yet?
   35144 If not, jump back to copy the next one
   35146,11 Copy the seven bytes that define Willy's state (position, animation frame etc.) on entry to this room from #LINK:GameStatusBuffer#34255(34255-34261) to #R34263
   35160,13 Clear the bottom third of the display file
@@ -624,13 +624,13 @@ D 37047 This entry point is used by the routines at #R36564, #R37310 (when an ar
 c 37056 Move guardians
 c 37310 Draw the rope, arrows and guardians in the current room
 D 37310 Used by the routine at #R35245. Draws the rope, arrows and guardians in the current room to the screen buffer at 24576.
-  37310 Point #REGix at the first byte of the guardian buffer at #R33024
+  37310 Point #REGix at the first byte of the entity buffer at #R33024
 D 37314 The drawing loop begins here.
-  37314 Pick up the first byte of the current guardian definition
-  37317 Have we reached the end of the guardian buffer?
+  37314 Pick up the first byte of the current entity definition
+  37317 Have we reached the end of the entity buffer?
   37319 Return if so
-  37320 Keep only bits 0-2 (which determine the type of guardian)
-  37322 Jump to consider the next guardian definition if this one is empty
+  37320 Keep only bits 0-2 (which determine the type of entity)
+  37322 Jump to consider the next entity definition if this one is empty
   37325 Is this a rope?
   37327 Jump if so
   37330 Is this an arrow?
@@ -638,13 +638,13 @@ D 37314 The drawing loop begins here.
 D 37334 We are dealing with a horizontal or vertical guardian.
   37334,5 Point #REGde at the entry in the screen buffer address lookup table at #R33280 that corresponds to the guardian's y-coordinate
   37339,2 Copy the LSB of the screen buffer address to #REGl
-  37341 Pick up the third byte of the guardian definition
+  37341 Pick up the third byte of the entity definition
   37344 Keep only bits 0-4; now #REGa holds the guardian's x-coordinate
   37346,2 Adjust the LSB of the screen buffer address in #REGl for the guardian's x-coordinate
-  37348 Copy the fourth byte of the guardian definition to #REGa
+  37348 Copy the fourth byte of the entity definition to #REGa
   37349,6 #REGh=92 or 93; now #REGhl holds the address of the guardian's current location in the attribute buffer at 23552
   37355 Prepare #REGde for later addition
-  37358 Pick up the second byte of the guardian definition
+  37358 Pick up the second byte of the entity definition
   37361 Keep only bits 0-2 (INK colour) and 3 (BRIGHT value)
   37363 Push bit 3 up to bit 6
   37365 Keep only bits 0-2 (INK colour) and 6 (BRIGHT value)
@@ -654,7 +654,7 @@ D 37334 We are dealing with a horizontal or vertical guardian.
   37371 Merge the INK colour and BRIGHT value from #REGc
   37372 Copy this attribute value to #REGc
   37373,7 Set the attribute bytes in the buffer at 23552 for the top two rows of cells occupied by the guardian's sprite
-  37380 Pick up the fourth byte of the guardian definition
+  37380 Pick up the fourth byte of the entity definition
   37383 Does the guardian's sprite occupy only two rows of cells at the moment?
   37385 Jump if so
   37387,4 Set the attribute bytes in the buffer at 23552 for the third row of cells occupied by the guardian's sprite
@@ -663,7 +663,7 @@ D 37334 We are dealing with a horizontal or vertical guardian.
   37408,14 Point #REGhl at the guardian's current location in the screen buffer at 24576
   37422 Draw the guardian
   37425,3 Kill Willy if the guardian collided with him
-  37428 Jump to consider the next guardian definition
+  37428 Jump to consider the next entity definition
 D 37431 We are dealing with an arrow.
   37431 Is the arrow travelling left to right?
   37435 Jump if so
@@ -677,9 +677,9 @@ D 37431 We are dealing with an arrow.
   37455 Prepare the delay counters (#REGb=2, #REGc=128) for the arrow sound effect
   37458 Pick up the border colour for the current room from #R32990
   37461,10 Produce the arrow sound effect
-  37471 Jump to consider the next guardian definition
+  37471 Jump to consider the next entity definition
   37474 Is the arrow's x-coordinate in the range 0-31 (i.e. on-screen)?
-  37476 If not, jump to consider the next guardian definition
+  37476 If not, jump to consider the next entity definition
   37479,5 Point #REGde at the entry in the screen buffer address lookup table at #R33280 that corresponds to the arrow's y-coordinate
   37484 Pick up the LSB of the screen buffer address
   37485 Adjust it for the arrow's x-coordinate
@@ -701,10 +701,10 @@ D 37431 We are dealing with an arrow.
   37530 Draw the shaft of the arrow
   37532 Point #REGhl at the bottom pixel row of the arrow's location in the screen buffer at 24576
   37533,4 Draw the bottom pixel row of the arrow
-  37537 Jump to consider the next guardian definition
+  37537 Jump to consider the next entity definition
 D 37540 We are dealing with a rope.
-D 37811 The current guardian definition has been dealt with. Time for the next one.
-  37811,5 Point #REGix at the first byte of the next guardian definition
+D 37811 The current entity definition has been dealt with. Time for the next one.
+  37811,5 Point #REGix at the first byte of the next entity definition
   37816 Jump back to deal with it
 u 37819 Unused routine
 D 37819 This routine is not used, but if it were, it would set the ink colour for a 3x2 block of cells, maintaining the paper, bright and flash attributes of the current room background.
@@ -1118,9 +1118,9 @@ D 40448 Used by the routine at #R34499.
 u 40627
 C 40627
 S 40704
-b 40960 Guardian definitions
+b 40960 Entity definitions
 D 40960 Used by the routine at #R35068.
-{guardian_defs}
+{entity_defs}
 D 41856 The next 127 bytes are unused.
 B 41856,127,16
 b 41983 Index of the first item

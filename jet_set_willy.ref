@@ -166,11 +166,11 @@ The commonest guardian is the bird, whose graphic data lives at #R48128.
 There are 23 instances of this guardian spread over 18 rooms: four in #R50176(The Drive), two in each of #R49408(The Bridge) and #R51200(Inside the MegaTrunk), and one in each of #R51968(The Hall), #R52224(Tree Top), #R52480(Out on a limb), #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..), #R53248(We must perform a Quirkafleeg), #R54272(Ballroom East), #R54784(To the Kitchens Main Stairway), #R58368(A bit of tree), #R58880(Priests' Hole), #R60672(Under the Drive), #R61440(Nomen Luni), #R61952(Watch Tower), #R62976(West  Wing) and #R63488(West Wing Roof).
 
 [Fact:emptiestRooms:The emptiest rooms]
-#R62720(Back Door) is the only room that has no items, nasties or guardians.
+#R62720(Back Door) is the only room that has no items, nasties, rope, arrows or guardians.
 
 #ROOM62720
 
-#R51712(The Front Door) is the only other room that has no guardians; it also has no nasties, but does contain an item.
+#R51712(The Front Door) is the only other room that has no rope, arrows or guardians; it also has no nasties, but does contain an item.
 
 #ROOM51712
 
@@ -235,7 +235,7 @@ Added routine titles
 Added a description to each #LINK:GameStatusBuffer(game status buffer entry), #LINK:MessagesMap(message entry) and #LINK:DataMap(data block) listing the routines that use it
 Added item locations to the entry at #R41984
 Listed the rooms in which each guardian appears (see #R40000, #R40064 and #R43776)
-Listed the rooms in which each guardian definition is used (see #R40960)
+Listed the rooms in which each entity definition is used (see #R40960)
 Added the code for each grid location to the entry at #R40448
 
 [Changelog:20131102]
