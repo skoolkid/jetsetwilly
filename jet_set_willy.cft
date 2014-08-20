@@ -38,8 +38,8 @@ S 33024,64
 B 33088 Terminator
 s 33089
 w 33280 Screen buffer address lookup table
-D 33280 Used by the routines at #R35914, #R37310 and #R38455.
-W 33280,256,16
+D 33280 Used by the routines at #R35914, #R37310 and #R38455. The value of the Nth entry in this lookup table is the screen buffer address for the point with pixel coordinates (x,y)=(0,N), with the origin (0,0) at the top-left corner.
+{sba_table}
 b 33536 Rope animation table
 D 33536 Used by the routine at #R37310.
 B 33536,256,16

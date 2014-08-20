@@ -122,6 +122,14 @@ class JetSetWilly:
             return macros[0]
         return '{} and {}'.format(', '.join(macros[:-1]), macros[-1])
 
+    def get_screen_buffer_address_table(self):
+        lines = []
+        y = 0
+        for addr in range(33280, 33536, 2):
+            lines.append('W {} y={}'.format(addr, y))
+            y += 1
+        return '\n'.join(lines)
+
     def get_codes(self):
         lines = []
         for i in range(179):
@@ -416,6 +424,7 @@ class JetSetWilly:
                 if not line.startswith('#'):
                     template += line
         return template.format(
+            sba_table=self.get_screen_buffer_address_table(),
             foot=self.get_graphics(40000, 1, 6),
             barrel=self.get_graphics(40032, 1, 66),
             maria=self.get_graphics(40064, 4, 5),
