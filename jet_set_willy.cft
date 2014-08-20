@@ -101,8 +101,9 @@ g 34257 Airborne status indicator
 D 34257 Used by the routines at #R34762, #R35591, #R36307, #R36564, #R37046, #R37310, #R38064, #R38098 and #R38344.
 g 34258 Willy's animation frame
 D 34258 Used by the routines at #R35245, #R36564, #R37310, #R38344 and #R38455.
-g 34259 Willy's coordinates in the attribute buffer at 23552
+g 34259 Address of Willy's location in the attribute buffer at 23552
 D 34259 Used by the routines at #R34762, #R36307, #R36564, #R37310, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38344 and #R38455.
+W 34259,2
 g 34261 Jumping animation counter
 D 34261 Used by the routines at #R36307 and #R36564.
 g 34262 Rope status indicator
@@ -574,12 +575,20 @@ c 36307 Move Willy (1)
   36326 Discard bit 0
   36328 Now -8<=#REGa<=10 (and #REGa is even)
   36330,5 Adjust Willy's pixel y-coordinate (at #R34255)
-  36335 Is the new y-coordinate 240 or greater?
+  36335 Is the new value negative (above the top of the screen)?
   36337,3 If so, move Willy into the room above
   36413 Pick up Willy's coordinates from #R34259
   36416,4 Add 64; this points #REGhl at the spot two cells below Willy's current position
   36420 Is this location below the floor of the current room?
   36422,3 If so, move Willy into the room below
+D 36508 This entry point is used by the routine at #R37310 to update Willy's attribute buffer location when he's on a rope.
+  36508,3 #REGl=16*Y, where Y is Willy's screen y-coordinate (0-14)
+  36511 Clear #REGa and the carry flag
+  36512 Now #REGl=32*(Y-8*INT(Y/8)), and the carry flag is set if Willy is in the lower half of the room (Y>=8)
+  36514,3 #REGh=92 or 93 (MSB of the address of Willy's location in the attribute buffer)
+  36517,5 Pick up Willy's screen x-coordinate (0-30) from bits 0-5 at #R34259
+  36522,2 Now #REGl holds the LSB of Willy's attribute buffer address
+  36524,3 Store Willy's updated attribute buffer location at #R34259
 c 36564 Move Willy (2)
   36574 Pick up the airborne status indicator from #R34257
   36577 Is it 12 or greater?
@@ -703,6 +712,101 @@ D 37431 We are dealing with an arrow.
   37533,4 Draw the bottom pixel row of the arrow
   37537 Jump to consider the next entity definition
 D 37540 We are dealing with a rope.
+  37540 Point #REGiy at the first byte of the screen buffer address lookup table at #R33280
+  37544 Initialise the second byte in the following entity definition to zero; this will count the segments of rope to draw
+  37548,6 Initialise the fourth byte of the entity definition; this holds the LSB of the attribute buffer address of the segment of rope under consideration
+  37554,4 Initialise the sixth byte of the entity definition to 128 (bit 7 set); the value held here is used to draw the segment of rope under consideration
+D 37558 The following loop draws each segment of the rope from top to bottom.
+  37558,10 Point #REGhl at the location of the segment of rope under consideration in the screen buffer at 24576
+  37568 Pick up the rope status indicator at #R34262
+  37571 Is Willy on the rope, or has he recently jumped or dropped off it?
+  37572,2 Jump if so
+  37574 Pick up the drawing byte
+  37577 Is this segment of rope touching anything else that's been drawn so far (e.g. Willy)?
+  37578,2 Jump if not
+  37580,6 Copy the segment counter into the rope status indicator at #R34262
+  37586 Signal: Willy is on the rope
+  37590 Does the rope status indicator at #R34262 match the segment counter?
+  37593 Jump if not
+  37595 Is Willy on the rope (and clinging to this particular segment)?
+  37599 Jump if not
+  37601 Copy the LSB of the attribute buffer location of the segment of rope under consideration to #REGb
+  37604 Pick up the drawing byte in #REGa
+  37607,2 The value in #REGc will specify Willy's next animation frame; initialise it to 1
+  37609 Is the set bit of the drawing byte in bit 0 or 1?
+  37611 Jump if so
+  37613 Assume that Willy's next animation frame will be 0
+  37615 Is the set bit of the drawing byte in bit 2 or 3?
+  37617 Jump if so
+  37619 Decrement the LSB of the attribute buffer address, effectively moving Willy left
+  37620 Assume that Willy's next animation frame will be 3
+  37622 Is the set bit of the drawing byte in bit 4 or 5?
+  37624 Jump if so
+  37626 Willy's next animation frame will be 2 (the set bit of the drawing byte is in bit 6 or 7)
+  37628,4 Set Willy's animation frame at #R34258, and the LSB of his attribute buffer address at #R34259
+  37632,7 Update Willy's pixel y-coordinate at #R34255 to account for his change of location as the rope moves
+  37639 Save #REGhl briefly
+  37640 Update Willy's attribute buffer address at #R34259 to account for the rope's movement
+  37643,1 Restore the screen buffer address of the segment of rope under consideration to #REGhl
+  37644 Make a redundant jump to the next instruction
+  37646,5 Draw a pixel of the rope to the screen buffer at 24576
+  37651,11 Point #REGhl at the relevant entry in the second half of the rope animation table at #R33536
+  37662,5 Add its value to #REGiy; now #REGiy points at the entry in the screen buffer address lookup table at #R33280 that corresponds to the next segment of rope to consider
+  37667 Point #REGhl at the relevant entry in the first half of the rope animation table at #R33536
+  37669 Pick up its value
+  37670 Is it zero?
+  37671 Jump if so
+  37673 Copy the rope animation table entry value to #REGb; this will count the rotations of the drawing byte
+  37674 Is the rope currently swinging from left to right?
+  37678 Jump if so
+  37680 Rotate the drawing byte left once
+  37684 Did that push the set bit from bit 7 into bit 0?
+  37688 Jump if not
+  37690 Decrement the LSB of the attribute buffer address for this segment of rope
+  37693 Jump back until the drawing byte has been rotated as required
+  37695 Jump to consider the next segment of rope
+  37697 Rotate the drawing byte right once
+  37701 Did that push the set bit from bit 0 into bit 7?
+  37705 Jump if not
+  37707 Increment the LSB of the attribute buffer address for this segment of rope
+  37710,2 Jump back until the drawing byte has been rotated as required
+  37712 Pick up the segment counter
+  37715 Have we drawn every segment of the rope yet?
+  37718 Jump if so
+  37720 Increment the segment counter
+  37723 Jump back to draw the next segment of rope
+D 37726 Now that the entire rope has been drawn, deal with Willy's movement along it.
+  37726 Pick up the rope status indicator at #R34262
+  37729 Has Willy recently jumped off the rope or dropped off the bottom of it (#REGa>=240)?
+  37731 Jump if not
+  37733,4 Update the rope status indicator at #R34262
+  37737 Signal: Willy is not on the rope
+  37741 Jump to consider the next entity definition
+  37743 Is Willy on the rope?
+  37747 If not, jump to consider the next entity definition
+  37749 Pick up the flags from #R34256
+  37752 Is Willy moving up or down the rope?
+  37754 If not, jump to consider the next entity definition
+  37756 Move bit 0 (Willy's direction flag) into bit 7
+  37757 XOR it with bit 7 of the first byte of the entity definition
+  37760,4 Move bit 7 into bit 1 and reset all the other bits
+  37764 Now #REGa=-1 or 1
+  37765,5 Increment (moving Willy down the rope) or decrement (moving Willy up the rope) the rope status indicator at #R34262
+  37770,4 Pick up the number of the room above from #R33003 and copy it to #REGc
+  37774 Pick up the number of the current room from #R33824
+  37777 Is there a room above this one?
+  37778 Jump if so
+  37780,1 Pick up the rope status indicator at #R34262
+  37781 Is it 12 or greater?
+  37783 Jump if so
+  37785 Set the rope status indicator at #R34262 to 12 (there is nowhere to go above this rope)
+  37787 Pick up the rope status indicator at #R34262
+  37788 Compare it with the length of the rope
+  37791,4 If Willy is at or above the bottom of the rope, jump to consider the next entity definition
+  37795 Set the rope status indicator at #R34262 to 240 (Willy has just dropped off the bottom of the rope)
+  37797,8 Clear bits 0-2 of Willy's pixel y-coordinate at #R34255
+  37805,4 Initialise the airborne status indicator at #R34257
+  37809 Make a redundant jump to the next instruction
 D 37811 The current entity definition has been dealt with. Time for the next one.
   37811,5 Point #REGix at the first byte of the next entity definition
   37816 Jump back to deal with it
