@@ -23,7 +23,7 @@ S 32964,9 Ramp tile (used by the routines at #R36147, #R36203, #R36564 and #R383
 S 32973,9 Conveyor tile (used by the routines at #R36147, #R36203 and #R36564)
 S 32982,4 Conveyor definition (used by the routines at #R36564 and #R38137)
 S 32986,4 Ramp definition (used by the routines at #R36203, #R36564 and #R38344)
-B 32990,1 Border colour (used by the routines at #R35068, #R37310 and #R37841)
+B 32990,1 Border colour (used by the routines at #R35068, #R35591, #R37310 and #R37841)
 S 32991,2 Unused
 S 32993,8 Item graphic (used by the routine at #R37841)
 B 33001,1 Room to the left (used by the routine at #R38026)
@@ -346,7 +346,7 @@ D 35090 This entry point is used by the routines at #R35591 (to teleport into a 
   35200,4 Set the border colour
   35204,4 Initialise the rope status indicator at #R34262 to 0
   35208 Enter the main loop
-c 35211 Draw remaining lives
+c 35211 Draw the remaining lives
   35211 Pick up the number of lives remaining from #R34252
   35214 Set #REGhl to the display file address at which to draw the first Willy sprite
   35217 Are there any lives remaining?
@@ -363,7 +363,13 @@ D 35220 The sprite-drawing loop begins.
   35240,2 Move #REGhl along to the location at which to draw the next Willy sprite
   35242,2 Jump back to draw any remaining sprites
 c 35245 Main loop (1)
-  35270,3 Move the rope and guardians in the current room
+  35245 Draw the remaining lives
+  35248,11 Copy the contents of the attribute buffer at 24064 (the attributes for the empty room) into the attribute buffer at 23552
+  35259,11 Copy the contents of the screen buffer at 28672 (the tiles for the empty room) into the screen buffer at 24576
+  35270 Move the rope and guardians in the current room
+  35273 Pick up the game mode indicator from #R34271
+  35276 Is Willy's head down the toilet?
+  35278 If not, move Willy
   35281 Pick up Willy's pixel y-coordinate from #R34255
   35284 Is it 225 or greater?
   35286 If so, move Willy into the room above
@@ -377,23 +383,79 @@ c 35245 Main loop (1)
   35308 Draw the rope, arrows and guardians in the current room
   35311 Move the conveyor in the current room (if there is one)
   35314,3 Draw the items in the current room (if there are any) and collect any that Willy is touching
+  35317,11 Copy the contents of the screen buffer at 24576 to the display file
+  35328 Pick up the game mode indicator from #R34271
+  35331,3 Now #REGa=1 if Willy is running to the toilet or already has his head down it, 0 otherwise
+  35334,5 Set Willy's animation frame at #R34258 to 2 or 3 if Willy is running to the toilet or already has his head down it
+  35339 Pick up the screen flash counter (unused and always 0) from #R34253
+  35342 Is it zero?
+  35343 Jump if so (this jump is always made)
+D 35345 The next section of code is never executed.
+  35345,4 Decrement the screen flash counter at #R34253
+  35349,5 Move bits 0-2 into bits 3-5 and clear all the other bits
+  35354,12 Set every attribute byte in the buffer at 23552 to this value
+D 35366 Normal service resumes here.
+  35366,11 Copy the contents of the attribute buffer at 23552 to the attribute file
   35377,12 Print the current time (see #R34175) at (19,25)
   35389,12 Print the number of items collected (see #R34172) at (19,16)
+  35401,7 Increment the minute counter at #R34251
+  35408 Jump unless the minute counter has ticked over to 0
+D 35410 A minute of game time has passed. Update the game clock accordingly.
+  35410 Point #REGix at the current time at #R34175
+  35414 Increment the units digit of the minute
+  35417 Pick up the new units digit
+  35420 Was it '9' before?
+  35422 Jump if not
+  35424 Set the units digit of the minute to '0'
+  35428 Increment the tens digit of the minute
+  35431 Pick up the new tens digit
+  35434 Was it '5' before?
+  35436 Jump if not
+  35438 Set the tens digit of the minute to '0'
+  35442 Pick up the tens digit of the hour
+  35445 Is it currently '1'?
+  35447 Jump if not
+  35449 Increment the units digit of the hour
+  35452 Pick up the new units digit
+  35455 Was it '2' before?
+  35457 Jump if not
+  35459 Pick up the 'a' or 'p' of 'am' or 'pm'
+  35462 Is it 'p'?
+  35464 If so, quit the game (it's midnight)
+  35467 Set the tens digit of the hour to ' ' (space)
+  35471 Set the units digit of the hour to '1'
+  35475,4 Set the 'a' or 'p' of 'am' or 'pm' to 'p'
+  35481 Increment the units digit of the hour
+  35484 Pick up the new units digit
+  35487 Was it '9' before?
+  35489 Jump if not
+  35491 Set the units digit of the hour to '0'
+  35495 Set the units digit of the hour to '1'
+D 35499 Now check whether any non-movement keys are being pressed.
   35499,5 Read keys SHIFT-Z-X-C-V
   35504 Save the result in #REGe
   35505,4 Read keys B-N-M-SS-SPACE
   35509 Combine the results
   35510 Are SHIFT and SPACE being pressed?
-  35512,3 Jump if so to quit the game
+  35512 If so, quit the game
+  35515,7 Increment the inactivity timer at #R34272
+  35522 Jump if the inactivity timer is now 0 (no keys have been pressed for a while)
   35524,4 Read keys A-S-D-F-G
   35528,4 Are any of these keys being pressed?
-  35532,2 Jump if not
+  35532 Jump if not
+  35534 Prepare the delay counters in #REGd and #REGe for the pause loop that follows
+D 35537 The following loop pauses the game until any key except A, S, D, F or G is pressed.
   35537,4 Read every half-row of keys except A-S-D-F-G
   35541,4 Are any of these keys being pressed?
-  35545,2 Jump if so
+  35545 If so, resume the game
+  35547 Increment the delay counter in #REGe
+  35548 Jump back unless it's zero
+  35550 Increment the delay counter in #REGd
+  35551 Jump back unless it's zero
   35553 Pick up the WRITETYPER key counter from #R34275
   35556 Has WRITETYPER been keyed in yet?
-  35558,3 If not, cycle the INK and PAPER colours
+  35558 If not, cycle the INK and PAPER colours
+  35561 Jump back to the beginning of the pause loop
 c 35563 Cycle the INK and PAPER colours
 D 35563 Used by the routines at #R34762 (while scrolling the instructions across the screen) and #R35245 (while the game is paused).
   35563 Point #REGhl at the first byte of the attribute file
@@ -412,6 +474,10 @@ D 35571 Now we loop over every byte in the attribute file.
   35585,3 Have we reached the end of the attribute file yet?
   35588,2 If not, jump back to modify the next byte
 c 35591 Main loop (2)
+D 35591 Used by the routine at #R35245. The main entry point is used when resuming the game after it has been paused.
+  35591,11 Copy the attribute bytes from #R39424 to the bottom third of the screen
+  35602 Pick up the border colour for the current room from #R32990
+  35605 Restore the border colour
   35607 Pick up the airborne status indicator from #R34257
   35610 Has Willy had a fatal accident?
   35612,3 Lose a life if so
