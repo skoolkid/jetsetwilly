@@ -23,7 +23,7 @@ S 32964,9 Ramp tile (used by the routines at #R36147, #R36203, #R36564 and #R383
 S 32973,9 Conveyor tile (used by the routines at #R36147, #R36203 and #R36564)
 S 32982,4 Conveyor definition (used by the routines at #R36564 and #R38137)
 S 32986,4 Ramp definition (used by the routines at #R36203, #R36564 and #R38344)
-B 32990,1 Border colour (used by the routines at #R35068, #R35591, #R37310 and #R37841)
+B 32990,1 Border colour (used by the routines at #R35068, #R35591, #R36307, #R37310 and #R37841)
 S 32991,2 Unused
 S 32993,8 Item graphic (used by the routine at #R37841)
 B 33001,1 Room to the left (used by the routine at #R38026)
@@ -98,7 +98,8 @@ D 34255 Used by the routines at #R34762, #R35245, #R35591, #R36307, #R36564, #R3
 g 34256 Various flags
 D 34256 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R38455 }} {{ 1 | Unknown | #R36564, #R37310 }} {{ 2-7 | Unused | }} TABLE#
 g 34257 Airborne status indicator
-D 34257 Used by the routines at #R34762, #R35591, #R36307, #R36564, #R37046, #R37310, #R38064, #R38098 and #R38344.
+D 34257 Initialised by the routine at #R34762, checked by the routines at #R35591 and #R38344, updated by the routines at #R37046, #R37310 and #R38064, and checked and updated by the routines at #R36307, #R36564 and #R38098. Possible values are:
+D 34257 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Willy is neither falling nor jumping }}  {{ 1 | Willy is jumping (see #R36765) }} {{ 2-11 | Willy is falling, and can land safely }} {{ 12-15 | Willy is falling, and has fallen too far to land safely (see #R36574) }} {{ 255 | Willy has collided with a nasty, an arrow, a guardian, or Maria (see #R37046) }} TABLE#
 g 34258 Willy's animation frame
 D 34258 Used by the routines at #R35245, #R36564, #R37310, #R38344 and #R38455.
 g 34259 Address of Willy's location in the attribute buffer at 23552
@@ -479,7 +480,7 @@ D 35591 Used by the routine at #R35245. The main entry point is used when resumi
   35602 Pick up the border colour for the current room from #R32990
   35605 Restore the border colour
   35607 Pick up the airborne status indicator from #R34257
-  35610 Has Willy had a fatal accident?
+  35610 Has Willy collided with a nasty, an arrow, a guardian, or Maria?
   35612 If so, lose a life
 D 35615 Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
   35615 Prepare #REGb for reading keys H-J-K-L-ENTER
@@ -689,16 +690,82 @@ R 36288 IX Attribute buffer address (24064-24575)
   36300,4 Copy the attribute byte into the buffer at 24064
   36304,2 Move #REGix along to the next byte in the attribute buffer
 c 36307 Move Willy (1)
+D 36307 Used by the routine at #R35245. This routine deals with Willy if he's jumping or falling.
+  36307 Pick up the rope status indicator from #R34262
+  36310,3 Is Willy on a rope?
+  36313 Jump if so
+  36316 Pick up the airborne status indicator from #R34257
+  36319 Is Willy jumping?
+  36321 Jump if not
+D 36323 Willy is currently jumping.
   36323 Pick up the jumping animation counter (0-18) from #R34261
   36326 Discard bit 0
   36328 Now -8<=#REGa<=10 (and #REGa is even)
-  36330,5 Adjust Willy's pixel y-coordinate (at #R34255)
+  36330,5 Adjust Willy's pixel y-coordinate at #R34255 depending on where Willy is in the jump
   36335 Is the new value negative (above the top of the screen)?
-  36337,3 If so, move Willy into the room above
-  36413 Pick up Willy's coordinates from #R34259
-  36416,4 Add 64; this points #REGhl at the spot two cells below Willy's current position
+  36337 If so, move Willy into the room above
+  36340 Adjust Willy's attribute buffer location at #R34259 depending on his pixel y-coordinate
+  36343 Pick up the attribute byte of the wall tile for the current room from #R32946
+  36346 Is the top-left cell of Willy's sprite overlapping a wall tile?
+  36347 Jump if so
+  36350 Point #REGhl at the top-right cell occupied by Willy's sprite
+  36351 Is the top-right cell of Willy's sprite overlapping a wall tile?
+  36352 Jump if so
+  36355,7 Increment the jumping animation counter at #R34261
+  36362 #REGa=J-8, where J (1-18) is the new value of the jumping animation counter
+  36364 Jump if J>=8
+  36367 #REGa=8-J (1<=J<=7, 1<=#REGa<=7)
+  36369 #REGa=1+ABS(J-8)
+  36370,4 #REGd=8*(1+ABS(J-8)); this value determines the pitch of the jumping sound effect (rising as Willy rises, falling as Willy falls)
+  36374 #REGc=32; this value determines the duration of the jumping sound effect
+  36376,3 Pick up the border colour for the current room from #R32990
+  36379,10 Make a jumping sound effect
+  36389 Pick up the jumping animation counter (1-18) from #R34261
+  36392 Has Willy reached the end of the jump?
+  36394 Jump if so
+  36397 Is the jumping animation counter now 16?
+  36399 Jump if so
+  36401 Is the jumping animation counter now 13?
+  36403 Jump if not
+D 36406 If we get here, then Willy is standing on the floor, or he's falling, or his jumping animation counter is 13 or 16.
+  36406,3 Pick up Willy's pixel y-coordinate from #R34255
+  36409 Does Willy's sprite occupy six cells at the moment?
+  36411 Jump if so
+  36413 Pick up Willy's attribute buffer coordinates from #R34259
+  36416,4 Point #REGhl at the left-hand cell below Willy's sprite
   36420 Is this location below the floor of the current room?
   36422,3 If so, move Willy into the room below
+  36425 Pick up the attribute byte of the nasty tile for the current room from #R32955
+  36428 Does the left-hand cell below Willy's sprite contain a nasty?
+  36429 Jump if so
+  36431 Point #REGhl at the right-hand cell below Willy's sprite
+  36432 Pick up the attribute byte of the nasty tile for the current room from #R32955 (again, redundantly)
+  36435 Does the right-hand cell below Willy's sprite contain a nasty?
+  36436 Jump if so
+  36438 Pick up the attribute byte of the background tile for the current room from #R32928
+  36441 Set the zero flag if the right-hand cell below Willy's sprite is empty
+  36442 Point #REGhl at the left-hand cell below Willy's sprite
+  36443 Jump if the right-hand cell below Willy's sprite is not empty
+  36446 Is the left-hand cell below Willy's sprite empty?
+  36447 Jump if not
+  36450 Pick up the airborne status indicator from #R34257
+  36453 Is Willy jumping?
+  36455 Jump if so
+D 36458 If we get here, then Willy is either in the process of falling or just about to start falling.
+  36458,5 Reset bit 1 at #R34256
+  36463 Pick up the airborne status indicator from #R34257
+  36466 Is Willy already falling?
+  36467 Jump if not
+  36470 Increment the airborne status indicator
+  36471 Is it 16 now?
+  36473 Jump if not
+  36475 Decrease the airborne status indicator from 16 to 12
+  36477 Update the airborne status indicator at #R34257
+  36480,5 #REGd=8*#REGa; this value determines the pitch of the falling sound effect
+  36485 #REGc=32; this value determines the duration of the falling sound effect
+  36487,3 Pick up the border colour for the current room from #R32990
+  36490,10 Make a falling sound effect
+  36500,8 Add 8 to Willy's pixel y-coordinate at #R34255; this moves Willy downwards by 4 pixels
 D 36508 This entry point is used by the routine at #R37310 to update Willy's attribute buffer location when he's on a rope.
   36508,3 #REGl=16*Y, where Y is Willy's screen y-coordinate (0-14)
   36511 Clear #REGa and the carry flag
@@ -707,6 +774,15 @@ D 36508 This entry point is used by the routine at #R37310 to update Willy's att
   36517,5 Pick up Willy's screen x-coordinate (0-30) from bits 0-5 at #R34259
   36522,2 Now #REGl holds the LSB of Willy's attribute buffer address
   36524,3 Store Willy's updated attribute buffer location at #R34259
+D 36528 Willy has just finished a jump.
+  36528,5 Set the airborne status indicator at #R34257 to 6: Willy will continue to fall unless he's landed on a wall or floor block
+D 36534 Willy has just started falling.
+  36534,5 Set the airborne status indicator at #R34257 to 2
+D 36540 The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
+  36540,10 Adjust Willy's pixel y-coordinate at #R34255 so that the top row of cells of his sprite are just below the wall tile
+  36550 Adjust Willy's attribute buffer location at #R34259 to account for this new pixel y-coordinate
+  36553,5 Set the airborne status indicator at #R34257 to 2: Willy has started falling
+  36558,5 Reset bit 1 at #R34256
 c 36564 Move Willy (2)
   36574 Pick up the airborne status indicator from #R34257
   36577 Is it 12 or greater?
@@ -734,6 +810,9 @@ c 36564 Move Willy (2)
   36747 Is the fire button being pressed?
   36749,2 Jump if not
 D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
+  36758,4 Initialise the jumping animation counter at #R34261 to 0
+  36762 Reset the inactivity timer at #R34272
+  36765,4 Set the airborne status indicator at #R34257 to 1: Willy is jumping
   36874 Collect Willy's coordinates from #R34259
   36877,3 Is Willy's screen x-coordinate 0 (on the far left)?
   36880,3 If so, move Willy into the room to the left
