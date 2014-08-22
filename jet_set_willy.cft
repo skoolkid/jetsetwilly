@@ -120,14 +120,14 @@ D 34272 Initialised by the routine at #R34762, and updated by the routines at #R
 g 34273 In-game music note index
 D 34273 Initialised by the routine at #R34762, used by the routine at #R35211, and updated by the routine at #R35591.
 g 34274 Sound flags
-D 34274 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Keypress flag (reset=H-ENTER being pressed, set=no key pressed) | #R34762, #R35591 }} {{ 1 | In-game music flag (reset=music on, set=music off) | #R35591 }} {{ 2-7 | Unused | }} TABLE#
+D 34274 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Keypress flag (set=H-ENTER being pressed, reset=no key pressed) | #R34762, #R35591 }} {{ 1 | In-game music flag (set=music off, reset=music on) | #R35591 }} {{ 2-7 | Unused | }} TABLE#
 g 34275 WRITETYPER key counter
 D 34275 Used by the routines at #R35245 and #R35591.
 g 34276 Temporary variable
 D 34276 Used by the routines at #R34499 and #R34620 to hold the entry code, by the routine at #R34762 to hold the index into the message scrolled across the screen after the theme tune has finished playing, and by the routine at #R35914 to hold the distance of the foot from the top of the screen as it descends onto Willy.
 b 34277 WRITETYPER
 D 34277 Used by the routine at #R35591.
-B 34277,b2
+B 34277,b2 (no keys pressed)
 B 34279,b2 W
 B 34281,b2 R
 B 34283,b2 I
@@ -480,28 +480,79 @@ D 35591 Used by the routine at #R35245. The main entry point is used when resumi
   35605 Restore the border colour
   35607 Pick up the airborne status indicator from #R34257
   35610 Has Willy had a fatal accident?
-  35612,3 Lose a life if so
+  35612 If so, lose a life
+D 35615 Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
+  35615 Prepare #REGb for reading keys H-J-K-L-ENTER
+  35617 Point #REGhl at the sound flags at #R34274
   35620 Read keys H-J-K-L-ENTER
   35622,4 Are any of these keys being pressed?
   35626,2 Jump if not
+  35628 Were any of these keys being pressed the last time we checked?
+  35630 Jump if so
+  35632,4 Set bit 0 (the keypress flag) and flip bit 1 (the in-game music flag) at #R34274
+  35638 Reset bit 0 (the keypress flag) at #R34274
+  35640 Has the in-game music been switched off?
+  35642 Jump if so
+D 35644 The next section of code plays a note of the in-game music.
+  35644,4 Reset the inactivity timer at #R34272 (the game does not automatically pause after a period of inactivity if the in-game music is playing)
+  35648,7 Increment the in-game music note index at #R34273
+  35655,10 Point #REGhl at the appropriate entry in the tune data table at #R34399
+  35665 Pick up the number of lives remaining (0-7) from #R34252
+  35668,6 #REGa=28-4#REGa; this value adjusts the pitch of the note that is played depending on how many lives are remaining (the more lives remaining, the higher the pitch)
+  35674 Add the entry from the tune data table for the current note
+  35675 Copy this value to #REGd (which determines the pitch of the note)
+  35676 Pick up the border colour for the current room from #R32990
+  35679 Initialise the pitch delay counter in #REGe
+  35680 Initialise the duration delay counters in #REGb (0) and #REGc (3)
+  35683,13 Produce a note of the in-game music
+D 35696 Here we check the teleport keys.
   35696,5 Read keys 6-7-8-9-0
-  35701 Is '9' being pressed?
+  35701 Is '9' (the activator key) being pressed?
   35703 Jump if not
-  35706 Keep only bit 4 (corresponding to the '6' key)
-  35708 Flip bit 4
-  35710 Move it into bit 5
-  35711,1 Now bit 5 of #REGd is set if '6' is being pressed
+  35706,5 Keep only bit 4 (corresponding to the '6' key), flip it, and move it into bit 5
+  35711 Now bit 5 of #REGd is set if '6' is being pressed
+  35712 Pick up the WRITETYPER key counter from #R34275
+  35715 Has WRITETYPER been keyed in yet?
+  35717 Jump if not
   35720,5 Read keys 1-2-3-4-5
   35725,3 Keep only bits 0-4 and flip them
   35728 Copy bit 5 of #REGd into #REGa; now #REGa holds the number of the room to teleport to
   35729 Store the room number at #R33824
   35732,3 Teleport into the room
+D 35735 Finally, check the WRITETYPER keys.
+  35735 Pick up the WRITETYPER key counter from #R34275
+  35738 Has WRITETYPER been keyed in yet?
+  35740 If so, jump back to the start of the main loop
+  35743 Pick up the current room number from #R33824
+  35746 Are we in #R56320(First Landing)?
+  35748 If not, jump back to the start of the main loop
+  35751 Pick up Willy's pixel y-coordinate from #R34255
+  35754 Is Willy on the floor at the bottom of the staircase?
+  35756 If not, jump back to the start of the main loop
+  35759 Pick up the WRITETYPER key counter (0-9) from #R34275
+  35762,10 Point #REGix at the corresponding entry in the WRITETYPER table at #R34279
   35772,5 Read keys Q-W-E-R-T
-  35784 Are any of these keys (Q-W-E-R-T) being pressed?
-  35786,3 If not, jump back to the start of the main loop
+  35777 Keep only bits 0-5
+  35779 Does this match the first byte of the entry in the WRITETYPER table?
+  35782 Jump if so
+  35784 Are any of the keys Q-W-E-R-T being pressed?
+  35786 If not, jump back to the start of the main loop
+  35789 Does the keyboard reading match the first byte of the previous entry in the WRITETYPER table?
+  35792 If so, jump back to the start of the main loop
+  35795,4 Reset the WRITETYPER key counter at #R34275 to 0 (an incorrect key was pressed)
+  35799 Jump back to the start of the main loop
   35802,4 Read keys Y-U-I-O-P
-  35813 Are any of these keys (Y-U-I-O-P) being pressed?
-  35815,3 If not, jump back to the start of the main loop
+  35806 Keep only bits 0-5
+  35808 Does this match the second byte of the entry in the WRITETYPER table?
+  35811 If so, jump to increment the WRITETYPER key counter
+  35813 Are any of the keys Y-U-I-O-P being pressed?
+  35815 If not, jump back to the start of the main loop
+  35818 Does the keyboard reading match the second byte of the previous entry in the WRITETYPER table?
+  35821 If so, jump back to the start of the main loop
+  35824,4 Reset the WRITETYPER key counter at #R34275 to 0 (an incorrect key was pressed)
+  35828 Jump back to the start of the main loop
+  35831,7 Increment the WRITETYPER key counter at #R34275
+  35838 Jump back to the start of the main loop
 c 35841 Lose a life
   35841 #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
 D 35843 The following loop fills the top two thirds of the attribute file with a single value (71 TO 64 STEP -1) and makes a sound effect.
