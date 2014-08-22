@@ -691,7 +691,46 @@ D 37149 Now #REGa holds the rope's next animation frame index.
   37160,8 Flip bit 7 of the first byte of the entity definition: the rope has just changed direction and will now swing back towards the centre
   37168 Jump to consider the next entity definition
 D 37171 We are dealing with a horizontal guardian.
+  37171 Is the guardian currently moving left to right?
+  37175 Jump if so
+D 37177 This guardian is moving right to left.
+  37177,10 Update the guardian's animation frame
+  37187 Is it time to update the x-coordinate of the guardian sprite?
+  37189 If not, jump to consider the next entity definition
+  37191,5 Pick up the sprite's current screen x-coordinate (0-31)
+  37196 Has the guardian reached the leftmost point of its path?
+  37199 Jump if so
+  37201 Decrement the sprite's x-coordinate
+  37204 Jump to consider the next entity definition
+  37206 The guardian will now start moving left to right
+  37210 Jump to consider the next entity definition
+D 37212 This guardian is moving left to right.
+  37212,10 Update the guardian's animation frame
+  37222 Is it time to update the x-coordinate of the guardian sprite?
+  37224 If not, jump to consider the next entity definition
+  37226,5 Pick up the sprite's current screen x-coordinate (0-31)
+  37231 Has the guardian reached the rightmost point of its path?
+  37234 Jump if so
+  37236 Increment the sprite's x-coordinate
+  37239 Jump to consider the next entity definition
+  37241 The guardian will now start moving right to left
+  37245 Jump to consider the next entity definition
 D 37247 We are dealing with a vertical guardian.
+  37247,8 Flip bit 3 of the guardian's animation frame
+  37255 Are bits 3 and 4 reset?
+  37257 Jump if so
+  37259,8 Update the guardian's animation frame
+  37267,9 Update the guardian's y-coordinate
+  37276 Has the guardian reached the lowest point of its path (maximum y-coordinate)?
+  37279 If so, jump to change its direction of movement
+  37281 Compare the new y-coordinate with the minimum value (the highest point of its path)
+  37284 If they match, jump to change the guardian's direction of movement
+  37286 If the new y-coordinate is above the minimum value, jump to consider the next entity definition
+  37288,6 Make sure that the guardian's y-coordinate is set to its minimum value
+  37294,8 Negate the y-coordinate increment; this changes the guardian's direction of movement
+D 37302 The current entity definition has been dealt with. Time for the next one.
+  37302,5 Point #REGix at the first byte of the next entity definition
+  37307 Jump back to deal with it
 c 37310 Draw the rope, arrows and guardians in the current room
 D 37310 Used by the routine at #R35245. Draws the rope, arrows and guardians in the current room to the screen buffer at 24576.
   37310 Point #REGix at the first byte of the entity buffer at #R33024
