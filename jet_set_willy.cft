@@ -420,18 +420,18 @@ D 35410 A minute of game time has passed. Update the game clock accordingly.
   35452 Pick up the new units digit
   35455 Was it '2' before?
   35457 Jump if not
-  35459 Pick up the 'a' or 'p' of 'am' or 'pm'
+  35459 Pick up the 'a' or 'p' of 'am/pm'
   35462 Is it 'p'?
   35464 If so, quit the game (it's midnight)
   35467 Set the tens digit of the hour to ' ' (space)
   35471 Set the units digit of the hour to '1'
-  35475,4 Set the 'a' or 'p' of 'am' or 'pm' to 'p'
+  35475,4 Change the 'a' of 'am' to 'p'
   35481 Increment the units digit of the hour
   35484 Pick up the new units digit
   35487 Was it '9' before?
   35489 Jump if not
   35491 Set the units digit of the hour to '0'
-  35495 Set the units digit of the hour to '1'
+  35495 Set the tens digit of the hour to '1'
 D 35499 Now check whether any non-movement keys are being pressed.
   35499,5 Read keys SHIFT-Z-X-C-V
   35504 Save the result in #REGe
