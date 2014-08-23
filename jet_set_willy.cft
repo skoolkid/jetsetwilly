@@ -52,7 +52,7 @@ D 33792 After the game has loaded, this is where it all starts.
   33823 Make an indirect jump to #R34463
 g 33824 Current room number
 D 33824 Used by the routines at #R34762, #R35068, #R35591, #R37310, #R37841, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38298 and #R38455.
-b 33825 Conveyor data
+b 33825 Left-right movement table
 D 33825 Used by the routine at #R36564.
 b 33841 Triangle UDGs
 D 33841 Used by the routine at #R34762.
@@ -96,7 +96,7 @@ D 34254 Initialised by the routine at #R34762, and checked by the routines at #R
 g 34255 Willy's pixel y-coordinate
 D 34255 Used by the routines at #R34762, #R35245, #R35591, #R36307, #R36564, #R37310, #R38064, #R38098, #R38196, #R38344 and #R38455.
 g 34256 Various flags
-D 34256 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R38455 }} {{ 1 | Unknown | #R36564, #R37310 }} {{ 2-7 | Unused | }} TABLE#
+D 34256 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R38455 }} {{ 1 | Willy's movement flag (set=moving) | #R36564, #R37310 }} {{ 2-7 | Unused (always reset) | }} TABLE#
 g 34257 Airborne status indicator
 D 34257 Initialised by the routine at #R34762, checked by the routines at #R35591 and #R38344, updated by the routines at #R37046, #R37310 and #R38064, and checked and updated by the routines at #R36307, #R36564 and #R38098. Possible values are:
 D 34257 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Willy is neither falling nor jumping }}  {{ 1 | Willy is jumping (see #R36765) }} {{ 2-11 | Willy is falling, and can land safely }} {{ 12-15 | Willy is falling, and has fallen too far to land safely (see #R36574) }} {{ 255 | Willy has collided with a nasty, an arrow, a guardian, or Maria (see #R37046) }} TABLE#
@@ -117,7 +117,7 @@ g 34271 Game mode indicator
 D 34271 Used by the routines at #R34762, #R35245, #R36564, #R37841, #R38196, #R38276 and #R38298.
 D 34271 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Normal }} {{ 1 | All items collected }} {{ 2 | Willy is running to the toilet }} {{ 3 | Willy's head is down the toilet }} TABLE#
 g 34272 Inactivity timer
-D 34272 Initialised by the routine at #R34762, and updated by the routines at #R35245, #R35591 and #R36564 (only when the in-game music is not playing).
+D 34272 Initialised by the routine at #R34762, and updated by the routines at #R35245, #R35591 and #R36564.
 g 34273 In-game music note index
 D 34273 Initialised by the routine at #R34762, used by the routine at #R35211, and updated by the routine at #R35591.
 g 34274 Sound flags
@@ -784,19 +784,66 @@ D 36540 The top-left or top-right cell of Willy's sprite is overlapping a wall t
   36553,5 Set the airborne status indicator at #R34257 to 2: Willy has started falling
   36558,5 Reset bit 1 at #R34256
 c 36564 Move Willy (2)
+R 36564 HL Attribute buffer address of the left-hand cell below Willy's sprite (if Willy is not on a rope)
+  36564 Initialise #REGe to 255 (all bits set); it will be used to hold keyboard and joystick readings
+  36566 Pick up the rope status indicator from #R34262
+  36569,3 Is Willy on a rope?
+  36572 Jump if so
   36574 Pick up the airborne status indicator from #R34257
-  36577 Is it 12 or greater?
-  36579,3 If so, kill Willy
-  36602,5 Read keys Y-U-I-O-P
-  36621,5 Read keys Q-W-E-R-T
-  36634,4 Read keys 1-2-3-4-5 and 6-7-8-9-0
-  36643,4 Read keys 6-7-8-9-0
-  36651,2 Read keys 6-7-8-9-0
+  36577 Has Willy just landed after falling from too great a height?
+  36579,3 If so, kill him
+  36582,4 Reset the airborne status indicator at #R34257 (Willy has landed safely)
+  36586 Pick up the attribute byte of the conveyor tile for the current room from #R32973
+  36589 Does the left-hand cell below Willy's sprite contain a conveyor tile?
+  36590 Jump if so
+  36592 Point #REGhl at the right-hand cell below Willy's sprite
+  36593 Does the right-hand cell below Willy's sprite contain a conveyor tile?
+  36594 Jump if not
+  36596 Pick up the direction byte of the conveyor definition from #R32982 (0=left, 1=right)
+  36599,3 Now #REGe=253 (bit 1 reset) if the conveyor is moving left, or 254 (bit 0 reset) if it's moving right
+  36602,5 Read keys P-O-U-I-Y (right, left, right, left, right) into bits 0-4 of #REGa
+  36607,4 Set bit 5 and reset bits 6 and 7
+  36611 Reset bit 0 if the conveyor is moving right, or bit 1 if it's moving left
+  36612 Save the result in #REGe
+  36613 Pick up the game mode indicator (0, 1 or 2) from #R34271
+  36616,3 Now #REGa=1 if Willy is running to the toilet, 0 otherwise
+  36619,2 Flip bit 0 of #REGe if Willy is running to the toilet; this forces Willy to move right
+  36621,5 Read keys Q-W-E-R-T (left, right, left, right, left) into bits 0-4 of #REGa
+  36626,6 Keep only bits 0-4, shift them into bits 1-5, and set bit 0
+  36632,2 Merge this keyboard reading into bits 1-5 of #REGe
+  36634,4 Read keys 1-2-3-4-5 ('5' is left) and 0-9-8-7-6 (jump, nothing, right, right, left) into bits 0-4 of #REGa
+  36638,3 Rotate the result right and set bits 0-2 and 4-7; this ignores every key except '5' and '6' (left)
+  36641,2 Merge this reading of the '5' and '6' keys into bit 3 of #REGe
+  36643,4 Read keys 0-9-8-7-6 (jump, nothing, right, right, left) into bits 0-4 of #REGa
+  36647 Set bits 0, 1 and 3-7; this ignores every key except '8' (right)
+  36649,2 Merge this reading of the '8' key into bit 2 of #REGe
+  36651,2 Read keys 0-9-8-7-6 (jump, nothing, right, right, left) into bits 0-4 of #REGa
+  36653,3 Rotate the result right and set bits 0, 1 and 3-7; this ignores every key except '7' (right)
+  36656,2 Merge this reading of the '7' key into bit 2 of #REGe
   36658 Collect the Kempston joystick indicator from #R34254
   36661 Is the joystick connected?
   36662 Jump if not
   36664,5 Collect input from the joystick
-  36669,2 Keep only bits 0 (right) and 1 (left)
+  36669,3 Keep only bits 0 (right) and 1 (left) and flip them
+  36672,2 Merge this reading of the joystick right and left buttons into bits 0 and 1 of #REGe
+D 36674 At this point, bits 0-5 in #REGe indicate the direction in which Willy is being moved or trying to move. If bit 0, 2 or 4 is reset, Willy is being moved or trying to move right; if bit 1, 3 or 5 is reset, Willy is being moved or trying to move left.
+  36674 Initialise #REGc to 0 (no movement)
+  36676 Copy the movement bits into #REGa
+  36677 Keep only bits 1, 3 and 5 (the 'left' bits)
+  36679 Are any of these bits reset?
+  36681 Jump if not
+  36683 Set bit 2 of #REGc: Willy is moving left
+  36685,4 Reset the inactivity timer at #R34272
+  36689 Copy the movement bits into #REGa
+  36690 Keep only bits 0, 2 and 4 (the 'right' bits)
+  36692 Are any of these bits reset?
+  36694 Jump if not
+  36696 Set bit 3 of #REGc: Willy is moving right
+  36698,4 Reset the inactivity timer at #R34272
+  36702 Pick up the flags from #R34256
+  36705,8 Point #REGhl at the entry in the left-right movement table at #R33825 that corresponds to the direction Willy is facing, and the direction in which he is being moved or trying to move
+  36713 Update the flags at #R34256 with the entry from the left-right movement table
+D 36717 That is left-right movement taken care of. Now check the jump keys.
   36717,5 Read keys SHIFT-Z-X-C-V and B-N-M-SS-SPACE
   36722,4 Are any of these keys being pressed?
   36726 Jump if so
@@ -810,16 +857,118 @@ c 36564 Move Willy (2)
   36747 Is the fire button being pressed?
   36749,2 Jump if not
 D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
+  36751 Pick up the game mode indicator from #R34271
+  36754 Is Willy running to the toilet or does he already have his head in it?
+  36756 Jump if so
   36758,4 Initialise the jumping animation counter at #R34261 to 0
   36762 Reset the inactivity timer at #R34272
   36765,4 Set the airborne status indicator at #R34257 to 1: Willy is jumping
-  36874 Collect Willy's coordinates from #R34259
+  36769 Pick up the rope status indicator from #R34262
+  36772,3 Is Willy on a rope?
+  36775 Jump if not
+  36777,5 Set the rope status indicator at #R34262 to 240
+  36782,8 Round Willy's pixel y-coordinate at #R34255 down to the nearest multiple of 16
+  36790,5 Set bit 1 at #R34256: Willy is moving
+  36796 Pick up the flags from #R34256
+  36799 Is Willy moving?
+  36801 Return if not
+  36802 Pick up the rope status indicator from #R34262
+  36805,3 Is Willy on a rope?
+  36808 Return if so
+  36809 Pick up the flags from #R34256
+  36812 Is Willy facing right?
+  36814 Jump if so
+D 36817 Willy is moving left.
+  36817 Pick up Willy's animation frame from #R34258
+  36820 Is it 0?
+  36821 If so, jump to move Willy's sprite left across a cell boundary
+  36823,4 Decrement Willy's animation frame at #R34258
+D 36828 Willy's sprite is moving left across a cell boundary. In the comments that follow, (x,y) refers to the coordinates of the top-left cell currently occupied by Willy's sprite.
+  36828,3 Pick up the airborne status indicator from #R34257
+  36831 Prepare #REGbc for later addition
+  36834 Is Willy jumping?
+  36836 Jump if so
+  36838 Collect Willy's attribute buffer coordinates from #R34259
+  36841 Prepare #REGbc for later addition (again, redundantly)
+  36844 Pick up the direction byte of the ramp definition for the current room from #R32986
+  36847,5 Now #REGa=31 if the ramp goes up to the left, or 65 if it goes up to the right
+  36852,4 Point #REGhl at the cell at (x-1,y+1) if the ramp goes up to the left, or at the cell at (x+1,y+2) if the ramp goes up to the right
+  36856 Pick up the attribute byte of the ramp tile for the current room from #R32964
+  36859 Is there a ramp tile in the cell pointed to by #REGhl?
+  36860 Jump if not
+  36862 Prepare #REGbc for later addition
+  36865 Pick up the direction byte of the ramp definition for the current room from #R32986
+  36868 Does the ramp go up to the right?
+  36869 Jump if so
+  36871 #REGbc=-32 (the ramp goes up to the left)
+  36874 Collect Willy's attribute buffer coordinates from #R34259
   36877,3 Is Willy's screen x-coordinate 0 (on the far left)?
   36880,3 If so, move Willy into the room to the left
-  36984 Collect Willy's coordinates from #R34259
-  36987 Add or subtract 32
-  36988,5 Is Willy's screen x-coordinate 30 (on the far right)?
-  36993,3 If so, move Willy into the room on the right
+  36883,6 Point #REGhl at the cell at (x-1,y+1), or at the cell at (x-1,y) if Willy is on or approaching a ramp that goes up to the left, or at the cell at (x-1,y+2) if Willy is walking down a ramp
+  36889,3 Pick up the attribute byte of the wall tile for the current room from #R32946
+  36892 Is there a wall tile in the cell pointed to by #REGhl?
+  36893 Return if so (Willy's path is blocked)
+  36894 Pick up Willy's pixel y-coordinate (Y) from #R34255
+  36897,4 Now #REGb=Y (if Willy is neither on nor approaching a ramp), or Y+16 (if Willy is walking down a ramp), or Y-16 (if Willy is on or approaching a ramp that goes up to the left); this will be Willy's new pixel y-coordinate
+  36901 Is #REGb a multiple of 16?
+  36903 Jump if so
+  36905 Pick up the attribute byte of the wall tile for the current room from #R32946
+  36908 Point #REGhl at the cell at (x-1,y+2), or at the cell at (x-1,y+1) if Willy is on or approaching a ramp that goes up to the left, or at the cell at (x-1,y+3) if Willy is on a ramp that goes up to the right
+  36909 Is there a wall tile in the cell pointed to by #REGhl?
+  36910 Return if so (Willy's path is blocked)
+  36911,3 Point #REGhl at the cell at (x-1,y+1), or at the cell at (x-1,y) if Willy is on or approaching a ramp that goes up to the left, or at the cell at (x-1,y+2) if Willy is walking down a ramp
+  36914,3 Point #REGhl at the cell at (x-1,y), or at the cell at (x-1,y-1) if Willy is on or approaching a ramp that goes up to the left, or at the cell at (x-1,y+1) if Willy is walking down a ramp
+  36917 Save Willy's new attribute buffer coordinates (in #REGhl) at #R34259
+  36920,4 Save Willy's new pixel y-coordinate at #R34255
+  36924,5 Change Willy's animation frame at #R34258 from 0 to 3
+D 36930 Willy is moving right.
+  36930 Pick up Willy's animation frame from #R34258
+  36933 Is it 3?
+  36935 If so, jump to move Willy's sprite right across a cell boundary
+  36937,4 Increment Willy's animation frame at #R34258
+D 36942 Willy's sprite is moving right across a cell boundary. In the comments that follow, (x,y) refers to the coordinates of the top-left cell currently occupied by Willy's sprite.
+  36942 Pick up the airborne status indicator from #R34257
+  36945 Prepare #REGbc for later addition
+  36948 Is Willy jumping or falling?
+  36949 Jump if so
+  36951 Collect Willy's attribute buffer coordinates from #R34259
+  36954 Pick up the direction byte of the ramp definition for the current room from #R32986
+  36957,5 Now #REGa=64 if the ramp goes up to the left, or 34 if it goes up to the right
+  36962,4 Point #REGhl at the cell at (x,y+2) if the ramp goes up to the left, or at the cell at (x+2,y+1) if the ramp goes up to the right
+  36966 Pick up the attribute byte of the ramp tile for the current room from #R32964
+  36969 Is there a ramp tile in the cell pointed to by #REGhl?
+  36970 Jump if not
+  36972 Prepare #REGbc for later addition
+  36975 Pick up the direction byte of the ramp definition for the current room from #R32986
+  36978 Does the ramp go up to the left?
+  36979 Jump if so
+  36981 #REGbc=-32 (the ramp goes up to the right)
+  36984 Collect Willy's attribute buffer coordinates from #R34259
+  36987,3 Point #REGhl at the cell at (x+2,y), or at the cell at (x+2,y+1) if Willy is walking down a ramp, or at the cell at (x+2,y-1) if Willy is on or approaching a ramp that goes up to the right
+  36990,3 Is Willy's screen x-coordinate 30 (on the far right)?
+  36993 If so, move Willy into the room on the right
+  36996 Prepare #REGde for addition
+  36999 Pick up the attribute byte of the wall tile for the current room from #R32946
+  37002 Point #REGhl at the cell at (x+2,y+1), or at the cell at (x+2,y+2) if Willy is walking down a ramp, or at the cell at (x+2,y) if Willy is on or approaching a ramp that goes up to the right
+  37003 Is there a wall tile in the cell pointed to by #REGhl?
+  37004 Return if so (Willy's path is blocked)
+  37005 Pick up Willy's pixel y-coordinate (Y) from #R34255
+  37008,4 Now #REGb=Y (if Willy is neither on nor approaching a ramp), or Y+16 (if Willy is walking down a ramp), or Y-16 (if Willy is on or approaching a ramp that goes up to the right); this will be Willy's new pixel y-coordinate
+  37012 Is #REGb a multiple of 16?
+  37014 Jump if so
+  37016 Pick up the attribute byte of the wall tile for the current room from #R32946
+  37019 Point #REGhl at the cell at (x+2,y+2), or at the cell at (x+2,y+3) if Willy is walking down a ramp, or at the cell at (x+2,y+1) if Willy is on or approaching a ramp that goes up to the right
+  37020 Is there a wall tile in the cell pointed to by #REGhl?
+  37021 Return if so (Willy's path is blocked)
+  37022,3 Point #REGhl at the cell at (x+2,y+1), or at the cell at (x+2,y+2) if Willy is walking down a ramp, or at the cell at (x+2,y) if Willy is on or approaching a ramp that goes up to the right
+  37025 Pick up the attribute byte of the wall tile for the current room from #R32946
+  37028,3 Point #REGhl at the cell at (x+2,y), or at the cell at (x+2,y+1) if Willy is walking down a ramp, or at the cell at (x+2,y-1) if Willy is on or approaching a ramp that goes up to the right
+  37031 Is there a wall tile in the cell pointed to by #REGhl?
+  37032 Return if so (Willy's path is blocked)
+  37033 Point #REGhl at the cell at (x+1,y), or at the cell at (x+1,y+1) if Willy is walking down a ramp, or at the cell at (x+1,y-1) if Willy is on or approaching a ramp that goes up to the right
+  37034 Save Willy's new attribute buffer coordinates (in #REGhl) at #R34259
+  37037,4 Change Willy's animation frame at #R34258 from 3 to 0
+  37041,4 Save Willy's new pixel y-coordinate at #R34255
 c 37046 Kill Willy
 D 37046 Used by the routine at #R38430 when Willy hits a nasty.
   37046 Drop the return address from the stack

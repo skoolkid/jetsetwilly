@@ -216,6 +216,7 @@ POKE #R35899,0
 [Changelog:YYYYMMDD]
 -
 
+Annotated all the #LINK:RoutinesMap(routines)
 Added a POKE: #POKE#dealWithMaria()
 
 [Changelog:20140807]
