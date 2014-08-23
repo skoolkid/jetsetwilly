@@ -480,7 +480,7 @@ D 35591 Used by the routine at #R35245. The main entry point is used when resumi
   35602 Pick up the border colour for the current room from #R32990
   35605 Restore the border colour
   35607 Pick up the airborne status indicator from #R34257
-  35610 Has Willy collided with a nasty, an arrow, a guardian, or Maria?
+  35610 Has Willy landed after falling from too great a height, or collided with a nasty, an arrow, a guardian, or Maria?
   35612 If so, lose a life
 D 35615 Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
   35615 Prepare #REGb for reading keys H-J-K-L-ENTER
@@ -972,7 +972,7 @@ D 36942 Willy's sprite is moving right across a cell boundary. In the comments t
 c 37046 Kill Willy
 D 37046 Used by the routine at #R38430 when Willy hits a nasty.
   37046 Drop the return address from the stack
-D 37047 This entry point is used by the routines at #R36564, #R37310 (when an arrow or guardian hits Willy) and #R38196 (when Willy gets too close to Maria).
+D 37047 This entry point is used by the routines at #R36564 (when Willy lands after falling from too great a height), #R37310 (when an arrow or guardian hits Willy) and #R38196 (when Willy gets too close to Maria).
   37047 Drop the return address from the stack
   37048,5 Set the airborne status indicator at #R34257 to 255 (meaning Willy has had a fatal accident)
   37053 Jump back into the main loop
