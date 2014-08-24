@@ -53,7 +53,7 @@ D 33792 After the game has loaded, this is where it all starts.
 g 33824 Current room number
 D 33824 Used by the routines at #R34762, #R35068, #R35591, #R37310, #R37841, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38298 and #R38455.
 b 33825 Left-right movement table
-D 33825 Used by the routine at #R36564. The entries in this table are used to map the existing value (V) of the flags byte at #R34256 to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor, or by an urge to visit the toilet).
+D 33825 Used by the routine at #R36564. The entries in this table are used to map the existing value (V) of Willy's direction and movement flags at #R34256 to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor, or by an urge to visit the toilet).
 D 33825 One of the first four entries is used when Willy is not moving.
   33825 V=0 (facing right, no movement) + no movement: V'=0 (no change)
   33826 V=1 (facing left, no movement) + no movement: V'=1 (no change)
@@ -115,7 +115,7 @@ g 34254 Kempston joystick indicator
 D 34254 Initialised by the routine at #R34762, and checked by the routines at #R36564 and #R38601. Holds 1 if a joystick is present, 0 otherwise.
 g 34255 Willy's pixel y-coordinate
 D 34255 Used by the routines at #R34762, #R35245, #R35591, #R36307, #R36564, #R37310, #R38064, #R38098, #R38196, #R38344 and #R38455.
-g 34256 Various flags
+g 34256 Willy's direction and movement flags
 D 34256 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R38455 }} {{ 1 | Willy's movement flag (set=moving) | #R36564, #R37310 }} {{ 2-7 | Unused (always reset) | }} TABLE#
 g 34257 Airborne status indicator
 D 34257 Initialised by the routine at #R34762, checked by the routines at #R35591 and #R38344, updated by the routines at #R37046, #R37310 and #R38064, and checked and updated by the routines at #R36307, #R36564 and #R38098. Possible values are:
@@ -772,7 +772,7 @@ D 36406 If we get here, then Willy is standing on the floor, or he's falling, or
   36453 Is Willy jumping?
   36455 Jump if so
 D 36458 If we get here, then Willy is either in the process of falling or just about to start falling.
-  36458,5 Reset bit 1 at #R34256
+  36458,5 Reset bit 1 at #R34256: Willy is not moving left or right
   36463 Pick up the airborne status indicator from #R34257
   36466 Is Willy already falling?
   36467 Jump if not
@@ -802,7 +802,7 @@ D 36540 The top-left or top-right cell of Willy's sprite is overlapping a wall t
   36540,10 Adjust Willy's pixel y-coordinate at #R34255 so that the top row of cells of his sprite are just below the wall tile
   36550 Adjust Willy's attribute buffer location at #R34259 to account for this new pixel y-coordinate
   36553,5 Set the airborne status indicator at #R34257 to 2: Willy has started falling
-  36558,5 Reset bit 1 at #R34256
+  36558,5 Reset bit 1 at #R34256: Willy is not moving left or right
 c 36564 Move Willy (2)
 R 36564 HL Attribute buffer address of the left-hand cell below Willy's sprite (if Willy is not on a rope)
   36564 Initialise #REGe to 255 (all bits set); it will be used to hold keyboard and joystick readings
@@ -860,9 +860,9 @@ D 36674 At this point, bits 0-5 in #REGe indicate the direction in which Willy i
   36694 Jump if not
   36696 Set bit 3 of #REGc: Willy is moving right
   36698,4 Reset the inactivity timer at #R34272
-  36702 Pick up the flags from #R34256
+  36702 Pick up Willy's direction and movement flags from #R34256
   36705,8 Point #REGhl at the entry in the left-right movement table at #R33825 that corresponds to the direction Willy is facing, and the direction in which he is being moved or trying to move
-  36713 Update the flags at #R34256 with the entry from the left-right movement table
+  36713 Update Willy's direction and movement flags at #R34256 with the entry from the left-right movement table
 D 36717 That is left-right movement taken care of. Now check the jump keys.
   36717,5 Read keys SHIFT-Z-X-C-V and B-N-M-SS-SPACE
   36722,4 Are any of these keys being pressed?
@@ -889,13 +889,13 @@ D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
   36777,5 Set the rope status indicator at #R34262 to 240
   36782,8 Round Willy's pixel y-coordinate at #R34255 down to the nearest multiple of 16
   36790,5 Set bit 1 at #R34256: Willy is moving
-  36796 Pick up the flags from #R34256
+  36796 Pick up Willy's direction and movement flags from #R34256
   36799 Is Willy moving?
   36801 Return if not
   36802 Pick up the rope status indicator from #R34262
   36805,3 Is Willy on a rope?
   36808 Return if so
-  36809 Pick up the flags from #R34256
+  36809 Pick up Willy's direction and movement flags from #R34256
   36812 Is Willy facing right?
   36814 Jump if so
 D 36817 Willy is moving left.
@@ -1249,7 +1249,7 @@ D 37726 Now that the entire rope has been drawn, deal with Willy's movement alon
   37741 Jump to consider the next entity definition
   37743 Is Willy on the rope?
   37747 If not, jump to consider the next entity definition
-  37749 Pick up the flags from #R34256
+  37749 Pick up Willy's direction and movement flags from #R34256
   37752 Is Willy moving up or down the rope?
   37754 If not, jump to consider the next entity definition
   37756,5 XOR Willy's direction bit (0=facing right, 1=facing left) with the rope's direction bit (0=swinging right to left, 1=swinging left to right)
@@ -1532,7 +1532,7 @@ R 38455 B y-coordinate offset (0, 4, 8 or 12)
   38455 Pick up Willy's pixel y-coordinate from #R34255
   38458 Add the y-coordinate offset (to get Willy's true pixel y-coordinate if he's standing on a ramp)
   38459,5 Point #REGix at the entry in the screen buffer address lookup table at #R33280 that corresponds to Willy's y-coordinate
-  38464 Pick up the flags from #R34256
+  38464 Pick up Willy's direction and movement flags from #R34256
   38467,4 Now #REGe=0 if Willy is facing right, or 128 if he's facing left
   38471 Pick up Willy's animation frame from #R34258
   38474,9 Point #REGde at the sprite graphic data for Willy's current animation frame (#R40192, #R40224, #R40256, #R40288, #R40320, #R40352, #R40384 or #R40416)
