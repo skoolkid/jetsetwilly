@@ -53,7 +53,27 @@ D 33792 After the game has loaded, this is where it all starts.
 g 33824 Current room number
 D 33824 Used by the routines at #R34762, #R35068, #R35591, #R37310, #R37841, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38298 and #R38455.
 b 33825 Left-right movement table
-D 33825 Used by the routine at #R36564.
+D 33825 Used by the routine at #R36564. The entries in this table are used to map the existing value (V) of the flags byte at #R34256 to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor, or by an urge to visit the toilet).
+D 33825 One of the first four entries is used when Willy is not moving.
+  33825 V=0 (facing right, no movement) + no movement: V'=0 (no change)
+  33826 V=1 (facing left, no movement) + no movement: V'=1 (no change)
+  33827 V=2 (facing right, moving) + no movement: V'=0 (facing right, no movement) (i.e. stop)
+  33828 V=3 (facing left, moving) + no movement: V'=1 (facing left, no movement) (i.e. stop)
+D 33829 One of the next four entries is used when Willy is moving left.
+  33829 V=0 (facing right, no movement) + move left: V'=1 (facing left, no movement) (i.e. turn around)
+  33830 V=1 (facing left, no movement) + move left: V'=3 (facing left, moving)
+  33831 V=2 (facing right, moving) + move left: V'=1 (facing left, no movement) (i.e. turn around)
+  33832 V=3 (facing left, moving) + move left: V'=3 (no change)
+D 33833 One of the next four entries is used when Willy is moving right.
+  33833 V=0 (facing right, no movement) + move right: V'=2 (facing right, moving)
+  33834 V=1 (facing left, no movement) + move right: V'=0 (facing right, no movement) (i.e. turn around)
+  33835 V=2 (facing right, moving) + move right: V'=2 (no change)
+  33836 V=3 (facing left, moving) + move right: V'=0 (facing right, no movement) (i.e. turn around)
+D 33837 One of the final four entries is used when Willy is being pulled both left and right; each entry leaves the flags at #R34256 unchanged (so Willy carries on moving in the direction he's already moving, or remains stationary).
+  33837 V=V'=0 (facing right, no movement)
+  33838 V=V'=1 (facing left, no movement)
+  33839 V=V'=2 (facing right, moving)
+  33840 V=V'=3 (facing left, moving)
 b 33841 Triangle UDGs
 D 33841 Used by the routine at #R34762.
 D 33841 #UDGTABLE {{ #UDG33841,56(triangle0) | #UDG33849,56(triangle1) | #UDG33857,56(triangle2) | #UDG33865,56(triangle3) }} TABLE#
