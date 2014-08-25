@@ -195,7 +195,7 @@ POKE #R38207,24
 
 Or if that makes things a little too easy, try the following POKE that gets rid of Maria after N items have been collected:
 
-POKE #R41983,256-N (1<=N<=83)
+POKE #R41983,256-N (1&lt;=N&lt;=83)
 
 Exactly which N items need to be collected is determined by the item table at #R41984. When N=1, the only item that needs to be collected is the one in #R57600(The Bathroom).
 
