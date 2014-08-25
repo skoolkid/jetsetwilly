@@ -6,6 +6,10 @@ try:
 except ImportError:
     from io import StringIO
 
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+build_dir = '{}/build'.format(parent_dir)
+
+skool2html_options = '-d {}/html'.format(build_dir)
 SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
 if SKOOLKIT_HOME:
     if not os.path.isdir(SKOOLKIT_HOME):
@@ -13,7 +17,7 @@ if SKOOLKIT_HOME:
         sys.exit(1)
     sys.path.insert(0, SKOOLKIT_HOME)
     from skoolkit import skool2html, sna2skool, tap2sna
-    skool2html.SEARCH_DIRS += (os.path.join(SKOOLKIT_HOME, 'resources'),)
+    skool2html_options += ' -S {0}/resources -S {1} -S {1}/resources'.format(SKOOLKIT_HOME, parent_dir)
 else:
     try:
         from skoolkit import skool2html, sna2skool, tap2sna
@@ -25,8 +29,6 @@ sys.stderr.write("Found SkoolKit in {}\n".format(skool2html.PACKAGE_DIR))
 
 import jsw2ctl
 
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-build_dir = os.path.join(parent_dir, 'build')
 if not os.path.isdir(build_dir):
     os.mkdir(build_dir)
 
@@ -51,6 +53,6 @@ sys.stdout = stdout
 
 # Build the HTML disassembly
 writer_class = '{}/skoolkit:jetsetwilly.JetSetWillyHtmlWriter'.format(parent_dir)
-options = '-c Config/HtmlWriterClass={} -d {}/html'.format(writer_class, build_dir)
+options = '-c Config/HtmlWriterClass={} {}'.format(writer_class, skool2html_options)
 args = options.split() + sys.argv[1:] + [skoolfile]
 skool2html.main(args)
