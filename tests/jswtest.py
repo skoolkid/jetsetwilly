@@ -23,8 +23,6 @@ if not os.path.isdir(SKOOLKIT_HOME):
     sys.exit(1)
 sys.path.insert(1, SKOOLKIT_HOME)
 from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
-sk_resources = os.path.join(SKOOLKIT_HOME, 'resources')
-skool2html.SEARCH_DIRS += (sk_resources, '../resources')
 
 JSWZ80 = '../build/jet_set_willy.z80'
 JSWREF = '../jet_set_willy.ref'
@@ -36,7 +34,7 @@ Using skool file: {skoolfile}
 Using ref file: {reffile}
 Parsing {skoolfile}
 Creating directory {odir}/jet_set_willy
-Copying {sk_resources}/skoolkit.css to {odir}/jet_set_willy/skoolkit.css
+Copying {SKOOLKIT_HOME}/resources/skoolkit.css to {odir}/jet_set_willy/skoolkit.css
 Copying ../resources/jet_set_willy.css to {odir}/jet_set_willy/jet_set_willy.css
   Writing disassembly files in jet_set_willy/asm
   Writing jet_set_willy/maps/all.html
@@ -234,14 +232,16 @@ class HtmlTestCase(DisassembliesTestCase):
 
     def write_jsw(self, options):
         skoolfile = self.write_jsw_skool()
-        c_options = '-c Config/HtmlWriterClass=../skoolkit:jetsetwilly.JetSetWillyHtmlWriter'
-        c_options += ' -c Config/SkoolFile={}'.format(skoolfile)
+        main_options = '-c Config/HtmlWriterClass=../skoolkit:jetsetwilly.JetSetWillyHtmlWriter'
+        main_options += ' -c Config/SkoolFile={}'.format(skoolfile)
+        main_options += ' -S {} -S {}'.format('{}/resources'.format(SKOOLKIT_HOME), '../resources')
+        main_options += ' -d {}'.format(self.odir)
         shutil.rmtree(self.odir, True)
 
         # Write the disassembly
-        output, error = self.run_skoolkit_command(skool2html.main, '{} -d {} {} {}'.format(c_options, self.odir, options, JSWREF))
+        output, error = self.run_skoolkit_command(skool2html.main, '{} {} {}'.format(main_options, options, JSWREF))
         self.assertEqual(len(error), 0)
-        reps = {'odir': self.odir, 'sk_resources': sk_resources, 'skoolfile': skoolfile, 'reffile': JSWREF}
+        reps = {'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': skoolfile, 'reffile': JSWREF}
         self.assertEqual(OUTPUT_JSW.format(**reps).split('\n'), output)
 
         self._validate_xhtml()
