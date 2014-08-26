@@ -4,9 +4,6 @@
 ; Copyright 2012-2014 Richard Dymond (rjdymond@gmail.com)
 ;
 
-[Config]
-HtmlWriterClass=skoolkit.jetsetwilly.JetSetWillyHtmlWriter
-
 [Game]
 Game=Jet Set Willy
 TitlePrefix=The incomplete
