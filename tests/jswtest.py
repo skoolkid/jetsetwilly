@@ -232,7 +232,7 @@ class HtmlTestCase(DisassembliesTestCase):
 
     def write_jsw(self, options):
         skoolfile = self.write_jsw_skool()
-        main_options = '-c Config/HtmlWriterClass=../skoolkit:jetsetwilly.JetSetWillyHtmlWriter'
+        main_options = '-W ../skoolkit:jetsetwilly.JetSetWillyHtmlWriter'
         main_options += ' -c Config/SkoolFile={}'.format(skoolfile)
         main_options += ' -S {} -S {}'.format('{}/resources'.format(SKOOLKIT_HOME), '../resources')
         main_options += ' -d {}'.format(self.odir)
