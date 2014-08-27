@@ -1059,7 +1059,7 @@ D 37171 We are dealing with a horizontal guardian.
   37171 Is the guardian currently moving left to right?
   37175 Jump if so
 D 37177 This guardian is moving right to left.
-  37177,10 Update the guardian's animation frame
+  37177,10 Update the guardian's animation frame (in bits 5 and 6 of the first byte of the entity definition)
   37187 Is it time to update the x-coordinate of the guardian sprite?
   37189 If not, jump to consider the next entity definition
   37191,5 Pick up the sprite's current screen x-coordinate (0-31)
@@ -1070,7 +1070,7 @@ D 37177 This guardian is moving right to left.
   37206 The guardian will now start moving left to right
   37210 Jump to consider the next entity definition
 D 37212 This guardian is moving left to right.
-  37212,10 Update the guardian's animation frame
+  37212,10 Update the guardian's animation frame (in bits 5 and 6 of the first byte of the entity definition)
   37222 Is it time to update the x-coordinate of the guardian sprite?
   37224 If not, jump to consider the next entity definition
   37226,5 Pick up the sprite's current screen x-coordinate (0-31)
@@ -1081,10 +1081,10 @@ D 37212 This guardian is moving left to right.
   37241 The guardian will now start moving right to left
   37245 Jump to consider the next entity definition
 D 37247 We are dealing with a vertical guardian.
-  37247,8 Flip bit 3 of the guardian's animation frame
-  37255 Are bits 3 and 4 reset?
+  37247,8 Flip bit 3 of the first byte of the entity definition (if bit 4 is set, the guardian's animation frame is updated on every pass through this routine; otherwise, it is updated on every second pass when bit 3 is set)
+  37255 Are bits 3 and 4 both reset now?
   37257 Jump if so
-  37259,8 Update the guardian's animation frame
+  37259,8 Update the guardian's animation frame (in bits 5 and 6 of the first byte of the entity definition)
   37267,9 Update the guardian's y-coordinate
   37276 Has the guardian reached the lowest point of its path (maximum y-coordinate)?
   37279 If so, jump to change its direction of movement
