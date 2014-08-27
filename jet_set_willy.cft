@@ -878,7 +878,7 @@ D 36717 That is left-right movement taken care of. Now check the jump keys.
   36749,2 Jump if not
 D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
   36751 Pick up the game mode indicator from #R34271
-  36754 Is Willy running to the toilet or does he already have his head in it?
+  36754 Is Willy running to the toilet?
   36756 Jump if so
   36758,4 Initialise the jumping animation counter at #R34261 to 0
   36762 Reset the inactivity timer at #R34272
