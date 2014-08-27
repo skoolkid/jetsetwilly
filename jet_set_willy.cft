@@ -1689,7 +1689,7 @@ b 40960 Entity definitions
 D 40960 Used by the routine at #R35068.
 {entity_defs}
 D 41856 The next 127 bytes are unused.
-B 41856,127,16
+B 41856,127,8
 b 41983 Index of the first item
 D 41983 Used by the routines at #R34762 and #R37841.
 b 41984 Item table

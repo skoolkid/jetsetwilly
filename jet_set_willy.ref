@@ -216,6 +216,7 @@ POKE #R35899,0
 -
 
 Annotated all the #LINK:RoutinesMap(routines)
+Annotated every byte of the entity definitions at #R40960
 Added a POKE: #POKE#dealWithMaria()
 
 [Changelog:20140807]

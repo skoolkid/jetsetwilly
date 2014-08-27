@@ -158,19 +158,80 @@ class JetSetWilly:
             addr = 40960 + num * 8
             if num in defs:
                 room_links = self._get_room_links(sorted(defs[num]))
-                def_id = num
-                if num == 1:
-                    def_id = '{}: rope'.format(num)
-                elif num in (60, 69):
-                    def_id = '{}: arrow'.format(num)
-                comment = 'The following entity definition ({}) is used in {}.'.format(def_id, room_links)
+                comment = 'The following entity definition ({}) is used in {}.'.format(num, room_links)
             else:
                 comment = 'The following entity definition ({}) is not used.'.format(num)
             lines.append('D {} {}'.format(addr, comment))
             if num in sprite_addrs:
                 sprites = [self.guardian_macros[a] for a in sorted(sprite_addrs[num])]
                 lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(addr, ' | '.join(sprites)))
-            lines.append('B {},8'.format(addr))
+            if num in defs or num == 43:
+                entity_def = self.snapshot[addr:addr + 8]
+                entity_type = entity_def[0] & 7
+                direction = 'left to right' if entity_def[0] & 128 else 'right to left'
+                ink = entity_def[1] & 7
+                bright = (entity_def[1] & 8) // 8
+                frame_mask = '{:08b}'.format(entity_def[1])[:3]
+                b1_format = ',b1'
+                desc1 = 'INK {} (bits 0-2), BRIGHT {} (bit 3), animation frame mask {} (bits 5-7)'.format(ink, bright, frame_mask)
+                b6_format = ''
+                if entity_type & 3 == 1:
+                    desc0 = 'Horizontal guardian (bits 0-2), initial animation frame {} (bits 5 and 6), initially moving {} (bit 7)'.format((entity_def[0] & 96) // 32, direction)
+                    desc2 = 'Replaced by the base sprite index and initial x-coordinate (copied from the second byte of the entity specification in the room definition)'
+                    desc3 = 'Pixel y-coordinate: {}'.format(entity_def[3] // 2)
+                    desc4 = 'Unused'
+                    desc5 = 'Page containing the sprite graphic data: #R{}({})'.format(entity_def[5] * 256, entity_def[5])
+                    desc6 = 'Minimum x-coordinate'
+                    desc7 = 'Maximum x-coordinate'
+                elif entity_type & 3 == 2:
+                    desc0_infix = ''
+                    if frame_mask != '000':
+                        desc0_infix = ', animation frame updated on every {}pass (bit 4)'.format('' if entity_def[0] & 16 else 'second ')
+                    desc0 = 'Vertical guardian (bits 0-2){}, initial animation frame {} (bits 5 and 6)'.format(desc0_infix, (entity_def[0] & 96) // 32)
+                    desc2 = 'Replaced by the base sprite index and x-coordinate (copied from the second byte of the entity specification in the room definition)'
+                    desc3 = 'Initial pixel y-coordinate: {}'.format(entity_def[3] // 2)
+                    y_inc = entity_def[4] if entity_def[4] < 128 else entity_def[4] - 256
+                    if y_inc == 0:
+                        direction = 'not moving'
+                    elif y_inc > 0:
+                        direction = 'moving down'
+                    else:
+                        direction = 'moving up'
+                    desc4 = 'Initial pixel y-coordinate increment: {} ({})'.format(y_inc // 2, direction)
+                    desc5 = 'Page containing the sprite graphic data: #R{}({})'.format(entity_def[5] * 256, entity_def[5])
+                    desc6 = 'Minimum pixel y-coordinate: {}'.format(entity_def[6] // 2)
+                    desc7 = 'Maximum pixel y-coordinate: {}'.format(entity_def[7] // 2)
+                elif entity_type & 3 == 3:
+                    desc0 = 'Rope (bits 0-2), initially swinging {} (bit 7)'.format(direction)
+                    b1_format = ''
+                    desc1 = 'Initial animation frame index'
+                    desc2 = 'Replaced by the x-coordinate of the top of the rope (copied from the second byte of the entity specification in the room definition)'
+                    desc3 = 'Unused'
+                    desc4 = 'Length'
+                    desc5 = 'Unused'
+                    desc6 = 'Unused'
+                    desc7 = 'Animation frame at which the rope changes direction'
+                else:
+                    desc0 = 'Arrow (bits 0-2), flying {} (bit 7)'.format(direction)
+                    b1_format = ''
+                    desc1 = 'Unused'
+                    desc2 = 'Replaced by the pixel y-coordinate (copied from the second byte of the entity specification in the room definition)'
+                    desc3 = 'Unused'
+                    desc4 = 'Initial x-coordinate: {}'.format(entity_def[4])
+                    desc5 = 'Unused'
+                    b6_format = ',b1'
+                    desc6 = 'Top/bottom pixel row (drawn either side of the shaft)'
+                    desc7 = 'Unused'
+                lines.append('B {},b1 {}'.format(addr, desc0))
+                lines.append('B {}{} {}'.format(addr + 1, b1_format, desc1))
+                lines.append('B {} {}'.format(addr + 2, desc2))
+                lines.append('B {} {}'.format(addr + 3, desc3))
+                lines.append('B {} {}'.format(addr + 4, desc4))
+                lines.append('B {} {}'.format(addr + 5, desc5))
+                lines.append('B {}{} {}'.format(addr + 6, b6_format, desc6))
+                lines.append('B {} {}'.format(addr + 7, desc7))
+            else:
+                lines.append('B {},8,1'.format(addr))
         return '\n'.join(lines)
 
     def get_udg_table(self, addr, num, attr=56, fname=None, rows=1, animation='', delay=None):
@@ -231,15 +292,18 @@ class JetSetWilly:
 
         lines = []
         for a in sorted(GUARDIANS.keys()):
+            page = a // 256
+            base_index = (a % 256) // 32
+            num = GUARDIANS[a][0]
+            end_index = base_index + num - 1
             if a in guardians:
                 room_links = self._get_room_links(sorted(guardians[a]))
-                comment = 'This guardian appears in {}.'.format(room_links)
+                comment = 'This guardian (page {}, sprites {}-{}) appears in {}.'.format(page, base_index, end_index, room_links)
             elif a == 45312:
-                comment = 'This guardian is not used.'
+                comment = 'This guardian (page {}, sprites {}-{}) is not used.'.format(page, base_index, end_index)
             elif a == 45824:
                 comment = 'The next 256 bytes are unused.'
             lines.append('D {} {}'.format(a, comment))
-            num = GUARDIANS[a][0]
             if num:
                 lines.append('D {} {}'.format(a, self.get_udg_table(a, num)))
                 lines.append('B {},{},16'.format(a, 32 * num))
@@ -382,7 +446,7 @@ class JetSetWilly:
 
             lines.append('B {} Unused'.format(a + 237))
 
-            # Guardians
+            # Entities
             start = a + 240
             entities = []
             for addr in range(start, a + 256, 2):
@@ -397,15 +461,21 @@ class JetSetWilly:
                 lines.append('D {} The next {} bytes specify the entities (ropes, arrows, guardians) in this room.'.format(start, addr - start))
                 addr = start
                 for num, coords, guardian_type, def_addr in entities:
-                    if guardian_type == 3:
+                    if guardian_type == 1:
+                        desc = 'Guardian no. {} (horizontal), base sprite {}, initial x={}'.format(num, coords // 32, coords & 31)
+                    elif guardian_type == 2:
+                        desc = 'Guardian no. {} (vertical), base sprite {}, x={}'.format(num, coords // 32, coords & 31)
+                    elif guardian_type == 3:
                         desc = 'Rope at x={}'.format(coords & 31)
-                    elif guardian_type == 4:
-                        direction = ('right to left', 'left to right')[self.snapshot[def_addr] // 128]
-                        buf_addr = self.snapshot[coords + 33280] + 256 * self.snapshot[coords + 33281]
-                        y = ((buf_addr // 256 - 96) & 248) + (buf_addr % 256) // 32
-                        desc = 'Arrow travelling {} at y={}'.format(direction, y)
                     else:
-                        desc = 'Guardian no. {}, initial x={}'.format(num, coords & 31)
+                        direction = ('right to left', 'left to right')[self.snapshot[def_addr] // 128]
+                        if coords & 1:
+                            # Faulty arrow specification
+                            y0 = self.snapshot[coords + 33281] - 96
+                            pixel_y = 8 * (y0 & 248) + (y0 & 7) + (self.snapshot[coords + 33280] & 224) // 4
+                        else:
+                            pixel_y = coords // 2
+                        desc = 'Arrow flying {} at pixel y-coordinate {}'.format(direction, pixel_y)
                     lines.append('B {},2 {} (#R{})'.format(addr, desc, def_addr))
                     addr += 2
             else:
