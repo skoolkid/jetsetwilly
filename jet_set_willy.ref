@@ -64,6 +64,26 @@ LinkInternalOperands=1
 119=0000445454542800
 121=00004444443C0438
 
+[Index:Reference:Reference]
+Changelog
+Facts
+Bugs
+Pokes
+Credits
+
+[Paths]
+Credits=reference/credits.html
+
+[PageContent:Credits]
+<div class="box box-1">
+This disassembly would have taken a lot longer to finish if it weren't for the research and documentation already done and made available by:
+<ul>
+<li><a class="link" href="http://webspace.webring.com/people/ja/andrewbroad/">Andrew Broad</a></li>
+<li><a class="link" href="http://mdfs.net/Software/JSW/Docs/">J. G. Harston</a></li>
+</ul>
+In particular, their partial disassemblies, bug descriptions and room format descriptions were of great help.
+</div>
+
 [Bug:invalidGridLocation:Invalid grid location]
 If the LSB of the system variable FRAMES (at 23672) is 142 when the game starts, the routine at #R34499 will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
 

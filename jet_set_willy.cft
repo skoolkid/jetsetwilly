@@ -4,10 +4,6 @@
 ;
 ; SkoolKit control file for Jet Set Willy.
 ;
-; Room descriptions based on reference material from Andrew Broad
-; <http://webspace.webring.com/people/ja/andrewbroad/> and J. G. Harston
-; <http://mdfs.net/Software/JSW/Docs/>.
-;
 
 ; @start:32768
 ; @org:32768=32768
