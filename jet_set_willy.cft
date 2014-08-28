@@ -29,7 +29,7 @@ B 33004,1 Room below (used by the routine at #R38098)
 S 33005,3 Unused
 S 33008,16 Entity specifications (used by the routine at #R35068)
 g 33024 Entity buffer
-D 33024 Used by the routines at #R35068, #R37056 and #R37310.
+D 33024 Initialised by the routine at #R35068, and used by the routines at #R37056 and #R37310.
 S 33024,64
 B 33088 Terminator
 s 33089
@@ -47,7 +47,7 @@ D 33792 After the game has loaded, this is where it all starts.
   33813,10 Read through addresses 34048-65535, without changing their contents; perhaps this code was once used to descramble the contents of pages 133-255, but now all it does is introduce a pause of about 0.47s before displaying the code entry screen
   33823 Make an indirect jump to #R34463
 g 33824 Current room number
-D 33824 Used by the routines at #R34762, #R35068, #R35591, #R37310, #R37841, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38298 and #R38455.
+D 33824 Initialised to 33 (#R57600(The Bathroom)) by the routine at #R34762, checked by the routines at #R35068, #R37310, #R37841, #R38196, #R38276, ,#R38298 and #R38455, and updated by the routines at #R35591, #R38026, #R38046, #R38064 and #R38098.
 b 33825 Left-right movement table
 D 33825 Used by the routine at #R36564. The entries in this table are used to map the existing value (V) of Willy's direction and movement flags at #R34256 to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor, or by an urge to visit the toilet).
 D 33825 One of the first four entries is used when Willy is not moving.
@@ -102,44 +102,52 @@ D 34187 Used by the routine at #R34463.
 t 34219 'Sorry, try code at location#SPACE5'
 D 34219 Used by the routine at #R34463.
 g 34251 Minute counter
-D 34251 Used by the routines at #R34762, #R35245, #R37841, #R38196, #R38276 and #R38298.
+D 34251 Initialised by the routine at #R34762; incremented on each pass through the main loop by the routine at #R35245 (which moves the game clock forward by a minute when the counter reaches 0); reset to zero by the routine at #R38276 when Willy sticks his head down the toilet; and used by the routines at #R37841 (to cycle the colours of the items in the room), #R38196 (to determine Maria's animation frame in #R58112(Master Bedroom)) and #R38298 (to determine the animation frame for the toilet in #R57600(The Bathroom)).
 g 34252 Lives remaining
-D 34252 Used by the routines at #R34762, #R35211, #R35591 and #R35841.
+D 34252 Initialised to 7 by the routine at #R34762, decremented by the routine at #R35841, and used by the routines at #R35211 (when drawing the remaining lives) and #R35591 (to adjust the speed and pitch of the in-game music).
 g 34253 Screen flash counter
 D 34253 Initialised to zero by the routine at #R34762, but never used; the code at #R35339 makes the screen flash in Manic Miner fashion if this address holds a non-zero value.
 g 34254 Kempston joystick indicator
 D 34254 Initialised by the routine at #R34762, and checked by the routines at #R36564 and #R38601. Holds 1 if a joystick is present, 0 otherwise.
-g 34255 Willy's pixel y-coordinate
-D 34255 Used by the routines at #R34762, #R35245, #R35591, #R36307, #R36564, #R37310, #R38064, #R38098, #R38196, #R38344 and #R38455.
+g 34255 Willy's pixel y-coordinate (x2)
+D 34255 Initialised to 208 by the routine at #R34762, and used by the routines at #R35245, #R35591, #R36307, #R36564, #R37310, #R38064, #R38098, #R38196, #R38344 and #R38455. Holds the LSB of the address of the entry in the screen buffer address lookup table at #R33280 that corresponds to Willy's pixel y-coordinate; in practice, this is twice Willy's actual pixel y-coordinate.
 g 34256 Willy's direction and movement flags
 D 34256 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R38455 }} {{ 1 | Willy's movement flag (set=moving) | #R36564, #R37310 }} {{ 2-7 | Unused (always reset) | }} TABLE#
 g 34257 Airborne status indicator
 D 34257 Initialised by the routine at #R34762, checked by the routines at #R35591 and #R38344, updated by the routines at #R37046, #R37310 and #R38064, and checked and updated by the routines at #R36307, #R36564 and #R38098. Possible values are:
 D 34257 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Willy is neither falling nor jumping }}  {{ 1 | Willy is jumping (see #R36765) }} {{ 2-11 | Willy is falling, and can land safely }} {{ 12-15 | Willy is falling, and has fallen too far to land safely (see #R36574) }} {{ 255 | Willy has collided with a nasty, an arrow, a guardian, or Maria (see #R37046) }} TABLE#
 g 34258 Willy's animation frame
-D 34258 Used by the routines at #R35245, #R36564, #R37310, #R38344 and #R38455.
+D 34258 Used by the routines at #R38344 and #R38455, and updated by the routines at #R35245, #R36564 and #R37310.
 g 34259 Address of Willy's location in the attribute buffer at 23552
-D 34259 Used by the routines at #R34762, #R36307, #R36564, #R37310, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38344 and #R38455.
+D 34259 Initialised by the routine at #R34762, and used by the routines at #R36307, #R36564, #R37310, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38344 and #R38455.
 W 34259,2
 g 34261 Jumping animation counter
 D 34261 Used by the routines at #R36307 and #R36564.
 g 34262 Rope status indicator
-D 34262 Initialised by the routine at #R35068, checked by the routine at #R36307, and checked and set by the routines at #R36564 and #R37310.
+D 34262 Initialised by the routine at #R35068, checked by the routine at #R36307, and checked and updated by the routines at #R36564 and #R37310. Possible values are:
+D 34262 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Willy is not on the rope }} {{ 12-32 | Willy is on the rope at this distance from the top }} {{ 240-255 | Willy has just jumped or fallen off the rope }} TABLE#
 g 34263 Willy's state on entry to the room
 D 34263 Initialised by the routine at #R35068, and copied back into #LINK:GameStatusBuffer#34255(34255-34261) by the routine at #R35841.
+  34263 Willy's pixel y-coordinate (copied from #R34255)
+  34264 Willy's direction and movement flags (copied from #R34256)
+  34265 Airborne status indicator (copied from #R34257)
+  34266 Willy's animation frame (copied from #R34258)
+W 34267 Address of Willy's location in the attribute buffer at 23552 (copied from #R34259)
+  34269 Jumping animation counter (copied from #R34261)
 g 34270 256 minus the number of items remaining
-D 34270 Used by the routines at #R34762 and #R37841.
+D 34270 Initialised by the routine at #R34762, and updated by the routine at #R37841 when an item is collected.
 g 34271 Game mode indicator
-D 34271 Used by the routines at #R34762, #R35245, #R36564, #R37841, #R38196, #R38276 and #R38298.
+D 34271 Initialised by the routine at #R34762, checked by the routines at #R35245, #R36564 and #R38298, and updated by the routines at #R37841, #R38196 and #R38276.
 D 34271 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Normal }} {{ 1 | All items collected }} {{ 2 | Willy is running to the toilet }} {{ 3 | Willy's head is down the toilet }} TABLE#
 g 34272 Inactivity timer
 D 34272 Initialised by the routine at #R34762, and updated by the routines at #R35245, #R35591 and #R36564.
 g 34273 In-game music note index
 D 34273 Initialised by the routine at #R34762, used by the routine at #R35211, and updated by the routine at #R35591.
 g 34274 Sound flags
-D 34274 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Keypress flag (set=H-ENTER being pressed, reset=no key pressed) | #R34762, #R35591 }} {{ 1 | In-game music flag (set=music off, reset=music on) | #R35591 }} {{ 2-7 | Unused | }} TABLE#
+D 34274 The keypress flag in bit 0 is initialised by the routine at #R34762; bits 0 and 1 are checked and updated by the routine at #R35591.
+D 34274 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning }} {{ 0 | Keypress flag (set=H-ENTER being pressed, reset=no key pressed) }} {{ 1 | In-game music flag (set=music off, reset=music on) }} {{ 2-7 | Unused | }} TABLE#
 g 34275 WRITETYPER key counter
-D 34275 Used by the routines at #R35245 and #R35591.
+D 34275 Checked by the routine at #R35245, and updated by the routine at #R35591.
 g 34276 Temporary variable
 D 34276 Used by the routines at #R34499 and #R34620 to hold the entry code, by the routine at #R34762 to hold the index into the message scrolled across the screen after the theme tune has finished playing, and by the routine at #R35914 to hold the distance of the foot from the top of the screen as it descends onto Willy.
 b 34277 WRITETYPER
