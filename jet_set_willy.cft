@@ -18,17 +18,17 @@ S 32928,9 Background tile (used by the routines at #R36147, #R36288, #R36307 and
 ; @label:32937=FLOOR
 S 32937,9 Floor tile (used by the routines at #R36147 and #R36288)
 ; @label:32946=WALL
-S 32946,9 Wall tile (used by the routines at #R36147, #R36288, #R36307 and #R36564)
+S 32946,9 Wall tile (used by the routines at #R36147, #R36288, #R36307 and #R36796)
 ; @label:32955=NASTY
 S 32955,9 Nasty tile (used by the routines at #R36147, #R36288, #R36307 and #R38430)
 ; @label:32964=RAMP
-S 32964,9 Ramp tile (used by the routines at #R36147, #R36203, #R36564 and #R38344)
+S 32964,9 Ramp tile (used by the routines at #R36147, #R36203, #R36796 and #R38344)
 ; @label:32973=CONVEYOR
 S 32973,9 Conveyor tile (used by the routines at #R36147, #R36203 and #R36564)
 ; @label:32982=CONVDIR
 S 32982,4 Conveyor definition (used by the routines at #R36564 and #R38137)
 ; @label:32986=RAMPDIR
-S 32986,4 Ramp definition (used by the routines at #R36203, #R36564 and #R38344)
+S 32986,4 Ramp definition (used by the routines at #R36203, #R36796 and #R38344)
 ; @label:32990=BORDER
 B 32990,1 Border colour (used by the routines at #R35068, #R35591, #R36307, #R37310 and #R37841)
 S 32991,2 Unused
@@ -152,20 +152,20 @@ g 34254 Kempston joystick indicator
 D 34254 Initialised by the routine at #R34762, and checked by the routines at #R36564 and #R38601. Holds 1 if a joystick is present, 0 otherwise.
 g 34255 Willy's pixel y-coordinate (x2)
 ; @label:34255=PIXEL_Y
-D 34255 Initialised to 208 by the routine at #R34762, and used by the routines at #R35245, #R35591, #R36307, #R36564, #R37310, #R38064, #R38098, #R38196, #R38344 and #R38455. Holds the LSB of the address of the entry in the screen buffer address lookup table at #R33280 that corresponds to Willy's pixel y-coordinate; in practice, this is twice Willy's actual pixel y-coordinate.
+D 34255 Initialised to 208 by the routine at #R34762, and used by the routines at #R35245, #R35591, #R36307, #R36564, #R36796, #R37310, #R38064, #R38098, #R38196, #R38344 and #R38455. Holds the LSB of the address of the entry in the screen buffer address lookup table at #R33280 that corresponds to Willy's pixel y-coordinate; in practice, this is twice Willy's actual pixel y-coordinate.
 g 34256 Willy's direction and movement flags
 ; @label:34256=DMFLAGS
-D 34256 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R38455 }} {{ 1 | Willy's movement flag (set=moving) | #R36564, #R37310 }} {{ 2-7 | Unused (always reset) | }} TABLE#
+D 34256 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R36796, #R38455 }} {{ 1 | Willy's movement flag (set=moving) | #R36564, #R36796, #R37310 }} {{ 2-7 | Unused (always reset) | }} TABLE#
 g 34257 Airborne status indicator
 ; @label:34257=AIRBORNE
 D 34257 Initialised by the routine at #R34762, checked by the routines at #R35591 and #R38344, updated by the routines at #R37046, #R37310 and #R38064, and checked and updated by the routines at #R36307, #R36564 and #R38098. Possible values are:
 D 34257 #TABLE(default,centre,:w) {{ =h Value | =h Meaning }} {{ 0 | Willy is neither falling nor jumping }}  {{ 1 | Willy is jumping (see #R36765) }} {{ 2-11 | Willy is falling, and can land safely }} {{ 12-15 | Willy is falling, and has fallen too far to land safely (see #R36574) }} {{ 255 | Willy has collided with a nasty, an arrow, a guardian, or Maria (see #R37046) }} TABLE#
 g 34258 Willy's animation frame
 ; @label:34258=FRAME
-D 34258 Used by the routines at #R38344 and #R38455, and updated by the routines at #R35245, #R36564 and #R37310.
+D 34258 Used by the routines at #R38344 and #R38455, and updated by the routines at #R35245, #R36796 and #R37310.
 g 34259 Address of Willy's location in the attribute buffer at 23552
 ; @label:34259=LOCATION
-D 34259 Initialised by the routine at #R34762, and used by the routines at #R36307, #R36564, #R37310, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38344 and #R38455.
+D 34259 Initialised by the routine at #R34762, and used by the routines at #R36307, #R36796, #R37310, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38344 and #R38455.
 W 34259,2
 g 34261 Jumping animation counter
 ; @label:34261=JUMPING
@@ -889,6 +889,7 @@ D 36540 The top-left or top-right cell of Willy's sprite is overlapping a wall t
   36558,5 Reset bit 1 at #R34256: Willy is not moving left or right
 c 36564 Move Willy (2)
 ; @label:36564=MOVEWILLY2
+D 36564 Used by the routine at #R36307. This routine checks the keyboard and joystick.
 R 36564 HL Attribute buffer address of the left-hand cell below Willy's sprite (if Willy is not on a rope)
   36564 Initialise #REGe to 255 (all bits set); it will be used to hold keyboard and joystick readings
   36566 Pick up the rope status indicator from #R34262
@@ -974,6 +975,9 @@ D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
   36777,5 Set the rope status indicator at #R34262 to 240
   36782,8 Round Willy's pixel y-coordinate at #R34255 down to the nearest multiple of 16
   36790,5 Set bit 1 at #R34256: Willy is moving
+c 36796 Move Willy (3)
+D 36796 Used by the routines at #R36307 and #R36564. This routine moves Willy left or right if necessary.
+; @label:36796=MOVEWILLY3
   36796 Pick up Willy's direction and movement flags from #R34256
   36799 Is Willy moving?
   36801 Return if not
