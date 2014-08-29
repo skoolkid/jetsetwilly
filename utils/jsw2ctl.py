@@ -122,6 +122,16 @@ class JetSetWilly:
             return macros[0]
         return '{} and {}'.format(', '.join(macros[:-1]), macros[-1])
 
+    def _get_teleport_code(self, room_num):
+        code = ''
+        key = 1
+        while room_num:
+            if room_num & 1:
+                code += str(key)
+            room_num //= 2
+            key += 1
+        return code + '9'
+
     def get_screen_buffer_address_table(self):
         lines = []
         y = 0
@@ -346,7 +356,7 @@ class JetSetWilly:
             room = self.snapshot[a:a + 256]
             room_num = a // 256 - 192
             room_name = self.room_names[room_num]
-            lines.append('b {} Room {}: {}'.format(a, room_num, self.room_names_wp[room_num]))
+            lines.append('b {} Room {}: {} (teleport: {})'.format(a, room_num, self.room_names_wp[room_num], self._get_teleport_code(room_num)))
             if a in (50688, 56320, 56576, 59904, 61440):
                 # Rooms with flashing cells
                 room_image = '#ROOM{}({}.gif)'.format(a, room_name.lower().replace(' ', '_'))
