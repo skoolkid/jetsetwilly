@@ -57,8 +57,11 @@ D 33280 Used by the routines at #R35914, #R37310 and #R38455. The value of the N
 {sba_table}
 b 33536 Rope animation table
 ; @label:33536=ROPEANIM
-D 33536 Used by the routine at #R37310.
-B 33536,256,16
+D 33536 Used by the routine at #R37310. The first half of this table controls the x-coordinates at which the segments of rope are drawn, and the second half controls the y-coordinates. For a given rope animation frame F (0<=F<=54), the 32 entries from F to F+31 inclusive (one for each segment of rope) in each half of the table are used; thus the batch of entries used 'slides' up and down the table as F increases and decreases.
+  33536,86,16 These values are used by the section of code at #R37667 to determine how much to rotate the rope drawing byte (which in turn determines the x-coordinate at which each segment of rope is drawn)
+  33622,42,16 Unused
+  33664,86,16 These values are used by the section of code at #R37651 to determine the y-coordinate of each segment of rope relative to the one above it
+  33750,42,16 Unused
 c 33792 The game has just loaded
 ; @label:33792=BEGIN
 D 33792 After the game has loaded, this is where it all starts.
