@@ -1274,7 +1274,7 @@ D 37431 We are dealing with an arrow.
 D 37540 We are dealing with a rope.
   37540 Point #REGiy at the first byte of the screen buffer address lookup table at #R33280
   37544 Initialise the second byte in the following entity definition to zero; this will count the segments of rope to draw
-  37548,6 Initialise the fourth byte of the entity definition; this holds the LSB of the attribute buffer address of the segment of rope under consideration
+  37548,6 Initialise the fourth byte of the entity definition; this holds the x-coordinate of the cell in which the segment of rope under consideration will be drawn
   37554,4 Initialise the sixth byte of the entity definition to 128 (bit 7 set); the value held here is used to draw the segment of rope under consideration
 D 37558 The following loop draws each segment of the rope from top to bottom.
   37558,10 Point #REGhl at the location of the segment of rope under consideration in the screen buffer at 24576
@@ -1290,7 +1290,7 @@ D 37558 The following loop draws each segment of the rope from top to bottom.
   37593 Jump if not
   37595 Is Willy on the rope (and clinging to this particular segment)?
   37599 Jump if not
-  37601 Copy the LSB of the attribute buffer location of the segment of rope under consideration to #REGb
+  37601 Copy the x-coordinate of the cell containing the segment of rope under consideration to #REGb
   37604 Pick up the drawing byte in #REGa
   37607,2 The value in #REGc will specify Willy's next animation frame; initialise it to 1
   37609 Is the set bit of the drawing byte in bit 0 or 1?
@@ -1298,15 +1298,15 @@ D 37558 The following loop draws each segment of the rope from top to bottom.
   37613 Assume that Willy's next animation frame will be 0
   37615 Is the set bit of the drawing byte in bit 2 or 3?
   37617 Jump if so
-  37619 Decrement the LSB of the attribute buffer address, effectively moving Willy left
+  37619 Decrement the x-coordinate
   37620 Assume that Willy's next animation frame will be 3
   37622 Is the set bit of the drawing byte in bit 4 or 5?
   37624 Jump if so
   37626 Willy's next animation frame will be 2 (the set bit of the drawing byte is in bit 6 or 7)
-  37628,4 Set Willy's animation frame at #R34258, and the LSB of his attribute buffer address at #R34259
+  37628,4 Set Willy's animation frame at #R34258, and temporarily store his x-coordinate at #R34259
   37632,7 Update Willy's pixel y-coordinate at #R34255 to account for his change of location as the rope moves
   37639 Save #REGhl briefly
-  37640 Update Willy's attribute buffer address at #R34259 to account for the rope's movement
+  37640 Update Willy's attribute buffer address at #R34259 to account for his change of location as the rope moves
   37643,1 Restore the screen buffer address of the segment of rope under consideration to #REGhl
   37644 Make a redundant jump to the next instruction
   37646,5 Draw a pixel of the rope to the screen buffer at 24576
@@ -1317,18 +1317,18 @@ D 37558 The following loop draws each segment of the rope from top to bottom.
   37670 Is it zero?
   37671 Jump if so
   37673 Copy the rope animation table entry value to #REGb; this will count the rotations of the drawing byte
-  37674 Is the rope currently swinging from left to right?
+  37674 Is the rope currently right of centre?
   37678 Jump if so
   37680 Rotate the drawing byte left once
   37684 Did that push the set bit from bit 7 into bit 0?
   37688 Jump if not
-  37690 Decrement the LSB of the attribute buffer address for this segment of rope
+  37690 Decrement the x-coordinate for the cell containing this segment of rope
   37693 Jump back until the drawing byte has been rotated as required
   37695 Jump to consider the next segment of rope
   37697 Rotate the drawing byte right once
   37701 Did that push the set bit from bit 0 into bit 7?
   37705 Jump if not
-  37707 Increment the LSB of the attribute buffer address for this segment of rope
+  37707 Increment the x-coordinate for the cell containing this segment of rope
   37710,2 Jump back until the drawing byte has been rotated as required
   37712 Pick up the segment counter
   37715 Have we drawn every segment of the rope yet?
@@ -1362,7 +1362,7 @@ D 37726 Now that the entire rope has been drawn, deal with Willy's movement alon
   37788 Compare it with the length of the rope
   37791,4 If Willy is at or above the bottom of the rope, jump to consider the next entity definition
   37795 Set the rope status indicator at #R34262 to 240 (Willy has just dropped off the bottom of the rope)
-  37797,8 Clear bits 0-2 of Willy's pixel y-coordinate at #R34255
+  37797,8 Clear bits 0-2 of Willy's pixel y-coordinate at #R34255; this rounds down his actual pixel y-coordinate to the nearest multiple of 4 (possibly moving him upwards a little)
   37805,4 Initialise the airborne status indicator at #R34257
   37809 Make a redundant jump to the next instruction
 D 37811 The current entity definition has been dealt with. Time for the next one.
