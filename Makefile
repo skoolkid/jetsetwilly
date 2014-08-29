@@ -1,4 +1,5 @@
 BUILD = build
+ASM_OPTIONS = $(ASM_OPTS)
 HTML_OPTIONS = $(HTML_OPTS)
 HTML_OPTIONS += -d $(BUILD)/html -t
 NOSETESTS27 = /usr/bin/python2.7 /usr/bin/nosetests
@@ -15,7 +16,8 @@ endif
 usage:
 	@echo "Supported targets:"
 	@echo "  usage     show this help"
-	@echo "  jsw       build the Jet Set Willy disassembly"
+	@echo "  jsw       build the Jet Set Willy HTML disassembly"
+	@echo "  jsw.asm   build the Jet Set Willy ASM disassembly"
 	@echo "  test      run tests with current Python interpreter"
 	@echo "  test2.7   run tests with Python 2.7"
 	@echo "  test3.2   run tests with Python 3.2"
@@ -27,10 +29,16 @@ usage:
 	@echo "  BUILD          directory in which to build the disassembly (default: build)"
 	@echo "  THEMES         CSS theme(s) to use"
 	@echo "  HTML_OPTS      extra options passed to skool2html.py"
+	@echo "  ASM_OPTS       options passed to skool2asm.py"
 
 .PHONY: jsw
 jsw:
 	utils/jsw2html.py $(HTML_OPTIONS)
+
+.PHONY: jsw.asm
+jsw.asm:
+	mkdir -p $(BUILD)/asm
+	utils/jsw2asm.py $(ASM_OPTIONS) > $(BUILD)/asm/jsw.asm
 
 .PHONY: write-tests
 write-tests:
