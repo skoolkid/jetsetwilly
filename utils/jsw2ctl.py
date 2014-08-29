@@ -222,6 +222,7 @@ class JetSetWilly:
                     b6_format = ',b1'
                     desc6 = 'Top/bottom pixel row (drawn either side of the shaft)'
                     desc7 = 'Unused'
+                lines.append('; @label:{}=ENTITY{}'.format(addr, num))
                 lines.append('B {},b1 {}'.format(addr, desc0))
                 lines.append('B {}{} {}'.format(addr + 1, b1_format, desc1))
                 lines.append('B {} {}'.format(addr + 2, desc2))

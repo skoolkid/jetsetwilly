@@ -8,47 +8,71 @@
 ; @start:32768
 ; @org:32768=32768
 g 32768 Room buffer
+; @label:32768=ROOMBUFFER
 D 32768 Initialised upon entry to a room by the routine at #R35068.
 S 32768,128 Room layout (used by the routines at #R35068 and #R36203)
+; @label:32896=ROOMNAME
 S 32896,32 Room name (used by the routine at #R35068)
+; @label:32928=BACKGROUND
 S 32928,9 Background tile (used by the routines at #R36147, #R36288, #R36307 and #R38430, and also by the unused routine at #R37819)
+; @label:32937=FLOOR
 S 32937,9 Floor tile (used by the routines at #R36147 and #R36288)
+; @label:32946=WALL
 S 32946,9 Wall tile (used by the routines at #R36147, #R36288, #R36307 and #R36564)
+; @label:32955=NASTY
 S 32955,9 Nasty tile (used by the routines at #R36147, #R36288, #R36307 and #R38430)
+; @label:32964=RAMP
 S 32964,9 Ramp tile (used by the routines at #R36147, #R36203, #R36564 and #R38344)
+; @label:32973=CONVEYOR
 S 32973,9 Conveyor tile (used by the routines at #R36147, #R36203 and #R36564)
+; @label:32982=CONVDIR
 S 32982,4 Conveyor definition (used by the routines at #R36564 and #R38137)
+; @label:32986=RAMPDIR
 S 32986,4 Ramp definition (used by the routines at #R36203, #R36564 and #R38344)
+; @label:32990=BORDER
 B 32990,1 Border colour (used by the routines at #R35068, #R35591, #R36307, #R37310 and #R37841)
 S 32991,2 Unused
+; @label:32993=ITEM
 S 32993,8 Item graphic (used by the routine at #R37841)
+; @label:33001=LEFT
 B 33001,1 Room to the left (used by the routine at #R38026)
+; @label:33002=RIGHT
 B 33002,1 Room to the right (used by the routine at #R38046)
+; @label:33003=ABOVE
 B 33003,1 Room above (used by the routines at #R37310 and #R38064)
+; @label:33004=BELOW
 B 33004,1 Room below (used by the routine at #R38098)
 S 33005,3 Unused
+; @label:33008=ENTITIES
 S 33008,16 Entity specifications (used by the routine at #R35068)
 g 33024 Entity buffer
+; @label:33024=ENTITYBUF
 D 33024 Initialised by the routine at #R35068, and used by the routines at #R37056 and #R37310.
 S 33024,64
 B 33088 Terminator
 s 33089
 w 33280 Screen buffer address lookup table
+; @label:33280=SBUFADDRS
 D 33280 Used by the routines at #R35914, #R37310 and #R38455. The value of the Nth entry in this lookup table is the screen buffer address for the point with pixel coordinates (x,y)=(0,N), with the origin (0,0) at the top-left corner.
 {sba_table}
 b 33536 Rope animation table
+; @label:33536=ROPEANIM
 D 33536 Used by the routine at #R37310.
 B 33536,256,16
 c 33792 The game has just loaded
+; @label:33792=BEGIN
 D 33792 After the game has loaded, this is where it all starts.
   33792 Disable interrupts
   33793,11 Place the address of the routine at #R34463 on the stack
   33804,9 Set #REGhl=34048 in a roundabout way
+; @ignoreua:33813
   33813,10 Read through addresses 34048-65535, without changing their contents; perhaps this code was once used to descramble the contents of pages 133-255, but now all it does is introduce a pause of about 0.47s before displaying the code entry screen
   33823 Make an indirect jump to #R34463
 g 33824 Current room number
+; @label:33824=ROOM
 D 33824 Initialised to 33 (#R57600(The Bathroom)) by the routine at #R34762, checked by the routines at #R35068, #R37310, #R37841, #R38196, #R38276, ,#R38298 and #R38455, and updated by the routines at #R35591, #R38026, #R38046, #R38064 and #R38098.
 b 33825 Left-right movement table
+; @label:33825=LRMOVEMENT
 D 33825 Used by the routine at #R36564. The entries in this table are used to map the existing value (V) of Willy's direction and movement flags at #R34256 to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor, or by an urge to visit the toilet).
 D 33825 One of the first four entries is used when Willy is not moving.
   33825 V=0 (facing right, no movement) + no movement: V'=0 (no change)
@@ -71,11 +95,16 @@ D 33837 One of the final four entries is used when Willy is being pulled both le
   33839 V=V'=2 (facing right, moving)
   33840 V=V'=3 (facing left, moving)
 b 33841 Triangle UDGs
+; @label:33841=TRIANGLE0
+; @label:33849=TRIANGLE1
+; @label:33857=TRIANGLE2
+; @label:33865=TRIANGLE3
 D 33841 Used by the routine at #R34762.
 D 33841 #UDGTABLE {{ #UDG33841,56(triangle0) | #UDG33849,56(triangle1) | #UDG33857,56(triangle2) | #UDG33865,56(triangle3) }} TABLE#
 t 33873 'AIR'
 D 33873 This message is not used.
 t 33876 '+++++ Press ENTER to Start +++++...'
+; @label:33876=MSG_INTRO
 D 33876 Used by the routine at #R34762.
 T 33908
 T 33942,38,B1:37
@@ -84,49 +113,69 @@ T 34024
 T 34050
 T 34100
 t 34132 'Items collected 000 Time 00:00 m'
+; @label:34132=MSG_STATUS
 D 34132 Used by the routine at #R35068.
 t 34164 'Game'
+; @label:34164=MSG_GAME
 D 34164 Used by the routine at #R35914.
 t 34168 'Over'
+; @label:34168=MSG_OVER
 D 34168 Used by the routine at #R35914.
 g 34172 Number of items collected
+; @label:34172=MSG_ITEMS
 D 34172 Initialised by the routine at #R34762, printed by the routine at #R35245, and updated by the routine at #R37841.
 T 34172
 g 34175 Current time
+; @label:34175=MSG_CURTIME
 D 34175 Initialised by the routine at #R35068, and printed and updated by the routine at #R35245.
 T 34175
 t 34181 ' 7:00a'
+; @label:34181=MSG_7AM
 D 34181 Copied by the routine at #R35068 to #R34175.
 t 34187 'Enter Code at grid location#SPACE5'
+; @label:34187=MSG_CODE1
 D 34187 Used by the routine at #R34463.
 t 34219 'Sorry, try code at location#SPACE5'
+; @label:34219=MSG_CODE2
 D 34219 Used by the routine at #R34463.
 g 34251 Minute counter
+; @label:34251=TICKS
 D 34251 Initialised by the routine at #R34762; incremented on each pass through the main loop by the routine at #R35245 (which moves the game clock forward by a minute when the counter reaches 0); reset to zero by the routine at #R38276 when Willy sticks his head down the toilet; and used by the routines at #R37841 (to cycle the colours of the items in the room), #R38196 (to determine Maria's animation frame in #R58112(Master Bedroom)) and #R38298 (to determine the animation frame for the toilet in #R57600(The Bathroom)).
 g 34252 Lives remaining
+; @label:34252=LIVES
 D 34252 Initialised to 7 by the routine at #R34762, decremented by the routine at #R35841, and used by the routines at #R35211 (when drawing the remaining lives) and #R35591 (to adjust the speed and pitch of the in-game music).
 g 34253 Screen flash counter
+; @label:34253=FLASH
 D 34253 Initialised to zero by the routine at #R34762, but never used; the code at #R35339 makes the screen flash in Manic Miner fashion if this address holds a non-zero value.
 g 34254 Kempston joystick indicator
+; @label:34254=JOYSTICK
 D 34254 Initialised by the routine at #R34762, and checked by the routines at #R36564 and #R38601. Holds 1 if a joystick is present, 0 otherwise.
 g 34255 Willy's pixel y-coordinate (x2)
+; @label:34255=PIXEL_Y
 D 34255 Initialised to 208 by the routine at #R34762, and used by the routines at #R35245, #R35591, #R36307, #R36564, #R37310, #R38064, #R38098, #R38196, #R38344 and #R38455. Holds the LSB of the address of the entry in the screen buffer address lookup table at #R33280 that corresponds to Willy's pixel y-coordinate; in practice, this is twice Willy's actual pixel y-coordinate.
 g 34256 Willy's direction and movement flags
-D 34256 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R38455 }} {{ 1 | Willy's movement flag (set=moving) | #R36564, #R37310 }} {{ 2-7 | Unused (always reset) | }} TABLE#
+; @label:34256=DMFLAGS
+D 34256 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning | =h Used by }} {{ 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R38455 }} {{ 1 | Willy's movement flag (set=moving) | #R36564, #R37310 }} {{ 2-7 | Unused (always reset) | }} TABLE#
 g 34257 Airborne status indicator
+; @label:34257=AIRBORNE
 D 34257 Initialised by the routine at #R34762, checked by the routines at #R35591 and #R38344, updated by the routines at #R37046, #R37310 and #R38064, and checked and updated by the routines at #R36307, #R36564 and #R38098. Possible values are:
-D 34257 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Willy is neither falling nor jumping }}  {{ 1 | Willy is jumping (see #R36765) }} {{ 2-11 | Willy is falling, and can land safely }} {{ 12-15 | Willy is falling, and has fallen too far to land safely (see #R36574) }} {{ 255 | Willy has collided with a nasty, an arrow, a guardian, or Maria (see #R37046) }} TABLE#
+D 34257 #TABLE(default,centre,:w) {{ =h Value | =h Meaning }} {{ 0 | Willy is neither falling nor jumping }}  {{ 1 | Willy is jumping (see #R36765) }} {{ 2-11 | Willy is falling, and can land safely }} {{ 12-15 | Willy is falling, and has fallen too far to land safely (see #R36574) }} {{ 255 | Willy has collided with a nasty, an arrow, a guardian, or Maria (see #R37046) }} TABLE#
 g 34258 Willy's animation frame
+; @label:34258=FRAME
 D 34258 Used by the routines at #R38344 and #R38455, and updated by the routines at #R35245, #R36564 and #R37310.
 g 34259 Address of Willy's location in the attribute buffer at 23552
+; @label:34259=LOCATION
 D 34259 Initialised by the routine at #R34762, and used by the routines at #R36307, #R36564, #R37310, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276, #R38344 and #R38455.
 W 34259,2
 g 34261 Jumping animation counter
+; @label:34261=JUMPING
 D 34261 Used by the routines at #R36307 and #R36564.
 g 34262 Rope status indicator
+; @label:34262=ROPE
 D 34262 Initialised by the routine at #R35068, checked by the routine at #R36307, and checked and updated by the routines at #R36564 and #R37310. Possible values are:
 D 34262 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Willy is not on the rope }} {{ 12-32 | Willy is on the rope at this distance from the top }} {{ 240-255 | Willy has just jumped or fallen off the rope }} TABLE#
 g 34263 Willy's state on entry to the room
+; @label:34263=INITSTATE
 D 34263 Initialised by the routine at #R35068, and copied back into #LINK:GameStatusBuffer#34255(34255-34261) by the routine at #R35841.
   34263 Willy's pixel y-coordinate (copied from #R34255)
   34264 Willy's direction and movement flags (copied from #R34256)
@@ -135,24 +184,32 @@ D 34263 Initialised by the routine at #R35068, and copied back into #LINK:GameSt
 W 34267 Address of Willy's location in the attribute buffer at 23552 (copied from #R34259)
   34269 Jumping animation counter (copied from #R34261)
 g 34270 256 minus the number of items remaining
+; @label:34270=ITEMS
 D 34270 Initialised by the routine at #R34762, and updated by the routine at #R37841 when an item is collected.
 g 34271 Game mode indicator
+; @label:34271=MODE
 D 34271 Initialised by the routine at #R34762, checked by the routines at #R35245, #R36564 and #R38298, and updated by the routines at #R37841, #R38196 and #R38276.
 D 34271 #TABLE(default,centre) {{ =h Value | =h Meaning }} {{ 0 | Normal }} {{ 1 | All items collected }} {{ 2 | Willy is running to the toilet }} {{ 3 | Willy's head is down the toilet }} TABLE#
 g 34272 Inactivity timer
+; @label:34272=INACTIVE
 D 34272 Initialised by the routine at #R34762, and updated by the routines at #R35245, #R35591 and #R36564.
 g 34273 In-game music note index
+; @label:34273=NOTEINDEX
 D 34273 Initialised by the routine at #R34762, used by the routine at #R35211, and updated by the routine at #R35591.
-g 34274 Sound flags
+g 34274 Music flags
+; @label:34274=MUSICFLAGS
 D 34274 The keypress flag in bit 0 is initialised by the routine at #R34762; bits 0 and 1 are checked and updated by the routine at #R35591.
-D 34274 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning }} {{ 0 | Keypress flag (set=H-ENTER being pressed, reset=no key pressed) }} {{ 1 | In-game music flag (set=music off, reset=music on) }} {{ 2-7 | Unused | }} TABLE#
+D 34274 #TABLE(default,centre,:w) {{ =h Bit(s) | =h Meaning }} {{ 0 | Keypress flag (set=H-ENTER being pressed, reset=no key pressed) }} {{ 1 | In-game music flag (set=music off, reset=music on) }} {{ 2-7 | Unused | }} TABLE#
 g 34275 WRITETYPER key counter
+; @label:34275=TELEPORT
 D 34275 Checked by the routine at #R35245, and updated by the routine at #R35591.
 g 34276 Temporary variable
+; @label:34276=TEMPVAR
 D 34276 Used by the routines at #R34499 and #R34620 to hold the entry code, by the routine at #R34762 to hold the index into the message scrolled across the screen after the theme tune has finished playing, and by the routine at #R35914 to hold the distance of the foot from the top of the screen as it descends onto Willy.
 b 34277 WRITETYPER
 D 34277 Used by the routine at #R35591.
 B 34277,b2 (no keys pressed)
+; @label:34279=WRITETYPER
 B 34279,b2 W
 B 34281,b2 R
 B 34283,b2 I
@@ -164,12 +221,15 @@ B 34293,b2 P
 B 34295,b2 E
 B 34297,b2 R
 b 34299 Title screen tune data
+; @label:34299=THEMETUNE
 D 34299 Used by the routine at #R38562.
 B 34299,100,16
 b 34399 In-game tune data
+; @label:34399=GAMETUNE
 D 34399 Used by the routine at #R35591.
 B 34399,64,16
 c 34463 Give two chances to enter a correct code
+; @label:34463=ENTERCODES
 D 34463 Used by the routine at #R33792.
   34463,13 Clear the display file and attribute file
   34476 Point #REGix at the message at #R34187 ("Enter Code at grid location#SPACE(5)")
@@ -180,6 +240,7 @@ D 34463 Used by the routine at #R33792.
   34493 Start the game if the code is correct
   34496 Otherwise reset the machine
 c 34499 Display the code entry screen
+; @label:34499=CODESCREEN
 D 34499 Used by the routine at #R34463. Displays the code entry screen and waits for a code to be entered. Returns with the zero flag set if the code entered is correct.
 R 34499 IX Address of the message to print (#R34187 or #R34219)
   34499,8 Print the message pointed to by #REGix at (8,0)
@@ -194,6 +255,7 @@ R 34499 IX Address of the message to print (#R34187 or #R34219)
   34557 Jump if so
   34559 Otherwise subtract 180; note that if the original value of the LSB of the system variable FRAMES was 142, this leaves #REGa holding 255, which is a #BUG#invalidGridLocation
   34561 Now #REGl holds either 255 or some number between 0 and 178
+; @ignoreua:34562
   34562 Point #REGhl at one of the entries in the table at #R40448 (or at 40703 if #REGl=255)
   34564 Pick up the table entry
   34565 Add #REGl to obtain the actual code
@@ -211,6 +273,7 @@ D 34599 Here we enter a loop that prints a 2x2 coloured block at (10,16), (10,19
   34616 If not, jump back to print the next one
   34618 Otherwise rewind #REGix to the location of the first coloured block
 c 34620 Read the keyboard during code entry
+; @label:34620=READCODE
 R 34620 IX Attribute file address of the flashing 2x2 block
 D 34620 Used by the routine at #R34499. Waits for '1', '2', '3', '4' or ENTER to be pressed and either prints a coloured block or validates the entered code. Returns to the routine at #R34463 if ENTER is being pressed, with the zero flag reset if the entered code is correct.
   34620,5 Read keys 1-2-3-4-5
@@ -252,6 +315,7 @@ D 34741 Exactly one of the number keys '1', '2', '3' or '4' is being pressed. #R
   34741,12 Set the colour of the 2x2 block (no longer flashing)
   34753,8 Pause for about 0.02s
 c 34762 Display the title screen and play the theme tune
+; @label:34762=TITLESCREEN
 D 34762 Used by the routines at #R34463, #R35245 and #R35914.
 D 34762 The first thing this routine does is initialise some game status buffer variables in preparation for the next game.
   34762 #REGa=0
@@ -345,6 +409,7 @@ D 34984 And finally, play the theme tune and check for keypresses.
   35063 Jump back unless we've finished scrolling the message across the screen
   35065 Jump back to prepare the screen and play the theme tune again
 c 35068 Start the game
+; @label:35068=STARTGAME
   35068,11 Initialise the time by copying the text at #R34181 (" 7:00a") to #R34175
   35079,11 Copy the attribute bytes from #R39424 to the bottom third of the screen
 D 35090 This entry point is used by the routines at #R35591 (to teleport into a room), #R35841 (to reinitialise the room after Willy has lost a life), #R38026 (when Willy has entered the room from the right), #R38046 (when Willy has entered the room from the left), #R38064 (when Willy has entered the room from below) and #R38098 (when Willy has entered the room from above).
@@ -372,6 +437,7 @@ D 35090 This entry point is used by the routines at #R35591 (to teleport into a 
   35204,4 Initialise the rope status indicator at #R34262 to 0
   35208 Enter the main loop
 c 35211 Draw the remaining lives
+; @label:35211=DRAWLIVES
   35211 Pick up the number of lives remaining from #R34252
   35214 Set #REGhl to the display file address at which to draw the first Willy sprite
   35217 Are there any lives remaining?
@@ -382,12 +448,13 @@ D 35220 The sprite-drawing loop begins.
   35222,2 Save #REGhl and #REGbc briefly
   35224 Pick up the in-game music note index from #R34273; this will determine the animation frame for the Willy sprites
   35227,5 Now #REGa=0 (frame 0), 32 (frame 1), 64 (frame 2) or 96 (frame 3)
-  35232,3 Point #REGde at the corresponding Willy sprite (at #R40192, #R40224, #R40256 or #R40288)
+  35232,3 Point #REGde at the corresponding Willy sprite (at #R40192+#REGa)
   35235 Draw the Willy sprite on the screen
   35238,2 Restore #REGhl and #REGbc
   35240,2 Move #REGhl along to the location at which to draw the next Willy sprite
   35242,2 Jump back to draw any remaining sprites
 c 35245 Main loop (1)
+; @label:35245=MAINLOOP
   35245 Draw the remaining lives
   35248,11 Copy the contents of the attribute buffer at 24064 (the attributes for the empty room) into the attribute buffer at 23552
   35259,11 Copy the contents of the screen buffer at 28672 (the tiles for the empty room) into the screen buffer at 24576
@@ -395,9 +462,11 @@ c 35245 Main loop (1)
   35273 Pick up the game mode indicator from #R34271
   35276 Is Willy's head down the toilet?
   35278 If not, move Willy
+; @label:35281=AFTERMOVE1
   35281 Pick up Willy's pixel y-coordinate from #R34255
   35284 Is it 225 or greater?
   35286 If so, move Willy into the room above
+; @label:35289=AFTERMOVE2
   35289 Pick up the game mode indicator from #R34271
   35292 Is Willy's head down the toilet?
   35294 If not, check and set the attribute bytes for Willy's sprite in the buffer at 23552
@@ -469,6 +538,7 @@ D 35499 Now check whether any non-movement keys are being pressed.
   35528,4 Are any of these keys being pressed?
   35532 Jump if not
   35534 Prepare the delay counters in #REGd and #REGe for the pause loop that follows
+; @label:35537=PAUSE
 D 35537 The following loop pauses the game until any key except A, S, D, F or G is pressed.
   35537,4 Read every half-row of keys except A-S-D-F-G
   35541,4 Are any of these keys being pressed?
@@ -482,6 +552,7 @@ D 35537 The following loop pauses the game until any key except A, S, D, F or G 
   35558 If not, cycle the INK and PAPER colours
   35561 Jump back to the beginning of the pause loop
 c 35563 Cycle the INK and PAPER colours
+; @label:35563=CYCLEATTRS
 D 35563 Used by the routines at #R34762 (while scrolling the instructions across the screen) and #R35245 (while the game is paused).
   35563 Point #REGhl at the first byte of the attribute file
   35566 Pick up this byte
@@ -499,6 +570,7 @@ D 35571 Now we loop over every byte in the attribute file.
   35585,3 Have we reached the end of the attribute file yet?
   35588,2 If not, jump back to modify the next byte
 c 35591 Main loop (2)
+; @label:35591=ENDPAUSE
 D 35591 Used by the routine at #R35245. The main entry point is used when resuming the game after it has been paused.
   35591,11 Copy the attribute bytes from #R39424 to the bottom third of the screen
   35602 Pick up the border colour for the current room from #R32990
@@ -508,7 +580,7 @@ D 35591 Used by the routine at #R35245. The main entry point is used when resumi
   35612 If so, lose a life
 D 35615 Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
   35615 Prepare #REGb for reading keys H-J-K-L-ENTER
-  35617 Point #REGhl at the sound flags at #R34274
+  35617 Point #REGhl at the music flags at #R34274
   35620 Read keys H-J-K-L-ENTER
   35622,4 Are any of these keys being pressed?
   35626,2 Jump if not
@@ -579,6 +651,7 @@ D 35735 Finally, check the WRITETYPER keys.
   35831,7 Increment the WRITETYPER key counter at #R34275
   35838 Jump back to the start of the main loop
 c 35841 Lose a life
+; @label:35841=LOSELIFE
   35841 #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
 D 35843 The following loop fills the top two thirds of the attribute file with a single value (71 TO 64 STEP -1) and makes a sound effect.
   35843,12 Fill the top two thirds of the attribute file with the value in #REGa
@@ -600,6 +673,7 @@ D 35891 Now check whether any lives remain.
   35900,11 Restore Willy's state upon entry to the room by copying the seven bytes at #R34263 back into #LINK:GameStatusBuffer#34255(34255-34261)
   35911 Reinitialise the room and resume the game
 c 35914 Display the game over sequence
+; @label:35914=GAMEOVER
   35914,13 Clear the top two-thirds of the display file
   35927,4 Initialise the temporary game status buffer variable at #R34276; this variable will determine the distance of the foot from the top of the screen
   35931,11 Draw Willy at (12,15)
@@ -647,12 +721,15 @@ D 36072 The following loop makes the "Game Over" message glisten for about 1.57s
   36142 Jump back unless it's zero
   36144 Display the title screen and play the theme tune
 c 36147 Draw the current room to the screen buffer at 28672
+; @label:36147=DRAWROOM
   36147 Fill the buffer at 24064 with attribute bytes for the current room
   36150 Point #REGix at the first byte of the attribute buffer at 24064
-  36154,5 Set the operand of the 'LD D,n' instruction at 36188 (below) to 112
+; @ignoreua:36154
+  36154,5 Set the operand of the 'LD D,n' instruction at #R36188 (below) to 112
   36159 Draw the tiles for the top half of the room to the screen buffer at 28672
   36162 Point #REGix at the 256th byte of the attribute buffer at 24064 in preparation for drawing the bottom half of the room; this instruction is redundant, since #REGix already holds 24320
-  36166,5 Set the operand of the 'LD D,n' instruction at 36188 (below) to 120
+; @ignoreua:36166
+  36166,5 Set the operand of the 'LD D,n' instruction at #R36188 (below) to 120
   36171 #REGc will count 256 tiles
 D 36173 The following loop draws 256 tiles (for either the top half or the bottom half of the room) to the screen buffer at 28672.
   36173 #REGe holds the LSB of the screen buffer address
@@ -667,6 +744,7 @@ D 36173 The following loop draws 256 tiles (for either the top half or the botto
   36198 Have we drawn 256 tiles yet?
   36199,3 If not, jump back to draw the next one
 c 36203 Fill the buffer at 24064 with attribute bytes for the current room
+; @label:36203=ROOMATTRS
 D 36203 Used by the routine at #R36147. Fills the buffer at 24064 with attribute bytes for the background, floor, wall, nasty, conveyor and ramp tiles in the current room.
   36203 Point #REGhl at the first room layout byte in the room buffer at #R32768
   36206 Point #REGix at the first byte of the attribute buffer at 24064
@@ -705,6 +783,7 @@ D 36257 And finally consider the ramp tiles (if any).
   36280 Pick up the attribute byte for the ramp tile from #R32964
   36283,4 Copy the attribute bytes for the ramp tiles into the buffer at 24064
 c 36288 Copy a room attribute byte into the buffer at 24064
+; @label:36288=ROOMATTR
 D 36288 Used by the routine at #R36203. On entry, #REGa holds a room layout byte, rotated such that the bit-pair corresponding to the tile of interest is in bits 0 and 1.
 R 36288 A Room layout byte (rotated)
 R 36288 IX Attribute buffer address (24064-24575)
@@ -714,6 +793,7 @@ R 36288 IX Attribute buffer address (24064-24575)
   36300,4 Copy the attribute byte into the buffer at 24064
   36304,2 Move #REGix along to the next byte in the attribute buffer
 c 36307 Move Willy (1)
+; @label:36307=MOVEWILLY
 D 36307 Used by the routine at #R35245. This routine deals with Willy if he's jumping or falling.
   36307 Pick up the rope status indicator from #R34262
   36310,3 Is Willy on a rope?
@@ -808,6 +888,7 @@ D 36540 The top-left or top-right cell of Willy's sprite is overlapping a wall t
   36553,5 Set the airborne status indicator at #R34257 to 2: Willy has started falling
   36558,5 Reset bit 1 at #R34256: Willy is not moving left or right
 c 36564 Move Willy (2)
+; @label:36564=MOVEWILLY2
 R 36564 HL Attribute buffer address of the left-hand cell below Willy's sprite (if Willy is not on a rope)
   36564 Initialise #REGe to 255 (all bits set); it will be used to hold keyboard and joystick readings
   36566 Pick up the rope status indicator from #R34262
@@ -994,6 +1075,7 @@ D 36942 Willy's sprite is moving right across a cell boundary. In the comments t
   37037,4 Change Willy's animation frame at #R34258 from 3 to 0
   37041,4 Save Willy's new pixel y-coordinate at #R34255
 c 37046 Kill Willy
+; @label:37046=KILLWILLY
 D 37046 Used by the routine at #R38430 when Willy hits a nasty.
   37046 Drop the return address from the stack
 D 37047 This entry point is used by the routines at #R36564 (when Willy lands after falling from too great a height), #R37310 (when an arrow or guardian hits Willy) and #R38196 (when Willy gets too close to Maria).
@@ -1001,6 +1083,7 @@ D 37047 This entry point is used by the routines at #R36564 (when Willy lands af
   37048,5 Set the airborne status indicator at #R34257 to 255 (meaning Willy has had a fatal accident)
   37053 Jump back into the main loop
 c 37056 Move the rope and guardians in the current room
+; @label:37056=MOVETHINGS
   37056 Point #REGix at the first byte of the entity buffer at #R33024
 D 37060 The entity-moving loop begins here.
   37060 Pick up the first byte of the current entity definition
@@ -1101,6 +1184,7 @@ D 37302 The current entity definition has been dealt with. Time for the next one
   37302,5 Point #REGix at the first byte of the next entity definition
   37307 Jump back to deal with it
 c 37310 Draw the rope, arrows and guardians in the current room
+; @label:37310=DRAWTHINGS
 D 37310 Used by the routine at #R35245. Draws the rope, arrows and guardians in the current room to the screen buffer at 24576.
   37310 Point #REGix at the first byte of the entity buffer at #R33024
 D 37314 The drawing loop begins here.
@@ -1278,6 +1362,7 @@ D 37811 The current entity definition has been dealt with. Time for the next one
   37811,5 Point #REGix at the first byte of the next entity definition
   37816 Jump back to deal with it
 u 37819 Unused routine
+; @label:37819=U_SETATTRS
 D 37819 This routine is not used, but if it were, it would set the ink colour for a 3x2 block of cells, maintaining the paper, bright and flash attributes of the current room background.
 R 37819 A INK colour (0-7)
 R 37819 HL Attribute file or attribute buffer address
@@ -1294,6 +1379,7 @@ C 37836,2 Move left one cell and down a row and store the attribute byte there
 C 37838,2 Move right one cell and store the attribute byte there
 C 37840
 c 37841 Draw the items in the current room and collect any that Willy is touching
+; @label:37841=DRAWITEMS
   37841 Page #R41984(164) holds the first byte of each entry in the item table
   37843 Pick up the index of the first item from #R41983
   37846 Point #REGhl at the first byte of the first entry in the item table
@@ -1338,6 +1424,7 @@ D 37970 The current item has been dealt with (skipped, collected or drawn) as ap
   37970 Point #REGhl at the first byte of the next entry in the item table
   37971,2 Jump back unless we've examined every entry
 c 37974 Draw a sprite
+; @label:37974=DRAWSPRITE
 D 37974 Used by the routines at #R34499 (to draw the number key graphics on the code entry screen), #R35211 (to draw the remaining lives), #R35914 (to draw Willy, the boot and the barrel during the game over sequence), #R37310 (to draw guardians in the current room) and #R38196 (to draw Maria in #R58112(Master Bedroom)). If #REGc=1 on entry, this routine returns with the zero flag reset if any of the set bits in the sprite being drawn collides with a set bit in the background.
 R 37974 C Drawing mode: 0 (overwrite) or 1 (blend)
 R 37974 DE Address of sprite graphic data
@@ -1370,18 +1457,21 @@ R 37974 HL Address to draw at
   38022 Jump back until all 16 rows of pixels have been drawn
   38024,1 Set the zero flag (to indicate no collision)
 c 38026 Move Willy into the room to the left
+; @label:38026=ROOMLEFT
   38026 Pick up the number of the room to the left from #R33001
   38029 Make it the current room number by copying it to #R33824
   38032,10 Adjust Willy's screen x-coordinate (at #R34259) to 30 (on the far right)
   38042 Drop the return address (#R35281, in the main loop) from the stack
   38043 Draw the room and re-enter the main loop
 c 38046 Move Willy into the room to the right
+; @label:38046=ROOMRIGHT
   38046 Pick up the number of the room to the right from #R33002
   38049 Make it the current room number by copying it to #R33824
   38052,8 Adjust Willy's screen x-coordinate (at #R34259) to 0 (on the far left)
   38060 Drop the return address (#R35281, in the main loop) from the stack
   38061 Draw the room and re-enter the main loop
 c 38064 Move Willy into the room above
+; @label:38064=ROOMABOVE
   38064 Pick up the number of the room above from #R33003
   38067 Make it the current room number by copying it to #R33824
   38070,15 Willy should now appear on the bottom floor of the room, so adjust his coordinates (at #R34259) accordingly
@@ -1390,6 +1480,7 @@ c 38064 Move Willy into the room above
   38094 Drop the return address (either #R35281 or #R35289, in the main loop) from the stack
   38095 Draw the room and re-enter the main loop
 c 38098 Move Willy into the room below
+; @label:38098=ROOMBELOW
   38098 Pick up the number of the room below from #R33004
   38101 Make it the current room number by copying it to #R33824
   38104,4 Set Willy's pixel y-coordinate (at #R34255) to 0
@@ -1401,6 +1492,7 @@ c 38098 Move Willy into the room below
   38133 Drop the return address (#R35281, in the main loop) from the stack
   38134 Draw the room and re-enter the main loop
 c 38137 Move the conveyor in the current room
+; @label:38137=MVCONVEYOR
   38137 Pick up the coordinates of the left end of the conveyor
   38140,11 Point #REGde and #REGhl at the location of the left end of the conveyor in the screen buffer at 28672
   38151 Pick up the length of the conveyor
@@ -1425,6 +1517,7 @@ D 38182 The conveyor is moving right.
   38190,4 Rotate it left twice
   38194 Jump back to update the first and third pixel rows of every conveyor tile
 c 38196 Deal with special rooms (Master Bedroom, The Bathroom)
+; @label:38196=BEDANDBATH
   38196 Pick up the number of the current room from #R33824
   38199 Are we in #R58112(Master Bedroom)?
   38201 Jump if not
@@ -1455,6 +1548,7 @@ D 38262 Willy has collected all the items, so Maria is gone.
   38269 Return if not
   38270,5 Update the game mode indicator at #R34271 to 2 (Willy is running to the toilet)
 c 38276 Check whether Willy has reached the toilet
+; @label:38276=CHKTOILET
 D 38276 Called by the routine at #R35245 when Willy is on his way to the toilet.
   38276 Pick up the number of the current room from #R33824
   38279 Are we in #R57600(The Bathroom)?
@@ -1466,6 +1560,7 @@ D 38288 Willy has reached the toilet.
   38288,4 Reset the minute counter at #R34251 to 0
   38292,5 Update the game mode indicator at #R34271 to 3 (Willy's head is down the toilet)
 c 38298 Animate the toilet in The Bathroom
+; @label:38298=DRAWTOILET
   38298 Pick up the number of the current room from #R33824
   38301 Are we in #R57600(The Bathroom)?
   38304 Pick up the minute counter from #R34251; this will determine the animation frame to use for the toilet
@@ -1476,11 +1571,13 @@ c 38298 Animate the toilet in The Bathroom
   38318 Jump if not
   38320 Now #REGe=64 or 96
   38322 Point #REGde at the sprite to use (#R42496, #R42528, #R42560 or #R42592)
+; @nowarn:38324
   38324,10 Draw the toilet at (13,28) in the screen buffer at 24576
   38334 #REGh=#REGl=7 (INK 7: PAPER 0)
   38337,6 Set the attribute bytes for the toilet in the buffer at 23552
   38303 Return if not
 c 38344 Check and set the attribute bytes for Willy's sprite in the buffer at 23552
+; @label:38344=WILLYATTRS
 D 38344 Used by the routine at #R35245. Sets the attribute bytes in the buffer at 23552 for the six cells (in three rows of two) occupied by or under Willy's sprite, or kills Willy if any of the cells contains a nasty.
   38344 Pick up Willy's coordinates in the attribute buffer at 23552 from #R34259
   38347 Initialise #REGb to 0 (in case Willy is not standing on a ramp)
@@ -1517,6 +1614,7 @@ D 38392 Now #REGb holds a y-coordinate offset of 0, 4, 8 or 12 if Willy is stand
   38425 Check and set the attribute byte for the bottom-right cell
   38428 Draw Willy to the screen buffer at 24576
 c 38430 Check and set the attribute byte for a cell occupied by Willy's sprite
+; @label:38430=WILLYATTR
 D 38430 Used by the routine at #R38344. Sets the attribute byte in the buffer at 23552 for one of the six cells (in three rows of two) occupied by or under Willy's sprite, or kills Willy if the cell contains a nasty. On entry, #REGc holds either 15 if the cell is in the top two rows, or Willy's pixel y-coordinate if the cell is in the bottom row.
 R 38430 C 15 or Willy's pixel y-coordinate
 R 38430 HL Address of the attribute byte in the buffer at 23552
@@ -1532,6 +1630,7 @@ R 38430 HL Address of the attribute byte in the buffer at 23552
   38450 Has Willy hit a nasty?
   38451,3 Kill Willy if so
 c 38455 Draw Willy to the screen buffer at 24576
+; @label:38455=DRAWWILLY
 R 38455 B y-coordinate offset (0, 4, 8 or 12)
   38455 Pick up Willy's pixel y-coordinate from #R34255
   38458 Add the y-coordinate offset (to get Willy's true pixel y-coordinate if he's standing on a ramp)
@@ -1539,11 +1638,11 @@ R 38455 B y-coordinate offset (0, 4, 8 or 12)
   38464 Pick up Willy's direction and movement flags from #R34256
   38467,4 Now #REGe=0 if Willy is facing right, or 128 if he's facing left
   38471 Pick up Willy's animation frame from #R34258
-  38474,9 Point #REGde at the sprite graphic data for Willy's current animation frame (#R40192, #R40224, #R40256, #R40288, #R40320, #R40352, #R40384 or #R40416)
+  38474,9 Point #REGde at the sprite graphic data for Willy's current animation frame (#R40192+8*#REGa)
   38483 Pick up the number of the current room from #R33824
   38486 Are we in the #R56576(The Nightmare Room)?
   38488 Jump if not
-  38490 Point #REGde at the graphic data for the flying pig sprite (#R46592, #R46624, #R46656, #R46688, #R46720, #R46752, #R46784 or #R46816)
+  38490 Point #REGde at the graphic data for the flying pig sprite (#R46592+#REGe)
   38496 There are 16 rows of pixels to copy
   38498,5 Pick up Willy's screen x-coordinate (0-31) from #R34259
   38503 Copy it to #REGc
@@ -1561,6 +1660,7 @@ D 38504 This entry point is used by the routine at #R38298 to draw the toilet in
   38524 Point #REGde at the next sprite graphic byte
   38525,2 Jump back until all 16 rows of pixels have been drawn
 c 38528 Print a message
+; @label:38528=PRINTMSG
 R 38528 IX Address of the message
 R 38528 C Length of the message
 R 38528 DE Display file address
@@ -1571,6 +1671,7 @@ R 38528 DE Display file address
   38541 Have we printed the entire message yet?
   38542,2 If not, jump back to print the next character
 c 38545 Print a single character
+; @label:38545=PRINTCHAR
 R 38545 A ASCII code of the character
 R 38545 DE Display file address
   38545,8 Point #REGhl at the bitmap for the character (in the ROM)
@@ -1578,6 +1679,7 @@ R 38545 DE Display file address
 D 38555 This entry point is used by the routine at #R34762 to draw a triangle UDG on the title screen, and by the routine at #R37841 to draw an item in the current room.
   38555,6 Copy the character bitmap (or triangle UDG, or item graphic) to the screen (or screen buffer)
 c 38562 Play the theme tune
+; @label:38562=PLAYTUNE
 D 38562 Used by the routine at #R34762. For each of the 99 bytes in the tune data table at #R34299, this routine produces two notes, each lasting approximately 0.15s; the second note is played at half the frequency of the first. Returns with the zero flag reset if ENTER, 0 or the fire button is pressed while the tune is being played.
 R 38562 HL #R34299
   38562 Pick up the next byte of tune data from the table at #R34299
@@ -1600,6 +1702,7 @@ R 38562 HL #R34299
   38598 Move #REGhl along to the next byte of tune data
   38599 Jump back to play the next batch of 100 short notes
 c 38601 Check whether ENTER, 0 or the fire button is being pressed
+; @label:38601=CHECKENTER
 D 38601 Used by the routine at #R38562. Returns with the zero flag reset if ENTER, 0 or the fire button on the joystick is being pressed.
   38601 Collect the Kempston joystick indicator from #R34254
   38604 Is the joystick connected?
@@ -1611,6 +1714,7 @@ D 38601 Used by the routine at #R38562. Returns with the zero flag reset if ENTE
   38617 Keep only bit 0 of the result (ENTER, 0)
   38619,2 Reset the zero flag if ENTER or 0 is being pressed
 c 38622 Play an intro message sound effect
+; @label:38622=INTROSOUND
 R 38622 A Value between 50 and 81
   38622 Save the value of #REGa in #REGe for later retrieval
   38623 We will output to port 254
@@ -1635,16 +1739,20 @@ C 38675 Jump if so to reset the machine
 C 38678 Otherwise jump back to read the keyboard again
 s 38680
 b 38912 Attributes for the top two-thirds of the title screen
+; @label:38912=ATTRSUPPER
 D 38912 Used by the routine at #R34762.
 B 38912,512,16
 b 39424 Attributes for the bottom third of the screen during gameplay
+; @label:39424=ATTRSLOWER
 D 39424 Used by the routines at #R35068 and #R35591.
 B 39424,256,16
 b 39680 Number key graphics
+; @label:39680=NUMBERKEYS
 D 39680 Used by the routine at #R34499.
 D 39680 #UDGTABLE {{ #UDGARRAY2,65,,2;39680;39681,121;39696;39697(number_key0) | #UDGARRAY2,66,,2;39712;39713,122;39728;39729(number_key1) | #UDGARRAY2,3,,2;39744;39745,59;39760;39761(number_key2) | #UDGARRAY2,4,,2;39776;39777,60;39792;39793(number_key3) }} TABLE#
 B 39680,128,16
 b 39808 Attributes for the code entry screen
+; @label:39808=CODEATTRS
 D 39808 Used by the routine at #R34499.
 B 39808,128,16
 u 39936 Source code remnants
@@ -1671,44 +1779,63 @@ W 39995
 B 39997
 T 39998,2,B1:1
 b 40000 Foot/barrel graphic data
+; @label:40000=FOOT
 D 40000 Used by the routine at #R35914 to display the game over sequence.
 D 40000 The foot also appears as a guardian in #R56576(The Nightmare Room).
 {foot}
+; @label:40032=BARREL
 D 40032 The barrel also appears as a guardian in #R54272(Ballroom East) and #R57856(Top Landing).
 {barrel}
 b 40064 Maria sprite graphic data
+; @label:40064=MARIA0
 D 40064 Used by the routine at #R38196 to draw Maria in #R58112(Master Bedroom).
 D 40064 Maria also appears as a guardian in #R56576(The Nightmare Room).
+; @label:40096=MARIA1
+; @label:40128=MARIA2
+; @label:40160=MARIA3
 {maria}
 b 40192 Willy sprite graphic data
+; @label:40192=WILLYR0
 D 40192 Used by the routines at #R35211 and #R38455.
+; @label:40256=WILLYR2
 {willy}
 b 40448 Codes
+; @label:40448=CODES
 D 40448 Used by the routine at #R34499.
 {codes}
 u 40627
 C 40627
 S 40704
 b 40960 Entity definitions
+; @label:40960=ENTITYDEFS
 D 40960 Used by the routine at #R35068.
 {entity_defs}
 D 41856 The next 127 bytes are unused.
 B 41856,127,8
 b 41983 Index of the first item
+; @label:41983=FIRSTITEM
 D 41983 Used by the routines at #R34762 and #R37841.
 b 41984 Item table
+; @label:41984=ITEMTABLE1
 D 41984 Used by the routines at #R34762 and #R37841.
-D 41984 The location of item N (173<=N<=255) is defined by the pair of bytes at addresses 41984+N and 42240+N. The meaning of the bits in each byte-pair is as follows:
+D 41984 The location of item N (173<=N<=255) is defined by the pair of bytes at addresses #R41984+N and #R42240+N. The meaning of the bits in each byte-pair is as follows:
 D 41984 #TABLE(default,centre) {{ =h Bit(s) | =h Meaning }} {{ 15 | Most significant bit of the y-coordinate }} {{ 14 | Collection flag (reset=collected, set=uncollected) }} {{ 8-13 | Room number }} {{ 5-7 | Least significant bits of the y-coordinate }} {{ 0-4 | x-coordinate }} TABLE#
 {item_table}
+; @label:42240=ITEMTABLE2
 b 42496 Toilet graphics
+; @label:42496=TOILET0
+; @label:42528=TOILET1
+; @label:42560=TOILET2
+; @label:42592=TOILET3
 D 42496 Used by the routine at #R38298.
 {toilet}
 u 42624
 B 42624,128,16
 S 42752
 b 43776 Guardian graphics
+; @label:43776=GUARDIANS
 D 43776 Used by the routine at #R37310.
+; @label:46592=FLYINGPIG0
 {guardians}
 {rooms}
 u 64768 Unused TRS-DOS code
