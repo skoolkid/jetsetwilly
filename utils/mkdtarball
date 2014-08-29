@@ -37,7 +37,7 @@ steps:
 
 4. Change to the directory where SkoolKit was unpacked and run this command:
 
-   $ ./skool2html.py -W jetsetwilly.JetSetWillyHtmlWriter src/jet_set_willy.ref
+  $ ./skool2html.py -W jetsetwilly.JetSetWillyHtmlWriter src/jet_set_willy.ref
 EOF
 }
 
@@ -53,85 +53,25 @@ SkoolKit can be obtained from the following locations:
   - http://pyskool.ca/?page_id=177
   - https://launchpad.net/skoolkit
 
-Before attempting to build an ASM file, follow these steps:
+The ASM disassembly can be built by following these steps:
 
 1. Download and unpack SkoolKit $SK_VERSION.
 
-2. Copy 'jetsetwilly.py' from the 'skoolkit' subdirectory in this archive to
+2. Copy 'jet_set_willy.skool' from the 'src' subdirectory in this archive to
    the directory where SkoolKit was unpacked.
 
-3. Copy the 'src' subdirectory into the directory where SkoolKit was unpacked.
+3. Change to the directory where SkoolKit was unpacked and run this command:
 
-4. Change to the directory where SkoolKit was unpacked.
+  $ ./skool2asm.py -w jet_set_willy.skool > jet_set_willy.asm
 
-SkoolKit $SK_VERSION supports the following assemblers:
-
-  - pasmo (v0.5.3)
-  - SjASMPlus (v1.07-rc7)
-  - z80asm, the assembler distributed with z88dk (v1.8)
-
-The following sections give examples of how to use each of these assemblers to
-create binary (raw memory) files or tape files that can be used with an
-emulator.
-
-pasmo
-=====
-First, create an ASM version of the disassembly:
-
-  $ ./skool2asm.py src/jet_set_willy.skool > jet_set_willy.asm
-
-Then use pasmo to create a binary file thus:
+Now jet_set_willy.asm can be assembled using pasmo (http://pasmo.speccy.org/):
 
   $ pasmo jet_set_willy.asm jet_set_willy.bin
 
 To create a TAP file from jet_set_willy.bin, use the bin2tap.py utility,
 included with SkoolKit:
 
-  $ ./bin2tap.py jet_set_willy.bin
-
-The resultant TAP file, jet_set_willy.tap, can be loaded into an emulator, and
-the game will start automatically.
-
-SjASMPlus
-=========
-First, create an ASM version of the disassembly:
-
-  $ ./skool2asm.py src/jet_set_willy.skool > jet_set_willy.asm
-
-Then create a file called jet_set_willy.sjasm with the following contents:
-
-; SjASMPlus source file for jet_set_willy.asm
-  device zxspectrum48
-  include jet_set_willy.asm
-  savebin "jet_set_willy.bin",32768,32768
-
-Run sjasmplus on this source file:
-
-  $ sjasmplus jet_set_willy.sjasm
-
-and a binary file called jet_set_willy.bin will be created. To create a TAP
-file from jet_set_willy.bin, use the bin2tap.py utility, included with
-SkoolKit:
-
-  $ ./bin2tap.py jet_set_willy.bin
-
-The resultant TAP file, jet_set_willy.tap, can be loaded into an emulator, and
-the game will start automatically.
-
-z80asm
-======
-First, create an ASM version of the disassembly:
-
-  $ ./skool2asm.py src/jet_set_willy.skool > jet_set_willy.asm
-
-Then a binary file can be created thus:
-
-  $ z80asm -r8000 -b jet_set_willy.asm
-
-To create a TAP file from this binary file, use the bin2tap.py utility,
-included with SkoolKit:
-
-  $ ./bin2tap.py jet_set_willy.bin
+  $ ./bin2tap.py -s 33792 jet_set_willy.bin
 
 The resultant TAP file, jet_set_willy.tap, can be loaded into an emulator, and
 the game will start automatically.
