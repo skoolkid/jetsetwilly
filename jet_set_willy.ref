@@ -107,6 +107,9 @@ The bed in #R58112(Master Bedroom) is actually a conveyor moving left to right, 
 { #UDG58318,41(moving_bed) }
 TABLE#
 
+[Fact:theMusicOfLife:The music of life]
+When Willy loses a life, the pitch of the notes in the in-game music decreases, and their length increases; see #R35668.
+
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
 
@@ -276,6 +279,7 @@ Annotated every byte of the entity definitions at #R40960
 Added trivia entries:
   #FACT#gameOverAt1am()
   #FACT#theMovingBed()
+  #FACT#theMusicOfLife()
 Documented bugs:
   #BUG#faultyClock()
   #BUG#selfCollectingItem()
