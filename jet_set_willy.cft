@@ -47,8 +47,16 @@ S 33005,3 Unused
 S 33008,16 Entity specifications (used by the routine at #R35068)
 g 33024 Entity buffer
 ; @label:33024=ENTITYBUF
-D 33024 Initialised by the routine at #R35068, and used by the routines at #R37056 and #R37310.
-S 33024,64
+D 33024 Initialised by the routine at #R35068, and used by the routines at #R37056 and #R37310. There are eight slots here, each one eight bytes long, used to hold the state of the entities (rope, arrows and guardians) in the current room.
+D 33024 For a horizontal guardian, the eight bytes are used as follows:
+D 33024 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ =r4 0 | Bit 7: direction (0=left, 1=right) }} {{ Bits 5-6: animation frame index }} {{ Bits 3-4: unused }} {{ Bits 0-2: entity type (001) }} {{ =r4 1 | Bits 5-7: animation frame index mask (see #R37393) }} {{ Bit 4: unused }} {{ Bit 3: BRIGHT value }} {{ Bits 0-2: INK colour }} {{ =r2 2 | Bits 5-7: base sprite index }} {{ Bits 0-4: x-coordinate }} {{ 3 | Pixel y-coordinate x2 (index into the table at #R33280) }} {{ 4 | Unused }} {{ 5 | Page containing the sprite graphic data (see #R43776) }} {{ 6 | Minimum x-coordinate }} {{ 7 | Maximum x-coordinate }} TABLE#
+D 33024 For a vertical guardian, the eight bytes are used as follows:
+D 33024 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ =r4 0 | Bit 7: unused }} {{ Bits 5-6: animation frame index }} {{ Bits 3-4: animation frame update flags (see #R37247) }} {{ Bits 0-2: entity type (010) }} {{ =r4 1 | Bits 5-7: animation frame index mask (see #R37393) }} {{ Bit 4: unused }} {{ Bit 3: BRIGHT value }} {{ Bits 0-2: INK colour }} {{ =r2 2 | Bits 5-7: base sprite index }} {{ Bits 0-4: x-coordinate }} {{ 3 | Pixel y-coordinate x2 (index into the table at #R33280) }} {{ 4 | Pixel y-coordinate increment }} {{ 5 | Page containing the sprite graphic data (see #R43776) }} {{ 6 | Minimum y-coordinate }} {{ 7 | Maximum y-coordinate }} TABLE#
+D 33024 For an arrow, the eight bytes are used as follows:
+D 33024 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ =r3 0 | Bit 7: direction (0=left, 1=right) }} {{ Bits 3-6: unused }} {{ Bits 0-2: entity type (100) }} {{ 1 | Unused }} {{ 2 | Pixel y-coordinate x2 (index into the table at #R33280) }} {{ 3 | Unused }} {{ 4 | x-coordinate }} {{ 5 | Collision detection byte (0=off, 255=on) }} {{ 6 | Top/bottom pixel row (drawn either side of the shaft) }} {{ 7 | Unused }} TABLE#
+D 33024 The rope uses the second and fourth bytes of the following slot in addition to its own; these ten bytes are used as follows:
+D 33024 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ =r3 0 | Bit 7: direction (0=left, 1=right) }} {{ Bits 3-6: unused }} {{ Bits 0-2: entity type (011) }} {{ 1 | Animation frame index }} {{ 2 | x-coordinate of the top of the rope }} {{ 3 | x-coordinate of the segment of rope being drawn }} {{ 4 | Length (32) }} {{ 5 | Segment drawing byte }} {{ 6 | Unused }} {{ 7 | Animation frame at which the rope changes direction (54) }} {{ 9 | Index of the segment of rope being drawn (0-31) }} {{ =r2 11 | Bit 7: Willy is on the rope (set), or not (reset) }} {{ Bits 0-6: unused }} TABLE#
+S 33024,64,8 Eight slots of eight bytes each
 B 33088 Terminator
 s 33089
 w 33280 Screen buffer address lookup table
