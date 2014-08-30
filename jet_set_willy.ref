@@ -91,6 +91,9 @@ Should you ever need it, the code for 'D>' is 1444.
 
 POKE #R34555(34556),180
 
+[Fact:gameOverAt1am:Game over at 1am]
+The game ends abruptly at 1am (see #R35442), even if Willy has collected all the items, or has reached his bed and is already on his way to the toilet, or already has his head down the toilet.
+
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
 
@@ -237,6 +240,7 @@ POKE #R35899,0
 
 Annotated all the #LINK:RoutinesMap(routines)
 Annotated every byte of the entity definitions at #R40960
+Added a trivia entry: #FACT#gameOverAt1am()
 Added a POKE: #POKE#dealWithMaria()
 
 [Changelog:20140807]
