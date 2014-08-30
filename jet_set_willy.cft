@@ -483,7 +483,7 @@ c 35245 Main loop (1)
   35317,11 Copy the contents of the screen buffer at 24576 to the display file
   35328 Pick up the game mode indicator from #R34271
   35331,3 Now #REGa=1 if Willy is running to the toilet or already has his head down it, 0 otherwise
-  35334,5 Set Willy's animation frame at #R34258 to 2 or 3 if Willy is running to the toilet or already has his head down it
+  35334,5 Set Willy's animation frame at #R34258 to 1 or 3 if Willy is running to the toilet or already has his head down it; this has the effect of moving Willy at twice his normal speed as he makes his way to the toilet
   35339 Pick up the screen flash counter (unused and always 0) from #R34253
   35342 Is it zero?
   35343 Jump if so (this jump is always made)
@@ -518,7 +518,7 @@ D 35410 A minute of game time has passed. Update the game clock accordingly.
   35457 Jump if not
   35459 Pick up the 'a' or 'p' of 'am/pm'
   35462 Is it 'p'?
-  35464 If so, quit the game (it's midnight)
+  35464 If so, quit the game (it's 1am)
   35467 Set the tens digit of the hour to ' ' (space)
   35471 Set the units digit of the hour to '1'
   35475,4 Change the 'a' of 'am' to 'p'
