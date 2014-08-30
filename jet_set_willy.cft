@@ -1636,7 +1636,7 @@ R 38430 HL Address of the attribute byte in the buffer at 23552
   38430 Pick up the attribute byte of the background tile in the current room from #R32928
   38433 Does this cell contain a background tile?
   38434 Jump if not
-  38436,3 Set the zero flag if we are going to retain the INK colour in this cell; this happens only if the cell is in the bottom row and Willy's pixel y-coordinate is a multiple of 16
+  38436,3 Set the zero flag if we are going to retain the INK colour in this cell; this happens only if the cell is in the bottom row and Willy's sprite is confined to the top two rows
   38439 Jump if we are going to retain the current INK colour in this cell
   38441 Pick up the attribute byte of the background tile in the current room from #R32928
   38444 Set bits 0-2, making the INK white

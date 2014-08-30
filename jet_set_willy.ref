@@ -266,6 +266,11 @@ To enable Willy to walk through (or rather, behind) guardians with impunity:
 
 POKE #R37391(37392),0
 
+[Poke:niceNasties:Nice nasties]
+To enable Willy to survive contact with nasties:
+
+POKE #R38447,201
+
 [Poke:dealWithMaria:Deal with Maria]
 To get rid of Maria entirely, leaving the bedroom free to enter without collecting any items:
 
@@ -310,6 +315,7 @@ Added POKEs:
   #POKE#dealWithMaria()
   #POKE#startInAnyRoom()
   #POKE#gentleGuardians()
+  #POKE#niceNasties()
 
 [Changelog:20140807]
 -
