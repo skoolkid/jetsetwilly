@@ -1409,9 +1409,9 @@ D 37847 The item-drawing loop begins here.
 D 37858 This item is in the current room and has not been collected yet.
   37859,9 Point #REGde at the location of the item in the attribute buffer at 23552
   37868 Pick up the item's current attribute byte
-  37869,4 Is the INK white (which can happen only if Willy is touching the item)?
+  37869,4 Is the INK white (which happens if Willy is touching the item, or the room's background tile has white INK, as in #R57088(Swimming Pool))?
   37873 Jump if not
-D 37875 Willy is touching this item, so add it to his collection.
+D 37875 Willy is touching this item (or the room's background tile has white INK), so add it to his collection.
   37875 Point #REGix at the number of items collected at #R34172
   37879 Increment a digit of the number of items collected
   37882,5 Was the digit originally '9'?

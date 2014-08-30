@@ -87,6 +87,9 @@ In particular, their partial disassemblies, bug descriptions and room format des
 [Bug:faultyClock:12:30am in the afternoon]
 The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm (instead of 12 noon), and also doesn't switch from 'pm' to 'am' at midnight.
 
+[Bug:selfCollectingItem:The self-collecting item]
+The item in #R57088(Swimming Pool) is automatically collected as soon as Willy enters the room; this is because the room's background tile has white INK, and the routine at #R37841 collects any item that is drawn on a cell with white INK. There are no other rooms whose background tile has white INK.
+
 [Bug:invalidGridLocation:Invalid grid location]
 If the LSB of the system variable FRAMES (at 23672) is 142 when the game starts, the routine at #R34499 will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
 
@@ -253,7 +256,9 @@ Annotated every byte of the entity definitions at #R40960
 Added trivia entries:
   #FACT#gameOverAt1am()
   #FACT#theMovingBed()
-Documented a bug: #BUG#faultyClock()
+Documented bugs:
+  #BUG#faultyClock()
+  #BUG#selfCollectingItem()
 Added a POKE: #POKE#dealWithMaria()
 
 [Changelog:20140807]
