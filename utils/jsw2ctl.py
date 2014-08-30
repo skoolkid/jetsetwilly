@@ -164,7 +164,7 @@ class JetSetWilly:
                     sprite_addrs.setdefault(num, set()).add(sprite_addr)
 
         lines = []
-        for num in range(112):
+        for num in range(1, 112):
             addr = 40960 + num * 8
             if num in defs:
                 room_links = self._get_room_links(sorted(defs[num]))
@@ -242,7 +242,7 @@ class JetSetWilly:
                 lines.append('B {}{} {}'.format(addr + 6, b6_format, desc6))
                 lines.append('B {} {}'.format(addr + 7, desc7))
             else:
-                lines.append('B {},8,1'.format(addr))
+                lines.append('B {},8'.format(addr))
         return '\n'.join(lines)
 
     def get_udg_table(self, addr, num, attr=56, fname=None, rows=1, animation='', delay=None):
