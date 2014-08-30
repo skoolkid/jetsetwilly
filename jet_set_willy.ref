@@ -223,6 +223,26 @@ Alternatively, to bypass the code entry screen altogether:
 
 POKE #R33796(33797),135: POKE #R33799(33800),202
 
+[Poke:startInAnyRoom:Start in any room]
+To start the game in room N (normally 33: #R57600(The Bathroom)):
+
+POKE #R34794(34795),N
+
+For a list of rooms and their numbers, see the #LINK:DataMap#49152(data map).
+
+The default start location, (13,20), may not be suitable, depending on the room chosen; to change Willy's start location to (y,x):
+
+<div>POKE #R34789(34790),y*16</div>
+<div>POKE #R34799(34800),32*(y-8*INT(y/8))+x</div>
+<div>POKE #R34799(34801),92+INT(y/8)</div>
+
+For example, to start at (6,28) in room 25 (#R55552(Cold Store)):
+
+<div>POKE 34795,25</div>
+<div>POKE 34790,96</div>
+<div>POKE 34800,220</div>
+<div>POKE 34801,92</div>
+
 [Poke:dealWithMaria:Deal with Maria]
 To get rid of Maria entirely, leaving the bedroom free to enter without collecting any items:
 
@@ -259,7 +279,9 @@ Added trivia entries:
 Documented bugs:
   #BUG#faultyClock()
   #BUG#selfCollectingItem()
-Added a POKE: #POKE#dealWithMaria()
+Added POKEs:
+  #POKE#dealWithMaria()
+  #POKE#startInAnyRoom()
 
 [Changelog:20140807]
 -
