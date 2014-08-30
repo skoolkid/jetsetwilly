@@ -84,6 +84,9 @@ This disassembly would have taken a lot longer to finish if it weren't for the r
 In particular, their partial disassemblies, bug descriptions and room format descriptions were of great help.
 </div>
 
+[Bug:faultyClock:12:30am in the afternoon]
+The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm (instead of 12 noon), and also doesn't switch from 'pm' to 'am' at midnight.
+
 [Bug:invalidGridLocation:Invalid grid location]
 If the LSB of the system variable FRAMES (at 23672) is 142 when the game starts, the routine at #R34499 will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
 
@@ -241,6 +244,7 @@ POKE #R35899,0
 Annotated all the #LINK:RoutinesMap(routines)
 Annotated every byte of the entity definitions at #R40960
 Added a trivia entry: #FACT#gameOverAt1am()
+Documented a bug: #BUG#faultyClock()
 Added a POKE: #POKE#dealWithMaria()
 
 [Changelog:20140807]
