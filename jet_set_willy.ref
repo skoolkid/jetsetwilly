@@ -117,6 +117,9 @@ TABLE#
 [Fact:theMusicOfLife:The music of life]
 When Willy loses a life, the pitch of the notes in the in-game music decreases, and their length increases; see #R35668.
 
+[Fact:takingABreak:Taking a BREAK]
+The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see #R35505). This works at any time, including when Willy is running to the toilet or already has his head down it.
+
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
 
@@ -292,6 +295,7 @@ Added trivia entries:
   #FACT#gameOverAt1am()
   #FACT#theMovingBed()
   #FACT#theMusicOfLife()
+  #FACT#takingABreak()
 Documented bugs:
   #BUG#faultyClock()
   #BUG#selfCollectingItem()
