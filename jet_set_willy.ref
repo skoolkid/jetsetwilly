@@ -253,6 +253,11 @@ For example, to start at (6,28) in room 25 (#R55552(Cold Store)):
 <div>POKE 34800,220</div>
 <div>POKE 34801,92</div>
 
+[Poke:gentleGuardians:Gentle guardians]
+To enable Willy to walk through (or rather, behind) guardians with impunity:
+
+POKE #R37391(37392),0
+
 [Poke:dealWithMaria:Deal with Maria]
 To get rid of Maria entirely, leaving the bedroom free to enter without collecting any items:
 
@@ -294,6 +299,7 @@ Documented bugs:
 Added POKEs:
   #POKE#dealWithMaria()
   #POKE#startInAnyRoom()
+  #POKE#gentleGuardians()
 
 [Changelog:20140807]
 -
