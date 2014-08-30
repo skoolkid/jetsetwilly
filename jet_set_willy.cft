@@ -805,9 +805,9 @@ D 36307 Used by the routine at #R35245. This routine deals with Willy if he's ju
   36319 Is Willy jumping?
   36321 Jump if not
 D 36323 Willy is currently jumping.
-  36323 Pick up the jumping animation counter (0-18) from #R34261
+  36323 Pick up the jumping animation counter (0-17) from #R34261
   36326 Discard bit 0
-  36328 Now -8<=#REGa<=10 (and #REGa is even)
+  36328 Now -8<=#REGa<=8 (and #REGa is even)
   36330,5 Adjust Willy's pixel y-coordinate at #R34255 depending on where Willy is in the jump
   36335 Is the new value negative (above the top of the screen)?
   36337 If so, move Willy into the room above
