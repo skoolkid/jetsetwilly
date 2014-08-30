@@ -90,6 +90,13 @@ The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm (i
 [Bug:selfCollectingItem:The self-collecting item]
 The item in #R57088(Swimming Pool) is automatically collected as soon as Willy enters the room; this is because the room's background tile has white INK, and the routine at #R37841 collects any item that is drawn on a cell with white INK. There are no other rooms whose background tile has white INK.
 
+[Bug:dontMindYourHead:Don't mind your head]
+The code at #R36828 onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in #R57600(The Bathroom) and guide Willy through it:
+
+POKE 57708,32
+
+However, the code at #R36942 onwards that moves Willy right does check for a wall tile at head height (at #R37031), so Willy (correctly) cannot move left to right through a wall tile at that position.
+
 [Bug:invalidGridLocation:Invalid grid location]
 If the LSB of the system variable FRAMES (at 23672) is 142 when the game starts, the routine at #R34499 will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
 
@@ -283,6 +290,7 @@ Added trivia entries:
 Documented bugs:
   #BUG#faultyClock()
   #BUG#selfCollectingItem()
+  #BUG#dontMindYourHead()
 Added POKEs:
   #POKE#dealWithMaria()
   #POKE#startInAnyRoom()
