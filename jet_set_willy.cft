@@ -924,7 +924,7 @@ R 36564 HL Attribute buffer address of the left-hand cell below Willy's sprite (
   36612 Save the result in #REGe
   36613 Pick up the game mode indicator (0, 1 or 2) from #R34271
   36616,3 Now #REGa=1 if Willy is running to the toilet, 0 otherwise
-  36619,2 Flip bit 0 of #REGe if Willy is running to the toilet; this forces Willy to move right
+  36619,2 Flip bit 0 of #REGe if Willy is running to the toilet, forcing him to move right (unless he's jumped onto the bed, in which case bit 0 of #REGe is now set, and Willy is immobilised; this is a #BUG#theStickyBed)
   36621,5 Read keys Q-W-E-R-T (left, right, left, right, left) into bits 0-4 of #REGa
   36626,6 Keep only bits 0-4, shift them into bits 1-5, and set bit 0
   36632,2 Merge this keyboard reading into bits 1-5 of #REGe
