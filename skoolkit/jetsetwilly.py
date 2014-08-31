@@ -36,18 +36,23 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             self.items.setdefault(room_num, []).append((x, y))
 
     def expand_room(self, text, index, cwd):
-        # #ROOMaddr[,scale][(fname)]
+        # #ROOMaddr[,scale,x,y,w,h,empty,fix][(fname)]
+        param_names = ('addr', 'scale', 'x', 'y', 'w', 'h', 'empty', 'fix')
+        defaults = (2, 0, 0, 32, 17, 0, 0)
         img_path_id = 'ScreenshotImagePath'
-        end, img_path, crop_rect, address, scale = self.parse_image_params(text, index, 2, (2,), img_path_id)
+        params = self.parse_image_params(text, index, defaults=defaults, path_id=img_path_id, names=param_names)
+        end, img_path, crop_rect, address, scale, x, y, w, h, empty, fix = params
         if img_path is None:
             room_name = ''.join([chr(b) for b in self.snapshot[address + 128:address + 160]])
             fname = room_name.strip().lower().replace(' ', '_')
             img_path = self.image_path(fname, img_path_id)
         if self.need_image(img_path):
-            self.write_image(img_path, self._get_room_udgs(address), crop_rect, scale)
+            room_udgs = self._get_room_udgs(address, empty, fix)
+            img_udgs = [room_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
+            self.write_image(img_path, img_udgs, crop_rect, scale)
         return end, self.img_element(cwd, img_path)
 
-    def _get_room_udgs(self, addr):
+    def _get_room_udgs(self, addr, empty, fix):
         # Collect block graphics
         block_graphics = []
         for a in range(addr + 160, addr + 196, 9):
@@ -67,17 +72,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         name_udgs = [Udg(70, self.font[b]) for b in self.snapshot[addr + 128:addr + 160]]
         udg_array.append(name_udgs)
 
-        # Items
-        item_udg_data = self.snapshot[addr + 225:addr + 233]
-        room_num = addr // 256 - 192
-        ink = 3
-        for x, y in self.items.get(room_num, ()):
-            attr = (udg_array[y][x].attr & 248) + ink
-            udg_array[y][x] = Udg(attr, item_udg_data)
-            ink += 1
-            if ink == 7:
-                ink = 3
-
         # Ramp
         direction, p1, p2, length = self.snapshot[addr + 218:addr + 222]
         if length:
@@ -95,16 +89,33 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         p1, p2, length = self.snapshot[addr + 215:addr + 218]
         if length:
             attr = self.snapshot[addr + 205]
-            # Simulate the 'Cell-Graphics' bug that affects conveyors
-            # http://webspace.webring.com/people/ja/andrewbroad/bugs.html
-            b = addr + 160
-            while b < addr + 205 and self.snapshot[b] != attr:
-                b += 1
+            if fix:
+                b = addr + 205
+            else:
+                # Simulate the 'Cell-Graphics' bug that affects conveyors
+                # http://webspace.webring.com/people/ja/andrewbroad/bugs.html
+                b = addr + 160
+                while b < addr + 205 and self.snapshot[b] != attr:
+                    b += 1
             conveyor_udg = Udg(attr, self.snapshot[b + 1:b + 9])
             x = p1 & 31
             y = 8 * (p2 & 1) + (p1 & 224) // 32
             for i in range(x, x + length):
                 udg_array[y][i] = conveyor_udg
+
+        if empty:
+            return udg_array
+
+        # Items
+        item_udg_data = self.snapshot[addr + 225:addr + 233]
+        room_num = addr // 256 - 192
+        ink = 3
+        for x, y in self.items.get(room_num, ()):
+            attr = (udg_array[y][x].attr & 248) + ink
+            udg_array[y][x] = Udg(attr, item_udg_data)
+            ink += 1
+            if ink == 7:
+                ink = 3
 
         # Guardians
         for a in range(addr + 240, addr + 256, 2):
