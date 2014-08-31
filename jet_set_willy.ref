@@ -95,6 +95,25 @@ To see this, use POKE #R41983,255 to make the tap in #R57600(The Bathroom) the o
 [Bug:selfCollectingItem:The self-collecting item]
 The item in #R57088(Swimming Pool) is automatically collected as soon as Willy enters the room; this is because the room's background tile has white INK, and the routine at #R37841 collects any item that is drawn on a cell with white INK. There are no other rooms whose background tile has white INK.
 
+[Bug:theInvisibleItem:The invisible item]
+There is an item in #R56320(First Landing), but you could be forgiven for not knowing because it's invisible. To give the item a shape and make it visible:
+
+POKE 56548,24: POKE 56549,24
+
+But now that the item is revealed, we can also see that it's unreachable:
+
+#PUSHS
+#POKES56548,24,2
+#ROOM56320,2,16,0,16,16(first_landing_item1)
+
+To add a ledge and open the wall to make the item reachable:
+
+POKE 56350,0: POKE 56358,0: POKE 56365,170
+
+#POKES56350,0;56358,0;56365,170
+#ROOM56320,2,16,0,16,16(first_landing_item2)
+#POPS
+
 [Bug:dontMindYourHead:Don't mind your head]
 The code at #R36828 onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in #R57600(The Bathroom) and guide Willy through it:
 
@@ -328,6 +347,7 @@ Documented bugs:
   #BUG#faultyClock()
   #BUG#theStickyBed()
   #BUG#selfCollectingItem()
+  #BUG#theInvisibleItem()
   #BUG#dontMindYourHead()
   #BUG#corruptedConveyors()
 Added POKEs:
