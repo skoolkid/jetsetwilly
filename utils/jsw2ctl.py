@@ -462,17 +462,19 @@ class JetSetWilly:
             entities = []
             for addr in range(start, a + 256, 2):
                 num, coords = self.snapshot[addr:addr + 2]
-                if num == 255:
-                    break
-                def_addr = 40960 + num * 8
+                def_addr = 40960 + (num & 127) * 8
                 entity_def = self.snapshot[def_addr:def_addr + 8]
                 guardian_type = entity_def[0] & 7
                 entities.append((num, coords, guardian_type, def_addr))
             if entities:
-                lines.append('D {} The next {} bytes specify the entities (ropes, arrows, guardians) in this room.'.format(start, addr - start))
+                lines.append('D {} The next 16 bytes specify the entities (ropes, arrows, guardians) in this room.'.format(start))
                 addr = start
                 for num, coords, guardian_type, def_addr in entities:
-                    if guardian_type == 1:
+                    if num == 0:
+                        desc = 'Nothing'
+                    elif num == 255:
+                        desc = 'Terminator'
+                    elif guardian_type == 1:
                         desc = 'Guardian no. {} (horizontal), base sprite {}, initial x={}'.format(num, coords // 32, coords & 31)
                     elif guardian_type == 2:
                         desc = 'Guardian no. {} (vertical), base sprite {}, x={}'.format(num, coords // 32, coords & 31)
