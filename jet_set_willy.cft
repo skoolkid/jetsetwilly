@@ -745,8 +745,7 @@ c 36147 Draw the current room to the screen buffer at 28672
 D 36173 The following loop draws 256 tiles (for either the top half or the bottom half of the room) to the screen buffer at 28672.
   36173 #REGe holds the LSB of the screen buffer address
   36174 Pick up an attribute byte from the buffer at 24064; this identifies the type of tile (background, floor, wall, nasty, ramp or conveyor) to be drawn
-  36177 Point #REGhl at the attribute byte of the background tile at #R32928
-  36180,5 Move #REGhl through the attribute bytes and graphic data of the background, floor, wall, nasty, ramp and conveyor tiles until we find a byte that matches the attribute byte of the tile to be drawn
+  36177,8 Move #REGhl through the attribute bytes and graphic data of the background, floor, wall, nasty, ramp and conveyor tiles starting at #R32928 until we find a byte that matches the attribute byte of the tile to be drawn; note that if a graphic data byte matches the attribute byte being searched for, the CPIR instruction can exit early, which is a #BUG#corruptedConveyors
   36185 Restore the value of the tile counter in #REGc
   36186 There are eight bytes in the tile
   36188 This instruction is set to either 'LD D,112' or 'LD D,120' above; now #REGde holds the appropriate address in the screen buffer at 28672

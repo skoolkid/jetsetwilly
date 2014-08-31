@@ -102,6 +102,19 @@ POKE 57708,32
 
 However, the code at #R36942 onwards that moves Willy right does check for a wall tile at head height (at #R37031), so Willy (correctly) cannot move left to right through a wall tile at that position.
 
+[Bug:corruptedConveyors:Corrupted conveyors]
+The conveyors in #R55296(West of Kitchen), #R56576(The Nightmare Room), #R61696(The Wine Cellar) and #R62208(Tool Shed) don't look quite as they should. The reason for this is a bug in the code at #R36177: if a graphic data byte of the background, floor, wall, nasty or ramp tile in a room matches the attribute byte of the conveyor tile to be drawn, the CPIR instruction exits early, leaving #REGhl pointing at the wrong location.
+
+Here are some 'before' and 'after' pictures showing what the conveyors actually look like and what they should look like.
+
+#UDGTABLE(gallery)
+{ #R55296(West of Kitchen) | #ROOM55296,2,21,11,7,3,1(conveyor24_before) | #ROOM55296,2,21,11,7,3,1,1(conveyor24_after) }
+{ #R56576(The Nightmare Room) | #ROOM56576,2,26,6,3,3,1(conveyor29_before.gif) | #ROOM56576,2,26,6,3,3,1,1(conveyor29_after.gif) }
+{ #R61696(The Wine Cellar) | #ROOM61696,2,26,11,7,3,1(conveyor49_before) | #ROOM61696,2,26,11,7,3,1,1(conveyor49_after) }
+{ #R62208(Tool Shed) | #ROOM62208,2,6,14,20,2,1(conveyor51_before) | #ROOM62208,2,6,14,20,2,1,1(conveyor51_after) }
+{ =t | Before | After }
+TABLE#
+
 [Bug:invalidGridLocation:Invalid grid location]
 If the LSB of the system variable FRAMES (at 23672) is 142 when the game starts, the routine at #R34499 will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
 
@@ -311,6 +324,7 @@ Documented bugs:
   #BUG#theStickyBed()
   #BUG#selfCollectingItem()
   #BUG#dontMindYourHead()
+  #BUG#corruptedConveyors()
 Added POKEs:
   #POKE#dealWithMaria()
   #POKE#startInAnyRoom()
