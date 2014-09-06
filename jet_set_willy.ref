@@ -351,6 +351,7 @@ POKE #R35899,0
 
 Annotated all the #LINK:RoutinesMap(routines)
 Annotated every byte of the entity definitions at #R40960
+Added the #LINK:Rooms(Rooms page)
 Added trivia entries:
   #FACT#gameOverAt1am()
   #FACT#theMovingBed()
