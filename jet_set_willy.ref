@@ -64,6 +64,10 @@ LinkInternalOperands=1
 119=0000445454542800
 121=00004444443C0438
 
+[Index:DataTables:Data tables and buffers]
+GameStatusBuffer
+Rooms
+
 [Index:Reference:Reference]
 Changelog
 Facts
@@ -73,6 +77,10 @@ Credits
 
 [Paths]
 Credits=reference/credits.html
+Rooms=tables/rooms.html
+
+[PageContent:Rooms]
+#CALL:rooms()
 
 [PageContent:Credits]
 <div class="box box-1">
@@ -160,7 +168,7 @@ The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see #R3550
 [Fact:writetyper:WRITETYPER]
 If you take Willy to the floor at the bottom of the staircase in #R56320(First Landing) and type the word WRITETYPER, a cheat mode is activated that enables Willy to teleport to any room (see #R35743).
 
-For example, to teleport to #R58112(Master Bedroom), hold down keys '1', '2' and '6', and then press '9' to activate the teleporter. For a list of all the rooms and their teleport codes, see the #LINK:DataMap#49152(data map).
+For example, to teleport to #R58112(Master Bedroom), hold down keys '1', '2' and '6', and then press '9' to activate the teleporter. For a list of all the rooms and their teleport codes, see the #LINK:Rooms(Rooms page).
 
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
@@ -283,7 +291,7 @@ To start the game in room N (normally 33: #R57600(The Bathroom)):
 
 POKE #R34794(34795),N
 
-For a list of rooms and their numbers, see the #LINK:DataMap#49152(data map).
+For a list of all the rooms and their numbers, see the #LINK:Rooms(Rooms page).
 
 The default start location, (13,20), may not be suitable, depending on the room chosen; to change Willy's start location to (y,x):
 

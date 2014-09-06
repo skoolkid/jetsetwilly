@@ -34,6 +34,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             x = b2 & 31
             y = 8 * (b1 >> 7) + b2 // 32
             self.items.setdefault(room_num, []).append((x, y))
+        self.room_names, self.room_names_wp = self._get_room_names()
 
     def expand_room(self, text, index, cwd):
         # #ROOMaddr[,scale,x,y,w,h,empty,fix][(fname)]
@@ -43,14 +44,54 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         params = self.parse_image_params(text, index, defaults=defaults, path_id=img_path_id, names=param_names)
         end, img_path, crop_rect, address, scale, x, y, w, h, empty, fix = params
         if img_path is None:
-            room_name = ''.join([chr(b) for b in self.snapshot[address + 128:address + 160]])
-            fname = room_name.strip().lower().replace(' ', '_')
+            room_name = self.room_names[address // 256 - 192]
+            fname = room_name.lower().replace(' ', '_')
             img_path = self.image_path(fname, img_path_id)
         if self.need_image(img_path):
             room_udgs = self._get_room_udgs(address, empty, fix)
             img_udgs = [room_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
             self.write_image(img_path, img_udgs, crop_rect, scale)
         return end, self.img_element(cwd, img_path)
+
+    def rooms(self, cwd):
+        lines = [
+            '#TABLE(default,centre,centre,,centre)',
+            '{ =h No. | =h Address | =h Name | =h Teleport }'
+        ]
+        for room_num in range(61):
+            address = 49152 + room_num * 256
+            room_name = self.room_names_wp[room_num]
+            teleport_code = self._get_teleport_code(room_num)
+            lines.append('{{ {} | #R{} | {} | {} }}'.format(room_num, address, room_name, teleport_code))
+        lines.append('TABLE#')
+        return ''.join(lines)
+
+    def _get_room_names(self):
+        rooms = {}
+        rooms_wp = {}
+        for a in range(49152, 64768, 256):
+            room_num = a // 256 - 192
+            room_name = ''.join([chr(b) for b in self.snapshot[a + 128:a + 160]]).strip()
+            room_name_wp = room_name
+            while room_name_wp.find('  ') > 0:
+                start = room_name_wp.index('  ')
+                end = start + 2
+                while room_name_wp[end] == ' ':
+                    end += 1
+                room_name_wp = '{}#SPACE({}){}'.format(room_name_wp[:start], end - start, room_name_wp[end:])
+            rooms[room_num] = room_name
+            rooms_wp[room_num] = room_name_wp
+        return rooms, rooms_wp
+
+    def _get_teleport_code(self, room_num):
+        code = ''
+        key = 1
+        while room_num:
+            if room_num & 1:
+                code += str(key)
+            room_num //= 2
+            key += 1
+        return code + '9'
 
     def _get_room_udgs(self, addr, empty, fix):
         # Collect block graphics
