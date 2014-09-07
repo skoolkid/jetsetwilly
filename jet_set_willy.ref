@@ -170,6 +170,9 @@ If you take Willy to the floor at the bottom of the staircase in #R56320(First L
 
 For example, to teleport to #R58112(Master Bedroom), hold down keys '1', '2' and '6', and then press '9' to activate the teleporter. For a list of all the rooms and their teleport codes, see the #LINK:Rooms(Rooms page).
 
+[Fact:asYouWere:As you were]
+Willy's animation frame at #R34258 and direction flag at #R34256 are not initialised before the game starts, so his animation frame and the direction he's facing at the start of a game will be whatever they were when he died in the previous game. (The first time the game starts, Willy's animation frame is 0 and he's facing right.)
+
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
 
@@ -358,6 +361,7 @@ Added trivia entries:
   #FACT#theMusicOfLife()
   #FACT#takingABreak()
   #FACT#writetyper()
+  #FACT#asYouWere()
 Documented bugs:
   #BUG#faultyClock()
   #BUG#theStickyBed()
