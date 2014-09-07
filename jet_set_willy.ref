@@ -324,6 +324,11 @@ To enable Willy to survive contact with arrows:
 
 POKE #R37505,24
 
+[Poke:noConveyors:No conveyors]
+To enable Willy to walk freely in any direction on conveyors:
+
+POKE #R36601,0
+
 [Poke:dealWithMaria:Deal with Maria]
 To get rid of Maria entirely, leaving the bedroom free to enter without collecting any items:
 
@@ -375,6 +380,7 @@ Added POKEs:
   #POKE#gentleGuardians()
   #POKE#niceNasties()
   #POKE#agreeableArrows()
+  #POKE#noConveyors()
 
 [Changelog:20140807]
 -
