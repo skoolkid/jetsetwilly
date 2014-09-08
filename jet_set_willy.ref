@@ -122,7 +122,7 @@ POKE 56350,0: POKE 56358,0: POKE 56365,170
 #ROOM56320,2,16,0,16,16(first_landing_item2)
 #POPS
 
-The official Software Projects POKE to fix this bug is
+The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix this bug is
 
 POKE #R42183,11
 
@@ -131,11 +131,20 @@ which moves the item to #R51968(The Hall) (where it is still invisible, but now 
 [Bug:theInaccessibleItems:The inaccessible items]
 The items in #R60160(Conservatory Roof) can only be collected by entering the room from the ledge on the lower left in #R59904(Under the Roof), but that ledge is unreachable.
 
-The official Software Projects POKE to fix this bug is
+The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix this bug is
 
 POKE #R56832(56876),4
 
 which makes it possible to access the right-hand side of #R58368(A bit of tree) (and from there the lower right side in #R59904(Under the Roof)) from #R56832(The Banyan Tree).
+
+[Bug:theUncollectableItem:The uncollectable item]
+The item on the far right in #R60160(Conservatory Roof) cannot be collected because there is an unavoidable nasty in the way.
+
+The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix this bug is
+
+POKE #R60160#60160(60231),0
+
+which removes the nasty next to the item.
 
 [Bug:dontMindYourHead:Don't mind your head]
 The code at #R36828 onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in #R57600(The Bathroom) and guide Willy through it:
@@ -180,7 +189,7 @@ The root cause of the bug is a misplaced arrow, defined by the entity specificat
 <li>#R41320(41322-41353): the third byte of entity definition 45 through to the second byte of entity definition 49 (set to 65); this affects the guardians in #R52480(Out on a limb), #R55808(East Wall Base), #R52224(Tree Top), #R51200(Inside the MegaTrunk), #R55040(The Kitchen) and #R55296(West of Kitchen)</li>
 </ul>
 
-The official Software Projects POKE to fix the Attic bug is
+The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix the Attic bug is
 
 POKE #R59900(59901),82
 
@@ -411,7 +420,7 @@ When it became clear that the #BUG#theAtticBug(Attic bug) was actually a bug and
 <div>POKE #R59900(59901),82</div>
 <div>POKE #R56832#56832(56876),4</div>
 
-The first POKE (#R60160#60160(60231),0) removes a nasty from #R60160(Conservatory Roof), which makes it possible to collect the otherwise uncollectable item on the far right:
+The first POKE (#R60160#60160(60231),0) removes a nasty from #R60160(Conservatory Roof), which makes it possible to collect the otherwise #BUG#theUncollectableItem(uncollectable item) on the far right:
 
 #UDGTABLE(gallery)
 { #ROOM60160,2,16,4,16,12(sp_poke1_before) | #PUSHS #POKES60231,0 #ROOM60160,2,16,4,16,12(sp_poke1_after) #POPS }
@@ -448,6 +457,7 @@ Documented bugs:
   #BUG#selfCollectingItem()
   #BUG#theInvisibleItem()
   #BUG#theInaccessibleItems()
+  #BUG#theUncollectableItem()
   #BUG#dontMindYourHead()
   #BUG#corruptedConveyors()
   #BUG#thePauseBug()
