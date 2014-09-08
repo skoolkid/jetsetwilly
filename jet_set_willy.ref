@@ -362,6 +362,13 @@ POKE #R41983,256-N (1&lt;=N&lt;=83)
 
 Exactly which N items need to be collected is determined by the item table at #R41984. When N=1, the only item that needs to be collected is the one in #R57600(The Bathroom).
 
+[Poke:cheatModeCheat:Cheat mode cheat]
+To activate the #LINK:Facts#writetyper(WRITETYPER cheat mode) immediately (without having to type WRITETYPER in #R56320(First Landing)):
+
+POKE #R34275,10
+
+For a list of all the rooms and their teleport codes, see the #LINK:Rooms(Rooms page).
+
 [Poke:moreLives:More lives]
 To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=7):
 
@@ -405,6 +412,7 @@ Added POKEs:
   #POKE#agreeableArrows()
   #POKE#harmlessHeights()
   #POKE#noConveyors()
+  #POKE#cheatModeCheat()
 
 [Changelog:20140807]
 -
