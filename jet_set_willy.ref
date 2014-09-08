@@ -122,6 +122,12 @@ POKE 56350,0: POKE 56358,0: POKE 56365,170
 #ROOM56320,2,16,0,16,16(first_landing_item2)
 #POPS
 
+The official Software Projects POKE to fix this bug is
+
+POKE #R42183,11
+
+which moves the item to #R51968(The Hall) (where it is still invisible, but now reachable).
+
 [Bug:dontMindYourHead:Don't mind your head]
 The code at #R36828 onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in #R57600(The Bathroom) and guide Willy through it:
 
@@ -368,7 +374,7 @@ POKE #R41983,256-N (1&lt;=N&lt;=83)
 Exactly which N items need to be collected is determined by the item table at #R41984. When N=1, the only item that needs to be collected is the one in #R57600(The Bathroom).
 
 [Poke:cheatModeCheat:Cheat mode cheat]
-To activate the #LINK:Facts#writetyper(WRITETYPER cheat mode) immediately (without having to type WRITETYPER in #R56320(First Landing)):
+To activate the #FACT#writetyper(WRITETYPER cheat mode) immediately (without having to type WRITETYPER in #R56320(First Landing)):
 
 POKE #R34275,10
 
@@ -387,6 +393,32 @@ POKE #R35211,201
 To give Willy infinite lives:
 
 POKE #R35899,0
+
+[Poke:theOfficialSoftwareProjectsPOKEs:The official Software Projects POKEs]
+When it became clear that the #BUG#theAtticBug(Attic bug) was actually a bug and not a feature, Software Projects published some POKEs to fix it and some other problems with the game:
+
+<div>POKE #R60160#60160(60231),0</div>
+<div>POKE #R42183,11</div>
+<div>POKE #R59900(59901),82</div>
+<div>POKE #R56832#56832(56876),4</div>
+
+The first POKE (#R60160#60160(60231),0) removes a nasty from #R60160(Conservatory Roof), which makes it possible to collect the otherwise uncollectable item on the far right:
+
+#UDGTABLE(gallery)
+{ #ROOM60160,2,16,4,16,12(sp_poke1_before) | #PUSHS #POKES60231,0 #ROOM60160,2,16,4,16,12(sp_poke1_after) #POPS }
+{ Before | After POKE #R60160#60160(60231),0 }
+TABLE#
+
+The second POKE (#R42183,11) moves the unreachable #BUG#theInvisibleItem(invisible item) at (3,26) in #R56320(First Landing) to the same coordinates in #R51968(The Hall) (where it is still invisible, but now reachable).
+
+The third POKE (#R59900(59901),82) fixes the misplaced arrow in #R59648(The Attic) by setting its pixel y-coordinate to 41.
+
+The fourth POKE (#R56832#56832(56876),4) replaces a wall block with a floor block in #R56832(The Banyan Tree), which makes it possible to access the room above (#R58368(A bit of tree)) from the right-hand side (which in turn makes it possible to reach the otherwise inaccessible items in #R60160(Conservatory Roof) via the ledge on the lower left in #R59904(Under the Roof)):
+
+#UDGTABLE(gallery)
+{ #ROOM56832,2,8,0,16,13(sp_poke4_before) | #PUSHS #POKES56876,4 #ROOM56832,2,8,0,16,13(sp_poke4_after) #POPS }
+{ Before | After POKE #R56832#56832(56876),4 }
+TABLE#
 
 [Changelog:YYYYMMDD]
 -
@@ -419,6 +451,7 @@ Added POKEs:
   #POKE#harmlessHeights()
   #POKE#noConveyors()
   #POKE#cheatModeCheat()
+  #POKE#theOfficialSoftwareProjectsPOKEs()
 
 [Changelog:20140807]
 -
