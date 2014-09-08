@@ -322,6 +322,9 @@ Entity definition 43 at #R41304 contains data but is not used.
 
 Which room might this vertical guardian have inhabited at some point while the game was being developed? We'll probably never know.
 
+[Fact:oneItemBehindAnother:One item behind another]
+There are two items in #R64000(The Beach), but they are both at the same location, so it looks as if there is only one.
+
 [Fact:emptiestRooms:The emptiest rooms]
 #R62720(Back Door) is the only room that has no items, nasties, rope, arrows or guardians.
 
@@ -463,6 +466,7 @@ Added trivia entries:
   #FACT#asYouWere()
   #FACT#guardianOrFixture()
   #FACT#unusedEntityDefinition()
+  #FACT#oneItemBehindAnother()
 Documented bugs:
   #BUG#faultyClock()
   #BUG#theStickyBed()
