@@ -128,6 +128,15 @@ POKE #R42183,11
 
 which moves the item to #R51968(The Hall) (where it is still invisible, but now reachable).
 
+[Bug:theInaccessibleItems:The inaccessible items]
+The items in #R60160(Conservatory Roof) can only be collected by entering the room from the ledge on the lower left in #R59904(Under the Roof), but that ledge is unreachable.
+
+The official Software Projects POKE to fix this bug is
+
+POKE #R56832(56876),4
+
+which makes it possible to access the right-hand side of #R58368(A bit of tree) (and from there the lower right side in #R59904(Under the Roof)) from #R56832(The Banyan Tree).
+
 [Bug:dontMindYourHead:Don't mind your head]
 The code at #R36828 onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in #R57600(The Bathroom) and guide Willy through it:
 
@@ -413,7 +422,7 @@ The second POKE (#R42183,11) moves the unreachable #BUG#theInvisibleItem(invisib
 
 The third POKE (#R59900(59901),82) fixes the misplaced arrow in #R59648(The Attic) by setting its pixel y-coordinate to 41.
 
-The fourth POKE (#R56832#56832(56876),4) replaces a wall block with a floor block in #R56832(The Banyan Tree), which makes it possible to access the room above (#R58368(A bit of tree)) from the right-hand side (which in turn makes it possible to reach the otherwise inaccessible items in #R60160(Conservatory Roof) via the ledge on the lower left in #R59904(Under the Roof)):
+The fourth POKE (#R56832#56832(56876),4) replaces a wall block with a floor block in #R56832(The Banyan Tree), which makes it possible to access the room above (#R58368(A bit of tree)) from the right-hand side (which in turn makes it possible to reach the otherwise #BUG#theInaccessibleItems(inaccessible items) in #R60160(Conservatory Roof) via the ledge on the lower left in #R59904(Under the Roof)):
 
 #UDGTABLE(gallery)
 { #ROOM56832,2,8,0,16,13(sp_poke4_before) | #PUSHS #POKES56876,4 #ROOM56832,2,8,0,16,13(sp_poke4_after) #POPS }
@@ -438,6 +447,7 @@ Documented bugs:
   #BUG#theStickyBed()
   #BUG#selfCollectingItem()
   #BUG#theInvisibleItem()
+  #BUG#theInaccessibleItems()
   #BUG#dontMindYourHead()
   #BUG#corruptedConveyors()
   #BUG#thePauseBug()
