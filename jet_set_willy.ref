@@ -341,6 +341,11 @@ To enable Willy to survive contact with arrows:
 
 POKE #R37505,24
 
+[Poke:harmlessHeights:Harmless heights]
+To enable Willy to survive a fall from any height:
+
+POKE #R36577(36578),16
+
 [Poke:noConveyors:No conveyors]
 To enable Willy to walk freely in any direction on conveyors:
 
@@ -398,6 +403,7 @@ Added POKEs:
   #POKE#gentleGuardians()
   #POKE#niceNasties()
   #POKE#agreeableArrows()
+  #POKE#harmlessHeights()
   #POKE#noConveyors()
 
 [Changelog:20140807]
