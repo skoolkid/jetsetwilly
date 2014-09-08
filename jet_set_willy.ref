@@ -149,6 +149,11 @@ Should you ever need it, the code for 'D>' is 1444.
 
 POKE #R34555(34556),180
 
+[Bug:thePauseBug:The pause bug]
+The Spectrum will hang when trying to resume the game after being paused if an Interface 1 is connected. This happens because the #REGc register holds 0 instead of 254 when the keyboard is read by the IN A,(C) instruction at #R35620.
+
+POKE #R35615,62: POKE #R35620,219: POKE #R35620(35621),254
+
 [Bug:theAtticBug:The Attic bug]
 Perhaps the most famous of all the bugs in Jet Set Willy, the Attic bug is responsible for certain rooms becoming impossible to navigate after Willy has visited #R59648(The Attic), thus making it impossible to complete the game.
 
@@ -403,6 +408,7 @@ Documented bugs:
   #BUG#theInvisibleItem()
   #BUG#dontMindYourHead()
   #BUG#corruptedConveyors()
+  #BUG#thePauseBug()
   #BUG#theAtticBug()
 Added POKEs:
   #POKE#dealWithMaria()

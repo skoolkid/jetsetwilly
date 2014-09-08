@@ -592,7 +592,7 @@ D 35591 Used by the routine at #R35245. The main entry point is used when resumi
 D 35615 Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
   35615 Prepare #REGb for reading keys H-J-K-L-ENTER
   35617 Point #REGhl at the music flags at #R34274
-  35620 Read keys H-J-K-L-ENTER
+  35620 Read keys H-J-K-L-ENTER; note that if the game has just resumed after being paused, #REGc holds 0 instead of 254, which is a #BUG#thePauseBug
   35622,4 Are any of these keys being pressed?
   35626,2 Jump if not
   35628 Were any of these keys being pressed the last time we checked?
