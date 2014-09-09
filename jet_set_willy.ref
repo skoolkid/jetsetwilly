@@ -153,6 +153,11 @@ POKE 57708,32
 
 However, the code at #R36942 onwards that moves Willy right does check for a wall tile at head height (at #R37031), so Willy (correctly) cannot move left to right through a wall tile at that position.
 
+[Bug:theBlankConveyor:The blank conveyor]
+The conveyor tile in #R60160(Conservatory Roof) is completely blank and its attribute byte is 255 - a solid, bright white block - which is characteristic of unused tiles elsewhere. However, the conveyor tile <em>is</em> used in this room, and it doesn't look good:
+
+#UDGTABLE { #ROOM60160,2,22,12,10,4(blank_conveyor) } TABLE#
+
 [Bug:corruptedConveyors:Corrupted conveyors]
 The conveyors in #R55296(West of Kitchen), #R56576(The Nightmare Room), #R61696(The Wine Cellar) and #R62208(Tool Shed) don't look quite as they should. The reason for this is a bug in the code at #R36177: if a graphic data byte of the background, floor, wall, nasty or ramp tile in a room matches the attribute byte of the conveyor tile to be drawn, the CPIR instruction exits early, leaving #REGhl pointing at the wrong location.
 
@@ -547,6 +552,7 @@ Documented bugs:
   #BUG#theInaccessibleItems()
   #BUG#theUncollectableItem()
   #BUG#dontMindYourHead()
+  #BUG#theBlankConveyor()
   #BUG#corruptedConveyors()
   #BUG#thePauseBug()
   #BUG#theAtticBug()
