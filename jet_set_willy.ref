@@ -329,6 +329,9 @@ The commonest item is the bell, which appears in #R53504(Up on the Battlements),
 
 Every other item is unique to its own room.
 
+[Fact:theEncroachingRope:The encroaching rope]
+In the entity buffer at #R33024, the definition for a rope uses the second and fourth bytes of the following definition (in addition to the eight bytes of its own slot); this means that to avoid corrupting another entity, the rope must be either the last entity specified in a room, or followed by an arrow (which doesn't use the second and fourth bytes of its slot).
+
 [Fact:guardianOrFixture:Guardian or fixture?]
 Entity 89, defined at #R41672, and appearing in #R51968(The Hall) and #R62976(West Wing), is the only guardian that does not move up, down, left or right.
 
@@ -483,6 +486,7 @@ Added trivia entries:
   #FACT#asYouWere()
   #FACT#whiteSeekingMissile()
   #FACT#commonestItem()
+  #FACT#theEncroachingRope()
   #FACT#guardianOrFixture()
   #FACT#unusedEntityDefinition()
   #FACT#oneItemBehindAnother()
