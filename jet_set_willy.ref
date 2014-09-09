@@ -363,6 +363,11 @@ To see this happen in #R64000(The Beach):
 <div>POKE #R34789(34790),128 (set Willy's initial pixel y-coordinate to 64)</div>
 <div>POKE #R34799(34800),2: POKE #R34799(34801),93 (set Willy's initial attribute buffer location)</div>
 
+[Fact:guardianColours:Guardian colours]
+The most common guardian colour is yellow (25 instances), and the least common colour is blue (2 instances, both BRIGHT, in #R54016(The Forgotten Abbey) and #R59648(The Attic)).
+
+As for the other colours, there are 18 red guardians, 20 magenta guardians, 19 green guardians, 18 cyan guardians, and 7 white guardians; there are no black guardians anywhere.
+
 [Fact:guardiansNeedAClearPath:Guardians need a clear path]
 The guardian-drawing code at #R37334 kills Willy if a guardian collides with anything that's already been drawn in the room. This means, for example, that Willy is killed if a guardian hits a nasty, a wall or the floor.
 
@@ -544,6 +549,7 @@ Added trivia entries:
   #FACT#commonestItem()
   #FACT#theEncroachingRope()
   #FACT#ropesBeforeArrows()
+  #FACT#guardianColours()
   #FACT#guardiansNeedAClearPath()
   #FACT#guardianOrFixture()
   #FACT#unusedEntityDefinition()
