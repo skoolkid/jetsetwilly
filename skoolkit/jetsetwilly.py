@@ -66,6 +66,15 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         lines.append('TABLE#')
         return ''.join(lines)
 
+    def aeroplane(self, cwd):
+        img_path = self.image_path('aeroplane.gif', 'ScreenshotImagePath')
+        if self.need_image(img_path):
+            nomen_luni = self._get_room_udgs(61440, 1)[:-1]
+            under_the_roof = self._get_room_udgs(59904, 1)[:-1]
+            udgs = nomen_luni + under_the_roof
+            self.write_image(img_path, udgs, scale=1)
+        return self.img_element(cwd, img_path)
+
     def _get_room_names(self):
         rooms = {}
         rooms_wp = {}
@@ -93,7 +102,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             key += 1
         return code + '9'
 
-    def _get_room_udgs(self, addr, empty, fix):
+    def _get_room_udgs(self, addr, empty=0, fix=0):
         # Collect block graphics
         block_graphics = []
         for a in range(addr + 160, addr + 196, 9):

@@ -363,6 +363,13 @@ Which room might this vertical guardian have inhabited at some point while the g
 [Fact:oneItemBehindAnother:One item behind another]
 There are two items in #R64000(The Beach), but they are both at the same location, so it looks as if there is only one.
 
+[Fact:nomenLuni:Nomen Luni?]
+The name of the room #R61440(Nomen Luni) is a pun on 'Nomen Ludi', a Latin translation of 'The Name of the Game', which appeared in adverts for the aeroplane shoot-em-up game <a class="link" href="http://www.worldofspectrum.org/infoseekid.cgi?id=0005894">Zzoom</a> by Imagine Software Ltd.
+
+In #R61440(Nomen Luni) and the room below (#R59904(Under the Roof)) you can see an aeroplane that has crashed into the roof of Willy's mansion:
+
+#UDGTABLE { #CALL:aeroplane() } TABLE#
+
 [Fact:emptiestRooms:The emptiest rooms]
 #R62720(Back Door) is the only room that has no items, nasties, rope, arrows or guardians.
 
@@ -510,6 +517,7 @@ Added trivia entries:
   #FACT#guardianOrFixture()
   #FACT#unusedEntityDefinition()
   #FACT#oneItemBehindAnother()
+  #FACT#nomenLuni()
 Documented bugs:
   #BUG#faultyClock()
   #BUG#theStickyBed()
