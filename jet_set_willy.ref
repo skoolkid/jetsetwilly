@@ -373,6 +373,9 @@ In #R61440(Nomen Luni) and the room below (#R59904(Under the Roof)) you can see 
 [Fact:weMustPerformAQuirkafleeg:We must perform a Quirkafleeg?]
 The name of the room #R53248(We must perform a Quirkafleeg) is a reference to issue 5 of the comic book <i>The Adventures of Fat Freddy's Cat</i>, in which the inhabitants of Pootweet, upon seeing a suitcase full of dead mice, exclaim 'We must perform a Quirkafleeg!' and promptly lie down on their backs and start waving their arms and legs in the air.
 
+[Fact:rescueEsmerelda:Rescue Esmerelda?]
+The sequence of rooms #R53504(Up on the Battlements), #R53248(We must perform a Quirkafleeg), #R52992(I'm sure I've seen this before..) and #R52736(Rescue Esmerelda) - with the guards, battlements, rope, bells and Esmerelda - are a reference to <a class="link" href="http://www.worldofspectrum.org/infoseekid.cgi?id=0002383">Hunchback</a> by Ocean Software Ltd.
+
 [Fact:emptiestRooms:The emptiest rooms]
 #R62720(Back Door) is the only room that has no items, nasties, rope, arrows or guardians.
 
@@ -522,6 +525,7 @@ Added trivia entries:
   #FACT#oneItemBehindAnother()
   #FACT#nomenLuni()
   #FACT#weMustPerformAQuirkafleeg()
+  #FACT#rescueEsmerelda()
 Documented bugs:
   #BUG#faultyClock()
   #BUG#theStickyBed()
