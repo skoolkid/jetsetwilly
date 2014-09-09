@@ -242,6 +242,13 @@ The wall tile in #R62976(West Wing) is very similar to the beer mug item in #R56
 { #R56576(The Nightmare Room) item | #UDG56801,3(item29) }
 TABLE#
 
+[Fact:dangerousConnections:Dangerous connections]
+There are several places in Willy's mansion where it is obvious that he is in danger of falling from a great height and entering an infinite death loop. However, there are also some places where it is far from obvious that merely moving from one room to another will lead to an infinite death loop.
+
+For example, the room below #R50432(The Security Guard) is #R50688(Entrance to Hades), from which there is no escape.
+
+For another example, the room above #R59392(Dr Jones will never believe this) is #R53248(We must perform a Quirkafleeg), where the long row of nasties at the bottom of the pit ensures certain (repeated) death.
+
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
 
@@ -533,6 +540,7 @@ Added trivia entries:
   #FACT#asYouWere()
   #FACT#whiteSeekingMissile()
   #FACT#beerInTheWall()
+  #FACT#dangerousConnections()
   #FACT#commonestItem()
   #FACT#theEncroachingRope()
   #FACT#ropesBeforeArrows()
