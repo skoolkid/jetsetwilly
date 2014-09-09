@@ -349,6 +349,9 @@ The commonest item is the bell, which appears in #R53504(Up on the Battlements),
 
 Every other item is unique to its own room.
 
+[Fact:commonestCodes:Commonest codes]
+The commonest codes on the code sheet are 2411 (at H7, O7, R7 and C9) and 3443 (at O3, D6, L8 and R8).
+
 [Fact:theEncroachingRope:The encroaching rope]
 In the entity buffer at #R33024, the definition for a rope uses the second and fourth bytes of the following definition (in addition to the eight bytes of its own slot); this means that to avoid corrupting another entity, the rope must be either the last entity specified in a room, or followed by an arrow (which doesn't use the second and fourth bytes of its slot).
 
@@ -547,6 +550,7 @@ Added trivia entries:
   #FACT#beerInTheWall()
   #FACT#dangerousConnections()
   #FACT#commonestItem()
+  #FACT#commonestCodes()
   #FACT#theEncroachingRope()
   #FACT#ropesBeforeArrows()
   #FACT#guardianColours()
