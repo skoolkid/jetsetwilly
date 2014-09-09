@@ -343,6 +343,13 @@ To see this happen in #R64000(The Beach):
 <div>POKE #R34789(34790),128 (set Willy's initial pixel y-coordinate to 64)</div>
 <div>POKE #R34799(34800),2: POKE #R34799(34801),93 (set Willy's initial attribute buffer location)</div>
 
+[Fact:guardiansNeedAClearPath:Guardians need a clear path]
+The guardian-drawing code at #R37334 kills Willy if a guardian collides with anything that's already been drawn in the room. This means, for example, that Willy is killed if a guardian hits a nasty, a wall or the floor.
+
+See this happen by placing a wall block in the path of the guardian in #R57600(The Bathroom):
+
+POKE #R57600#57600(57635),128
+
 [Fact:guardianOrFixture:Guardian or fixture?]
 Entity 89, defined at #R41672, and appearing in #R51968(The Hall) and #R62976(West Wing), is the only guardian that does not move up, down, left or right.
 
@@ -499,6 +506,7 @@ Added trivia entries:
   #FACT#commonestItem()
   #FACT#theEncroachingRope()
   #FACT#ropesBeforeArrows()
+  #FACT#guardiansNeedAClearPath()
   #FACT#guardianOrFixture()
   #FACT#unusedEntityDefinition()
   #FACT#oneItemBehindAnother()
