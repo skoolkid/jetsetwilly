@@ -370,6 +370,9 @@ In #R61440(Nomen Luni) and the room below (#R59904(Under the Roof)) you can see 
 
 #UDGTABLE { #CALL:aeroplane() } TABLE#
 
+[Fact:weMustPerformAQuirkafleeg:We must perform a Quirkafleeg?]
+The name of the room #R53248(We must perform a Quirkafleeg) is a reference to issue 5 of the comic book <i>The Adventures of Fat Freddy's Cat</i>, in which the inhabitants of Pootweet, upon seeing a suitcase full of dead mice, exclaim 'We must perform a Quirkafleeg!' and promptly lie down on their backs and start waving their arms and legs in the air.
+
 [Fact:emptiestRooms:The emptiest rooms]
 #R62720(Back Door) is the only room that has no items, nasties, rope, arrows or guardians.
 
@@ -518,6 +521,7 @@ Added trivia entries:
   #FACT#unusedEntityDefinition()
   #FACT#oneItemBehindAnother()
   #FACT#nomenLuni()
+  #FACT#weMustPerformAQuirkafleeg()
 Documented bugs:
   #BUG#faultyClock()
   #BUG#theStickyBed()
