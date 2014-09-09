@@ -322,6 +322,13 @@ The commonest guardian is the bird, whose graphic data lives at #R48128.
 
 There are 23 instances of this guardian spread over 18 rooms: four in #R50176(The Drive), two in each of #R49408(The Bridge) and #R51200(Inside the MegaTrunk), and one in each of #R51968(The Hall), #R52224(Tree Top), #R52480(Out on a limb), #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..), #R53248(We must perform a Quirkafleeg), #R54272(Ballroom East), #R54784(To the Kitchens Main Stairway), #R58368(A bit of tree), #R58880(Priests' Hole), #R60672(Under the Drive), #R61440(Nomen Luni), #R61952(Watch Tower), #R62976(West  Wing) and #R63488(West Wing Roof).
 
+[Fact:commonestItem:Commonest item]
+The commonest item is the bell, which appears in #R53504(Up on the Battlements), #R53248(We must perform a Quirkafleeg) and #R52992(I'm sure I've seen this before..).
+
+#UDGTABLE { #UDG53217,11(item15) } TABLE#
+
+Every other item is unique to its own room.
+
 [Fact:guardianOrFixture:Guardian or fixture?]
 Entity 89, defined at #R41672, and appearing in #R51968(The Hall) and #R62976(West Wing), is the only guardian that does not move up, down, left or right.
 
@@ -475,6 +482,7 @@ Added trivia entries:
   #FACT#writetyper()
   #FACT#asYouWere()
   #FACT#whiteSeekingMissile()
+  #FACT#commonestItem()
   #FACT#guardianOrFixture()
   #FACT#unusedEntityDefinition()
   #FACT#oneItemBehindAnother()
