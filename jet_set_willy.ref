@@ -219,6 +219,16 @@ For example, to teleport to #R58112(Master Bedroom), hold down keys '1', '2' and
 [Fact:asYouWere:As you were]
 Willy's animation frame at #R34258 and direction flag at #R34256 are not initialised before the game starts, so his animation frame and the direction he's facing at the start of a game will be whatever they were when he died in the previous game. (The first time the game starts, Willy's animation frame is 0 and he's facing right.)
 
+[Fact:whiteSeekingMissile:White-seeking missile]
+The routine at #R37310, when drawing an arrow, kills Willy if the arrow hits anything with white INK; this means, for example, that Willy would be killed if the arrow hits a white rope. It is no coincidence, then, that in the rooms that have both a rope and an arrow (#R53248(We must perform a Quirkafleeg), #R53760(On the Roof) and #R64000(The Beach)), the rope is not white.
+
+To see Willy die when the arrow hits the rope in #R64000(The Beach):
+
+<div>POKE #R34794(34795),58 (start in #R64000(The Beach))</div>
+<div>POKE #R64160,15 (set the INK of the room's background tile to white)</div>
+<div>POKE #R34789(34790),128 (set Willy's initial pixel y-coordinate to 64)</div>
+<div>POKE #R34799(34800),2: POKE #R34799(34801),93 (set Willy's initial attribute buffer location)</div>
+
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
 
@@ -464,6 +474,7 @@ Added trivia entries:
   #FACT#takingABreak()
   #FACT#writetyper()
   #FACT#asYouWere()
+  #FACT#whiteSeekingMissile()
   #FACT#guardianOrFixture()
   #FACT#unusedEntityDefinition()
   #FACT#oneItemBehindAnother()
