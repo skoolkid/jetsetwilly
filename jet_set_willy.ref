@@ -332,6 +332,17 @@ Every other item is unique to its own room.
 [Fact:theEncroachingRope:The encroaching rope]
 In the entity buffer at #R33024, the definition for a rope uses the second and fourth bytes of the following definition (in addition to the eight bytes of its own slot); this means that to avoid corrupting another entity, the rope must be either the last entity specified in a room, or followed by an arrow (which doesn't use the second and fourth bytes of its slot).
 
+[Fact:ropesBeforeArrows:Ropes before arrows]
+The rope-drawing code at #R37540 places Willy on the rope if it is touching anything else (Willy or otherwise) that's already been drawn. This means, for example, that if an arrow is drawn before the rope (by appearing before it in the room's entity specifications), Willy will be immediately transported onto the rope when the arrow hits it.
+
+To see this happen in #R64000(The Beach):
+
+<div>POKE #R34794(34795),58 (start in #R64000(The Beach))</div>
+<div>POKE #R64240,60: POKE #R64240(64241),84 (entity specification for the arrow)</div>
+<div>POKE #R64242,1: POKE #R64242(64243),14 (entity specification for the rope)</div>
+<div>POKE #R34789(34790),128 (set Willy's initial pixel y-coordinate to 64)</div>
+<div>POKE #R34799(34800),2: POKE #R34799(34801),93 (set Willy's initial attribute buffer location)</div>
+
 [Fact:guardianOrFixture:Guardian or fixture?]
 Entity 89, defined at #R41672, and appearing in #R51968(The Hall) and #R62976(West Wing), is the only guardian that does not move up, down, left or right.
 
@@ -487,6 +498,7 @@ Added trivia entries:
   #FACT#whiteSeekingMissile()
   #FACT#commonestItem()
   #FACT#theEncroachingRope()
+  #FACT#ropesBeforeArrows()
   #FACT#guardianOrFixture()
   #FACT#unusedEntityDefinition()
   #FACT#oneItemBehindAnother()
