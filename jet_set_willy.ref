@@ -400,6 +400,9 @@ There are two items in #R64000(The Beach), but they are both at the same locatio
 [Fact:slipperySlopes:Slippery slopes]
 In #R56064(The Chapel) and #R57344(Halfway up the East Wall), the ramps act as conveyors that push Willy down the slope, because the ramp tile has the same attribute byte as the conveyor tile (which is not actually used in either room). There are no conveyor-ramps anywhere else in the game.
 
+[Fact:toPauseOrNotToPause:To pause or not to pause]
+If the in-game music has been switched off, the game will pause automatically after a period of inactivity; however, if the in-game music is playing, it will not (see #R35644).
+
 [Fact:cheatsNeverCycleColours:Cheats never cycle colours]
 While the game is paused, the INK and PAPER colours are cycled at regular intervals, unless the #FACT#writetyper(WRITETYPER cheat mode) has been activated (see #R35553).
 
@@ -570,6 +573,7 @@ Added trivia entries:
   #FACT#untouchableEntityDefinition()
   #FACT#oneItemBehindAnother()
   #FACT#slipperySlopes()
+  #FACT#toPauseOrNotToPause()
   #FACT#cheatsNeverCycleColours()
   #FACT#nomenLuni()
   #FACT#weMustPerformAQuirkafleeg()
