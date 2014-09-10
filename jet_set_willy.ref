@@ -400,6 +400,9 @@ There are two items in #R64000(The Beach), but they are both at the same locatio
 [Fact:slipperySlopes:Slippery slopes]
 In #R56064(The Chapel) and #R57344(Halfway up the East Wall), the ramps act as conveyors that push Willy down the slope, because the ramp tile has the same attribute byte as the conveyor tile (which is not actually used in either room). There are no conveyor-ramps anywhere else in the game.
 
+[Fact:cheatsNeverCycleColours:Cheats never cycle colours]
+While the game is paused, the INK and PAPER colours are cycled at regular intervals, unless the #FACT#writetyper(WRITETYPER cheat mode) has been activated (see #R35553).
+
 [Fact:nomenLuni:Nomen Luni?]
 The name of the room #R61440(Nomen Luni) is a pun on 'Nomen Ludi', a Latin translation of 'The Name of the Game', which appeared in adverts for the aeroplane shoot-em-up game <a class="link" href="http://www.worldofspectrum.org/infoseekid.cgi?id=0005894">Zzoom</a> by Imagine Software Ltd.
 
@@ -567,6 +570,7 @@ Added trivia entries:
   #FACT#untouchableEntityDefinition()
   #FACT#oneItemBehindAnother()
   #FACT#slipperySlopes()
+  #FACT#cheatsNeverCycleColours()
   #FACT#nomenLuni()
   #FACT#weMustPerformAQuirkafleeg()
   #FACT#rescueEsmerelda()
