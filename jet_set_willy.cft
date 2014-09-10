@@ -1511,9 +1511,9 @@ c 38098 Move Willy into the room below
   38101 Make it the current room number by copying it to #R33824
   38104,4 Set Willy's pixel y-coordinate (at #R34255) to 0
   38108 Pick up the airborne status indicator from #R34257
-  38111 Is it 11 or greater?
+  38111 Is it 11 or greater (meaning Willy has already been falling for a while)?
   38113 Jump if so
-  38115,5 Otherwise set the airborne status indicator to 2
+  38115,5 Otherwise set the airborne status indicator to 2 (Willy will start falling here if there's no floor beneath him)
   38120,13 Willy should now appear at the top of the room, so adjust his coordinates (at #R34259) accordingly
   38133 Drop the return address (#R35281, in the main loop) from the stack
   38134 Draw the room and re-enter the main loop
