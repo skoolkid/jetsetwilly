@@ -1840,6 +1840,7 @@ B 40960,8
 {entity_defs}
 D 41856 The next 15 entity definitions (112-126) are unused.
 B 41856,120,8
+; @label:41976=ENTITY127
 D 41976 The following entity definition (127) - whose eighth byte is at #R41983 - is copied into the entity buffer at #R33024 for any entity specification whose first byte is 127 or 255; the first byte of the definition (255) serves to terminate the entity buffer.
 B 41976,7
 b 41983 Index of the first item
