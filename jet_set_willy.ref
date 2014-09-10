@@ -69,6 +69,7 @@ Rooms
 
 [Index:Reference:Reference]
 Changelog
+Glossary
 Facts
 Bugs
 Pokes
@@ -90,6 +91,27 @@ This disassembly would have taken a lot longer to finish if it weren't for the r
 </ul>
 In particular, their partial disassemblies, bug descriptions and room format descriptions were of great help.
 </div>
+
+[Glossary:Entity]
+A guardian, arrow or rope.
+
+[Glossary:Entity definition]
+One of the 128 8-byte blocks located at #R40960 onwards. Each one defines the location and movement characteristics of a guardian, arrow or rope.
+
+[Glossary:Entity specification]
+One of the eight pairs of bytes at the end of a room definition (e.g. at #R53488). Each one specifies a guardian, arrow or rope present in the room.
+
+[Glossary:Guardian]
+An inhabitant of a room that continuously moves left and right (horizontal guardian) or up and down (vertical guardian) in a straight line, or #FACT#guardianOrFixture(stays still). Contact with a guardian is fatal. The graphic data for all the guardians in the game can be found at #R43776.
+
+[Glossary:Nasty]
+An immobile object drawn in a single cell as part of a room along with the background, walls, floors, ramp and conveyor. Contact with a nasty is fatal. Some examples are:
+
+#UDGTABLE(gallery)
+{ #R51968(The Hall)        | #UDG52156,68(nasty11) }
+{ #R55552(Cold Store)      | #UDG55740,79(nasty25) }
+{ #R61696(The Wine Cellar) | #UDG61884,70(nasty49) }
+TABLE#
 
 [Bug:faultyClock:12:30am in the afternoon]
 The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm (instead of 12 noon), and also doesn't switch from 'pm' to 'am' at midnight.
