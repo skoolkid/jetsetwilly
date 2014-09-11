@@ -66,6 +66,7 @@ LinkInternalOperands=1
 [Index:DataTables:Data tables and buffers]
 GameStatusBuffer
 Rooms
+Items
 Codes
 
 [Index:Reference:Reference]
@@ -82,6 +83,9 @@ Rooms=tables/rooms.html
 
 [PageContent:Rooms]
 #CALL:rooms()
+
+[Page:Items]
+Content=asm/41984.html
 
 [Page:Codes]
 Content=asm/40448.html
