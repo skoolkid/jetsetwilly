@@ -48,6 +48,7 @@ Copying ../resources/jet_set_willy.css to {odir}/jet_set_willy/jet_set_willy.css
   Writing jet_set_willy/reference/changelog.html
   Writing jet_set_willy/reference/bugs.html
   Writing jet_set_willy/reference/facts.html
+  Writing jet_set_willy/reference/glossary.html
   Writing jet_set_willy/reference/pokes.html
   Writing jet_set_willy/index.html"""
 
