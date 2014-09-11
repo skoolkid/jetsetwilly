@@ -385,6 +385,9 @@ Every other item is unique to its own room.
 [Fact:commonestCodes:Commonest codes]
 The commonest codes on the code sheet are 2411 (at H7, O7, R7 and C9) and 3443 (at O3, D6, L8 and R8).
 
+[Fact:mariasDodgyDepthPerception:Maria's dodgy depth perception]
+Whether Maria raises her arm at Willy in #R58112(Master Bedroom) depends on his height above floor level, as opposed to his distance away from her (see the code at #R38224); this means that she raises her arm not only as Willy walks up the ramp towards her, but also if he jumps in the air at the entrance to the room.
+
 [Fact:ropeClimbingForBeginners:Rope climbing for beginners]
 In order to climb down a rope, Willy must move in the same direction as the rope is swinging (left if the rope is swinging right to left, right if the rope is swinging left to right); to climb up a rope, he must move in the opposite direction (see #R37756).
 
@@ -596,6 +599,7 @@ Added trivia entries:
   #FACT#dangerousConnections()
   #FACT#commonestItem()
   #FACT#commonestCodes()
+  #FACT#mariasDodgyDepthPerception()
   #FACT#ropeClimbingForBeginners()
   #FACT#theEncroachingRope()
   #FACT#ropesBeforeArrows()
