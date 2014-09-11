@@ -585,7 +585,7 @@ The fourth POKE (#R56832#56832(56876),4) replaces a wall block with a floor bloc
 TABLE#
 
 [Changelog:YYYYMMDD]
--
+The disassembly is now 'complete'.
 
 Annotated all the #LINK:RoutinesMap(routines)
 Annotated every byte of the entity definitions at #R40960
