@@ -161,6 +161,9 @@ class JetSetWilly:
                 guardian_type = guardian_def[0] & 7
                 if guardian_type & 3 in (1, 2):
                     sprite_addr = 256 * guardian_def[5] + (start & 224)
+                    if sprite_addr == 46336:
+                        # Use frame 2 instead of frame 0 for the saw sprite
+                        sprite_addr = 46400
                     sprite_addrs.setdefault(num, set()).add(sprite_addr)
 
         lines = []
