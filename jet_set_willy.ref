@@ -67,6 +67,7 @@ LinkInternalOperands=1
 GameStatusBuffer
 Rooms
 Items
+Entity definitions
 Codes
 
 [Index:Reference:Reference]
@@ -86,6 +87,9 @@ Rooms=tables/rooms.html
 
 [Page:Items]
 Content=asm/41984.html
+
+[Page:Entity definitions]
+Content=asm/40960.html
 
 [Page:Codes]
 Content=asm/40448.html
