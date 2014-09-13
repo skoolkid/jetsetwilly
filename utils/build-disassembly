@@ -1,6 +1,9 @@
 #!/bin/bash -e
 
-D_VERSIONS=(20140807)
+D_VERSIONS=(
+  20140913
+  20140807
+)
 
 declare -A SK_VERSIONS
 SK_VERSIONS=(
@@ -60,13 +63,31 @@ tar xf $SKOOLKIT_ARCHIVE/$SK_DIR.tar.*
 SK_BUILD_DIR=${SK_DIR}-build
 mv $SK_DIR $SK_BUILD_DIR
 
-if [ $D_VERSION -ge 20140807 ]; then
+HTML_OPTS=""
+if [ $D_VERSION -ge 20140913 ]; then
+  if [ -z "$DISASSEMBLY_ARCHIVE" ]; then
+      echo 'DISASSEMBLY_ARCHIVE is not set; aborting'
+      exit 1
+  fi
+  if [ ! -d "$DISASSEMBLY_ARCHIVE" ]; then
+      echo "DISASSEMBLY_ARCHIVE=$DISASSEMBLY_ARCHIVE: directory not found"
+      exit 1
+  fi
+  D_DIR=jsw-disassembly-$D_VERSION
+  tar xf $DISASSEMBLY_ARCHIVE/$D_DIR.tar.xz
+  cd $SK_BUILD_DIR
+  cp -p ../$D_DIR/src/jet_set_willy* .
+  cp -p ../$D_DIR/skoolkit/jetsetwilly.py .
+  HTML_OPTS="-W jetsetwilly.JetSetWillyHtmlWriter"
+elif [ $D_VERSION -eq 20140807 ]; then
   wget https://github.com/skoolkid/jetsetwilly/archive/${D_VERSION}.tar.gz -O - | tar xzf -
   D_DIR=jetsetwilly-$D_VERSION
   cd $SK_BUILD_DIR
   ../$D_DIR/utils/jsw2ctl.py $JSWZ80 > jet_set_willy.ctl
   cp -a ../$D_DIR/jet_set_willy.ref .
   cp -a ../$D_DIR/resources/jet_set_willy*.css .
+  ./sna2skool.py -c jet_set_willy.ctl $JSWZ80 > jet_set_willy.skool
+  cp -p ../$D_DIR/skoolkit/jetsetwilly.py skoolkit
 else
   D_SK_VERSION=${SK_VERSIONS[$D_VERSION]}
   if [ -z "$D_SK_VERSION" ]; then
@@ -85,12 +106,11 @@ else
   mv examples examples-$SK_VERSION
   mkdir examples
   cp -a jet_set_willy*.css examples &>/dev/null || true
+  ./sna2skool.py -c jet_set_willy.ctl $JSWZ80 > jet_set_willy.skool
+  cp -p ../$D_DIR/skoolkit/jetsetwilly.py skoolkit &>/dev/null || true
 fi
-cp -a ../$D_DIR/skoolkit/jetsetwilly.py skoolkit &>/dev/null || true
 
-./sna2skool.py -c jet_set_willy.ctl $JSWZ80 > jet_set_willy.skool
-
-HTML_OPTS="-d .."
+HTML_OPTS="$HTML_OPTS -d .."
 if [ $SK_VERSION_INT -ge 302 ]; then
   HTML_OPTS="$HTML_OPTS -t"
 fi
