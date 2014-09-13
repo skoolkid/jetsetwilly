@@ -29,7 +29,7 @@
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a class="link" href="36564.html">36564</a>.
+Used by the routine at <a class="link" href="36796.html">36796</a>.
 </div>
 </div>
 <table class="input-0">
@@ -50,49 +50,49 @@ Used by the routine at <a class="link" href="36564.html">36564</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="38026"></a>38026</td>
 <td class="instruction">LD A,(33001)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the number of the room to the left from <a class="link" href="32768.html#33001">33001</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38029"></a>38029</td>
 <td class="instruction">LD (33824),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Make it the current room number by copying it to <a class="link" href="33824.html">33824</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38032"></a>38032</td>
 <td class="instruction">LD A,(34259)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="4">Adjust Willy's screen x-coordinate (at <a class="link" href="34259.html">34259</a>) to 30 (on the far right)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38035"></a>38035</td>
 <td class="instruction">OR 31</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38037"></a>38037</td>
 <td class="instruction">AND 254</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38039"></a>38039</td>
 <td class="instruction">LD (34259),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38042"></a>38042</td>
 <td class="instruction">POP HL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Drop the return address (<a class="link" href="35245.html#35281">35281</a>, in the main loop) from the stack</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38043"></a>38043</td>
 <td class="instruction">JP <a class="link" href="35068.html#35090">35090</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Draw the room and re-enter the main loop</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -103,9 +103,9 @@ Used by the routine at <a class="link" href="36564.html">36564</a>.
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

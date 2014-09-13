@@ -29,7 +29,7 @@
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a class="link" href="37310.html">37310</a>.
+Used by the routine at <a class="link" href="37310.html">37310</a>. The first half of this table controls the x-coordinates at which the segments of rope are drawn, and the second half controls the y-coordinates. For a given rope animation frame F (0&lt;=F&lt;=54), the 32 entries from F to F+31 inclusive (one for each segment of rope) in each half of the table are used; thus the batch of entries used 'slides' up and down the table as F increases and decreases.
 </div>
 </div>
 <table class="input-0">
@@ -50,97 +50,109 @@ Used by the routine at <a class="link" href="37310.html">37310</a>.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33536"></a>33536</td>
 <td class="instruction">DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="6">These values are used by the section of code at <a class="link" href="37310.html#37667">37667</a> to determine how much to rotate the rope drawing byte (which in turn determines the x-coordinate at which each segment of rope is drawn)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33552"></a>33552</td>
 <td class="instruction">DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33568"></a>33568</td>
 <td class="instruction">DEFB 1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33584"></a>33584</td>
 <td class="instruction">DEFB 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33600"></a>33600</td>
 <td class="instruction">DEFB 2,2,1,2,2,1,1,2,1,1,2,2,3,2,3,2</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33616"></a>33616</td>
-<td class="instruction">DEFB 3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">DEFB 3,3,3,3,3,3</td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="33632"></a>33632</td>
+<td class="address-1"><a name="33622"></a>33622</td>
 <td class="instruction">DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="3">Unused</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="33648"></a>33648</td>
+<td class="address-1"><a name="33638"></a>33638</td>
 <td class="instruction">DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="33654"></a>33654</td>
+<td class="instruction">DEFB 0,0,0,0,0,0,0,0,0,0</td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33664"></a>33664</td>
 <td class="instruction">DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="6">These values are used by the section of code at <a class="link" href="37310.html#37651">37651</a> to determine the y-coordinate of each segment of rope relative to the one above it</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33680"></a>33680</td>
 <td class="instruction">DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33696"></a>33696</td>
 <td class="instruction">DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33712"></a>33712</td>
 <td class="instruction">DEFB 4,6,6,4,6,4,6,4,6,4,4,4,6,4,4,4</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33728"></a>33728</td>
 <td class="instruction">DEFB 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33744"></a>33744</td>
-<td class="instruction">DEFB 4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">DEFB 4,4,4,4,4,4</td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="33760"></a>33760</td>
+<td class="address-1"><a name="33750"></a>33750</td>
 <td class="instruction">DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="3">Unused</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="33776"></a>33776</td>
+<td class="address-1"><a name="33766"></a>33766</td>
 <td class="instruction">DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="33782"></a>33782</td>
+<td class="instruction">DEFB 0,0,0,0,0,0,0,0,0,0</td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -151,9 +163,9 @@ Used by the routine at <a class="link" href="37310.html">37310</a>.
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

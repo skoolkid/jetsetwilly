@@ -23,32 +23,31 @@
 <td class="next"><span class="next-1">Next: <a class="link" href="34275.html">34275</a></span></td>
 </tr>
 </table>
-<div class="description">34274: Sound flags</div>
+<div class="description">34274: Music flags</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
+The keypress flag in bit 0 is initialised by the routine at <a class="link" href="34762.html">34762</a>; bits 0 and 1 are checked and updated by the routine at <a class="link" href="35591.html">35591</a>.
+</div>
+<div class="paragraph">
 <table class="default">
 <tr>
 <th>Bit(s)</th>
 <th>Meaning</th>
-<th>Used by</th>
 </tr>
 <tr>
 <td class="centre">0</td>
-<td>Keypress flag (reset=H-ENTER being pressed, set=no key pressed)</td>
-<td><a class="link" href="34762.html">34762</a>, <a class="link" href="35591.html">35591</a></td>
+<td>Keypress flag (set=H-ENTER being pressed, reset=no key pressed)</td>
 </tr>
 <tr>
 <td class="centre">1</td>
-<td>In-game music flag (reset=music on, set=music off)</td>
-<td><a class="link" href="35591.html">35591</a></td>
+<td>In-game music flag (set=music off, reset=music on)</td>
 </tr>
 <tr>
 <td class="centre">2-7</td>
 <td>Unused</td>
-<td></td>
 </tr>
 </table>
 </div>
@@ -82,9 +81,9 @@
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

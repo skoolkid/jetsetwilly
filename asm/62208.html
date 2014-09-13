@@ -23,7 +23,7 @@
 <td class="next"><span class="next-1">Next: <a class="link" href="62464.html">62464</a></span></td>
 </tr>
 </table>
-<div class="description">62208: Room 51: Tool&#160;&#160;Shed</div>
+<div class="description">62208: Room 51: Tool&#160;&#160;Shed (teleport: 12569)</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
@@ -173,7 +173,7 @@ The next 32 bytes contain the room name.
 <a name="62368"></a>
 <div class="comments">
 <div class="paragraph">
-The next 54 bytes contain the attributes and graphic data for the tiles used to build the room. Note that because of a bug in the game engine, the conveyor tile is not drawn correctly (see the room image above).
+The next 54 bytes contain the attributes and graphic data for the tiles used to build the room. Note that because of a <a class="link" href="../reference/bugs.html#corruptedConveyors">bug</a> in the game engine, the conveyor tile is not drawn correctly (see the room image above).
 </div>
 <div class="paragraph">
 <table>
@@ -275,12 +275,12 @@ The next byte specifies the border colour.
 <a name="62433"></a>
 <div class="comments">
 <div class="paragraph">
-The next 8 bytes define the object graphic.
+The next 8 bytes define the item graphic.
 </div>
 <div class="paragraph">
 <table>
 <tr>
-<td><img alt="object51" src="../images/udgs/object51.png" /></td>
+<td><img alt="item51" src="../images/udgs/item51.png" /></td>
 </tr>
 </table>
 </div>
@@ -291,7 +291,7 @@ The next 8 bytes define the object graphic.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="62433"></a>62433</td>
 <td class="instruction">DEFB 24,24,24,24,24,155,127,59</td>
-<td class="comment-11" rowspan="1">Object graphic</td>
+<td class="comment-11" rowspan="1">Item graphic</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -338,7 +338,7 @@ The next 4 bytes specify the rooms to the left, to the right, above and below.
 <a name="62448"></a>
 <div class="comments">
 <div class="paragraph">
-The next 6 bytes define the guardians.
+The next 8 pairs of bytes specify the entities (ropes, arrows, guardians) in this room. The first byte in each pair identifies one of the entity definitions at <a class="link" href="40960.html">40960</a>. The meaning of the second byte depends on the entity type: it determines the base sprite index and x-coordinate of a guardian, the y-coordinate of an arrow, or the x-coordinate of the top of a rope.
 </div>
 </div>
 </td>
@@ -347,31 +347,49 @@ The next 6 bytes define the guardians.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="62448"></a>62448</td>
 <td class="instruction">DEFB 52,16</td>
-<td class="comment-11" rowspan="1">Guardian 1</td>
+<td class="comment-11" rowspan="1">Guardian no. 52 (horizontal), base sprite 0, initial x=16 (<a class="link" href="40960.html#41376">41376</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="62450"></a>62450</td>
 <td class="instruction">DEFB 98,9</td>
-<td class="comment-11" rowspan="1">Guardian 2</td>
+<td class="comment-11" rowspan="1">Guardian no. 98 (horizontal), base sprite 0, initial x=9 (<a class="link" href="40960.html#41744">41744</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="62452"></a>62452</td>
 <td class="instruction">DEFB 99,20</td>
-<td class="comment-11" rowspan="1">Guardian 3</td>
+<td class="comment-11" rowspan="1">Guardian no. 99 (horizontal), base sprite 0, initial x=20 (<a class="link" href="40960.html#41752">41752</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="62454"></a>62454</td>
-<td class="instruction">DEFB 255</td>
-<td class="comment-11" rowspan="1">Terminator</td>
+<td class="instruction">DEFB 255,0</td>
+<td class="comment-11" rowspan="1">Terminator (<a class="link" href="40960.html#41976">41976</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="62455"></a>62455</td>
-<td class="instruction">DEFB 0,0,0,0,0,0,0,0,0</td>
-<td class="comment-11" rowspan="1">Unused</td>
+<td class="address-1"><a name="62456"></a>62456</td>
+<td class="instruction">DEFB 0,0</td>
+<td class="comment-11" rowspan="1">Nothing (<a class="link" href="40960.html">40960</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="62458"></a>62458</td>
+<td class="instruction">DEFB 0,0</td>
+<td class="comment-11" rowspan="1">Nothing (<a class="link" href="40960.html">40960</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="62460"></a>62460</td>
+<td class="instruction">DEFB 0,0</td>
+<td class="comment-11" rowspan="1">Nothing (<a class="link" href="40960.html">40960</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="62462"></a>62462</td>
+<td class="instruction">DEFB 0,0</td>
+<td class="comment-11" rowspan="1">Nothing (<a class="link" href="40960.html">40960</a>)</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -382,9 +400,9 @@ The next 6 bytes define the guardians.
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

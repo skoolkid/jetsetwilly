@@ -29,7 +29,35 @@
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routines at <a class="link" href="34762.html">34762</a>, <a class="link" href="35591.html">35591</a>, <a class="link" href="36307.html">36307</a>, <a class="link" href="36564.html">36564</a>, <a class="link" href="37046.html">37046</a>, <a class="link" href="37310.html">37310</a>, <a class="link" href="38064.html">38064</a>, <a class="link" href="38098.html">38098</a> and <a class="link" href="38344.html">38344</a>.
+Initialised by the routine at <a class="link" href="34762.html">34762</a>, checked by the routines at <a class="link" href="35591.html">35591</a> and <a class="link" href="38344.html">38344</a>, updated by the routines at <a class="link" href="37046.html">37046</a>, <a class="link" href="37310.html">37310</a> and <a class="link" href="38064.html">38064</a>, and checked and updated by the routines at <a class="link" href="36307.html">36307</a>, <a class="link" href="36564.html">36564</a> and <a class="link" href="38098.html">38098</a>. Possible values are:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+<tr>
+<td class="centre">0</td>
+<td>Willy is neither falling nor jumping</td>
+</tr>
+<tr>
+<td class="centre">1</td>
+<td>Willy is jumping (see <a class="link" href="36564.html#36765">36765</a>)</td>
+</tr>
+<tr>
+<td class="centre">2-11</td>
+<td>Willy is falling, and can land safely</td>
+</tr>
+<tr>
+<td class="centre">12-15</td>
+<td>Willy is falling, and has fallen too far to land safely (see <a class="link" href="36564.html#36574">36574</a>)</td>
+</tr>
+<tr>
+<td class="centre">255</td>
+<td>Willy has collided with a nasty, an arrow, a guardian, or Maria (see <a class="link" href="37046.html">37046</a>)</td>
+</tr>
+</table>
 </div>
 </div>
 <table class="input-0">
@@ -61,9 +89,9 @@ Used by the routines at <a class="link" href="34762.html">34762</a>, <a class="l
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

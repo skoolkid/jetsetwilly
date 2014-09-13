@@ -23,13 +23,250 @@
 <td class="next"><span class="next-1">Next: <a class="link" href="33089.html">33089</a></span></td>
 </tr>
 </table>
-<div class="description">33024: Guardian buffer</div>
+<div class="description">33024: Entity buffer</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routines at <a class="link" href="35068.html">35068</a>, <a class="link" href="37056.html">37056</a> and <a class="link" href="37310.html">37310</a>.
+Initialised by the routine at <a class="link" href="35068.html">35068</a>, and used by the routines at <a class="link" href="37056.html">37056</a> and <a class="link" href="37310.html">37310</a>. There are eight slots here, each one eight bytes long, used to hold the state of the entities (rope, arrows and guardians) in the current room.
+</div>
+<div class="paragraph">
+For a horizontal guardian, the eight bytes are used as follows:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Byte</th>
+<th>Contents</th>
+</tr>
+<tr>
+<td class="centre" rowspan="4">0</td>
+<td>Bit 7: direction (0=left, 1=right)</td>
+</tr>
+<tr>
+<td>Bits 5-6: animation frame index</td>
+</tr>
+<tr>
+<td>Bits 3-4: unused</td>
+</tr>
+<tr>
+<td>Bits 0-2: entity type (001)</td>
+</tr>
+<tr>
+<td class="centre" rowspan="4">1</td>
+<td>Bits 5-7: animation frame index mask (see <a class="link" href="37310.html#37393">37393</a>)</td>
+</tr>
+<tr>
+<td>Bit 4: unused</td>
+</tr>
+<tr>
+<td>Bit 3: BRIGHT value</td>
+</tr>
+<tr>
+<td>Bits 0-2: INK colour</td>
+</tr>
+<tr>
+<td class="centre" rowspan="2">2</td>
+<td>Bits 5-7: base sprite index</td>
+</tr>
+<tr>
+<td>Bits 0-4: x-coordinate</td>
+</tr>
+<tr>
+<td class="centre">3</td>
+<td>Pixel y-coordinate x2 (index into the table at <a class="link" href="33280.html">33280</a>)</td>
+</tr>
+<tr>
+<td class="centre">4</td>
+<td>Unused</td>
+</tr>
+<tr>
+<td class="centre">5</td>
+<td>Page containing the sprite graphic data (see <a class="link" href="43776.html">43776</a>)</td>
+</tr>
+<tr>
+<td class="centre">6</td>
+<td>Minimum x-coordinate</td>
+</tr>
+<tr>
+<td class="centre">7</td>
+<td>Maximum x-coordinate</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+For a vertical guardian, the eight bytes are used as follows:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Byte</th>
+<th>Contents</th>
+</tr>
+<tr>
+<td class="centre" rowspan="4">0</td>
+<td>Bit 7: unused</td>
+</tr>
+<tr>
+<td>Bits 5-6: animation frame index</td>
+</tr>
+<tr>
+<td>Bits 3-4: animation frame update flags (see <a class="link" href="37056.html#37247">37247</a>)</td>
+</tr>
+<tr>
+<td>Bits 0-2: entity type (010)</td>
+</tr>
+<tr>
+<td class="centre" rowspan="4">1</td>
+<td>Bits 5-7: animation frame index mask (see <a class="link" href="37310.html#37393">37393</a>)</td>
+</tr>
+<tr>
+<td>Bit 4: unused</td>
+</tr>
+<tr>
+<td>Bit 3: BRIGHT value</td>
+</tr>
+<tr>
+<td>Bits 0-2: INK colour</td>
+</tr>
+<tr>
+<td class="centre" rowspan="2">2</td>
+<td>Bits 5-7: base sprite index</td>
+</tr>
+<tr>
+<td>Bits 0-4: x-coordinate</td>
+</tr>
+<tr>
+<td class="centre">3</td>
+<td>Pixel y-coordinate x2 (index into the table at <a class="link" href="33280.html">33280</a>)</td>
+</tr>
+<tr>
+<td class="centre">4</td>
+<td>Pixel y-coordinate increment</td>
+</tr>
+<tr>
+<td class="centre">5</td>
+<td>Page containing the sprite graphic data (see <a class="link" href="43776.html">43776</a>)</td>
+</tr>
+<tr>
+<td class="centre">6</td>
+<td>Minimum y-coordinate</td>
+</tr>
+<tr>
+<td class="centre">7</td>
+<td>Maximum y-coordinate</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+For an arrow, the eight bytes are used as follows:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Byte</th>
+<th>Contents</th>
+</tr>
+<tr>
+<td class="centre" rowspan="3">0</td>
+<td>Bit 7: direction (0=left, 1=right)</td>
+</tr>
+<tr>
+<td>Bits 3-6: unused</td>
+</tr>
+<tr>
+<td>Bits 0-2: entity type (100)</td>
+</tr>
+<tr>
+<td class="centre">1</td>
+<td>Unused</td>
+</tr>
+<tr>
+<td class="centre">2</td>
+<td>Pixel y-coordinate x2 (index into the table at <a class="link" href="33280.html">33280</a>)</td>
+</tr>
+<tr>
+<td class="centre">3</td>
+<td>Unused</td>
+</tr>
+<tr>
+<td class="centre">4</td>
+<td>x-coordinate</td>
+</tr>
+<tr>
+<td class="centre">5</td>
+<td>Collision detection byte (0=off, 255=on)</td>
+</tr>
+<tr>
+<td class="centre">6</td>
+<td>Top/bottom pixel row (drawn either side of the shaft)</td>
+</tr>
+<tr>
+<td class="centre">7</td>
+<td>Unused</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The rope uses the second and fourth bytes of the following slot in addition to its own; these ten bytes are used as follows:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th>Byte</th>
+<th>Contents</th>
+</tr>
+<tr>
+<td class="centre" rowspan="3">0</td>
+<td>Bit 7: direction (0=left, 1=right)</td>
+</tr>
+<tr>
+<td>Bits 3-6: unused</td>
+</tr>
+<tr>
+<td>Bits 0-2: entity type (011)</td>
+</tr>
+<tr>
+<td class="centre">1</td>
+<td>Animation frame index</td>
+</tr>
+<tr>
+<td class="centre">2</td>
+<td>x-coordinate of the top of the rope</td>
+</tr>
+<tr>
+<td class="centre">3</td>
+<td>x-coordinate of the segment of rope being drawn</td>
+</tr>
+<tr>
+<td class="centre">4</td>
+<td>Length (32)</td>
+</tr>
+<tr>
+<td class="centre">5</td>
+<td>Segment drawing byte</td>
+</tr>
+<tr>
+<td class="centre">6</td>
+<td>Unused</td>
+</tr>
+<tr>
+<td class="centre">7</td>
+<td>Animation frame at which the rope changes direction (54)</td>
+</tr>
+<tr>
+<td class="centre">9</td>
+<td>Index of the segment of rope being drawn (0-31)</td>
+</tr>
+<tr>
+<td class="centre" rowspan="2">11</td>
+<td>Bit 7: Willy is on the rope (set), or not (reset)</td>
+</tr>
+<tr>
+<td>Bits 0-6: unused</td>
+</tr>
+</table>
 </div>
 </div>
 <table class="input-0">
@@ -49,8 +286,50 @@ Used by the routines at <a class="link" href="35068.html">35068</a>, <a class="l
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="33024"></a>33024</td>
-<td class="instruction">DEFS 64</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="instruction">DEFS 8</td>
+<td class="comment-11" rowspan="8">Eight slots of eight bytes each</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="33032"></a>33032</td>
+<td class="instruction">DEFS 8</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="33040"></a>33040</td>
+<td class="instruction">DEFS 8</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="33048"></a>33048</td>
+<td class="instruction">DEFS 8</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="33056"></a>33056</td>
+<td class="instruction">DEFS 8</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="33064"></a>33064</td>
+<td class="instruction">DEFS 8</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="33072"></a>33072</td>
+<td class="instruction">DEFS 8</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="33080"></a>33080</td>
+<td class="instruction">DEFS 8</td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -67,9 +346,9 @@ Used by the routines at <a class="link" href="35068.html">35068</a>, <a class="l
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

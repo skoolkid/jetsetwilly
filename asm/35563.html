@@ -29,7 +29,7 @@
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routines at <a class="link" href="34762.html">34762</a> and <a class="link" href="35245.html">35245</a>.
+Used by the routines at <a class="link" href="34762.html">34762</a> (while scrolling the instructions across the screen) and <a class="link" href="35245.html">35245</a> (while the game is paused).
 </div>
 </div>
 <table class="input-0">
@@ -50,109 +50,119 @@ Used by the routines at <a class="link" href="34762.html">34762</a> and <a class
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="35563"></a>35563</td>
 <td class="instruction">LD HL,22528</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the first byte of the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35566"></a>35566</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up this byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35567"></a>35567</td>
 <td class="instruction">AND 7</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Keep only bits 0-2 (the INK colour)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35569"></a>35569</td>
 <td class="instruction">OUT (254),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Set the border colour to match</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="35571"></a>
+<div class="comments">
+<div class="paragraph">
+Now we loop over every byte in the attribute file.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="35571"></a>35571</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up an attribute file byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35572"></a>35572</td>
 <td class="instruction">ADD A,3</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Cycle the INK colour forward by three</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35574"></a>35574</td>
 <td class="instruction">AND 7</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35576"></a>35576</td>
 <td class="instruction">LD D,A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Save the new INK colour in <span class="register">D</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35577"></a>35577</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the attribute file byte again</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35578"></a>35578</td>
 <td class="instruction">ADD A,24</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Cycle the PAPER colour forward by three (and turn off any BRIGHT colours)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35580"></a>35580</td>
 <td class="instruction">AND 184</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35582"></a>35582</td>
 <td class="instruction">OR D</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Merge in the new INK colour</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35583"></a>35583</td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Save the new attribute byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35584"></a>35584</td>
 <td class="instruction">INC HL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the next byte in the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35585"></a>35585</td>
 <td class="instruction">LD A,H</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Have we reached the end of the attribute file yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35586"></a>35586</td>
 <td class="instruction">CP 91</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35588"></a>35588</td>
-<td class="instruction">JR NZ,35571</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR NZ,<a class="link" href="35563.html#35571">35571</a></td>
+<td class="comment-11" rowspan="1">If not, jump back to modify the next byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="35590"></a>35590</td>
 <td class="instruction">RET</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -163,9 +173,9 @@ Used by the routines at <a class="link" href="34762.html">34762</a> and <a class
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

@@ -50,85 +50,85 @@ Used by the routines at <a class="link" href="35245.html">35245</a> and <a class
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="38064"></a>38064</td>
 <td class="instruction">LD A,(33003)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the number of the room above from <a class="link" href="32768.html#33003">33003</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38067"></a>38067</td>
 <td class="instruction">LD (33824),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Make it the current room number by copying it to <a class="link" href="33824.html">33824</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38070"></a>38070</td>
 <td class="instruction">LD A,(34259)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="6">Willy should now appear on the bottom floor of the room, so adjust his attribute buffer coordinates (at <a class="link" href="34259.html">34259</a>) accordingly</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38073"></a>38073</td>
 <td class="instruction">AND 31</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38075"></a>38075</td>
 <td class="instruction">ADD A,160</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38077"></a>38077</td>
 <td class="instruction">LD (34259),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38080"></a>38080</td>
 <td class="instruction">LD A,93</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38082"></a>38082</td>
 <td class="instruction">LD (34260),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38085"></a>38085</td>
 <td class="instruction">LD A,208</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Adjust Willy's pixel y-coordinate (at <a class="link" href="34255.html">34255</a>) as well</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38087"></a>38087</td>
 <td class="instruction">LD (34255),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38090"></a>38090</td>
 <td class="instruction">XOR A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Reset the airborne status indicator at <a class="link" href="34257.html">34257</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38091"></a>38091</td>
 <td class="instruction">LD (34257),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38094"></a>38094</td>
 <td class="instruction">POP HL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Drop the return address (either <a class="link" href="35245.html#35281">35281</a> or <a class="link" href="35245.html#35289">35289</a>, in the main loop) from the stack</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38095"></a>38095</td>
 <td class="instruction">JP <a class="link" href="35068.html#35090">35090</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Draw the room and re-enter the main loop</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -139,9 +139,9 @@ Used by the routines at <a class="link" href="35245.html">35245</a> and <a class
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

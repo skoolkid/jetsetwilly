@@ -50,97 +50,97 @@ Used by the routine at <a class="link" href="36307.html">36307</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="38098"></a>38098</td>
 <td class="instruction">LD A,(33004)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the number of the room below from <a class="link" href="32768.html#33004">33004</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38101"></a>38101</td>
 <td class="instruction">LD (33824),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Make it the current room number by copying it to <a class="link" href="33824.html">33824</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38104"></a>38104</td>
 <td class="instruction">XOR A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Set Willy's pixel y-coordinate (at <a class="link" href="34255.html">34255</a>) to 0</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38105"></a>38105</td>
 <td class="instruction">LD (34255),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38108"></a>38108</td>
 <td class="instruction">LD A,(34257)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Pick up the airborne status indicator from <a class="link" href="34257.html">34257</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38111"></a>38111</td>
 <td class="instruction">CP 11</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Is it 11 or greater (meaning Willy has already been falling for a while)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38113"></a>38113</td>
-<td class="instruction">JR NC,38120</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR NC,<a class="link" href="38098.html#38120">38120</a></td>
+<td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38115"></a>38115</td>
 <td class="instruction">LD A,2</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Otherwise set the airborne status indicator to 2 (Willy will start falling here if there's no floor beneath him)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38117"></a>38117</td>
 <td class="instruction">LD (34257),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="38120"></a>38120</td>
 <td class="instruction">LD A,(34259)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="5">Willy should now appear at the top of the room, so adjust his attribute buffer coordinates (at <a class="link" href="34259.html">34259</a>) accordingly</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38123"></a>38123</td>
 <td class="instruction">AND 31</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38125"></a>38125</td>
 <td class="instruction">LD (34259),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38128"></a>38128</td>
 <td class="instruction">LD A,92</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38130"></a>38130</td>
 <td class="instruction">LD (34260),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38133"></a>38133</td>
 <td class="instruction">POP HL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Drop the return address (<a class="link" href="35245.html#35281">35281</a>, in the main loop) from the stack</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38134"></a>38134</td>
 <td class="instruction">JP <a class="link" href="35068.html#35090">35090</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Draw the room and re-enter the main loop</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -151,9 +151,9 @@ Used by the routine at <a class="link" href="36307.html">36307</a>.
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

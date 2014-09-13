@@ -23,13 +23,13 @@
 <td class="next"><span class="next-1">Next: <a class="link" href="38622.html">38622</a></span></td>
 </tr>
 </table>
-<div class="description">38601: Check whether Enter or Fire is being pressed</div>
+<div class="description">38601: Check whether ENTER, 0 or the fire button is being pressed</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a class="link" href="38562.html">38562</a>.
+Used by the routine at <a class="link" href="38562.html">38562</a>. Returns with the zero flag reset if ENTER, 0 or the fire button on the joystick is being pressed.
 </div>
 </div>
 <table class="input-0">
@@ -50,67 +50,67 @@ Used by the routine at <a class="link" href="38562.html">38562</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="38601"></a>38601</td>
 <td class="instruction">LD A,(34254)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Collect the Kempston joystick indicator from <a class="link" href="34254.html">34254</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38604"></a>38604</td>
 <td class="instruction">OR A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Is the joystick connected?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38605"></a>38605</td>
-<td class="instruction">JR Z,38612</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="instruction">JR Z,<a class="link" href="38601.html#38612">38612</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38607"></a>38607</td>
 <td class="instruction">IN A,(31)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Collect input from the joystick</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38609"></a>38609</td>
 <td class="instruction">BIT 4,A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Is the fire button being pressed?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38611"></a>38611</td>
 <td class="instruction">RET NZ</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Return (with the zero flag reset) if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="38612"></a>38612</td>
 <td class="instruction">LD BC,45054</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Read keys H-J-K-L-ENTER and 6-7-8-9-0</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38615"></a>38615</td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38617"></a>38617</td>
 <td class="instruction">AND 1</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Keep only bit 0 of the result (ENTER, 0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38619"></a>38619</td>
 <td class="instruction">CP 1</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Reset the zero flag if ENTER or 0 is being pressed</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="38621"></a>38621</td>
 <td class="instruction">RET</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -121,9 +121,9 @@ Used by the routine at <a class="link" href="38562.html">38562</a>.
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

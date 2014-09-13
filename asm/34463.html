@@ -28,7 +28,9 @@
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
-
+<div class="paragraph">
+Used by the routine at <a class="link" href="33792.html">33792</a>.
+</div>
 </div>
 <table class="input-0">
 <tr class="asm-input-header">
@@ -48,73 +50,73 @@
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="34463"></a>34463</td>
 <td class="instruction">LD HL,16384</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="5">Clear the display file and attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34466"></a>34466</td>
 <td class="instruction">LD DE,16385</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34469"></a>34469</td>
 <td class="instruction">LD BC,6911</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34472"></a>34472</td>
 <td class="instruction">LD (HL),0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34474"></a>34474</td>
 <td class="instruction">LDIR</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34476"></a>34476</td>
 <td class="instruction">LD IX,34187</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the message at <a class="link" href="34187.html">34187</a> ("Enter Code at grid location&#160;&#160;&#160;&#160;&#160;")</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34480"></a>34480</td>
 <td class="instruction">CALL <a class="link" href="34499.html">34499</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Display the code entry screen and collect a four-digit code from the user</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34483"></a>34483</td>
 <td class="instruction">JP Z,<a class="link" href="34762.html">34762</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Start the game if the code is correct</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34486"></a>34486</td>
 <td class="instruction">LD IX,34219</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the message at <a class="link" href="34219.html">34219</a> ("Sorry, try code at location&#160;&#160;&#160;&#160;&#160;")</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34490"></a>34490</td>
 <td class="instruction">CALL <a class="link" href="34499.html">34499</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Display the code entry screen and collect another four-digit code from the user</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34493"></a>34493</td>
 <td class="instruction">JP Z,<a class="link" href="34762.html">34762</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Start the game if the code is correct</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="34496"></a>34496</td>
 <td class="instruction">JP 0</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Otherwise reset the machine</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -125,9 +127,9 @@
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

@@ -23,7 +23,7 @@
 <td class="next"><span class="next-1">Next: <a class="link" href="59904.html">59904</a></span></td>
 </tr>
 </table>
-<div class="description">59648: Room 41: The Attic</div>
+<div class="description">59648: Room 41: The Attic (teleport: 1469)</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
@@ -275,12 +275,12 @@ The next byte specifies the border colour.
 <a name="59873"></a>
 <div class="comments">
 <div class="paragraph">
-The next 8 bytes define the object graphic.
+The next 8 bytes define the item graphic.
 </div>
 <div class="paragraph">
 <table>
 <tr>
-<td><img alt="object41" src="../images/udgs/object41.png" /></td>
+<td><img alt="item41" src="../images/udgs/item41.png" /></td>
 </tr>
 </table>
 </div>
@@ -291,7 +291,7 @@ The next 8 bytes define the object graphic.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="59873"></a>59873</td>
 <td class="instruction">DEFB 17,34,51,68,85,102,119,136</td>
-<td class="comment-11" rowspan="1">Object graphic (unused)</td>
+<td class="comment-11" rowspan="1">Item graphic (unused)</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -338,7 +338,7 @@ The next 4 bytes specify the rooms to the left, to the right, above and below.
 <a name="59888"></a>
 <div class="comments">
 <div class="paragraph">
-The next 16 bytes define the guardians.
+The next 8 pairs of bytes specify the entities (ropes, arrows, guardians) in this room. The first byte in each pair identifies one of the entity definitions at <a class="link" href="40960.html">40960</a>. The meaning of the second byte depends on the entity type: it determines the base sprite index and x-coordinate of a guardian, the y-coordinate of an arrow, or the x-coordinate of the top of a rope.
 </div>
 </div>
 </td>
@@ -347,49 +347,49 @@ The next 16 bytes define the guardians.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="59888"></a>59888</td>
 <td class="instruction">DEFB 82,4</td>
-<td class="comment-11" rowspan="1">Guardian 1</td>
+<td class="comment-11" rowspan="1">Guardian no. 82 (vertical), base sprite 0, x=4 (<a class="link" href="40960.html#41616">41616</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="59890"></a>59890</td>
 <td class="instruction">DEFB 83,6</td>
-<td class="comment-11" rowspan="1">Guardian 2</td>
+<td class="comment-11" rowspan="1">Guardian no. 83 (vertical), base sprite 0, x=6 (<a class="link" href="40960.html#41624">41624</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="59892"></a>59892</td>
 <td class="instruction">DEFB 84,8</td>
-<td class="comment-11" rowspan="1">Guardian 3</td>
+<td class="comment-11" rowspan="1">Guardian no. 84 (vertical), base sprite 0, x=8 (<a class="link" href="40960.html#41632">41632</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="59894"></a>59894</td>
 <td class="instruction">DEFB 85,10</td>
-<td class="comment-11" rowspan="1">Guardian 4</td>
+<td class="comment-11" rowspan="1">Guardian no. 85 (vertical), base sprite 0, x=10 (<a class="link" href="40960.html#41640">41640</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="59896"></a>59896</td>
 <td class="instruction">DEFB 86,12</td>
-<td class="comment-11" rowspan="1">Guardian 5</td>
+<td class="comment-11" rowspan="1">Guardian no. 86 (vertical), base sprite 0, x=12 (<a class="link" href="40960.html#41648">41648</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="59898"></a>59898</td>
 <td class="instruction">DEFB 87,78</td>
-<td class="comment-11" rowspan="1">Guardian 6</td>
+<td class="comment-11" rowspan="1">Guardian no. 87 (vertical), base sprite 2, x=14 (<a class="link" href="40960.html#41656">41656</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="59900"></a>59900</td>
 <td class="instruction">DEFB 69,213</td>
-<td class="comment-11" rowspan="1">Guardian 7</td>
+<td class="comment-11" rowspan="1">Arrow flying right to left at pixel y-coordinate 536 (<a class="link" href="40960.html#41512">41512</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="59902"></a>59902</td>
 <td class="instruction">DEFB 60,146</td>
-<td class="comment-11" rowspan="1">Guardian 8</td>
+<td class="comment-11" rowspan="1">Arrow flying left to right at pixel y-coordinate 73 (<a class="link" href="40960.html#41440">41440</a>)</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -400,9 +400,9 @@ The next 16 bytes define the guardians.
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>

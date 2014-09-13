@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Jet Set Willy: Glossary</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Glossary">
+<table class="header">
+<tr>
+<td class="logo"><a class="link" href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Glossary</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a class="link" href="#entity">Entity</a></li>
+<li><a class="link" href="#entity_definition">Entity definition</a></li>
+<li><a class="link" href="#entity_specification">Entity specification</a></li>
+<li><a class="link" href="#guardian">Guardian</a></li>
+<li><a class="link" href="#nasty">Nasty</a></li>
+</ul>
+<div><a name="entity"></a></div>
+<div class="box box-1">
+<div class="box-title">Entity</div>
+<div class="paragraph">
+A guardian, arrow or rope.
+</div>
+</div>
+<div><a name="entity_definition"></a></div>
+<div class="box box-2">
+<div class="box-title">Entity definition</div>
+<div class="paragraph">
+One of the 128 8-byte blocks located at <a class="link" href="../asm/40960.html">40960</a> onwards. Each one defines the location and movement characteristics of a guardian, arrow or rope.
+</div>
+</div>
+<div><a name="entity_specification"></a></div>
+<div class="box box-1">
+<div class="box-title">Entity specification</div>
+<div class="paragraph">
+One of the eight pairs of bytes at the end of a room definition (e.g. at <a class="link" href="../asm/53248.html#53488">53488</a>). Each one specifies a guardian, arrow or rope present in the room.
+</div>
+</div>
+<div><a name="guardian"></a></div>
+<div class="box box-2">
+<div class="box-title">Guardian</div>
+<div class="paragraph">
+An inhabitant of a room that continuously moves left and right (horizontal guardian) or up and down (vertical guardian) in a straight line, or <a class="link" href="facts.html#guardianOrFixture">stays still</a>. Contact with a guardian is fatal. The graphic data for all the guardians in the game can be found at <a class="link" href="../asm/43776.html">43776</a>.
+</div>
+</div>
+<div><a name="nasty"></a></div>
+<div class="box box-1">
+<div class="box-title">Nasty</div>
+<div class="paragraph">
+An immobile object drawn in a single cell as part of a room along with the background, walls, floors, ramp and conveyor. Contact with a nasty is fatal. Some examples are:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td><a class="link" href="../asm/51968.html">The Hall</a></td>
+<td><img alt="nasty11" src="../images/udgs/nasty11.png" /></td>
+</tr>
+<tr>
+<td><a class="link" href="../asm/55552.html">Cold Store</a></td>
+<td><img alt="nasty25" src="../images/udgs/nasty25.png" /></td>
+</tr>
+<tr>
+<td><a class="link" href="../asm/61696.html">The Wine Cellar</a></td>
+<td><img alt="nasty49" src="../images/udgs/nasty49.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="footer">
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+</div>
+</body>
+</html>

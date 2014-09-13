@@ -18,7 +18,7 @@
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a class="link" href="36564.html">36564</a></span></td>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="36796.html">36796</a></span></td>
 <td class="up">Up: <a class="link" href="../maps/all.html#37046">Map</a></td>
 <td class="next"><span class="next-1">Next: <a class="link" href="37056.html">37056</a></span></td>
 </tr>
@@ -29,7 +29,7 @@
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a class="link" href="38430.html">38430</a>.
+Used by the routine at <a class="link" href="38430.html">38430</a> when Willy hits a nasty.
 </div>
 </div>
 <table class="input-0">
@@ -50,14 +50,14 @@ Used by the routine at <a class="link" href="38430.html">38430</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="37046"></a>37046</td>
 <td class="instruction">POP HL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Drop the return address from the stack</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
 <a name="37047"></a>
 <div class="comments">
 <div class="paragraph">
-This entry point is used by the routines at <a class="link" href="36564.html">36564</a>, <a class="link" href="37310.html">37310</a> and <a class="link" href="38196.html">38196</a>.
+This entry point is used by the routines at <a class="link" href="36564.html">36564</a> (when Willy lands after falling from too great a height), <a class="link" href="37310.html">37310</a> (when an arrow or guardian hits Willy) and <a class="link" href="38196.html">38196</a> (when Willy gets too close to Maria).
 </div>
 </div>
 </td>
@@ -66,38 +66,38 @@ This entry point is used by the routines at <a class="link" href="36564.html">36
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="37047"></a>37047</td>
 <td class="instruction">POP HL</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Drop the return address from the stack</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37048"></a>37048</td>
 <td class="instruction">LD A,255</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a class="link" href="34257.html">34257</a> to 255 (meaning Willy has had a fatal accident)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37050"></a>37050</td>
 <td class="instruction">LD (34257),A</td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37053"></a>37053</td>
 <td class="instruction">JP <a class="link" href="35245.html#35317">35317</a></td>
-<td class="comment-10" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Jump back into the main loop</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a class="link" href="36564.html">36564</a></span></td>
+<td class="prev"><span class="prev-1">Prev: <a class="link" href="36796.html">36796</a></span></td>
 <td class="up">Up: <a class="link" href="../maps/all.html#37046">Map</a></td>
 <td class="next"><span class="next-1">Next: <a class="link" href="37056.html">37056</a></span></td>
 </tr>
 </table>
 <div class="footer">
-<div class="release"></div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.0.</div>
+<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
 </div>
 </body>
 </html>
