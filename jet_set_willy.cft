@@ -1450,7 +1450,7 @@ D 37970 The current item has been dealt with (skipped, collected or drawn) as ap
   37971,2 Jump back unless we've examined every entry
 c 37974 Draw a sprite
 ; @label:37974=DRAWSPRITE
-D 37974 Used by the routines at #R34499 (to draw the number key graphics on the code entry screen), #R35211 (to draw the remaining lives), #R35914 (to draw Willy, the boot and the barrel during the game over sequence), #R37310 (to draw guardians in the current room) and #R38196 (to draw Maria in #R58112(Master Bedroom)). If #REGc=1 on entry, this routine returns with the zero flag reset if any of the set bits in the sprite being drawn collides with a set bit in the background.
+D 37974 Used by the routines at #R34499 (to draw the number key graphics on the code entry screen), #R35211 (to draw the remaining lives), #R35914 (to draw Willy, the foot and the barrel during the game over sequence), #R37310 (to draw guardians in the current room) and #R38196 (to draw Maria in #R58112(Master Bedroom)). If #REGc=1 on entry, this routine returns with the zero flag reset if any of the set bits in the sprite being drawn collides with a set bit in the background.
 R 37974 C Drawing mode: 0 (overwrite) or 1 (blend)
 R 37974 DE Address of sprite graphic data
 R 37974 HL Address to draw at
