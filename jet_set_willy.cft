@@ -887,7 +887,7 @@ D 36458 If we get here, then Willy is either in the process of falling or just a
   36473 Jump if not
   36475 Decrease the airborne status indicator from 16 to 12
   36477 Update the airborne status indicator at #R34257
-  36480,5 #REGd=8*#REGa; this value determines the pitch of the falling sound effect
+  36480,5 #REGd=16*#REGa; this value determines the pitch of the falling sound effect
   36485 #REGc=32; this value determines the duration of the falling sound effect
   36487,3 Pick up the border colour for the current room from #R32990
   36490,10 Make a falling sound effect
