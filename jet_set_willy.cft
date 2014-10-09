@@ -19,13 +19,17 @@ D 28672 Initialised upon entry to a room by the routine at #R36147.
 S 28672,4096
 ; @start:32768
 ; @org:32768=32768
-g 32768 Room buffer
-; @label:32768=ROOMBUFFER
-D 32768 Initialised upon entry to a room by the routine at #R35068.
-S 32768,128 Room layout (used by the routines at #R35068 and #R36203)
+g 32768 Room layout
+; @label:32768=ROOMLAYOUT
+D 32768 Initialised upon entry to a room and then used by the routine at #R35068, and also used by the routine at #R36203.
+S 32768,128
+g 32896 Room name
 ; @label:32896=ROOMNAME
-S 32896,32 Room name (used by the routine at #R35068)
+D 32896 Initialised upon entry to a room and then used by the routine at #R35068.
+S 32896,32
+g 32928 Room tiles
 ; @label:32928=BACKGROUND
+D 32928 Initialised upon entry to a room by the routine at #R35068.
 S 32928,9 Background tile (used by the routines at #R36147, #R36288, #R36307 and #R38430, and also by the unused routine at #R37819)
 ; @label:32937=FLOOR
 S 32937,9 Floor tile (used by the routines at #R36147 and #R36288)
@@ -37,16 +41,36 @@ S 32955,9 Nasty tile (used by the routines at #R36147, #R36288, #R36307 and #R38
 S 32964,9 Ramp tile (used by the routines at #R36147, #R36203, #R36796 and #R38344)
 ; @label:32973=CONVEYOR
 S 32973,9 Conveyor tile (used by the routines at #R36147, #R36203 and #R36564)
+g 32982 Conveyor definition
 ; @label:32982=CONVDIR
-S 32982,4 Conveyor definition (used by the routines at #R36564 and #R38137)
+D 32982 Initialised upon entry to a room by the routine at #R35068.
+B 32982,1 Direction (0=left, 1=right; used by the routines at #R36564 and #R38137)
+; @label:32983=CONVLOC
+W 32983,2 Address of the conveyor's location in the attribute buffer at #R24064 (used by the routines at #R36203 and #R38137)
+; @label:32985=CONVLEN
+B 32985,1 Length (used by the routines at #R36203 and #R38137)
+g 32986 Ramp definition
 ; @label:32986=RAMPDIR
-S 32986,4 Ramp definition (used by the routines at #R36203, #R36796 and #R38344)
+D 32986 Initialised upon entry to a room by the routine at #R35068.
+B 32986,1 Direction (0=up to the left, 1=up to the right; used by the routines at #R36203, #R36796 and #R38344)
+; @label:32987=RAMPLOC
+W 32987,2 Address of the location of the bottom of the ramp in the attribute buffer at #R24064 (used by the routine at #R36203)
+; @label:32989=RAMPLEN
+B 32989,1 Length (used by the routine at #R36203)
+g 32990 Border colour
 ; @label:32990=BORDER
-B 32990,1 Border colour (used by the routines at #R35068, #R35591, #R36307, #R37310 and #R37841)
-S 32991,2 Unused
+D 32990 Initialised upon entry to a room and then used by the routine at #R35068, and also used by the routines at #R35068, #R35591, #R36307, #R37310 and #R37841.
+B 32990,1
+u 32991
+D 32991 These bytes are overwritten upon entry to a room by the routine at #R35068, but not used.
+S 32991,2
+g 32993 Item graphic
 ; @label:32993=ITEM
-S 32993,8 Item graphic (used by the routine at #R37841)
+D 32993 Initialised upon entry to a room by the routine at #R35068, and used by the routine at #R37841.
+S 32993,8
+g 33001 Room exits
 ; @label:33001=LEFT
+D 33001 Initialised upon entry to a room by the routine at #R35068.
 B 33001,1 Room to the left (used by the routine at #R38026)
 ; @label:33002=RIGHT
 B 33002,1 Room to the right (used by the routine at #R38046)
@@ -54,9 +78,20 @@ B 33002,1 Room to the right (used by the routine at #R38046)
 B 33003,1 Room above (used by the routines at #R37310 and #R38064)
 ; @label:33004=BELOW
 B 33004,1 Room below (used by the routine at #R38098)
-S 33005,3 Unused
+u 33005
+D 33005 These bytes are overwritten upon entry to a room by the routine at #R35068, but not used.
+S 33005,3
+g 33008 Entity specifications
 ; @label:33008=ENTITIES
-S 33008,16 Entity specifications (used by the routine at #R35068)
+D 33008 Initialised upon entry to a room and then used by the routine at #R35068.
+S 33008,2 Entity 1
+S 33010,2 Entity 2
+S 33012,2 Entity 3
+S 33014,2 Entity 4
+S 33016,2 Entity 5
+S 33018,2 Entity 6
+S 33020,2 Entity 7
+S 33022,2 Entity 8
 g 33024 Entity buffer
 ; @label:33024=ENTITYBUF
 D 33024 Initialised by the routine at #R35068, and used by the routines at #R37056 and #R37310. There are eight slots here, each one eight bytes long, used to hold the state of the entities (rope, arrows and guardians) in the current room.
@@ -68,7 +103,14 @@ D 33024 For an arrow, the eight bytes are used as follows:
 D 33024 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ =r3 0 | Bit 7: direction (0=left, 1=right) }} {{ Bits 3-6: unused }} {{ Bits 0-2: entity type (100) }} {{ 1 | Unused }} {{ 2 | Pixel y-coordinate x2 (index into the table at #R33280) }} {{ 3 | Unused }} {{ 4 | x-coordinate }} {{ 5 | Collision detection byte (0=off, 255=on) }} {{ 6 | Top/bottom pixel row (drawn either side of the shaft) }} {{ 7 | Unused }} TABLE#
 D 33024 The rope uses the second and fourth bytes of the following slot in addition to its own; these ten bytes are used as follows:
 D 33024 #TABLE(default,centre,:w) {{ =h Byte | =h Contents }} {{ =r3 0 | Bit 7: direction (0=left, 1=right) }} {{ Bits 3-6: unused }} {{ Bits 0-2: entity type (011) }} {{ 1 | Animation frame index }} {{ 2 | x-coordinate of the top of the rope }} {{ 3 | x-coordinate of the segment of rope being drawn }} {{ 4 | Length (32) }} {{ 5 | Segment drawing byte }} {{ 6 | Unused }} {{ 7 | Animation frame at which the rope changes direction (54) }} {{ 9 | Index of the segment of rope being drawn (0-31) }} {{ =r2 11 | Bit 7: Willy is on the rope (set), or not (reset) }} {{ Bits 0-6: unused }} TABLE#
-S 33024,64,8 Eight slots of eight bytes each
+S 33024,8 Entity 1
+S 33032,8 Entity 2
+S 33040,8 Entity 3
+S 33048,8 Entity 4
+S 33056,8 Entity 5
+S 33064,8 Entity 6
+S 33072,8 Entity 7
+S 33080,8 Entity 8
 B 33088 Terminator
 s 33089
 w 33280 Screen buffer address lookup table
@@ -438,7 +480,7 @@ c 35068 Start the game
 D 35090 This entry point is used by the routines at #R35591 (to teleport into a room), #R35841 (to reinitialise the room after Willy has lost a life), #R38026 (when Willy has entered the room from the right), #R38046 (when Willy has entered the room from the left), #R38064 (when Willy has entered the room from below) and #R38098 (when Willy has entered the room from above).
   35090 Pick up the current room number from #R33824
   35093,5 Point #REGhl at the first byte of the room definition
-  35098,8 Copy the room definition into the buffer at #R32768
+  35098,8 Copy the room definition into the game status buffer at #LINK:GameStatusBuffer#32768(32768)
   35106 Point #REGix at the first byte of the first entity specification for the current room at #R33008
   35110 Point #REGde at the first byte of the entity buffer at #R33024
   35113 There are at most eight entities in a room
@@ -453,7 +495,7 @@ D 35090 This entry point is used by the routines at #R35591 (to teleport into a 
   35146,11 Copy the seven bytes that define Willy's state (position, animation frame etc.) on entry to this room from #LINK:GameStatusBuffer#34255(34255-34261) to #R34263
   35160,13 Clear the bottom third of the display file
   35157,3 Draw the current room to the screen buffer at #R28672 and the attribute buffer at #R24064
-  35173,12 Print the room name at (16,0)
+  35173,12 Print the room name (see #R32896) at (16,0)
   35185,12 Print "Items collected 000 Time 00:00 m" (see #R34132) at (19,0)
   35197 Pick up the border colour for the current room from #R32990
   35200,4 Set the border colour
@@ -768,7 +810,7 @@ D 36173 The following loop draws 256 tiles (for either the top half or the botto
 c 36203 Fill the buffer at 24064 with attribute bytes for the current room
 ; @label:36203=ROOMATTRS
 D 36203 Used by the routine at #R36147. Fills the buffer at #R24064 with attribute bytes for the background, floor, wall, nasty, conveyor and ramp tiles in the current room.
-  36203 Point #REGhl at the first room layout byte in the room buffer at #R32768
+  36203 Point #REGhl at the first room layout byte at #R32768
   36206 Point #REGix at the first byte of the attribute buffer at #R24064
 D 36210 The following loop copies the attribute bytes for the background, floor, wall and nasty tiles into the buffer at #R24064.
   36210 Pick up a room layout byte
@@ -786,21 +828,21 @@ D 36210 The following loop copies the attribute bytes for the background, floor,
   36235,3 Have we processed all 128 room layout bytes yet?
   36238 If not, jump back to process the next one
 D 36240 Next consider the conveyor tiles (if any).
-  36240 Pick up the length of the conveyor
+  36240 Pick up the length of the conveyor from #R32985
   36243 Is there a conveyor in the room?
   36244 Jump if not
-  36246 Pick up the coordinates of the left end of the conveyor
+  36246 Pick up the address of the conveyor's location in the attribute buffer at #R24064 from #R32983
   36249 #REGb will count the conveyor tiles
   36250 Pick up the attribute byte for the conveyor tile from #R32973
   36253,4 Copy the attribute bytes for the conveyor tiles into the buffer at #R24064
 D 36257 And finally consider the ramp tiles (if any).
-  36257 Pick up the length of the ramp
+  36257 Pick up the length of the ramp from #R32989
   36260 Is there a ramp in the room?
   36261 Return if not
-  36262 Pick up the coordinates of the bottom of the ramp
-  36265,5 Pick up the direction byte of the ramp definition; #REGa=0 (ramp goes up to the left) or 1 (ramp goes up to the right)
+  36262 Pick up the address of the ramp's location in the attribute buffer at #R24064 from #R32987
+  36265,5 Pick up the ramp direction from #R32986; #REGa=0 (ramp goes up to the left) or 1 (ramp goes up to the right)
   36270,6 Now #REGde=-33 (ramp goes up to the left) or -31 (ramp goes up to the right)
-  36276 Pick up the length of the ramp
+  36276 Pick up the length of the ramp from #R32989
   36279 #REGb will count the ramp tiles
   36280 Pick up the attribute byte for the ramp tile from #R32964
   36283,4 Copy the attribute bytes for the ramp tiles into the buffer at #R24064
@@ -811,7 +853,7 @@ R 36288 A Room layout byte (rotated)
 R 36288 IX Attribute buffer address (#R24064(24064-24575))
   36288 Keep only bits 0 and 1; #REGa=0 (background), 1 (floor), 2 (wall) or 3 (nasty)
   36290,7 Multiply by 9 and add 160; now #REGa=160 (background), 169 (floor), 178 (wall) or 187 (nasty)
-  36297,3 Point #REGde at the attribute byte for the background, floor, wall or nasty tile in the room buffer at #R32768
+  36297,3 Point #REGde at the attribute byte for the background, floor, wall or nasty tile (see #R32928)
   36300,4 Copy the attribute byte into the buffer at #R24064
   36304,2 Move #REGix along to the next byte in the attribute buffer
 c 36307 Move Willy (1)
@@ -1518,13 +1560,13 @@ c 38098 Move Willy into the room below
   38134 Draw the room and re-enter the main loop
 c 38137 Move the conveyor in the current room
 ; @label:38137=MVCONVEYOR
-  38137 Pick up the coordinates of the left end of the conveyor
+  38137 Pick up the address of the conveyor's location in the attribute buffer at #R24064 from #R32983
   38140,11 Point #REGde and #REGhl at the location of the left end of the conveyor in the screen buffer at #R28672
-  38151 Pick up the length of the conveyor
+  38151 Pick up the length of the conveyor from #R32985
   38154 Is there a conveyor in the room?
   38155 Return if not
   38156 #REGb will count the conveyor tiles
-  38157 Pick up the direction of the conveyor (0=left, 1=right)
+  38157 Pick up the direction of the conveyor from #R32982 (0=left, 1=right)
   38160 Is the conveyor moving right?
   38161 Jump if so
 D 38163 The conveyor is moving left.
