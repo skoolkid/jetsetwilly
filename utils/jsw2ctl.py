@@ -370,11 +370,11 @@ class JetSetWilly:
                 room_image = '#ROOM{}'.format(a)
             lines.append('D {} Used by the routine at #R35068.'.format(a))
             lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a, room_image))
-            lines.append('D {} The first 128 bytes define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.'.format(a))
+            lines.append('D {} The first 128 bytes are copied to #R32768 and define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.'.format(a))
             lines.append('B {},128,8 Room layout'.format(a))
 
             # Room name
-            lines.append('D {} The next 32 bytes contain the room name.'.format(a + 128))
+            lines.append('D {} The next 32 bytes are copied to #R32896 and specify the room name.'.format(a + 128))
             lines.append('T {},32 Room name'.format(a + 128))
 
             # Tiles
@@ -394,7 +394,7 @@ class JetSetWilly:
                             img_type = '.gif'
                 udgs.append('#UDG{},{}({}{:02d}{})'.format(addr + 1, attr, tile_type, room_num, img_type))
             tiles_table = '#UDGTABLE { ' + ' | '.join(udgs) + ' } TABLE#'
-            comment = 'The next 54 bytes contain the attributes and graphic data for the tiles used to build the room.'
+            comment = 'The next 54 bytes are copied to #R32928 and contain the attributes and graphic data for the tiles used to build the room.'
             tile_usage = [' (unused)'] * 6
             for b in self.snapshot[a:a + 128]:
                 for i in range(4):
@@ -421,29 +421,39 @@ class JetSetWilly:
             lines.append('B {},9,9 Ramp{}'.format(a + 196, tile_usage[4]))
             lines.append('B {},9,9 Conveyor{}'.format(a + 205, tile_usage[5]))
 
-            # Conveyor/ramp direction, location and length
-            lines.append('D {} The next 8 bytes define the direction, location and length of the conveyor and ramp.'.format(a + 214))
+            # Conveyor direction, location and length
+            lines.append('D {} The next four bytes are copied to #R32982 and specify the direction, location and length of the conveyor.'.format(a + 214))
             conveyor_d, p1, p2 = self.snapshot[a + 214:a + 217]
             conveyor_x = p1 & 31
             conveyor_y = 8 * (p2 & 1) + (p1 & 224) // 32
-            lines.append('B {},4 Conveyor direction ({}), location (x={}, y={}) and length ({})'.format(a + 214, 'right' if conveyor_d else 'left', conveyor_x, conveyor_y, conveyor_length))
+            lines.append('B {},1 Direction ({})'.format(a + 214, 'right' if conveyor_d else 'left'))
+            lines.append('W {},2 Location in the attribute buffer at #R24064: ({},{})'.format(a + 215, conveyor_y, conveyor_x))
+            lines.append('B {},1 Length'.format(a + 217))
+
+            # Ramp direction, location and length
+            lines.append('D {} The next four bytes are copied to #R32986 and specify the direction, location and length of the ramp.'.format(a + 218))
             ramp_d, p1, p2 = self.snapshot[a + 218:a + 221]
             ramp_x = p1 & 31
             ramp_y = 8 * (p2 & 1) + (p1 & 224) // 32
-            lines.append('B {},4 Ramp direction ({}), location (x={}, y={}) and length ({})'.format(a + 218, 'right' if ramp_d else 'left', ramp_x, ramp_y, ramp_length))
+            lines.append('B {},1 Direction (up to the {})'.format(a + 218, 'right' if ramp_d else 'left'))
+            lines.append('W {},2 Location in the attribute buffer at #R24064: ({},{})'.format(a + 219, ramp_y, ramp_x))
+            lines.append('B {},1 Length'.format(a + 221))
 
             # Border colour
-            lines.append('D {} The next byte specifies the border colour.'.format(a + 222))
+            lines.append('D {} The next byte is copied to #R32990 and specifies the border colour.'.format(a + 222))
             lines.append('B {} Border colour'.format(a + 222))
+
+            # Bytes 223/224
+            lines.append('D {} The next two bytes are copied to #R32991, but are not used.'.format(a + 223))
             lines.append('B {} Unused'.format(a + 223))
 
             # Item graphic
-            lines.append('D {} The next 8 bytes define the item graphic.'.format(a + 225))
+            lines.append('D {} The next eight bytes are copied to #R32993 and define the item graphic.'.format(a + 225))
             lines.append('D {0} #UDGTABLE {{ #UDG{0},{1}(item{2:02d}) }} TABLE#'.format(a + 225, room_paper + 3, room_num))
             lines.append('B {},8,8 Item graphic{}'.format(a + 225, '' if items.get(room_num) else ' (unused)'))
 
             # Rooms to the left, to the right, above and below
-            lines.append('D {} The next 4 bytes specify the rooms to the left, to the right, above and below.'.format(a + 233))
+            lines.append('D {} The next four bytes are copied to #R33001 and specify the rooms to the left, to the right, above and below.'.format(a + 233))
             room_left, room_right, room_up, room_down = room[233:237]
             for addr, num, name, desc in (
                 (a + 233, room_left, self.room_names_wp.get(room_left), 'to the left'),
@@ -458,6 +468,8 @@ class JetSetWilly:
                 else:
                     lines.append('B {} Room {} (none)'.format(addr, desc))
 
+            # Bytes 237-239
+            lines.append('D {} The next three bytes are copied to #R33005, but are not used.'.format(a + 237))
             lines.append('B {} Unused'.format(a + 237))
 
             # Entities
@@ -470,7 +482,7 @@ class JetSetWilly:
                 guardian_type = entity_def[0] & 7
                 entities.append((num, coords, guardian_type, def_addr))
             if entities:
-                lines.append('D {} The next 8 pairs of bytes specify the entities (ropes, arrows, guardians) in this room. The first byte in each pair identifies one of the entity definitions at #R40960. The meaning of the second byte depends on the entity type: it determines the base sprite index and x-coordinate of a guardian, the y-coordinate of an arrow, or the x-coordinate of the top of a rope.'.format(start))
+                lines.append('D {} The next eight pairs of bytes are copied to #R33008 and specify the entities (ropes, arrows, guardians) in this room. The first byte in each pair identifies one of the entity definitions at #R40960. The meaning of the second byte depends on the entity type: it determines the base sprite index and x-coordinate of a guardian, the y-coordinate of an arrow, or the x-coordinate of the top of a rope.'.format(start))
                 addr = start
                 for num, coords, guardian_type, def_addr in entities:
                     if num == 0:
