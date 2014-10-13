@@ -58,28 +58,19 @@ GUARDIANS = {
 class JetSetWilly:
     def __init__(self, snapshot):
         self.snapshot = snapshot
-        self.guardian_macros = self._get_guardian_macros()
+        self.sprite_macros = self._get_sprite_macros()
         self.room_names, self.room_names_wp = self._get_room_names()
         self.room_macros = self._get_room_macros()
         self.room_entities = self._get_room_entities()
 
-    def _get_guardian_macros(self):
-        guardian_macros = {
+    def _get_sprite_macros(self):
+        sprite_macros = {
             40000: '#UDGARRAY2,6,,2;40000-40017-1-16(foot)',
             40032: '#UDGARRAY2,66,,2;40032-40049-1-16(barrel)'
         }
         for i, a in enumerate(range(40064, 40192, 32)):
-            guardian_macros[a] = '#UDGARRAY2,5,,2;{}-{}-1-16(maria{})'.format(a, a + 17, i)
-        for addr, (num, attr) in GUARDIANS.items():
-            page = addr // 256
-            if isinstance(attr, int):
-                attrs = [attr] * num
-            else:
-                attrs = list(attr)
-            for a in range(addr, addr + num * 32, 32):
-                fname = 'guardian{}_{}'.format(page, (a % 256) // 32)
-                guardian_macros[a] = '#UDGARRAY2,{},,2;{}-{}-1-16({})'.format(attrs.pop(0), a, a + 17, fname)
-        return guardian_macros
+            sprite_macros[a] = '#UDGARRAY2,step=2;{},69;{},69;{},7;{},7(maria{})'.format(a, a + 1, a + 16, a + 17, i)
+        return sprite_macros
 
     def _get_room_names(self):
         rooms = {}
@@ -132,6 +123,10 @@ class JetSetWilly:
             key += 1
         return code + '9'
 
+    def _get_guardian_macro(self, addr, attr):
+        fname = 'guardian{}-{}-{}'.format(addr // 256, (addr % 256) // 32, attr)
+        return '#UDGARRAY2,{},,2;{}-{}-1-16({})'.format(attr, addr, addr + 17, fname)
+
     def get_screen_buffer_address_table(self):
         lines = []
         y = 0
@@ -154,6 +149,7 @@ class JetSetWilly:
         defs = {}
         sprite_addrs = {}
         for room_num, specs in self.room_entities.items():
+            room_bg = self.snapshot[(room_num + 192) * 256 + 160] & 120
             for num, start in specs:
                 defs.setdefault(num, set()).add(room_num)
                 def_addr = 40960 + num * 8
@@ -164,7 +160,7 @@ class JetSetWilly:
                     if sprite_addr == 46336:
                         # Use frame 2 instead of frame 0 for the saw sprite
                         sprite_addr = 46400
-                    sprite_addrs.setdefault(num, set()).add(sprite_addr)
+                    sprite_addrs.setdefault(num, set()).add((sprite_addr, room_bg))
 
         lines = []
         for num in range(1, 112):
@@ -176,7 +172,10 @@ class JetSetWilly:
                 comment = 'The following entity definition ({}) is not used.'.format(num)
             lines.append('D {} {}'.format(addr, comment))
             if num in sprite_addrs:
-                sprites = [self.guardian_macros[a] for a in sorted(sprite_addrs[num])]
+                ink = self.snapshot[40961 + 8 * num] & 7
+                sprites = []
+                for a, room_bg in sorted(sprite_addrs[num]):
+                    sprites.append(self._get_guardian_macro(a, room_bg | ink))
                 lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(addr, ' | '.join(sprites)))
             if num in defs or num == 43:
                 entity_def = self.snapshot[addr:addr + 8]
@@ -269,8 +268,8 @@ class JetSetWilly:
                     frames.insert(0, frame)
                 else:
                     frames.append(frame)
-                if b in self.guardian_macros:
-                    macros[-1].append(self.guardian_macros[b])
+                if b in self.sprite_macros:
+                    macros[-1].append(self.sprite_macros[b])
                 else:
                     macros[-1].append('#UDGARRAY2,{},,2;{}-{}-1-16({}{})'.format(attrs.pop(0), b, b + 17, frame, suffix))
             start = end
@@ -308,7 +307,11 @@ class JetSetWilly:
         for a in sorted(GUARDIANS.keys()):
             page = a // 256
             base_index = (a % 256) // 32
-            num = GUARDIANS[a][0]
+            num, attr = GUARDIANS[a]
+            if isinstance(attr, int):
+                attrs = [attr] * num
+            else:
+                attrs = list(attr)
             end_index = base_index + num - 1
             if a in guardians:
                 room_links = self._get_room_links(sorted(guardians[a]))
@@ -319,7 +322,10 @@ class JetSetWilly:
                 comment = 'The next 256 bytes are unused.'
             lines.append('D {} {}'.format(a, comment))
             if num:
-                lines.append('D {} {}'.format(a, self.get_udg_table(a, num)))
+                sprites = []
+                for addr in range(a, a + num * 32, 32):
+                    sprites.append(self._get_guardian_macro(addr, attrs.pop(0)))
+                lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a, ' | '.join(sprites)))
                 lines.append('B {},{},16'.format(a, 32 * num))
             else:
                 lines.append('S {},256'.format(a))
