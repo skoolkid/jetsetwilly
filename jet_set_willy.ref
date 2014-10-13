@@ -151,14 +151,14 @@ But now that the item is revealed, we can also see that it's unreachable:
 
 #PUSHS
 #POKES56548,24,2
-#ROOM56320,2,16,0,16,16(first_landing_item1)
+#ROOM56320,2,16,0,16,16(first_landing_item1.gif)
 
 To add a ledge and open the wall to make the item reachable:
 
 POKE 56350,0: POKE 56358,0: POKE 56365,170
 
 #POKES56350,0;56358,0;56365,170
-#ROOM56320,2,16,0,16,16(first_landing_item2)
+#ROOM56320,2,16,0,16,16(first_landing_item2.gif)
 #POPS
 
 The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix this bug is
