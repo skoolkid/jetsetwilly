@@ -895,7 +895,7 @@ D 36323 Willy is currently jumping.
   36399 Jump if so
   36401 Is the jumping animation counter now 13?
   36403 Jump if not
-D 36406 If we get here, then Willy is standing on the floor, or he's falling, or his jumping animation counter is 13 or 16.
+D 36406 If we get here, then Willy is standing on the floor, or he's falling, or his jumping animation counter is 13 (at which point Willy is on his way down and is exactly two cell-heights above where he started the jump) or 16 (at which point Willy is on his way down and is exactly one cell-height above where he started the jump).
   36406,3 Pick up Willy's pixel y-coordinate from #R34255
   36409 Does Willy's sprite occupy six cells at the moment?
   36411 Jump if so
