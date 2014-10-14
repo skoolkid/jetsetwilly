@@ -44,6 +44,7 @@ Copying ../resources/jet_set_willy.css to {odir}/jet_set_willy/jet_set_willy.css
   Writing jet_set_willy/maps/unused.html
   Writing jet_set_willy/buffers/gbuffer.html
   Writing jet_set_willy/tables/rooms.html
+  Writing jet_set_willy/tables/codes.html
   Writing jet_set_willy/reference/credits.html
   Writing jet_set_willy/reference/changelog.html
   Writing jet_set_willy/reference/bugs.html

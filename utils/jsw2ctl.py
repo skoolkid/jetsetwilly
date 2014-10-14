@@ -135,16 +135,6 @@ class JetSetWilly:
             y += 1
         return '\n'.join(lines)
 
-    def get_codes(self):
-        lines = []
-        for i in range(179):
-            addr = 40448 + i
-            value = (self.snapshot[addr] + i) & 255
-            code = '{}{}{}{}'.format((value >> 6) + 1, ((value >> 4) & 3) + 1, ((value >> 2) & 3) + 1, (value & 3) + 1)
-            grid_loc = chr(65 + (i % 18)) + chr(48 + i // 18)
-            lines.append('B {},1 {}: {}'.format(addr, grid_loc, code))
-        return '\n'.join(lines)
-
     def get_entity_definitions(self):
         defs = {}
         sprite_addrs = {}
@@ -533,7 +523,6 @@ class JetSetWilly:
             barrel=self.get_graphics(40032, 1, 66),
             maria=self.get_graphics(40064, 4, 5),
             willy=self.get_graphics(40192, 8, 7, 'willy', 2, ('r', 'l')),
-            codes=self.get_codes(),
             entity_defs=self.get_entity_definitions(),
             item_table=self.get_item_table(),
             toilet=self.get_graphics(42496, 4, 7, 'toilet', 2, ('empty', 'full'), 10),

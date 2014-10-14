@@ -1868,8 +1868,8 @@ D 40192 Used by the routines at #R35211 and #R38455.
 {willy}
 b 40448 Codes
 ; @label:40448=CODES
-D 40448 Used by the routine at #R34499.
-{codes}
+D 40448 Used by the routine at #R34499. These code remnants define the #LINK:Codes(codes) for grid locations A0-Q9.
+C 40448
 u 40627
 C 40627
 S 40704

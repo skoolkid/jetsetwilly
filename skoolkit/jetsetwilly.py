@@ -25,6 +25,8 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         self.font = {}
         for b, h in self.get_dictionary('Font').items():
             self.font[b] = [int(h[i:i + 2], 16) for i in range(0, 16, 2)]
+        data = self.get_section('Codes')
+        self.snapshot[40448:40627] = [int(data[i:i + 2], 16) for i in range(0, 358, 2)]
         start = 41984 + self.snapshot[41983]
         self.items = {}
         for a in range(start, 42240):
@@ -65,6 +67,20 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             lines.append('{{ {} | #R{} | {} | {} }}'.format(room_num, address, room_name, teleport_code))
         lines.append('TABLE#')
         return ''.join(lines)
+
+    def codes(self, cwd):
+        lines = [
+            '#TABLE(default,centre,centre,centre,centre)',
+            '{ =h Address | =h Value | =h Grid | =h Code }'
+        ]
+        for i in range(179):
+            addr = 40448 + i
+            value = (self.snapshot[addr] + i) & 255
+            code = '{}{}{}{}'.format((value >> 6) + 1, ((value >> 4) & 3) + 1, ((value >> 2) & 3) + 1, (value & 3) + 1)
+            grid_loc = chr(65 + (i % 18)) + chr(48 + i // 18)
+            lines.append('{{ {} | {} | {} | {} }}'.format(addr, self.snapshot[addr], grid_loc, code))
+        lines.append('TABLE#')
+        return '\n'.join(lines)
 
     def aeroplane(self, cwd):
         img_path = self.image_path('aeroplane.gif', 'ScreenshotImagePath')
