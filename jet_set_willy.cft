@@ -84,6 +84,7 @@ S 33005,3
 g 33008 Entity specifications
 ; @label:33008=ENTITIES
 D 33008 Initialised upon entry to a room and then used by the routine at #R35068.
+D 33008 There are eight pairs of bytes here that hold the entity specifications for the current room. The first byte in each pair identifies one of the entity definitions at #R40960. The meaning of the second byte depends on the entity type: it determines the base sprite index and x-coordinate of a guardian, the y-coordinate of an arrow, or the x-coordinate of the top of a rope.
 S 33008,2 Entity 1
 S 33010,2 Entity 2
 S 33012,2 Entity 3

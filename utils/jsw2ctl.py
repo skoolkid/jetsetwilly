@@ -478,7 +478,7 @@ class JetSetWilly:
                 guardian_type = entity_def[0] & 7
                 entities.append((num, coords, guardian_type, def_addr))
             if entities:
-                lines.append('D {} The next eight pairs of bytes are copied to #R33008 and specify the entities (ropes, arrows, guardians) in this room. The first byte in each pair identifies one of the entity definitions at #R40960. The meaning of the second byte depends on the entity type: it determines the base sprite index and x-coordinate of a guardian, the y-coordinate of an arrow, or the x-coordinate of the top of a rope.'.format(start))
+                lines.append('D {} The next eight pairs of bytes are copied to #R33008 and specify the entities (ropes, arrows, guardians) in this room.'.format(start))
                 addr = start
                 for num, coords, guardian_type, def_addr in entities:
                     if num == 0:
