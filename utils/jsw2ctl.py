@@ -139,7 +139,7 @@ class JetSetWilly:
         defs = {}
         sprite_addrs = {}
         for room_num, specs in self.room_entities.items():
-            room_bg = self.snapshot[(room_num + 192) * 256 + 160] & 120
+            room_bg = self.snapshot[(room_num + 192) * 256 + 160] & 56
             for num, start in specs:
                 defs.setdefault(num, set()).add(room_num)
                 def_addr = 40960 + num * 8
@@ -163,9 +163,10 @@ class JetSetWilly:
             lines.append('D {} {}'.format(addr, comment))
             if num in sprite_addrs:
                 ink = self.snapshot[40961 + 8 * num] & 7
+                bright = 8 * (self.snapshot[40961 + 8 * num] & 8)
                 sprites = []
                 for a, room_bg in sorted(sprite_addrs[num]):
-                    sprites.append(self._get_guardian_macro(a, room_bg | ink))
+                    sprites.append(self._get_guardian_macro(a, bright | room_bg | ink))
                 lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(addr, ' | '.join(sprites)))
             if num in defs or num == 43:
                 entity_def = self.snapshot[addr:addr + 8]
