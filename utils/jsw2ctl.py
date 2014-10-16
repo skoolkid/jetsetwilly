@@ -481,11 +481,13 @@ class JetSetWilly:
             if entities:
                 lines.append('D {} The next eight pairs of bytes are copied to #R33008 and specify the entities (ropes, arrows, guardians) in this room.'.format(start))
                 addr = start
+                terminated = False
                 for num, coords, guardian_type, def_addr in entities:
                     if num == 0:
                         desc = 'Nothing'
                     elif num == 255:
                         desc = 'Terminator'
+                        terminated = True
                     elif guardian_type == 1:
                         desc = 'Guardian no. {} (horizontal), base sprite {}, initial x={}'.format(num, coords // 32, coords & 31)
                     elif guardian_type == 2:
@@ -501,7 +503,8 @@ class JetSetWilly:
                         else:
                             pixel_y = coords // 2
                         desc = 'Arrow flying {} at pixel y-coordinate {}'.format(direction, pixel_y)
-                    lines.append('B {},2 {} (#R{})'.format(addr, desc, def_addr))
+                    suffix = ' (unused)' if 0 < num < 255 and terminated else ''
+                    lines.append('B {},2 {} (#R{}){}'.format(addr, desc, def_addr, suffix))
                     addr += 2
             else:
                 lines.append('D {} There are no entities (ropes, arrows, guardians) in this room.'.format(start))
