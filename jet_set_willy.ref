@@ -292,6 +292,9 @@ For example, the room below #R50432(The Security Guard) is #R50688(Entrance to H
 
 For another example, the room above #R59392(Dr Jones will never believe this) is #R53248(We must perform a Quirkafleeg), where the long row of nasties at the bottom of the pit ensures certain (repeated) death.
 
+[Fact:unusedRoom:Unused room]
+There are 61 room definitions occupying pages 192-252, but the definition for room 47 in #R61184(page 239) is not used. Room 47 is completely empty and can only be accessed by activating #FACT#writetyper(cheat mode) and using the teleport code '123469'.
+
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
 
@@ -597,7 +600,9 @@ TABLE#
 [Changelog:YYYYMMDD]
 -
 
-Added a trivia entry: #FACT#drJonesWillNeverBelieveThis() (thanks Dunny)
+Added trivia entries:
+  #FACT#unusedRoom()
+  #FACT#drJonesWillNeverBelieveThis() (thanks Dunny)
 
 [Changelog:20140913]
 The disassembly is now 'complete'.
