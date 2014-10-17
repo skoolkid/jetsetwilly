@@ -398,6 +398,9 @@ Every other item is unique to its own room.
 [Fact:commonestCodes:Commonest codes]
 The commonest codes on the code sheet are 2411 (at H7, O7, R7 and C9) and 3443 (at O3, D6, L8 and R8).
 
+[Fact:someAirLeft:Some air left?]
+The message at #R33873 ('AIR') may be unused, but it is still a poignant reminder of Willy's former career as a miner.
+
 [Fact:mariasDodgyDepthPerception:Maria's dodgy depth perception]
 Whether Maria raises her arm at Willy in #R58112(Master Bedroom) depends on his height above floor level, as opposed to his distance away from her (see the code at #R38224); this means that she raises her arm not only as Willy walks up the ramp towards her, but also if he jumps in the air at the entrance to the room.
 
@@ -602,6 +605,7 @@ TABLE#
 
 Added trivia entries:
   #FACT#unusedRoom()
+  #FACT#someAirLeft()
   #FACT#drJonesWillNeverBelieveThis() (thanks Dunny)
 
 [Changelog:20140913]
