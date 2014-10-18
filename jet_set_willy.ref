@@ -398,6 +398,9 @@ Every other item is unique to its own room.
 [Fact:commonestCodes:Commonest codes]
 The commonest codes on the code sheet are 2411 (at H7, O7, R7 and C9) and 3443 (at O3, D6, L8 and R8).
 
+[Fact:codesFromCode:Codes from code]
+The codes for grid locations A0-Q9 are derived not from a deliberately crafted data table but from the unused code remnants at #R40448.
+
 [Fact:someAirLeft:Some air left?]
 The message at #R33873 ('AIR') may be unused, but it is still a poignant reminder of Willy's former career as a miner.
 
@@ -605,6 +608,7 @@ TABLE#
 
 Added trivia entries:
   #FACT#unusedRoom()
+  #FACT#codesFromCode()
   #FACT#someAirLeft()
   #FACT#drJonesWillNeverBelieveThis() (thanks Dunny)
 
