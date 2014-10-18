@@ -31,7 +31,7 @@ XHTML_XSD = os.path.join(SKOOLKIT_HOME, 'XSD', 'xhtml1-strict.xsd')
 
 OUTPUT_JSW = """Creating directory {odir}
 Using skool file: {skoolfile}
-Using ref file: {reffile}
+Using ref files: ../jet_set_willy.ref, ../jet_set_willy-bugs.ref, ../jet_set_willy-changelog.ref, ../jet_set_willy-facts.ref, ../jet_set_willy-pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/jet_set_willy
 Copying {SKOOLKIT_HOME}/resources/skoolkit.css to {odir}/jet_set_willy/skoolkit.css
@@ -245,7 +245,7 @@ class HtmlTestCase(DisassembliesTestCase):
         # Write the disassembly
         output, error = self.run_skoolkit_command(skool2html.main, '{} {} {}'.format(main_options, options, JSWREF))
         self.assertEqual(len(error), 0)
-        reps = {'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': skoolfile, 'reffile': JSWREF}
+        reps = {'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': skoolfile}
         self.assertEqual(OUTPUT_JSW.format(**reps).split('\n'), output)
 
         self._validate_xhtml()

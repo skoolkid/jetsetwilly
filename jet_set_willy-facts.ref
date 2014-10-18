@@ -1,0 +1,252 @@
+; Copyright 2012-2014 Richard Dymond (rjdymond@gmail.com)
+
+[Fact:gameOverAt1am:Game over at 1am]
+The game ends abruptly at 1am (see #R35442), even if Willy has collected all the items, or has reached his bed and is already on his way to the toilet, or already has his head down the toilet.
+
+[Fact:tunes:Tunes]
+The tune played on the title screen is Beethoven's <i>Moonlight Sonata</i>. The tune played during gameplay is <i>If I Were a Rich Man</i> from the musical <i>Fiddler on the Roof</i>.
+
+[Fact:theMovingBed:The moving bed]
+The bed in #R58112(Master Bedroom) is actually a conveyor moving left to right, but it doesn't appear to move because the first and third bytes of the conveyor tile (shown below) are 85 (01010101), which remains 85 after being rotated left or right twice.
+
+#UDGTABLE
+{ #UDG58318,41(moving_bed) }
+TABLE#
+
+[Fact:theMusicOfLife:The music of life]
+When Willy loses a life, the pitch of the notes in the in-game music decreases, and their length increases; see #R35668.
+
+[Fact:takingABreak:Taking a BREAK]
+The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see #R35505). This works at any time, including when Willy is running to the toilet or already has his head down it.
+
+[Fact:writetyper:WRITETYPER]
+If you take Willy to the floor at the bottom of the staircase in #R56320(First Landing) and type the word WRITETYPER, a cheat mode is activated that enables Willy to teleport to any room (see #R35743).
+
+For example, to teleport to #R58112(Master Bedroom), hold down keys '1', '2' and '6', and then press '9' to activate the teleporter. For a list of all the rooms and their teleport codes, see the #LINK:Rooms(Rooms page).
+
+[Fact:asYouWere:As you were]
+Willy's animation frame at #R34258 and direction flag at #R34256 are not initialised before the game starts, so his animation frame and the direction he's facing at the start of a game will be whatever they were when he died in the previous game. (The first time the game starts, Willy's animation frame is 0 and he's facing right.)
+
+[Fact:whiteSeekingMissile:White-seeking missile]
+The routine at #R37310, when drawing an arrow, kills Willy if the arrow hits anything with white INK; this means, for example, that Willy would be killed if the arrow hits a white rope. It is no coincidence, then, that in the rooms that have both a rope and an arrow (#R53248(We must perform a Quirkafleeg), #R53760(On the Roof) and #R64000(The Beach)), the rope is not white.
+
+To see Willy die when the arrow hits the rope in #R64000(The Beach):
+
+<div>POKE #R34794(34795),58 (start in #R64000(The Beach))</div>
+<div>POKE #R64160,15 (set the INK of the room's background tile to white)</div>
+<div>POKE #R34789(34790),128 (set Willy's initial pixel y-coordinate to 64)</div>
+<div>POKE #R34799(34800),2: POKE #R34799(34801),93 (set Willy's initial attribute buffer location)</div>
+
+[Fact:beerInTheWall:Beer in the wall?]
+The wall tile in #R62976(West Wing) is very similar to the beer mug item in #R56576(The Nightmare Room); they differ only in the bottom row of pixels:
+
+#UDGTABLE(gallery)
+{ #R62976(West Wing) wall tile | #UDG63155,39(wall54) }
+{ #R56576(The Nightmare Room) item | #UDG56801,3(item29) }
+TABLE#
+
+[Fact:dangerousConnections:Dangerous connections]
+There are several places in Willy's mansion where it is obvious that he is in danger of falling from a great height and entering an infinite death loop. However, there are also some places where it is far from obvious that merely moving from one room to another will lead to an infinite death loop.
+
+For example, the room below #R50432(The Security Guard) is #R50688(Entrance to Hades), from which there is no escape.
+
+For another example, the room above #R59392(Dr Jones will never believe this) is #R53248(We must perform a Quirkafleeg), where the long row of nasties at the bottom of the pit ensures certain (repeated) death.
+
+[Fact:unusedRoom:Unused room]
+There are 61 room definitions occupying pages 192-252, but the definition for room 47 in #R61184(page 239) is not used. Room 47 is completely empty and can only be accessed by activating #FACT#writetyper(cheat mode) and using the teleport code '123469'.
+
+[Fact:unusedGridLocation:Unused grid location]
+The routine at #R34499, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
+
+To give the code at grid location R9 a chance of being asked for:
+
+POKE #R34555(34556),180
+
+[Fact:unusedItems:Unused items]
+There are five rooms in which nontrivial item graphics are defined, but not used.
+
+#UDGTABLE(gallery)
+{ #R54497(Ballroom East)   | #UDG54497,3(item20) }
+{ #R55265(The Kitchen)     | #UDG55265,3(item23) }
+{ #R59873(The Attic)       | #UDG59873,3(item41) }
+{ #R60897(Under the Drive) | #UDG60897,3(item45) }
+{ #R61665(Nomen Luni)      | #UDG61665,3(item48) }
+TABLE#
+
+[Fact:unusedNasties:Unused nasties]
+There are seven rooms in which nontrivial nasty graphics are defined, but not used.
+
+#UDGTABLE(gallery)
+{ #R50363(The Drive)          | #UDG50364,68(nasty04) }
+{ #R54715(Ballroom West)      | #UDG54716,66(nasty21) }
+{ #R56251(The Chapel)         | #UDG56252,66(nasty27) }
+{ #R56763(The Nightmare Room) | #UDG56764,69(nasty29) }
+{ #R57019(The Banyan Tree)    | #UDG57020,14(nasty30) }
+{ #R58811(Orangery)           | #UDG58812,6(nasty37) }
+{ #R61627(Nomen Luni)         | #UDG61628,6(nasty48) }
+TABLE#
+
+[Fact:unusedFloor:Unused floor]
+There is one room in which a nontrivial floor graphic is defined, but not used.
+
+#UDGTABLE(gallery)
+{ #R52137(The Hall) | #UDG52138,71(floor11) }
+TABLE#
+
+[Fact:unusedRamp:Unused ramp]
+There is one room in which a nontrivial ramp graphic is defined, but not used.
+
+#UDGTABLE(gallery)
+{ #R50884(Entrance to Hades) | #UDG50885,7(ramp06) }
+TABLE#
+
+[Fact:unusedConveyor:Unused conveyor]
+There is one room in which a nontrivial conveyor graphic is defined, but not used.
+
+#UDGTABLE(gallery)
+{ #R56269(The Chapel) | #UDG56270,7(conveyor27) }
+TABLE#
+
+[Fact:unusedGuardian:Unused guardian]
+The guardian whose graphic data lives at #R45312 is unused.
+
+#UDGTABLE {
+    #UDGARRAY2,7,,2;45440-45457-1-16;45312-45329-1-16(guardian177-0) |
+    #UDGARRAY2,7,,2;45472-45489-1-16;45344-45361-1-16(guardian177-1) |
+    #UDGARRAY2,7,,2;45504-45521-1-16;45376-45393-1-16(guardian177-2) |
+    #UDGARRAY2,7,,2;45536-45553-1-16;45408-45425-1-16(guardian177-3)
+} TABLE#
+
+However, this guardian made an appearance later on in the room 'Macaroni Ted' in Jet Set Willy II.
+
+[Fact:uniqueGuardians:Unique guardians]
+There are seven rooms that contain a unique guardian (that is, a guardian that does not appear in any other room).
+
+#UDGTABLE(gallery)
+{ #R49152(The Off Licence)    | #UDGARRAY2,69,,2;48768-48785-1-16(guardian190-4-69) }
+{ #R49408(The Bridge)         | #UDGARRAY2,68,,2;47488-47505-1-16(guardian185-4-68) }
+{ #R52736(Rescue Esmerelda)   | #UDGARRAY2,23,,2;45184-45201-1-16(guardian176-4-23) }
+{ #R55552(Cold Store)         | #UDGARRAY2,14,,2;48384-48401-1-16(guardian189-0-14) }
+{ #R56576(The Nightmare Room) | #UDGARRAY2,6,,2;40000-40017-1-16(foot) }
+{ #R59648(The Attic)          | #UDGARRAY2,3,,2;45056-45073-1-16(guardian176-0-3) #UDGARRAY2,5,,2;45120-45137-1-16(guardian176-2-5) }
+{ #R60672(Under the Drive)    | #UDGARRAY2,3,,2;44672-44689-1-16(guardian174-4-3) }
+TABLE#
+
+[Fact:commonestGuardian:Commonest guardian]
+The commonest guardian is the bird, whose graphic data lives at #R48128.
+
+#UDGTABLE {
+    #UDGARRAY2,66,,2;48128-48145-1-16(guardian188-0-66) |
+    #UDGARRAY2,66,,2;48160-48177-1-16(guardian188-1-66) |
+    #UDGARRAY2,66,,2;48192-48209-1-16(guardian188-2-66) |
+    #UDGARRAY2,66,,2;48224-48241-1-16(guardian188-3-66) |
+    #UDGARRAY2,66,,2;48256-48273-1-16(guardian188-4-66) |
+    #UDGARRAY2,66,,2;48288-48305-1-16(guardian188-5-66) |
+    #UDGARRAY2,66,,2;48320-48337-1-16(guardian188-6-66) |
+    #UDGARRAY2,66,,2;48352-48369-1-16(guardian188-7-66)
+} TABLE#
+
+There are 23 instances of this guardian spread over 18 rooms: four in #R50176(The Drive), two in each of #R49408(The Bridge) and #R51200(Inside the MegaTrunk), and one in each of #R51968(The Hall), #R52224(Tree Top), #R52480(Out on a limb), #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..), #R53248(We must perform a Quirkafleeg), #R54272(Ballroom East), #R54784(To the Kitchens Main Stairway), #R58368(A bit of tree), #R58880(Priests' Hole), #R60672(Under the Drive), #R61440(Nomen Luni), #R61952(Watch Tower), #R62976(West  Wing) and #R63488(West Wing Roof).
+
+[Fact:commonestItem:Commonest item]
+The commonest item is the bell, which appears in #R53504(Up on the Battlements), #R53248(We must perform a Quirkafleeg) and #R52992(I'm sure I've seen this before..).
+
+#UDGTABLE { #UDG53217,11(item15) } TABLE#
+
+Every other item is unique to its own room.
+
+[Fact:commonestCodes:Commonest codes]
+The commonest codes on the code sheet are 2411 (at H7, O7, R7 and C9) and 3443 (at O3, D6, L8 and R8).
+
+[Fact:codesFromCode:Codes from code]
+The codes for grid locations A0-Q9 are derived not from a deliberately crafted data table but from the unused code remnants at #R40448.
+
+[Fact:someAirLeft:Some air left?]
+The message at #R33873 ('AIR') may be unused, but it is still a poignant reminder of Willy's former career as a miner.
+
+[Fact:mariasDodgyDepthPerception:Maria's dodgy depth perception]
+Whether Maria raises her arm at Willy in #R58112(Master Bedroom) depends on his height above floor level, as opposed to his distance away from her (see the code at #R38224); this means that she raises her arm not only as Willy walks up the ramp towards her, but also if he jumps in the air at the entrance to the room.
+
+[Fact:ropeClimbingForBeginners:Rope climbing for beginners]
+In order to climb down a rope, Willy must move in the same direction as the rope is swinging (left if the rope is swinging right to left, right if the rope is swinging left to right); to climb up a rope, he must move in the opposite direction (see #R37756).
+
+[Fact:theEncroachingRope:The encroaching rope]
+In the entity buffer at #R33024, the definition for a rope uses the second and fourth bytes of the following definition (in addition to the eight bytes of its own slot); this means that to avoid corrupting another entity, the rope must be either the last entity specified in a room, or followed by an arrow (which doesn't use the second and fourth bytes of its slot).
+
+[Fact:ropesBeforeArrows:Ropes before arrows]
+The rope-drawing code at #R37540 places Willy on the rope if it is touching anything else (Willy or otherwise) that's already been drawn. This means, for example, that if an arrow is drawn before the rope (by appearing before it in the room's entity specifications), Willy will be immediately transported onto the rope when the arrow hits it.
+
+To see this happen in #R64000(The Beach):
+
+<div>POKE #R34794(34795),58 (start in #R64000(The Beach))</div>
+<div>POKE #R64240,60: POKE #R64240(64241),84 (entity specification for the arrow)</div>
+<div>POKE #R64242,1: POKE #R64242(64243),14 (entity specification for the rope)</div>
+<div>POKE #R34789(34790),128 (set Willy's initial pixel y-coordinate to 64)</div>
+<div>POKE #R34799(34800),2: POKE #R34799(34801),93 (set Willy's initial attribute buffer location)</div>
+
+[Fact:guardianColours:Guardian colours]
+The most common guardian colour is yellow (25 instances), and the least common colour is blue (2 instances, both BRIGHT, in #R54016(The Forgotten Abbey) and #R59648(The Attic)).
+
+As for the other colours, there are 18 red guardians, 20 magenta guardians, 19 green guardians, 18 cyan guardians, and 7 white guardians; there are no black guardians anywhere.
+
+[Fact:guardiansNeedAClearPath:Guardians need a clear path]
+The guardian-drawing code at #R37334 kills Willy if a guardian collides with anything that's already been drawn in the room. This means, for example, that Willy is killed if a guardian hits a nasty, a wall or the floor.
+
+See this happen by placing a wall block in the path of the guardian in #R57600(The Bathroom):
+
+POKE #R57600#57600(57635),128
+
+[Fact:guardianOrFixture:Guardian or fixture?]
+Entity 89, defined at #R41672, and appearing in #R51968(The Hall) and #R62976(West Wing), is the only guardian that does not move up, down, left or right.
+
+#UDGTABLE { #UDGARRAY2,6,,2;45248-45265-1-16(guardian176-6-6) } TABLE#
+
+[Fact:unusedEntityDefinition:Unused entity definition]
+Entity definition 43 at #R41304 contains data but is not used.
+
+Which room might this vertical guardian have inhabited at some point while the game was being developed? We'll probably never know.
+
+[Fact:untouchableEntityDefinition:Untouchable entity definition]
+Entity definition 127 at #R41976 should not be modified or used to define an actual entity, because its first byte (255) is used to terminate the entity buffer at #R33024.
+
+[Fact:oneItemBehindAnother:One item behind another]
+There are two items in #R64000(The Beach), but they are both at the same location, so it looks as if there is only one.
+
+[Fact:slipperySlopes:Slippery slopes]
+In #R56064(The Chapel) and #R57344(Halfway up the East Wall), the ramps act as conveyors that push Willy down the slope, because the ramp tile has the same attribute byte as the conveyor tile (which is not actually used in either room). There are no conveyor-ramps anywhere else in the game.
+
+[Fact:toPauseOrNotToPause:To pause or not to pause]
+If the in-game music has been switched off, the game will pause automatically after a period of inactivity; however, if the in-game music is playing, it will not (see #R35644).
+
+[Fact:cheatsNeverCycleColours:Cheats never cycle colours]
+While the game is paused, the INK and PAPER colours are cycled at regular intervals, unless the #FACT#writetyper(WRITETYPER cheat mode) has been activated (see #R35553).
+
+[Fact:nomenLuni:Nomen Luni?]
+The name of the room #R61440(Nomen Luni) is a pun on 'Nomen Ludi', a Latin translation of 'The Name of the Game', which appeared in adverts for the aeroplane shoot-em-up game <a class="link" href="http://www.worldofspectrum.org/infoseekid.cgi?id=0005894">Zzoom</a> by Imagine Software Ltd.
+
+In #R61440(Nomen Luni) and the room below (#R59904(Under the Roof)) you can see an aeroplane that has crashed into the roof of Willy's mansion:
+
+#UDGTABLE { #CALL:aeroplane() } TABLE#
+
+[Fact:weMustPerformAQuirkafleeg:We must perform a Quirkafleeg?]
+The name of the room #R53248(We must perform a Quirkafleeg) is a reference to issue 5 of the comic book <i>The Adventures of Fat Freddy's Cat</i>, in which the inhabitants of Pootweet, upon seeing a suitcase full of dead mice, exclaim 'We must perform a Quirkafleeg!' and promptly lie down on their backs and start waving their arms and legs in the air.
+
+[Fact:rescueEsmerelda:Rescue Esmerelda?]
+The sequence of rooms #R53504(Up on the Battlements), #R53248(We must perform a Quirkafleeg), #R52992(I'm sure I've seen this before..) and #R52736(Rescue Esmerelda) - with the guards, battlements, rope, bells and Esmerelda - are a reference to <a class="link" href="http://www.worldofspectrum.org/infoseekid.cgi?id=0002383">Hunchback</a> by Ocean Software Ltd.
+
+[Fact:drJonesWillNeverBelieveThis:Dr Jones will never believe this?]
+The name of the room #R59392(Dr Jones will never believe this) may be a reference to the 'Myth of Jones', a story told by the philosopher Wilfrid Sellars in his most famous paper, <i>Empiricism and the Philosophy of Mind</i>. In this story, the hero, Jones, seeks to explain how a person can have a sensation of something that doesn't exist; for example, how it can be that people behave just as they would if there were a pink elephant in the room when in fact there is no such thing there. In this particular room, however, there <em>is</em> a pink (well, magenta) elephant.
+
+[Fact:emptiestRooms:The emptiest rooms]
+#R62720(Back Door) is the only room that has no items, nasties, rope, arrows or guardians.
+
+#ROOM62720
+
+#R51712(The Front Door) is the only other room that has no rope, arrows or guardians; it also has no nasties, but does contain an item.
+
+#ROOM51712
+
+[Fact:mostItems:The most items]
+The room with the most items is #R49152(The Off Licence) with 12.
+
+#ROOM49152

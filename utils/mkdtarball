@@ -125,7 +125,7 @@ fi
 rm -rf src
 mkdir src
 cp -p $JETSETWILLY_HOME/skoolkit/jetsetwilly.py src
-cp -p $JETSETWILLY_HOME/jet_set_willy.ref src
+cp -p $JETSETWILLY_HOME/jet_set_willy*.ref src
 cp -p $JETSETWILLY_HOME/resources/jet_set_willy*.css src
 
 DISTDIR=dist
