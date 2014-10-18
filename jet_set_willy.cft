@@ -530,7 +530,7 @@ c 35245 Main loop (1)
   35278 If not, move Willy
 ; @label:35281=AFTERMOVE1
   35281 Pick up Willy's pixel y-coordinate from #R34255
-  35284 Is it 225 or greater?
+  35284 Has Willy just moved up a ramp past the top of the screen?
   35286 If so, move Willy into the room above
 ; @label:35289=AFTERMOVE2
   35289 Pick up the game mode indicator from #R34271
