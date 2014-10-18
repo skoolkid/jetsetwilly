@@ -1423,7 +1423,7 @@ D 37726 Now that the entire rope has been drawn, deal with Willy's movement alon
   37788 Compare it with the length of the rope
   37791,4 If Willy is at or above the bottom of the rope, jump to consider the next entity definition
   37795 Set the rope status indicator at #R34262 to 240 (Willy has just dropped off the bottom of the rope)
-  37797,8 Clear bits 0-2 of Willy's pixel y-coordinate at #R34255; this rounds down his actual pixel y-coordinate to the nearest multiple of 4 (possibly moving him upwards a little)
+  37797,8 Round down Willy's pixel y-coordinate at #R34255 to the nearest multiple of 8; this might move him upwards a little, but ensures that his actual pixel y-coordinate is a multiple of 4 before he starts falling
   37805,4 Initialise the airborne status indicator at #R34257
   37809 Make a redundant jump to the next instruction
 D 37811 The current entity definition has been dealt with. Time for the next one.
