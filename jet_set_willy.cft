@@ -1431,9 +1431,9 @@ D 37811 The current entity definition has been dealt with. Time for the next one
   37816 Jump back to deal with it
 u 37819 Unused routine
 ; @label:37819=U_SETATTRS
-D 37819 This routine is not used, but if it were, it would set the INK colour for a 3x2 block of cells, maintaining the PAPER, BRIGHT and FLASH attributes of the current room background.
+D 37819 This routine is not used, but if it were, it would set the INK colour for a 3x2 block of cells, maintaining the PAPER, BRIGHT and FLASH attributes of the current room background. It is identical to the code at 36447 in Manic Miner that is used to set the attributes for a vertical guardian.
 R 37819 A INK colour (0-7)
-R 37819 HL Attribute file or attribute buffer address
+R 37819 HL Attribute buffer address
 C 37819 Store the INK colour (bits 0-2)
 C 37820 Collect the current room's background tile attribute from #R32928
 C 37823 Keep only bits 3-7 (PAPER, BRIGHT, FLASH)
