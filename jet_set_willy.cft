@@ -1038,7 +1038,7 @@ D 36751 A jump key or the fire button is being pressed. Time to make Willy jump.
   36772,3 Is Willy on a rope?
   36775 Jump if not
   36777,5 Set the rope status indicator at #R34262 to 240
-  36782,8 Round Willy's pixel y-coordinate at #R34255 down to the nearest multiple of 8
+  36782,8 Round down Willy's pixel y-coordinate at #R34255 to the nearest multiple of 16; this might move him upwards a little, but ensures that his actual pixel y-coordinate is a multiple of 8 (making his sprite cell-aligned) before he begins the jump off the rope
   36790,5 Set bit 1 at #R34256: during this jump off the rope, Willy will move in the direction he's facing
 c 36796 Move Willy (3)
 D 36796 Used by the routines at #R36307 and #R36564. This routine moves Willy left or right if necessary.
