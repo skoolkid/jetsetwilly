@@ -286,11 +286,11 @@ B 34291,b2 Y
 B 34293,b2 P
 B 34295,b2 E
 B 34297,b2 R
-b 34299 Title screen tune data
+b 34299 Title screen tune data (Moonlight Sonata)
 ; @label:34299=THEMETUNE
 D 34299 Used by the routine at #R38562.
 B 34299,100,16
-b 34399 In-game tune data
+b 34399 In-game tune data (If I Were a Rich Man)
 ; @label:34399=GAMETUNE
 D 34399 Used by the routine at #R35591.
 B 34399,64,16
@@ -1746,7 +1746,7 @@ R 38545 DE Display file address
   38553 There are eight pixel rows in a character bitmap
 D 38555 This entry point is used by the routine at #R34762 to draw a triangle UDG on the title screen, and by the routine at #R37841 to draw an item in the current room.
   38555,6 Copy the character bitmap (or triangle UDG, or item graphic) to the screen (or screen buffer)
-c 38562 Play the theme tune
+c 38562 Play the theme tune (Moonlight Sonata)
 ; @label:38562=PLAYTUNE
 D 38562 Used by the routine at #R34762. For each of the 99 bytes in the tune data table at #R34299, this routine produces two notes, each lasting approximately 0.15s; the second note is played at half the frequency of the first. Returns with the zero flag reset if ENTER, 0 or the fire button is pressed while the tune is being played.
 R 38562 HL #R34299

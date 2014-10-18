@@ -246,6 +246,9 @@ which sets the pixel y-coordinate of the arrow to 41.
 [Fact:gameOverAt1am:Game over at 1am]
 The game ends abruptly at 1am (see #R35442), even if Willy has collected all the items, or has reached his bed and is already on his way to the toilet, or already has his head down the toilet.
 
+[Fact:tunes:Tunes]
+The tune played on the title screen is Beethoven's <i>Moonlight Sonata</i>. The tune played during gameplay is <i>If I Were a Rich Man</i> from the musical <i>Fiddler on the Roof</i>.
+
 [Fact:theMovingBed:The moving bed]
 The bed in #R58112(Master Bedroom) is actually a conveyor moving left to right, but it doesn't appear to move because the first and third bytes of the conveyor tile (shown below) are 85 (01010101), which remains 85 after being rotated left or right twice.
 
@@ -607,6 +610,7 @@ TABLE#
 -
 
 Added trivia entries:
+  #FACT#tunes()
   #FACT#unusedRoom()
   #FACT#codesFromCode()
   #FACT#someAirLeft()
