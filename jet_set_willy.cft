@@ -448,7 +448,7 @@ D 34965 Now check whether there is a joystick connected.
   34965 #REGb=0, #REGc=31 (joystick port)
   34968 Disable interrupts (which are already disabled)
   34969 #REGa=0
-  34970,5 Combine 256 readings of the joystick port in #REGa
+  34970,5 Combine 256 readings of the joystick port in #REGa; if no joystick is connected, some of these readings will have bit 5 set
   34975 Is a joystick connected (bit 5 reset)?
   34977 Jump if not
   34979,5 Set the Kempston joystick indicator at #R34254 to 1
