@@ -1,4 +1,4 @@
-; Copyright 2012-2014 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014 Richard Dymond (rjdymond@gmail.com)
 
 [Changelog:YYYYMMDD]
 -
@@ -9,6 +9,7 @@ Added trivia entries:
   #FACT#codesFromCode()
   #FACT#someAirLeft()
   #FACT#drJonesWillNeverBelieveThis() (thanks Dunny)
+Added animated images to the #BUG#corruptedConveyors() bug
 
 [Changelog:20140913]
 The disassembly is now 'complete'.

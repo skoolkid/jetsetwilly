@@ -16,9 +16,9 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from .skoolhtml import HtmlWriter, Udg
+    from .skoolhtml import HtmlWriter, Frame, Udg
 except (ValueError, SystemError, ImportError):
-    from skoolkit.skoolhtml import HtmlWriter, Udg
+    from skoolkit.skoolhtml import HtmlWriter, Frame, Udg
 
 class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
@@ -39,12 +39,12 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         self.room_names, self.room_names_wp = self._get_room_names()
 
     def expand_room(self, text, index, cwd):
-        # #ROOMaddr[,scale,x,y,w,h,empty,fix][(fname)]
-        param_names = ('addr', 'scale', 'x', 'y', 'w', 'h', 'empty', 'fix')
-        defaults = (2, 0, 0, 32, 17, 0, 0)
+        # #ROOMaddr[,scale,x,y,w,h,empty,fix,anim][(fname)]
+        param_names = ('addr', 'scale', 'x', 'y', 'w', 'h', 'empty', 'fix', 'anim')
+        defaults = (2, 0, 0, 32, 17, 0, 0, 0)
         img_path_id = 'ScreenshotImagePath'
         params = self.parse_image_params(text, index, defaults=defaults, path_id=img_path_id, names=param_names)
-        end, img_path, crop_rect, address, scale, x, y, w, h, empty, fix = params
+        end, img_path, crop_rect, address, scale, x, y, w, h, empty, fix, anim = params
         if img_path is None:
             room_name = self.room_names[address // 256 - 192]
             fname = room_name.lower().replace(' ', '_')
@@ -52,7 +52,13 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         if self.need_image(img_path):
             room_udgs = self._get_room_udgs(address, empty, fix)
             img_udgs = [room_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
-            self.write_image(img_path, img_udgs, crop_rect, scale)
+            if anim:
+                attr = self.snapshot[address + 205]
+                direction = self.snapshot[address + 214]
+                frames = self._animate_conveyor(img_udgs, attr, direction, crop_rect, scale)
+                self.write_animated_image(img_path, frames)
+            else:
+                self.write_image(img_path, img_udgs, crop_rect, scale)
         return end, self.img_element(cwd, img_path)
 
     def rooms(self, cwd):
@@ -117,6 +123,46 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             room_num //= 2
             key += 1
         return code + '9'
+
+    def _animate_conveyor(self, udgs, attr, direction, crop_rect, scale):
+        mask = 0
+        x, y, width, height = crop_rect
+        delay = 10
+        frame1 = Frame(udgs, scale, mask, x, y, width, height, delay)
+        frames = [frame1]
+
+        base_udg = None
+        for row in udgs:
+            for udg in row:
+                if udg.attr == attr:
+                    base_udg = udg
+                    break
+        if base_udg is None:
+            return frames
+
+        prev_udg = base_udg
+        while True:
+            next_udg = prev_udg.copy()
+            data = next_udg.data
+            if direction:
+                data[0] = (data[0] >> 2) + (data[0] & 3) * 64
+                data[2] = ((data[2] << 2) & 255) + (data[2] >> 6)
+            else:
+                data[0] = ((data[0] << 2) & 255) + (data[0] >> 6)
+                data[2] = (data[2] >> 2) + (data[2] & 3) * 64
+            if next_udg.data == base_udg.data:
+                break
+            next_udgs = []
+            for row in udgs:
+                next_udgs.append([])
+                for udg in row:
+                    if udg.attr == attr:
+                        next_udgs[-1].append(next_udg)
+                    else:
+                        next_udgs[-1].append(udg)
+            frames.append(Frame(next_udgs, scale, mask, x, y, width, height, delay))
+            prev_udg = next_udg
+        return frames
 
     def _get_room_udgs(self, addr, empty=0, fix=0):
         # Collect block graphics
