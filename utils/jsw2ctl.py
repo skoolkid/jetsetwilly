@@ -339,6 +339,126 @@ class JetSetWilly:
             lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, y, x, room_link))
         return '\n'.join(lines)
 
+    def _write_tiles(self, lines, a):
+        room_num = a // 256 - 192
+        udgs = []
+        for addr, tile_type in ((a + 160, 'background'), (a + 169, 'floor'), (a + 178, 'wall'), (a + 187, 'nasty'), (a + 196, 'ramp'), (a + 205, 'conveyor')):
+            attr = self.snapshot[addr]
+            if tile_type == 'background':
+                room_paper = attr & 120
+            img_type = ''
+            if attr >= 128:
+                paper = (attr & 56) // 8
+                ink = attr & 7
+                if paper != ink:
+                    udg_bytes = self.snapshot[addr + 1:addr + 9]
+                    if not all([b == 0 for b in udg_bytes]) and not all([b == 255 for b in udg_bytes]):
+                        # This tile is flashing
+                        img_type = '.gif'
+            udgs.append('#UDG{},{}({}{:02d}{})'.format(addr + 1, attr, tile_type, room_num, img_type))
+        tiles_table = '#UDGTABLE { ' + ' | '.join(udgs) + ' } TABLE#'
+        comment = 'The next 54 bytes are copied to #R32928 and contain the attributes and graphic data for the tiles used to build the room.'
+        tile_usage = [' (unused)'] * 6
+        for b in self.snapshot[a:a + 128]:
+            for i in range(4):
+                tile_usage[b & 3] = ''
+                b >>= 2
+        ramp_length = self.snapshot[a + 221]
+        if ramp_length:
+            tile_usage[4] = ''
+        conveyor_length = self.snapshot[a + 217]
+        if conveyor_length:
+            tile_usage[5] = ''
+            conveyor_attr = self.snapshot[a + 205]
+            b = a + 160
+            while b < a + 205 and self.snapshot[b] != conveyor_attr:
+                b += 1
+            if b < a + 205:
+                comment += ' Note that because of a #BUG#corruptedConveyors in the game engine, the conveyor tile is not drawn correctly (see the room image above).'
+        lines.append('D {} {}'.format(a + 160, comment))
+        lines.append('D {} {}'.format(a + 160, tiles_table))
+        lines.append('B {},9,9 Background{}'.format(a + 160, tile_usage[0]))
+        lines.append('B {},9,9 Floor{}'.format(a + 169, tile_usage[1]))
+        lines.append('B {},9,9 Wall{}'.format(a + 178, tile_usage[2]))
+        lines.append('B {},9,9 Nasty{}'.format(a + 187, tile_usage[3]))
+        lines.append('B {},9,9 Ramp{}'.format(a + 196, tile_usage[4]))
+        lines.append('B {},9,9 Conveyor{}'.format(a + 205, tile_usage[5]))
+
+        return room_paper
+
+    def _write_conveyor(self, lines, a):
+        lines.append('D {} The next four bytes are copied to #R32982 and specify the direction, location and length of the conveyor.'.format(a + 214))
+        conveyor_d, p1, p2 = self.snapshot[a + 214:a + 217]
+        conveyor_x = p1 & 31
+        conveyor_y = 8 * (p2 & 1) + (p1 & 224) // 32
+        lines.append('B {},1 Direction ({})'.format(a + 214, 'right' if conveyor_d else 'left'))
+        lines.append('W {},2 Location in the attribute buffer at #R24064: ({},{})'.format(a + 215, conveyor_y, conveyor_x))
+        lines.append('B {},1 Length'.format(a + 217))
+
+    def _write_ramp(self, lines, a):
+        lines.append('D {} The next four bytes are copied to #R32986 and specify the direction, location and length of the ramp.'.format(a + 218))
+        ramp_d, p1, p2 = self.snapshot[a + 218:a + 221]
+        ramp_x = p1 & 31
+        ramp_y = 8 * (p2 & 1) + (p1 & 224) // 32
+        lines.append('B {},1 Direction (up to the {})'.format(a + 218, 'right' if ramp_d else 'left'))
+        lines.append('W {},2 Location in the attribute buffer at #R24064: ({},{})'.format(a + 219, ramp_y, ramp_x))
+        lines.append('B {},1 Length'.format(a + 221))
+
+    def _write_exits(self, lines, a, room_name):
+        lines.append('D {} The next four bytes are copied to #R33001 and specify the rooms to the left, to the right, above and below.'.format(a + 233))
+        room_left, room_right, room_up, room_down = self.snapshot[a + 233:a + 237]
+        for addr, num, name, desc in (
+            (a + 233, room_left, self.room_names_wp.get(room_left), 'to the left'),
+            (a + 234, room_right, self.room_names_wp.get(room_right), 'to the right'),
+            (a + 235, room_up, self.room_names_wp.get(room_up), 'above'),
+            (a + 236, room_down, self.room_names_wp.get(room_down), 'below'),
+        ):
+            if name and name != room_name:
+                lines.append('B {} Room {} (#R{}({}))'.format(addr, desc, 256 * (num + 192), name))
+            elif name:
+                lines.append('B {} Room {} ({})'.format(addr, desc, name))
+            else:
+                lines.append('B {} Room {} (none)'.format(addr, desc))
+
+    def _write_entity_specs(self, lines, a):
+        room_num = a // 256 - 192
+        start = a + 240
+        entities = []
+        for addr in range(start, a + 256, 2):
+            num, coords = self.snapshot[addr:addr + 2]
+            def_addr = 40960 + (num & 127) * 8
+            entity_def = self.snapshot[def_addr:def_addr + 8]
+            guardian_type = entity_def[0] & 7
+            entities.append((num, coords, guardian_type, def_addr))
+        infix = '' if room_num == 47 else 'are copied to #R33008 and '
+        lines.append('D {} The next eight pairs of bytes {}specify the entities (ropes, arrows, guardians) in this room.'.format(start, infix))
+        addr = start
+        terminated = False
+        for num, coords, guardian_type, def_addr in entities:
+            if num == 0:
+                desc = 'Nothing'
+            elif num == 255:
+                desc = 'Terminator'
+                terminated = True
+            elif guardian_type == 1:
+                desc = 'Guardian no. {} (horizontal), base sprite {}, initial x={}'.format(num, coords // 32, coords & 31)
+            elif guardian_type == 2:
+                desc = 'Guardian no. {} (vertical), base sprite {}, x={}'.format(num, coords // 32, coords & 31)
+            elif guardian_type == 3:
+                desc = 'Rope at x={}'.format(coords & 31)
+            else:
+                direction = ('right to left', 'left to right')[self.snapshot[def_addr] // 128]
+                if coords & 1:
+                    # Faulty arrow specification
+                    y0 = self.snapshot[coords + 33281] - 96
+                    pixel_y = 8 * (y0 & 248) + (y0 & 7) + (self.snapshot[coords + 33280] & 224) // 4
+                else:
+                    pixel_y = coords // 2
+                desc = 'Arrow flying {} at pixel y-coordinate {}'.format(direction, pixel_y)
+            suffix = ' (unused)' if 0 < num < 255 and terminated else ''
+            lines.append('B {},2 {} (#R{}){}'.format(addr, desc, def_addr, suffix))
+            addr += 2
+
     def get_rooms(self):
         lines = []
 
@@ -365,152 +485,70 @@ class JetSetWilly:
                 room_image = '#ROOM{}(left_square_bracket)'.format(a)
             else:
                 room_image = '#ROOM{}'.format(a)
-            lines.append('D {} Used by the routine at #R35068.'.format(a))
+            if room_num == 47:
+                lines.append('D 61184 This room is not used.')
+            else:
+                lines.append('D {} Used by the routine at #R35068.'.format(a))
             lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a, room_image))
-            lines.append('D {} The first 128 bytes are copied to #R32768 and define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.'.format(a))
-            lines.append('B {},128,8 Room layout'.format(a))
+            if room_num == 47:
+                lines.append('D 61184 The first 128 bytes define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.')
+                lines.append('B 61184,128,8 Room layout (completely empty)')
+            else:
+                lines.append('D {} The first 128 bytes are copied to #R32768 and define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.'.format(a))
+                lines.append('B {},128,8 Room layout'.format(a))
 
             # Room name
-            lines.append('D {} The next 32 bytes are copied to #R32896 and specify the room name.'.format(a + 128))
+            if room_num == 47:
+                lines.append('D 61312 The next 32 bytes specify the room name.')
+            else:
+                lines.append('D {} The next 32 bytes are copied to #R32896 and specify the room name.'.format(a + 128))
             lines.append('T {},32 Room name'.format(a + 128))
 
-            # Tiles
-            udgs = []
-            for addr, tile_type in ((a + 160, 'background'), (a + 169, 'floor'), (a + 178, 'wall'), (a + 187, 'nasty'), (a + 196, 'ramp'), (a + 205, 'conveyor')):
-                attr = self.snapshot[addr]
-                if tile_type == 'background':
-                    room_paper = attr & 120
-                img_type = ''
-                if attr >= 128:
-                    paper = (attr & 56) // 8
-                    ink = attr & 7
-                    if paper != ink:
-                        udg_bytes = self.snapshot[addr + 1:addr + 9]
-                        if not all([b == 0 for b in udg_bytes]) and not all([b == 255 for b in udg_bytes]):
-                            # This tile is flashing
-                            img_type = '.gif'
-                udgs.append('#UDG{},{}({}{:02d}{})'.format(addr + 1, attr, tile_type, room_num, img_type))
-            tiles_table = '#UDGTABLE { ' + ' | '.join(udgs) + ' } TABLE#'
-            comment = 'The next 54 bytes are copied to #R32928 and contain the attributes and graphic data for the tiles used to build the room.'
-            tile_usage = [' (unused)'] * 6
-            for b in self.snapshot[a:a + 128]:
-                for i in range(4):
-                    tile_usage[b & 3] = ''
-                    b >>= 2
-            ramp_length = self.snapshot[a + 221]
-            if ramp_length:
-                tile_usage[4] = ''
-            conveyor_length = self.snapshot[a + 217]
-            if conveyor_length:
-                tile_usage[5] = ''
-                conveyor_attr = self.snapshot[a + 205]
-                b = a + 160
-                while b < a + 205 and self.snapshot[b] != conveyor_attr:
-                    b += 1
-                if b < a + 205:
-                    comment += ' Note that because of a #BUG#corruptedConveyors in the game engine, the conveyor tile is not drawn correctly (see the room image above).'
-            lines.append('D {} {}'.format(a + 160, comment))
-            lines.append('D {} {}'.format(a + 160, tiles_table))
-            lines.append('B {},9,9 Background{}'.format(a + 160, tile_usage[0]))
-            lines.append('B {},9,9 Floor{}'.format(a + 169, tile_usage[1]))
-            lines.append('B {},9,9 Wall{}'.format(a + 178, tile_usage[2]))
-            lines.append('B {},9,9 Nasty{}'.format(a + 187, tile_usage[3]))
-            lines.append('B {},9,9 Ramp{}'.format(a + 196, tile_usage[4]))
-            lines.append('B {},9,9 Conveyor{}'.format(a + 205, tile_usage[5]))
+            if room_num == 47:
+                lines.append('D 61344 In a working room definition, the next 80 bytes define the tiles, conveyor, ramp, border colour, item graphic, and exits. In this room, however, there are code remnants and unused data.')
+                lines.append('B 61344,9,9 Background tile')
+                lines.append('B 61353')
+                lines.append('C 61361')
+                lines.append('B 61370')
+                lines.append('C 61372')
+                lines.append('B 61399')
+                lines.append('B 61401 Conveyor length (deliberately set to 0)')
+                lines.append('C 61402')
+                lines.append('B 61405 Ramp length (deliberately set to 0)')
+                lines.append('C 61406')
+                lines.append('B 61423')
+            else:
+                # Tiles
+                room_paper = self._write_tiles(lines, a)
 
-            # Conveyor direction, location and length
-            lines.append('D {} The next four bytes are copied to #R32982 and specify the direction, location and length of the conveyor.'.format(a + 214))
-            conveyor_d, p1, p2 = self.snapshot[a + 214:a + 217]
-            conveyor_x = p1 & 31
-            conveyor_y = 8 * (p2 & 1) + (p1 & 224) // 32
-            lines.append('B {},1 Direction ({})'.format(a + 214, 'right' if conveyor_d else 'left'))
-            lines.append('W {},2 Location in the attribute buffer at #R24064: ({},{})'.format(a + 215, conveyor_y, conveyor_x))
-            lines.append('B {},1 Length'.format(a + 217))
+                # Conveyor direction, location and length
+                self._write_conveyor(lines, a)
 
-            # Ramp direction, location and length
-            lines.append('D {} The next four bytes are copied to #R32986 and specify the direction, location and length of the ramp.'.format(a + 218))
-            ramp_d, p1, p2 = self.snapshot[a + 218:a + 221]
-            ramp_x = p1 & 31
-            ramp_y = 8 * (p2 & 1) + (p1 & 224) // 32
-            lines.append('B {},1 Direction (up to the {})'.format(a + 218, 'right' if ramp_d else 'left'))
-            lines.append('W {},2 Location in the attribute buffer at #R24064: ({},{})'.format(a + 219, ramp_y, ramp_x))
-            lines.append('B {},1 Length'.format(a + 221))
+                # Ramp direction, location and length
+                self._write_ramp(lines, a)
 
-            # Border colour
-            lines.append('D {} The next byte is copied to #R32990 and specifies the border colour.'.format(a + 222))
-            lines.append('B {} Border colour'.format(a + 222))
+                # Border colour
+                lines.append('D {} The next byte is copied to #R32990 and specifies the border colour.'.format(a + 222))
+                lines.append('B {} Border colour'.format(a + 222))
 
-            # Bytes 223/224
-            lines.append('D {} The next two bytes are copied to #R32991, but are not used.'.format(a + 223))
-            lines.append('B {} Unused'.format(a + 223))
+                # Bytes 223/224
+                lines.append('D {} The next two bytes are copied to #R32991, but are not used.'.format(a + 223))
+                lines.append('B {} Unused'.format(a + 223))
 
-            # Item graphic
-            lines.append('D {} The next eight bytes are copied to #R32993 and define the item graphic.'.format(a + 225))
-            lines.append('D {0} #UDGTABLE {{ #UDG{0},{1}(item{2:02d}) }} TABLE#'.format(a + 225, room_paper + 3, room_num))
-            lines.append('B {},8,8 Item graphic{}'.format(a + 225, '' if items.get(room_num) else ' (unused)'))
+                # Item graphic
+                lines.append('D {} The next eight bytes are copied to #R32993 and define the item graphic.'.format(a + 225))
+                lines.append('D {0} #UDGTABLE {{ #UDG{0},{1}(item{2:02d}) }} TABLE#'.format(a + 225, room_paper + 3, room_num))
+                lines.append('B {},8,8 Item graphic{}'.format(a + 225, '' if items.get(room_num) else ' (unused)'))
 
-            # Rooms to the left, to the right, above and below
-            lines.append('D {} The next four bytes are copied to #R33001 and specify the rooms to the left, to the right, above and below.'.format(a + 233))
-            room_left, room_right, room_up, room_down = room[233:237]
-            for addr, num, name, desc in (
-                (a + 233, room_left, self.room_names_wp.get(room_left), 'to the left'),
-                (a + 234, room_right, self.room_names_wp.get(room_right), 'to the right'),
-                (a + 235, room_up, self.room_names_wp.get(room_up), 'above'),
-                (a + 236, room_down, self.room_names_wp.get(room_down), 'below'),
-            ):
-                if name and name != room_name:
-                    lines.append('B {} Room {} (#R{}({}))'.format(addr, desc, 256 * (num + 192), name))
-                elif name:
-                    lines.append('B {} Room {} ({})'.format(addr, desc, name))
-                else:
-                    lines.append('B {} Room {} (none)'.format(addr, desc))
+                # Rooms to the left, to the right, above and below
+                self._write_exits(lines, a, room_name)
 
-            # Bytes 237-239
-            lines.append('D {} The next three bytes are copied to #R33005, but are not used.'.format(a + 237))
-            lines.append('B {} Unused'.format(a + 237))
+                # Bytes 237-239
+                lines.append('D {} The next three bytes are copied to #R33005, but are not used.'.format(a + 237))
+                lines.append('B {} Unused'.format(a + 237))
 
             # Entities
-            start = a + 240
-            entities = []
-            for addr in range(start, a + 256, 2):
-                num, coords = self.snapshot[addr:addr + 2]
-                def_addr = 40960 + (num & 127) * 8
-                entity_def = self.snapshot[def_addr:def_addr + 8]
-                guardian_type = entity_def[0] & 7
-                entities.append((num, coords, guardian_type, def_addr))
-            if entities:
-                lines.append('D {} The next eight pairs of bytes are copied to #R33008 and specify the entities (ropes, arrows, guardians) in this room.'.format(start))
-                addr = start
-                terminated = False
-                for num, coords, guardian_type, def_addr in entities:
-                    if num == 0:
-                        desc = 'Nothing'
-                    elif num == 255:
-                        desc = 'Terminator'
-                        terminated = True
-                    elif guardian_type == 1:
-                        desc = 'Guardian no. {} (horizontal), base sprite {}, initial x={}'.format(num, coords // 32, coords & 31)
-                    elif guardian_type == 2:
-                        desc = 'Guardian no. {} (vertical), base sprite {}, x={}'.format(num, coords // 32, coords & 31)
-                    elif guardian_type == 3:
-                        desc = 'Rope at x={}'.format(coords & 31)
-                    else:
-                        direction = ('right to left', 'left to right')[self.snapshot[def_addr] // 128]
-                        if coords & 1:
-                            # Faulty arrow specification
-                            y0 = self.snapshot[coords + 33281] - 96
-                            pixel_y = 8 * (y0 & 248) + (y0 & 7) + (self.snapshot[coords + 33280] & 224) // 4
-                        else:
-                            pixel_y = coords // 2
-                        desc = 'Arrow flying {} at pixel y-coordinate {}'.format(direction, pixel_y)
-                    suffix = ' (unused)' if 0 < num < 255 and terminated else ''
-                    lines.append('B {},2 {} (#R{}){}'.format(addr, desc, def_addr, suffix))
-                    addr += 2
-            else:
-                lines.append('D {} There are no entities (ropes, arrows, guardians) in this room.'.format(start))
-            if len(entities) < 8:
-                lines.append('B {},1 Terminator'.format(addr))
-                lines.append('B {},{},{} Unused'.format(addr + 1, a + 255 - addr, a + 255 - addr))
+            self._write_entity_specs(lines, a)
 
         return '\n'.join(lines)
 
