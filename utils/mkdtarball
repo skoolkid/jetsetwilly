@@ -108,8 +108,6 @@ if [ ! -d "$JETSETWILLY_HOME" ]; then
   exit 1
 fi
 
-JSWZ80=$JETSETWILLY_HOME/build/jet_set_willy.z80
-
 if [ ! -f skool2html.py ]; then
   echo "Error: skool2html.py not found."
   exit 1
@@ -125,6 +123,7 @@ fi
 rm -rf src
 mkdir src
 cp -p $JETSETWILLY_HOME/skoolkit/jetsetwilly.py src
+cp -p $JETSETWILLY_HOME/jet_set_willy.skool src
 cp -p $JETSETWILLY_HOME/jet_set_willy*.ref src
 cp -p $JETSETWILLY_HOME/resources/jet_set_willy*.css src
 
@@ -132,24 +131,6 @@ DISTDIR=dist
 PKGNAME=jsw-disassembly-$VERSION
 ABSDIR=${DISTDIR}/${PKGNAME}
 [ -e $ABSDIR ] && rm -rf $ABSDIR
-
-if [ ! -f $JSWZ80 ]; then
-  echo -n "Writing $JSWZ80..."
-  if ./tap2sna.py -d $(dirname $JSWZ80) $JETSETWILLY_HOME/jet_set_willy.t2s &> /dev/null; then
-    echo "done"
-  else
-    echo "failed"
-    exit 1
-  fi
-fi
-
-echo -n "Writing control file..."
-$JETSETWILLY_HOME/utils/jsw2ctl.py $JSWZ80 > jet_set_willy.ctl
-echo "done"
-
-echo -n "Writing skool file..."
-./sna2skool.py -c jet_set_willy.ctl $JSWZ80 > src/jet_set_willy.skool
-echo "done"
 
 echo -n "Writing disassembly..."
 cd src

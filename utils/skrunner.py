@@ -1,13 +1,9 @@
 #!/usr/bin/env python
 import sys
 import os
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
 
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-build_dir = '{}/build'.format(parent_dir)
+JETSETWILLY_HOME = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+JSW_SKOOL = '{}/jet_set_willy.skool'.format(JETSETWILLY_HOME)
 
 SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
 if SKOOLKIT_HOME:
@@ -25,41 +21,12 @@ else:
 
 sys.stderr.write("Found SkoolKit in {}\n".format(skool2html.PACKAGE_DIR))
 
-import jsw2ctl
-
-def write_skool():
-    if not os.path.isdir(build_dir):
-        os.mkdir(build_dir)
-
-    # Write jet_set_willy.z80
-    jswz80 = os.path.join(build_dir, 'jet_set_willy.z80')
-    if not os.path.isfile(jswz80):
-        tap2sna.main(('-d', build_dir, '@{}/jet_set_willy.t2s'.format(parent_dir)))
-
-    # Write jet_set_willy.ctl
-    ctlfile = os.path.join(build_dir, 'jet_set_willy.ctl')
-    with open(ctlfile, 'wt') as f:
-        f.write(jsw2ctl.main(jswz80))
-
-    # Write jet_set_willy.skool
-    stdout = sys.stdout
-    sys.stdout = StringIO()
-    sna2skool.main(('-c', ctlfile, jswz80))
-    skoolfile = os.path.join(build_dir, 'jet_set_willy.skool')
-    with open(skoolfile, 'wt') as f:
-        f.write(sys.stdout.getvalue())
-    sys.stdout = stdout
-
-    return skoolfile
-
 def run_skool2asm():
-    args = sys.argv[1:] + [write_skool()]
-    skool2asm.main(args)
+    skool2asm.main(sys.argv[1:] + [JSW_SKOOL])
 
 def run_skool2html():
-    writer_class = '{}/skoolkit:jetsetwilly.JetSetWillyHtmlWriter'.format(parent_dir)
-    skool2html_options = '-d {}/html'.format(build_dir)
-    skool2html_options += ' -S {0}/resources -S {1} -S {1}/resources'.format(SKOOLKIT_HOME, parent_dir)
+    writer_class = '{}/skoolkit:jetsetwilly.JetSetWillyHtmlWriter'.format(JETSETWILLY_HOME)
+    skool2html_options = '-d {}/build/html'.format(JETSETWILLY_HOME)
+    skool2html_options += ' -S {}/resources -S {}/resources'.format(SKOOLKIT_HOME, JETSETWILLY_HOME)
     skool2html_options += ' -W {}'.format(writer_class)
-    args = skool2html_options.split() + sys.argv[1:] + [write_skool()]
-    skool2html.main(args)
+    skool2html.main(skool2html_options.split() + sys.argv[1:] + [JSW_SKOOL])
