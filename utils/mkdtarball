@@ -60,7 +60,7 @@ The ASM disassembly can be built by following these steps:
 
 3. Change to the directory where SkoolKit was unpacked and run this command:
 
-  $ ./skool2asm.py -w jet_set_willy.skool > jet_set_willy.asm
+  $ ./skool2asm.py jet_set_willy.skool > jet_set_willy.asm
 
 Now jet_set_willy.asm can be assembled using pasmo (http://pasmo.speccy.org/):
 

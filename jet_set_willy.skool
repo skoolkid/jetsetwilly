@@ -106,6 +106,7 @@ g32990 DEFB 0
 ;
 ; These bytes are overwritten upon entry to a room by the routine at #R35068,
 ; but not used.
+; @label=XROOM223
 u32991 DEFS 2
 
 ; Item graphic
@@ -131,6 +132,7 @@ g33001 DEFB 0        ; Room to the left (used by the routine at #R38026)
 ;
 ; These bytes are overwritten upon entry to a room by the routine at #R35068,
 ; but not used.
+; @label=XROOM237
 u33005 DEFS 3
 
 ; Entity specifications
@@ -167,7 +169,7 @@ g33008 DEFS 2        ; Entity 1
 ; { Bits 5-6: animation frame index }
 ; { Bits 3-4: unused }
 ; { Bits 0-2: entity type (001) }
-; { =r4 1 | Bits 5-7: animation frame index mask (see #R37393) }
+; { =r4 1 | Bits 5-7: animation frame index mask }
 ; { Bit 4: unused }
 ; { Bit 3: BRIGHT value }
 ; { Bits 0-2: INK colour }
@@ -188,7 +190,7 @@ g33008 DEFS 2        ; Entity 1
 ; { Bits 5-6: animation frame index }
 ; { Bits 3-4: animation frame update flags (see #R37247) }
 ; { Bits 0-2: entity type (010) }
-; { =r4 1 | Bits 5-7: animation frame index mask (see #R37393) }
+; { =r4 1 | Bits 5-7: animation frame index mask }
 ; { Bit 4: unused }
 ; { Bit 3: BRIGHT value }
 ; { Bits 0-2: INK colour }
@@ -395,21 +397,20 @@ w33280 DEFW 24576    ; y=0
 ; each half of the table are used; thus the batch of entries used 'slides' up
 ; and down the table as F increases and decreases.
 ; @label=ROPEANIM
-b33536 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ; {These values are used by the
- 33552 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ; section of code at #R37667 to
- 33568 DEFB 1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2 ; determine how much to rotate the
- 33584 DEFB 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2 ; rope drawing byte (which in turn
- 33600 DEFB 2,2,1,2,2,1,1,2,1,1,2,2,3,2,3,2 ; determines the x-coordinate at
- 33616 DEFB 3,3,3,3,3,3                     ; which each segment of rope is
-                                            ; drawn)}
+b33536 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ; {These values determine how much
+ 33552 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ; to rotate the rope drawing byte
+ 33568 DEFB 1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2 ; (which in turn determines the
+ 33584 DEFB 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2 ; x-coordinate at which each
+ 33600 DEFB 2,2,1,2,2,1,1,2,1,1,2,2,3,2,3,2 ; segment of rope is drawn)
+ 33616 DEFB 3,3,3,3,3,3                     ; }
  33622 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ; {Unused
  33638 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
  33654 DEFB 0,0,0,0,0,0,0,0,0,0             ; }
- 33664 DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6 ; {These values are used by the
- 33680 DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6 ; section of code at #R37651 to
- 33696 DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6 ; determine the y-coordinate of
- 33712 DEFB 4,6,6,4,6,4,6,4,6,4,4,4,6,4,4,4 ; each segment of rope relative to
- 33728 DEFB 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4 ; the one above it
+ 33664 DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6 ; {These values determine the
+ 33680 DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6 ; y-coordinate of each segment of
+ 33696 DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6 ; rope relative to the one above it
+ 33712 DEFB 4,6,6,4,6,4,6,4,6,4,4,4,6,4,4,4 ;
+ 33728 DEFB 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4 ;
  33744 DEFB 4,4,4,4,4,4                     ; }
  33750 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ; {Unused
  33766 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -601,6 +602,7 @@ g34252 DEFB 0
 
 ; Screen flash counter
 ;
+; @ignoreua
 ; Initialised to zero by the routine at #R34762, but never used; the code at
 ; #R35339 makes the screen flash in Manic Miner fashion if this address holds a
 ; non-zero value.
@@ -639,6 +641,7 @@ g34256 DEFB 0
 
 ; Airborne status indicator
 ;
+; @ignoreua
 ; Initialised by the routine at #R34762, checked by the routines at #R35591 and
 ; #R38344, updated by the routines at #R37046, #R37310 and #R38064, and checked
 ; and updated by the routines at #R36307, #R36564 and #R38098. Possible values
@@ -647,10 +650,9 @@ g34256 DEFB 0
 ; #TABLE(default,centre,:w)
 ; { =h Value | =h Meaning }
 ; { 0 | Willy is neither falling nor jumping }
-;  { 1 | Willy is jumping (see #R36765) }
+; { 1 | Willy is jumping }
 ; { 2-11 | Willy is falling, and can land safely }
-; { 12-15 | Willy is falling, and has fallen too far to land safely (see
-; #R36574) }
+; { 12-15 | Willy is falling, and has fallen too far to land safely }
 ; { 255 | Willy has collided with a nasty, an arrow, a guardian, or Maria (see
 ; #R37046) }
 ; TABLE#
@@ -695,6 +697,7 @@ g34262 DEFB 0
 
 ; Willy's state on entry to the room
 ;
+; @ignoreua
 ; Initialised by the routine at #R35068, and copied back into
 ; #LINK:GameStatusBuffer#34255(34255-34261) by the routine at #R35841.
 ; @label=INITSTATE
@@ -918,6 +921,7 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
 ;
 ; IX Attribute file address of the flashing 2x2 block
 ; @label=READCODE
+; @keep
 c34620 LD BC,63486   ; {Read keys 1-2-3-4-5
  34623 IN A,(C)      ; }
  34625 AND 15        ; {Is '1', '2', '3' or '4' (still) being pressed?
@@ -970,6 +974,7 @@ c34620 LD BC,63486   ; {Read keys 1-2-3-4-5
  34697 SET 7,(IX+1)  ;
  34701 SET 7,(IX+32) ;
  34705 SET 7,(IX+33) ; }
+; @keep
  34709 LD BC,63486   ; {Read keys 1-2-3-4-5
  34712 IN A,(C)      ; }
  34714 AND 15        ; Keep only bits 0-3 (keys 1-2-3-4)
@@ -1186,6 +1191,7 @@ c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181 ("
  35093 OR 192        ; {Point #REGhl at the first byte of the room definition
  35095 LD H,A        ;
  35096 LD L,0        ; }
+; @ignoreua
  35098 LD DE,32768   ; {Copy the room definition into the game status buffer at
  35101 LD BC,256     ; #LINK:GameStatusBuffer#32768(32768)
  35104 LDIR          ; }
@@ -1211,6 +1217,7 @@ c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181 ("
  35143 DEC A         ; Have we copied all eight entity definitions into the
                      ; entity buffer yet?
  35144 JR NZ,35115   ; If not, jump back to copy the next one
+; @ignoreua
  35146 LD HL,34255   ; {Copy the seven bytes that define Willy's state
  35149 LD DE,34263   ; (position, animation frame etc.) on entry to this room
  35152 LD BC,7       ; from #LINK:GameStatusBuffer#34255(34255-34261) to
@@ -1318,6 +1325,7 @@ c35245 CALL 35211    ; Draw the remaining lives
  35337 OR (HL)       ; Willy is running to the toilet or already has his head
  35338 LD (HL),A     ; down it; this has the effect of moving Willy at twice
                      ; his normal speed as he makes his way to the toilet}
+; @label=SCRFLASH
  35339 LD A,(34253)  ; Pick up the screen flash counter (unused and always 0)
                      ; from #R34253
  35342 OR A          ; Is it zero?
@@ -1411,6 +1419,7 @@ c35245 CALL 35211    ; Draw the remaining lives
  35539 IN A,(C)      ; }
  35541 AND 31        ; {Are any of these keys being pressed?
  35543 CP 31         ; }
+; @label=SEE39936
  35545 JR NZ,35591   ; If so, resume the game
  35547 INC E         ; Increment the delay counter in #REGe
  35548 JR NZ,35537   ; Jump back unless it's zero
@@ -1519,6 +1528,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35693 DEC C         ;
  35694 JR NZ,35683   ; }
 ; Here we check the teleport keys.
+; @keep
 *35696 LD BC,61438   ; {Read keys 6-7-8-9-0
  35699 IN A,(C)      ; }
  35701 BIT 1,A       ; Is '9' (the activator key) being pressed?
@@ -1530,6 +1540,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35712 LD A,(34275)  ; Pick up the WRITETYPER key counter from #R34275
  35715 CP 10         ; Has WRITETYPER been keyed in yet?
  35717 JP NZ,35735   ; Jump if not
+; @keep
  35720 LD BC,63486   ; {Read keys 1-2-3-4-5
  35723 IN A,(C)      ; }
  35725 CPL           ; {Keep only bits 0-4 and flip them
@@ -1554,6 +1565,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35764 LD D,0        ;
  35766 LD IX,34279   ;
  35770 ADD IX,DE     ; }
+; @keep
  35772 LD BC,64510   ; {Read keys Q-W-E-R-T
  35775 IN A,(C)      ; }
  35777 AND 31        ; Keep only bits 0-5
@@ -1631,6 +1643,7 @@ c35841 LD A,71       ; #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
  35895 OR A          ; Are there any lives remaining?
  35896 JP Z,35914    ; If not, display the game over sequence
  35899 DEC (HL)      ; Decrease the number of lives remaining by one
+; @ignoreua
  35900 LD HL,34263   ; {Restore Willy's state upon entry to the room by copying
  35903 LD DE,34255   ; the seven bytes at #R34263 back into
  35906 LD BC,7       ; #LINK:GameStatusBuffer#34255(34255-34261)
@@ -1796,6 +1809,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
                      ; early, which is a #BUG#corruptedConveyors}
  36185 LD C,E        ; Restore the value of the tile counter in #REGc
  36186 LD B,8        ; There are eight bytes in the tile
+; @label=BUFMSB
  36188 LD D,0        ; This instruction is set to either 'LD D,112' or 'LD
                      ; D,120' above; now #REGde holds the appropriate address
                      ; in the screen buffer at #R28672
@@ -2105,6 +2119,7 @@ c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
                      ; from #R32982 (0=left, 1=right)
  36599 SUB 3         ; {Now #REGe=253 (bit 1 reset) if the conveyor is moving
  36601 LD E,A        ; left, or 254 (bit 0 reset) if it's moving right}
+; @keep
 *36602 LD BC,57342   ; {Read keys P-O-U-I-Y (right, left, right, left, right)
  36605 IN A,(C)      ; into bits 0-4 of #REGa}
  36607 AND 31        ; {Set bit 5 and reset bits 6 and 7
@@ -2119,6 +2134,7 @@ c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
  36620 LD E,A        ; forcing him to move right (unless he's jumped onto the
                      ; bed, in which case bit 0 of #REGe is now set, and Willy
                      ; is immobilised; this is a #BUG#theStickyBed)}
+; @keep
  36621 LD BC,64510   ; {Read keys Q-W-E-R-T (left, right, left, right, left)
  36624 IN A,(C)      ; into bits 0-4 of #REGa}
  36626 AND 31        ; {Keep only bits 0-4, shift them into bits 1-5, and set
@@ -2864,6 +2880,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
 
 ; Unused routine
 ;
+; @ignoreua
 ; This routine is not used, but if it were, it would set the INK colour for a
 ; 3x2 block of cells, maintaining the PAPER, BRIGHT and FLASH attributes of the
 ; current room background. It is identical to the code at 36447 in Manic Miner
@@ -3655,6 +3672,7 @@ b39808 DEFB 69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69
 
 ; Source code remnants
 ;
+; @ignoreua
 ; The source code here corresponds to the code at #R35545.
 u39936 DEFM "NZ,ENDPAUSE"       ; [JR ]NZ,ENDPAUSE
  39947 DEFW 19074               ; {INC E
@@ -12866,6 +12884,7 @@ b64256 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  64508 DEFB 0,0                                ; Nothing (#R40960)
  64510 DEFB 0,0                                ; Nothing (#R40960)
 
+; @ignoreua
 ; Room 60: The Bow (teleport: 34569)
 ;
 ; Used by the routine at #R35068.
