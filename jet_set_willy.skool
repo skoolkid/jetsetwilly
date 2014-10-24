@@ -41,10 +41,10 @@ b24576 DEFS 4096
 b28672 DEFS 4096
 
 ; @start
-; Manic Miner disassembly
+; Jet Set Willy disassembly
 ; http://skoolkit.ca/
 ;
-; Copyright 1983 Bug-Byte Ltd (Manic Miner)
+; Copyright 1984 Software Projects Ltd (Jet Set Willy)
 ; Copyright 2012-2014 Richard Dymond (this disassembly)
 
 ; @org=32768
