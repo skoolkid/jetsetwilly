@@ -176,8 +176,9 @@ class AsmTestCase(DisassembliesTestCase):
         skoolfile = JSW_SKOOL
         args = '{} {}'.format(options, skoolfile)
         output, error = self.run_skoolkit_command(skool2asm.main, args, err_lines=True)
-        self.assertTrue(any([line.startswith('Parsed {}'.format(skoolfile)) for line in error]))
-        self.assertTrue(error[-1].startswith('Wrote ASM to stdout'))
+        self.assertEqual(len(error), 2)
+        self.assertTrue(error[0].startswith('Parsed {}'.format(skoolfile)))
+        self.assertTrue(error[1].startswith('Wrote ASM to stdout'))
 
 class CtlTestCase(DisassembliesTestCase):
     def write_jsw(self, options):
