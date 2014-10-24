@@ -411,24 +411,40 @@ w33280 DEFW 24576    ; y=0
 ; each half of the table are used; thus the batch of entries used 'slides' up
 ; and down the table as F increases and decreases.
 ; @label=ROPEANIM
-b33536 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ; {These values determine how much
- 33552 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ; to rotate the rope drawing byte
- 33568 DEFB 1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2 ; (which in turn determines the
- 33584 DEFB 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2 ; x-coordinate at which each
- 33600 DEFB 2,2,1,2,2,1,1,2,1,1,2,2,3,2,3,2 ; segment of rope is drawn)
- 33616 DEFB 3,3,3,3,3,3                     ; }
- 33622 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ; {Unused
- 33638 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
- 33654 DEFB 0,0,0,0,0,0,0,0,0,0             ; }
- 33664 DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6 ; {These values determine the
- 33680 DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6 ; y-coordinate of each segment of
- 33696 DEFB 6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6 ; rope relative to the one above it
- 33712 DEFB 4,6,6,4,6,4,6,4,6,4,4,4,6,4,4,4 ;
- 33728 DEFB 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4 ;
- 33744 DEFB 4,4,4,4,4,4                     ; }
- 33750 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ; {Unused
- 33766 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
- 33782 DEFB 0,0,0,0,0,0,0,0,0,0             ; }
+b33536 DEFB 0,0,0,0,0,0,0,0 ; {These values determine how much to rotate the
+ 33544 DEFB 0,0,0,0,0,0,0,0 ; rope drawing byte (which in turn determines the
+ 33552 DEFB 0,0,0,0,0,0,0,0 ; x-coordinate at which each segment of rope is
+ 33560 DEFB 0,0,0,0,0,0,0,0 ; drawn)
+ 33568 DEFB 1,1,1,1,1,1,1,1 ;
+ 33576 DEFB 1,1,1,1,2,2,2,2 ;
+ 33584 DEFB 2,2,2,2,2,2,2,2 ;
+ 33592 DEFB 2,2,2,2,2,2,2,2 ;
+ 33600 DEFB 2,2,1,2,2,1,1,2 ;
+ 33608 DEFB 1,1,2,2,3,2,3,2 ;
+ 33616 DEFB 3,3,3,3,3,3     ; }
+ 33622 DEFB 0,0,0,0,0,0,0,0 ; {Unused
+ 33630 DEFB 0,0,0,0,0,0,0,0 ;
+ 33638 DEFB 0,0,0,0,0,0,0,0 ;
+ 33646 DEFB 0,0,0,0,0,0,0,0 ;
+ 33654 DEFB 0,0,0,0,0,0,0,0 ;
+ 33662 DEFB 0,0             ; }
+ 33664 DEFB 6,6,6,6,6,6,6,6 ; {These values determine the y-coordinate of each
+ 33672 DEFB 6,6,6,6,6,6,6,6 ; segment of rope relative to the one above it
+ 33680 DEFB 6,6,6,6,6,6,6,6 ;
+ 33688 DEFB 6,6,6,6,6,6,6,6 ;
+ 33696 DEFB 6,6,6,6,6,6,6,6 ;
+ 33704 DEFB 6,6,6,6,6,6,6,6 ;
+ 33712 DEFB 4,6,6,4,6,4,6,4 ;
+ 33720 DEFB 6,4,4,4,6,4,4,4 ;
+ 33728 DEFB 4,4,4,4,4,4,4,4 ;
+ 33736 DEFB 4,4,4,4,4,4,4,4 ;
+ 33744 DEFB 4,4,4,4,4,4     ; }
+ 33750 DEFB 0,0,0,0,0,0,0,0 ; {Unused
+ 33758 DEFB 0,0,0,0,0,0,0,0 ;
+ 33766 DEFB 0,0,0,0,0,0,0,0 ;
+ 33774 DEFB 0,0,0,0,0,0,0,0 ;
+ 33782 DEFB 0,0,0,0,0,0,0,0 ;
+ 33790 DEFB 0,0             ; }
 
 ; The game has just loaded
 ;
@@ -1169,6 +1185,7 @@ c34762 XOR A         ; #REGa=0
  35036 AND 31        ; routine at #R38622)
  35038 ADD A,50      ; }
  35040 CALL 38622    ; Make a sound effect
+; @keep
  35043 LD BC,45054   ; {Read keys H-J-K-L-ENTER and 6-7-8-9-0
  35046 IN A,(C)      ; }
  35048 AND 1         ; Keep only bit 0 of the result (ENTER, 0)
@@ -1406,6 +1423,7 @@ c35245 CALL 35211    ; Draw the remaining lives
  35491 LD (IX+1),48  ; Set the units digit of the hour to '0'
  35495 LD (IX+0),49  ; Set the tens digit of the hour to '1'
 ; Now check whether any non-movement keys are being pressed.
+; @keep
 *35499 LD BC,65278   ; {Read keys SHIFT-Z-X-C-V
  35502 IN A,(C)      ; }
  35504 LD E,A        ; Save the result in #REGe
@@ -1797,6 +1815,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
                      ; at #R24064
 ; @ignoreua
  36154 LD A,112      ; {Set the operand of the 'LD D,n' instruction at #R36188
+; @ssub=LD (36188+1),A
  36156 LD (36189),A  ; (below) to 112}
  36159 CALL 36171    ; Draw the tiles for the top half of the room to the
                      ; screen buffer at #R28672
@@ -1806,6 +1825,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
                      ; already holds 24320
 ; @ignoreua
  36166 LD A,120      ; {Set the operand of the 'LD D,n' instruction at #R36188
+; @ssub=LD (36188+1),A
  36168 LD (36189),A  ; (below) to 120}
 *36171 LD C,0        ; #REGc will count 256 tiles
 ; The following loop draws 256 tiles (for either the top half or the bottom
@@ -2305,6 +2325,7 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; the current room from #R32986
  36868 OR A          ; Does the ramp go up to the right?
  36869 JR NZ,36874   ; Jump if so
+; @keep
  36871 LD BC,65504   ; #REGbc=-32 (the ramp goes up to the left)
 *36874 LD HL,(34259) ; Collect Willy's attribute buffer coordinates from
                      ; #R34259
@@ -2385,6 +2406,7 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; the current room from #R32986
  36978 OR A          ; Does the ramp go up to the left?
  36979 JR Z,36984    ; Jump if so
+; @keep
  36981 LD BC,65504   ; #REGbc=-32 (the ramp goes up to the right)
 *36984 LD HL,(34259) ; Collect Willy's attribute buffer coordinates from
                      ; #R34259
@@ -3115,6 +3137,7 @@ c38064 LD A,(33003)  ; Pick up the number of the room above from #R33003
  38075 ADD A,160     ; #R34259) accordingly
  38077 LD (34259),A  ;
  38080 LD A,93       ;
+; @ssub=LD (34259+1),A
  38082 LD (34260),A  ; }
  38085 LD A,208      ; {Adjust Willy's pixel y-coordinate (at #R34255) as well
  38087 LD (34255),A  ; }
@@ -3143,6 +3166,7 @@ c38098 LD A,(33004)  ; Pick up the number of the room below from #R33004
  38123 AND 31        ; adjust his attribute buffer coordinates (at #R34259)
  38125 LD (34259),A  ; accordingly
  38128 LD A,92       ;
+; @ssub=LD (34259+1),A
  38130 LD (34260),A  ; }
  38133 POP HL        ; Drop the return address (#R35281, in the main loop) from
                      ; the stack
@@ -3544,6 +3568,7 @@ c38601 LD A,(34254)  ; Collect the Kempston joystick indicator from #R34254
  38607 IN A,(31)     ; Collect input from the joystick
  38609 BIT 4,A       ; Is the fire button being pressed?
  38611 RET NZ        ; Return (with the zero flag reset) if so
+; @keep
 *38612 LD BC,45054   ; {Read keys H-J-K-L-ENTER and 6-7-8-9-0
  38615 IN A,(C)      ; }
  38617 AND 1         ; Keep only bit 0 of the result (ENTER, 0)
@@ -3584,6 +3609,7 @@ u38644 LD HL,24064   ; {Copy the attribute buffer at #R24064 to the top
  38661 LD BC,4095
  38664 LD (HL),24
  38666 LDIR          ; }
+; @keep
  38668 LD BC,65278   ; Prepare #REGbc for reading keys SHIFT-Z-X-C-V
  38671 IN A,(C)      ; Read these keys
  38673 BIT 2,A       ; Is 'X' being pressed?
@@ -3919,6 +3945,7 @@ u40627 JP 7519
  40673 JP Z,8553
  40676 OR 32
  40678 CP 96
+; @nowarn
  40680 JR NZ,40709
  40682 CALL 11009
  40685 CP 4
@@ -12995,8 +13022,10 @@ b64512 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 u64768 ADD HL,BC
  64769 LD A,(DE)
  64770 CP 59
+; @nowarn
  64772 JR Z,64720
  64774 CP 13
+; @nowarn
  64776 JR Z,64720
  64778 PUSH HL
  64779 LD HL,30720
@@ -13134,6 +13163,7 @@ u64768 ADD HL,BC
  64997 LD L,A
  64998 RST 24
  64999 POP DE
+; @nowarn
  65000 JR Z,65030
  65002 LD A,(BC)
  65003 AND 95
@@ -13202,6 +13232,7 @@ u64768 ADD HL,BC
  65277 INIR
  65279 IN A,(207)
  65281 RRCA
+; @keep
  65282 LD HL,65409
  65285 JR C,65357
  65287 POP DE
@@ -13222,6 +13253,7 @@ u64768 ADD HL,BC
  65314 LD C,A
  65315 IN A,(192)
  65317 CALL C,3335
+; @nowarn
  65320 JR NZ,65318
  65322 OR (IY+3)
  65325 BIT 7,A
@@ -13240,6 +13272,7 @@ u64768 ADD HL,BC
  65347 LD A,48
  65349 CALL 65498
  65352 JR Z,65364
+; @keep
  65354 LD HL,65417
  65357 IN A,(201)
  65359 RLCA
