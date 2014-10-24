@@ -25,8 +25,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         self.font = {}
         for b, h in self.get_dictionary('Font').items():
             self.font[b] = [int(h[i:i + 2], 16) for i in range(0, 16, 2)]
-        data = self.get_section('Codes')
-        self.snapshot[40448:40627] = [int(data[i:i + 2], 16) for i in range(0, 358, 2)]
         start = 41984 + self.snapshot[41983]
         self.items = {}
         for a in range(start, 42240):
