@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 import sys
 import os
+import argparse
+from collections import OrderedDict
 
 try:
     from skoolkit.snapshot import get_snapshot
+    from skoolkit import tap2sna, sna2skool
 except ImportError:
     SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
     if not SKOOLKIT_HOME:
@@ -14,6 +17,11 @@ except ImportError:
         sys.exit(1)
     sys.path.insert(0, SKOOLKIT_HOME)
     from skoolkit.snapshot import get_snapshot
+    from skoolkit import tap2sna, sna2skool
+
+JETSETWILLY_HOME = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BUILD_DIR = '{}/build'.format(JETSETWILLY_HOME)
+JSW_Z80 = '{}/jet_set_willy.z80'.format(BUILD_DIR)
 
 GUARDIANS = {
     43776: (4, 5),
@@ -128,11 +136,17 @@ class JetSetWilly:
         return '#UDGARRAY2,{},,2;{}-{}-1-16({})'.format(attr, addr, addr + 17, fname)
 
     def get_screen_buffer_address_table(self):
-        lines = []
+        lines = ['w 33280 Screen buffer address lookup table ']
+        lines.append('D 33280 Used by the routines at #R35914, #R37310 and #R38455. '
+                     'The value of the Nth entry (0<=N<=127) in this lookup table is the '
+                     'screen buffer address for the point with pixel coordinates '
+                     '(x,y)=(0,N), with the origin (0,0) at the top-left corner.')
+        lines.append('; @label:33280=SBUFADDRS')
         y = 0
         for addr in range(33280, 33536, 2):
             lines.append('W {} y={}'.format(addr, y))
             y += 1
+        lines.append('i 33536')
         return '\n'.join(lines)
 
     def get_entity_definitions(self):
@@ -152,7 +166,11 @@ class JetSetWilly:
                         sprite_addr = 46400
                     sprite_addrs.setdefault(num, set()).add((sprite_addr, room_bg))
 
-        lines = []
+        lines = ['b 40960 Entity definitions']
+        lines.append('; @label:40960=ENTITYDEFS')
+        lines.append('D 40960 Used by the routine at #R35068.')
+        lines.append('D 40960 The following (empty) entity definition (0) is copied into the entity buffer at #R33024 for any entity specification whose first byte is zero.')
+        lines.append('B 40960,8')
         for num in range(1, 112):
             addr = 40960 + num * 8
             if num in defs:
@@ -236,6 +254,15 @@ class JetSetWilly:
                 lines.append('B {} {}'.format(addr + 7, desc7))
             else:
                 lines.append('B {},8'.format(addr))
+        lines.append('D 41856 The next 15 entity definitions (112-126) are unused.')
+        lines.append('B 41856,120,8')
+        lines.append('; @label:41976=ENTITY127')
+        lines.append('D 41976 The following entity definition (127) - whose eighth byte is at #R41983 - '
+                     'is copied into the entity buffer at #R33024 for any entity specification whose '
+                     'first byte is 127 or 255; the first byte of the definition (255) serves to '
+                     'terminate the entity buffer.')
+        lines.append('B 41976,7')
+        lines.append('i 41983')
         return '\n'.join(lines)
 
     def get_udg_table(self, addr, num, attr=56, fname=None, rows=1, animation='', delay=None):
@@ -294,7 +321,10 @@ class JetSetWilly:
                             sprite_addr -= 32
                         guardians.setdefault(sprite_addr, set()).add(room_num)
 
-        lines = []
+        lines = ['b 43776 Guardian graphics']
+        lines.append('; @label:43776=GUARDIANS')
+        lines.append('D 43776 Used by the routine at #R37310.')
+        lines.append('; @label:46592=FLYINGPIG0')
         for a in sorted(GUARDIANS.keys()):
             page = a // 256
             base_index = (a % 256) // 32
@@ -320,10 +350,24 @@ class JetSetWilly:
                 lines.append('B {},{},16'.format(a, 32 * num))
             else:
                 lines.append('S {},256'.format(a))
+        lines.append('i 49152')
         return '\n'.join(lines)
 
     def get_item_table(self):
-        lines = ['S 41984 Unused']
+        lines = ['b 41984 Item table']
+        lines.append('D 41984 Used by the routines at #R34762 and #R37841.')
+        lines.append('D 41984 The location of item N (173<=N<=255) is defined by the pair of bytes at '
+                     'addresses #R41984+N and #R42240+N. The meaning of the bits in each byte-pair is '
+                     'as follows:')
+        lines.append('D 41984 #TABLE(default,centre) '
+                     '{ =h Bit(s) | =h Meaning } '
+                     '{ 15 | Most significant bit of the y-coordinate } '
+                     '{ 14 | Collection flag (reset=collected, set=uncollected) } '
+                     '{ 8-13 | Room number } '
+                     '{ 5-7 | Least significant bits of the y-coordinate } '
+                     '{ 0-4 | x-coordinate } TABLE#')
+        lines.append('; @label:41984=ITEMTABLE1')
+        lines.append('S 41984 Unused')
         items = {}
         for a in range(42157, 42240):
             b1, b2 = self.snapshot[a], self.snapshot[a + 256]
@@ -332,11 +376,13 @@ class JetSetWilly:
             index = a % 256
             items[index] = (room_link, (x, y))
             lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, y, x, room_link))
+        lines.append('; @label:42240=ITEMTABLE2')
         lines.append('S 42240 Unused')
         for a in range(42413, 42496):
             index = a % 256
             room_link, (x, y) = items[index]
             lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, y, x, room_link))
+        lines.append('i 42496')
         return '\n'.join(lines)
 
     def _write_tiles(self, lines, a):
@@ -550,40 +596,39 @@ class JetSetWilly:
             # Entities
             self._write_entity_specs(lines, a)
 
+        lines.append('i 64768')
         return '\n'.join(lines)
 
-    def get_ctl(self):
-        template = ''
-        cft = '{}/jet_set_willy.cft'.format(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        with open(cft) as f:
-            for line in f:
-                if not line.startswith('#'):
-                    template += line
-        return template.format(
-            sba_table=self.get_screen_buffer_address_table(),
-            foot=self.get_graphics(40000, 1, 6),
-            barrel=self.get_graphics(40032, 1, 66),
-            maria=self.get_graphics(40064, 4, 5),
-            willy=self.get_graphics(40192, 8, 7, 'willy', 2, ('r', 'l')),
-            entity_defs=self.get_entity_definitions(),
-            item_table=self.get_item_table(),
-            toilet=self.get_graphics(42496, 4, 7, 'toilet', 2, ('empty', 'full'), 10),
-            guardians=self.get_guardian_graphics(),
-            rooms=self.get_rooms()
-        )
+def run(subcommand):
+    if not os.path.isdir(BUILD_DIR):
+        os.mkdir(BUILD_DIR)
+    if not os.path.isfile(JSW_Z80):
+        tap2sna.main(('-d', BUILD_DIR, '@{}/jet_set_willy.t2s'.format(JETSETWILLY_HOME)))
+    jsw = JetSetWilly(get_snapshot(JSW_Z80))
+    ctlfile = '{}/{}.ctl'.format(BUILD_DIR, subcommand)
+    with open(ctlfile, 'wt') as f:
+        f.write(getattr(jsw, methods[subcommand][0])())
+    sna2skool.main(('-c', ctlfile, JSW_Z80))
 
-def show_usage():
-    sys.stderr.write("""Usage: {} jet_set_willy.[sna|z80|szx]
-
-  Generate a control file for Jet Set Willy.
-""".format(os.path.basename(sys.argv[0])))
-    sys.exit(1)
-
-def main(snapshot):
-    jsw = JetSetWilly(get_snapshot(snapshot))
-    return jsw.get_ctl()
-
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        show_usage()
-    sys.stdout.write(main(sys.argv[1]))
+###############################################################################
+# Begin
+###############################################################################
+methods = OrderedDict((
+    ('entity-defs', ('get_entity_definitions', 'Entity definitions (40960-41982)')),
+    ('guardians', ('get_guardian_graphics', 'Guardian graphics (43776-49151)')),
+    ('items', ('get_item_table', 'Item table (41984-42495)')),
+    ('rooms', ('get_rooms', 'Rooms (49152-64767)')),
+    ('sbat', ('get_screen_buffer_address_table', 'Screen buffer address table (33280-33535)'))
+))
+subcommands = '\n'.join('  {} - {}'.format(k, v[1]) for k, v in methods.items())
+parser = argparse.ArgumentParser(
+    usage='%(prog)s SUBCOMMAND',
+    description="Produce a skool file snippet for Jet Set Willy. SUBCOMMAND must be one of:\n\n{}".format(subcommands),
+    formatter_class=argparse.RawTextHelpFormatter,
+    add_help=False
+)
+parser.add_argument('subcommand', help=argparse.SUPPRESS, nargs='?')
+namespace, unknown_args = parser.parse_known_args()
+if unknown_args or namespace.subcommand not in methods:
+    parser.exit(2, parser.format_help())
+run(namespace.subcommand)
