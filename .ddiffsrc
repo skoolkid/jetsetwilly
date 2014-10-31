@@ -1,0 +1,4 @@
+# rc file for $DISASSEMBLIES_HOME/utils/disassembly-diff
+
+JSW_OLD_VERSION=20140913
+JSW_SK_OLD_VERSION=4.1
