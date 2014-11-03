@@ -1,4 +1,6 @@
-# rc file for $DISASSEMBLIES_HOME/utils/disassembly-diff
+# rc file for disassembly-diff, skooldiff and write-files
 
-JSW_OLD_VERSION=20140913
-JSW_SK_OLD_VERSION=4.1
+OLD_VERSION=20140913
+SK_OLD_VERSION=4.1
+SKOOL=$JETSETWILLY_HOME/jet_set_willy.skool
+SNAPSHOT=$JETSETWILLY_HOME/build/jet_set_willy.z80
