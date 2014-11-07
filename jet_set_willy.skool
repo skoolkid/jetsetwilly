@@ -452,8 +452,10 @@ b33536 DEFB 0,0,0,0,0,0,0,0 ; {These values determine how much to rotate the
 ; @label=BEGIN
 c33792 DI            ; Disable interrupts
  33793 LD HL,23551   ; {Place the address of the routine at #R34463 on the
+; @ssub=LD (HL),34463/256
  33796 LD (HL),134   ; stack
  33798 DEC HL        ;
+; @ssub=LD (HL),34463%256
  33799 LD (HL),159   ;
  33801 LD SP,23550   ; }
  33804 SUB A         ; {Set #REGhl=34048 in a roundabout way
@@ -904,6 +906,7 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
 *34561 LD L,A        ; Now #REGl holds either 255 or some number between 0 and
                      ; 178
 ; @ignoreua
+; @ssub=LD H,40448/256
  34562 LD H,158      ; Point #REGhl at one of the entries in the table at
                      ; #R40448 (or at 40703 if #REGl=255)
  34564 LD A,(HL)     ; Pick up the table entry
@@ -1061,6 +1064,7 @@ c34762 XOR A         ; #REGa=0
  34811 LD (HL),48    ;
  34813 INC HL        ;
  34814 LD (HL),48    ; }
+; @ssub=LD H,41984/256
  34816 LD H,164      ; Page #R41984(164) holds the first byte of each entry in
                      ; the item table
  34818 LD A,(41983)  ; Pick up the index of the first item from #R41983
@@ -1205,8 +1209,8 @@ c34762 XOR A         ; #REGa=0
 ;
 ; Used by the routine at #R34762.
 ; @label=STARTGAME
-c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181 ("
- 35071 LD DE,34175   ; 7:00a") to #R34175
+c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
+ 35071 LD DE,34175   ; (" 7:00a") to #R34175
  35074 LD BC,6       ;
  35077 LDIR          ; }
  35079 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
@@ -1298,6 +1302,7 @@ c35211 LD A,(34252)  ; Pick up the number of lives remaining from #R34252
  35229 RLCA          ;
  35230 AND 96        ; }
  35232 LD E,A        ; {Point #REGde at the corresponding Willy sprite (at
+; @ssub=LD D,40192/256
  35233 LD D,157      ; #R40192+#REGa)}
  35235 CALL 37974    ; Draw the Willy sprite on the screen
  35238 POP BC        ; {Restore #REGhl and #REGbc
@@ -1706,6 +1711,7 @@ c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
 ; Willy.
 *35953 LD A,(34276)  ; Pick up the distance variable from #R34276
  35956 LD C,A        ; {Point #REGbc at the corresponding entry in the screen
+; @ssub=LD B,33280/256
  35957 LD B,130      ; buffer address lookup table at #R33280}
  35959 LD A,(BC)     ; {Point #REGhl at the corresponding location in the
  35960 OR 15         ; display file
@@ -1945,6 +1951,7 @@ c36288 AND 3         ; Keep only bits 0 and 1; #REGa=0 (background), 1 (floor),
  36294 ADD A,C       ;
  36295 ADD A,160     ; }
  36297 LD E,A        ; {Point #REGde at the attribute byte for the background,
+; @ssub=LD D,32768/256
  36298 LD D,128      ; floor, wall or nasty tile (see #R32928)}
  36300 LD A,(DE)     ; {Copy the attribute byte into the buffer at #R24064
  36301 LD (IX+0),A   ; }
@@ -2638,6 +2645,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37332 JR Z,37431    ; Jump if so
 ; We are dealing with a horizontal or vertical guardian.
  37334 LD E,(IX+3)   ; {Point #REGde at the entry in the screen buffer address
+; @ssub=LD D,33280/256
  37337 LD D,130      ; lookup table at #R33280 that corresponds to the
                      ; guardian's y-coordinate}
  37339 LD A,(DE)     ; {Copy the LSB of the screen buffer address to #REGl
@@ -2684,6 +2692,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37402 AND 224       ;
  37404 LD E,A        ;
  37405 LD D,(IX+5)   ; }
+; @ssub=LD H,33280/256
  37408 LD H,130      ; {Point #REGhl at the guardian's current location in the
  37410 LD L,(IX+3)   ; screen buffer at #R24576
  37413 LD A,(IX+2)   ;
@@ -2723,6 +2732,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
                      ; on-screen)?
  37476 JP NZ,37811   ; If not, jump to consider the next entity definition
  37479 LD E,(IX+2)   ; {Point #REGde at the entry in the screen buffer address
+; @ssub=LD D,33280/256
  37482 LD D,130      ; lookup table at #R33280 that corresponds to the arrow's
                      ; y-coordinate}
  37484 LD A,(DE)     ; Pick up the LSB of the screen buffer address
@@ -2828,6 +2838,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37654 ADD A,(IX+1)  ; of the rope animation table at #R33536
  37657 LD L,A        ;
  37658 SET 7,L       ;
+; @ssub=LD H,33536/256
  37660 LD H,131      ; }
  37662 LD E,(HL)     ; {Add its value to #REGiy; now #REGiy points at the entry
  37663 LD D,0        ; in the screen buffer address lookup table at #R33280
@@ -2948,6 +2959,7 @@ u37819 LD (HL),A     ; Store the INK colour (bits 0-2)
 ;
 ; Used by the routine at #R35245.
 ; @label=DRAWITEMS
+; @ssub=LD H,41984/256
 c37841 LD H,164      ; Page #R41984(164) holds the first byte of each entry in
                      ; the item table
  37843 LD A,(41983)  ; Pick up the index of the first item from #R41983
@@ -3249,6 +3261,7 @@ c38196 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38230 CP 192        ; Is Willy 8 or fewer pixels above floor level?
  38232 JR NC,38236   ; Jump if so
  38234 LD E,224      ; #REGe=224 (arm raised)
+; @ssub=LD D,40064/256
 *38236 LD D,156      ; Point #REGde at the sprite graphic data for Maria
                      ; (#R40064, #R40096, #R40128 or #R40160)
  38238 LD HL,26734   ; {Draw Maria at (11,14) in the screen buffer at #R24576
@@ -3308,9 +3321,11 @@ c38298 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38316 CP 3          ; Is Willy's head down the toilet?
  38318 JR NZ,38322   ; Jump if not
  38320 SET 6,E       ; Now #REGe=64 or 96
+; @ssub=LD D,42496/256
 *38322 LD D,166      ; Point #REGde at the toilet sprite to use (#R42496,
                      ; #R42528, #R42560 or #R42592)
 ; @nowarn
+; @ssub=LD IX,33280+208
  38324 LD IX,33488   ; {Draw the toilet at (13,28) in the screen buffer at
  38328 LD BC,4124    ; #R24576
  38331 CALL 38504    ; }
@@ -3425,6 +3440,7 @@ c38430 LD A,(32928)  ; Pick up the attribute byte of the background tile in the
 c38455 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
  38458 ADD A,B       ; Add the y-coordinate offset (to get Willy's true pixel
                      ; y-coordinate if he's standing on a ramp)
+; @ssub=LD IXh,33280/256
  38459 LD IXh,130    ; {Point #REGix at the entry in the screen buffer address
  38462 LD IXl,A      ; lookup table at #R33280 that corresponds to Willy's
                      ; y-coordinate}
@@ -3440,10 +3456,12 @@ c38455 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
  38478 RRCA          ;
  38479 OR E          ;
  38480 LD E,A        ;
+; @ssub=LD D,40192/256
  38481 LD D,157      ; }
  38483 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38486 CP 29         ; Are we in the #R56576(The Nightmare Room)?
  38488 JR NZ,38496   ; Jump if not
+; @ssub=LD D,46592/256
  38490 LD D,182      ; {Point #REGde at the graphic data for the flying pig
  38492 LD A,E        ; sprite (#R46592+#REGe)
  38493 XOR 128       ;
@@ -3794,7 +3812,7 @@ b40064 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
 ; #UDGARRAY2,7,,2;40416-40433-1-16(willy7*) |
 ; #UDGARRAY*willy7;willy6;willy5;willy4(willy_l.gif) }
 ; TABLE#
-; @label=WILLYR0
+; @label=MANDAT
 b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
  40208 DEFB 126,0,126,0,247,0,251,0,60,0,118,0,110,0,119,0
  40224 DEFB 15,0,15,0,31,128,13,0,15,128,15,0,6,0,15,0
