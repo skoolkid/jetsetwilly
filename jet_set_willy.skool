@@ -46,6 +46,16 @@ b28672 DEFS 4096
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
 ; Copyright 2012-2014 Richard Dymond (this disassembly)
+; @bfix+begin
+;
+; This disassembly contains fixes for the following bugs:
+;   * The invisible item
+;   * The inaccessible items
+;   * The uncollectable item
+;   * Invalid grid location
+;   * The pause bug
+;   * The Attic bug
+; @bfix+end
 
 ; @org=32768
 ; Room layout
@@ -897,8 +907,13 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
  34552 LD (23672),A  ; the value collected on the second pass through this
                      ; routine is different from the value collected on the
                      ; first pass}
+; @bfix-begin
  34555 CP 179        ; Is the value between 0 and 178?
+; @bfix+else
+ 34555 CP 180        ; Is the value between 0 and 179?
+; @bfix+end
  34557 JR C,34561    ; Jump if so
+; @bfix-begin
  34559 SUB 180       ; Otherwise subtract 180; note that if the original value
                      ; of the LSB of the system variable FRAMES was 142, this
                      ; leaves #REGa holding 255, which is a
@@ -909,6 +924,13 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
 ; @ssub=LD H,40448/256
  34562 LD H,158      ; Point #REGhl at one of the entries in the table at
                      ; #R40448 (or at 40703 if #REGl=255)
+; @bfix+else
+ 34559 SUB 180       ; Otherwise subtract 180
+*34561 LD L,A        ; Now #REGl holds some number between 0 and 179
+; @ssub=LD H,40448/256
+ 34562 LD H,158      ; Point #REGhl at one of the entries in the table at
+                     ; #R40448
+; @bfix+end
  34564 LD A,(HL)     ; Pick up the table entry
  34565 ADD A,L       ; Add #REGl to obtain the actual code
  34566 LD (34276),A  ; Store the code at #R34276
@@ -1511,11 +1533,19 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
                      ; Maria?
  35612 JP Z,35841    ; If so, lose a life
 ; Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
+; @bfix-begin
  35615 LD B,191      ; Prepare #REGb for reading keys H-J-K-L-ENTER
+; @bfix+else
+ 35615 LD A,191      ; Prepare #REGa for reading keys H-J-K-L-ENTER
+; @bfix+end
  35617 LD HL,34274   ; Point #REGhl at the music flags at #R34274
+; @bfix-begin
  35620 IN A,(C)      ; Read keys H-J-K-L-ENTER; note that if the game has just
                      ; resumed after being paused, #REGc holds 0 instead of
                      ; 254, which is a #BUG#thePauseBug
+; @bfix+else
+ 35620 IN A,(254)    ; Read keys H-J-K-L-ENTER
+; @bfix+end
  35622 AND 31        ; {Are any of these keys being pressed?
  35624 CP 31         ; }
  35626 JR Z,35638    ; Jump if not
@@ -6484,6 +6514,7 @@ b41984 DEFS 173      ; Unused
  42180 DEFB 27       ; Item 196 at (6,29) in #R56064(The Chapel)
  42181 DEFB 185      ; Item 197 at (9,23) in #R63744(Above the West Bedroom)
  42182 DEFB 186      ; Item 198 at (13,22) in #R64000(The Beach)
+; @bfix=DEFB 11
  42183 DEFB 28       ; Item 199 at (3,26) in #R56320(First Landing)
  42184 DEFB 162      ; Item 200 at (9,2) in #R57856(Top Landing)
  42185 DEFB 25       ; Item 201 at (2,3) in #R55552(Cold Store)
@@ -10204,6 +10235,7 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
  56848 DEFB 0,0,0,144,0,0,0,0
  56856 DEFB 0,0,0,148,0,0,0,0
  56864 DEFB 0,0,0,149,80,0,0,0
+; @bfix=DEFB 0,0,0,129,4,0,0,0
  56872 DEFB 0,0,0,129,8,0,0,0
  56880 DEFB 0,0,0,1,4,0,0,0
  56888 DEFB 0,0,0,0,4,0,0,0
@@ -11280,6 +11312,7 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; base sprite 0, x=12 (#R41648)
  59898 DEFB 87,78                              ; Guardian no. 87 (vertical),
                                                ; base sprite 2, x=14 (#R41656)
+; @bfix=DEFB 69,82
  59900 DEFB 69,213                             ; Arrow flying right to left at
                                                ; pixel y-coordinate 536
                                                ; (#R41512)
@@ -11402,6 +11435,7 @@ b60160 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  60200 DEFB 0,0,0,0,0,0,0,0
  60208 DEFB 0,0,0,0,0,0,0,0
  60216 DEFB 0,0,0,0,0,42,170,170
+; @bfix=DEFB 0,0,0,0,0,48,195,0
  60224 DEFB 0,0,0,0,0,48,195,12
  60232 DEFB 0,0,0,0,0,0,0,0
  60240 DEFB 0,0,0,0,0,0,0,0
