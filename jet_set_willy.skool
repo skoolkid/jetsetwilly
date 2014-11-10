@@ -57,7 +57,11 @@ b28672 DEFS 4096
 ;   * The Attic bug
 ; @bfix+end
 
-; @org=32768
+; @isub+begin
+; @org=32765
+c32765 JP 33792
+; @isub+end
+
 ; Room layout
 ;
 ; Initialised upon entry to a room and then used by the routine at #R35068, and

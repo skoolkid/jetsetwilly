@@ -69,7 +69,7 @@ Now jet_set_willy.asm can be assembled using pasmo (http://pasmo.speccy.org/):
 To create a TAP file from jet_set_willy.bin, use the bin2tap.py utility,
 included with SkoolKit:
 
-  $ ./bin2tap.py -s 33792 jet_set_willy.bin
+  $ ./bin2tap.py jet_set_willy.bin
 
 The resultant TAP file, jet_set_willy.tap, can be loaded into an emulator, and
 the game will start automatically.
