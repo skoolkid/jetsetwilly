@@ -3,6 +3,7 @@
 D_VERSIONS=(
   20140913
   20140807
+  20141114
 )
 
 declare -A SK_VERSIONS
@@ -77,7 +78,7 @@ if [ $D_VERSION -ge 20140913 ]; then
   tar xf $DISASSEMBLY_ARCHIVE/$D_DIR.tar.xz
   cd $SK_BUILD_DIR
   cp -p ../$D_DIR/src/jet_set_willy* .
-  cp -p ../$D_DIR/skoolkit/jetsetwilly.py .
+  find ../$D_DIR -name jetsetwilly.py -exec cp -p {} . \;
   HTML_OPTS="-W jetsetwilly.JetSetWillyHtmlWriter"
 elif [ $D_VERSION -eq 20140807 ]; then
   wget https://github.com/skoolkid/jetsetwilly/archive/${D_VERSION}.tar.gz -O - | tar xzf -

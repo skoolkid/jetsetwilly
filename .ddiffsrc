@@ -1,7 +1,7 @@
 # rc file for disassembly-diff, skooldiff and write-files
 
-OLD_VERSION=20140913
-SK_OLD_VERSION=4.1
+OLD_VERSION=20141114
+SK_OLD_VERSION=4.1.1
 SKOOL=$JETSETWILLY_HOME/jet_set_willy.skool
 SNAPSHOT=$JETSETWILLY_HOME/build/jet_set_willy.z80
 MODULES=$JETSETWILLY_HOME/skoolkit/jetsetwilly.py
