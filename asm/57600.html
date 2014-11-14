@@ -39,7 +39,7 @@ Used by the routine at <a class="link" href="35068.html">35068</a>.
 </table>
 </div>
 <div class="paragraph">
-The first 128 bytes define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.
+The first 128 bytes are copied to <a class="link" href="32768.html">32768</a> and define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.
 </div>
 </div>
 <table class="input-0">
@@ -157,7 +157,7 @@ The first 128 bytes define the room layout. Each bit-pair (bits 7 and 6, 5 and 4
 <a name="57728"></a>
 <div class="comments">
 <div class="paragraph">
-The next 32 bytes contain the room name.
+The next 32 bytes are copied to <a class="link" href="32896.html">32896</a> and specify the room name.
 </div>
 </div>
 </td>
@@ -173,7 +173,7 @@ The next 32 bytes contain the room name.
 <a name="57760"></a>
 <div class="comments">
 <div class="paragraph">
-The next 54 bytes contain the attributes and graphic data for the tiles used to build the room.
+The next 54 bytes are copied to <a class="link" href="32928.html">32928</a> and contain the attributes and graphic data for the tiles used to build the room.
 </div>
 <div class="paragraph">
 <table>
@@ -231,7 +231,7 @@ The next 54 bytes contain the attributes and graphic data for the tiles used to 
 <a name="57814"></a>
 <div class="comments">
 <div class="paragraph">
-The next 8 bytes define the direction, location and length of the conveyor and ramp.
+The next four bytes are copied to <a class="link" href="32982.html">32982</a> and specify the direction, location and length of the conveyor.
 </div>
 </div>
 </td>
@@ -239,21 +239,55 @@ The next 8 bytes define the direction, location and length of the conveyor and r
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="57814"></a>57814</td>
-<td class="instruction">DEFB 0,212,95,4</td>
-<td class="comment-11" rowspan="1">Conveyor direction (left), location (x=20, y=14) and length (4)</td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-11" rowspan="1">Direction (left)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="57815"></a>57815</td>
+<td class="instruction">DEFW 24532</td>
+<td class="comment-11" rowspan="1">Location in the attribute buffer at <a class="link" href="24064.html">24064</a>: (14,20)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="57817"></a>57817</td>
+<td class="instruction">DEFB 4</td>
+<td class="comment-11" rowspan="1">Length</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="57818"></a>
+<div class="comments">
+<div class="paragraph">
+The next four bytes are copied to <a class="link" href="32986.html">32986</a> and specify the direction, location and length of the ramp.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="57818"></a>57818</td>
-<td class="instruction">DEFB 1,137,95,8</td>
-<td class="comment-11" rowspan="1">Ramp direction (right), location (x=9, y=12) and length (8)</td>
+<td class="instruction">DEFB 1</td>
+<td class="comment-11" rowspan="1">Direction (up to the right)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="57819"></a>57819</td>
+<td class="instruction">DEFW 24457</td>
+<td class="comment-11" rowspan="1">Location in the attribute buffer at <a class="link" href="24064.html">24064</a>: (12,9)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="57821"></a>57821</td>
+<td class="instruction">DEFB 8</td>
+<td class="comment-11" rowspan="1">Length</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
 <a name="57822"></a>
 <div class="comments">
 <div class="paragraph">
-The next byte specifies the border colour.
+The next byte is copied to <a class="link" href="32990.html">32990</a> and specifies the border colour.
 </div>
 </div>
 </td>
@@ -263,6 +297,16 @@ The next byte specifies the border colour.
 <td class="address-1"><a name="57822"></a>57822</td>
 <td class="instruction">DEFB 2</td>
 <td class="comment-11" rowspan="1">Border colour</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<a name="57823"></a>
+<div class="comments">
+<div class="paragraph">
+The next two bytes are copied to <a class="link" href="32991.html">32991</a>, but are not used.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -275,7 +319,7 @@ The next byte specifies the border colour.
 <a name="57825"></a>
 <div class="comments">
 <div class="paragraph">
-The next 8 bytes define the item graphic.
+The next eight bytes are copied to <a class="link" href="32993.html">32993</a> and define the item graphic.
 </div>
 <div class="paragraph">
 <table>
@@ -298,7 +342,7 @@ The next 8 bytes define the item graphic.
 <a name="57833"></a>
 <div class="comments">
 <div class="paragraph">
-The next 4 bytes specify the rooms to the left, to the right, above and below.
+The next four bytes are copied to <a class="link" href="33001.html">33001</a> and specify the rooms to the left, to the right, above and below.
 </div>
 </div>
 </td>
@@ -328,6 +372,16 @@ The next 4 bytes specify the rooms to the left, to the right, above and below.
 <td class="comment-11" rowspan="1">Room below (<a class="link" href="56064.html">The Chapel</a>)</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="4">
+<a name="57837"></a>
+<div class="comments">
+<div class="paragraph">
+The next three bytes are copied to <a class="link" href="33005.html">33005</a>, but are not used.
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="57837"></a>57837</td>
 <td class="instruction">DEFB 0,0,0</td>
@@ -338,7 +392,7 @@ The next 4 bytes specify the rooms to the left, to the right, above and below.
 <a name="57840"></a>
 <div class="comments">
 <div class="paragraph">
-The next 8 pairs of bytes specify the entities (ropes, arrows, guardians) in this room. The first byte in each pair identifies one of the entity definitions at <a class="link" href="40960.html">40960</a>. The meaning of the second byte depends on the entity type: it determines the base sprite index and x-coordinate of a guardian, the y-coordinate of an arrow, or the x-coordinate of the top of a rope.
+The next eight pairs of bytes are copied to <a class="link" href="33008.html">33008</a> and specify the entities (ropes, arrows, guardians) in this room.
 </div>
 </div>
 </td>
@@ -400,9 +454,9 @@ The next 8 pairs of bytes specify the entities (ropes, arrows, guardians) in thi
 </tr>
 </table>
 <div class="footer">
-<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20141114</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

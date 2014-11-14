@@ -113,7 +113,7 @@ Used by the routine at <a class="link" href="36307.html">36307</a>. This routine
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36586"></a>36586</td>
 <td class="instruction">LD A,(32973)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the conveyor tile for the current room from <a class="link" href="32768.html#32973">32973</a></td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the conveyor tile for the current room from <a class="link" href="32928.html#32973">32973</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -149,7 +149,7 @@ Used by the routine at <a class="link" href="36307.html">36307</a>. This routine
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="36596"></a>36596</td>
 <td class="instruction">LD A,(32982)</td>
-<td class="comment-11" rowspan="1">Pick up the direction byte of the conveyor definition from <a class="link" href="32768.html#32982">32982</a> (0=left, 1=right)</td>
+<td class="comment-11" rowspan="1">Pick up the direction byte of the conveyor definition from <a class="link" href="32982.html">32982</a> (0=left, 1=right)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -773,7 +773,7 @@ A jump key or the fire button is being pressed. Time to make Willy jump.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36782"></a>36782</td>
 <td class="instruction">LD A,(34255)</td>
-<td class="comment-11" rowspan="3">Round Willy's pixel y-coordinate at <a class="link" href="34255.html">34255</a> down to the nearest multiple of 8</td>
+<td class="comment-11" rowspan="3">Round down Willy's pixel y-coordinate at <a class="link" href="34255.html">34255</a> to the nearest multiple of 16; this might move him upwards a little, but ensures that his actual pixel y-coordinate is a multiple of 8 (making his sprite cell-aligned) before he begins the jump off the rope</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -814,9 +814,9 @@ A jump key or the fire button is being pressed. Time to make Willy jump.
 </tr>
 </table>
 <div class="footer">
-<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20141114</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

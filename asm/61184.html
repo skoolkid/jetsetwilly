@@ -29,7 +29,7 @@
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a class="link" href="35068.html">35068</a>.
+This room is not used.
 </div>
 <div class="paragraph">
 <table>
@@ -60,7 +60,7 @@ The first 128 bytes define the room layout. Each bit-pair (bits 7 and 6, 5 and 4
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61184"></a>61184</td>
 <td class="instruction">DEFB 0,0,0,0,0,0,0,0</td>
-<td class="comment-11" rowspan="16">Room layout</td>
+<td class="comment-11" rowspan="16">Room layout (completely empty)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -157,7 +157,7 @@ The first 128 bytes define the room layout. Each bit-pair (bits 7 and 6, 5 and 4
 <a name="61312"></a>
 <div class="comments">
 <div class="paragraph">
-The next 32 bytes contain the room name.
+The next 32 bytes specify the room name.
 </div>
 </div>
 </td>
@@ -173,19 +173,7 @@ The next 32 bytes contain the room name.
 <a name="61344"></a>
 <div class="comments">
 <div class="paragraph">
-The next 54 bytes contain the attributes and graphic data for the tiles used to build the room.
-</div>
-<div class="paragraph">
-<table>
-<tr>
-<td><img alt="background47" src="../images/udgs/background47.png" /></td>
-<td><img alt="floor47" src="../images/udgs/floor47.png" /></td>
-<td><img alt="wall47" src="../images/udgs/wall47.png" /></td>
-<td><img alt="nasty47" src="../images/udgs/nasty47.png" /></td>
-<td><img alt="ramp47" src="../images/udgs/ramp47.png" /></td>
-<td><img alt="conveyor47" src="../images/udgs/conveyor47.gif" /></td>
-</tr>
-</table>
+In a working room definition, the next 80 bytes define the tiles, conveyor, ramp, border colour, item graphic, and exits. In this room, however, there are code remnants and unused data.
 </div>
 </div>
 </td>
@@ -194,151 +182,254 @@ The next 54 bytes contain the attributes and graphic data for the tiles used to 
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61344"></a>61344</td>
 <td class="instruction">DEFB 0,0,0,0,0,0,0,0,0</td>
-<td class="comment-11" rowspan="1">Background</td>
+<td class="comment-11" rowspan="1">Background tile</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61353"></a>61353</td>
-<td class="instruction">DEFB 0,0,0,0,0,0,0,0,4</td>
-<td class="comment-11" rowspan="1">Floor (unused)</td>
+<td class="instruction">DEFB 0,0,0,0,0,0,0,0</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61361"></a>61361</td>
+<td class="instruction">INC B</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61362"></a>61362</td>
-<td class="instruction">DEFB 54,0,194,227,98,221,52,6,16</td>
-<td class="comment-11" rowspan="1">Wall (unused)</td>
+<td class="instruction">LD (HL),0</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="61371"></a>61371</td>
-<td class="instruction">DEFB 255,221,113,10,112,195,86,94,1</td>
-<td class="comment-11" rowspan="1">Nasty (unused)</td>
+<td class="address-1"><a name="61364"></a>61364</td>
+<td class="instruction">JP NZ,25315</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="61380"></a>61380</td>
-<td class="instruction">DEFB 7,96,58,142,64,32,24,229,197</td>
-<td class="comment-11" rowspan="1">Ramp (unused)</td>
+<td class="address-1"><a name="61367"></a>61367</td>
+<td class="instruction">INC (IX+6)</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61370"></a>61370</td>
+<td class="instruction">DEFB 16,255</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61372"></a>61372</td>
+<td class="instruction">LD (IX+10),C</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61375"></a>61375</td>
+<td class="instruction">LD (HL),B</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61376"></a>61376</td>
+<td class="instruction">JP 24150</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61379"></a>61379</td>
+<td class="instruction">LD BC,24583</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61382"></a>61382</td>
+<td class="instruction">LD A,(16526)</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61385"></a>61385</td>
+<td class="instruction">JR NZ,61411</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61387"></a>61387</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61388"></a>61388</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61389"></a>61389</td>
-<td class="instruction">DEFB 245,17,232,94,213,197,201,241,193</td>
-<td class="comment-11" rowspan="1">Conveyor (unused)</td>
+<td class="instruction">PUSH AF</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
-<a name="61398"></a>
-<div class="comments">
-<div class="paragraph">
-The next 8 bytes define the direction, location and length of the conveyor and ramp.
-</div>
-</div>
-</td>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61390"></a>61390</td>
+<td class="instruction">LD DE,24296</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61393"></a>61393</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61394"></a>61394</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61395"></a>61395</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61396"></a>61396</td>
+<td class="instruction">POP AF</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61397"></a>61397</td>
+<td class="instruction">POP BC</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61398"></a>61398</td>
-<td class="instruction">DEFB 61,242,224,0</td>
-<td class="comment-11" rowspan="1">Conveyor direction (right), location (x=18, y=7) and length (0)</td>
+<td class="instruction">DEC A</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61399"></a>61399</td>
+<td class="instruction">DEFB 242,224</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61401"></a>61401</td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-11" rowspan="1">Conveyor length (deliberately set to 0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61402"></a>61402</td>
-<td class="instruction">DEFB 225,201,193,0</td>
-<td class="comment-11" rowspan="1">Ramp direction (right), location (x=9, y=14) and length (0)</td>
+<td class="instruction">POP HL</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
-<a name="61406"></a>
-<div class="comments">
-<div class="paragraph">
-The next byte specifies the border colour.
-</div>
-</div>
-</td>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61403"></a>61403</td>
+<td class="instruction">RET</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61404"></a>61404</td>
+<td class="instruction">POP BC</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61405"></a>61405</td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-11" rowspan="1">Ramp length (deliberately set to 0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61406"></a>61406</td>
-<td class="instruction">DEFB 126</td>
-<td class="comment-11" rowspan="1">Border colour</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61407"></a>61407</td>
-<td class="instruction">DEFB 254,44</td>
-<td class="comment-11" rowspan="1">Unused</td>
-</tr>
-<tr>
-<td class="routine-comment" colspan="4">
-<a name="61409"></a>
-<div class="comments">
-<div class="paragraph">
-The next 8 bytes define the item graphic.
-</div>
-<div class="paragraph">
-<table>
-<tr>
-<td><img alt="item47" src="../images/udgs/item47.png" /></td>
-</tr>
-</table>
-</div>
-</div>
-</td>
+<td class="instruction">CP 44</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61409"></a>61409</td>
-<td class="instruction">DEFB 192,215,197,126,254,35,204,120</td>
-<td class="comment-11" rowspan="1">Item graphic (unused)</td>
-</tr>
-<tr>
-<td class="routine-comment" colspan="4">
-<a name="61417"></a>
-<div class="comments">
-<div class="paragraph">
-The next 4 bytes specify the rooms to the left, to the right, above and below.
-</div>
-</div>
-</td>
+<td class="instruction">RET NZ</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
-<td class="address-1"><a name="61417"></a>61417</td>
-<td class="instruction">DEFB 29</td>
-<td class="comment-11" rowspan="1">Room to the left (<a class="link" href="56576.html">The Nightmare Room</a>)</td>
+<td class="address-1"><a name="61410"></a>61410</td>
+<td class="instruction">RST 16</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61411"></a>61411</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61412"></a>61412</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61413"></a>61413</td>
+<td class="instruction">CP 35</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61415"></a>61415</td>
+<td class="instruction">CALL Z,7544</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61418"></a>61418</td>
-<td class="instruction">DEFB 205</td>
-<td class="comment-11" rowspan="1">Room to the right (none)</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><a name="61419"></a>61419</td>
-<td class="instruction">DEFB 28</td>
-<td class="comment-11" rowspan="1">Room above (<a class="link" href="56320.html">First Landing</a>)</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><a name="61420"></a>61420</td>
-<td class="instruction">DEFB 43</td>
-<td class="comment-11" rowspan="1">Room below (<a class="link" href="60160.html">Conservatory Roof</a>)</td>
+<td class="instruction">CALL 11036</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="61421"></a>61421</td>
-<td class="instruction">DEFB 227,229,17</td>
-<td class="comment-11" rowspan="1">Unused</td>
+<td class="instruction">EX (SP),HL</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61422"></a>61422</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><a name="61423"></a>61423</td>
+<td class="instruction">DEFB 17</td>
+<td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
 <a name="61424"></a>
 <div class="comments">
 <div class="paragraph">
-The next 8 pairs of bytes specify the entities (ropes, arrows, guardians) in this room. The first byte in each pair identifies one of the entity definitions at <a class="link" href="40960.html">40960</a>. The meaning of the second byte depends on the entity type: it determines the base sprite index and x-coordinate of a guardian, the y-coordinate of an arrow, or the x-coordinate of the top of a rope.
+The next eight pairs of bytes specify the entities (ropes, arrows, guardians) in this room.
 </div>
 </div>
 </td>
@@ -400,9 +491,9 @@ The next 8 pairs of bytes specify the entities (ropes, arrows, guardians) in thi
 </tr>
 </table>
 <div class="footer">
-<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20141114</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

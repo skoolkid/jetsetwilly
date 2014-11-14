@@ -156,7 +156,7 @@ Willy is currently jumping.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36343"></a>36343</td>
 <td class="instruction">LD A,(32946)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a class="link" href="32768.html#32946">32946</a></td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a class="link" href="32928.html#32946">32946</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -264,7 +264,7 @@ Willy is currently jumping.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36376"></a>36376</td>
 <td class="instruction">LD A,(32990)</td>
-<td class="comment-11" rowspan="1">Pick up the border colour for the current room from <a class="link" href="32768.html#32990">32990</a></td>
+<td class="comment-11" rowspan="1">Pick up the border colour for the current room from <a class="link" href="32990.html">32990</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -349,7 +349,7 @@ Willy is currently jumping.
 <a name="36406"></a>
 <div class="comments">
 <div class="paragraph">
-If we get here, then Willy is standing on the floor, or he's falling, or his jumping animation counter is 13 or 16.
+If we get here, then Willy is standing on the floor, or he's falling, or his jumping animation counter is 13 (at which point Willy is on his way down and is exactly two cell-heights above where he started the jump) or 16 (at which point Willy is on his way down and is exactly one cell-height above where he started the jump).
 </div>
 </div>
 </td>
@@ -406,7 +406,7 @@ If we get here, then Willy is standing on the floor, or he's falling, or his jum
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36425"></a>36425</td>
 <td class="instruction">LD A,(32955)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the nasty tile for the current room from <a class="link" href="32768.html#32955">32955</a></td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the nasty tile for the current room from <a class="link" href="32928.html#32955">32955</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -430,7 +430,7 @@ If we get here, then Willy is standing on the floor, or he's falling, or his jum
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36432"></a>36432</td>
 <td class="instruction">LD A,(32955)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the nasty tile for the current room from <a class="link" href="32768.html#32955">32955</a> (again, redundantly)</td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the nasty tile for the current room from <a class="link" href="32928.html#32955">32955</a> (again, redundantly)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -448,7 +448,7 @@ If we get here, then Willy is standing on the floor, or he's falling, or his jum
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36438"></a>36438</td>
 <td class="instruction">LD A,(32928)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the background tile for the current room from <a class="link" href="32768.html#32928">32928</a></td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte of the background tile for the current room from <a class="link" href="32928.html">32928</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -572,7 +572,7 @@ If we get here, then Willy is either in the process of falling or just about to 
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36480"></a>36480</td>
 <td class="instruction">RLCA</td>
-<td class="comment-11" rowspan="5"><span class="register">D</span>=8*<span class="register">A</span>; this value determines the pitch of the falling sound effect</td>
+<td class="comment-11" rowspan="5"><span class="register">D</span>=16*<span class="register">A</span>; this value determines the pitch of the falling sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -608,7 +608,7 @@ If we get here, then Willy is either in the process of falling or just about to 
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36487"></a>36487</td>
 <td class="instruction">LD A,(32990)</td>
-<td class="comment-11" rowspan="1">Pick up the border colour for the current room from <a class="link" href="32768.html#32990">32990</a></td>
+<td class="comment-11" rowspan="1">Pick up the border colour for the current room from <a class="link" href="32990.html">32990</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -881,9 +881,9 @@ The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
 </tr>
 </table>
 <div class="footer">
-<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20141114</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

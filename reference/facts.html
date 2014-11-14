@@ -18,6 +18,7 @@
 </table>
 <ul class="contents">
 <li><a class="link" href="#gameOverAt1am">Game over at 1am</a></li>
+<li><a class="link" href="#tunes">Tunes</a></li>
 <li><a class="link" href="#theMovingBed">The moving bed</a></li>
 <li><a class="link" href="#theMusicOfLife">The music of life</a></li>
 <li><a class="link" href="#takingABreak">Taking a BREAK</a></li>
@@ -26,6 +27,7 @@
 <li><a class="link" href="#whiteSeekingMissile">White-seeking missile</a></li>
 <li><a class="link" href="#beerInTheWall">Beer in the wall?</a></li>
 <li><a class="link" href="#dangerousConnections">Dangerous connections</a></li>
+<li><a class="link" href="#unusedRoom">Unused room</a></li>
 <li><a class="link" href="#unusedGridLocation">Unused grid location</a></li>
 <li><a class="link" href="#unusedItems">Unused items</a></li>
 <li><a class="link" href="#unusedNasties">Unused nasties</a></li>
@@ -37,6 +39,8 @@
 <li><a class="link" href="#commonestGuardian">Commonest guardian</a></li>
 <li><a class="link" href="#commonestItem">Commonest item</a></li>
 <li><a class="link" href="#commonestCodes">Commonest codes</a></li>
+<li><a class="link" href="#codesFromCode">Codes from code</a></li>
+<li><a class="link" href="#someAirLeft">Some air left?</a></li>
 <li><a class="link" href="#mariasDodgyDepthPerception">Maria's dodgy depth perception</a></li>
 <li><a class="link" href="#ropeClimbingForBeginners">Rope climbing for beginners</a></li>
 <li><a class="link" href="#theEncroachingRope">The encroaching rope</a></li>
@@ -53,6 +57,7 @@
 <li><a class="link" href="#nomenLuni">Nomen Luni?</a></li>
 <li><a class="link" href="#weMustPerformAQuirkafleeg">We must perform a Quirkafleeg?</a></li>
 <li><a class="link" href="#rescueEsmerelda">Rescue Esmerelda?</a></li>
+<li><a class="link" href="#drJonesWillNeverBelieveThis">Dr Jones will never believe this?</a></li>
 <li><a class="link" href="#emptiestRooms">The emptiest rooms</a></li>
 <li><a class="link" href="#mostItems">The most items</a></li>
 </ul>
@@ -63,8 +68,15 @@
 The game ends abruptly at 1am (see <a class="link" href="../asm/35245.html#35442">35442</a>), even if Willy has collected all the items, or has reached his bed and is already on his way to the toilet, or already has his head down the toilet.
 </div>
 </div>
-<div><a name="theMovingBed"></a></div>
+<div><a name="tunes"></a></div>
 <div class="box box-2">
+<div class="box-title">Tunes</div>
+<div class="paragraph">
+The tune played on the title screen is Beethoven's <i>Moonlight Sonata</i>. The tune played during gameplay is <i>If I Were a Rich Man</i> from the musical <i>Fiddler on the Roof</i>.
+</div>
+</div>
+<div><a name="theMovingBed"></a></div>
+<div class="box box-1">
 <div class="box-title">The moving bed</div>
 <div class="paragraph">
 The bed in <a class="link" href="../asm/58112.html">Master Bedroom</a> is actually a conveyor moving left to right, but it doesn't appear to move because the first and third bytes of the conveyor tile (shown below) are 85 (01010101), which remains 85 after being rotated left or right twice.
@@ -78,21 +90,21 @@ The bed in <a class="link" href="../asm/58112.html">Master Bedroom</a> is actual
 </div>
 </div>
 <div><a name="theMusicOfLife"></a></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">The music of life</div>
 <div class="paragraph">
 When Willy loses a life, the pitch of the notes in the in-game music decreases, and their length increases; see <a class="link" href="../asm/35591.html#35668">35668</a>.
 </div>
 </div>
 <div><a name="takingABreak"></a></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Taking a BREAK</div>
 <div class="paragraph">
 The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see <a class="link" href="../asm/35245.html#35505">35505</a>). This works at any time, including when Willy is running to the toilet or already has his head down it.
 </div>
 </div>
 <div><a name="writetyper"></a></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">WRITETYPER</div>
 <div class="paragraph">
 If you take Willy to the floor at the bottom of the staircase in <a class="link" href="../asm/56320.html">First Landing</a> and type the word WRITETYPER, a cheat mode is activated that enables Willy to teleport to any room (see <a class="link" href="../asm/35591.html#35743">35743</a>).
@@ -102,14 +114,14 @@ For example, to teleport to <a class="link" href="../asm/58112.html">Master Bedr
 </div>
 </div>
 <div><a name="asYouWere"></a></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">As you were</div>
 <div class="paragraph">
 Willy's animation frame at <a class="link" href="../asm/34258.html">34258</a> and direction flag at <a class="link" href="../asm/34256.html">34256</a> are not initialised before the game starts, so his animation frame and the direction he's facing at the start of a game will be whatever they were when he died in the previous game. (The first time the game starts, Willy's animation frame is 0 and he's facing right.)
 </div>
 </div>
 <div><a name="whiteSeekingMissile"></a></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">White-seeking missile</div>
 <div class="paragraph">
 The routine at <a class="link" href="../asm/37310.html">37310</a>, when drawing an arrow, kills Willy if the arrow hits anything with white INK; this means, for example, that Willy would be killed if the arrow hits a white rope. It is no coincidence, then, that in the rooms that have both a rope and an arrow (<a class="link" href="../asm/53248.html">We must perform a Quirkafleeg</a>, <a class="link" href="../asm/53760.html">On the Roof</a> and <a class="link" href="../asm/64000.html">The Beach</a>), the rope is not white.
@@ -125,7 +137,7 @@ To see Willy die when the arrow hits the rope in <a class="link" href="../asm/64
 </div>
 </div>
 <div><a name="beerInTheWall"></a></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Beer in the wall?</div>
 <div class="paragraph">
 The wall tile in <a class="link" href="../asm/62976.html">West Wing</a> is very similar to the beer mug item in <a class="link" href="../asm/56576.html">The Nightmare Room</a>; they differ only in the bottom row of pixels:
@@ -144,7 +156,7 @@ The wall tile in <a class="link" href="../asm/62976.html">West Wing</a> is very 
 </div>
 </div>
 <div><a name="dangerousConnections"></a></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Dangerous connections</div>
 <div class="paragraph">
 There are several places in Willy's mansion where it is obvious that he is in danger of falling from a great height and entering an infinite death loop. However, there are also some places where it is far from obvious that merely moving from one room to another will lead to an infinite death loop.
@@ -154,6 +166,13 @@ For example, the room below <a class="link" href="../asm/50432.html">The Securit
 </div>
 <div class="paragraph">
 For another example, the room above <a class="link" href="../asm/59392.html">Dr Jones will never believe this</a> is <a class="link" href="../asm/53248.html">We must perform a Quirkafleeg</a>, where the long row of nasties at the bottom of the pit ensures certain (repeated) death.
+</div>
+</div>
+<div><a name="unusedRoom"></a></div>
+<div class="box box-1">
+<div class="box-title">Unused room</div>
+<div class="paragraph">
+There are 61 room definitions occupying pages 192-252, but the definition for room 47 in <a class="link" href="../asm/61184.html">page 239</a> is not used. Room 47 is completely empty and can only be accessed by activating <a class="link" href="facts.html#writetyper">cheat mode</a> and using the teleport code '123469'.
 </div>
 </div>
 <div><a name="unusedGridLocation"></a></div>
@@ -293,10 +312,10 @@ The guardian whose graphic data lives at <a class="link" href="../asm/43776.html
 <div class="paragraph">
 <table>
 <tr>
-<td><img alt="guardian177_4-0" src="../images/udgs/guardian177_4-0.png" /></td>
-<td><img alt="guardian177_5-1" src="../images/udgs/guardian177_5-1.png" /></td>
-<td><img alt="guardian177_6-2" src="../images/udgs/guardian177_6-2.png" /></td>
-<td><img alt="guardian177_7-3" src="../images/udgs/guardian177_7-3.png" /></td>
+<td><img alt="guardian177-0" src="../images/udgs/guardian177-0.png" /></td>
+<td><img alt="guardian177-1" src="../images/udgs/guardian177-1.png" /></td>
+<td><img alt="guardian177-2" src="../images/udgs/guardian177-2.png" /></td>
+<td><img alt="guardian177-3" src="../images/udgs/guardian177-3.png" /></td>
 </tr>
 </table>
 </div>
@@ -314,19 +333,19 @@ There are seven rooms that contain a unique guardian (that is, a guardian that d
 <table class="gallery">
 <tr>
 <td><a class="link" href="../asm/49152.html">The Off Licence</a></td>
-<td><img alt="guardian190_4" src="../images/udgs/guardian190_4.png" /></td>
+<td><img alt="guardian190-4-69" src="../images/udgs/guardian190-4-69.png" /></td>
 </tr>
 <tr>
 <td><a class="link" href="../asm/49408.html">The Bridge</a></td>
-<td><img alt="guardian185_4" src="../images/udgs/guardian185_4.png" /></td>
+<td><img alt="guardian185-4-68" src="../images/udgs/guardian185-4-68.png" /></td>
 </tr>
 <tr>
 <td><a class="link" href="../asm/52736.html">Rescue Esmerelda</a></td>
-<td><img alt="guardian176_4" src="../images/udgs/guardian176_4.png" /></td>
+<td><img alt="guardian176-4-23" src="../images/udgs/guardian176-4-23.png" /></td>
 </tr>
 <tr>
 <td><a class="link" href="../asm/55552.html">Cold Store</a></td>
-<td><img alt="guardian189_0" src="../images/udgs/guardian189_0.png" /></td>
+<td><img alt="guardian189-0-14" src="../images/udgs/guardian189-0-14.png" /></td>
 </tr>
 <tr>
 <td><a class="link" href="../asm/56576.html">The Nightmare Room</a></td>
@@ -334,11 +353,11 @@ There are seven rooms that contain a unique guardian (that is, a guardian that d
 </tr>
 <tr>
 <td><a class="link" href="../asm/59648.html">The Attic</a></td>
-<td><img alt="guardian176_0" src="../images/udgs/guardian176_0.png" /> <img alt="guardian176_2" src="../images/udgs/guardian176_2.png" /></td>
+<td><img alt="guardian176-0-3" src="../images/udgs/guardian176-0-3.png" /> <img alt="guardian176-2-5" src="../images/udgs/guardian176-2-5.png" /></td>
 </tr>
 <tr>
 <td><a class="link" href="../asm/60672.html">Under the Drive</a></td>
-<td><img alt="guardian174_4" src="../images/udgs/guardian174_4.png" /></td>
+<td><img alt="guardian174-4-3" src="../images/udgs/guardian174-4-3.png" /></td>
 </tr>
 </table>
 </div>
@@ -352,14 +371,14 @@ The commonest guardian is the bird, whose graphic data lives at <a class="link" 
 <div class="paragraph">
 <table>
 <tr>
-<td><img alt="guardian188_0" src="../images/udgs/guardian188_0.png" /></td>
-<td><img alt="guardian188_1" src="../images/udgs/guardian188_1.png" /></td>
-<td><img alt="guardian188_2" src="../images/udgs/guardian188_2.png" /></td>
-<td><img alt="guardian188_3" src="../images/udgs/guardian188_3.png" /></td>
-<td><img alt="guardian188_4" src="../images/udgs/guardian188_4.png" /></td>
-<td><img alt="guardian188_5" src="../images/udgs/guardian188_5.png" /></td>
-<td><img alt="guardian188_6" src="../images/udgs/guardian188_6.png" /></td>
-<td><img alt="guardian188_7" src="../images/udgs/guardian188_7.png" /></td>
+<td><img alt="guardian188-0-66" src="../images/udgs/guardian188-0-66.png" /></td>
+<td><img alt="guardian188-1-66" src="../images/udgs/guardian188-1-66.png" /></td>
+<td><img alt="guardian188-2-66" src="../images/udgs/guardian188-2-66.png" /></td>
+<td><img alt="guardian188-3-66" src="../images/udgs/guardian188-3-66.png" /></td>
+<td><img alt="guardian188-4-66" src="../images/udgs/guardian188-4-66.png" /></td>
+<td><img alt="guardian188-5-66" src="../images/udgs/guardian188-5-66.png" /></td>
+<td><img alt="guardian188-6-66" src="../images/udgs/guardian188-6-66.png" /></td>
+<td><img alt="guardian188-7-66" src="../images/udgs/guardian188-7-66.png" /></td>
 </tr>
 </table>
 </div>
@@ -389,6 +408,20 @@ Every other item is unique to its own room.
 <div class="box-title">Commonest codes</div>
 <div class="paragraph">
 The commonest codes on the code sheet are 2411 (at H7, O7, R7 and C9) and 3443 (at O3, D6, L8 and R8).
+</div>
+</div>
+<div><a name="codesFromCode"></a></div>
+<div class="box box-1">
+<div class="box-title">Codes from code</div>
+<div class="paragraph">
+The codes for grid locations A0-Q9 are derived not from a deliberately crafted data table but from the unused code remnants at <a class="link" href="../asm/40448.html">40448</a>.
+</div>
+</div>
+<div><a name="someAirLeft"></a></div>
+<div class="box box-2">
+<div class="box-title">Some air left?</div>
+<div class="paragraph">
+The message at <a class="link" href="../asm/33873.html">33873</a> ('AIR') may be unused, but it is still a poignant reminder of Willy's former career as a miner.
 </div>
 </div>
 <div><a name="mariasDodgyDepthPerception"></a></div>
@@ -461,7 +494,7 @@ Entity 89, defined at <a class="link" href="../asm/40960.html#41672">41672</a>, 
 <div class="paragraph">
 <table>
 <tr>
-<td><img alt="guardian176_6" src="../images/udgs/guardian176_6.png" /></td>
+<td><img alt="guardian176-6-6" src="../images/udgs/guardian176-6-6.png" /></td>
 </tr>
 </table>
 </div>
@@ -542,8 +575,15 @@ The name of the room <a class="link" href="../asm/53248.html">We must perform a 
 The sequence of rooms <a class="link" href="../asm/53504.html">Up on the Battlements</a>, <a class="link" href="../asm/53248.html">We must perform a Quirkafleeg</a>, <a class="link" href="../asm/52992.html">I'm sure I've seen this before..</a> and <a class="link" href="../asm/52736.html">Rescue Esmerelda</a> - with the guards, battlements, rope, bells and Esmerelda - are a reference to <a class="link" href="http://www.worldofspectrum.org/infoseekid.cgi?id=0002383">Hunchback</a> by Ocean Software Ltd.
 </div>
 </div>
-<div><a name="emptiestRooms"></a></div>
+<div><a name="drJonesWillNeverBelieveThis"></a></div>
 <div class="box box-1">
+<div class="box-title">Dr Jones will never believe this?</div>
+<div class="paragraph">
+The name of the room <a class="link" href="../asm/59392.html">Dr Jones will never believe this</a> may be a reference to the 'Myth of Jones', a story told by the philosopher Wilfrid Sellars in his most famous paper, <i>Empiricism and the Philosophy of Mind</i>. In this story, the hero, Jones, seeks to explain how a person can have a sensation of something that doesn't exist; for example, how it can be that people behave just as they would if there were a pink elephant in the room when in fact there is no such thing there. In this particular room, however, there <em>is</em> a pink (well, magenta) elephant.
+</div>
+</div>
+<div><a name="emptiestRooms"></a></div>
+<div class="box box-2">
 <div class="box-title">The emptiest rooms</div>
 <div class="paragraph">
 <a class="link" href="../asm/62720.html">Back Door</a> is the only room that has no items, nasties, rope, arrows or guardians.
@@ -559,7 +599,7 @@ The sequence of rooms <a class="link" href="../asm/53504.html">Up on the Battlem
 </div>
 </div>
 <div><a name="mostItems"></a></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">The most items</div>
 <div class="paragraph">
 The room with the most items is <a class="link" href="../asm/49152.html">The Off Licence</a> with 12.
@@ -569,9 +609,9 @@ The room with the most items is <a class="link" href="../asm/49152.html">The Off
 </div>
 </div>
 <div class="footer">
-<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20141114</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

@@ -536,7 +536,7 @@ We are dealing with an arrow.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37458"></a>37458</td>
 <td class="instruction">LD A,(32990)</td>
-<td class="comment-11" rowspan="1">Pick up the border colour for the current room from <a class="link" href="32768.html#32990">32990</a></td>
+<td class="comment-11" rowspan="1">Pick up the border colour for the current room from <a class="link" href="32990.html">32990</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1418,7 +1418,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37770"></a>37770</td>
 <td class="instruction">LD A,(33003)</td>
-<td class="comment-11" rowspan="2">Pick up the number of the room above from <a class="link" href="32768.html#33003">33003</a> and copy it to <span class="register">C</span></td>
+<td class="comment-11" rowspan="2">Pick up the number of the room above from <a class="link" href="33001.html#33003">33003</a> and copy it to <span class="register">C</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1502,7 +1502,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="37797"></a>37797</td>
 <td class="instruction">LD A,(34255)</td>
-<td class="comment-11" rowspan="3">Clear bits 0-2 of Willy's pixel y-coordinate at <a class="link" href="34255.html">34255</a>; this rounds down his actual pixel y-coordinate to the nearest multiple of 4 (possibly moving him upwards a little)</td>
+<td class="comment-11" rowspan="3">Round down Willy's pixel y-coordinate at <a class="link" href="34255.html">34255</a> to the nearest multiple of 8; this might move him upwards a little, but ensures that his actual pixel y-coordinate is a multiple of 4 before he starts falling</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1571,9 +1571,9 @@ The current entity definition has been dealt with. Time for the next one.
 </tr>
 </table>
 <div class="footer">
-<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20141114</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>

@@ -50,7 +50,7 @@ Used by the routine at <a class="link" href="36147.html">36147</a>. Fills the bu
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="36203"></a>36203</td>
 <td class="instruction">LD HL,32768</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the first room layout byte in the room buffer at <a class="link" href="32768.html">32768</a></td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the first room layout byte at <a class="link" href="32768.html">32768</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -202,7 +202,7 @@ Next consider the conveyor tiles (if any).
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36240"></a>36240</td>
 <td class="instruction">LD A,(32985)</td>
-<td class="comment-11" rowspan="1">Pick up the length of the conveyor</td>
+<td class="comment-11" rowspan="1">Pick up the length of the conveyor from <a class="link" href="32982.html#32985">32985</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -220,7 +220,7 @@ Next consider the conveyor tiles (if any).
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36246"></a>36246</td>
 <td class="instruction">LD HL,(32983)</td>
-<td class="comment-11" rowspan="1">Pick up the coordinates of the left end of the conveyor</td>
+<td class="comment-11" rowspan="1">Pick up the address of the conveyor's location in the attribute buffer at <a class="link" href="24064.html">24064</a> from <a class="link" href="32982.html#32983">32983</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -232,7 +232,7 @@ Next consider the conveyor tiles (if any).
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36250"></a>36250</td>
 <td class="instruction">LD A,(32973)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte for the conveyor tile from <a class="link" href="32768.html#32973">32973</a></td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte for the conveyor tile from <a class="link" href="32928.html#32973">32973</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -266,7 +266,7 @@ And finally consider the ramp tiles (if any).
 <td class="asm-label-0"></td>
 <td class="address-2"><a name="36257"></a>36257</td>
 <td class="instruction">LD A,(32989)</td>
-<td class="comment-11" rowspan="1">Pick up the length of the ramp</td>
+<td class="comment-11" rowspan="1">Pick up the length of the ramp from <a class="link" href="32986.html#32989">32989</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -284,13 +284,13 @@ And finally consider the ramp tiles (if any).
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36262"></a>36262</td>
 <td class="instruction">LD HL,(32987)</td>
-<td class="comment-11" rowspan="1">Pick up the coordinates of the bottom of the ramp</td>
+<td class="comment-11" rowspan="1">Pick up the address of the ramp's location in the attribute buffer at <a class="link" href="24064.html">24064</a> from <a class="link" href="32986.html#32987">32987</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36265"></a>36265</td>
 <td class="instruction">LD A,(32986)</td>
-<td class="comment-11" rowspan="2">Pick up the direction byte of the ramp definition; <span class="register">A</span>=0 (ramp goes up to the left) or 1 (ramp goes up to the right)</td>
+<td class="comment-11" rowspan="2">Pick up the ramp direction from <a class="link" href="32986.html">32986</a>; <span class="register">A</span>=0 (ramp goes up to the left) or 1 (ramp goes up to the right)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -326,7 +326,7 @@ And finally consider the ramp tiles (if any).
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36276"></a>36276</td>
 <td class="instruction">LD A,(32989)</td>
-<td class="comment-11" rowspan="1">Pick up the length of the ramp</td>
+<td class="comment-11" rowspan="1">Pick up the length of the ramp from <a class="link" href="32986.html#32989">32989</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -338,7 +338,7 @@ And finally consider the ramp tiles (if any).
 <td class="asm-label-0"></td>
 <td class="address-1"><a name="36280"></a>36280</td>
 <td class="instruction">LD A,(32964)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte for the ramp tile from <a class="link" href="32768.html#32964">32964</a></td>
+<td class="comment-11" rowspan="1">Pick up the attribute byte for the ramp tile from <a class="link" href="32928.html#32964">32964</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -373,9 +373,9 @@ And finally consider the ramp tiles (if any).
 </tr>
 </table>
 <div class="footer">
-<div class="release">The complete Jet Set Willy RAM disassembly 20140913</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20141114</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2014 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://pyskool.ca/?page_id=177">SkoolKit</a> 4.1.</div>
+<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.1.1.</div>
 </div>
 </body>
 </html>
