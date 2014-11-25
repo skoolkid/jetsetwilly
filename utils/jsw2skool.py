@@ -502,6 +502,8 @@ class JetSetWilly:
                     pixel_y = coords // 2
                 desc = 'Arrow flying {} at pixel y-coordinate {}'.format(direction, pixel_y)
             suffix = ' (unused)' if 0 < num < 255 and terminated else ''
+            if addr == 59900:
+                lines.append('; @bfix:{}=DEFB 69,82'.format(addr))
             lines.append('B {},2 {} (#R{}){}'.format(addr, desc, def_addr, suffix))
             addr += 2
 
@@ -522,6 +524,8 @@ class JetSetWilly:
             room = self.snapshot[a:a + 256]
             room_num = a // 256 - 192
             room_name = self.room_names[room_num]
+            if room_num == 60:
+                lines.append('; @ignoreua:{}:t'.format(a))
             lines.append('b {} Room {}: {} (teleport: {})'.format(a, room_num, self.room_names_wp[room_num], self._get_teleport_code(room_num)))
             if a in (50688, 56320, 56576, 59904, 61440):
                 # Rooms with flashing cells
@@ -541,6 +545,10 @@ class JetSetWilly:
                 lines.append('B 61184,128,8 Room layout (completely empty)')
             else:
                 lines.append('D {} The first 128 bytes are copied to #R32768 and define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.'.format(a))
+                if room_num == 30:
+                    lines.append('; @bfix:56872=DEFB 0,0,0,129,4,0,0,0')
+                elif room_num == 43:
+                    lines.append('; @bfix:60224=DEFB 0,0,0,0,0,48,195,0')
                 lines.append('B {},128,8 Room layout'.format(a))
 
             # Room name
