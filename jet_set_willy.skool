@@ -2167,7 +2167,8 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
 ; Used by the routine at #R36307. This routine checks the keyboard and
 ; joystick.
 ;
-; HL Attribute buffer address of the left-hand cell below Willy's sprite (if Willy is not on a rope)
+; HL Attribute buffer address of the left-hand cell below Willy's sprite (if
+; .  Willy is not on a rope)
 ; @label=MOVEWILLY2
 c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
                      ; to hold keyboard and joystick readings
