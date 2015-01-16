@@ -35,7 +35,7 @@ Using skool file: {skoolfile}
 Using ref files: ../jet_set_willy.ref, ../jet_set_willy-bugs.ref, ../jet_set_willy-changelog.ref, ../jet_set_willy-facts.ref, ../jet_set_willy-pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/jet_set_willy
-Copying {SKOOLKIT_HOME}/resources/skoolkit.css to {odir}/jet_set_willy/skoolkit.css
+Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/jet_set_willy/skoolkit.css
 Copying ../resources/jet_set_willy.css to {odir}/jet_set_willy/jet_set_willy.css
   Writing disassembly files in jet_set_willy/asm
   Writing jet_set_willy/maps/all.html
@@ -230,7 +230,7 @@ class HtmlTestCase(DisassembliesTestCase):
 
     def write_jsw(self, options):
         main_options = '-W ../skoolkit:jetsetwilly.JetSetWillyHtmlWriter'
-        main_options += ' -S {} -S {}'.format('{}/resources'.format(SKOOLKIT_HOME), '../resources')
+        main_options += ' -S ../resources'
         main_options += ' -d {}'.format(self.odir)
         shutil.rmtree(self.odir, True)
 
