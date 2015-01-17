@@ -1,4 +1,4 @@
-; Copyright 2012-2014 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2015 Richard Dymond (rjdymond@gmail.com)
 
 ; Codes
 d40448 DEFB 43,75,13,120,202,96,29,205,91,30,254,44,192,24,243,17
@@ -45,7 +45,7 @@ b28672 DEFS 4096
 ; http://skoolkit.ca/
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
-; Copyright 2012-2014 Richard Dymond (this disassembly)
+; Copyright 2012-2015 Richard Dymond (this disassembly)
 ; @bfix+begin
 ;
 ; This disassembly contains fixes for the following bugs:
@@ -2196,7 +2196,7 @@ c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
  36599 SUB 3         ; {Now #REGe=253 (bit 1 reset) if the conveyor is moving
  36601 LD E,A        ; left, or 254 (bit 0 reset) if it's moving right}
 ; @keep
-*36602 LD BC,57342   ; {Read keys P-O-U-I-Y (right, left, right, left, right)
+*36602 LD BC,57342   ; {Read keys P-O-I-U-Y (right, left, right, left, right)
  36605 IN A,(C)      ; into bits 0-4 of #REGa}
  36607 AND 31        ; {Set bit 5 and reset bits 6 and 7
  36609 OR 32         ; }
