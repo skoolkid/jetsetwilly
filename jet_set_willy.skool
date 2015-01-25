@@ -40,13 +40,13 @@ b24576 DEFS 4096
 ; Initialised upon entry to a room by the routine at #R36147.
 b28672 DEFS 4096
 
-; @start
+@start
 ; Jet Set Willy disassembly
 ; http://skoolkit.ca/
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
 ; Copyright 2012-2015 Richard Dymond (this disassembly)
-; @bfix+begin
+@bfix+begin
 ;
 ; This disassembly contains fixes for the following bugs:
 ;   * The invisible item
@@ -55,112 +55,112 @@ b28672 DEFS 4096
 ;   * Invalid grid location
 ;   * The pause bug
 ;   * The Attic bug
-; @bfix+end
+@bfix+end
 
-; @isub+begin
-; @org=32765
+@isub+begin
+@org=32765
 c32765 JP 33792
-; @isub+end
+@isub+end
 
 ; Room layout
 ;
 ; Initialised upon entry to a room and then used by the routine at #R35068, and
 ; also used by the routine at #R36203.
-; @label=ROOMLAYOUT
+@label=ROOMLAYOUT
 g32768 DEFS 128
 
 ; Room name
 ;
 ; Initialised upon entry to a room and then used by the routine at #R35068.
-; @label=ROOMNAME
+@label=ROOMNAME
 g32896 DEFS 32
 
 ; Room tiles
 ;
 ; Initialised upon entry to a room by the routine at #R35068.
-; @label=BACKGROUND
+@label=BACKGROUND
 g32928 DEFS 9        ; Background tile (used by the routines at #R36147,
                      ; #R36288, #R36307 and #R38430, and also by the unused
                      ; routine at #R37819)
-; @label=FLOOR
+@label=FLOOR
  32937 DEFS 9        ; Floor tile (used by the routines at #R36147 and #R36288)
-; @label=WALL
+@label=WALL
  32946 DEFS 9        ; Wall tile (used by the routines at #R36147, #R36288,
                      ; #R36307 and #R36796)
-; @label=NASTY
+@label=NASTY
  32955 DEFS 9        ; Nasty tile (used by the routines at #R36147, #R36288,
                      ; #R36307 and #R38430)
-; @label=RAMP
+@label=RAMP
  32964 DEFS 9        ; Ramp tile (used by the routines at #R36147, #R36203,
                      ; #R36796 and #R38344)
-; @label=CONVEYOR
+@label=CONVEYOR
  32973 DEFS 9        ; Conveyor tile (used by the routines at #R36147, #R36203
                      ; and #R36564)
 
 ; Conveyor definition
 ;
 ; Initialised upon entry to a room by the routine at #R35068.
-; @label=CONVDIR
+@label=CONVDIR
 g32982 DEFB 0        ; Direction (0=left, 1=right; used by the routines at
                      ; #R36564 and #R38137)
-; @label=CONVLOC
+@label=CONVLOC
  32983 DEFW 0        ; Address of the conveyor's location in the attribute
                      ; buffer at #R24064 (used by the routines at #R36203 and
                      ; #R38137)
-; @label=CONVLEN
+@label=CONVLEN
  32985 DEFB 0        ; Length (used by the routines at #R36203 and #R38137)
 
 ; Ramp definition
 ;
 ; Initialised upon entry to a room by the routine at #R35068.
-; @label=RAMPDIR
+@label=RAMPDIR
 g32986 DEFB 0        ; Direction (0=up to the left, 1=up to the right; used by
                      ; the routines at #R36203, #R36796 and #R38344)
-; @label=RAMPLOC
+@label=RAMPLOC
  32987 DEFW 0        ; Address of the location of the bottom of the ramp in the
                      ; attribute buffer at #R24064 (used by the routine at
                      ; #R36203)
-; @label=RAMPLEN
+@label=RAMPLEN
  32989 DEFB 0        ; Length (used by the routine at #R36203)
 
 ; Border colour
 ;
 ; Initialised upon entry to a room and then used by the routine at #R35068, and
 ; also used by the routines at #R35068, #R35591, #R36307, #R37310 and #R37841.
-; @label=BORDER
+@label=BORDER
 g32990 DEFB 0
 
 ; Unused
 ;
 ; These bytes are overwritten upon entry to a room by the routine at #R35068,
 ; but not used.
-; @label=XROOM223
+@label=XROOM223
 u32991 DEFS 2
 
 ; Item graphic
 ;
 ; Initialised upon entry to a room by the routine at #R35068, and used by the
 ; routine at #R37841.
-; @label=ITEM
+@label=ITEM
 g32993 DEFS 8
 
 ; Room exits
 ;
 ; Initialised upon entry to a room by the routine at #R35068.
-; @label=LEFT
+@label=LEFT
 g33001 DEFB 0        ; Room to the left (used by the routine at #R38026)
-; @label=RIGHT
+@label=RIGHT
  33002 DEFB 0        ; Room to the right (used by the routine at #R38046)
-; @label=ABOVE
+@label=ABOVE
  33003 DEFB 0        ; Room above (used by the routines at #R37310 and #R38064)
-; @label=BELOW
+@label=BELOW
  33004 DEFB 0        ; Room below (used by the routine at #R38098)
 
 ; Unused
 ;
 ; These bytes are overwritten upon entry to a room by the routine at #R35068,
 ; but not used.
-; @label=XROOM237
+@label=XROOM237
 u33005 DEFS 3
 
 ; Entity specifications
@@ -172,7 +172,7 @@ u33005 DEFS 3
 ; definitions at #R40960. The meaning of the second byte depends on the entity
 ; type: it determines the base sprite index and x-coordinate of a guardian, the
 ; y-coordinate of an arrow, or the x-coordinate of the top of a rope.
-; @label=ENTITIES
+@label=ENTITIES
 g33008 DEFS 2        ; Entity 1
  33010 DEFS 2        ; Entity 2
  33012 DEFS 2        ; Entity 3
@@ -266,7 +266,7 @@ g33008 DEFS 2        ; Entity 1
 ; { =r2 11 | Bit 7: Willy is on the rope (set), or not (reset) }
 ; { Bits 0-6: unused }
 ; TABLE#
-; @label=ENTITYBUF
+@label=ENTITYBUF
 g33024 DEFS 8        ; Entity 1
  33032 DEFS 8        ; Entity 2
  33040 DEFS 8        ; Entity 3
@@ -286,7 +286,7 @@ s33089 DEFS 191
 ; entry (0<=N<=127) in this lookup table is the screen buffer address for the
 ; point with pixel coordinates (x,y)=(0,N), with the origin (0,0) at the
 ; top-left corner.
-; @label=SBUFADDRS
+@label=SBUFADDRS
 w33280 DEFW 24576    ; y=0
  33282 DEFW 24832    ; y=1
  33284 DEFW 25088    ; y=2
@@ -424,7 +424,7 @@ w33280 DEFW 24576    ; y=0
 ; the 32 entries from F to F+31 inclusive (one for each segment of rope) in
 ; each half of the table are used; thus the batch of entries used 'slides' up
 ; and down the table as F increases and decreases.
-; @label=ROPEANIM
+@label=ROPEANIM
 b33536 DEFB 0,0,0,0,0,0,0,0 ; {These values determine how much to rotate the
  33544 DEFB 0,0,0,0,0,0,0,0 ; rope drawing byte (which in turn determines the
  33552 DEFB 0,0,0,0,0,0,0,0 ; x-coordinate at which each segment of rope is
@@ -463,13 +463,13 @@ b33536 DEFB 0,0,0,0,0,0,0,0 ; {These values determine how much to rotate the
 ; The game has just loaded
 ;
 ; After the game has loaded, this is where it all starts.
-; @label=BEGIN
+@label=BEGIN
 c33792 DI            ; Disable interrupts
  33793 LD HL,23551   ; {Place the address of the routine at #R34463 on the
-; @ssub=LD (HL),34463/256
+@ssub=LD (HL),34463/256
  33796 LD (HL),134   ; stack
  33798 DEC HL        ;
-; @ssub=LD (HL),34463%256
+@ssub=LD (HL),34463%256
  33799 LD (HL),159   ;
  33801 LD SP,23550   ; }
  33804 SUB A         ; {Set #REGhl=34048 in a roundabout way
@@ -479,7 +479,7 @@ c33792 DI            ; Disable interrupts
  33809 INC B         ;
  33810 LD H,B        ;
  33811 RRC H         ; }
-; @ignoreua
+@ignoreua
 *33813 LD C,(HL)     ; {Read through addresses 34048-65535, without changing
  33814 LD A,L        ; their contents; perhaps this code was once used to
  33815 XOR C         ; descramble the contents of pages 133-255, but now all it
@@ -496,7 +496,7 @@ c33792 DI            ; Disable interrupts
 ; by the routines at #R35068, #R37310, #R37841, #R38196, #R38276, #R38298 and
 ; #R38455, and updated by the routines at #R35591, #R38026, #R38046, #R38064
 ; and #R38098.
-; @label=ROOM
+@label=ROOM
 g33824 DEFB 0
 
 ; Left-right movement table
@@ -508,7 +508,7 @@ g33824 DEFB 0
 ; or by a conveyor, or by an urge to visit the toilet).
 ; .
 ; One of the first four entries is used when Willy is not moving.
-; @label=LRMOVEMENT
+@label=LRMOVEMENT
 b33825 DEFB 0        ; V=0 (facing right, no movement) + no movement: V'=0 (no
                      ; change)
  33826 DEFB 1        ; V=1 (facing left, no movement) + no movement: V'=1 (no
@@ -550,13 +550,13 @@ b33825 DEFB 0        ; V=0 (facing right, no movement) + no movement: V'=0 (no
 ; { #UDG33841,56(triangle0) | #UDG33849,56(triangle1) | #UDG33857,56(triangle2)
 ; | #UDG33865,56(triangle3) }
 ; TABLE#
-; @label=TRIANGLE0
+@label=TRIANGLE0
 b33841 DEFB 192,240,252,255,255,255,255,255
-; @label=TRIANGLE1
+@label=TRIANGLE1
  33849 DEFB 0,0,0,0,192,240,252,255
-; @label=TRIANGLE2
+@label=TRIANGLE2
  33857 DEFB 255,255,255,255,252,240,192,0
-; @label=TRIANGLE3
+@label=TRIANGLE3
  33865 DEFB 252,240,192,0,0,0,0,0
 
 ; 'AIR'
@@ -567,7 +567,7 @@ t33873 DEFM "AIR"
 ; '+++++ Press ENTER to Start +++++...'
 ;
 ; Used by the routine at #R34762.
-; @label=MSG_INTRO
+@label=MSG_INTRO
 t33876 DEFM "+++++ Press ENTER to Start +++++"
  33908 DEFM "  JET-SET WILLY by Matthew Smith  "
  33942 DEFM 127," 1984 SOFTWARE PROJECTS Ltd . . . . ."
@@ -579,51 +579,51 @@ t33876 DEFM "+++++ Press ENTER to Start +++++"
 ; 'Items collected 000 Time 00:00 m'
 ;
 ; Used by the routine at #R35068.
-; @label=MSG_STATUS
+@label=MSG_STATUS
 t34132 DEFM "Items collected 000 Time 00:00 m"
 
 ; 'Game'
 ;
 ; Used by the routine at #R35914.
-; @label=MSG_GAME
+@label=MSG_GAME
 t34164 DEFM "Game"
 
 ; 'Over'
 ;
 ; Used by the routine at #R35914.
-; @label=MSG_OVER
+@label=MSG_OVER
 t34168 DEFM "Over"
 
 ; Number of items collected
 ;
 ; Initialised by the routine at #R34762, printed by the routine at #R35245, and
 ; updated by the routine at #R37841.
-; @label=MSG_ITEMS
+@label=MSG_ITEMS
 g34172 DEFM "000"
 
 ; Current time
 ;
 ; Initialised by the routine at #R35068, and printed and updated by the routine
 ; at #R35245.
-; @label=MSG_CURTIME
+@label=MSG_CURTIME
 g34175 DEFM " 7:00a"
 
 ; ' 7:00a'
 ;
 ; Copied by the routine at #R35068 to #R34175.
-; @label=MSG_7AM
+@label=MSG_7AM
 t34181 DEFM " 7:00a"
 
 ; 'Enter Code at grid location#SPACE5'
 ;
 ; Used by the routine at #R34463.
-; @label=MSG_CODE1
+@label=MSG_CODE1
 t34187 DEFM "Enter Code at grid location     "
 
 ; 'Sorry, try code at location#SPACE5'
 ;
 ; Used by the routine at #R34463.
-; @label=MSG_CODE2
+@label=MSG_CODE2
 t34219 DEFM "Sorry, try code at location     "
 
 ; Minute counter
@@ -635,7 +635,7 @@ t34219 DEFM "Sorry, try code at location     "
 ; #R37841 (to cycle the colours of the items in the room), #R38196 (to
 ; determine Maria's animation frame in #R58112(Master Bedroom)) and #R38298 (to
 ; determine the animation frame for the toilet in #R57600(The Bathroom)).
-; @label=TICKS
+@label=TICKS
 g34251 DEFB 0
 
 ; Lives remaining
@@ -643,23 +643,23 @@ g34251 DEFB 0
 ; Initialised to 7 by the routine at #R34762, decremented by the routine at
 ; #R35841, and used by the routines at #R35211 (when drawing the remaining
 ; lives) and #R35591 (to adjust the speed and pitch of the in-game music).
-; @label=LIVES
+@label=LIVES
 g34252 DEFB 0
 
 ; Screen flash counter
 ;
-; @ignoreua
+@ignoreua
 ; Initialised to zero by the routine at #R34762, but never used; the code at
 ; #R35339 makes the screen flash in Manic Miner fashion if this address holds a
 ; non-zero value.
-; @label=FLASH
+@label=FLASH
 g34253 DEFB 0
 
 ; Kempston joystick indicator
 ;
 ; Initialised by the routine at #R34762, and checked by the routines at #R36564
 ; and #R38601. Holds 1 if a joystick is present, 0 otherwise.
-; @label=JOYSTICK
+@label=JOYSTICK
 g34254 DEFB 0
 
 ; Willy's pixel y-coordinate (x2)
@@ -670,7 +670,7 @@ g34254 DEFB 0
 ; the screen buffer address lookup table at #R33280 that corresponds to Willy's
 ; pixel y-coordinate; in practice, this is twice Willy's actual pixel
 ; y-coordinate.
-; @label=PIXEL_Y
+@label=PIXEL_Y
 g34255 DEFB 0
 
 ; Willy's direction and movement flags
@@ -682,12 +682,12 @@ g34255 DEFB 0
 ; { 1 | Willy's movement flag (set=moving) | #R36564, #R36796, #R37310 }
 ; { 2-7 | Unused (always reset) | }
 ; TABLE#
-; @label=DMFLAGS
+@label=DMFLAGS
 g34256 DEFB 0
 
 ; Airborne status indicator
 ;
-; @ignoreua
+@ignoreua
 ; Initialised by the routine at #R34762, checked by the routines at #R35591 and
 ; #R38344, updated by the routines at #R37046, #R37310 and #R38064, and checked
 ; and updated by the routines at #R36307, #R36564 and #R38098. Possible values
@@ -702,14 +702,14 @@ g34256 DEFB 0
 ; { 255 | Willy has collided with a nasty, an arrow, a guardian, or Maria (see
 ; #R37046) }
 ; TABLE#
-; @label=AIRBORNE
+@label=AIRBORNE
 g34257 DEFB 0
 
 ; Willy's animation frame
 ;
 ; Used by the routines at #R38344 and #R38455, and updated by the routines at
 ; #R35245, #R36796 and #R37310.
-; @label=FRAME
+@label=FRAME
 g34258 DEFB 0
 
 ; Address of Willy's location in the attribute buffer at 23552
@@ -717,13 +717,13 @@ g34258 DEFB 0
 ; Initialised by the routine at #R34762, and used by the routines at #R36307,
 ; #R36796, #R37310, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276,
 ; #R38344 and #R38455.
-; @label=LOCATION
+@label=LOCATION
 g34259 DEFW 0
 
 ; Jumping animation counter
 ;
 ; Used by the routines at #R36307 and #R36564.
-; @label=JUMPING
+@label=JUMPING
 g34261 DEFB 0
 
 ; Rope status indicator
@@ -738,15 +738,15 @@ g34261 DEFB 0
 ; { 12-32 | Willy is on the rope at this distance from the top }
 ; { 240-255 | Willy has just jumped or fallen off the rope }
 ; TABLE#
-; @label=ROPE
+@label=ROPE
 g34262 DEFB 0
 
 ; Willy's state on entry to the room
 ;
-; @ignoreua
+@ignoreua
 ; Initialised by the routine at #R35068, and copied back into
 ; #LINK:GameStatusBuffer#34255(34255-34261) by the routine at #R35841.
-; @label=INITSTATE
+@label=INITSTATE
 g34263 DEFB 0        ; Willy's pixel y-coordinate (copied from #R34255)
  34264 DEFB 0        ; Willy's direction and movement flags (copied from
                      ; #R34256)
@@ -760,7 +760,7 @@ g34263 DEFB 0        ; Willy's pixel y-coordinate (copied from #R34255)
 ;
 ; Initialised by the routine at #R34762, and updated by the routine at #R37841
 ; when an item is collected.
-; @label=ITEMS
+@label=ITEMS
 g34270 DEFB 0
 
 ; Game mode indicator
@@ -776,21 +776,21 @@ g34270 DEFB 0
 ; { 2 | Willy is running to the toilet }
 ; { 3 | Willy's head is down the toilet }
 ; TABLE#
-; @label=MODE
+@label=MODE
 g34271 DEFB 0
 
 ; Inactivity timer
 ;
 ; Initialised by the routine at #R34762, and updated by the routines at
 ; #R35245, #R35591 and #R36564.
-; @label=INACTIVE
+@label=INACTIVE
 g34272 DEFB 0
 
 ; In-game music note index
 ;
 ; Initialised by the routine at #R34762, used by the routine at #R35211, and
 ; used and updated by the routine at #R35591.
-; @label=NOTEINDEX
+@label=NOTEINDEX
 g34273 DEFB 0
 
 ; Music flags
@@ -804,13 +804,13 @@ g34273 DEFB 0
 ; { 1 | In-game music flag (set=music off, reset=music on) }
 ; { 2-7 | Unused }
 ; TABLE#
-; @label=MUSICFLAGS
+@label=MUSICFLAGS
 g34274 DEFB 0
 
 ; WRITETYPER key counter
 ;
 ; Checked by the routine at #R35245, and updated by the routine at #R35591.
-; @label=TELEPORT
+@label=TELEPORT
 g34275 DEFB 0
 
 ; Temporary variable
@@ -820,14 +820,14 @@ g34275 DEFB 0
 ; screen after the theme tune has finished playing, and by the routine at
 ; #R35914 to hold the distance of the foot from the top of the screen as it
 ; descends onto Willy.
-; @label=TEMPVAR
+@label=TEMPVAR
 g34276 DEFB 0
 
 ; WRITETYPER
 ;
 ; Used by the routine at #R35591.
 b34277 DEFB %00011111,%00011111 ; (no keys pressed)
-; @label=WRITETYPER
+@label=WRITETYPER
  34279 DEFB %00011101,%00011111 ; W
  34281 DEFB %00010111,%00011111 ; R
  34283 DEFB %00011111,%00011011 ; I
@@ -842,7 +842,7 @@ b34277 DEFB %00011111,%00011111 ; (no keys pressed)
 ; Title screen tune data (Moonlight Sonata)
 ;
 ; Used by the routine at #R38562.
-; @label=THEMETUNE
+@label=THEMETUNE
 b34299 DEFB 81,60,51,81,60,51,81,60,51,81,60,51,81,60,51,81
  34315 DEFB 60,51,81,60,51,81,60,51,76,60,51,76,60,51,76,57
  34331 DEFB 45,76,57,45,81,64,45,81,60,51,81,60,54,91,64,54
@@ -854,7 +854,7 @@ b34299 DEFB 81,60,51,81,60,51,81,60,51,81,60,51,81,60,51,81
 ; In-game tune data (If I Were a Rich Man)
 ;
 ; Used by the routine at #R35591.
-; @label=GAMETUNE
+@label=GAMETUNE
 b34399 DEFB 86,96,86,96,102,102,128,128,128,128,102,96,86,96,86,96
  34415 DEFB 102,96,86,76,72,76,72,76,86,86,86,86,86,86,86,86
  34431 DEFB 64,64,64,64,68,68,76,76,86,96,102,96,86,86,102,102
@@ -863,7 +863,7 @@ b34399 DEFB 86,96,86,96,102,102,128,128,128,128,102,96,86,96,86,96
 ; Give two chances to enter a correct code
 ;
 ; Used by the routine at #R33792.
-; @label=ENTERCODES
+@label=ENTERCODES
 c34463 LD HL,16384   ; {Clear the display file and attribute file
  34466 LD DE,16385   ;
  34469 LD BC,6911    ;
@@ -888,7 +888,7 @@ c34463 LD HL,16384   ; {Clear the display file and attribute file
 ; correct.
 ;
 ; IX Address of the message to print (#R34187 or #R34219)
-; @label=CODESCREEN
+@label=CODESCREEN
 c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
  34502 LD C,32       ;
  34504 CALL 38528    ; }
@@ -911,30 +911,30 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
  34552 LD (23672),A  ; the value collected on the second pass through this
                      ; routine is different from the value collected on the
                      ; first pass}
-; @bfix-begin
+@bfix-begin
  34555 CP 179        ; Is the value between 0 and 178?
-; @bfix+else
+@bfix+else
  34555 CP 180        ; Is the value between 0 and 179?
-; @bfix+end
+@bfix+end
  34557 JR C,34561    ; Jump if so
-; @bfix-begin
+@bfix-begin
  34559 SUB 180       ; Otherwise subtract 180; note that if the original value
                      ; of the LSB of the system variable FRAMES was 142, this
                      ; leaves #REGa holding 255, which is a
                      ; #BUG#invalidGridLocation
 *34561 LD L,A        ; Now #REGl holds either 255 or some number between 0 and
                      ; 178
-; @ignoreua
-; @ssub=LD H,40448/256
+@ignoreua
+@ssub=LD H,40448/256
  34562 LD H,158      ; Point #REGhl at one of the entries in the table at
                      ; #R40448 (or at 40703 if #REGl=255)
-; @bfix+else
+@bfix+else
  34559 SUB 180       ; Otherwise subtract 180
 *34561 LD L,A        ; Now #REGl holds some number between 0 and 179
-; @ssub=LD H,40448/256
+@ssub=LD H,40448/256
  34562 LD H,158      ; Point #REGhl at one of the entries in the table at
                      ; #R40448
-; @bfix+end
+@bfix+end
  34564 LD A,(HL)     ; Pick up the table entry
  34565 ADD A,L       ; Add #REGl to obtain the actual code
  34566 LD (34276),A  ; Store the code at #R34276
@@ -979,8 +979,8 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
 ; flag reset if the entered code is correct.
 ;
 ; IX Attribute file address of the flashing 2x2 block
-; @label=READCODE
-; @keep
+@label=READCODE
+@keep
 c34620 LD BC,63486   ; {Read keys 1-2-3-4-5
  34623 IN A,(C)      ; }
  34625 AND 15        ; {Is '1', '2', '3' or '4' (still) being pressed?
@@ -1033,7 +1033,7 @@ c34620 LD BC,63486   ; {Read keys 1-2-3-4-5
  34697 SET 7,(IX+1)  ;
  34701 SET 7,(IX+32) ;
  34705 SET 7,(IX+33) ; }
-; @keep
+@keep
  34709 LD BC,63486   ; {Read keys 1-2-3-4-5
  34712 IN A,(C)      ; }
  34714 AND 15        ; Keep only bits 0-3 (keys 1-2-3-4)
@@ -1067,7 +1067,7 @@ c34620 LD BC,63486   ; {Read keys 1-2-3-4-5
 ; .
 ; The first thing this routine does is initialise some game status buffer
 ; variables in preparation for the next game.
-; @label=TITLESCREEN
+@label=TITLESCREEN
 c34762 XOR A         ; #REGa=0
  34763 LD (34254),A  ; Initialise the Kempston joystick indicator at #R34254
  34766 LD (34273),A  ; Initialise the in-game music note index at #R34273
@@ -1090,7 +1090,7 @@ c34762 XOR A         ; #REGa=0
  34811 LD (HL),48    ;
  34813 INC HL        ;
  34814 LD (HL),48    ; }
-; @ssub=LD H,41984/256
+@ssub=LD H,41984/256
  34816 LD H,164      ; Page #R41984(164) holds the first byte of each entry in
                      ; the item table
  34818 LD A,(41983)  ; Pick up the index of the first item from #R41983
@@ -1215,7 +1215,7 @@ c34762 XOR A         ; #REGa=0
  35036 AND 31        ; routine at #R38622)
  35038 ADD A,50      ; }
  35040 CALL 38622    ; Make a sound effect
-; @keep
+@keep
  35043 LD BC,45054   ; {Read keys H-J-K-L-ENTER and 6-7-8-9-0
  35046 IN A,(C)      ; }
  35048 AND 1         ; Keep only bit 0 of the result (ENTER, 0)
@@ -1234,7 +1234,7 @@ c34762 XOR A         ; #REGa=0
 ; Start the game
 ;
 ; Used by the routine at #R34762.
-; @label=STARTGAME
+@label=STARTGAME
 c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
  35071 LD DE,34175   ; (" 7:00a") to #R34175
  35074 LD BC,6       ;
@@ -1252,7 +1252,7 @@ c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
  35093 OR 192        ; {Point #REGhl at the first byte of the room definition
  35095 LD H,A        ;
  35096 LD L,0        ; }
-; @ignoreua
+@ignoreua
  35098 LD DE,32768   ; {Copy the room definition into the game status buffer at
  35101 LD BC,256     ; #LINK:GameStatusBuffer#32768(32768)
  35104 LDIR          ; }
@@ -1278,7 +1278,7 @@ c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
  35143 DEC A         ; Have we copied all eight entity definitions into the
                      ; entity buffer yet?
  35144 JR NZ,35115   ; If not, jump back to copy the next one
-; @ignoreua
+@ignoreua
  35146 LD HL,34255   ; {Copy the seven bytes that define Willy's state
  35149 LD DE,34263   ; (position, animation frame etc.) on entry to this room
  35152 LD BC,7       ; from #LINK:GameStatusBuffer#34255(34255-34261) to
@@ -1309,7 +1309,7 @@ c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
 ; Draw the remaining lives
 ;
 ; Used by the routine at #R35245.
-; @label=DRAWLIVES
+@label=DRAWLIVES
 c35211 LD A,(34252)  ; Pick up the number of lives remaining from #R34252
  35214 LD HL,20640   ; Set #REGhl to the display file address at which to draw
                      ; the first Willy sprite
@@ -1328,7 +1328,7 @@ c35211 LD A,(34252)  ; Pick up the number of lives remaining from #R34252
  35229 RLCA          ;
  35230 AND 96        ; }
  35232 LD E,A        ; {Point #REGde at the corresponding Willy sprite (at
-; @ssub=LD D,40192/256
+@ssub=LD D,40192/256
  35233 LD D,157      ; #R40192+#REGa)}
  35235 CALL 37974    ; Draw the Willy sprite on the screen
  35238 POP BC        ; {Restore #REGhl and #REGbc
@@ -1341,7 +1341,7 @@ c35211 LD A,(34252)  ; Pick up the number of lives remaining from #R34252
 ; Main loop (1)
 ;
 ; Used by the routines at #R35068 and #R35591.
-; @label=MAINLOOP
+@label=MAINLOOP
 c35245 CALL 35211    ; Draw the remaining lives
  35248 LD HL,24064   ; {Copy the contents of the attribute buffer at #R24064
  35251 LD DE,23552   ; (the attributes for the empty room) into the attribute
@@ -1355,12 +1355,12 @@ c35245 CALL 35211    ; Draw the remaining lives
  35273 LD A,(34271)  ; Pick up the game mode indicator from #R34271
  35276 CP 3          ; Is Willy's head down the toilet?
  35278 CALL NZ,36307 ; If not, move Willy
-; @label=AFTERMOVE1
+@label=AFTERMOVE1
  35281 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
  35284 CP 225        ; Has Willy just moved up a ramp past the top of the
                      ; screen?
  35286 CALL NC,38064 ; If so, move Willy into the room above
-; @label=AFTERMOVE2
+@label=AFTERMOVE2
  35289 LD A,(34271)  ; Pick up the game mode indicator from #R34271
  35292 CP 3          ; Is Willy's head down the toilet?
  35294 CALL NZ,38344 ; If not, check and set the attribute bytes for Willy's
@@ -1387,7 +1387,7 @@ c35245 CALL 35211    ; Draw the remaining lives
  35337 OR (HL)       ; Willy is running to the toilet or already has his head
  35338 LD (HL),A     ; down it; this has the effect of moving Willy at twice
                      ; his normal speed as he makes his way to the toilet}
-; @label=SCRFLASH
+@label=SCRFLASH
  35339 LD A,(34253)  ; Pick up the screen flash counter (unused and always 0)
                      ; from #R34253
  35342 OR A          ; Is it zero?
@@ -1454,7 +1454,7 @@ c35245 CALL 35211    ; Draw the remaining lives
  35491 LD (IX+1),48  ; Set the units digit of the hour to '0'
  35495 LD (IX+0),49  ; Set the tens digit of the hour to '1'
 ; Now check whether any non-movement keys are being pressed.
-; @keep
+@keep
 *35499 LD BC,65278   ; {Read keys SHIFT-Z-X-C-V
  35502 IN A,(C)      ; }
  35504 LD E,A        ; Save the result in #REGe
@@ -1477,12 +1477,12 @@ c35245 CALL 35211    ; Draw the remaining lives
                      ; pause loop that follows
 ; The following loop pauses the game until any key except A, S, D, F or G is
 ; pressed.
-; @label=PAUSE
+@label=PAUSE
 *35537 LD B,2        ; {Read every half-row of keys except A-S-D-F-G
  35539 IN A,(C)      ; }
  35541 AND 31        ; {Are any of these keys being pressed?
  35543 CP 31         ; }
-; @label=SEE39936
+@label=SEE39936
  35545 JR NZ,35591   ; If so, resume the game
  35547 INC E         ; Increment the delay counter in #REGe
  35548 JR NZ,35537   ; Jump back unless it's zero
@@ -1497,7 +1497,7 @@ c35245 CALL 35211    ; Draw the remaining lives
 ;
 ; Used by the routines at #R34762 (while scrolling the instructions across the
 ; screen) and #R35245 (while the game is paused).
-; @label=CYCLEATTRS
+@label=CYCLEATTRS
 c35563 LD HL,22528   ; Point #REGhl at the first byte of the attribute file
  35566 LD A,(HL)     ; Pick up this byte
  35567 AND 7         ; Keep only bits 0-2 (the INK colour)
@@ -1522,7 +1522,7 @@ c35563 LD HL,22528   ; Point #REGhl at the first byte of the attribute file
 ;
 ; Used by the routine at #R35245. The main entry point is used when resuming
 ; the game after it has been paused.
-; @label=ENDPAUSE
+@label=ENDPAUSE
 c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35594 LD DE,23040   ; third of the screen
  35597 LD BC,256     ;
@@ -1537,19 +1537,19 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
                      ; Maria?
  35612 JP Z,35841    ; If so, lose a life
 ; Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
-; @bfix-begin
+@bfix-begin
  35615 LD B,191      ; Prepare #REGb for reading keys H-J-K-L-ENTER
-; @bfix+else
+@bfix+else
  35615 LD A,191      ; Prepare #REGa for reading keys H-J-K-L-ENTER
-; @bfix+end
+@bfix+end
  35617 LD HL,34274   ; Point #REGhl at the music flags at #R34274
-; @bfix-begin
+@bfix-begin
  35620 IN A,(C)      ; Read keys H-J-K-L-ENTER; note that if the game has just
                      ; resumed after being paused, #REGc holds 0 instead of
                      ; 254, which is a #BUG#thePauseBug
-; @bfix+else
+@bfix+else
  35620 IN A,(254)    ; Read keys H-J-K-L-ENTER
-; @bfix+end
+@bfix+end
  35622 AND 31        ; {Are any of these keys being pressed?
  35624 CP 31         ; }
  35626 JR Z,35638    ; Jump if not
@@ -1599,7 +1599,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35693 DEC C         ;
  35694 JR NZ,35683   ; }
 ; Here we check the teleport keys.
-; @keep
+@keep
 *35696 LD BC,61438   ; {Read keys 6-7-8-9-0
  35699 IN A,(C)      ; }
  35701 BIT 1,A       ; Is '9' (the activator key) being pressed?
@@ -1611,7 +1611,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35712 LD A,(34275)  ; Pick up the WRITETYPER key counter from #R34275
  35715 CP 10         ; Has WRITETYPER been keyed in yet?
  35717 JP NZ,35735   ; Jump if not
-; @keep
+@keep
  35720 LD BC,63486   ; {Read keys 1-2-3-4-5
  35723 IN A,(C)      ; }
  35725 CPL           ; {Keep only bits 0-4 and flip them
@@ -1636,7 +1636,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35764 LD D,0        ;
  35766 LD IX,34279   ;
  35770 ADD IX,DE     ; }
-; @keep
+@keep
  35772 LD BC,64510   ; {Read keys Q-W-E-R-T
  35775 IN A,(C)      ; }
  35777 AND 31        ; Keep only bits 0-5
@@ -1673,7 +1673,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
 ; Lose a life
 ;
 ; Used by the routine at #R35591.
-; @label=LOSELIFE
+@label=LOSELIFE
 c35841 LD A,71       ; #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
 ; The following loop fills the top two thirds of the attribute file with a
 ; single value (71 TO 64 STEP -1) and makes a sound effect.
@@ -1714,7 +1714,7 @@ c35841 LD A,71       ; #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
  35895 OR A          ; Are there any lives remaining?
  35896 JP Z,35914    ; If not, display the game over sequence
  35899 DEC (HL)      ; Decrease the number of lives remaining by one
-; @ignoreua
+@ignoreua
  35900 LD HL,34263   ; {Restore Willy's state upon entry to the room by copying
  35903 LD DE,34255   ; the seven bytes at #R34263 back into
  35906 LD BC,7       ; #LINK:GameStatusBuffer#34255(34255-34261)
@@ -1724,7 +1724,7 @@ c35841 LD A,71       ; #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
 ; Display the game over sequence
 ;
 ; Used by the routine at #R35841.
-; @label=GAMEOVER
+@label=GAMEOVER
 c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
  35917 LD DE,16385   ;
  35920 LD BC,4095    ;
@@ -1745,7 +1745,7 @@ c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
 ; Willy.
 *35953 LD A,(34276)  ; Pick up the distance variable from #R34276
  35956 LD C,A        ; {Point #REGbc at the corresponding entry in the screen
-; @ssub=LD B,33280/256
+@ssub=LD B,33280/256
  35957 LD B,130      ; buffer address lookup table at #R33280}
  35959 LD A,(BC)     ; {Point #REGhl at the corresponding location in the
  35960 OR 15         ; display file
@@ -1848,14 +1848,14 @@ c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
 ; Draw the current room to the screen buffer at 28672
 ;
 ; Used by the routine at #R35068.
-; @label=DRAWROOM
+@label=DRAWROOM
 c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
                      ; current room
  36150 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; at #R24064
-; @ignoreua
+@ignoreua
  36154 LD A,112      ; {Set the operand of the 'LD D,n' instruction at #R36188
-; @ssub=LD (36188+1),A
+@ssub=LD (36188+1),A
  36156 LD (36189),A  ; (below) to 112}
  36159 CALL 36171    ; Draw the tiles for the top half of the room to the
                      ; screen buffer at #R28672
@@ -1863,9 +1863,9 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
                      ; at #R24064 in preparation for drawing the bottom half of
                      ; the room; this instruction is redundant, since #REGix
                      ; already holds 24320
-; @ignoreua
+@ignoreua
  36166 LD A,120      ; {Set the operand of the 'LD D,n' instruction at #R36188
-; @ssub=LD (36188+1),A
+@ssub=LD (36188+1),A
  36168 LD (36189),A  ; (below) to 120}
 *36171 LD C,0        ; #REGc will count 256 tiles
 ; The following loop draws 256 tiles (for either the top half or the bottom
@@ -1883,7 +1883,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
                      ; early, which is a #BUG#corruptedConveyors}
  36185 LD C,E        ; Restore the value of the tile counter in #REGc
  36186 LD B,8        ; There are eight bytes in the tile
-; @label=BUFMSB
+@label=BUFMSB
  36188 LD D,0        ; This instruction is set to either 'LD D,112' or 'LD
                      ; D,120' above; now #REGde holds the appropriate address
                      ; in the screen buffer at #R28672
@@ -1903,7 +1903,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
 ; Used by the routine at #R36147. Fills the buffer at #R24064 with attribute
 ; bytes for the background, floor, wall, nasty, conveyor and ramp tiles in the
 ; current room.
-; @label=ROOMATTRS
+@label=ROOMATTRS
 c36203 LD HL,32768   ; Point #REGhl at the first room layout byte at #R32768
  36206 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; at #R24064
@@ -1975,7 +1975,7 @@ c36203 LD HL,32768   ; Point #REGhl at the first room layout byte at #R32768
 ;
 ; A Room layout byte (rotated)
 ; IX Attribute buffer address (#R24064(24064-24575))
-; @label=ROOMATTR
+@label=ROOMATTR
 c36288 AND 3         ; Keep only bits 0 and 1; #REGa=0 (background), 1 (floor),
                      ; 2 (wall) or 3 (nasty)
  36290 LD C,A        ; {Multiply by 9 and add 160; now #REGa=160 (background),
@@ -1985,7 +1985,7 @@ c36288 AND 3         ; Keep only bits 0 and 1; #REGa=0 (background), 1 (floor),
  36294 ADD A,C       ;
  36295 ADD A,160     ; }
  36297 LD E,A        ; {Point #REGde at the attribute byte for the background,
-; @ssub=LD D,32768/256
+@ssub=LD D,32768/256
  36298 LD D,128      ; floor, wall or nasty tile (see #R32928)}
  36300 LD A,(DE)     ; {Copy the attribute byte into the buffer at #R24064
  36301 LD (IX+0),A   ; }
@@ -1997,7 +1997,7 @@ c36288 AND 3         ; Keep only bits 0 and 1; #REGa=0 (background), 1 (floor),
 ;
 ; Used by the routine at #R35245. This routine deals with Willy if he's jumping
 ; or falling.
-; @label=MOVEWILLY
+@label=MOVEWILLY
 c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36310 DEC A         ; {Is Willy on a rope?
  36311 BIT 7,A       ; }
@@ -2169,7 +2169,7 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
 ;
 ; HL Attribute buffer address of the left-hand cell below Willy's sprite (if
 ; .  Willy is not on a rope)
-; @label=MOVEWILLY2
+@label=MOVEWILLY2
 c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
                      ; to hold keyboard and joystick readings
  36566 LD A,(34262)  ; Pick up the rope status indicator from #R34262
@@ -2195,7 +2195,7 @@ c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
                      ; from #R32982 (0=left, 1=right)
  36599 SUB 3         ; {Now #REGe=253 (bit 1 reset) if the conveyor is moving
  36601 LD E,A        ; left, or 254 (bit 0 reset) if it's moving right}
-; @keep
+@keep
 *36602 LD BC,57342   ; {Read keys P-O-I-U-Y (right, left, right, left, right)
  36605 IN A,(C)      ; into bits 0-4 of #REGa}
  36607 AND 31        ; {Set bit 5 and reset bits 6 and 7
@@ -2210,7 +2210,7 @@ c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
  36620 LD E,A        ; forcing him to move right (unless he's jumped onto the
                      ; bed, in which case bit 0 of #REGe is now set, and Willy
                      ; is immobilised; this is a #BUG#theStickyBed)}
-; @keep
+@keep
  36621 LD BC,64510   ; {Read keys Q-W-E-R-T (left, right, left, right, left)
  36624 IN A,(C)      ; into bits 0-4 of #REGa}
  36626 AND 31        ; {Keep only bits 0-4, shift them into bits 1-5, and set
@@ -2318,7 +2318,7 @@ c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
 ;
 ; Used by the routines at #R36307 and #R36564. This routine moves Willy left or
 ; right if necessary.
-; @label=MOVEWILLY3
+@label=MOVEWILLY3
 c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; #R34256
  36799 AND 2         ; Is Willy moving?
@@ -2367,7 +2367,7 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; the current room from #R32986
  36868 OR A          ; Does the ramp go up to the right?
  36869 JR NZ,36874   ; Jump if so
-; @keep
+@keep
  36871 LD BC,65504   ; #REGbc=-32 (the ramp goes up to the left)
 *36874 LD HL,(34259) ; Collect Willy's attribute buffer coordinates from
                      ; #R34259
@@ -2448,7 +2448,7 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; the current room from #R32986
  36978 OR A          ; Does the ramp go up to the left?
  36979 JR Z,36984    ; Jump if so
-; @keep
+@keep
  36981 LD BC,65504   ; #REGbc=-32 (the ramp goes up to the right)
 *36984 LD HL,(34259) ; Collect Willy's attribute buffer coordinates from
                      ; #R34259
@@ -2512,7 +2512,7 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
 ; Kill Willy
 ;
 ; Used by the routine at #R38430 when Willy hits a nasty.
-; @label=KILLWILLY
+@label=KILLWILLY
 c37046 POP HL        ; Drop the return address from the stack
 ; This entry point is used by the routines at #R36564 (when Willy lands after
 ; falling from too great a height), #R37310 (when an arrow or guardian hits
@@ -2525,7 +2525,7 @@ c37046 POP HL        ; Drop the return address from the stack
 ; Move the rope and guardians in the current room
 ;
 ; Used by the routine at #R35245.
-; @label=MOVETHINGS
+@label=MOVETHINGS
 c37056 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
                      ; #R33024
 ; The entity-moving loop begins here.
@@ -2664,7 +2664,7 @@ c37056 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
 ;
 ; Used by the routine at #R35245. Draws the rope, arrows and guardians in the
 ; current room to the screen buffer at #R24576.
-; @label=DRAWTHINGS
+@label=DRAWTHINGS
 c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
                      ; #R33024
 ; The drawing loop begins here.
@@ -2680,7 +2680,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37332 JR Z,37431    ; Jump if so
 ; We are dealing with a horizontal or vertical guardian.
  37334 LD E,(IX+3)   ; {Point #REGde at the entry in the screen buffer address
-; @ssub=LD D,33280/256
+@ssub=LD D,33280/256
  37337 LD D,130      ; lookup table at #R33280 that corresponds to the
                      ; guardian's y-coordinate}
  37339 LD A,(DE)     ; {Copy the LSB of the screen buffer address to #REGl
@@ -2727,7 +2727,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37402 AND 224       ;
  37404 LD E,A        ;
  37405 LD D,(IX+5)   ; }
-; @ssub=LD H,33280/256
+@ssub=LD H,33280/256
  37408 LD H,130      ; {Point #REGhl at the guardian's current location in the
  37410 LD L,(IX+3)   ; screen buffer at #R24576
  37413 LD A,(IX+2)   ;
@@ -2767,7 +2767,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
                      ; on-screen)?
  37476 JP NZ,37811   ; If not, jump to consider the next entity definition
  37479 LD E,(IX+2)   ; {Point #REGde at the entry in the screen buffer address
-; @ssub=LD D,33280/256
+@ssub=LD D,33280/256
  37482 LD D,130      ; lookup table at #R33280 that corresponds to the arrow's
                      ; y-coordinate}
  37484 LD A,(DE)     ; Pick up the LSB of the screen buffer address
@@ -2873,7 +2873,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37654 ADD A,(IX+1)  ; of the rope animation table at #R33536
  37657 LD L,A        ;
  37658 SET 7,L       ;
-; @ssub=LD H,33536/256
+@ssub=LD H,33536/256
  37660 LD H,131      ; }
  37662 LD E,(HL)     ; {Add its value to #REGiy; now #REGiy points at the entry
  37663 LD D,0        ; in the screen buffer address lookup table at #R33280
@@ -2962,7 +2962,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
 
 ; Unused routine
 ;
-; @ignoreua
+@ignoreua
 ; This routine is not used, but if it were, it would set the INK colour for a
 ; 3x2 block of cells, maintaining the PAPER, BRIGHT and FLASH attributes of the
 ; current room background. It is identical to the code at 36447 in Manic Miner
@@ -2970,7 +2970,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
 ;
 ; A INK colour (0-7)
 ; HL Attribute buffer address
-; @label=U_SETATTRS
+@label=U_SETATTRS
 u37819 LD (HL),A     ; Store the INK colour (bits 0-2)
  37820 LD A,(32928)  ; Collect the current room's background tile attribute
                      ; from #R32928
@@ -2993,8 +2993,8 @@ u37819 LD (HL),A     ; Store the INK colour (bits 0-2)
 ; Draw the items in the current room and collect any that Willy is touching
 ;
 ; Used by the routine at #R35245.
-; @label=DRAWITEMS
-; @ssub=LD H,41984/256
+@label=DRAWITEMS
+@ssub=LD H,41984/256
 c37841 LD H,164      ; Page #R41984(164) holds the first byte of each entry in
                      ; the item table
  37843 LD A,(41983)  ; Pick up the index of the first item from #R41983
@@ -3103,7 +3103,7 @@ c37841 LD H,164      ; Page #R41984(164) holds the first byte of each entry in
 ; C Drawing mode: 0 (overwrite) or 1 (blend)
 ; DE Address of sprite graphic data
 ; HL Address to draw at
-; @label=DRAWSPRITE
+@label=DRAWSPRITE
 c37974 LD B,16       ; There are 16 rows of pixels to draw
 *37976 BIT 0,C       ; Set the zero flag if we're in overwrite mode
  37978 LD A,(DE)     ; Pick up a sprite graphic byte
@@ -3149,7 +3149,7 @@ c37974 LD B,16       ; There are 16 rows of pixels to draw
 ; Move Willy into the room to the left
 ;
 ; Used by the routine at #R36796.
-; @label=ROOMLEFT
+@label=ROOMLEFT
 c38026 LD A,(33001)  ; Pick up the number of the room to the left from #R33001
  38029 LD (33824),A  ; Make it the current room number by copying it to #R33824
  38032 LD A,(34259)  ; {Adjust Willy's screen x-coordinate (at #R34259) to 30
@@ -3163,7 +3163,7 @@ c38026 LD A,(33001)  ; Pick up the number of the room to the left from #R33001
 ; Move Willy into the room to the right
 ;
 ; Used by the routine at #R36796.
-; @label=ROOMRIGHT
+@label=ROOMRIGHT
 c38046 LD A,(33002)  ; Pick up the number of the room to the right from #R33002
  38049 LD (33824),A  ; Make it the current room number by copying it to #R33824
  38052 LD A,(34259)  ; {Adjust Willy's screen x-coordinate (at #R34259) to 0
@@ -3176,7 +3176,7 @@ c38046 LD A,(33002)  ; Pick up the number of the room to the right from #R33002
 ; Move Willy into the room above
 ;
 ; Used by the routines at #R35245 and #R36307.
-; @label=ROOMABOVE
+@label=ROOMABOVE
 c38064 LD A,(33003)  ; Pick up the number of the room above from #R33003
  38067 LD (33824),A  ; Make it the current room number by copying it to #R33824
  38070 LD A,(34259)  ; {Willy should now appear on the bottom floor of the
@@ -3184,7 +3184,7 @@ c38064 LD A,(33003)  ; Pick up the number of the room above from #R33003
  38075 ADD A,160     ; #R34259) accordingly
  38077 LD (34259),A  ;
  38080 LD A,93       ;
-; @ssub=LD (34259+1),A
+@ssub=LD (34259+1),A
  38082 LD (34260),A  ; }
  38085 LD A,208      ; {Adjust Willy's pixel y-coordinate (at #R34255) as well
  38087 LD (34255),A  ; }
@@ -3197,7 +3197,7 @@ c38064 LD A,(33003)  ; Pick up the number of the room above from #R33003
 ; Move Willy into the room below
 ;
 ; Used by the routine at #R36307.
-; @label=ROOMBELOW
+@label=ROOMBELOW
 c38098 LD A,(33004)  ; Pick up the number of the room below from #R33004
  38101 LD (33824),A  ; Make it the current room number by copying it to #R33824
  38104 XOR A         ; {Set Willy's pixel y-coordinate (at #R34255) to 0
@@ -3213,7 +3213,7 @@ c38098 LD A,(33004)  ; Pick up the number of the room below from #R33004
  38123 AND 31        ; adjust his attribute buffer coordinates (at #R34259)
  38125 LD (34259),A  ; accordingly
  38128 LD A,92       ;
-; @ssub=LD (34259+1),A
+@ssub=LD (34259+1),A
  38130 LD (34260),A  ; }
  38133 POP HL        ; Drop the return address (#R35281, in the main loop) from
                      ; the stack
@@ -3222,7 +3222,7 @@ c38098 LD A,(33004)  ; Pick up the number of the room below from #R33004
 ; Move the conveyor in the current room
 ;
 ; Used by the routine at #R35245.
-; @label=MVCONVEYOR
+@label=MVCONVEYOR
 c38137 LD HL,(32983) ; Pick up the address of the conveyor's location in the
                      ; attribute buffer at #R24064 from #R32983
  38140 LD A,H        ; {Point #REGde and #REGhl at the location of the left end
@@ -3272,7 +3272,7 @@ c38137 LD HL,(32983) ; Pick up the address of the conveyor's location in the
 ; Deal with special rooms (Master Bedroom, The Bathroom)
 ;
 ; Used by the routine at #R35245.
-; @label=BEDANDBATH
+@label=BEDANDBATH
 c38196 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38199 CP 35         ; Are we in #R58112(Master Bedroom)?
  38201 JR NZ,38298   ; Jump if not
@@ -3296,7 +3296,7 @@ c38196 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38230 CP 192        ; Is Willy 8 or fewer pixels above floor level?
  38232 JR NC,38236   ; Jump if so
  38234 LD E,224      ; #REGe=224 (arm raised)
-; @ssub=LD D,40064/256
+@ssub=LD D,40064/256
 *38236 LD D,156      ; Point #REGde at the sprite graphic data for Maria
                      ; (#R40064, #R40096, #R40128 or #R40160)
  38238 LD HL,26734   ; {Draw Maria at (11,14) in the screen buffer at #R24576
@@ -3322,7 +3322,7 @@ c38196 LD A,(33824)  ; Pick up the number of the current room from #R33824
 ; Check whether Willy has reached the toilet
 ;
 ; Called by the routine at #R35245 when Willy is on his way to the toilet.
-; @label=CHKTOILET
+@label=CHKTOILET
 c38276 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38279 CP 33         ; Are we in #R57600(The Bathroom)?
  38281 RET NZ        ; Return if not
@@ -3341,7 +3341,7 @@ c38276 LD A,(33824)  ; Pick up the number of the current room from #R33824
 ; Animate the toilet in The Bathroom
 ;
 ; Used by the routine at #R38196.
-; @label=DRAWTOILET
+@label=DRAWTOILET
 c38298 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38301 CP 33         ; Are we in #R57600(The Bathroom)?
  38303 RET NZ        ; Return if not
@@ -3356,11 +3356,11 @@ c38298 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38316 CP 3          ; Is Willy's head down the toilet?
  38318 JR NZ,38322   ; Jump if not
  38320 SET 6,E       ; Now #REGe=64 or 96
-; @ssub=LD D,42496/256
+@ssub=LD D,42496/256
 *38322 LD D,166      ; Point #REGde at the toilet sprite to use (#R42496,
                      ; #R42528, #R42560 or #R42592)
-; @nowarn
-; @ssub=LD IX,33280+208
+@nowarn
+@ssub=LD IX,33280+208
  38324 LD IX,33488   ; {Draw the toilet at (13,28) in the screen buffer at
  38328 LD BC,4124    ; #R24576
  38331 CALL 38504    ; }
@@ -3374,7 +3374,7 @@ c38298 LD A,(33824)  ; Pick up the number of the current room from #R33824
 ; Used by the routine at #R35245. Sets the attribute bytes in the buffer at
 ; #R23552 for the six cells (in three rows of two) occupied by or under Willy's
 ; sprite, or kills Willy if any of the cells contains a nasty.
-; @label=WILLYATTRS
+@label=WILLYATTRS
 c38344 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
                      ; #R34259
  38347 LD B,0        ; Initialise #REGb to 0 (in case Willy is not standing on
@@ -3444,7 +3444,7 @@ c38344 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
 ;
 ; C 15 or Willy's pixel y-coordinate
 ; HL Address of the attribute byte in the buffer at #R23552
-; @label=WILLYATTR
+@label=WILLYATTR
 c38430 LD A,(32928)  ; Pick up the attribute byte of the background tile in the
                      ; current room from #R32928
  38433 CP (HL)       ; Does this cell contain a background tile?
@@ -3471,11 +3471,11 @@ c38430 LD A,(32928)  ; Pick up the attribute byte of the background tile in the
 ; Used by the routine at #R38344.
 ;
 ; B y-coordinate offset (0, 4, 8 or 12)
-; @label=DRAWWILLY
+@label=DRAWWILLY
 c38455 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
  38458 ADD A,B       ; Add the y-coordinate offset (to get Willy's true pixel
                      ; y-coordinate if he's standing on a ramp)
-; @ssub=LD IXh,33280/256
+@ssub=LD IXh,33280/256
  38459 LD IXh,130    ; {Point #REGix at the entry in the screen buffer address
  38462 LD IXl,A      ; lookup table at #R33280 that corresponds to Willy's
                      ; y-coordinate}
@@ -3491,12 +3491,12 @@ c38455 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
  38478 RRCA          ;
  38479 OR E          ;
  38480 LD E,A        ;
-; @ssub=LD D,40192/256
+@ssub=LD D,40192/256
  38481 LD D,157      ; }
  38483 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38486 CP 29         ; Are we in the #R56576(The Nightmare Room)?
  38488 JR NZ,38496   ; Jump if not
-; @ssub=LD D,46592/256
+@ssub=LD D,46592/256
  38490 LD D,182      ; {Point #REGde at the graphic data for the flying pig
  38492 LD A,E        ; sprite (#R46592+#REGe)
  38493 XOR 128       ;
@@ -3532,7 +3532,7 @@ c38455 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
 ; IX Address of the message
 ; C Length of the message
 ; DE Display file address
-; @label=PRINTMSG
+@label=PRINTMSG
 c38528 LD A,(IX+0)   ; Collect a character from the message
  38531 CALL 38545    ; Print it
  38534 INC IX        ; Point #REGix at the next character in the message
@@ -3550,7 +3550,7 @@ c38528 LD A,(IX+0)   ; Collect a character from the message
 ;
 ; A ASCII code of the character
 ; DE Display file address
-; @label=PRINTCHAR
+@label=PRINTCHAR
 c38545 LD H,7        ; {Point #REGhl at the bitmap for the character (in the
  38547 LD L,A        ; ROM)
  38548 SET 7,L       ;
@@ -3577,7 +3577,7 @@ c38545 LD H,7        ; {Point #REGhl at the bitmap for the character (in the
 ; tune is being played.
 ;
 ; HL #R34299
-; @label=PLAYTUNE
+@label=PLAYTUNE
 c38562 LD A,(HL)     ; Pick up the next byte of tune data from the table at
                      ; #R34299
  38563 CP 255        ; Has the tune finished?
@@ -3614,14 +3614,14 @@ c38562 LD A,(HL)     ; Pick up the next byte of tune data from the table at
 ;
 ; Used by the routine at #R38562. Returns with the zero flag reset if ENTER, 0
 ; or the fire button on the joystick is being pressed.
-; @label=CHECKENTER
+@label=CHECKENTER
 c38601 LD A,(34254)  ; Collect the Kempston joystick indicator from #R34254
  38604 OR A          ; Is the joystick connected?
  38605 JR Z,38612    ; Jump if not
  38607 IN A,(31)     ; Collect input from the joystick
  38609 BIT 4,A       ; Is the fire button being pressed?
  38611 RET NZ        ; Return (with the zero flag reset) if so
-; @keep
+@keep
 *38612 LD BC,45054   ; {Read keys H-J-K-L-ENTER and 6-7-8-9-0
  38615 IN A,(C)      ; }
  38617 AND 1         ; Keep only bit 0 of the result (ENTER, 0)
@@ -3633,7 +3633,7 @@ c38601 LD A,(34254)  ; Collect the Kempston joystick indicator from #R34254
 ; Used by the routine at #R34762.
 ;
 ; A Value between 50 and 81
-; @label=INTROSOUND
+@label=INTROSOUND
 c38622 LD E,A        ; Save the value of #REGa in #REGe for later retrieval
  38623 LD C,254      ; We will output to port 254
 *38625 LD D,A        ; Copy #REGa into #REGd; bits 0-2 of #REGd determine the
@@ -3662,7 +3662,7 @@ u38644 LD HL,24064   ; {Copy the attribute buffer at #R24064 to the top
  38661 LD BC,4095
  38664 LD (HL),24
  38666 LDIR          ; }
-; @keep
+@keep
  38668 LD BC,65278   ; Prepare #REGbc for reading keys SHIFT-Z-X-C-V
  38671 IN A,(C)      ; Read these keys
  38673 BIT 2,A       ; Is 'X' being pressed?
@@ -3675,7 +3675,7 @@ s38680 DEFS 232
 ; Attributes for the top two-thirds of the title screen
 ;
 ; Used by the routine at #R34762.
-; @label=ATTRSUPPER
+@label=ATTRSUPPER
 b38912 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
  38928 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
  38944 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -3712,7 +3712,7 @@ b38912 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 ; Attributes for the bottom third of the screen during gameplay
 ;
 ; Used by the routines at #R35068 and #R35591.
-; @label=ATTRSLOWER
+@label=ATTRSLOWER
 b39424 DEFB 70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70
  39440 DEFB 70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70
  39456 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -3740,7 +3740,7 @@ b39424 DEFB 70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70
 ; #UDGARRAY2,3,,2;39744;39745,59;39760;39761(number_key2) |
 ; #UDGARRAY2,4,,2;39776;39777,60;39792;39793(number_key3) }
 ; TABLE#
-; @label=NUMBERKEYS
+@label=NUMBERKEYS
 b39680 DEFB 127,254,195,3,191,253,191,253,255,253,255,253,255,253,249,253
  39696 DEFB 241,255,249,255,249,255,249,255,249,253,249,253,255,251,127,254
  39712 DEFB 127,254,199,3,191,253,191,253,255,253,255,253,255,253,241,255
@@ -3753,7 +3753,7 @@ b39680 DEFB 127,254,195,3,191,253,191,253,255,253,255,253,255,253,249,253
 ; Attributes for the code entry screen
 ;
 ; Used by the routine at #R34499.
-; @label=CODEATTRS
+@label=CODEATTRS
 b39808 DEFB 69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69
  39824 DEFB 69,69,69,69,69,69,69,69,69,69,69,69,71,71,71,71
  39840 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -3765,7 +3765,7 @@ b39808 DEFB 69,69,69,69,69,69,69,69,69,69,69,69,69,69,69,69
 
 ; Source code remnants
 ;
-; @ignoreua
+@ignoreua
 ; The source code here corresponds to the code at #R35545.
 u39936 DEFM "NZ,ENDPAUSE"       ; [JR ]NZ,ENDPAUSE
  39947 DEFW 19074               ; {INC E
@@ -3793,7 +3793,7 @@ u39936 DEFM "NZ,ENDPAUSE"       ; [JR ]NZ,ENDPAUSE
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;40000-40017-1-16(foot) }
 ; TABLE#
-; @label=FOOT
+@label=FOOT
 b40000 DEFB 16,128,16,128,16,128,16,128,16,128,16,128,16,128,32,128
  40016 DEFB 32,128,72,66,136,53,132,9,128,1,128,2,67,141,60,118
 ; The barrel also appears as a guardian in #R54272(Ballroom East) and
@@ -3802,7 +3802,7 @@ b40000 DEFB 16,128,16,128,16,128,16,128,16,128,16,128,16,128,32,128
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;40032-40049-1-16(barrel) }
 ; TABLE#
-; @label=BARREL
+@label=BARREL
  40032 DEFB 55,236,119,238,0,0,111,246,239,247,239,247,213,91,219,187
  40048 DEFB 213,91,223,251,237,119,238,247,109,118,0,0,119,238,55,236
 
@@ -3818,16 +3818,16 @@ b40000 DEFB 16,128,16,128,16,128,16,128,16,128,16,128,16,128,32,128
 ; #UDGARRAY2,step=2;40128,69;40129,69;40144,7;40145,7(maria2) |
 ; #UDGARRAY2,step=2;40160,69;40161,69;40176,7;40177,7(maria3) }
 ; TABLE#
-; @label=MARIA0
+@label=MARIA0
 b40064 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
  40080 DEFB 55,108,20,152,15,240,15,240,15,240,2,64,2,64,6,96
-; @label=MARIA1
+@label=MARIA1
  40096 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
  40112 DEFB 55,108,20,152,15,240,15,240,15,240,2,64,6,64,2,96
-; @label=MARIA2
+@label=MARIA2
  40128 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,252,63,254
  40144 DEFB 55,102,20,146,15,240,15,240,15,240,2,64,2,64,6,96
-; @label=MARIA3
+@label=MARIA3
  40160 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,255,63,254
  40176 DEFB 55,96,20,144,15,240,15,240,15,240,2,64,2,64,6,96
 
@@ -3847,12 +3847,12 @@ b40064 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
 ; #UDGARRAY2,7,,2;40416-40433-1-16(willy7*) |
 ; #UDGARRAY*willy7;willy6;willy5;willy4(willy_l.gif) }
 ; TABLE#
-; @label=MANDAT
+@label=MANDAT
 b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
  40208 DEFB 126,0,126,0,247,0,251,0,60,0,118,0,110,0,119,0
  40224 DEFB 15,0,15,0,31,128,13,0,15,128,15,0,6,0,15,0
  40240 DEFB 27,128,27,128,27,128,29,128,15,0,6,0,6,0,7,0
-; @label=WILLYR2
+@label=WILLYR2
  40256 DEFB 3,192,3,192,7,224,3,64,3,224,3,192,1,128,3,192
  40272 DEFB 7,224,7,224,15,112,15,176,3,192,7,96,6,224,7,112
  40288 DEFB 0,240,0,240,1,248,0,208,0,248,0,240,0,96,0,240
@@ -3870,7 +3870,7 @@ b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
 ;
 ; Used by the routine at #R34499. These code remnants define the
 ; #LINK:Codes(codes) for grid locations A0-Q9.
-; @label=CODES
+@label=CODES
 b40448 DEC HL
  40449 LD C,E
  40450 DEC C
@@ -3998,7 +3998,7 @@ u40627 JP 7519
  40673 JP Z,8553
  40676 OR 32
  40678 CP 96
-; @nowarn
+@nowarn
  40680 JR NZ,40709
  40682 CALL 11009
  40685 CP 4
@@ -4018,12 +4018,12 @@ u40627 JP 7519
 ; .
 ; The following (empty) entity definition (0) is copied into the entity buffer
 ; at #R33024 for any entity specification whose first byte is zero.
-; @label=ENTITYDEFS
+@label=ENTITYDEFS
 b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (1) is used in #R53248(We must perform a
 ; Quirkafleeg), #R53760(On the Roof), #R55552(Cold Store), #R57088(Swimming
 ; Pool) and #R64000(The Beach).
-; @label=ENTITY1
+@label=ENTITY1
  40968 DEFB %00000011         ; Rope (bits 0-2), initially swinging right to
                               ; left (bit 7)
  40969 DEFB 34                ; Initial animation frame index
@@ -4045,7 +4045,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGARRAY2,12,,2;49024-49041-1-16(guardian191-4-12) |
 ; #UDGARRAY2,20,,2;49088-49105-1-16(guardian191-6-20) }
 ; TABLE#
-; @label=ENTITY2
+@label=ENTITY2
  40976 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4069,7 +4069,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,66,,2;49024-49041-1-16(guardian191-4-66) |
 ; #UDGARRAY2,74,,2;49024-49041-1-16(guardian191-4-74) }
 ; TABLE#
-; @label=ENTITY3
+@label=ENTITY3
  40984 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4095,7 +4095,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGARRAY2,14,,2;49024-49041-1-16(guardian191-4-14) |
 ; #UDGARRAY2,22,,2;49088-49105-1-16(guardian191-6-22) }
 ; TABLE#
-; @label=ENTITY4
+@label=ENTITY4
  40992 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4119,7 +4119,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,5,,2;49024-49041-1-16(guardian191-4-5) |
 ; #UDGARRAY2,13,,2;49024-49041-1-16(guardian191-4-13) }
 ; TABLE#
-; @label=ENTITY5
+@label=ENTITY5
  41000 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4142,7 +4142,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,5,,2;48896-48913-1-16(guardian191-0-5) }
 ; TABLE#
-; @label=ENTITY6
+@label=ENTITY6
  41008 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4166,7 +4166,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,5,,2;48896-48913-1-16(guardian191-0-5) |
 ; #UDGARRAY2,5,,2;49088-49105-1-16(guardian191-6-5) }
 ; TABLE#
-; @label=ENTITY7
+@label=ENTITY7
  41016 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4189,7 +4189,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;48896-48913-1-16(guardian191-0-66) }
 ; TABLE#
-; @label=ENTITY8
+@label=ENTITY8
  41024 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4213,7 +4213,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,67,,2;48896-48913-1-16(guardian191-0-67) |
 ; #UDGARRAY2,75,,2;48896-48913-1-16(guardian191-0-75) }
 ; TABLE#
-; @label=ENTITY9
+@label=ENTITY9
  41032 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4235,7 +4235,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,69,,2;48768-48785-1-16(guardian190-4-69) }
 ; TABLE#
-; @label=ENTITY10
+@label=ENTITY10
  41040 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4258,7 +4258,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;48896-48913-1-16(guardian191-0-6) }
 ; TABLE#
-; @label=ENTITY11
+@label=ENTITY11
  41048 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4280,7 +4280,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,4,,2;48640-48657-1-16(guardian190-0-4) }
 ; TABLE#
-; @label=ENTITY12
+@label=ENTITY12
  41056 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4305,7 +4305,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGARRAY2,12,,2;48128-48145-1-16(guardian188-0-12) |
 ; #UDGARRAY2,20,,2;48128-48145-1-16(guardian188-0-20) }
 ; TABLE#
-; @label=ENTITY13
+@label=ENTITY13
  41064 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4326,7 +4326,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,68,,2;47488-47505-1-16(guardian185-4-68) }
 ; TABLE#
-; @label=ENTITY14
+@label=ENTITY14
  41072 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4348,7 +4348,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,23,,2;45184-45201-1-16(guardian176-4-23) }
 ; TABLE#
-; @label=ENTITY15
+@label=ENTITY15
  41080 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4372,7 +4372,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,4,,2;47744-47761-1-16(guardian186-4-4) |
 ; #UDGARRAY2,52,,2;47744-47761-1-16(guardian186-4-52) }
 ; TABLE#
-; @label=ENTITY16
+@label=ENTITY16
  41088 DEFB %00000010         ; Vertical guardian (bits 0-2), initial animation
                               ; frame 0 (bits 5 and 6)
  41089 DEFB %00000100         ; INK 4 (bits 0-2), BRIGHT 0 (bit 3), animation
@@ -4395,7 +4395,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,4,,2;47776-47793-1-16(guardian186-5-4) |
 ; #UDGARRAY2,52,,2;47776-47793-1-16(guardian186-5-52) }
 ; TABLE#
-; @label=ENTITY17
+@label=ENTITY17
  41096 DEFB %00000010         ; Vertical guardian (bits 0-2), initial animation
                               ; frame 0 (bits 5 and 6)
  41097 DEFB %00000100         ; INK 4 (bits 0-2), BRIGHT 0 (bit 3), animation
@@ -4418,7 +4418,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,4,,2;47808-47825-1-16(guardian186-6-4) |
 ; #UDGARRAY2,52,,2;47808-47825-1-16(guardian186-6-52) }
 ; TABLE#
-; @label=ENTITY18
+@label=ENTITY18
  41104 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4441,7 +4441,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;40032-40049-1-16(guardian156-3-66) }
 ; TABLE#
-; @label=ENTITY19
+@label=ENTITY19
  41112 DEFB %00000010         ; Vertical guardian (bits 0-2), initial animation
                               ; frame 0 (bits 5 and 6)
  41113 DEFB %00001010         ; INK 2 (bits 0-2), BRIGHT 1 (bit 3), animation
@@ -4463,7 +4463,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;48128-48145-1-16(guardian188-0-66) }
 ; TABLE#
-; @label=ENTITY20
+@label=ENTITY20
  41120 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4485,7 +4485,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,3,,2;48128-48145-1-16(guardian188-0-3) }
 ; TABLE#
-; @label=ENTITY21
+@label=ENTITY21
  41128 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -4507,7 +4507,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,4,,2;48128-48145-1-16(guardian188-0-4) }
 ; TABLE#
-; @label=ENTITY22
+@label=ENTITY22
  41136 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4528,7 +4528,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;48128-48145-1-16(guardian188-0-6) }
 ; TABLE#
-; @label=ENTITY23
+@label=ENTITY23
  41144 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4550,7 +4550,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,69,,2;48128-48145-1-16(guardian188-0-69) }
 ; TABLE#
-; @label=ENTITY24
+@label=ENTITY24
  41152 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4571,7 +4571,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,67,,2;48128-48145-1-16(guardian188-0-67) }
 ; TABLE#
-; @label=ENTITY25
+@label=ENTITY25
  41160 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4594,7 +4594,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,66,,2;46592-46609-1-16(guardian182-0-66) |
 ; #UDGARRAY2,74,,2;46592-46609-1-16(guardian182-0-74) }
 ; TABLE#
-; @label=ENTITY26
+@label=ENTITY26
  41168 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4619,7 +4619,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGARRAY2,66,,2;45696-45713-1-16(guardian178-4-66) |
 ; #UDGARRAY2,74,,2;45696-45713-1-16(guardian178-4-74) }
 ; TABLE#
-; @label=ENTITY27
+@label=ENTITY27
  41176 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4642,7 +4642,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;48128-48145-1-16(guardian188-0-6) }
 ; TABLE#
-; @label=ENTITY28
+@label=ENTITY28
  41184 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4665,7 +4665,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,13,,2;45568-45585-1-16(guardian178-0-13) |
 ; #UDGARRAY2,5,,2;45696-45713-1-16(guardian178-4-5) }
 ; TABLE#
-; @label=ENTITY29
+@label=ENTITY29
  41192 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4688,7 +4688,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,5,,2;44416-44433-1-16(guardian173-4-5) }
 ; TABLE#
-; @label=ENTITY30
+@label=ENTITY30
  41200 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4710,7 +4710,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,3,,2;46912-46929-1-16(guardian183-2-3) }
 ; TABLE#
-; @label=ENTITY31
+@label=ENTITY31
  41208 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4732,7 +4732,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,5,,2;47104-47121-1-16(guardian184-0-5) }
 ; TABLE#
-; @label=ENTITY32
+@label=ENTITY32
  41216 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4753,7 +4753,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,3,,2;47104-47121-1-16(guardian184-0-3) }
 ; TABLE#
-; @label=ENTITY33
+@label=ENTITY33
  41224 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4774,7 +4774,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,5,,2;47104-47121-1-16(guardian184-0-5) }
 ; TABLE#
-; @label=ENTITY34
+@label=ENTITY34
  41232 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -4795,7 +4795,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;47104-47121-1-16(guardian184-0-66) }
 ; TABLE#
-; @label=ENTITY35
+@label=ENTITY35
  41240 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -4818,7 +4818,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,5,,2;44800-44817-1-16(guardian175-0-5) |
 ; #UDGARRAY2,5,,2;44928-44945-1-16(guardian175-4-5) }
 ; TABLE#
-; @label=ENTITY36
+@label=ENTITY36
  41248 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -4839,7 +4839,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;48128-48145-1-16(guardian188-0-66) }
 ; TABLE#
-; @label=ENTITY37
+@label=ENTITY37
  41256 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4861,7 +4861,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,70,,2;44544-44561-1-16(guardian174-0-70) }
 ; TABLE#
-; @label=ENTITY38
+@label=ENTITY38
  41264 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4884,7 +4884,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,13,,2;44800-44817-1-16(guardian175-0-13) |
 ; #UDGARRAY2,5,,2;44928-44945-1-16(guardian175-4-5) }
 ; TABLE#
-; @label=ENTITY39
+@label=ENTITY39
  41272 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -4906,7 +4906,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,5,,2;47616-47633-1-16(guardian186-0-5) }
 ; TABLE#
-; @label=ENTITY40
+@label=ENTITY40
  41280 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4928,7 +4928,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;47648-47665-1-16(guardian186-1-6) }
 ; TABLE#
-; @label=ENTITY41
+@label=ENTITY41
  41288 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4951,7 +4951,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,67,,2;47616-47633-1-16(guardian186-0-67) }
 ; TABLE#
-; @label=ENTITY42
+@label=ENTITY42
  41296 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4969,7 +4969,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41302 DEFB 96                ; Minimum pixel y-coordinate: 48
  41303 DEFB 174               ; Maximum pixel y-coordinate: 87
 ; The following entity definition (43) is not used.
-; @label=ENTITY43
+@label=ENTITY43
  41304 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -4992,7 +4992,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;47648-47665-1-16(guardian186-1-66) }
 ; TABLE#
-; @label=ENTITY44
+@label=ENTITY44
  41312 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5016,7 +5016,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,5,,2;47648-47665-1-16(guardian186-1-5) |
 ; #UDGARRAY2,5,,2;47680-47697-1-16(guardian186-2-5) }
 ; TABLE#
-; @label=ENTITY45
+@label=ENTITY45
  41320 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5038,7 +5038,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;48000-48017-1-16(guardian187-4-6) }
 ; TABLE#
-; @label=ENTITY46
+@label=ENTITY46
  41328 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5060,7 +5060,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,70,,2;48000-48017-1-16(guardian187-4-70) }
 ; TABLE#
-; @label=ENTITY47
+@label=ENTITY47
  41336 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5082,7 +5082,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,67,,2;46848-46865-1-16(guardian183-0-67) }
 ; TABLE#
-; @label=ENTITY48
+@label=ENTITY48
  41344 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5105,7 +5105,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;46848-46865-1-16(guardian183-0-6) }
 ; TABLE#
-; @label=ENTITY49
+@label=ENTITY49
  41352 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5128,7 +5128,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,4,,2;46848-46865-1-16(guardian183-0-4) }
 ; TABLE#
-; @label=ENTITY50
+@label=ENTITY50
  41360 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5151,7 +5151,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;46912-46929-1-16(guardian183-2-66) }
 ; TABLE#
-; @label=ENTITY51
+@label=ENTITY51
  41368 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5174,7 +5174,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,3,,2;46400-46417-1-16(guardian181-2-3) }
 ; TABLE#
-; @label=ENTITY52
+@label=ENTITY52
  41376 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5196,7 +5196,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,67,,2;46400-46417-1-16(guardian181-2-67) }
 ; TABLE#
-; @label=ENTITY53
+@label=ENTITY53
  41384 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5217,7 +5217,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,14,,2;48384-48401-1-16(guardian189-0-14) }
 ; TABLE#
-; @label=ENTITY54
+@label=ENTITY54
  41392 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5239,7 +5239,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,15,,2;47872-47889-1-16(guardian187-0-15) }
 ; TABLE#
-; @label=ENTITY55
+@label=ENTITY55
  41400 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -5260,7 +5260,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,12,,2;48384-48401-1-16(guardian189-0-12) }
 ; TABLE#
-; @label=ENTITY56
+@label=ENTITY56
  41408 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -5281,7 +5281,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,11,,2;47872-47889-1-16(guardian187-0-11) }
 ; TABLE#
-; @label=ENTITY57
+@label=ENTITY57
  41416 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -5302,7 +5302,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,7,,2;44416-44433-1-16(guardian173-4-7) }
 ; TABLE#
-; @label=ENTITY58
+@label=ENTITY58
  41424 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5324,7 +5324,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,4,,2;47360-47377-1-16(guardian185-0-4) }
 ; TABLE#
-; @label=ENTITY59
+@label=ENTITY59
  41432 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5345,7 +5345,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; seen this before..), #R53248(We must perform a Quirkafleeg),
 ; #R58624(Orangery), #R59648(The Attic), #R59904(Under the Roof), #R63488(West
 ; Wing Roof) and #R64000(The Beach).
-; @label=ENTITY60
+@label=ENTITY60
  41440 DEFB %10000100         ; Arrow (bits 0-2), flying left to right (bit 7)
  41441 DEFB 6                 ; Unused
  41442 DEFB 0                 ; Replaced by the pixel y-coordinate (copied from
@@ -5364,7 +5364,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,6,,2;44288-44305-1-16(guardian173-0-6) |
 ; #UDGARRAY2,14,,2;44288-44305-1-16(guardian173-0-14) }
 ; TABLE#
-; @label=ENTITY61
+@label=ENTITY61
  41448 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -5386,7 +5386,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,13,,2;47360-47377-1-16(guardian185-0-13) }
 ; TABLE#
-; @label=ENTITY62
+@label=ENTITY62
  41456 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5410,7 +5410,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,3,,2;46080-46097-1-16(guardian180-0-3) }
 ; TABLE#
-; @label=ENTITY64
+@label=ENTITY64
  41472 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5431,7 +5431,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;46080-46097-1-16(guardian180-0-6) }
 ; TABLE#
-; @label=ENTITY65
+@label=ENTITY65
  41480 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -5452,7 +5452,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,4,,2;46080-46097-1-16(guardian180-0-4) }
 ; TABLE#
-; @label=ENTITY66
+@label=ENTITY66
  41488 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5473,7 +5473,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;46080-46097-1-16(guardian180-0-6) }
 ; TABLE#
-; @label=ENTITY67
+@label=ENTITY67
  41496 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -5494,7 +5494,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,3,,2;44672-44689-1-16(guardian174-4-3) }
 ; TABLE#
-; @label=ENTITY68
+@label=ENTITY68
  41504 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5513,7 +5513,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (69) is used in #R51968(The Hall),
 ; #R52224(Tree Top), #R52992(I'm sure I've seen this before..), #R53504(Up on
 ; the Battlements), #R58368(A bit of tree) and #R59648(The Attic).
-; @label=ENTITY69
+@label=ENTITY69
  41512 DEFB %00000100         ; Arrow (bits 0-2), flying right to left (bit 7)
  41513 DEFB 6                 ; Unused
  41514 DEFB 0                 ; Replaced by the pixel y-coordinate (copied from
@@ -5530,7 +5530,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,5,,2;40064-40081-1-16(guardian156-4-5) }
 ; TABLE#
-; @label=ENTITY70
+@label=ENTITY70
  41520 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5553,7 +5553,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,3,,2;40064-40081-1-16(guardian156-4-3) |
 ; #UDGARRAY2,3,,2;40128-40145-1-16(guardian156-6-3) }
 ; TABLE#
-; @label=ENTITY71
+@label=ENTITY71
  41528 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5576,7 +5576,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,6,,2;40000-40017-1-16(guardian156-2-6) |
 ; #UDGARRAY2,6,,2;40064-40081-1-16(guardian156-4-6) }
 ; TABLE#
-; @label=ENTITY72
+@label=ENTITY72
  41536 DEFB %00010010         ; Vertical guardian (bits 0-2), initial animation
                               ; frame 0 (bits 5 and 6)
  41537 DEFB %00000110         ; INK 6 (bits 0-2), BRIGHT 0 (bit 3), animation
@@ -5597,7 +5597,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;40128-40145-1-16(guardian156-6-66) }
 ; TABLE#
-; @label=ENTITY73
+@label=ENTITY73
  41544 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5619,7 +5619,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,4,,2;46080-46097-1-16(guardian180-0-4) }
 ; TABLE#
-; @label=ENTITY74
+@label=ENTITY74
  41552 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -5640,7 +5640,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;46080-46097-1-16(guardian180-0-6) }
 ; TABLE#
-; @label=ENTITY75
+@label=ENTITY75
  41560 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -5661,7 +5661,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;46080-46097-1-16(guardian180-0-66) }
 ; TABLE#
-; @label=ENTITY76
+@label=ENTITY76
  41568 DEFB %00100001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 1 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5682,7 +5682,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,7,,2;46080-46097-1-16(guardian180-0-7) }
 ; TABLE#
-; @label=ENTITY77
+@label=ENTITY77
  41576 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -5704,7 +5704,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;46080-46097-1-16(guardian180-0-6) }
 ; TABLE#
-; @label=ENTITY78
+@label=ENTITY78
  41584 DEFB %00100001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 1 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5725,7 +5725,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,65,,2;46080-46097-1-16(guardian180-0-65) }
 ; TABLE#
-; @label=ENTITY79
+@label=ENTITY79
  41592 DEFB %01000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 2 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5746,7 +5746,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,4,,2;46080-46097-1-16(guardian180-0-4) }
 ; TABLE#
-; @label=ENTITY80
+@label=ENTITY80
  41600 DEFB %01100001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 3 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5767,7 +5767,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,2,,2;46080-46097-1-16(guardian180-0-2) }
 ; TABLE#
-; @label=ENTITY81
+@label=ENTITY81
  41608 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5788,7 +5788,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,3,,2;45056-45073-1-16(guardian176-0-3) }
 ; TABLE#
-; @label=ENTITY82
+@label=ENTITY82
  41616 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5810,7 +5810,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;45056-45073-1-16(guardian176-0-6) }
 ; TABLE#
-; @label=ENTITY83
+@label=ENTITY83
  41624 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5832,7 +5832,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,65,,2;45056-45073-1-16(guardian176-0-65) }
 ; TABLE#
-; @label=ENTITY84
+@label=ENTITY84
  41632 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5854,7 +5854,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,4,,2;45056-45073-1-16(guardian176-0-4) }
 ; TABLE#
-; @label=ENTITY85
+@label=ENTITY85
  41640 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5876,7 +5876,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,2,,2;45056-45073-1-16(guardian176-0-2) }
 ; TABLE#
-; @label=ENTITY86
+@label=ENTITY86
  41648 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5898,7 +5898,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,5,,2;45120-45137-1-16(guardian176-2-5) }
 ; TABLE#
-; @label=ENTITY87
+@label=ENTITY87
  41656 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5921,7 +5921,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;46400-46417-1-16(guardian181-2-6) }
 ; TABLE#
-; @label=ENTITY88
+@label=ENTITY88
  41664 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -5943,7 +5943,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;45248-45265-1-16(guardian176-6-6) }
 ; TABLE#
-; @label=ENTITY89
+@label=ENTITY89
  41672 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -5966,7 +5966,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,11,,2;44544-44561-1-16(guardian174-0-11) }
 ; TABLE#
-; @label=ENTITY90
+@label=ENTITY90
  41680 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -5988,7 +5988,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,14,,2;48640-48657-1-16(guardian190-0-14) }
 ; TABLE#
-; @label=ENTITY91
+@label=ENTITY91
  41688 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6011,7 +6011,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,7,,2;46976-46993-1-16(guardian183-4-7) |
 ; #UDGARRAY2,15,,2;46976-46993-1-16(guardian183-4-15) }
 ; TABLE#
-; @label=ENTITY92
+@label=ENTITY92
  41696 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6033,7 +6033,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,10,,2;47360-47377-1-16(guardian185-0-10) }
 ; TABLE#
-; @label=ENTITY93
+@label=ENTITY93
  41704 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -6055,7 +6055,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,12,,2;44928-44945-1-16(guardian175-4-12) }
 ; TABLE#
-; @label=ENTITY94
+@label=ENTITY94
  41712 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6078,7 +6078,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,6,,2;48128-48145-1-16(guardian188-0-6) |
 ; #UDGARRAY2,14,,2;48128-48145-1-16(guardian188-0-14) }
 ; TABLE#
-; @label=ENTITY95
+@label=ENTITY95
  41720 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6099,7 +6099,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;44032-44049-1-16(guardian172-0-66) }
 ; TABLE#
-; @label=ENTITY96
+@label=ENTITY96
  41728 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -6123,7 +6123,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,5,,2;44032-44049-1-16(guardian172-0-5) |
 ; #UDGARRAY2,5,,2;44160-44177-1-16(guardian172-4-5) }
 ; TABLE#
-; @label=ENTITY97
+@label=ENTITY97
  41736 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -6145,7 +6145,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;44800-44817-1-16(guardian175-0-6) }
 ; TABLE#
-; @label=ENTITY98
+@label=ENTITY98
  41744 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -6166,7 +6166,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,4,,2;44288-44305-1-16(guardian173-0-4) }
 ; TABLE#
-; @label=ENTITY99
+@label=ENTITY99
  41752 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6189,7 +6189,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,4,,2;44032-44049-1-16(guardian172-0-4) |
 ; #UDGARRAY2,4,,2;44160-44177-1-16(guardian172-4-4) }
 ; TABLE#
-; @label=ENTITY100
+@label=ENTITY100
  41760 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -6213,7 +6213,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,67,,2;43776-43793-1-16(guardian171-0-67) |
 ; #UDGARRAY2,67,,2;43904-43921-1-16(guardian171-4-67) }
 ; TABLE#
-; @label=ENTITY101
+@label=ENTITY101
  41768 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -6237,7 +6237,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; { #UDGARRAY2,5,,2;43776-43793-1-16(guardian171-0-5) |
 ; #UDGARRAY2,5,,2;43904-43921-1-16(guardian171-4-5) }
 ; TABLE#
-; @label=ENTITY102
+@label=ENTITY102
  41776 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every pass (bit 4), initial
                               ; animation frame 0 (bits 5 and 6)
@@ -6259,7 +6259,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,3,,2;46080-46097-1-16(guardian180-0-3) }
 ; TABLE#
-; @label=ENTITY103
+@label=ENTITY103
  41784 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6281,7 +6281,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;48128-48145-1-16(guardian188-0-6) }
 ; TABLE#
-; @label=ENTITY104
+@label=ENTITY104
  41792 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6302,7 +6302,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,6,,2;48640-48657-1-16(guardian190-0-6) }
 ; TABLE#
-; @label=ENTITY105
+@label=ENTITY105
  41800 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6323,7 +6323,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,66,,2;44544-44561-1-16(guardian174-0-66) }
 ; TABLE#
-; @label=ENTITY106
+@label=ENTITY106
  41808 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6344,7 +6344,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,4,,2;48640-48657-1-16(guardian190-0-4) }
 ; TABLE#
-; @label=ENTITY107
+@label=ENTITY107
  41816 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -6365,7 +6365,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,11,,2;48000-48017-1-16(guardian187-4-11) }
 ; TABLE#
-; @label=ENTITY108
+@label=ENTITY108
  41824 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving left to right (bit 7)
@@ -6386,7 +6386,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,14,,2;48128-48145-1-16(guardian188-0-14) }
 ; TABLE#
-; @label=ENTITY109
+@label=ENTITY109
  41832 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6407,7 +6407,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,3,,2;44544-44561-1-16(guardian174-0-3) }
 ; TABLE#
-; @label=ENTITY110
+@label=ENTITY110
  41840 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6428,7 +6428,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #UDGTABLE
 ; { #UDGARRAY2,3,,2;46400-46417-1-16(guardian181-2-3) }
 ; TABLE#
-; @label=ENTITY111
+@label=ENTITY111
  41848 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
                               ; animation frame 0 (bits 5 and 6), initially
                               ; moving right to left (bit 7)
@@ -6464,13 +6464,13 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; copied into the entity buffer at #R33024 for any entity specification whose
 ; first byte is 127 or 255; the first byte of the definition (255) serves to
 ; terminate the entity buffer.
-; @label=ENTITY127
+@label=ENTITY127
  41976 DEFB 255,0,0,0,0,0,0
 
 ; Index of the first item
 ;
 ; Used by the routines at #R34762 and #R37841.
-; @label=FIRSTITEM
+@label=FIRSTITEM
 b41983 DEFB 173
 
 ; Item table
@@ -6489,7 +6489,7 @@ b41983 DEFB 173
 ; { 5-7 | Least significant bits of the y-coordinate }
 ; { 0-4 | x-coordinate }
 ; TABLE#
-; @label=ITEMTABLE1
+@label=ITEMTABLE1
 b41984 DEFS 173      ; Unused
  42157 DEFB 178      ; Item 173 at (8,25) in #R61952(Watch Tower)
  42158 DEFB 178      ; Item 174 at (9,10) in #R61952(Watch Tower)
@@ -6519,7 +6519,7 @@ b41984 DEFS 173      ; Unused
  42180 DEFB 27       ; Item 196 at (6,29) in #R56064(The Chapel)
  42181 DEFB 185      ; Item 197 at (9,23) in #R63744(Above the West Bedroom)
  42182 DEFB 186      ; Item 198 at (13,22) in #R64000(The Beach)
-; @bfix=DEFB 11
+@bfix=DEFB 11
  42183 DEFB 28       ; Item 199 at (3,26) in #R56320(First Landing)
  42184 DEFB 162      ; Item 200 at (9,2) in #R57856(Top Landing)
  42185 DEFB 25       ; Item 201 at (2,3) in #R55552(Cold Store)
@@ -6584,7 +6584,7 @@ b41984 DEFS 173      ; Unused
  42237 DEFB 157      ; Item 253 at (9,26) in #R56576(The Nightmare Room)
  42238 DEFB 158      ; Item 254 at (14,8) in #R56832(The Banyan Tree)
  42239 DEFB 161      ; Item 255 at (13,23) in #R57600(The Bathroom)
-; @label=ITEMTABLE2
+@label=ITEMTABLE2
  42240 DEFS 173      ; Unused
  42413 DEFB 25       ; Item 173 at (8,25) in #R61952(Watch Tower)
  42414 DEFB 42       ; Item 174 at (9,10) in #R61952(Watch Tower)
@@ -6691,16 +6691,16 @@ b41984 DEFS 173      ; Unused
 ; #UDGARRAY2,7,,2;42592-42609-1-16(toilet3*) |
 ; #UDGARRAY*toilet3,10;toilet2(toilet_full.gif) }
 ; TABLE#
-; @label=TOILET0
+@label=TOILET0
 b42496 DEFB 0,15,0,63,0,15,48,15,12,15,3,15,0,207,0,47
  42512 DEFB 0,8,63,248,63,240,63,238,31,223,31,219,15,251,15,251
-; @label=TOILET1
+@label=TOILET1
  42528 DEFB 0,15,0,63,0,15,0,15,0,15,0,15,0,15,63,239
  42544 DEFB 0,8,63,248,63,240,63,238,31,223,31,219,15,251,15,251
-; @label=TOILET2
+@label=TOILET2
  42560 DEFB 3,175,1,191,1,143,1,143,127,143,127,143,71,207,15,207
  42576 DEFB 0,8,63,248,63,240,63,238,31,223,31,219,15,251,15,251
-; @label=TOILET3
+@label=TOILET3
  42592 DEFB 0,15,4,63,30,47,59,47,93,143,14,143,7,207,15,207
  42608 DEFB 0,8,63,248,63,240,63,238,31,223,31,219,15,251,15,251
 
@@ -6728,7 +6728,7 @@ u42624 DEFB 128,128,128,128,140,143,143,143,143,143,128,128,191,143,143,143
 ; #UDGARRAY2,5,,2;43840-43857-1-16(guardian171-2-5) |
 ; #UDGARRAY2,5,,2;43872-43889-1-16(guardian171-3-5) }
 ; TABLE#
-; @label=GUARDIANS
+@label=GUARDIANS
 b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  43792 DEFB 127,255,127,255,0,0,42,170,0,0,42,170,0,0,0,0
  43808 DEFB 0,72,1,44,4,188,18,254,75,254,46,127,188,63,254,124
@@ -7067,7 +7067,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #UDGARRAY2,66,,2;46784-46801-1-16(guardian182-6-66) |
 ; #UDGARRAY2,66,,2;46816-46833-1-16(guardian182-7-66) }
 ; TABLE#
-; @label=FLYINGPIG0
+@label=FLYINGPIG0
  46592 DEFB 0,0,0,0,0,0,0,0,0,0,19,64,23,128,63,192
  46608 DEFB 85,64,250,160,253,64,31,160,8,128,5,0,0,0,0,0
  46624 DEFB 0,0,0,0,0,0,0,0,0,0,8,208,5,224,15,240
@@ -10240,7 +10240,7 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
  56848 DEFB 0,0,0,144,0,0,0,0
  56856 DEFB 0,0,0,148,0,0,0,0
  56864 DEFB 0,0,0,149,80,0,0,0
-; @bfix=DEFB 0,0,0,129,4,0,0,0
+@bfix=DEFB 0,0,0,129,4,0,0,0
  56872 DEFB 0,0,0,129,8,0,0,0
  56880 DEFB 0,0,0,1,4,0,0,0
  56888 DEFB 0,0,0,0,4,0,0,0
@@ -11317,7 +11317,7 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; base sprite 0, x=12 (#R41648)
  59898 DEFB 87,78                              ; Guardian no. 87 (vertical),
                                                ; base sprite 2, x=14 (#R41656)
-; @bfix=DEFB 69,82
+@bfix=DEFB 69,82
  59900 DEFB 69,213                             ; Arrow flying right to left at
                                                ; pixel y-coordinate 536
                                                ; (#R41512)
@@ -11440,7 +11440,7 @@ b60160 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  60200 DEFB 0,0,0,0,0,0,0,0
  60208 DEFB 0,0,0,0,0,0,0,0
  60216 DEFB 0,0,0,0,0,42,170,170
-; @bfix=DEFB 0,0,0,0,0,48,195,0
+@bfix=DEFB 0,0,0,0,0,48,195,0
  60224 DEFB 0,0,0,0,0,48,195,12
  60232 DEFB 0,0,0,0,0,0,0,0
  60240 DEFB 0,0,0,0,0,0,0,0
@@ -12982,7 +12982,7 @@ b64256 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  64508 DEFB 0,0                                ; Nothing (#R40960)
  64510 DEFB 0,0                                ; Nothing (#R40960)
 
-; @ignoreua
+@ignoreua
 ; Room 60: The Bow (teleport: 34569)
 ;
 ; Used by the routine at #R35068.
@@ -13079,10 +13079,10 @@ b64512 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 u64768 ADD HL,BC
  64769 LD A,(DE)
  64770 CP 59
-; @nowarn
+@nowarn
  64772 JR Z,64720
  64774 CP 13
-; @nowarn
+@nowarn
  64776 JR Z,64720
  64778 PUSH HL
  64779 LD HL,30720
@@ -13220,7 +13220,7 @@ u64768 ADD HL,BC
  64997 LD L,A
  64998 RST 24
  64999 POP DE
-; @nowarn
+@nowarn
  65000 JR Z,65030
  65002 LD A,(BC)
  65003 AND 95
@@ -13289,7 +13289,7 @@ u64768 ADD HL,BC
  65277 INIR
  65279 IN A,(207)
  65281 RRCA
-; @keep
+@keep
  65282 LD HL,65409
  65285 JR C,65357
  65287 POP DE
@@ -13310,7 +13310,7 @@ u64768 ADD HL,BC
  65314 LD C,A
  65315 IN A,(192)
  65317 CALL C,3335
-; @nowarn
+@nowarn
  65320 JR NZ,65318
  65322 OR (IY+3)
  65325 BIT 7,A
@@ -13329,7 +13329,7 @@ u64768 ADD HL,BC
  65347 LD A,48
  65349 CALL 65498
  65352 JR Z,65364
-; @keep
+@keep
  65354 LD HL,65417
  65357 IN A,(201)
  65359 RLCA
