@@ -141,7 +141,7 @@ class JetSetWilly:
                      'The value of the Nth entry (0<=N<=127) in this lookup table is the '
                      'screen buffer address for the point with pixel coordinates '
                      '(x,y)=(0,N), with the origin (0,0) at the top-left corner.')
-        lines.append('; @label:33280=SBUFADDRS')
+        lines.append('@ 33280 label=SBUFADDRS')
         y = 0
         for addr in range(33280, 33536, 2):
             lines.append('W {} y={}'.format(addr, y))
@@ -167,7 +167,7 @@ class JetSetWilly:
                     sprite_addrs.setdefault(num, set()).add((sprite_addr, room_bg))
 
         lines = ['b 40960 Entity definitions']
-        lines.append('; @label:40960=ENTITYDEFS')
+        lines.append('@ 40960 label=ENTITYDEFS')
         lines.append('D 40960 Used by the routine at #R35068.')
         lines.append('D 40960 The following (empty) entity definition (0) is copied into the entity buffer at #R33024 for any entity specification whose first byte is zero.')
         lines.append('B 40960,8')
@@ -243,7 +243,7 @@ class JetSetWilly:
                     b6_format = ',b1'
                     desc6 = 'Top/bottom pixel row (drawn either side of the shaft)'
                     desc7 = 'Unused'
-                lines.append('; @label:{}=ENTITY{}'.format(addr, num))
+                lines.append('@ {} label=ENTITY{}'.format(addr, num))
                 lines.append('B {},b1 {}'.format(addr, desc0))
                 lines.append('B {}{} {}'.format(addr + 1, b1_format, desc1))
                 lines.append('B {} {}'.format(addr + 2, desc2))
@@ -256,7 +256,7 @@ class JetSetWilly:
                 lines.append('B {},8'.format(addr))
         lines.append('D 41856 The next 15 entity definitions (112-126) are unused.')
         lines.append('B 41856,120,8')
-        lines.append('; @label:41976=ENTITY127')
+        lines.append('@ 41976 label=ENTITY127')
         lines.append('D 41976 The following entity definition (127) - whose eighth byte is at #R41983 - '
                      'is copied into the entity buffer at #R33024 for any entity specification whose '
                      'first byte is 127 or 255; the first byte of the definition (255) serves to '
@@ -322,9 +322,9 @@ class JetSetWilly:
                         guardians.setdefault(sprite_addr, set()).add(room_num)
 
         lines = ['b 43776 Guardian graphics']
-        lines.append('; @label:43776=GUARDIANS')
+        lines.append('@ 43776 label=GUARDIANS')
         lines.append('D 43776 Used by the routine at #R37310.')
-        lines.append('; @label:46592=FLYINGPIG0')
+        lines.append('@ 46592 label=FLYINGPIG0')
         for a in sorted(GUARDIANS.keys()):
             page = a // 256
             base_index = (a % 256) // 32
@@ -366,7 +366,7 @@ class JetSetWilly:
                      '{ 8-13 | Room number } '
                      '{ 5-7 | Least significant bits of the y-coordinate } '
                      '{ 0-4 | x-coordinate } TABLE#')
-        lines.append('; @label:41984=ITEMTABLE1')
+        lines.append('@ 41984 label=ITEMTABLE1')
         lines.append('S 41984 Unused')
         items = {}
         for a in range(42157, 42240):
@@ -376,7 +376,7 @@ class JetSetWilly:
             index = a % 256
             items[index] = (room_link, (x, y))
             lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, y, x, room_link))
-        lines.append('; @label:42240=ITEMTABLE2')
+        lines.append('@ 42240 label=ITEMTABLE2')
         lines.append('S 42240 Unused')
         for a in range(42413, 42496):
             index = a % 256
@@ -503,7 +503,7 @@ class JetSetWilly:
                 desc = 'Arrow flying {} at pixel y-coordinate {}'.format(direction, pixel_y)
             suffix = ' (unused)' if 0 < num < 255 and terminated else ''
             if addr == 59900:
-                lines.append('; @bfix:{}=DEFB 69,82'.format(addr))
+                lines.append('@ {} bfix=DEFB 69,82'.format(addr))
             lines.append('B {},2 {} (#R{}){}'.format(addr, desc, def_addr, suffix))
             addr += 2
 
@@ -525,7 +525,7 @@ class JetSetWilly:
             room_num = a // 256 - 192
             room_name = self.room_names[room_num]
             if room_num == 60:
-                lines.append('; @ignoreua:{}:t'.format(a))
+                lines.append('@ {} ignoreua:t'.format(a))
             lines.append('b {} Room {}: {} (teleport: {})'.format(a, room_num, self.room_names_wp[room_num], self._get_teleport_code(room_num)))
             if a in (50688, 56320, 56576, 59904, 61440):
                 # Rooms with flashing cells
@@ -546,9 +546,9 @@ class JetSetWilly:
             else:
                 lines.append('D {} The first 128 bytes are copied to #R32768 and define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.'.format(a))
                 if room_num == 30:
-                    lines.append('; @bfix:56872=DEFB 0,0,0,129,4,0,0,0')
+                    lines.append('@ 56872 bfix=DEFB 0,0,0,129,4,0,0,0')
                 elif room_num == 43:
-                    lines.append('; @bfix:60224=DEFB 0,0,0,0,0,48,195,0')
+                    lines.append('@ 60224 bfix=DEFB 0,0,0,0,0,48,195,0')
                 lines.append('B {},128,8 Room layout'.format(a))
 
             # Room name
