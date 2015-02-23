@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -e # Abort on errors
+
+if [[ -z $JETSETWILLY_HOME ]]; then
+  echo "Error: JETSETWILLY_HOME not defined."
+  exit 1
+fi
+if [[ ! -d $JETSETWILLY_HOME ]]; then
+  echo "Error: directory not found: $JETSETWILLY_HOME"
+  exit 1
+fi
+
+if [[ -z $SKOOLKIT_HOME ]]; then
+  echo "Error: SKOOLKIT_HOME not defined."
+  exit 1
+fi
+if [[ ! -d $SKOOLKIT_HOME ]]; then
+  echo "Error: directory not found: $SKOOLKIT_HOME"
+  exit 1
+fi
+
+GAME=jsw
+GAMENAME="Jet Set Willy"
+REFFILE=$JETSETWILLY_HOME/jet_set_willy.ref
+MKDTARBALL="$JETSETWILLY_HOME/utils/mkdtarball"
+DIST=$JETSETWILLY_HOME/dist
+SRCDIR=src
+SRCFILES=$(echo COPYING jet_set_willy{.skool,{,-bugs,-changelog,-facts,-pokes}.ref,{,-dark,-green,-plum}.css} jetsetwilly.py)
+
+. $SKOOLKIT_HOME/tools/drelease-functions
+
+parse_args $*
