@@ -1,4 +1,4 @@
-; Copyright 2014 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014, 2015 Richard Dymond (rjdymond@gmail.com)
 
 [Poke:noCodeSheetRequired:No code sheet required]
 To make any combination work on the code entry screen:
@@ -85,6 +85,11 @@ POKE #R35211,201
 To give Willy infinite lives:
 
 POKE #R35899,0
+
+[Poke:infiniteTime:Infinite time]
+To stop the clock and give Willy infinite time to complete his task:
+
+POKE #R35408,24
 
 [Poke:theOfficialSoftwareProjectsPOKEs:The official Software Projects POKEs]
 When it became clear that the #BUG#theAtticBug(Attic bug) was actually a bug and not a feature, Software Projects published some POKEs to fix it and some other problems with the game:
