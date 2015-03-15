@@ -438,23 +438,31 @@ class JetSetWilly:
 
         return room_paper
 
+    def _get_coordinates(self, lsb, msb):
+        if 94 <= msb <= 95:
+            x = lsb & 31
+            y = 8 * (msb & 1) + (lsb & 224) // 32
+            return y, x
+
     def _write_conveyor(self, lines, a):
         lines.append('D {} The next four bytes are copied to #R32982 and specify the direction, location and length of the conveyor.'.format(a + 214))
         conveyor_d, p1, p2 = self.snapshot[a + 214:a + 217]
-        conveyor_x = p1 & 31
-        conveyor_y = 8 * (p2 & 1) + (p1 & 224) // 32
+        coords = self._get_coordinates(p1, p2)
+        location_suffix = ': ({},{})'.format(*coords) if coords else ' (unused)'
+        length_suffix = '' if self.snapshot[a + 217] else ': 0 (there is no conveyor in this room)'
         lines.append('B {},1 Direction ({})'.format(a + 214, 'right' if conveyor_d else 'left'))
-        lines.append('W {},2 Location in the attribute buffer at #R24064: ({},{})'.format(a + 215, conveyor_y, conveyor_x))
-        lines.append('B {},1 Length'.format(a + 217))
+        lines.append('W {},2 Location in the attribute buffer at #R24064{}'.format(a + 215, location_suffix))
+        lines.append('B {},1 Length{}'.format(a + 217, length_suffix))
 
     def _write_ramp(self, lines, a):
         lines.append('D {} The next four bytes are copied to #R32986 and specify the direction, location and length of the ramp.'.format(a + 218))
         ramp_d, p1, p2 = self.snapshot[a + 218:a + 221]
-        ramp_x = p1 & 31
-        ramp_y = 8 * (p2 & 1) + (p1 & 224) // 32
+        coords = self._get_coordinates(p1, p2)
+        location_suffix = ': ({},{})'.format(*coords) if coords else ' (unused)'
+        length_suffix = '' if self.snapshot[a + 221] else ': 0 (there is no ramp in this room)'
         lines.append('B {},1 Direction (up to the {})'.format(a + 218, 'right' if ramp_d else 'left'))
-        lines.append('W {},2 Location in the attribute buffer at #R24064: ({},{})'.format(a + 219, ramp_y, ramp_x))
-        lines.append('B {},1 Length'.format(a + 221))
+        lines.append('W {},2 Location in the attribute buffer at #R24064{}'.format(a + 219, location_suffix))
+        lines.append('B {},1 Length{}'.format(a + 221, length_suffix))
 
     def _write_exits(self, lines, a, room_name):
         lines.append('D {} The next four bytes are copied to #R33001 and specify the rooms to the left, to the right, above and below.'.format(a + 233))

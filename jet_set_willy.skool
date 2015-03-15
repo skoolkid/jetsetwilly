@@ -7626,14 +7626,16 @@ b49664 DEFB 0,3,255,207,252,0,0,0              ; {Room layout
 ; and length of the conveyor.
  49878 DEFB 0                                  ; Direction (left)
  49879 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 49881 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 49881 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  49882 DEFB 0                                  ; Direction (up to the left)
  49883 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 49885 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 49885 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  49886 DEFB 6                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -7719,8 +7721,9 @@ b49920 DEFB 48,195,8,0,8,0,0,0                 ; {Room layout
 ; and length of the conveyor.
  50134 DEFB 0                                  ; Direction (left)
  50135 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 50137 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 50137 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  50138 DEFB 0                                  ; Direction (up to the left)
@@ -8003,14 +8006,16 @@ b50688 DEFB 160,0,0,0,0,0,0,0                  ; {Room layout
 ; and length of the conveyor.
  50902 DEFB 0                                  ; Direction (left)
  50903 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 50905 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 50905 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  50906 DEFB 0                                  ; Direction (up to the left)
  50907 DEFW 24519                              ; Location in the attribute
                                                ; buffer at #R24064: (14,7)
- 50909 DEFB 0                                  ; Length
+ 50909 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  50910 DEFB 2                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -8094,8 +8099,9 @@ b50944 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  51158 DEFB 0                                  ; Direction (left)
  51159 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 51161 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 51161 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  51162 DEFB 1                                  ; Direction (up to the right)
@@ -8189,8 +8195,9 @@ b51200 DEFB 0,0,8,0,8,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  51414 DEFB 0                                  ; Direction (left)
  51415 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 51417 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 51417 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  51418 DEFB 0                                  ; Direction (up to the left)
@@ -8286,8 +8293,9 @@ b51456 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  51670 DEFB 0                                  ; Direction (left)
  51671 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 51673 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 51673 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  51674 DEFB 1                                  ; Direction (up to the right)
@@ -8382,8 +8390,9 @@ b51712 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  51926 DEFB 0                                  ; Direction (left)
  51927 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 51929 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 51929 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  51930 DEFB 0                                  ; Direction (up to the left)
@@ -8470,8 +8479,9 @@ b51968 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  52182 DEFB 0                                  ; Direction (left)
  52183 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 52185 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 52185 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  52186 DEFB 0                                  ; Direction (up to the left)
@@ -8569,8 +8579,9 @@ b52224 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  52438 DEFB 0                                  ; Direction (left)
  52439 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 52441 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 52441 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  52442 DEFB 0                                  ; Direction (up to the left)
@@ -8665,14 +8676,16 @@ b52480 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  52694 DEFB 0                                  ; Direction (left)
  52695 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 52697 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 52697 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  52698 DEFB 1                                  ; Direction (up to the right)
  52699 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 52701 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 52701 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  52702 DEFB 5                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -8764,8 +8777,9 @@ b52736 DEFB 0,0,0,0,0,0,8,2                    ; {Room layout
 ; and length of the ramp.
  52954 DEFB 1                                  ; Direction (up to the right)
  52955 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 52957 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 52957 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  52958 DEFB 1                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -8851,14 +8865,16 @@ b52992 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  53206 DEFB 0                                  ; Direction (left)
  53207 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 53209 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 53209 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  53210 DEFB 0                                  ; Direction (up to the left)
  53211 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 53213 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 53213 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  53214 DEFB 3                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -8949,8 +8965,9 @@ b53248 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  53462 DEFB 0                                  ; Direction (left)
  53463 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 53465 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 53465 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  53466 DEFB 0                                  ; Direction (up to the left)
@@ -9047,8 +9064,9 @@ b53504 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the ramp.
  53722 DEFB 0                                  ; Direction (up to the left)
  53723 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 53725 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 53725 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  53726 DEFB 1                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -9141,8 +9159,9 @@ b53760 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the ramp.
  53978 DEFB 0                                  ; Direction (up to the left)
  53979 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 53981 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 53981 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  53982 DEFB 2                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -9328,14 +9347,16 @@ b54272 DEFB 160,64,10,0,0,0,0,0                ; {Room layout
 ; and length of the conveyor.
  54486 DEFB 0                                  ; Direction (left)
  54487 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 54489 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 54489 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  54490 DEFB 0                                  ; Direction (up to the left)
  54491 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 54493 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 54493 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  54494 DEFB 2                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -9615,8 +9636,9 @@ b55040 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  55254 DEFB 0                                  ; Direction (left)
  55255 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 55257 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 55257 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  55258 DEFB 1                                  ; Direction (up to the right)
@@ -9802,14 +9824,16 @@ b55552 DEFB 0,3,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  55766 DEFB 0                                  ; Direction (left)
  55767 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 55769 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 55769 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  55770 DEFB 0                                  ; Direction (up to the left)
  55771 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 55773 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 55773 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  55774 DEFB 1                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -9898,14 +9922,16 @@ b55808 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; and length of the conveyor.
  56022 DEFB 0                                  ; Direction (left)
  56023 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 56025 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 56025 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  56026 DEFB 0                                  ; Direction (up to the left)
  56027 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 56029 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 56029 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  56030 DEFB 5                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -9988,8 +10014,9 @@ b56064 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; and length of the conveyor.
  56278 DEFB 0                                  ; Direction (left)
  56279 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 56281 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 56281 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  56282 DEFB 1                                  ; Direction (up to the right)
@@ -10084,8 +10111,9 @@ b56320 DEFB 160,0,0,0,0,0,160,0                 ; {Room layout
 ; and length of the conveyor.
  56534 DEFB 0                                   ; Direction (left)
  56535 DEFW 0                                   ; Location in the attribute
-                                                ; buffer at #R24064: (0,0)
- 56537 DEFB 0                                   ; Length
+                                                ; buffer at #R24064 (unused)
+ 56537 DEFB 0                                   ; Length: 0 (there is no
+                                                ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  56538 DEFB 1                                   ; Direction (up to the right)
@@ -10273,8 +10301,9 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
 ; and length of the conveyor.
  57046 DEFB 0                                  ; Direction (left)
  57047 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 57049 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 57049 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  57050 DEFB 1                                  ; Direction (up to the right)
@@ -10366,8 +10395,9 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  57302 DEFB 0                                  ; Direction (left)
  57303 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 57305 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 57305 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  57306 DEFB 1                                  ; Direction (up to the right)
@@ -10455,8 +10485,9 @@ b57344 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; and length of the conveyor.
  57558 DEFB 1                                  ; Direction (right)
  57559 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 57561 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 57561 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  57562 DEFB 0                                  ; Direction (up to the left)
@@ -10636,8 +10667,9 @@ b57856 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; and length of the conveyor.
  58070 DEFB 0                                  ; Direction (left)
  58071 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 58073 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 58073 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  58074 DEFB 1                                  ; Direction (up to the right)
@@ -10816,8 +10848,9 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
 ; and length of the conveyor.
  58582 DEFB 0                                  ; Direction (left)
  58583 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 58585 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 58585 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  58586 DEFB 1                                  ; Direction (up to the right)
@@ -11001,14 +11034,16 @@ b58880 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; and length of the conveyor.
  59094 DEFB 0                                  ; Direction (left)
  59095 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 59097 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 59097 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  59098 DEFB 0                                  ; Direction (up to the left)
  59099 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 59101 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 59101 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  59102 DEFB 2                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -11280,8 +11315,9 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the ramp.
  59866 DEFB 0                                  ; Direction (up to the left)
  59867 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 59869 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 59869 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  59870 DEFB 1                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -11561,8 +11597,9 @@ b60416 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  60630 DEFB 0                                  ; Direction (left)
  60631 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 60633 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 60633 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  60634 DEFB 1                                  ; Direction (up to the right)
@@ -11923,8 +11960,9 @@ b61440 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  61654 DEFB 0                                  ; Direction (left)
  61655 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 61657 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 61657 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  61658 DEFB 1                                  ; Direction (up to the right)
@@ -12303,8 +12341,9 @@ b62464 DEFB 0,0,0,0,10,170,170,170             ; {Room layout
 ; and length of the conveyor.
  62678 DEFB 0                                  ; Direction (left)
  62679 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 62681 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 62681 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  62682 DEFB 1                                  ; Direction (up to the right)
@@ -12484,8 +12523,9 @@ b62976 DEFB 0,160,0,0,0,0,0,0                  ; {Room layout
 ; and length of the conveyor.
  63190 DEFB 0                                  ; Direction (left)
  63191 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 63193 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 63193 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  63194 DEFB 1                                  ; Direction (up to the right)
@@ -12582,8 +12622,9 @@ b63232 DEFB 0,0,4,0,160,64,0,0                 ; {Room layout
 ; and length of the ramp.
  63450 DEFB 0                                  ; Direction (up to the left)
  63451 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 63453 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 63453 DEFB 0                                  ; Length: 0 (there is no ramp in
+                                               ; this room)
 ; The next byte is copied to #R32990 and specifies the border colour.
  63454 DEFB 5                                  ; Border colour
 ; The next two bytes are copied to #R32991, but are not used.
@@ -12666,8 +12707,9 @@ b63488 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  63702 DEFB 0                                  ; Direction (left)
  63703 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 63705 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 63705 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  63706 DEFB 1                                  ; Direction (up to the right)
@@ -12761,8 +12803,9 @@ b63744 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; and length of the conveyor.
  63958 DEFB 0                                  ; Direction (left)
  63959 DEFW 0                                  ; Location in the attribute
-                                               ; buffer at #R24064: (0,0)
- 63961 DEFB 0                                  ; Length
+                                               ; buffer at #R24064 (unused)
+ 63961 DEFB 0                                  ; Length: 0 (there is no
+                                               ; conveyor in this room)
 ; The next four bytes are copied to #R32986 and specify the direction, location
 ; and length of the ramp.
  63962 DEFB 1                                  ; Direction (up to the right)
