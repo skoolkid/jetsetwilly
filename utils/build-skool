@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+if (($# > 0)); then
+  cat >&2 << EOM
+Usage: $(basename $0)
+
+Build a skool file using the existing contents of jet_set_willy.skool and the
+snippets produced by jsw2skool.py.
+EOM
+  exit 1
+fi
+
+if [[ -z $JETSETWILLY_HOME ]]; then
+  echo "Error: JETSETWILLY_HOME not defined."
+  exit 1
+fi
+if [[ ! -d $JETSETWILLY_HOME ]]; then
+  echo "Error: directory not found: $JETSETWILLY_HOME"
+  exit 1
+fi
+
+jsw2skool=$JETSETWILLY_HOME/utils/jsw2skool.py
+JSW_SKOOL=$JETSETWILLY_HOME/jet_set_willy.skool
+
+sed '/^s33089 .*/q' $JSW_SKOOL
+echo
+$jsw2skool sbat
+sed -n '/^; Rope animation table/,/^ 40704 .*/p' $JSW_SKOOL
+echo
+$jsw2skool entity-defs
+sed -n '/^; Index of the first item/,/^b41983 DEFB 173/p' $JSW_SKOOL
+echo
+$jsw2skool items
+sed -n '/^; Toilet graphics/,/^ 42752 DEFS 1024/p' $JSW_SKOOL
+echo
+$jsw2skool guardians
+$jsw2skool rooms
+sed -n '/; Unused TRS-DOS code/,//p' $JSW_SKOOL
