@@ -379,6 +379,8 @@ class JetSetWilly:
             room_link = self._get_room_links([b1 & 63])
             index = a % 256
             items[index] = (room_link, (x, y))
+            if a == 42183:
+                lines.append('@ {} bfix=DEFB 11'.format(a))
             lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, y, x, room_link))
         lines.append('@ 42240 label=ITEMTABLE2')
         lines.append('S 42240 Unused')
