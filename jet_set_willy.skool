@@ -4015,7 +4015,9 @@ u40627 JP 7519
 ; Entity definitions
 ;
 ; Used by the routine at #R35068.
+;
 ; .
+;
 ; The following (empty) entity definition (0) is copied into the entity buffer
 ; at #R33024 for any entity specification whose first byte is zero.
 @label=ENTITYDEFS
@@ -7479,10 +7481,10 @@ b49152 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  49396 DEFB 44,39                              ; Guardian no. 44 (vertical),
                                                ; base sprite 1, x=7 (#R41312)
  49398 DEFB 255,0                              ; Terminator (#R41976)
- 49400 DEFB 0,0                                ; Nothing (#R40960)
- 49402 DEFB 0,0                                ; Nothing (#R40960)
- 49404 DEFB 0,0                                ; Nothing (#R40960)
- 49406 DEFB 0,0                                ; Nothing (#R40960)
+ 49400 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 49402 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 49404 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 49406 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 1: The Bridge (teleport: 19)
 ;
@@ -7572,10 +7574,10 @@ b49408 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  49652 DEFB 14,140                             ; Guardian no. 14 (vertical),
                                                ; base sprite 4, x=12 (#R41072)
  49654 DEFB 255,0                              ; Terminator (#R41976)
- 49656 DEFB 0,0                                ; Nothing (#R40960)
- 49658 DEFB 0,0                                ; Nothing (#R40960)
- 49660 DEFB 0,0                                ; Nothing (#R40960)
- 49662 DEFB 0,0                                ; Nothing (#R40960)
+ 49656 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 49658 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 49660 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 49662 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 2: Under the MegaTree (teleport: 29)
 ;
@@ -7665,10 +7667,10 @@ b49664 DEFB 0,3,255,207,252,0,0,0              ; {Room layout
                                                ; base sprite 0, initial x=27
                                                ; (#R41168)
  49910 DEFB 255,0                              ; Terminator (#R41976)
- 49912 DEFB 0,0                                ; Nothing (#R40960)
- 49914 DEFB 0,0                                ; Nothing (#R40960)
- 49916 DEFB 0,0                                ; Nothing (#R40960)
- 49918 DEFB 0,0                                ; Nothing (#R40960)
+ 49912 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 49914 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 49916 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 49918 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 3: At the Foot of the MegaTree (teleport: 129)
 ;
@@ -7759,9 +7761,9 @@ b49920 DEFB 48,195,8,0,8,0,0,0                 ; {Room layout
                                                ; base sprite 0, initial x=9
                                                ; (#R41384)
  50168 DEFB 255,0                              ; Terminator (#R41976)
- 50170 DEFB 0,0                                ; Nothing (#R40960)
- 50172 DEFB 0,0                                ; Nothing (#R40960)
- 50174 DEFB 0,0                                ; Nothing (#R40960)
+ 50170 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 50172 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 50174 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 4: The Drive (teleport: 39)
 ;
@@ -7858,8 +7860,8 @@ b50176 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; base sprite 4, initial x=15
                                                ; (#R41248)
  50426 DEFB 255,0                              ; Terminator (#R41976)
- 50428 DEFB 0,0                                ; Nothing (#R40960)
- 50430 DEFB 0,0                                ; Nothing (#R40960)
+ 50428 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 50430 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 5: The Security Guard (teleport: 139)
 ;
@@ -7949,9 +7951,9 @@ b50432 DEFB 128,0,0,0,0,0,0,0                  ; {Room layout
  50678 DEFB 4,145                              ; Guardian no. 4 (vertical),
                                                ; base sprite 4, x=17 (#R40992)
  50680 DEFB 255,0                              ; Terminator (#R41976)
- 50682 DEFB 0,0                                ; Nothing (#R40960)
- 50684 DEFB 0,0                                ; Nothing (#R40960)
- 50686 DEFB 0,0                                ; Nothing (#R40960)
+ 50682 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 50684 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 50686 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 6: Entrance to Hades (teleport: 239)
 ;
@@ -8040,10 +8042,10 @@ b50688 DEFB 160,0,0,0,0,0,0,0                  ; {Room layout
  50932 DEFB 18,195                             ; Guardian no. 18 (vertical),
                                                ; base sprite 6, x=3 (#R41104)
  50934 DEFB 255,0                              ; Terminator (#R41976)
- 50936 DEFB 0,0                                ; Nothing (#R40960)
- 50938 DEFB 0,0                                ; Nothing (#R40960)
- 50940 DEFB 0,0                                ; Nothing (#R40960)
- 50942 DEFB 0,0                                ; Nothing (#R40960)
+ 50936 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 50938 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 50940 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 50942 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 7: Cuckoo's Nest (teleport: 1239)
 ;
@@ -8135,10 +8137,10 @@ b50944 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; pixel y-coordinate 82
                                                ; (#R41440)
  51190 DEFB 255,0                              ; Terminator (#R41976)
- 51192 DEFB 0,0                                ; Nothing (#R40960)
- 51194 DEFB 0,0                                ; Nothing (#R40960)
- 51196 DEFB 0,0                                ; Nothing (#R40960)
- 51198 DEFB 0,0                                ; Nothing (#R40960)
+ 51192 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 51194 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 51196 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 51198 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 8: Inside the MegaTrunk (teleport: 49)
 ;
@@ -8330,8 +8332,8 @@ b51456 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; pixel y-coordinate 34
                                                ; (#R41440)
  51706 DEFB 255,0                              ; Terminator (#R41976)
- 51708 DEFB 0,0                                ; Nothing (#R40960)
- 51710 DEFB 0,0                                ; Nothing (#R40960)
+ 51708 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 51710 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 10: The Front Door (teleport: 249)
 ;
@@ -8413,13 +8415,13 @@ b51712 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
  51952 DEFB 255,0                              ; Terminator (#R41976)
- 51954 DEFB 0,0                                ; Nothing (#R40960)
- 51956 DEFB 0,0                                ; Nothing (#R40960)
- 51958 DEFB 0,0                                ; Nothing (#R40960)
- 51960 DEFB 0,0                                ; Nothing (#R40960)
- 51962 DEFB 0,0                                ; Nothing (#R40960)
- 51964 DEFB 0,0                                ; Nothing (#R40960)
- 51966 DEFB 0,0                                ; Nothing (#R40960)
+ 51954 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 51956 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 51958 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 51960 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 51962 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 51964 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 51966 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 11: The Hall (teleport: 1249)
 ;
@@ -8518,7 +8520,7 @@ b51968 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  52220 DEFB 89,0                               ; Guardian no. 89 (vertical),
                                                ; base sprite 0, x=0 (#R41672)
                                                ; (unused)
- 52222 DEFB 0,0                                ; Nothing (#R40960)
+ 52222 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 12: Tree Top (teleport: 349)
 ;
@@ -8612,9 +8614,9 @@ b52224 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; pixel y-coordinate 66
                                                ; (#R41512)
  52472 DEFB 255,0                              ; Terminator (#R41976)
- 52474 DEFB 0,0                                ; Nothing (#R40960)
- 52476 DEFB 0,0                                ; Nothing (#R40960)
- 52478 DEFB 0,0                                ; Nothing (#R40960)
+ 52474 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 52476 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 52478 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 13: Out on a limb (teleport: 1349)
 ;
@@ -8704,10 +8706,10 @@ b52480 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; base sprite 0, initial x=20
                                                ; (#R41664)
  52726 DEFB 255,0                              ; Terminator (#R41976)
- 52728 DEFB 0,0                                ; Nothing (#R40960)
- 52730 DEFB 0,0                                ; Nothing (#R40960)
- 52732 DEFB 0,0                                ; Nothing (#R40960)
- 52734 DEFB 0,0                                ; Nothing (#R40960)
+ 52728 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 52730 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 52732 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 52734 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 14: Rescue Esmerelda (teleport: 2349)
 ;
@@ -8798,9 +8800,9 @@ b52736 DEFB 0,0,0,0,0,0,8,2                    ; {Room layout
  52982 DEFB 15,152                             ; Guardian no. 15 (vertical),
                                                ; base sprite 4, x=24 (#R41080)
  52984 DEFB 255,0                              ; Terminator (#R41976)
- 52986 DEFB 0,0                                ; Nothing (#R40960)
- 52988 DEFB 0,0                                ; Nothing (#R40960)
- 52990 DEFB 0,0                                ; Nothing (#R40960)
+ 52986 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 52988 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 52990 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 15: I'm sure I've seen this before.. (teleport: 12349)
 ;
@@ -8987,10 +8989,10 @@ b53248 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; pixel y-coordinate 66
                                                ; (#R41440)
  53494 DEFB 255,0                              ; Terminator (#R41976)
- 53496 DEFB 0,0                                ; Nothing (#R40960)
- 53498 DEFB 0,0                                ; Nothing (#R40960)
- 53500 DEFB 0,0                                ; Nothing (#R40960)
- 53502 DEFB 0,0                                ; Nothing (#R40960)
+ 53496 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 53498 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 53500 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 53502 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 17: Up on the Battlements (teleport: 159)
 ;
@@ -9083,8 +9085,8 @@ b53504 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; pixel y-coordinate 66
                                                ; (#R41512)
  53754 DEFB 255,0                              ; Terminator (#R41976)
- 53756 DEFB 0,0                                ; Nothing (#R40960)
- 53758 DEFB 0,0                                ; Nothing (#R40960)
+ 53756 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 53758 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 18: On the Roof (teleport: 259)
 ;
@@ -9169,11 +9171,11 @@ b53760 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; (#R41232)
  54002 DEFB 1,16                               ; Rope at x=16 (#R40968)
  54004 DEFB 255,0                              ; Terminator (#R41976)
- 54006 DEFB 0,0                                ; Nothing (#R40960)
- 54008 DEFB 0,0                                ; Nothing (#R40960)
- 54010 DEFB 0,0                                ; Nothing (#R40960)
- 54012 DEFB 0,0                                ; Nothing (#R40960)
- 54014 DEFB 0,0                                ; Nothing (#R40960)
+ 54006 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 54008 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 54010 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 54012 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 54014 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 19: The Forgotten Abbey (teleport: 1259)
 ;
@@ -9370,8 +9372,8 @@ b54272 DEFB 160,64,10,0,0,0,0,0                ; {Room layout
                                                ; base sprite 0, initial x=24
                                                ; (#R41128)
  54522 DEFB 255,0                              ; Terminator (#R41976)
- 54524 DEFB 0,0                                ; Nothing (#R40960)
- 54526 DEFB 0,0                                ; Nothing (#R40960)
+ 54524 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 54526 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 21: Ballroom West (teleport: 1359)
 ;
@@ -9461,10 +9463,10 @@ b54528 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  54772 DEFB 42,6                               ; Guardian no. 42 (vertical),
                                                ; base sprite 0, x=6 (#R41296)
  54774 DEFB 255,0                              ; Terminator (#R41976)
- 54776 DEFB 0,0                                ; Nothing (#R40960)
- 54778 DEFB 0,0                                ; Nothing (#R40960)
- 54780 DEFB 0,0                                ; Nothing (#R40960)
- 54782 DEFB 0,0                                ; Nothing (#R40960)
+ 54776 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 54778 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 54780 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 54782 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 22: To the Kitchens#SPACE(4)Main Stairway (teleport: 2359)
 ;
@@ -9564,7 +9566,7 @@ b54784 DEFB 0,0,128,0,0,0,0,0                  ; {Room layout
                                                ; base sprite 0, initial x=11
                                                ; (#R41720)
  55036 DEFB 255,0                              ; Terminator (#R41976)
- 55038 DEFB 0,0                                ; Nothing (#R40960)
+ 55038 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 23: The Kitchen (teleport: 12359)
 ;
@@ -9655,9 +9657,9 @@ b55040 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  55286 DEFB 48,20                              ; Guardian no. 48 (vertical),
                                                ; base sprite 0, x=20 (#R41344)
  55288 DEFB 255,0                              ; Terminator (#R41976)
- 55290 DEFB 0,0                                ; Nothing (#R40960)
- 55292 DEFB 0,0                                ; Nothing (#R40960)
- 55294 DEFB 0,0                                ; Nothing (#R40960)
+ 55290 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 55292 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 55294 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 24: West of Kitchen (teleport: 459)
 ;
@@ -9749,9 +9751,9 @@ b55296 DEFB 0,0,1,0,0,0,0,0                    ; {Room layout
  55542 DEFB 48,27                              ; Guardian no. 48 (vertical),
                                                ; base sprite 0, x=27 (#R41344)
  55544 DEFB 255,0                              ; Terminator (#R41976)
- 55546 DEFB 0,0                                ; Nothing (#R40960)
- 55548 DEFB 0,0                                ; Nothing (#R40960)
- 55550 DEFB 0,0                                ; Nothing (#R40960)
+ 55546 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 55548 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 55550 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 25: Cold Store (teleport: 1459)
 ;
@@ -9846,8 +9848,8 @@ b55552 DEFB 0,3,0,0,0,0,0,0                    ; {Room layout
                                                ; (#R41416)
  55800 DEFB 1,16                               ; Rope at x=16 (#R40968)
  55802 DEFB 255,0                              ; Terminator (#R41976)
- 55804 DEFB 0,0                                ; Nothing (#R40960)
- 55806 DEFB 0,0                                ; Nothing (#R40960)
+ 55804 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 55806 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 26: East Wall Base (teleport: 2459)
 ;
@@ -9933,11 +9935,11 @@ b55808 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
  56050 DEFB 45,39                              ; Guardian no. 45 (vertical),
                                                ; base sprite 1, x=7 (#R41320)
  56052 DEFB 255,0                              ; Terminator (#R41976)
- 56054 DEFB 0,0                                ; Nothing (#R40960)
- 56056 DEFB 0,0                                ; Nothing (#R40960)
- 56058 DEFB 0,0                                ; Nothing (#R40960)
- 56060 DEFB 0,0                                ; Nothing (#R40960)
- 56062 DEFB 0,0                                ; Nothing (#R40960)
+ 56054 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 56056 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 56058 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 56060 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 56062 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 27: The Chapel (teleport: 12459)
 ;
@@ -10032,7 +10034,7 @@ b56064 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  56314 DEFB 102,145                            ; Guardian no. 102 (vertical),
                                                ; base sprite 4, x=17 (#R41776)
  56316 DEFB 255,0                              ; Terminator (#R41976)
- 56318 DEFB 0,0                                ; Nothing (#R40960)
+ 56318 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 28: First Landing (teleport: 3459)
 ;
@@ -10119,12 +10121,12 @@ b56320 DEFB 160,0,0,0,0,0,160,0                 ; {Room layout
                                                 ; base sprite 0, initial x=25
                                                 ; (#R41496)
  56562 DEFB 255,0                               ; Terminator (#R41976)
- 56564 DEFB 0,0                                 ; Nothing (#R40960)
- 56566 DEFB 0,0                                 ; Nothing (#R40960)
- 56568 DEFB 0,0                                 ; Nothing (#R40960)
- 56570 DEFB 0,0                                 ; Nothing (#R40960)
- 56572 DEFB 0,0                                 ; Nothing (#R40960)
- 56574 DEFB 0,0                                 ; Nothing (#R40960)
+ 56564 DEFB 0,0                                 ; Nothing (#R40960#40960)
+ 56566 DEFB 0,0                                 ; Nothing (#R40960#40960)
+ 56568 DEFB 0,0                                 ; Nothing (#R40960#40960)
+ 56570 DEFB 0,0                                 ; Nothing (#R40960#40960)
+ 56572 DEFB 0,0                                 ; Nothing (#R40960#40960)
+ 56574 DEFB 0,0                                 ; Nothing (#R40960#40960)
 
 ; Room 29: The Nightmare Room (teleport: 13459)
 ;
@@ -10313,9 +10315,9 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
                                                ; base sprite 0, initial x=22
                                                ; (#R41664)
  57080 DEFB 255,0                              ; Terminator (#R41976)
- 57082 DEFB 0,0                                ; Nothing (#R40960)
- 57084 DEFB 0,0                                ; Nothing (#R40960)
- 57086 DEFB 0,0                                ; Nothing (#R40960)
+ 57082 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57084 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57086 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 31: Swimming Pool (teleport: 123459)
 ;
@@ -10400,11 +10402,11 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; (#R41584)
  57330 DEFB 1,16                               ; Rope at x=16 (#R40968)
  57332 DEFB 255,0                              ; Terminator (#R41976)
- 57334 DEFB 0,0                                ; Nothing (#R40960)
- 57336 DEFB 0,0                                ; Nothing (#R40960)
- 57338 DEFB 0,0                                ; Nothing (#R40960)
- 57340 DEFB 0,0                                ; Nothing (#R40960)
- 57342 DEFB 0,0                                ; Nothing (#R40960)
+ 57334 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57336 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57338 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57340 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57342 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 32: Halfway up the East Wall (teleport: 69)
 ;
@@ -10489,12 +10491,12 @@ b57344 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
                                                ; base sprite 0, initial x=4
                                                ; (#R41264)
  57586 DEFB 255,0                              ; Terminator (#R41976)
- 57588 DEFB 0,0                                ; Nothing (#R40960)
- 57590 DEFB 0,0                                ; Nothing (#R40960)
- 57592 DEFB 0,0                                ; Nothing (#R40960)
- 57594 DEFB 0,0                                ; Nothing (#R40960)
- 57596 DEFB 0,0                                ; Nothing (#R40960)
- 57598 DEFB 0,0                                ; Nothing (#R40960)
+ 57588 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57590 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57592 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57594 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57596 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57598 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 33: The Bathroom (teleport: 169)
 ;
@@ -10580,12 +10582,12 @@ b57600 DEFB 160,0,0,0,0,0,0,10                 ; {Room layout
                                                ; base sprite 0, initial x=16
                                                ; (#R41432)
  57842 DEFB 255,0                              ; Terminator (#R41976)
- 57844 DEFB 0,0                                ; Nothing (#R40960)
- 57846 DEFB 0,0                                ; Nothing (#R40960)
- 57848 DEFB 0,0                                ; Nothing (#R40960)
- 57850 DEFB 0,0                                ; Nothing (#R40960)
- 57852 DEFB 0,0                                ; Nothing (#R40960)
- 57854 DEFB 0,0                                ; Nothing (#R40960)
+ 57844 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57846 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57848 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57850 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57852 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 57854 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 34: Top Landing (teleport: 269)
 ;
@@ -10674,10 +10676,10 @@ b57856 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
                                                ; base sprite 0, initial x=16
                                                ; (#R41248)
  58102 DEFB 255,0                              ; Terminator (#R41976)
- 58104 DEFB 0,0                                ; Nothing (#R40960)
- 58106 DEFB 0,0                                ; Nothing (#R40960)
- 58108 DEFB 0,0                                ; Nothing (#R40960)
- 58110 DEFB 0,0                                ; Nothing (#R40960)
+ 58104 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58106 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58108 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58110 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 35: Master Bedroom (teleport: 1269)
 ;
@@ -10759,13 +10761,13 @@ b58112 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
  58352 DEFB 255,0                              ; Terminator (#R41976)
- 58354 DEFB 0,0                                ; Nothing (#R40960)
- 58356 DEFB 0,0                                ; Nothing (#R40960)
- 58358 DEFB 0,0                                ; Nothing (#R40960)
- 58360 DEFB 0,0                                ; Nothing (#R40960)
- 58362 DEFB 0,0                                ; Nothing (#R40960)
- 58364 DEFB 0,0                                ; Nothing (#R40960)
- 58366 DEFB 0,0                                ; Nothing (#R40960)
+ 58354 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58356 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58358 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58360 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58362 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58364 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58366 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 36: A bit of tree (teleport: 369)
 ;
@@ -10855,10 +10857,10 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
                                                ; pixel y-coordinate 73
                                                ; (#R41512)
  58614 DEFB 255,0                              ; Terminator (#R41976)
- 58616 DEFB 0,0                                ; Nothing (#R40960)
- 58618 DEFB 0,0                                ; Nothing (#R40960)
- 58620 DEFB 0,0                                ; Nothing (#R40960)
- 58622 DEFB 0,0                                ; Nothing (#R40960)
+ 58616 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58618 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58620 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58622 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 37: Orangery (teleport: 1369)
 ;
@@ -10947,10 +10949,10 @@ b58624 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; pixel y-coordinate 66
                                                ; (#R41440)
  58870 DEFB 255,0                              ; Terminator (#R41976)
- 58872 DEFB 0,0                                ; Nothing (#R40960)
- 58874 DEFB 0,0                                ; Nothing (#R40960)
- 58876 DEFB 0,0                                ; Nothing (#R40960)
- 58878 DEFB 0,0                                ; Nothing (#R40960)
+ 58872 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58874 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58876 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 58878 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 38: Priests' Hole (teleport: 2369)
 ;
@@ -11040,9 +11042,9 @@ b58880 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
                                                ; base sprite 0, initial x=22
                                                ; (#R41256)
  59128 DEFB 255,0                              ; Terminator (#R41976)
- 59130 DEFB 0,0                                ; Nothing (#R40960)
- 59132 DEFB 0,0                                ; Nothing (#R40960)
- 59134 DEFB 0,0                                ; Nothing (#R40960)
+ 59130 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59132 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59134 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 39: Emergency Generator (teleport: 12369)
 ;
@@ -11128,12 +11130,12 @@ b59136 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
                                                ; base sprite 0, initial x=8
                                                ; (#R41168)
  59378 DEFB 255,0                              ; Terminator (#R41976)
- 59380 DEFB 0,0                                ; Nothing (#R40960)
- 59382 DEFB 0,0                                ; Nothing (#R40960)
- 59384 DEFB 0,0                                ; Nothing (#R40960)
- 59386 DEFB 0,0                                ; Nothing (#R40960)
- 59388 DEFB 0,0                                ; Nothing (#R40960)
- 59390 DEFB 0,0                                ; Nothing (#R40960)
+ 59380 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59382 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59384 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59386 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59388 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59390 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 40: Dr Jones will never believe this (teleport: 469)
 ;
@@ -11219,11 +11221,11 @@ b59392 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  59634 DEFB 11,10                              ; Guardian no. 11 (vertical),
                                                ; base sprite 0, x=10 (#R41048)
  59636 DEFB 255,0                              ; Terminator (#R41976)
- 59638 DEFB 0,0                                ; Nothing (#R40960)
- 59640 DEFB 0,0                                ; Nothing (#R40960)
- 59642 DEFB 0,0                                ; Nothing (#R40960)
- 59644 DEFB 0,0                                ; Nothing (#R40960)
- 59646 DEFB 0,0                                ; Nothing (#R40960)
+ 59638 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59640 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59642 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59644 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 59646 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 41: The Attic (teleport: 1469)
 ;
@@ -11415,10 +11417,10 @@ b59904 DEFB 0,0,0,255,255,255,255,240          ; {Room layout
                                                ; pixel y-coordinate 97
                                                ; (#R41440)
  60150 DEFB 255,0                              ; Terminator (#R41976)
- 60152 DEFB 0,0                                ; Nothing (#R40960)
- 60154 DEFB 0,0                                ; Nothing (#R40960)
- 60156 DEFB 0,0                                ; Nothing (#R40960)
- 60158 DEFB 0,0                                ; Nothing (#R40960)
+ 60152 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60154 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60156 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60158 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 43: Conservatory Roof (teleport: 12469)
 ;
@@ -11506,11 +11508,11 @@ b60160 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; base sprite 0, initial x=24
                                                ; (#R41448)
  60404 DEFB 255,0                              ; Terminator (#R41976)
- 60406 DEFB 0,0                                ; Nothing (#R40960)
- 60408 DEFB 0,0                                ; Nothing (#R40960)
- 60410 DEFB 0,0                                ; Nothing (#R40960)
- 60412 DEFB 0,0                                ; Nothing (#R40960)
- 60414 DEFB 0,0                                ; Nothing (#R40960)
+ 60406 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60408 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60410 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60412 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60414 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 44: On top of the house (teleport: 3469)
 ;
@@ -11594,12 +11596,12 @@ b60416 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  60656 DEFB 29,20                              ; Guardian no. 29 (vertical),
                                                ; base sprite 0, x=20 (#R41192)
  60658 DEFB 255,0                              ; Terminator (#R41976)
- 60660 DEFB 0,0                                ; Nothing (#R40960)
- 60662 DEFB 0,0                                ; Nothing (#R40960)
- 60664 DEFB 0,0                                ; Nothing (#R40960)
- 60666 DEFB 0,0                                ; Nothing (#R40960)
- 60668 DEFB 0,0                                ; Nothing (#R40960)
- 60670 DEFB 0,0                                ; Nothing (#R40960)
+ 60660 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60662 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60664 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60666 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60668 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60670 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 45: Under the Drive (teleport: 13469)
 ;
@@ -11689,10 +11691,10 @@ b60672 DEFB 160,0,0,0,0,0,170,170              ; {Room layout
                                                ; base sprite 4, initial x=22
                                                ; (#R41504)
  60918 DEFB 255,0                              ; Terminator (#R41976)
- 60920 DEFB 0,0                                ; Nothing (#R40960)
- 60922 DEFB 0,0                                ; Nothing (#R40960)
- 60924 DEFB 0,0                                ; Nothing (#R40960)
- 60926 DEFB 0,0                                ; Nothing (#R40960)
+ 60920 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60922 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60924 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 60926 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 46: Tree Root (teleport: 23469)
 ;
@@ -11782,9 +11784,9 @@ b60928 DEFB 170,10,170,170,170,170,170,170     ; {Room layout
  61174 DEFB 31,89                              ; Guardian no. 31 (vertical),
                                                ; base sprite 2, x=25 (#R41208)
  61176 DEFB 255,0                              ; Terminator (#R41976)
- 61178 DEFB 0,0                                ; Nothing (#R40960)
- 61180 DEFB 0,0                                ; Nothing (#R40960)
- 61182 DEFB 0,0                                ; Nothing (#R40960)
+ 61178 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61180 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61182 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 47: [ (teleport: 123469)
 ;
@@ -11865,13 +11867,13 @@ b61184 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout (completely
 ; The next eight pairs of bytes specify the entities (ropes, arrows, guardians)
 ; in this room.
  61424 DEFB 255,0                              ; Terminator (#R41976)
- 61426 DEFB 0,0                                ; Nothing (#R40960)
- 61428 DEFB 0,0                                ; Nothing (#R40960)
- 61430 DEFB 0,0                                ; Nothing (#R40960)
- 61432 DEFB 0,0                                ; Nothing (#R40960)
- 61434 DEFB 0,0                                ; Nothing (#R40960)
- 61436 DEFB 0,0                                ; Nothing (#R40960)
- 61438 DEFB 0,0                                ; Nothing (#R40960)
+ 61426 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61428 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61430 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61432 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61434 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61436 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61438 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 48: Nomen Luni (teleport: 569)
 ;
@@ -11964,9 +11966,9 @@ b61440 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  61686 DEFB 11,22                              ; Guardian no. 11 (vertical),
                                                ; base sprite 0, x=22 (#R41048)
  61688 DEFB 255,0                              ; Terminator (#R41976)
- 61690 DEFB 0,0                                ; Nothing (#R40960)
- 61692 DEFB 0,0                                ; Nothing (#R40960)
- 61694 DEFB 0,0                                ; Nothing (#R40960)
+ 61690 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61692 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61694 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 49: The Wine Cellar (teleport: 1569)
 ;
@@ -12062,9 +12064,9 @@ b61696 DEFB 0,0,0,0,0,12,2,170                 ; {Room layout
                                                ; base sprite 0, initial x=19
                                                ; (#R41488)
  61944 DEFB 255,0                              ; Terminator (#R41976)
- 61946 DEFB 0,0                                ; Nothing (#R40960)
- 61948 DEFB 0,0                                ; Nothing (#R40960)
- 61950 DEFB 0,0                                ; Nothing (#R40960)
+ 61946 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61948 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 61950 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 50: Watch Tower (teleport: 2569)
 ;
@@ -12152,11 +12154,11 @@ b61952 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; base sprite 0, initial x=11
                                                ; (#R41832)
  62196 DEFB 255,0                              ; Terminator (#R41976)
- 62198 DEFB 0,0                                ; Nothing (#R40960)
- 62200 DEFB 0,0                                ; Nothing (#R40960)
- 62202 DEFB 0,0                                ; Nothing (#R40960)
- 62204 DEFB 0,0                                ; Nothing (#R40960)
- 62206 DEFB 0,0                                ; Nothing (#R40960)
+ 62198 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62200 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62202 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62204 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62206 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 51: Tool#SPACE(2)Shed (teleport: 12569)
 ;
@@ -12249,10 +12251,10 @@ b62208 DEFB 0,0,2,170,160,0,0,0                ; {Room layout
                                                ; base sprite 0, initial x=20
                                                ; (#R41752)
  62454 DEFB 255,0                              ; Terminator (#R41976)
- 62456 DEFB 0,0                                ; Nothing (#R40960)
- 62458 DEFB 0,0                                ; Nothing (#R40960)
- 62460 DEFB 0,0                                ; Nothing (#R40960)
- 62462 DEFB 0,0                                ; Nothing (#R40960)
+ 62456 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62458 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62460 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62462 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 52: Back Stairway (teleport: 3569)
 ;
@@ -12342,10 +12344,10 @@ b62464 DEFB 0,0,0,0,10,170,170,170             ; {Room layout
  62708 DEFB 29,131                             ; Guardian no. 29 (vertical),
                                                ; base sprite 4, x=3 (#R41192)
  62710 DEFB 255,0                              ; Terminator (#R41976)
- 62712 DEFB 0,0                                ; Nothing (#R40960)
- 62714 DEFB 0,0                                ; Nothing (#R40960)
- 62716 DEFB 0,0                                ; Nothing (#R40960)
- 62718 DEFB 0,0                                ; Nothing (#R40960)
+ 62712 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62714 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62716 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62718 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 53: Back Door (teleport: 13569)
 ;
@@ -12427,13 +12429,13 @@ b62720 DEFB 0,0,0,0,160,0,0,0                  ; {Room layout
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
  62960 DEFB 255,0                              ; Terminator (#R41976)
- 62962 DEFB 0,0                                ; Nothing (#R40960)
- 62964 DEFB 0,0                                ; Nothing (#R40960)
- 62966 DEFB 0,0                                ; Nothing (#R40960)
- 62968 DEFB 0,0                                ; Nothing (#R40960)
- 62970 DEFB 0,0                                ; Nothing (#R40960)
- 62972 DEFB 0,0                                ; Nothing (#R40960)
- 62974 DEFB 0,0                                ; Nothing (#R40960)
+ 62962 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62964 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62966 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62968 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62970 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62972 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 62974 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 54: West#SPACE(2)Wing (teleport: 23569)
 ;
@@ -12522,10 +12524,10 @@ b62976 DEFB 0,160,0,0,0,0,0,0                  ; {Room layout
                                                ; base sprite 0, initial x=9
                                                ; (#R41120)
  63222 DEFB 255,0                              ; Terminator (#R41976)
- 63224 DEFB 0,0                                ; Nothing (#R40960)
- 63226 DEFB 0,0                                ; Nothing (#R40960)
- 63228 DEFB 0,0                                ; Nothing (#R40960)
- 63230 DEFB 0,0                                ; Nothing (#R40960)
+ 63224 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63226 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63228 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63230 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 55: West Bedroom (teleport: 123569)
 ;
@@ -12611,11 +12613,11 @@ b63232 DEFB 0,0,4,0,160,64,0,0                 ; {Room layout
  63474 DEFB 51,78                              ; Guardian no. 51 (vertical),
                                                ; base sprite 2, x=14 (#R41368)
  63476 DEFB 255,0                              ; Terminator (#R41976)
- 63478 DEFB 0,0                                ; Nothing (#R40960)
- 63480 DEFB 0,0                                ; Nothing (#R40960)
- 63482 DEFB 0,0                                ; Nothing (#R40960)
- 63484 DEFB 0,0                                ; Nothing (#R40960)
- 63486 DEFB 0,0                                ; Nothing (#R40960)
+ 63478 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63480 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63482 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63484 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63486 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 56: West Wing Roof (teleport: 4569)
 ;
@@ -12707,10 +12709,10 @@ b63488 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; pixel y-coordinate 42
                                                ; (#R41440)
  63734 DEFB 255,0                              ; Terminator (#R41976)
- 63736 DEFB 0,0                                ; Nothing (#R40960)
- 63738 DEFB 0,0                                ; Nothing (#R40960)
- 63740 DEFB 0,0                                ; Nothing (#R40960)
- 63742 DEFB 0,0                                ; Nothing (#R40960)
+ 63736 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63738 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63740 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63742 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 57: Above the West Bedroom (teleport: 14569)
 ;
@@ -12796,11 +12798,11 @@ b63744 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  63986 DEFB 51,78                              ; Guardian no. 51 (vertical),
                                                ; base sprite 2, x=14 (#R41368)
  63988 DEFB 255,0                              ; Terminator (#R41976)
- 63990 DEFB 0,0                                ; Nothing (#R40960)
- 63992 DEFB 0,0                                ; Nothing (#R40960)
- 63994 DEFB 0,0                                ; Nothing (#R40960)
- 63996 DEFB 0,0                                ; Nothing (#R40960)
- 63998 DEFB 0,0                                ; Nothing (#R40960)
+ 63990 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63992 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63994 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63996 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 63998 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 58: The Beach (teleport: 24569)
 ;
@@ -12885,11 +12887,11 @@ b64000 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; pixel y-coordinate 42
                                                ; (#R41440)
  64244 DEFB 255,0                              ; Terminator (#R41976)
- 64246 DEFB 0,0                                ; Nothing (#R40960)
- 64248 DEFB 0,0                                ; Nothing (#R40960)
- 64250 DEFB 0,0                                ; Nothing (#R40960)
- 64252 DEFB 0,0                                ; Nothing (#R40960)
- 64254 DEFB 0,0                                ; Nothing (#R40960)
+ 64246 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64248 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64250 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64252 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64254 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Room 59: The Yacht (teleport: 124569)
 ;
@@ -12976,11 +12978,11 @@ b64256 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  64498 DEFB 27,21                              ; Guardian no. 27 (vertical),
                                                ; base sprite 0, x=21 (#R41176)
  64500 DEFB 255,17                             ; Terminator (#R41976)
- 64502 DEFB 0,0                                ; Nothing (#R40960)
- 64504 DEFB 0,0                                ; Nothing (#R40960)
- 64506 DEFB 0,0                                ; Nothing (#R40960)
- 64508 DEFB 0,0                                ; Nothing (#R40960)
- 64510 DEFB 0,0                                ; Nothing (#R40960)
+ 64502 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64504 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64506 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64508 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64510 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 @ignoreua
 ; Room 60: The Bow (teleport: 34569)
@@ -13069,11 +13071,11 @@ b64512 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; base sprite 0, initial x=20
                                                ; (#R41840)
  64756 DEFB 255,0                              ; Terminator (#R41976)
- 64758 DEFB 0,0                                ; Nothing (#R40960)
- 64760 DEFB 0,0                                ; Nothing (#R40960)
- 64762 DEFB 0,0                                ; Nothing (#R40960)
- 64764 DEFB 0,0                                ; Nothing (#R40960)
- 64766 DEFB 0,0                                ; Nothing (#R40960)
+ 64758 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64760 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64762 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64764 DEFB 0,0                                ; Nothing (#R40960#40960)
+ 64766 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 ; Unused TRS-DOS code
 u64768 ADD HL,BC

@@ -173,7 +173,7 @@ class JetSetWilly:
         lines = ['b 40960 Entity definitions']
         lines.append('@ 40960 label=ENTITYDEFS')
         lines.append('D 40960 Used by the routine at #R35068.')
-        lines.append('D 40960 The following (empty) entity definition (0) is copied into the entity buffer at #R33024 for any entity specification whose first byte is zero.')
+        lines.append('N 40960 The following (empty) entity definition (0) is copied into the entity buffer at #R33024 for any entity specification whose first byte is zero.')
         lines.append('B 40960,8')
         for num in range(1, 112):
             addr = 40960 + num * 8
@@ -487,8 +487,10 @@ class JetSetWilly:
         addr = start
         terminated = False
         for num, coords, guardian_type, def_addr in entities:
+            anchor = ''
             if num == 0:
                 desc = 'Nothing'
+                anchor = '#{}'.format(def_addr)
             elif num == 255:
                 desc = 'Terminator'
                 terminated = True
@@ -510,7 +512,7 @@ class JetSetWilly:
             suffix = ' (unused)' if 0 < num < 255 and terminated else ''
             if addr == 59900:
                 lines.append('@ {} bfix=DEFB 69,82'.format(addr))
-            lines.append('B {},2 {} (#R{}){}'.format(addr, desc, def_addr, suffix))
+            lines.append('B {},2 {} (#R{}{}){}'.format(addr, desc, def_addr, anchor, suffix))
             addr += 2
 
     def get_rooms(self):
