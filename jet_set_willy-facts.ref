@@ -1,4 +1,4 @@
-; Copyright 2012, 2014 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014, 2015 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:gameOverAt1am:Game over at 1am]
 The game ends abruptly at 1am (see #R35442), even if Willy has collected all the items, or has reached his bed and is already on his way to the toilet, or already has his head down the toilet.
@@ -99,6 +99,8 @@ There is one room in which a nontrivial ramp graphic is defined, but not used.
 #UDGTABLE(gallery)
 { #R50884(Entrance to Hades) | #UDG50885,7(ramp06) }
 TABLE#
+
+Though unused, the ramp has its location set to (14,7); perhaps it was used at some point during development.
 
 [Fact:unusedConveyor:Unused conveyor]
 There is one room in which a nontrivial conveyor graphic is defined, but not used.
