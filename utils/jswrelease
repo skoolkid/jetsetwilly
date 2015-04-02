@@ -23,13 +23,11 @@ GAME=jsw
 GAMEDIR=jet_set_willy
 GAMENAME="Jet Set Willy"
 REFFILE=$JETSETWILLY_HOME/jet_set_willy.ref
-MKDTARBALL="$JETSETWILLY_HOME/utils/mkdtarball"
 SRCDIR=src
 SRCFILES=$(echo COPYING jet_set_willy{.skool,{,-bugs,-changelog,-facts,-pokes}.ref,{,-dark,-green,-plum}.css} jetsetwilly.py)
 DHOME=$JETSETWILLY_HOME
 GHREPO=jetsetwilly
 GHHTMLOPTS="-T green -j style.css"
-GHGAMEDIR=.
 
 . $SKOOLKIT_HOME/tools/drelease-functions
 
