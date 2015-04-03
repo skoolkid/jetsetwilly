@@ -3,7 +3,7 @@ import sys
 import os
 
 JETSETWILLY_HOME = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-JSW_SKOOL = '{}/jet_set_willy.skool'.format(JETSETWILLY_HOME)
+JSW_SKOOL = '{}/sources/jet_set_willy.skool'.format(JETSETWILLY_HOME)
 
 SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
 if SKOOLKIT_HOME:

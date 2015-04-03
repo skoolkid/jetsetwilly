@@ -20,7 +20,7 @@ if [[ ! -d $JETSETWILLY_HOME ]]; then
 fi
 
 jsw2skool=$JETSETWILLY_HOME/utils/jsw2skool.py
-JSW_SKOOL=$JETSETWILLY_HOME/jet_set_willy.skool
+JSW_SKOOL=$JETSETWILLY_HOME/sources/jet_set_willy.skool
 
 sed '/^s33089 .*/q' $JSW_SKOOL
 echo

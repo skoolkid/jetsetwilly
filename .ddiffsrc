@@ -2,10 +2,10 @@
 
 OLD_VERSION=20150328
 SK_OLD_VERSION=4.3
-SKOOL=$JETSETWILLY_HOME/jet_set_willy.skool
+SKOOL=$JETSETWILLY_HOME/sources/jet_set_willy.skool
 SNAPSHOT=$JETSETWILLY_HOME/build/jet_set_willy.z80
 MODULES=$JETSETWILLY_HOME/skoolkit/jetsetwilly.py
 SKOOLFILES=$SKOOL
-REFFILES=$(echo $JETSETWILLY_HOME/jet_set_willy*.ref)
+REFFILES=$(echo $JETSETWILLY_HOME/sources/jet_set_willy*.ref)
 CSSFILES=$(echo $JETSETWILLY_HOME/resources/*.css)
 DIFFS=$JETSETWILLY_HOME/diffs

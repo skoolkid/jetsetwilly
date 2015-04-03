@@ -25,14 +25,14 @@ sys.path.insert(1, SKOOLKIT_HOME)
 from skoolkit import skool2asm, skool2ctl, skool2html, skool2sft, sna2skool
 
 JSWZ80 = '../build/jet_set_willy.z80'
-JSW_SKOOL = '../jet_set_willy.skool'
-JSWREF = '../jet_set_willy.ref'
+JSW_SKOOL = '../sources/jet_set_willy.skool'
+JSWREF = '../sources/jet_set_willy.ref'
 
 XHTML_XSD = os.path.join(SKOOLKIT_HOME, 'XSD', 'xhtml1-strict.xsd')
 
 OUTPUT_JSW = """Creating directory {odir}
 Using skool file: {skoolfile}
-Using ref files: ../jet_set_willy.ref, ../jet_set_willy-bugs.ref, ../jet_set_willy-changelog.ref, ../jet_set_willy-facts.ref, ../jet_set_willy-pokes.ref
+Using ref files: {srcdir}/jet_set_willy.ref, {srcdir}/jet_set_willy-bugs.ref, {srcdir}/jet_set_willy-changelog.ref, {srcdir}/jet_set_willy-facts.ref, {srcdir}/jet_set_willy-pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/jet_set_willy
 Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/jet_set_willy/skoolkit.css
@@ -237,7 +237,7 @@ class HtmlTestCase(DisassembliesTestCase):
         # Write the disassembly
         output, error = self.run_skoolkit_command(skool2html.main, '{} {} {}'.format(main_options, options, JSWREF))
         self.assertEqual(len(error), 0)
-        reps = {'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': JSW_SKOOL}
+        reps = {'srcdir': '../sources', 'odir': self.odir, 'SKOOLKIT_HOME': SKOOLKIT_HOME, 'skoolfile': JSW_SKOOL}
         self.assertEqual(OUTPUT_JSW.format(**reps).split('\n'), output)
 
         self._validate_xhtml()
