@@ -4,7 +4,7 @@
 ;
 ; to create a Z80 snapshot.
 
-ftp://ftp.worldofspectrum.org/pub/sinclair/games/j/JetSetWilly(original).tap.zip
+http://www.worldofspectrum.org/pub/sinclair/games/j/JetSetWilly(original).tap.zip
 jet_set_willy.z80
 --ram poke=23672,248 # Ask for the code at L1 (1234)
 --reg pc=33792
