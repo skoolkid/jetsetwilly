@@ -19,7 +19,7 @@ if not JETSETWILLY_HOME:
 if not os.path.isdir(JETSETWILLY_HOME):
     sys.stderr.write('JETSETWILLY_HOME={}; directory not found\n'.format(JETSETWILLY_HOME))
     sys.exit(1)
-sys.path.insert(0, '{}/skoolkit'.format(JETSETWILLY_HOME))
+sys.path.insert(0, '{}/sources'.format(JETSETWILLY_HOME))
 
 from skoolkit.image import ImageWriter
 from skoolkit.refparser import RefParser

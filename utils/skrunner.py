@@ -25,8 +25,6 @@ def run_skool2asm():
     skool2asm.main(sys.argv[1:] + [JSW_SKOOL])
 
 def run_skool2html():
-    writer_class = '{}/skoolkit:jetsetwilly.JetSetWillyHtmlWriter'.format(JETSETWILLY_HOME)
-    skool2html_options = '-d {}/build/html'.format(JETSETWILLY_HOME)
-    skool2html_options += ' -S {}/resources -S {}/resources'.format(SKOOLKIT_HOME, JETSETWILLY_HOME)
-    skool2html_options += ' -W {}'.format(writer_class)
-    skool2html.main(skool2html_options.split() + sys.argv[1:] + [JSW_SKOOL])
+    options = '-d {}/build/html'.format(JETSETWILLY_HOME)
+    options += ' -W {}/sources:jetsetwilly.JetSetWillyHtmlWriter'.format(JETSETWILLY_HOME)
+    skool2html.main(options.split() + sys.argv[1:] + [JSW_SKOOL])
