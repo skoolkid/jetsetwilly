@@ -39,6 +39,7 @@ jsw.asm:
 
 .PHONY: write-tests
 write-tests:
+	mkdir -p tests
 	for t in asm ctl html sft; do utils/write-tests.py $$t > tests/test_$$t.py; done
 
 .PHONY: test
