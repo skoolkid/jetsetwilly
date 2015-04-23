@@ -16,6 +16,10 @@ TABLE#
 [Fact:theMusicOfLife:The music of life]
 When Willy loses a life, the pitch of the notes in the in-game music decreases, and their length increases; see #R35668.
 
+To prevent this from happening:
+
+POKE 35674,126
+
 [Fact:takingABreak:Taking a BREAK]
 The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see #R35505). This works at any time, including when Willy is running to the toilet or already has his head down it.
 

@@ -1,5 +1,10 @@
 ; Copyright 2014, 2015 Richard Dymond (rjdymond@gmail.com)
 
+[Changelog:YYYYMMDD]
+-
+
+In #FACT#theMusicOfLife(), added a POKE to prevent the in-game music from deteriorating as Willy loses lives
+
 [Changelog:20150328]
 -
 
