@@ -16,8 +16,7 @@ SKOOL = '../sources/jet_set_willy.skool'
 
 SNAPSHOT = '../build/jet_set_willy.z80'
 
-OUTPUT = """Creating directory {odir}
-Using skool file: {skoolfile}
+OUTPUT = """Using skool file: {skoolfile}
 Using ref files: ../sources/jet_set_willy.ref, ../sources/jet_set_willy-bugs.ref, ../sources/jet_set_willy-changelog.ref, ../sources/jet_set_willy-facts.ref, ../sources/jet_set_willy-pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/jet_set_willy
