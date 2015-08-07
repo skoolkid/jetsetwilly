@@ -101,8 +101,8 @@ Content=asm/40960.html
 <div class="box box-1">
 This disassembly would have taken a lot longer to finish if it weren't for the research and documentation already done and made available by:
 <ul>
-<li><a class="link" href="http://webspace.webring.com/people/ja/andrewbroad/">Andrew Broad</a> (and Carl Woffenden)</li>
-<li><a class="link" href="http://mdfs.net/Software/JSW/Docs/">J. G. Harston</a></li>
+<li><a href="http://webspace.webring.com/people/ja/andrewbroad/">Andrew Broad</a> (and Carl Woffenden)</li>
+<li><a href="http://mdfs.net/Software/JSW/Docs/">J. G. Harston</a></li>
 </ul>
 In particular, their partial disassemblies, bug descriptions and room format descriptions were of great help.
 </div>
