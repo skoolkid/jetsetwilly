@@ -2,6 +2,7 @@
 
 [Config]
 HtmlWriterClass=:jetsetwilly.JetSetWillyHtmlWriter
+RefFiles=bugs.ref;changelog.ref;facts.ref;pokes.ref
 
 [Game]
 Game=Jet Set Willy

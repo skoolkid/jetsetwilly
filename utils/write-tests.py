@@ -17,7 +17,7 @@ SKOOL = '../sources/jet_set_willy.skool'
 SNAPSHOT = '../build/jet_set_willy.z80'
 
 OUTPUT = """Using skool file: {skoolfile}
-Using ref files: ../sources/jet_set_willy.ref, ../sources/jet_set_willy-bugs.ref, ../sources/jet_set_willy-changelog.ref, ../sources/jet_set_willy-facts.ref, ../sources/jet_set_willy-pokes.ref
+Using ref files: ../sources/jet_set_willy.ref, ../sources/bugs.ref, ../sources/changelog.ref, ../sources/facts.ref, ../sources/pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/jet_set_willy
 Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/jet_set_willy/skoolkit.css
