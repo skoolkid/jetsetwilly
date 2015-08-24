@@ -22,7 +22,7 @@ fi
 GAME=jsw
 GAMEDIR=jet_set_willy
 GAMENAME="Jet Set Willy"
-SRCFILES=$(echo COPYING jet_set_willy.skool {jet_set_willy,bugs,changelog,facts,pokes}.ref jet_set_willy{,-dark,-green,-plum}.css jetsetwilly.py)
+SRCFILES=$(echo COPYING jet_set_willy.{skool,ref,css} {bugs,changelog,facts,pokes}.ref {dark,green,plum}.css jetsetwilly.py)
 DHOME=$JETSETWILLY_HOME
 GHREPO=jetsetwilly
 GHHTMLOPTS="-T green -j style.css"
