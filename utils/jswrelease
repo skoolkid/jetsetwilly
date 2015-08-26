@@ -19,13 +19,9 @@ if [[ ! -d $SKOOLKIT_HOME ]]; then
   exit 1
 fi
 
-GAME=jsw
-GAMEDIR=jet_set_willy
-GAMENAME="Jet Set Willy"
-SRCFILES=$(echo COPYING jet_set_willy.{skool,ref,css} {bugs,changelog,facts,pokes}.ref {dark,green,plum}.css jetsetwilly.py)
 DHOME=$JETSETWILLY_HOME
-GHREPO=jetsetwilly
-GHHTMLOPTS="-T green -j style.css"
+
+. $DHOME/.dreleaserc
 
 . $SKOOLKIT_HOME/tools/drelease-functions
 
