@@ -1,12 +1,14 @@
-; Copyright 2014 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014, 2015 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:faultyClock:12:30am in the afternoon]
 The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm (instead of 12 noon), and also doesn't switch from 'pm' to 'am' at midnight.
 
 [Bug:theStickyBed:The sticky bed]
-After collecting all the items, if Willy jumps onto the bed in #R58112(Master Bedroom) (which is a conveyor moving right) instead of walking up to the foot of it, he will get stuck and be unable to finish the game. This happens because the code at #R36619 flips bit 0 of #REGe - which has already been reset because Willy is on a conveyor moving right - to 1, thus preventing Willy from moving right.
+After collecting all the items, if Willy jumps onto the bed in #R58112(Master Bedroom) (which is a conveyor moving right) instead of walking up to the foot of it, he will stop moving and the 'P' (right) key becomes unresponsive. This happens because the code at #R36619 flips bit 0 of #REGe - which has already been reset because Willy is on a conveyor moving right - to 1, thus preventing the conveyor from moving Willy, and also effectively disabling the 'P' key.
 
 To see this, use POKE #R41983,255 to make the tap in #R57600(The Bathroom) the only item that needs to be collected to complete the game, make your way to the bedroom, and jump onto the bed.
+
+However, all is not lost. Willy can be moved off the bed by using one of the other 'right' keys: 'I', 'Y', 'R', 'W', '7' or '8'.
 
 [Bug:selfCollectingItem:The self-collecting item]
 The item in #R57088(Swimming Pool) is automatically collected as soon as Willy enters the room; this is because the room's background tile has white INK, and the routine at #R37841 collects any item that is drawn on a cell with white INK. There are no other rooms whose background tile has white INK.

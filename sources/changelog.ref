@@ -4,6 +4,7 @@
 -
 
 In #FACT#theMusicOfLife(), added a POKE to prevent the in-game music from deteriorating as Willy loses lives
+In #BUG#theStickyBed(), added a note about using 'right' keys other than 'P' to move Willy off the bed (thanks jetsetdanny)
 
 [Changelog:20150328]
 -

@@ -2194,8 +2194,9 @@ c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
  36618 RRCA          ; otherwise}
  36619 XOR E         ; {Flip bit 0 of #REGe if Willy is running to the toilet,
  36620 LD E,A        ; forcing him to move right (unless he's jumped onto the
-                     ; bed, in which case bit 0 of #REGe is now set, and Willy
-                     ; is immobilised; this is a #BUG#theStickyBed)}
+                     ; bed, in which case bit 0 of #REGe is now set, meaning
+                     ; that the conveyor does not move him, and the 'P' key has
+                     ; no effect; this is a #BUG#theStickyBed)}
 @keep
  36621 LD BC,64510   ; {Read keys Q-W-E-R-T (left, right, left, right, left)
  36624 IN A,(C)      ; into bits 0-4 of #REGa}
