@@ -5,6 +5,7 @@
 
 In #FACT#theMusicOfLife(), added a POKE to prevent the in-game music from deteriorating as Willy loses lives
 In #BUG#theStickyBed(), added a note about using 'right' keys other than 'P' to move Willy off the bed (thanks jetsetdanny)
+In #BUG#selfCollectingItem(), added a POKE that enables Willy to collect the item himself (thanks Stuart Brady)
 
 [Changelog:20150328]
 -
