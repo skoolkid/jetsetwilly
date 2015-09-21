@@ -6,7 +6,7 @@ The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm (i
 [Bug:theStickyBed:The sticky bed]
 After collecting all the items, if Willy jumps onto the bed in #R58112(Master Bedroom) (which is a conveyor moving right) instead of walking up to the foot of it, he will stop moving and the 'P' (right) key becomes unresponsive. This happens because the code at #R36619 flips bit 0 of #REGe - which has already been reset because Willy is on a conveyor moving right - to 1, thus preventing the conveyor from moving Willy, and also effectively disabling the 'P' key.
 
-To see this, use POKE #R41983,255 to make the tap in #R57600(The Bathroom) the only item that needs to be collected to complete the game, make your way to the bedroom, and jump onto the bed.
+To see this, use POKE #R41983(41983),255 to make the tap in #R57600(The Bathroom) the only item that needs to be collected to complete the game, make your way to the bedroom, and jump onto the bed.
 
 However, all is not lost. Willy can be moved off the bed by using one of the other 'right' keys: 'I', 'Y', 'R', 'W', '7' or '8'.
 
@@ -15,7 +15,7 @@ The item in #R57088(Swimming Pool) is automatically collected as soon as Willy e
 
 To change the INK of the room's background tile from white to cyan, enabling Willy to collect the item himself:
 
-POKE #R57248,5
+POKE #R57248(57248),5
 
 Note that this changes the rope's colour from white to cyan.
 
@@ -40,7 +40,7 @@ POKE 56350,0: POKE 56358,0: POKE 56365,170
 
 The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix this bug is
 
-POKE #R42183,11
+POKE #R42183(42183),11
 
 which moves the item to #R51968(The Hall) (where it is still invisible, but now reachable).
 
@@ -97,7 +97,7 @@ POKE #R34555(34556),180
 [Bug:thePauseBug:The pause bug]
 The Spectrum will hang when trying to resume the game after being paused if an Interface 1 is connected. This happens because the #REGc register holds 0 instead of 254 when the keyboard is read by the IN A,(C) instruction at #R35620.
 
-POKE #R35615,62: POKE #R35620,219: POKE #R35620(35621),254
+POKE #R35615(35615),62: POKE #R35620(35620),219: POKE #R35620(35621),254
 
 [Bug:theAtticBug:The Attic bug]
 Perhaps the most famous of all the bugs in Jet Set Willy, the Attic bug is responsible for certain rooms becoming impossible to navigate after Willy has visited #R59648(The Attic), thus making it impossible to complete the game.

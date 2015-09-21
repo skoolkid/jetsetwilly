@@ -4,5 +4,5 @@ GAMENAME="Jet Set Willy"
 REFFILE=jet_set_willy.ref
 SRCFILES=$(echo jet_set_willy.{skool,ref,css} {bugs,changelog,facts,pokes}.ref {dark,green,plum}.css jetsetwilly.py COPYING)
 GHREPO=jetsetwilly
-GHHTMLOPTS="-T green -j style.css"
+GHHTMLOPTS="-T green -j style.css -H -c Paths/CodeFiles={address:04X}.html -c Game/AddressAnchor={address:04x}"
 SKOOL2BINOPTS="-i -S 32765"

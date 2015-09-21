@@ -39,7 +39,7 @@ The routine at #R37310, when drawing an arrow, kills Willy if the arrow hits any
 To see Willy die when the arrow hits the rope in #R64000(The Beach):
 
 <div>POKE #R34794(34795),58 (start in #R64000(The Beach))</div>
-<div>POKE #R64160,15 (set the INK of the room's background tile to white)</div>
+<div>POKE #R64160(64160),15 (set the INK of the room's background tile to white)</div>
 <div>POKE #R34789(34790),128 (set Willy's initial pixel y-coordinate to 64)</div>
 <div>POKE #R34799(34800),2: POKE #R34799(34801),93 (set Willy's initial attribute buffer location)</div>
 
@@ -187,8 +187,8 @@ The rope-drawing code at #R37540 places Willy on the rope if it is touching anyt
 To see this happen in #R64000(The Beach):
 
 <div>POKE #R34794(34795),58 (start in #R64000(The Beach))</div>
-<div>POKE #R64240,60: POKE #R64240(64241),84 (entity specification for the arrow)</div>
-<div>POKE #R64242,1: POKE #R64242(64243),14 (entity specification for the rope)</div>
+<div>POKE #R64240(64240),60: POKE #R64240(64241),84 (entity specification for the arrow)</div>
+<div>POKE #R64242(64242),1: POKE #R64242(64243),14 (entity specification for the rope)</div>
 <div>POKE #R34789(34790),128 (set Willy's initial pixel y-coordinate to 64)</div>
 <div>POKE #R34799(34800),2: POKE #R34799(34801),93 (set Willy's initial attribute buffer location)</div>
 
