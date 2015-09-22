@@ -32,7 +32,7 @@ class JetSetWilly(JetSetWillyHtmlWriter):
         self.snapshot = snapshot
         self.defaults = RefParser()
         self.ref_parser = RefParser()
-        self.ref_parser.parse('{}/sources/jet_set_willy.ref'.format(JETSETWILLY_HOME))
+        self.ref_parser.parse('{}/sources/jsw.ref'.format(JETSETWILLY_HOME))
         self.init()
 
 def _do_pokes(specs, snapshot):

@@ -4,8 +4,8 @@ if (($# > 0)); then
   cat >&2 << EOM
 Usage: $(basename $0)
 
-Build a skool file using the existing contents of jet_set_willy.skool and the
-snippets produced by jsw2skool.py.
+Build a skool file using the existing contents of jsw.skool and the snippets
+produced by jsw2skool.py.
 EOM
   exit 1
 fi
@@ -20,7 +20,7 @@ if [[ ! -d $JETSETWILLY_HOME ]]; then
 fi
 
 jsw2skool=$JETSETWILLY_HOME/utils/jsw2skool.py
-JSW_SKOOL=$JETSETWILLY_HOME/sources/jet_set_willy.skool
+JSW_SKOOL=$JETSETWILLY_HOME/sources/jsw.skool
 
 sed '/^s33089 .*/q' $JSW_SKOOL
 echo

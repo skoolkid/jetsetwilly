@@ -118,4 +118,5 @@ HTML_OPTS="$HTML_OPTS -d .."
 if (($SK_VERSION_INT >= 302)); then
   HTML_OPTS="$HTML_OPTS -t"
 fi
-./skool2html.py $HTML_OPTS jet_set_willy.ref
+[ -f jsw.ref ] && JSW_REF=jsw.ref || JSW_REF=jet_set_willy.ref
+./skool2html.py $HTML_OPTS $JSW_REF
