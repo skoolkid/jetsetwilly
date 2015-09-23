@@ -182,14 +182,14 @@ class JetSetWilly:
                 comment = 'The following entity definition ({}) is used in {}.'.format(num, room_links)
             else:
                 comment = 'The following entity definition ({}) is not used.'.format(num)
-            lines.append('D {} {}'.format(addr, comment))
+            lines.append('N {} {}'.format(addr, comment))
             if num in sprite_addrs:
                 ink = self.snapshot[40961 + 8 * num] & 7
                 bright = 8 * (self.snapshot[40961 + 8 * num] & 8)
                 sprites = []
                 for a, room_bg in sorted(sprite_addrs[num]):
                     sprites.append(self._get_guardian_macro(a, bright | room_bg | ink))
-                lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(addr, ' | '.join(sprites)))
+                lines.append('N {} #UDGTABLE {{ {} }} TABLE#'.format(addr, ' | '.join(sprites)))
             if num in defs or num == 43:
                 entity_def = self.snapshot[addr:addr + 8]
                 entity_type = entity_def[0] & 7
@@ -258,10 +258,10 @@ class JetSetWilly:
                 lines.append('B {} {}'.format(addr + 7, desc7))
             else:
                 lines.append('B {},8'.format(addr))
-        lines.append('D 41856 The next 15 entity definitions (112-126) are unused.')
+        lines.append('N 41856 The next 15 entity definitions (112-126) are unused.')
         lines.append('B 41856,120,8')
         lines.append('@ 41976 label=ENTITY127')
-        lines.append('D 41976 The following entity definition (127) - whose eighth byte is at #R41983 - '
+        lines.append('N 41976 The following entity definition (127) - whose eighth byte is at #R41983 - '
                      'is copied into the entity buffer at #R33024 for any entity specification whose '
                      'first byte is 127 or 255; the first byte of the definition (255) serves to '
                      'terminate the entity buffer.')
@@ -329,6 +329,7 @@ class JetSetWilly:
         lines.append('@ 43776 label=GUARDIANS')
         lines.append('D 43776 Used by the routine at #R37310.')
         lines.append('@ 46592 label=FLYINGPIG0')
+        directive = 'D'
         for a in sorted(GUARDIANS.keys()):
             page = a // 256
             base_index = (a % 256) // 32
@@ -345,15 +346,16 @@ class JetSetWilly:
                 comment = 'This guardian (page {}, sprites {}-{}) is not used.'.format(page, base_index, end_index)
             elif a == 45824:
                 comment = 'The next 256 bytes are unused.'
-            lines.append('D {} {}'.format(a, comment))
+            lines.append('{} {} {}'.format(directive, a, comment))
             if num:
                 sprites = []
                 for addr in range(a, a + num * 32, 32):
                     sprites.append(self._get_guardian_macro(addr, attrs.pop(0)))
-                lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a, ' | '.join(sprites)))
+                lines.append('{} {} #UDGTABLE {{ {} }} TABLE#'.format(directive, a, ' | '.join(sprites)))
                 lines.append('B {},{},16'.format(a, 32 * num))
             else:
                 lines.append('S {},256'.format(a))
+            directive = 'N'
         lines.append('i 49152')
         return '\n'.join(lines)
 
@@ -427,8 +429,8 @@ class JetSetWilly:
                 b += 1
             if b < a + 205:
                 comment += ' Note that because of a #BUG#corruptedConveyors in the game engine, the conveyor tile is not drawn correctly (see the room image above).'
-        lines.append('D {} {}'.format(a + 160, comment))
-        lines.append('D {} {}'.format(a + 160, tiles_table))
+        lines.append('N {} {}'.format(a + 160, comment))
+        lines.append('N {} {}'.format(a + 160, tiles_table))
         lines.append('B {},9,9 Background{}'.format(a + 160, tile_usage[0]))
         lines.append('B {},9,9 Floor{}'.format(a + 169, tile_usage[1]))
         lines.append('B {},9,9 Wall{}'.format(a + 178, tile_usage[2]))
@@ -445,7 +447,7 @@ class JetSetWilly:
             return y, x
 
     def _write_conveyor(self, lines, a):
-        lines.append('D {} The next four bytes are copied to #R32982 and specify the direction, location and length of the conveyor.'.format(a + 214))
+        lines.append('N {} The next four bytes are copied to #R32982 and specify the direction, location and length of the conveyor.'.format(a + 214))
         conveyor_d, p1, p2 = self.snapshot[a + 214:a + 217]
         coords = self._get_coordinates(p1, p2)
         location_suffix = ': ({},{})'.format(*coords) if coords else ' (unused)'
@@ -455,7 +457,7 @@ class JetSetWilly:
         lines.append('B {},1 Length{}'.format(a + 217, length_suffix))
 
     def _write_ramp(self, lines, a):
-        lines.append('D {} The next four bytes are copied to #R32986 and specify the direction, location and length of the ramp.'.format(a + 218))
+        lines.append('N {} The next four bytes are copied to #R32986 and specify the direction, location and length of the ramp.'.format(a + 218))
         ramp_d, p1, p2 = self.snapshot[a + 218:a + 221]
         coords = self._get_coordinates(p1, p2)
         location_suffix = ': ({},{})'.format(*coords) if coords else ' (unused)'
@@ -465,7 +467,7 @@ class JetSetWilly:
         lines.append('B {},1 Length{}'.format(a + 221, length_suffix))
 
     def _write_exits(self, lines, a, room_name):
-        lines.append('D {} The next four bytes are copied to #R33001 and specify the rooms to the left, to the right, above and below.'.format(a + 233))
+        lines.append('N {} The next four bytes are copied to #R33001 and specify the rooms to the left, to the right, above and below.'.format(a + 233))
         room_left, room_right, room_up, room_down = self.snapshot[a + 233:a + 237]
         for addr, num, name, desc in (
             (a + 233, room_left, self.room_names_wp.get(room_left), 'to the left'),
@@ -491,7 +493,7 @@ class JetSetWilly:
             guardian_type = entity_def[0] & 7
             entities.append((num, coords, guardian_type, def_addr))
         infix = '' if room_num == 47 else 'are copied to #R33008 and '
-        lines.append('D {} The next eight pairs of bytes {}specify the entities (ropes, arrows, guardians) in this room.'.format(start, infix))
+        lines.append('N {} The next eight pairs of bytes {}specify the entities (ropes, arrows, guardians) in this room.'.format(start, infix))
         addr = start
         terminated = False
         for num, coords, guardian_type, def_addr in entities:
@@ -569,13 +571,13 @@ class JetSetWilly:
 
             # Room name
             if room_num == 47:
-                lines.append('D 61312 The next 32 bytes specify the room name.')
+                lines.append('N 61312 The next 32 bytes specify the room name.')
             else:
-                lines.append('D {} The next 32 bytes are copied to #R32896 and specify the room name.'.format(a + 128))
+                lines.append('N {} The next 32 bytes are copied to #R32896 and specify the room name.'.format(a + 128))
             lines.append('T {},32 Room name'.format(a + 128))
 
             if room_num == 47:
-                lines.append('D 61344 In a working room definition, the next 80 bytes define the tiles, conveyor, ramp, border colour, item graphic, and exits. In this room, however, there are code remnants and unused data.')
+                lines.append('N 61344 In a working room definition, the next 80 bytes define the tiles, conveyor, ramp, border colour, item graphic, and exits. In this room, however, there are code remnants and unused data.')
                 lines.append('B 61344,9,9 Background tile')
                 lines.append('B 61353')
                 lines.append('C 61361')
@@ -598,23 +600,23 @@ class JetSetWilly:
                 self._write_ramp(lines, a)
 
                 # Border colour
-                lines.append('D {} The next byte is copied to #R32990 and specifies the border colour.'.format(a + 222))
+                lines.append('N {} The next byte is copied to #R32990 and specifies the border colour.'.format(a + 222))
                 lines.append('B {} Border colour'.format(a + 222))
 
                 # Bytes 223/224
-                lines.append('D {} The next two bytes are copied to #R32991, but are not used.'.format(a + 223))
+                lines.append('N {} The next two bytes are copied to #R32991, but are not used.'.format(a + 223))
                 lines.append('B {} Unused'.format(a + 223))
 
                 # Item graphic
-                lines.append('D {} The next eight bytes are copied to #R32993 and define the item graphic.'.format(a + 225))
-                lines.append('D {0} #UDGTABLE {{ #UDG{0},{1}(item{2:02d}) }} TABLE#'.format(a + 225, room_paper + 3, room_num))
+                lines.append('N {} The next eight bytes are copied to #R32993 and define the item graphic.'.format(a + 225))
+                lines.append('N {0} #UDGTABLE {{ #UDG{0},{1}(item{2:02d}) }} TABLE#'.format(a + 225, room_paper + 3, room_num))
                 lines.append('B {},8,8 Item graphic{}'.format(a + 225, '' if items.get(room_num) else ' (unused)'))
 
                 # Rooms to the left, to the right, above and below
                 self._write_exits(lines, a, room_name)
 
                 # Bytes 237-239
-                lines.append('D {} The next three bytes are copied to #R33005, but are not used.'.format(a + 237))
+                lines.append('N {} The next three bytes are copied to #R33005, but are not used.'.format(a + 237))
                 lines.append('B {} Unused'.format(a + 237))
 
             # Entities
