@@ -87,6 +87,19 @@ Here are some 'before' and 'after' pictures showing what the conveyors actually 
 { =t                          | Before                                              | After }
 TABLE#
 
+To fix the bug:
+
+<div>POKE 36178,151</div>
+<div>POKE 36181,9</div>
+<div>POKE 36183,205</div>
+<div>POKE 36184,38</div>
+<div>POKE 36185,255</div>
+<div>POKE 65318,9</div>
+<div>POKE 65319,190</div>
+<div>POKE 65322,75</div>
+<div>POKE 65323,35</div>
+<div>POKE 65324,201</div>
+
 [Bug:invalidGridLocation:Invalid grid location]
 If the LSB of the system variable FRAMES (at 23672) is 142 when the game starts, the routine at #R34499 will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
 

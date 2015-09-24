@@ -7,6 +7,7 @@ In #FACT#theMusicOfLife(), added a POKE to prevent the in-game music from deteri
 In #BUG#theStickyBed(), added a note about using 'right' keys other than 'P' to move Willy off the bed (thanks jetsetdanny)
 In #BUG#selfCollectingItem(), added a POKE that enables Willy to collect the item himself (thanks Stuart Brady)
 In #FACT#gameOverAt1am(), added a note about the message that scrolls across the lower part of the title screen
+In #BUG#corruptedConveyors(), added POKEs that fix how conveyors are drawn
 
 [Changelog:20150328]
 -
