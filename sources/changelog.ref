@@ -8,6 +8,7 @@ In #BUG#theStickyBed(), added a note about using 'right' keys other than 'P' to 
 In #BUG#selfCollectingItem(), added a POKE that enables Willy to collect the item himself (thanks Stuart Brady)
 In #FACT#gameOverAt1am(), added a note about the message that scrolls across the lower part of the title screen
 In #BUG#corruptedConveyors(), added POKEs that fix how conveyors are drawn
+In #FACT#oneItemBehindAnother(), added a POKE that moves one of the items to a different location (thanks Stuart Brady)
 
 [Changelog:20150328]
 -

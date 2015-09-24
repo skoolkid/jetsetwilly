@@ -220,6 +220,10 @@ Entity definition 127 at #R41976 should not be modified or used to define an act
 [Fact:oneItemBehindAnother:One item behind another]
 There are two items in #R64000(The Beach), but they are both at the same location, so it looks as if there is only one.
 
+To move one of the items two cells to the left:
+
+POKE #R42438(42438),180
+
 [Fact:slipperySlopes:Slippery slopes]
 In #R56064(The Chapel) and #R57344(Halfway up the East Wall), the ramps act as conveyors that push Willy down the slope, because the ramp tile has the same attribute byte as the conveyor tile (which is not actually used in either room). There are no conveyor-ramps anywhere else in the game.
 
