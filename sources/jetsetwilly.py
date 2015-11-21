@@ -16,6 +16,7 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
 from skoolkit.skoolhtml import HtmlWriter, Frame, Udg
+from skoolkit.skoolmacro import parse_image_macro
 
 class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
@@ -34,16 +35,15 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         self.room_names, self.room_names_wp = self._get_room_names()
 
     def expand_room(self, text, index, cwd):
-        # #ROOMaddr[,scale,x,y,w,h,empty,fix,anim][(fname)]
-        param_names = ('addr', 'scale', 'x', 'y', 'w', 'h', 'empty', 'fix', 'anim')
+        # #ROOMaddr[,scale,x,y,w,h,empty,fix,anim][{x,y,width,height}][(fname)]
+        names = ('addr', 'scale', 'x', 'y', 'w', 'h', 'empty', 'fix', 'anim')
         defaults = (2, 0, 0, 32, 17, 0, 0, 0)
-        img_path_id = 'ScreenshotImagePath'
-        params = self.parse_image_params(text, index, defaults=defaults, path_id=img_path_id, names=param_names)
-        end, img_path, crop_rect, address, scale, x, y, w, h, empty, fix, anim = params
-        if img_path is None:
+        end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
+        address, scale, x, y, w, h, empty, fix, anim = params
+        if not fname:
             room_name = self.room_names[address // 256 - 192]
             fname = room_name.lower().replace(' ', '_')
-            img_path = self.image_path(fname, img_path_id)
+        img_path = self.image_path(fname, 'ScreenshotImagePath')
         if self.need_image(img_path):
             room_udgs = self._get_room_udgs(address, empty, fix)
             img_udgs = [room_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
