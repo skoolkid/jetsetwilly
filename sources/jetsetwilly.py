@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
+from skoolkit.skoolasm import AsmWriter
 from skoolkit.skoolhtml import HtmlWriter, Frame, Udg
-from skoolkit.skoolmacro import parse_image_macro
+from skoolkit.skoolmacro import parse_ints, parse_image_macro
+
+def parse_gbuf(text, index):
+    # #GBUFfrom[,to]
+    return parse_ints(text, index, 2, (None,))
 
 class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
@@ -33,6 +38,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             y = 8 * (b1 >> 7) + b2 // 32
             self.items.setdefault(room_num, []).append((x, y))
         self.room_names, self.room_names_wp = self._get_room_names()
+        self.addr_anchor_fmt = self.get_dictionary('Game')['AddressAnchor']
 
     def expand_room(self, text, index, cwd):
         # #ROOMaddr[,scale,x,y,w,h,empty,fix,anim][{x,y,width,height}][(fname)]
@@ -55,6 +61,14 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             else:
                 self.write_image(img_path, img_udgs, crop_rect, scale)
         return end, self.img_element(cwd, img_path)
+
+    def expand_gbuf(self, text, index, cwd):
+        end, addr_from, addr_to = parse_gbuf(text, index)
+        anchor = self.addr_anchor_fmt.format(address=addr_from)
+        link_text = self.parser.get_instruction_addr_str(addr_from)
+        if addr_to is not None:
+            link_text += '-' + self.parser.get_instruction_addr_str(addr_to)
+        return end, '#LINK:GameStatusBuffer#{}({})'.format(anchor, link_text)
 
     def rooms(self, cwd):
         lines = [
@@ -323,3 +337,11 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 udg_array[y][x + i] = Udg(new_udg_attr, new_udg_data)
                 prev_row[i] = udg
             y += 1
+
+class JetSetWillyAsmWriter(AsmWriter):
+    def expand_gbuf(self, text, index):
+        end, addr_from, addr_to = parse_gbuf(text, index)
+        output = self.parser.get_instruction_addr_str(addr_from)
+        if addr_to is not None:
+            output += '-' + self.parser.get_instruction_addr_str(addr_to)
+        return end, output

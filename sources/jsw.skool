@@ -27,6 +27,7 @@ b24576 DEFS 4096
 b28672 DEFS 4096
 
 @start
+@writer=:jetsetwilly.JetSetWillyAsmWriter
 ; Jet Set Willy disassembly
 ; http://skoolkit.ca/
 ;
@@ -730,8 +731,8 @@ g34262 DEFB 0
 ; Willy's state on entry to the room
 ;
 @ignoreua
-; Initialised by the routine at #R35068, and copied back into
-; #LINK:GameStatusBuffer#34255(34255-34261) by the routine at #R35841.
+; Initialised by the routine at #R35068, and copied back into #GBUF34255,34261
+; by the routine at #R35841.
 @label=INITSTATE
 g34263 DEFB 0        ; Willy's pixel y-coordinate (copied from #R34255)
  34264 DEFB 0        ; Willy's direction and movement flags (copied from
@@ -1240,7 +1241,7 @@ c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
  35096 LD L,0        ; }
 @ignoreua
  35098 LD DE,32768   ; {Copy the room definition into the game status buffer at
- 35101 LD BC,256     ; #LINK:GameStatusBuffer#32768(32768)
+ 35101 LD BC,256     ; #GBUF32768
  35104 LDIR          ; }
  35106 LD IX,33008   ; Point #REGix at the first byte of the first entity
                      ; specification for the current room at #R33008
@@ -1267,8 +1268,8 @@ c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
 @ignoreua
  35146 LD HL,34255   ; {Copy the seven bytes that define Willy's state
  35149 LD DE,34263   ; (position, animation frame etc.) on entry to this room
- 35152 LD BC,7       ; from #LINK:GameStatusBuffer#34255(34255-34261) to
- 35155 LDIR          ; #R34263}
+ 35152 LD BC,7       ; from #GBUF34255,34261 to #R34263
+ 35155 LDIR          ; }
  35157 CALL 36147    ; Draw the current room to the screen buffer at #R28672
                      ; and the attribute buffer at #R24064
  35160 LD HL,20480   ; {Clear the bottom third of the display file
@@ -1702,8 +1703,8 @@ c35841 LD A,71       ; #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
  35899 DEC (HL)      ; Decrease the number of lives remaining by one
 @ignoreua
  35900 LD HL,34263   ; {Restore Willy's state upon entry to the room by copying
- 35903 LD DE,34255   ; the seven bytes at #R34263 back into
- 35906 LD BC,7       ; #LINK:GameStatusBuffer#34255(34255-34261)
+ 35903 LD DE,34255   ; the seven bytes at #R34263 back into #GBUF34255,34261
+ 35906 LD BC,7       ;
  35909 LDIR          ; }
  35911 JP 35090      ; Reinitialise the room and resume the game
 

@@ -41,4 +41,6 @@ Copying ../sources/jsw.css to {odir}/jet_set_willy/jsw.css
 
 HTML_WRITER = '../sources:jetsetwilly.JetSetWillyHtmlWriter'
 
-write_tests(SKOOL, SNAPSHOT, OUTPUT, HTML_WRITER)
+ASM_WRITER = '../sources:jetsetwilly.JetSetWillyAsmWriter'
+
+write_tests(SKOOL, SNAPSHOT, OUTPUT, HTML_WRITER, ASM_WRITER)

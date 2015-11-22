@@ -22,7 +22,8 @@ else:
 sys.stderr.write("Found SkoolKit in {}\n".format(skool2html.PACKAGE_DIR))
 
 def run_skool2asm():
-    skool2asm.main(sys.argv[1:] + [JSW_SKOOL])
+    options = '-W {}/sources:jetsetwilly.JetSetWillyAsmWriter'.format(JETSETWILLY_HOME)
+    skool2asm.main(options.split() + sys.argv[1:] + [JSW_SKOOL])
 
 def run_skool2html():
     options = '-d {}/build/html'.format(JETSETWILLY_HOME)
