@@ -70,19 +70,9 @@ GUARDIANS = {
 class JetSetWilly:
     def __init__(self, snapshot):
         self.snapshot = snapshot
-        self.sprite_macros = self._get_sprite_macros()
         self.room_names, self.room_names_wp = self._get_room_names()
         self.room_macros = self._get_room_macros()
         self.room_entities = self._get_room_entities()
-
-    def _get_sprite_macros(self):
-        sprite_macros = {
-            40000: '#UDGARRAY2,6,,2;40000-40017-1-16(foot)',
-            40032: '#UDGARRAY2,66,,2;40032-40049-1-16(barrel)'
-        }
-        for i, a in enumerate(range(40064, 40192, 32)):
-            sprite_macros[a] = '#UDGARRAY2,step=2;{},69;{},69;{},7;{},7(maria{})'.format(a, a + 1, a + 16, a + 17, i)
-        return sprite_macros
 
     def _get_room_names(self):
         rooms = {}
@@ -266,48 +256,6 @@ class JetSetWilly:
                      'terminate the entity buffer.')
         lines.append('B 41976,7')
         lines.append('i 41983')
-        return '\n'.join(lines)
-
-    def get_udg_table(self, addr, num, attr=56, fname=None, rows=1, animation='', delay=None):
-        macros = []
-        start = addr
-        suffix = '*' if animation else ''
-        if isinstance(attr, int):
-            attrs = [attr] * num
-        else:
-            attrs = list(attr)
-        for r in range(rows):
-            macros.append([])
-            frames = []
-            end = start + (32 * num) // rows
-            for b in range(start, end, 32):
-                if num == 1:
-                    frame = fname
-                else:
-                    frame = '{}{}'.format(fname, (b - addr) // 32)
-                if r % 2:
-                    frames.insert(0, frame)
-                else:
-                    frames.append(frame)
-                if b in self.sprite_macros:
-                    macros[-1].append(self.sprite_macros[b])
-                else:
-                    macros[-1].append('#UDGARRAY2,{},,2;{}-{}-1-16({}{})'.format(attrs.pop(0), b, b + 17, frame, suffix))
-            start = end
-            if r < len(animation):
-                if delay:
-                    frames[0] += ',{}'.format(delay)
-                macros[-1].append('#UDGARRAY*{}({}_{}.gif)'.format(';'.join(frames), fname, animation[r]))
-        udgtable = '#UDGTABLE'
-        for r in range(rows):
-            udgtable += ' {{ {} }}'.format(' | '.join(macros[r]))
-        return udgtable + ' TABLE#'
-
-    def get_graphics(self, addr, num, attr, fname=None, rows=1, animation='', delay=None):
-        lines = []
-        udg_table = self.get_udg_table(addr, num, attr, fname, rows, animation, delay)
-        lines.append('D {} {}'.format(addr, udg_table))
-        lines.append('B {},{},16'.format(addr, 32 * num))
         return '\n'.join(lines)
 
     def get_guardian_graphics(self):
@@ -530,17 +478,12 @@ class JetSetWilly:
             if room_num == 60:
                 lines.append('@ {} ignoreua:t'.format(a))
             lines.append('b {} Room {}: {} (teleport: {})'.format(a, room_num, self.room_names_wp[room_num], self._get_teleport_code(room_num)))
-            if a in (50688, 56320, 56576, 59904, 61440):
-                # Rooms with flashing cells
-                room_image = '#ROOM{}({}.gif)'.format(a, room_name.lower().replace(' ', '_'))
-            elif a == 61184:
+            if a == 61184:
                 # [
                 room_image = '#ROOM{}(left_square_bracket)'.format(a)
-            else:
-                room_image = '#ROOM{}'.format(a)
-            if room_num == 47:
                 lines.append('D 61184 This room is not used.')
             else:
+                room_image = '#ROOM{}'.format(a)
                 lines.append('D {} Used by the routine at #R35068.'.format(a))
             lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a, room_image))
             if room_num == 47:

@@ -28,14 +28,14 @@ But now that the item is revealed, we can also see that it's unreachable:
 
 #PUSHS
 #POKES56548,24,2
-#ROOM56320,2,16,0,16,16(first_landing_item1.gif)
+#ROOM56320,2,16,0,16,16(first_landing_item1)
 
 To add a ledge and open the wall to make the item reachable:
 
 POKE 56350,0: POKE 56358,0: POKE 56365,170
 
 #POKES56350,0;56358,0;56365,170
-#ROOM56320,2,16,0,16,16(first_landing_item2.gif)
+#ROOM56320,2,16,0,16,16(first_landing_item2)
 #POPS
 
 The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix this bug is
@@ -80,11 +80,11 @@ The conveyors in #R55296(West of Kitchen), #R56576(The Nightmare Room), #R61696(
 Here are some 'before' and 'after' pictures showing what the conveyors actually look like and what they should look like.
 
 #UDGTABLE(gallery)
-{ #R55296(West of Kitchen)    | #ROOM55296,2,21,11,7,3,1,0,1(conveyor24_before.gif) | #ROOM55296,2,21,11,7,3,1,1,1(conveyor24_after.gif) }
-{ #R56576(The Nightmare Room) | #ROOM56576,2,26,6,3,3,1(conveyor29_before.gif)      | #ROOM56576,2,26,6,3,3,1,1(conveyor29_after.gif) }
-{ #R61696(The Wine Cellar)    | #ROOM61696,2,26,11,7,3,1,0,1(conveyor49_before.gif) | #ROOM61696,2,26,11,7,3,1,1(conveyor49_after) }
-{ #R62208(Tool#SPACE(2)Shed)  | #ROOM62208,2,6,14,20,2,1,0,1(conveyor51_before.gif) | #ROOM62208,2,6,14,20,2,1,1,1(conveyor51_after.gif) }
-{ =t                          | Before                                              | After }
+{ #R55296(West of Kitchen)    | #ROOM55296,2,21,11,7,3,1,0,1(conveyor24_before) | #ROOM55296,2,21,11,7,3,1,1,1(conveyor24_after) }
+{ #R56576(The Nightmare Room) | #ROOM56576,2,26,6,3,3,1(conveyor29_before)      | #ROOM56576,2,26,6,3,3,1,1(conveyor29_after) }
+{ #R61696(The Wine Cellar)    | #ROOM61696,2,26,11,7,3,1,0,1(conveyor49_before) | #ROOM61696,2,26,11,7,3,1,1(conveyor49_after) }
+{ #R62208(Tool#SPACE(2)Shed)  | #ROOM62208,2,6,14,20,2,1,0,1(conveyor51_before) | #ROOM62208,2,6,14,20,2,1,1,1(conveyor51_after) }
+{ =t                          | Before                                          | After }
 TABLE#
 
 To fix the bug:

@@ -49,18 +49,15 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         if not fname:
             room_name = self.room_names[address // 256 - 192]
             fname = room_name.lower().replace(' ', '_')
-        img_path = self.image_path(fname, 'ScreenshotImagePath')
-        if self.need_image(img_path):
-            room_udgs = self._get_room_udgs(address, empty, fix)
-            img_udgs = [room_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
-            if anim:
-                attr = self.snapshot[address + 205]
-                direction = self.snapshot[address + 214]
-                frames = self._animate_conveyor(img_udgs, attr, direction, crop_rect, scale)
-                self.write_animated_image(img_path, frames)
-            else:
-                self.write_image(img_path, img_udgs, crop_rect, scale)
-        return end, self.img_element(cwd, img_path)
+        room_udgs = self._get_room_udgs(address, empty, fix)
+        img_udgs = [room_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
+        if anim:
+            attr = self.snapshot[address + 205]
+            direction = self.snapshot[address + 214]
+            frames = self._animate_conveyor(img_udgs, attr, direction, crop_rect, scale)
+        else:
+            frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
+        return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
 
     def expand_gbuf(self, text, index, cwd):
         end, addr_from, addr_to = parse_gbuf(text, index)
@@ -98,13 +95,10 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         return '\n'.join(lines)
 
     def aeroplane(self, cwd):
-        img_path = self.image_path('aeroplane.gif', 'ScreenshotImagePath')
-        if self.need_image(img_path):
-            nomen_luni = self._get_room_udgs(61440, 1)[:-1]
-            under_the_roof = self._get_room_udgs(59904, 1)[:-1]
-            udgs = nomen_luni + under_the_roof
-            self.write_image(img_path, udgs, scale=1)
-        return self.img_element(cwd, img_path)
+        nomen_luni = self._get_room_udgs(61440, 1)[:-1]
+        under_the_roof = self._get_room_udgs(59904, 1)[:-1]
+        frames = [Frame(nomen_luni + under_the_roof)]
+        return self.handle_image(frames, 'aeroplane', cwd, path_id='ScreenshotImagePath')
 
     def _get_room_names(self):
         rooms = {}

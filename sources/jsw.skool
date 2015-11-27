@@ -3831,12 +3831,12 @@ b40064 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
 ; #UDGARRAY2,7,,2;40224-40241-1-16(willy1*) |
 ; #UDGARRAY2,7,,2;40256-40273-1-16(willy2*) |
 ; #UDGARRAY2,7,,2;40288-40305-1-16(willy3*) |
-; #UDGARRAY*willy0;willy1;willy2;willy3(willy_r.gif) }
+; #UDGARRAY*willy0;willy1;willy2;willy3(willy_r) }
 ; { #UDGARRAY2,7,,2;40320-40337-1-16(willy4*) |
 ; #UDGARRAY2,7,,2;40352-40369-1-16(willy5*) |
 ; #UDGARRAY2,7,,2;40384-40401-1-16(willy6*) |
 ; #UDGARRAY2,7,,2;40416-40433-1-16(willy7*) |
-; #UDGARRAY*willy7;willy6;willy5;willy4(willy_l.gif) }
+; #UDGARRAY*willy7;willy6;willy5;willy4(willy_l) }
 ; TABLE#
 @label=MANDAT
 b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
@@ -6652,10 +6652,10 @@ b41984 DEFS 173      ; Unused
 ; #UDGTABLE
 ; { #UDGARRAY2,7,,2;42496-42513-1-16(toilet0*) |
 ; #UDGARRAY2,7,,2;42528-42545-1-16(toilet1*) |
-; #UDGARRAY*toilet0,10;toilet1(toilet_empty.gif) }
+; #UDGARRAY*toilet0,10;toilet1(toilet_empty) }
 ; { #UDGARRAY2,7,,2;42560-42577-1-16(toilet2*) |
 ; #UDGARRAY2,7,,2;42592-42609-1-16(toilet3*) |
-; #UDGARRAY*toilet3,10;toilet2(toilet_full.gif) }
+; #UDGARRAY*toilet3,10;toilet2(toilet_full) }
 ; TABLE#
 @label=TOILET0
 b42496 DEFB 0,15,0,63,0,15,48,15,12,15,3,15,0,207,0,47
@@ -7821,7 +7821,7 @@ b50432 DEFB 128,0,0,0,0,0,0,0                  ; {Room layout
 ; Used by the routine at #R35068.
 ; .
 ; #UDGTABLE
-; { #ROOM50688(entrance_to_hades.gif) }
+; { #ROOM50688 }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9903,7 +9903,7 @@ b56064 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; Used by the routine at #R35068.
 ; .
 ; #UDGTABLE
-; { #ROOM56320(first_landing.gif) }
+; { #ROOM56320 }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9994,7 +9994,7 @@ b56320 DEFB 160,0,0,0,0,0,160,0                 ; {Room layout
 ; Used by the routine at #R35068.
 ; .
 ; #UDGTABLE
-; { #ROOM56576(the_nightmare_room.gif) }
+; { #ROOM56576 }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11188,7 +11188,7 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35068.
 ; .
 ; #UDGTABLE
-; { #ROOM59904(under_the_roof.gif) }
+; { #ROOM59904 }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11731,7 +11731,7 @@ b61184 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout (completely
 ; Used by the routine at #R35068.
 ; .
 ; #UDGTABLE
-; { #ROOM61440(nomen_luni.gif) }
+; { #ROOM61440 }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
