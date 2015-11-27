@@ -28,6 +28,8 @@ b28672 DEFS 4096
 
 @start
 @replace=/#guardian\i,\i,\i/#UDGARRAY2,\3,,2;(\1*256+\2*32)-(\1*256+\2*32+17)-1-16(guardian\1-\2-\3)
+@replace=/#tiles\i/#FOR(49312+\1*256,49357+\1*256,9);;$n;#UDG($n+1,#PEEK$n)(<tmap>#EVAL\1,,2); | ;;
+@replace=/<tmap>/#MAP($n%256)(,160:background,169:floor,178:wall,187:nasty,196:ramp,205:conveyor)
 @writer=:jetsetwilly.JetSetWillyAsmWriter
 ; Jet Set Willy disassembly
 ; http://skoolkit.ca/
@@ -7292,8 +7294,7 @@ b49152 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG49313,0(background00) | #UDG49322,68(floor00) | #UDG49331,22(wall00) |
-; #UDG49340,5(nasty00) | #UDG49349,7(ramp00) | #UDG49358,67(conveyor00) }
+; { #tiles0 }
 ; TABLE#
  49312 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  49321 DEFB 68,255,222,108,136,18,64,4,0       ; Floor
@@ -7382,8 +7383,7 @@ b49408 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG49569,0(background01) | #UDG49578,68(floor01) | #UDG49587,70(wall01) |
-; #UDG49596,47(nasty01) | #UDG49605,7(ramp01) | #UDG49614,44(conveyor01) }
+; { #tiles1 }
 ; TABLE#
  49568 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  49577 DEFB 68,255,255,253,187,214,114,96,64   ; Floor
@@ -7475,8 +7475,7 @@ b49664 DEFB 0,3,255,207,252,0,0,0              ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG49825,0(background02) | #UDG49834,68(floor02) | #UDG49843,66(wall02) |
-; #UDG49852,70(nasty02) | #UDG49861,255(ramp02) | #UDG49870,255(conveyor02) }
+; { #tiles2 }
 ; TABLE#
  49824 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  49833 DEFB 68,215,179,117,109,92,24,8,4       ; Floor
@@ -7570,8 +7569,7 @@ b49920 DEFB 48,195,8,0,8,0,0,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG50081,0(background03) | #UDG50090,4(floor03) | #UDG50099,22(wall03) |
-; #UDG50108,6(nasty03) | #UDG50117,7(ramp03) | #UDG50126,255(conveyor03) }
+; { #tiles3 }
 ; TABLE#
  50080 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  50089 DEFB 4,240,249,191,31,12,16,40,68       ; Floor
@@ -7664,8 +7662,7 @@ b50176 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG50337,0(background04) | #UDG50346,6(floor04) | #UDG50355,13(wall04) |
-; #UDG50364,68(nasty04) | #UDG50373,5(ramp04) | #UDG50382,66(conveyor04) }
+; { #tiles4 }
 ; TABLE#
  50336 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  50345 DEFB 6,170,85,170,255,255,85,170,85     ; Floor
@@ -7762,8 +7759,7 @@ b50432 DEFB 128,0,0,0,0,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG50593,0(background05) | #UDG50602,4(floor05) | #UDG50611,13(wall05) |
-; #UDG50620,255(nasty05) | #UDG50629,7(ramp05) | #UDG50638,66(conveyor05) }
+; { #tiles5 }
 ; TABLE#
  50592 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  50601 DEFB 4,255,255,170,85,170,85,170,85     ; Floor
@@ -7854,9 +7850,7 @@ b50688 DEFB 160,0,0,0,0,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG50849,52(background06) | #UDG50858,163(floor06.gif) |
-; #UDG50867,99(wall06) | #UDG50876,50(nasty06) | #UDG50885,7(ramp06) |
-; #UDG50894,255(conveyor06) }
+; { #tiles6 }
 ; TABLE#
  50848 DEFB 52,0,0,0,0,0,0,0,0                 ; Background
  50857 DEFB 163,160,20,130,80,10,65,40,5       ; Floor
@@ -7948,8 +7942,7 @@ b50944 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG51105,0(background07) | #UDG51114,4(floor07) | #UDG51123,22(wall07) |
-; #UDG51132,6(nasty07) | #UDG51141,7(ramp07) | #UDG51150,255(conveyor07) }
+; { #tiles7 }
 ; TABLE#
  51104 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  51113 DEFB 4,4,3,201,216,48,54,35,1           ; Floor
@@ -8044,8 +8037,7 @@ b51200 DEFB 0,0,8,0,8,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG51361,0(background08) | #UDG51370,4(floor08) | #UDG51379,22(wall08) |
-; #UDG51388,6(nasty08) | #UDG51397,7(ramp08) | #UDG51406,255(conveyor08) }
+; { #tiles8 }
 ; TABLE#
  51360 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  51369 DEFB 4,245,250,191,31,38,20,34,16       ; Floor
@@ -8142,8 +8134,7 @@ b51456 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG51617,8(background09) | #UDG51626,10(floor09) | #UDG51635,74(wall09) |
-; #UDG51644,12(nasty09) | #UDG51653,15(ramp09) | #UDG51662,255(conveyor09) }
+; { #tiles9 }
 ; TABLE#
  51616 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  51625 DEFB 10,31,243,225,96,48,44,64,128      ; Floor
@@ -8239,8 +8230,7 @@ b51712 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG51873,40(background10) | #UDG51882,71(floor10) | #UDG51891,58(wall10) |
-; #UDG51900,255(nasty10) | #UDG51909,47(ramp10) | #UDG51918,255(conveyor10) }
+; { #tiles10 }
 ; TABLE#
  51872 DEFB 40,0,0,0,0,0,0,0,0                 ; Background
  51881 DEFB 71,255,170,119,170,119,170,85,170  ; Floor
@@ -8328,8 +8318,7 @@ b51968 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG52129,0(background11) | #UDG52138,71(floor11) | #UDG52147,58(wall11) |
-; #UDG52156,68(nasty11) | #UDG52165,7(ramp11) | #UDG52174,255(conveyor11) }
+; { #tiles11 }
 ; TABLE#
  52128 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  52137 DEFB 71,255,170,119,170,119,170,85,170  ; Floor (unused)
@@ -8428,8 +8417,7 @@ b52224 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG52385,0(background12) | #UDG52394,4(floor12) | #UDG52403,22(wall12) |
-; #UDG52412,66(nasty12) | #UDG52421,7(ramp12) | #UDG52430,255(conveyor12) }
+; { #tiles12 }
 ; TABLE#
  52384 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  52393 DEFB 4,170,85,170,88,48,16,16,8         ; Floor
@@ -8525,8 +8513,7 @@ b52480 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG52641,0(background13) | #UDG52650,4(floor13) | #UDG52659,66(wall13) |
-; #UDG52668,2(nasty13) | #UDG52677,4(ramp13) | #UDG52686,255(conveyor13) }
+; { #tiles13 }
 ; TABLE#
  52640 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  52649 DEFB 4,1,30,6,122,26,232,104,160        ; Floor
@@ -8620,8 +8607,7 @@ b52736 DEFB 0,0,0,0,0,0,8,2                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG52897,16(background14) | #UDG52906,23(floor14) | #UDG52915,4(wall14) |
-; #UDG52924,85(nasty14) | #UDG52933,23(ramp14) | #UDG52942,22(conveyor14) }
+; { #tiles14 }
 ; TABLE#
  52896 DEFB 16,0,0,0,0,0,0,0,0                 ; Background
  52905 DEFB 23,3,3,12,12,49,50,196,200         ; Floor
@@ -8714,8 +8700,7 @@ b52992 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG53153,8(background15) | #UDG53162,12(floor15) | #UDG53171,83(wall15) |
-; #UDG53180,76(nasty15) | #UDG53189,12(ramp15) | #UDG53198,255(conveyor15) }
+; { #tiles15 }
 ; TABLE#
  53152 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  53161 DEFB 12,128,64,32,80,72,84,82,85        ; Floor
@@ -8814,8 +8799,7 @@ b53248 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG53409,6(background16) | #UDG53418,56(floor16) | #UDG53427,13(wall16) |
-; #UDG53436,69(nasty16) | #UDG53445,7(ramp16) | #UDG53454,255(conveyor16) }
+; { #tiles16 }
 ; TABLE#
  53408 DEFB 6,0,0,0,0,0,0,0,0                  ; Background
  53417 DEFB 56,51,187,221,204,85,153,221,238   ; Floor
@@ -8907,8 +8891,7 @@ b53504 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG53665,0(background17) | #UDG53674,4(floor17) | #UDG53683,14(wall17) |
-; #UDG53692,32(nasty17) | #UDG53701,4(ramp17) | #UDG53710,66(conveyor17) }
+; { #tiles17 }
 ; TABLE#
  53664 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  53673 DEFB 4,128,192,224,176,144,148,214,119  ; Floor
@@ -9002,8 +8985,7 @@ b53760 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG53921,68(background18) | #UDG53930,7(floor18) | #UDG53939,38(wall18) |
-; #UDG53948,70(nasty18) | #UDG53957,7(ramp18) | #UDG53966,10(conveyor18) }
+; { #tiles18 }
 ; TABLE#
  53920 DEFB 68,0,0,0,0,0,0,0,0                 ; Background
  53929 DEFB 7,128,192,224,208,88,156,222,205   ; Floor
@@ -9092,8 +9074,7 @@ b54016 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG54177,0(background19) | #UDG54186,4(floor19) | #UDG54195,29(wall19) |
-; #UDG54204,66(nasty19) | #UDG54213,7(ramp19) | #UDG54222,15(conveyor19) }
+; { #tiles19 }
 ; TABLE#
  54176 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  54185 DEFB 4,255,255,242,36,64,2,0,136        ; Floor
@@ -9196,8 +9177,7 @@ b54272 DEFB 160,64,10,0,0,0,0,0                ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG54433,0(background20) | #UDG54442,6(floor20) | #UDG54451,15(wall20) |
-; #UDG54460,255(nasty20) | #UDG54469,255(ramp20) | #UDG54478,255(conveyor20) }
+; { #tiles20 }
 ; TABLE#
  54432 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  54441 DEFB 6,170,85,34,68,34,68,34,68         ; Floor
@@ -9292,8 +9272,7 @@ b54528 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG54689,0(background21) | #UDG54698,50(floor21) | #UDG54707,35(wall21) |
-; #UDG54716,66(nasty21) | #UDG54725,7(ramp21) | #UDG54734,70(conveyor21) }
+; { #tiles21 }
 ; TABLE#
  54688 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  54697 DEFB 50,170,168,173,175,32,170,85,85    ; Floor
@@ -9385,8 +9364,7 @@ b54784 DEFB 0,0,128,0,0,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG54945,8(background22) | #UDG54954,13(floor22) | #UDG54963,58(wall22) |
-; #UDG54972,77(nasty22) | #UDG54981,15(ramp22) | #UDG54990,107(conveyor22) }
+; { #tiles22 }
 ; TABLE#
  54944 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  54953 DEFB 13,255,255,0,255,0,0,0,0           ; Floor
@@ -9485,8 +9463,7 @@ b55040 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG55201,0(background23) | #UDG55210,4(floor23) | #UDG55219,77(wall23) |
-; #UDG55228,255(nasty23) | #UDG55237,71(ramp23) | #UDG55246,255(conveyor23) }
+; { #tiles23 }
 ; TABLE#
  55200 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  55209 DEFB 4,254,1,125,133,129,129,129,1      ; Floor
@@ -9581,8 +9558,7 @@ b55296 DEFB 0,0,1,0,0,0,0,0                    ; {Room layout
 ; correctly (see the room image above).
 ; .
 ; #UDGTABLE
-; { #UDG55457,0(background24) | #UDG55466,5(floor24) | #UDG55475,34(wall24) |
-; #UDG55484,255(nasty24) | #UDG55493,71(ramp24) | #UDG55502,66(conveyor24) }
+; { #tiles24 }
 ; TABLE#
  55456 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  55465 DEFB 5,255,189,165,165,165,66,0,0       ; Floor
@@ -9673,8 +9649,7 @@ b55552 DEFB 0,3,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG55713,14(background25) | #UDG55722,13(floor25) | #UDG55731,34(wall25) |
-; #UDG55740,79(nasty25) | #UDG55749,255(ramp25) | #UDG55758,255(conveyor25) }
+; { #tiles25 }
 ; TABLE#
  55712 DEFB 14,0,0,0,0,0,0,0,0                 ; Background
  55721 DEFB 13,255,255,85,170,85,170,0,0       ; Floor
@@ -9771,8 +9746,7 @@ b55808 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG55969,0(background26) | #UDG55978,5(floor26) | #UDG55987,38(wall26) |
-; #UDG55996,255(nasty26) | #UDG56005,255(ramp26) | #UDG56014,255(conveyor26) }
+; { #tiles26 }
 ; TABLE#
  55968 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  55977 DEFB 5,91,164,164,85,10,0,0,0           ; Floor
@@ -9863,8 +9837,7 @@ b56064 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG56225,0(background27) | #UDG56234,13(floor27) | #UDG56243,22(wall27) |
-; #UDG56252,66(nasty27) | #UDG56261,7(ramp27) | #UDG56270,7(conveyor27) }
+; { #tiles27 }
 ; TABLE#
  56224 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  56233 DEFB 13,73,73,73,73,73,73,73,73         ; Floor
@@ -9959,9 +9932,7 @@ b56320 DEFB 160,0,0,0,0,0,160,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG56481,0(background28) | #UDG56490,4(floor28) | #UDG56499,14(wall28) |
-; #UDG56508,214(nasty28.gif) | #UDG56517,7(ramp28) | #UDG56526,255(conveyor28)
-; }
+; { #tiles28 }
 ; TABLE#
  56480 DEFB 0,0,0,0,0,0,0,0,0                   ; Background
  56489 DEFB 4,255,170,85,128,93,148,93,128      ; Floor
@@ -10054,8 +10025,7 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; correctly (see the room image above).
 ; .
 ; #UDGTABLE
-; { #UDG56737,0(background29) | #UDG56746,68(floor29) | #UDG56755,51(wall29) |
-; #UDG56764,69(nasty29) | #UDG56773,7(ramp29) | #UDG56782,165(conveyor29.gif) }
+; { #tiles29 }
 ; TABLE#
  56736 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  56745 DEFB 68,255,165,82,36,66,34,64,4        ; Floor
@@ -10150,8 +10120,7 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG56993,0(background30) | #UDG57002,72(floor30) | #UDG57011,22(wall30) |
-; #UDG57020,14(nasty30) | #UDG57029,7(ramp30) | #UDG57038,255(conveyor30) }
+; { #tiles30 }
 ; TABLE#
  56992 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  57001 DEFB 72,0,162,0,0,0,70,0,147            ; Floor
@@ -10244,8 +10213,7 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG57249,7(background31) | #UDG57258,41(floor31) | #UDG57267,58(wall31) |
-; #UDG57276,255(nasty31) | #UDG57285,47(ramp31) | #UDG57294,255(conveyor31) }
+; { #tiles31 }
 ; TABLE#
  57248 DEFB 7,0,0,0,0,0,0,0,0                  ; Background
  57257 DEFB 41,0,0,0,0,0,0,0,0                 ; Floor
@@ -10334,8 +10302,7 @@ b57344 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG57505,0(background32) | #UDG57514,5(floor32) | #UDG57523,15(wall32) |
-; #UDG57532,255(nasty32) | #UDG57541,7(ramp32) | #UDG57550,7(conveyor32) }
+; { #tiles32 }
 ; TABLE#
  57504 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  57513 DEFB 5,255,255,90,153,189,90,60,90      ; Floor
@@ -10425,8 +10392,7 @@ b57600 DEFB 160,0,0,0,0,0,0,10                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG57761,0(background33) | #UDG57770,22(floor33) | #UDG57779,14(wall33) |
-; #UDG57788,255(nasty33) | #UDG57797,7(ramp33) | #UDG57806,61(conveyor33) }
+; { #tiles33 }
 ; TABLE#
  57760 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  57769 DEFB 22,0,64,9,100,146,45,150,255       ; Floor
@@ -10516,8 +10482,7 @@ b57856 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG58017,0(background34) | #UDG58026,6(floor34) | #UDG58035,26(wall34) |
-; #UDG58044,255(nasty34) | #UDG58053,7(ramp34) | #UDG58062,255(conveyor34) }
+; { #tiles34 }
 ; TABLE#
  58016 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  58025 DEFB 6,255,170,85,255,0,0,0,0           ; Floor
@@ -10609,8 +10574,7 @@ b58112 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG58273,0(background35) | #UDG58282,6(floor35) | #UDG58291,51(wall35) |
-; #UDG58300,71(nasty35) | #UDG58309,7(ramp35) | #UDG58318,41(conveyor35) }
+; { #tiles35 }
 ; TABLE#
  58272 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  58281 DEFB 6,255,107,181,0,173,0,74,0         ; Floor
@@ -10697,8 +10661,7 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG58529,0(background36) | #UDG58538,4(floor36) | #UDG58547,30(wall36) |
-; #UDG58556,2(nasty36) | #UDG58565,68(ramp36) | #UDG58574,255(conveyor36) }
+; { #tiles36 }
 ; TABLE#
  58528 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  58537 DEFB 4,173,82,41,0,1,2,0,0              ; Floor
@@ -10791,8 +10754,7 @@ b58624 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG58785,0(background37) | #UDG58794,4(floor37) | #UDG58803,22(wall37) |
-; #UDG58812,6(nasty37) | #UDG58821,5(ramp37) | #UDG58830,38(conveyor37) }
+; { #tiles37 }
 ; TABLE#
  58784 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  58793 DEFB 4,165,74,36,2,4,0,2,0              ; Floor
@@ -10883,8 +10845,7 @@ b58880 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG59041,0(background38) | #UDG59050,6(floor38) | #UDG59059,42(wall38) |
-; #UDG59068,255(nasty38) | #UDG59077,255(ramp38) | #UDG59086,255(conveyor38) }
+; { #tiles38 }
 ; TABLE#
  59040 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  59049 DEFB 6,85,85,93,215,112,0,0,0           ; Floor
@@ -10977,8 +10938,7 @@ b59136 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG59297,8(background39) | #UDG59306,47(floor39) | #UDG59315,51(wall39) |
-; #UDG59324,13(nasty39) | #UDG59333,15(ramp39) | #UDG59342,22(conveyor39) }
+; { #tiles39 }
 ; TABLE#
  59296 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  59305 DEFB 47,102,102,102,102,102,102,102,102 ; Floor
@@ -11068,8 +11028,7 @@ b59392 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG59553,0(background40) | #UDG59562,2(floor40) | #UDG59571,31(wall40) |
-; #UDG59580,67(nasty40) | #UDG59589,5(ramp40) | #UDG59598,38(conveyor40) }
+; { #tiles40 }
 ; TABLE#
  59552 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  59561 DEFB 2,254,85,42,170,85,170,170,255     ; Floor
@@ -11158,8 +11117,7 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG59809,0(background41) | #UDG59818,22(floor41) | #UDG59827,30(wall41) |
-; #UDG59836,68(nasty41) | #UDG59845,255(ramp41) | #UDG59854,66(conveyor41) }
+; { #tiles41 }
 ; TABLE#
  59808 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  59817 DEFB 22,206,255,0,231,0,127,0,251       ; Floor
@@ -11259,9 +11217,7 @@ b59904 DEFB 0,0,0,255,255,255,255,240          ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG60065,8(background42) | #UDG60074,12(floor42) | #UDG60083,30(wall42) |
-; #UDG60092,245(nasty42.gif) | #UDG60101,15(ramp42) | #UDG60110,14(conveyor42)
-; }
+; { #tiles42 }
 ; TABLE#
  60064 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  60073 DEFB 12,181,170,85,74,37,66,1,2         ; Floor
@@ -11355,8 +11311,7 @@ b60160 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG60321,0(background43) | #UDG60330,4(floor43) | #UDG60339,5(wall43) |
-; #UDG60348,67(nasty43) | #UDG60357,7(ramp43) | #UDG60366,255(conveyor43) }
+; { #tiles43 }
 ; TABLE#
  60320 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  60329 DEFB 4,172,83,42,208,138,36,34,4        ; Floor
@@ -11446,8 +11401,7 @@ b60416 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG60577,8(background44) | #UDG60586,14(floor44) | #UDG60595,75(wall44) |
-; #UDG60604,255(nasty44) | #UDG60613,15(ramp44) | #UDG60622,255(conveyor44) }
+; { #tiles44 }
 ; TABLE#
  60576 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  60585 DEFB 14,160,64,128,0,0,0,0,0            ; Floor
@@ -11536,8 +11490,7 @@ b60672 DEFB 160,0,0,0,0,0,170,170              ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG60833,0(background45) | #UDG60842,6(floor45) | #UDG60851,12(wall45) |
-; #UDG60860,4(nasty45) | #UDG60869,7(ramp45) | #UDG60878,2(conveyor45) }
+; { #tiles45 }
 ; TABLE#
  60832 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  60841 DEFB 6,255,255,165,88,36,66,32,0        ; Floor
@@ -11629,8 +11582,7 @@ b60928 DEFB 170,10,170,170,170,170,170,170     ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG61089,0(background46) | #UDG61098,6(floor46) | #UDG61107,10(wall46) |
-; #UDG61116,2(nasty46) | #UDG61125,67(ramp46) | #UDG61134,4(conveyor46) }
+; { #tiles46 }
 ; TABLE#
  61088 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  61097 DEFB 6,255,255,0,0,0,0,0,0              ; Floor
@@ -11808,9 +11760,7 @@ b61440 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG61601,0(background48) | #UDG61610,13(floor48) |
-; #UDG61619,243(wall48.gif) | #UDG61628,6(nasty48) | #UDG61637,7(ramp48) |
-; #UDG61646,255(conveyor48) }
+; { #tiles48 }
 ; TABLE#
  61600 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  61609 DEFB 13,255,34,68,136,85,34,0,0         ; Floor
@@ -11906,8 +11856,7 @@ b61696 DEFB 0,0,0,0,0,12,2,170                 ; {Room layout
 ; correctly (see the room image above).
 ; .
 ; #UDGTABLE
-; { #UDG61857,0(background49) | #UDG61866,66(floor49) | #UDG61875,41(wall49) |
-; #UDG61884,70(nasty49) | #UDG61893,7(ramp49) | #UDG61902,13(conveyor49) }
+; { #tiles49 }
 ; TABLE#
  61856 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  61865 DEFB 66,255,24,231,16,199,56,0,0        ; Floor
@@ -12002,8 +11951,7 @@ b61952 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG62113,8(background50) | #UDG62122,6(floor50) | #UDG62131,29(wall50) |
-; #UDG62140,12(nasty50) | #UDG62149,15(ramp50) | #UDG62158,13(conveyor50) }
+; { #tiles50 }
 ; TABLE#
  62112 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  62121 DEFB 6,255,255,170,85,170,85,0,0        ; Floor
@@ -12096,8 +12044,7 @@ b62208 DEFB 0,0,2,170,160,0,0,0                ; {Room layout
 ; correctly (see the room image above).
 ; .
 ; #UDGTABLE
-; { #UDG62369,0(background51) | #UDG62378,5(floor51) | #UDG62387,30(wall51) |
-; #UDG62396,6(nasty51) | #UDG62405,7(ramp51) | #UDG62414,68(conveyor51) }
+; { #tiles51 }
 ; TABLE#
  62368 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  62377 DEFB 5,90,255,34,68,34,64,0,0           ; Floor
@@ -12190,8 +12137,7 @@ b62464 DEFB 0,0,0,0,10,170,170,170             ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG62625,0(background52) | #UDG62634,67(floor52) | #UDG62643,30(wall52) |
-; #UDG62652,255(nasty52) | #UDG62661,71(ramp52) | #UDG62670,255(conveyor52) }
+; { #tiles52 }
 ; TABLE#
  62624 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  62633 DEFB 67,255,68,68,255,17,17,255,0       ; Floor
@@ -12284,8 +12230,7 @@ b62720 DEFB 0,0,0,0,160,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG62881,0(background53) | #UDG62890,3(floor53) | #UDG62899,38(wall53) |
-; #UDG62908,255(nasty53) | #UDG62917,7(ramp53) | #UDG62926,34(conveyor53) }
+; { #tiles53 }
 ; TABLE#
  62880 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  62889 DEFB 3,255,255,255,170,85,170,85,0      ; Floor
@@ -12372,8 +12317,7 @@ b62976 DEFB 0,160,0,0,0,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG63137,0(background54) | #UDG63146,65(floor54) | #UDG63155,39(wall54) |
-; #UDG63164,255(nasty54) | #UDG63173,7(ramp54) | #UDG63182,255(conveyor54) }
+; { #tiles54 }
 ; TABLE#
  63136 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  63145 DEFB 65,249,255,63,213,170,21,74,132    ; Floor
@@ -12465,8 +12409,7 @@ b63232 DEFB 0,0,4,0,160,64,0,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG63393,0(background55) | #UDG63402,6(floor55) | #UDG63411,13(wall55) |
-; #UDG63420,255(nasty55) | #UDG63429,255(ramp55) | #UDG63438,66(conveyor55) }
+; { #tiles55 }
 ; TABLE#
  63392 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  63401 DEFB 6,170,85,130,65,130,65,130,65      ; Floor
@@ -12556,8 +12499,7 @@ b63488 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG63649,0(background56) | #UDG63658,3(floor56) | #UDG63667,37(wall56) |
-; #UDG63676,66(nasty56) | #UDG63685,7(ramp56) | #UDG63694,255(conveyor56) }
+; { #tiles56 }
 ; TABLE#
  63648 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  63657 DEFB 3,255,170,255,164,164,167,228,60   ; Floor
@@ -12652,8 +12594,7 @@ b63744 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG63905,0(background57) | #UDG63914,4(floor57) | #UDG63923,35(wall57) |
-; #UDG63932,6(nasty57) | #UDG63941,7(ramp57) | #UDG63950,255(conveyor57) }
+; { #tiles57 }
 ; TABLE#
  63904 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  63913 DEFB 4,247,170,85,239,0,0,0,0           ; Floor
@@ -12743,8 +12684,7 @@ b64000 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG64161,13(background58) | #UDG64170,50(floor58) | #UDG64179,42(wall58) |
-; #UDG64188,48(nasty58) | #UDG64197,14(ramp58) | #UDG64206,44(conveyor58) }
+; { #tiles58 }
 ; TABLE#
  64160 DEFB 13,0,0,0,0,0,0,0,0                 ; Background
  64169 DEFB 50,0,0,64,4,0,16,0,1               ; Floor
@@ -12832,8 +12772,7 @@ b64256 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG64417,0(background59) | #UDG64426,6(floor59) | #UDG64435,61(wall59) |
-; #UDG64444,66(nasty59) | #UDG64453,7(ramp59) | #UDG64462,13(conveyor59) }
+; { #tiles59 }
 ; TABLE#
  64416 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  64425 DEFB 6,187,221,221,238,0,0,0,0          ; Floor
@@ -12924,8 +12863,7 @@ b64512 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #UDG64673,0(background60) | #UDG64682,68(floor60) | #UDG64691,61(wall60) |
-; #UDG64700,79(nasty60) | #UDG64709,7(ramp60) | #UDG64718,14(conveyor60) }
+; { #tiles60 }
 ; TABLE#
  64672 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  64681 DEFB 68,255,170,85,255,0,0,0,0          ; Floor

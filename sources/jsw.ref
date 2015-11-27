@@ -13,6 +13,9 @@ Copyright=&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2015 Richard
 Release=The complete Jet Set Willy RAM disassembly YYYYMMDD
 LinkInternalOperands=1
 
+[ImageWriter]
+DefaultAnimationFormat=gif
+
 [Font]
 32=0000000000000000
 39=0008100000000000

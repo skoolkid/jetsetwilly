@@ -394,22 +394,8 @@ class JetSetWilly:
 
     def _write_tiles(self, lines, a):
         room_num = a // 256 - 192
-        udgs = []
-        for addr, tile_type in ((a + 160, 'background'), (a + 169, 'floor'), (a + 178, 'wall'), (a + 187, 'nasty'), (a + 196, 'ramp'), (a + 205, 'conveyor')):
-            attr = self.snapshot[addr]
-            if tile_type == 'background':
-                room_paper = attr & 120
-            img_type = ''
-            if attr >= 128:
-                paper = (attr & 56) // 8
-                ink = attr & 7
-                if paper != ink:
-                    udg_bytes = self.snapshot[addr + 1:addr + 9]
-                    if not all([b == 0 for b in udg_bytes]) and not all([b == 255 for b in udg_bytes]):
-                        # This tile is flashing
-                        img_type = '.gif'
-            udgs.append('#UDG{},{}({}{:02d}{})'.format(addr + 1, attr, tile_type, room_num, img_type))
-        tiles_table = '#UDGTABLE { ' + ' | '.join(udgs) + ' } TABLE#'
+        room_paper = self.snapshot[a + 160] & 120
+        tiles_table = '#UDGTABLE {{ #tiles{} }} TABLE#'.format(room_num)
         comment = 'The next 54 bytes are copied to #R32928 and contain the attributes and graphic data for the tiles used to build the room.'
         tile_usage = [' (unused)'] * 6
         for b in self.snapshot[a:a + 128]:
