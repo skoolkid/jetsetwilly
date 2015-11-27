@@ -136,8 +136,7 @@ class JetSetWilly:
         return code + '9'
 
     def _get_guardian_macro(self, addr, attr):
-        fname = 'guardian{}-{}-{}'.format(addr // 256, (addr % 256) // 32, attr)
-        return '#UDGARRAY2,{},,2;{}-{}-1-16({})'.format(attr, addr, addr + 17, fname)
+        return '#guardian{},{},{}'.format(addr // 256, (addr % 256) // 32, attr)
 
     def get_screen_buffer_address_table(self):
         lines = ['w 33280 Screen buffer address lookup table ']
