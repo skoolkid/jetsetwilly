@@ -30,6 +30,7 @@ b28672 DEFS 4096
 @replace=/#guardian\i,\i,\i/#UDGARRAY2,\3,,2;(\1*256+\2*32)-(\1*256+\2*32+17)-1-16(guardian\1-\2-\3)
 @replace=/#tiles\i/#FOR(49312+\1*256,49357+\1*256,9);;$n;#UDG($n+1,#PEEK$n)(<tmap>#EVAL\1,,2); | ;;
 @replace=/<tmap>/#MAP($n%256)(,160:background,169:floor,178:wall,187:nasty,196:ramp,205:conveyor)
+@replace=/#item\i/#UDG(49377+256*\1,(#PEEK(49312+256*\1)&120)+3)(item#EVAL\1,,2)
 @writer=:jetsetwilly.JetSetWillyAsmWriter
 ; Jet Set Willy disassembly
 ; http://skoolkit.ca/
@@ -7321,7 +7322,7 @@ b49152 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG49377,3(item00) }
+; { #item0 }
 ; TABLE#
  49377 DEFB 24,24,60,126,98,98,98,126          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7410,7 +7411,7 @@ b49408 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG49633,3(item01) }
+; { #item1 }
 ; TABLE#
  49633 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7504,7 +7505,7 @@ b49664 DEFB 0,3,255,207,252,0,0,0              ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG49889,3(item02) }
+; { #item2 }
 ; TABLE#
  49889 DEFB 129,66,36,24,60,24,60,195          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7597,7 +7598,7 @@ b49920 DEFB 48,195,8,0,8,0,0,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG50145,3(item03) }
+; { #item3 }
 ; TABLE#
  50145 DEFB 64,160,92,34,33,34,20,8            ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7689,7 +7690,7 @@ b50176 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG50401,3(item04) }
+; { #item4 }
 ; TABLE#
  50401 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7786,7 +7787,7 @@ b50432 DEFB 128,0,0,0,0,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG50657,3(item05) }
+; { #item5 }
 ; TABLE#
  50657 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7879,7 +7880,7 @@ b50688 DEFB 160,0,0,0,0,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG50913,51(item06) }
+; { #item6 }
 ; TABLE#
  50913 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7970,7 +7971,7 @@ b50944 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG51169,3(item07) }
+; { #item7 }
 ; TABLE#
  51169 DEFB 32,24,169,219,126,126,60,90        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8065,7 +8066,7 @@ b51200 DEFB 0,0,8,0,8,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG51425,3(item08) }
+; { #item8 }
 ; TABLE#
  51425 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8162,7 +8163,7 @@ b51456 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG51681,11(item09) }
+; { #item9 }
 ; TABLE#
  51681 DEFB 48,60,79,67,130,134,228,252        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8258,7 +8259,7 @@ b51712 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG51937,43(item10) }
+; { #item10 }
 ; TABLE#
  51937 DEFB 12,28,28,30,27,63,120,255          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8346,7 +8347,7 @@ b51968 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG52193,3(item11) }
+; { #item11 }
 ; TABLE#
  52193 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8445,7 +8446,7 @@ b52224 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG52449,3(item12) }
+; { #item12 }
 ; TABLE#
  52449 DEFB 30,45,55,123,109,94,184,192        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8542,7 +8543,7 @@ b52480 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG52705,3(item13) }
+; { #item13 }
 ; TABLE#
  52705 DEFB 96,184,190,93,90,53,42,21          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8635,7 +8636,7 @@ b52736 DEFB 0,0,0,0,0,0,8,2                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG52961,19(item14) }
+; { #item14 }
 ; TABLE#
  52961 DEFB 255,73,73,73,73,73,73,255          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8729,7 +8730,7 @@ b52992 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG53217,11(item15) }
+; { #item15 }
 ; TABLE#
  53217 DEFB 24,36,24,44,94,94,231,102          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8827,7 +8828,7 @@ b53248 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG53473,3(item16) }
+; { #item16 }
 ; TABLE#
  53473 DEFB 24,36,24,44,94,94,231,102          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8919,7 +8920,7 @@ b53504 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG53729,3(item17) }
+; { #item17 }
 ; TABLE#
  53729 DEFB 24,36,24,44,94,94,231,102          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9013,7 +9014,7 @@ b53760 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG53985,67(item18) }
+; { #item18 }
 ; TABLE#
  53985 DEFB 1,2,5,10,84,40,48,72               ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9101,7 +9102,7 @@ b54016 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG54241,3(item19) }
+; { #item19 }
 ; TABLE#
  54241 DEFB 24,36,219,219,36,24,24,24          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9206,7 +9207,7 @@ b54272 DEFB 160,64,10,0,0,0,0,0                ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG54497,3(item20) }
+; { #item20 }
 ; TABLE#
  54497 DEFB 129,129,66,36,24,24,24,231         ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9299,7 +9300,7 @@ b54528 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG54753,3(item21) }
+; { #item21 }
 ; TABLE#
  54753 DEFB 4,4,174,174,162,66,66,238          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9391,7 +9392,7 @@ b54784 DEFB 0,0,128,0,0,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG55009,11(item22) }
+; { #item22 }
 ; TABLE#
  55009 DEFB 64,160,240,248,252,122,37,2        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9491,7 +9492,7 @@ b55040 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG55265,3(item23) }
+; { #item23 }
 ; TABLE#
  55265 DEFB 32,64,160,24,22,9,8,4              ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9585,7 +9586,7 @@ b55296 DEFB 0,0,1,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG55521,3(item24) }
+; { #item24 }
 ; TABLE#
  55521 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9678,7 +9679,7 @@ b55552 DEFB 0,3,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG55777,11(item25) }
+; { #item25 }
 ; TABLE#
  55777 DEFB 112,140,114,250,239,173,37,33      ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9775,7 +9776,7 @@ b55808 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG56033,3(item26) }
+; { #item26 }
 ; TABLE#
  56033 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9865,7 +9866,7 @@ b56064 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG56289,3(item27) }
+; { #item27 }
 ; TABLE#
  56289 DEFB 16,48,56,108,198,198,108,16        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9960,7 +9961,7 @@ b56320 DEFB 160,0,0,0,0,0,160,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG56545,3(item28) }
+; { #item28 }
 ; TABLE#
  56545 DEFB 0,0,0,0,0,0,0,0                     ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10052,7 +10053,7 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG56801,3(item29) }
+; { #item29 }
 ; TABLE#
  56801 DEFB 172,174,1,173,173,2,172,88         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10148,7 +10149,7 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG57057,3(item30) }
+; { #item30 }
 ; TABLE#
  57057 DEFB 5,56,69,130,130,130,68,56          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10241,7 +10242,7 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG57313,3(item31) }
+; { #item31 }
 ; TABLE#
  57313 DEFB 112,32,32,80,80,136,136,136        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10330,7 +10331,7 @@ b57344 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG57569,3(item32) }
+; { #item32 }
 ; TABLE#
  57569 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10419,7 +10420,7 @@ b57600 DEFB 160,0,0,0,0,0,0,10                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG57825,3(item33) }
+; { #item33 }
 ; TABLE#
  57825 DEFB 31,4,10,119,135,177,170,10         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10510,7 +10511,7 @@ b57856 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG58081,3(item34) }
+; { #item34 }
 ; TABLE#
  58081 DEFB 24,36,164,202,149,10,21,10         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10601,7 +10602,7 @@ b58112 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG58337,3(item35) }
+; { #item35 }
 ; TABLE#
  58337 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10689,7 +10690,7 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG58593,3(item36) }
+; { #item36 }
 ; TABLE#
  58593 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10781,7 +10782,7 @@ b58624 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG58849,3(item37) }
+; { #item37 }
 ; TABLE#
  58849 DEFB 2,20,46,85,42,69,42,20             ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10874,7 +10875,7 @@ b58880 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG59105,3(item38) }
+; { #item38 }
 ; TABLE#
  59105 DEFB 191,191,187,177,187,187,191,191    ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10965,7 +10966,7 @@ b59136 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG59361,11(item39) }
+; { #item39 }
 ; TABLE#
  59361 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11055,7 +11056,7 @@ b59392 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG59617,3(item40) }
+; { #item40 }
 ; TABLE#
  59617 DEFB 240,240,120,184,76,50,13,3         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11145,7 +11146,7 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG59873,3(item41) }
+; { #item41 }
 ; TABLE#
  59873 DEFB 17,34,51,68,85,102,119,136         ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11244,7 +11245,7 @@ b59904 DEFB 0,0,0,255,255,255,255,240          ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG60129,11(item42) }
+; { #item42 }
 ; TABLE#
  60129 DEFB 255,255,255,255,255,255,255,255    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11338,7 +11339,7 @@ b60160 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG60385,3(item43) }
+; { #item43 }
 ; TABLE#
  60385 DEFB 24,24,248,60,126,96,96,126         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11429,7 +11430,7 @@ b60416 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG60641,11(item44) }
+; { #item44 }
 ; TABLE#
  60641 DEFB 0,0,24,20,26,53,107,208            ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11517,7 +11518,7 @@ b60672 DEFB 160,0,0,0,0,0,170,170              ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG60897,3(item45) }
+; { #item45 }
 ; TABLE#
  60897 DEFB 129,100,205,15,97,218,51,26        ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11609,7 +11610,7 @@ b60928 DEFB 170,10,170,170,170,170,170,170     ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG61153,3(item46) }
+; { #item46 }
 ; TABLE#
  61153 DEFB 2,29,34,94,190,124,56,16           ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11788,7 +11789,7 @@ b61440 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG61665,3(item48) }
+; { #item48 }
 ; TABLE#
  61665 DEFB 18,18,18,18,18,18,18,18            ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11883,7 +11884,7 @@ b61696 DEFB 0,0,0,0,0,12,2,170                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG61921,3(item49) }
+; { #item49 }
 ; TABLE#
  61921 DEFB 0,25,249,31,0,25,255,31            ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11978,7 +11979,7 @@ b61952 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG62177,11(item50) }
+; { #item50 }
 ; TABLE#
  62177 DEFB 116,56,102,191,191,157,66,60       ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12071,7 +12072,7 @@ b62208 DEFB 0,0,2,170,160,0,0,0                ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG62433,3(item51) }
+; { #item51 }
 ; TABLE#
  62433 DEFB 24,24,24,24,24,155,127,59          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12165,7 +12166,7 @@ b62464 DEFB 0,0,0,0,10,170,170,170             ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG62689,3(item52) }
+; { #item52 }
 ; TABLE#
  62689 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12257,7 +12258,7 @@ b62720 DEFB 0,0,0,0,160,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG62945,3(item53) }
+; { #item53 }
 ; TABLE#
  62945 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12345,7 +12346,7 @@ b62976 DEFB 0,160,0,0,0,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG63201,3(item54) }
+; { #item54 }
 ; TABLE#
  63201 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12437,7 +12438,7 @@ b63232 DEFB 0,0,4,0,160,64,0,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG63457,3(item55) }
+; { #item55 }
 ; TABLE#
  63457 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12527,7 +12528,7 @@ b63488 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG63713,3(item56) }
+; { #item56 }
 ; TABLE#
  63713 DEFB 0,0,0,10,13,60,242,192             ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12622,7 +12623,7 @@ b63744 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG63969,3(item57) }
+; { #item57 }
 ; TABLE#
  63969 DEFB 8,16,32,33,18,172,64,32            ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12711,7 +12712,7 @@ b64000 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG64225,11(item58) }
+; { #item58 }
 ; TABLE#
  64225 DEFB 4,5,11,11,23,55,111,239            ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12799,7 +12800,7 @@ b64256 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG64481,3(item59) }
+; { #item59 }
 ; TABLE#
  64481 DEFB 206,241,185,213,239,215,187,255    ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12890,7 +12891,7 @@ b64512 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #UDG64737,3(item60) }
+; { #item60 }
 ; TABLE#
  64737 DEFB 72,57,38,218,91,100,156,18         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,

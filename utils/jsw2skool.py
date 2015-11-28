@@ -342,7 +342,6 @@ class JetSetWilly:
 
     def _write_tiles(self, lines, a):
         room_num = a // 256 - 192
-        room_paper = self.snapshot[a + 160] & 120
         tiles_table = '#UDGTABLE {{ #tiles{} }} TABLE#'.format(room_num)
         comment = 'The next 54 bytes are copied to #R32928 and contain the attributes and graphic data for the tiles used to build the room.'
         tile_usage = [' (unused)'] * 6
@@ -370,8 +369,6 @@ class JetSetWilly:
         lines.append('B {},9,9 Nasty{}'.format(a + 187, tile_usage[3]))
         lines.append('B {},9,9 Ramp{}'.format(a + 196, tile_usage[4]))
         lines.append('B {},9,9 Conveyor{}'.format(a + 205, tile_usage[5]))
-
-        return room_paper
 
     def _get_coordinates(self, lsb, msb):
         if 94 <= msb <= 95:
@@ -519,7 +516,7 @@ class JetSetWilly:
                 lines.append('B 61423')
             else:
                 # Tiles
-                room_paper = self._write_tiles(lines, a)
+                self._write_tiles(lines, a)
 
                 # Conveyor direction, location and length
                 self._write_conveyor(lines, a)
@@ -537,7 +534,7 @@ class JetSetWilly:
 
                 # Item graphic
                 lines.append('N {} The next eight bytes are copied to #R32993 and define the item graphic.'.format(a + 225))
-                lines.append('N {0} #UDGTABLE {{ #UDG{0},{1}(item{2:02d}) }} TABLE#'.format(a + 225, room_paper + 3, room_num))
+                lines.append('N {} #UDGTABLE {{ #item{} }} TABLE#'.format(a + 225, room_num))
                 lines.append('B {},8,8 Item graphic{}'.format(a + 225, '' if items.get(room_num) else ' (unused)'))
 
                 # Rooms to the left, to the right, above and below
