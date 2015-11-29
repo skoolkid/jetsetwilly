@@ -31,6 +31,7 @@ b28672 DEFS 4096
 @replace=/#tiles\i/#FOR(49312+\1*256,49357+\1*256,9);;$n;#UDG($n+1,#PEEK$n)(<tmap>#EVAL\1,,2); | ;;
 @replace=/<tmap>/#MAP($n%256)(,160:background,169:floor,178:wall,187:nasty,196:ramp,205:conveyor)
 @replace=/#item\i/#UDG(49377+256*\1,(#PEEK(49312+256*\1)&120)+3)(item#EVAL\1,,2)
+@replace=/#sprite\i,\i/#UDGARRAY2,\2,2,2;\1-(\1+17)-1-16
 @writer=:jetsetwilly.JetSetWillyAsmWriter
 ; Jet Set Willy disassembly
 ; http://skoolkit.ca/
@@ -3783,7 +3784,7 @@ u39936 DEFM "NZ,ENDPAUSE"       ; [JR ]NZ,ENDPAUSE
 ; The foot also appears as a guardian in #R56576(The Nightmare Room).
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,6,,2;40000-40017-1-16(foot) }
+; { #sprite40000,6(foot) }
 ; TABLE#
 @label=FOOT
 b40000 DEFB 16,128,16,128,16,128,16,128,16,128,16,128,16,128,32,128
@@ -3792,7 +3793,7 @@ b40000 DEFB 16,128,16,128,16,128,16,128,16,128,16,128,16,128,32,128
 ; #R57856(Top Landing).
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,66,,2;40032-40049-1-16(barrel) }
+; { #sprite40032,66(barrel) }
 ; TABLE#
 @label=BARREL
  40032 DEFB 55,236,119,238,0,0,111,246,239,247,239,247,213,91,219,187
@@ -3828,15 +3829,11 @@ b40064 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
 ; Used by the routines at #R35211 and #R38455.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,7,,2;40192-40209-1-16(willy0*) |
-; #UDGARRAY2,7,,2;40224-40241-1-16(willy1*) |
-; #UDGARRAY2,7,,2;40256-40273-1-16(willy2*) |
-; #UDGARRAY2,7,,2;40288-40305-1-16(willy3*) |
+; { #sprite40192,7(willy0*) | #sprite40224,7(willy1*) |
+; #sprite40256,7(willy2*) | #sprite40288,7(willy3*) |
 ; #UDGARRAY*willy0;willy1;willy2;willy3(willy_r) }
-; { #UDGARRAY2,7,,2;40320-40337-1-16(willy4*) |
-; #UDGARRAY2,7,,2;40352-40369-1-16(willy5*) |
-; #UDGARRAY2,7,,2;40384-40401-1-16(willy6*) |
-; #UDGARRAY2,7,,2;40416-40433-1-16(willy7*) |
+; { #sprite40320,7(willy4*) | #sprite40352,7(willy5*) |
+; #sprite40384,7(willy6*) | #sprite40416,7(willy7*) |
 ; #UDGARRAY*willy7;willy6;willy5;willy4(willy_l) }
 ; TABLE#
 @label=MANDAT
@@ -6651,11 +6648,9 @@ b41984 DEFS 173      ; Unused
 ; Used by the routine at #R38298.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,7,,2;42496-42513-1-16(toilet0*) |
-; #UDGARRAY2,7,,2;42528-42545-1-16(toilet1*) |
+; { #sprite42496,7(toilet0*) | #sprite42528,7(toilet1*) |
 ; #UDGARRAY*toilet0,10;toilet1(toilet_empty) }
-; { #UDGARRAY2,7,,2;42560-42577-1-16(toilet2*) |
-; #UDGARRAY2,7,,2;42592-42609-1-16(toilet3*) |
+; { #sprite42560,7(toilet2*) | #sprite42592,7(toilet3*) |
 ; #UDGARRAY*toilet3,10;toilet2(toilet_full) }
 ; TABLE#
 @label=TOILET0
