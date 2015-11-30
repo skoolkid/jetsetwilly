@@ -40,6 +40,32 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         self.room_names, self.room_names_wp = self._get_room_names()
         self.addr_anchor_fmt = self.get_dictionary('Game')['AddressAnchor']
 
+    def _build_logo(self):
+        udgs = []
+        for j in range(38944, 39424, 32):
+            row = []
+            for i in range(j + 3, j + 29):
+                attr = self.snapshot[i]
+                if attr in (5, 8, 41, 44):
+                    udg_addr = 33841 + 8 * (i & 1)
+                elif attr in (4, 37, 40):
+                    udg_addr = 33857 + 8 * (i & 1)
+                else:
+                    udg_addr = 0
+                if attr == 44:
+                    attr = 37
+                row.append(Udg(attr & 127, self.snapshot[udg_addr:udg_addr + 8]))
+            udgs.append(row)
+        udgs.append([Udg(0, (0,) * 8)] * len(udgs[0]))
+        return udgs
+
+    def expand_logo(self, text, index, cwd):
+        # #LOGO[{x,y,width,height}](fname)
+        end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index)
+        udgs = lambda: self._build_logo()
+        frames = [Frame(udgs, 1, 0, *crop_rect, name=frame)]
+        return end, self.handle_image(frames, fname, cwd, alt)
+
     def expand_room(self, text, index, cwd):
         # #ROOMaddr[,scale,x,y,w,h,empty,fix,anim][{x,y,width,height}][(fname)]
         names = ('addr', 'scale', 'x', 'y', 'w', 'h', 'empty', 'fix', 'anim')
