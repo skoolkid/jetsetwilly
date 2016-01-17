@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Routine at 869F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="865F.html">865F</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#869f">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="86C3.html">86C3</a></span></td>
+</tr>
+</table>
+<div class="description">869F: Give two chances to enter a correct code</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="8400.html">8400</a>.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="869f"></span>869F</td>
+<td class="instruction">LD HL,$4000</td>
+<td class="comment-11" rowspan="5">Clear the display file and attribute file</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86a2"></span>86A2</td>
+<td class="instruction">LD DE,$4001</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86a5"></span>86A5</td>
+<td class="instruction">LD BC,$1AFF</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86a8"></span>86A8</td>
+<td class="instruction">LD (HL),$00</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86aa"></span>86AA</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86ac"></span>86AC</td>
+<td class="instruction">LD IX,$858B</td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the message at <a href="858B.html">858B</a> ("Enter Code at grid location&#160;&#160;&#160;&#160;&#160;")</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86b0"></span>86B0</td>
+<td class="instruction">CALL <a href="86C3.html">$86C3</a></td>
+<td class="comment-11" rowspan="1">Display the code entry screen and collect a four-digit code from the user</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86b3"></span>86B3</td>
+<td class="instruction">JP Z,<a href="87CA.html">$87CA</a></td>
+<td class="comment-11" rowspan="1">Start the game if the code is correct</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86b6"></span>86B6</td>
+<td class="instruction">LD IX,$85AB</td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the message at <a href="85AB.html">85AB</a> ("Sorry, try code at location&#160;&#160;&#160;&#160;&#160;")</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86ba"></span>86BA</td>
+<td class="instruction">CALL <a href="86C3.html">$86C3</a></td>
+<td class="comment-11" rowspan="1">Display the code entry screen and collect another four-digit code from the user</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86bd"></span>86BD</td>
+<td class="instruction">JP Z,<a href="87CA.html">$87CA</a></td>
+<td class="comment-11" rowspan="1">Start the game if the code is correct</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="86c0"></span>86C0</td>
+<td class="instruction">JP $0000</td>
+<td class="comment-11" rowspan="1">Otherwise reset the machine</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="865F.html">865F</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#869f">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="86C3.html">86C3</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

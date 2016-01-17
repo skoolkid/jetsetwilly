@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Game status buffer entry at 85D1</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-g">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="page-header">Game status buffer</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="85D0.html">85D0</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#85d1">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="85D2.html">85D2</a></span></td>
+</tr>
+</table>
+<div class="description">85D1: Airborne status indicator</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Initialised by the routine at <a href="87CA.html">87CA</a>, checked by the routines at <a href="8B07.html">8B07</a> and <a href="95C8.html">95C8</a>, updated by the routines at <a href="90B6.html">90B6</a>, <a href="91BE.html">91BE</a> and <a href="94B0.html">94B0</a>, and checked and updated by the routines at <a href="8DD3.html">8DD3</a>, <a href="8ED4.html">8ED4</a> and <a href="94D2.html">94D2</a>. Possible values are:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Value</th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">Willy is neither falling nor jumping</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">Willy is jumping</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2-11</td>
+<td class="" colspan="1" rowspan="1">Willy is falling, and can land safely</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">12-15</td>
+<td class="" colspan="1" rowspan="1">Willy is falling, and has fallen too far to land safely</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">255</td>
+<td class="" colspan="1" rowspan="1">Willy has collided with a nasty, an arrow, a guardian, or Maria (see <a href="90B6.html">90B6</a>)</td>
+</tr>
+</table>
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="85d1"></span>85D1</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-10" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="85D0.html">85D0</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#85d1">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="85D2.html">85D2</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

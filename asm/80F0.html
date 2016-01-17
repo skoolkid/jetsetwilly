@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Game status buffer entry at 80F0</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-g">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="page-header">Game status buffer</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="80ED.html">80ED</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#80f0">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8100.html">8100</a></span></td>
+</tr>
+</table>
+<div class="description">80F0: Entity specifications</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Initialised upon entry to a room and then used by the routine at <a href="88FC.html">88FC</a>.
+</div>
+<div class="paragraph">
+There are eight pairs of bytes here that hold the entity specifications for the current room. The first byte in each pair identifies one of the entity definitions at <a href="A000.html">A000</a>. The meaning of the second byte depends on the entity type: it determines the base sprite index and x-coordinate of a guardian, the y-coordinate of an arrow, or the x-coordinate of the top of a rope.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="80f0"></span>80F0</td>
+<td class="instruction">DEFS $02</td>
+<td class="comment-11" rowspan="1">Entity 1</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="80f2"></span>80F2</td>
+<td class="instruction">DEFS $02</td>
+<td class="comment-11" rowspan="1">Entity 2</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="80f4"></span>80F4</td>
+<td class="instruction">DEFS $02</td>
+<td class="comment-11" rowspan="1">Entity 3</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="80f6"></span>80F6</td>
+<td class="instruction">DEFS $02</td>
+<td class="comment-11" rowspan="1">Entity 4</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="80f8"></span>80F8</td>
+<td class="instruction">DEFS $02</td>
+<td class="comment-11" rowspan="1">Entity 5</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="80fa"></span>80FA</td>
+<td class="instruction">DEFS $02</td>
+<td class="comment-11" rowspan="1">Entity 6</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="80fc"></span>80FC</td>
+<td class="instruction">DEFS $02</td>
+<td class="comment-11" rowspan="1">Entity 7</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="80fe"></span>80FE</td>
+<td class="instruction">DEFS $02</td>
+<td class="comment-11" rowspan="1">Entity 8</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="80ED.html">80ED</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#80f0">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8100.html">8100</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

@@ -1,64 +1,73 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <title>Jet Set Willy: Bugs</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
 
 </head>
 <body class="Bugs">
 <table class="header">
 <tr>
-<td class="logo"><a class="link" href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
 <td class="page-header">Bugs</td>
 </tr>
 </table>
 <ul class="contents">
-<li><a class="link" href="#faultyClock">12:30am in the afternoon</a></li>
-<li><a class="link" href="#theStickyBed">The sticky bed</a></li>
-<li><a class="link" href="#selfCollectingItem">The self-collecting item</a></li>
-<li><a class="link" href="#theInvisibleItem">The invisible item</a></li>
-<li><a class="link" href="#theInaccessibleItems">The inaccessible items</a></li>
-<li><a class="link" href="#theUncollectableItem">The uncollectable item</a></li>
-<li><a class="link" href="#dontMindYourHead">Don't mind your head</a></li>
-<li><a class="link" href="#theBlankConveyor">The blank conveyor</a></li>
-<li><a class="link" href="#corruptedConveyors">Corrupted conveyors</a></li>
-<li><a class="link" href="#invalidGridLocation">Invalid grid location</a></li>
-<li><a class="link" href="#thePauseBug">The pause bug</a></li>
-<li><a class="link" href="#theAtticBug">The Attic bug</a></li>
+<li><a href="#faultyClock">12:30am in the afternoon</a></li>
+<li><a href="#theStickyBed">The sticky bed</a></li>
+<li><a href="#selfCollectingItem">The self-collecting item</a></li>
+<li><a href="#theInvisibleItem">The invisible item</a></li>
+<li><a href="#theInaccessibleItems">The inaccessible items</a></li>
+<li><a href="#theUncollectableItem">The uncollectable item</a></li>
+<li><a href="#dontMindYourHead">Don't mind your head</a></li>
+<li><a href="#theBlankConveyor">The blank conveyor</a></li>
+<li><a href="#corruptedConveyors">Corrupted conveyors</a></li>
+<li><a href="#invalidGridLocation">Invalid grid location</a></li>
+<li><a href="#thePauseBug">The pause bug</a></li>
+<li><a href="#theAtticBug">The Attic bug</a></li>
 </ul>
-<div><a name="faultyClock"></a></div>
+<div><span id="faultyClock"></span></div>
 <div class="box box-1">
 <div class="box-title">12:30am in the afternoon</div>
 <div class="paragraph">
-The clock-updating code at <a class="link" href="../asm/35245.html#35410">35410</a> doesn't switch from 'am' to 'pm' until 1pm (instead of 12 noon), and also doesn't switch from 'pm' to 'am' at midnight.
+The clock-updating code at <a href="../asm/89AD.html#8a52">8A52</a> doesn't switch from 'am' to 'pm' until 1pm (instead of 12 noon), and also doesn't switch from 'pm' to 'am' at midnight.
 </div>
 </div>
-<div><a name="theStickyBed"></a></div>
+<div><span id="theStickyBed"></span></div>
 <div class="box box-2">
 <div class="box-title">The sticky bed</div>
 <div class="paragraph">
-After collecting all the items, if Willy jumps onto the bed in <a class="link" href="../asm/58112.html">Master Bedroom</a> (which is a conveyor moving right) instead of walking up to the foot of it, he will get stuck and be unable to finish the game. This happens because the code at <a class="link" href="../asm/36564.html#36619">36619</a> flips bit 0 of <span class="register">E</span> - which has already been reset because Willy is on a conveyor moving right - to 1, thus preventing Willy from moving right.
+After collecting all the items, if Willy jumps onto the bed in <a href="../asm/E300.html">Master Bedroom</a> (which is a conveyor moving right) instead of walking up to the foot of it, he will stop moving and the 'P' (right) key becomes unresponsive. This happens because the code at <a href="../asm/8ED4.html#8f0b">8F0B</a> flips bit 0 of <span class="register">E</span> - which has already been reset because Willy is on a conveyor moving right - to 1, thus preventing the conveyor from moving Willy, and also effectively disabling the 'P' key.
 </div>
 <div class="paragraph">
-To see this, use POKE <a class="link" href="../asm/41983.html">41983</a>,255 to make the tap in <a class="link" href="../asm/57600.html">The Bathroom</a> the only item that needs to be collected to complete the game, make your way to the bedroom, and jump onto the bed.
+To see this, use POKE <a href="../asm/A3FF.html">41983</a>,255 to make the tap in <a href="../asm/E100.html">The Bathroom</a> the only item that needs to be collected to complete the game, make your way to the bedroom, and jump onto the bed.
+</div>
+<div class="paragraph">
+However, all is not lost. Willy can be moved off the bed by using one of the other 'right' keys: 'I', 'Y', 'R', 'W', '7' or '8'.
 </div>
 </div>
-<div><a name="selfCollectingItem"></a></div>
+<div><span id="selfCollectingItem"></span></div>
 <div class="box box-1">
 <div class="box-title">The self-collecting item</div>
 <div class="paragraph">
-The item in <a class="link" href="../asm/57088.html">Swimming Pool</a> is automatically collected as soon as Willy enters the room; this is because the room's background tile has white INK, and the routine at <a class="link" href="../asm/37841.html">37841</a> collects any item that is drawn on a cell with white INK. There are no other rooms whose background tile has white INK.
+The item in <a href="../asm/DF00.html">Swimming Pool</a> is automatically collected as soon as Willy enters the room; this is because the room's background tile has white INK, and the routine at <a href="../asm/93D1.html">93D1</a> collects any item that is drawn on a cell with white INK. There are no other rooms whose background tile has white INK.
+</div>
+<div class="paragraph">
+To change the INK of the room's background tile from white to cyan, enabling Willy to collect the item himself:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/DF00.html#dfa0">57248</a>,5
+</div>
+<div class="paragraph">
+Note that this changes the rope's colour from white to cyan.
 </div>
 </div>
-<div><a name="theInvisibleItem"></a></div>
+<div><span id="theInvisibleItem"></span></div>
 <div class="box box-2">
 <div class="box-title">The invisible item</div>
 <div class="paragraph">
-There is an item in <a class="link" href="../asm/56320.html">First Landing</a>, but you could be forgiven for not knowing because it's invisible. To give the item a shape and make it visible:
+There is an item in <a href="../asm/DC00.html">First Landing</a>, but you could be forgiven for not knowing because it's invisible. To give the item a shape and make it visible:
 </div>
 <div class="paragraph">
 POKE 56548,24: POKE 56549,24
@@ -79,65 +88,65 @@ POKE 56350,0: POKE 56358,0: POKE 56365,170
 <img alt="first_landing_item2" src="../images/scr/first_landing_item2.gif" />
 </div>
 <div class="paragraph">
-The <a class="link" href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to fix this bug is
+The <a href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to fix this bug is
 </div>
 <div class="paragraph">
-POKE <a class="link" href="../asm/41984.html#42183">42183</a>,11
+POKE <a href="../asm/A400.html#a4c7">42183</a>,11
 </div>
 <div class="paragraph">
-which moves the item to <a class="link" href="../asm/51968.html">The Hall</a> (where it is still invisible, but now reachable).
+which moves the item to <a href="../asm/CB00.html">The Hall</a> (where it is still invisible, but now reachable).
 </div>
 </div>
-<div><a name="theInaccessibleItems"></a></div>
+<div><span id="theInaccessibleItems"></span></div>
 <div class="box box-1">
 <div class="box-title">The inaccessible items</div>
 <div class="paragraph">
-The items in <a class="link" href="../asm/60160.html">Conservatory Roof</a> can only be collected by entering the room from the ledge on the lower left in <a class="link" href="../asm/59904.html">Under the Roof</a>, but that ledge is unreachable.
+The items in <a href="../asm/EB00.html">Conservatory Roof</a> can only be collected by entering the room from the ledge on the lower left in <a href="../asm/EA00.html">Under the Roof</a>, but that ledge is unreachable.
 </div>
 <div class="paragraph">
-The <a class="link" href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to fix this bug is
+The <a href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to fix this bug is
 </div>
 <div class="paragraph">
-POKE <a class="link" href="../asm/56832.html">56876</a>,4
+POKE <a href="../asm/DE00.html">56876</a>,4
 </div>
 <div class="paragraph">
-which makes it possible to access the right-hand side of <a class="link" href="../asm/58368.html">A bit of tree</a> (and from there the lower right side in <a class="link" href="../asm/59904.html">Under the Roof</a>) from <a class="link" href="../asm/56832.html">The Banyan Tree</a>.
+which makes it possible to access the right-hand side of <a href="../asm/E400.html">A bit of tree</a> (and from there the lower right side in <a href="../asm/EA00.html">Under the Roof</a>) from <a href="../asm/DE00.html">The Banyan Tree</a>.
 </div>
 </div>
-<div><a name="theUncollectableItem"></a></div>
+<div><span id="theUncollectableItem"></span></div>
 <div class="box box-2">
 <div class="box-title">The uncollectable item</div>
 <div class="paragraph">
-The item on the far right in <a class="link" href="../asm/60160.html">Conservatory Roof</a> cannot be collected because there is an unavoidable nasty in the way.
+The item on the far right in <a href="../asm/EB00.html">Conservatory Roof</a> cannot be collected because there is an unavoidable nasty in the way.
 </div>
 <div class="paragraph">
-The <a class="link" href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to fix this bug is
+The <a href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to fix this bug is
 </div>
 <div class="paragraph">
-POKE <a class="link" href="../asm/60160.html#60160">60231</a>,0
+POKE <a href="../asm/EB00.html#eb00">60231</a>,0
 </div>
 <div class="paragraph">
 which removes the nasty next to the item.
 </div>
 </div>
-<div><a name="dontMindYourHead"></a></div>
+<div><span id="dontMindYourHead"></span></div>
 <div class="box box-1">
 <div class="box-title">Don't mind your head</div>
 <div class="paragraph">
-The code at <a class="link" href="../asm/36796.html#36828">36828</a> onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in <a class="link" href="../asm/57600.html">The Bathroom</a> and guide Willy through it:
+The code at <a href="../asm/8FBC.html#8fdc">8FDC</a> onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in <a href="../asm/E100.html">The Bathroom</a> and guide Willy through it:
 </div>
 <div class="paragraph">
 POKE 57708,32
 </div>
 <div class="paragraph">
-However, the code at <a class="link" href="../asm/36796.html#36942">36942</a> onwards that moves Willy right does check for a wall tile at head height (at <a class="link" href="../asm/36796.html#37031">37031</a>), so Willy (correctly) cannot move left to right through a wall tile at that position.
+However, the code at <a href="../asm/8FBC.html#904e">904E</a> onwards that moves Willy right does check for a wall tile at head height (at <a href="../asm/8FBC.html#90a7">90A7</a>), so Willy (correctly) cannot move left to right through a wall tile at that position.
 </div>
 </div>
-<div><a name="theBlankConveyor"></a></div>
+<div><span id="theBlankConveyor"></span></div>
 <div class="box box-2">
 <div class="box-title">The blank conveyor</div>
 <div class="paragraph">
-The conveyor tile in <a class="link" href="../asm/60160.html">Conservatory Roof</a> is completely blank and its attribute byte is 255 - a solid, bright white block - which is characteristic of unused tiles elsewhere. However, the conveyor tile <em>is</em> used in this room, and it doesn't look good:
+The conveyor tile in <a href="../asm/EB00.html">Conservatory Roof</a> is completely blank and its attribute byte is 255 - a solid, bright white block - which is characteristic of unused tiles elsewhere. However, the conveyor tile <em>is</em> used in this room, and it doesn't look good:
 </div>
 <div class="paragraph">
 <table class="">
@@ -147,11 +156,11 @@ The conveyor tile in <a class="link" href="../asm/60160.html">Conservatory Roof<
 </table>
 </div>
 </div>
-<div><a name="corruptedConveyors"></a></div>
+<div><span id="corruptedConveyors"></span></div>
 <div class="box box-1">
 <div class="box-title">Corrupted conveyors</div>
 <div class="paragraph">
-The conveyors in <a class="link" href="../asm/55296.html">West of Kitchen</a>, <a class="link" href="../asm/56576.html">The Nightmare Room</a>, <a class="link" href="../asm/61696.html">The Wine Cellar</a> and <a class="link" href="../asm/62208.html">Tool Shed</a> don't look quite as they should. The reason for this is a bug in the code at <a class="link" href="../asm/36147.html#36177">36177</a>: if a graphic data byte of the background, floor, wall, nasty or ramp tile in a room matches the attribute byte of the conveyor tile to be drawn, the CPIR instruction exits early, leaving <span class="register">HL</span> pointing at the wrong location.
+The conveyors in <a href="../asm/D800.html">West of Kitchen</a>, <a href="../asm/DD00.html">The Nightmare Room</a>, <a href="../asm/F100.html">The Wine Cellar</a> and <a href="../asm/F300.html">Tool&#160;&#160;Shed</a> don't look quite as they should. The reason for this is a bug in the code at <a href="../asm/8D33.html#8d51">8D51</a>: if a graphic data byte of the background, floor, wall, nasty or ramp tile in a room matches the attribute byte of the conveyor tile to be drawn, the CPIR instruction exits early, leaving <span class="register">HL</span> pointing at the wrong location.
 </div>
 <div class="paragraph">
 Here are some 'before' and 'after' pictures showing what the conveyors actually look like and what they should look like.
@@ -159,22 +168,22 @@ Here are some 'before' and 'after' pictures showing what the conveyors actually 
 <div class="paragraph">
 <table class="gallery">
 <tr>
-<td class="" colspan="1" rowspan="1"><a class="link" href="../asm/55296.html">West of Kitchen</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/D800.html">West of Kitchen</a></td>
 <td class="" colspan="1" rowspan="1"><img alt="conveyor24_before" src="../images/scr/conveyor24_before.gif" /></td>
 <td class="" colspan="1" rowspan="1"><img alt="conveyor24_after" src="../images/scr/conveyor24_after.gif" /></td>
 </tr>
 <tr>
-<td class="" colspan="1" rowspan="1"><a class="link" href="../asm/56576.html">The Nightmare Room</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/DD00.html">The Nightmare Room</a></td>
 <td class="" colspan="1" rowspan="1"><img alt="conveyor29_before" src="../images/scr/conveyor29_before.gif" /></td>
 <td class="" colspan="1" rowspan="1"><img alt="conveyor29_after" src="../images/scr/conveyor29_after.gif" /></td>
 </tr>
 <tr>
-<td class="" colspan="1" rowspan="1"><a class="link" href="../asm/61696.html">The Wine Cellar</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/F100.html">The Wine Cellar</a></td>
 <td class="" colspan="1" rowspan="1"><img alt="conveyor49_before" src="../images/scr/conveyor49_before.gif" /></td>
 <td class="" colspan="1" rowspan="1"><img alt="conveyor49_after" src="../images/scr/conveyor49_after.png" /></td>
 </tr>
 <tr>
-<td class="" colspan="1" rowspan="1"><a class="link" href="../asm/62208.html">Tool&#160;&#160;Shed</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/F300.html">Tool&#160;&#160;Shed</a></td>
 <td class="" colspan="1" rowspan="1"><img alt="conveyor51_before" src="../images/scr/conveyor51_before.gif" /></td>
 <td class="" colspan="1" rowspan="1"><img alt="conveyor51_after" src="../images/scr/conveyor51_after.gif" /></td>
 </tr>
@@ -185,60 +194,75 @@ Here are some 'before' and 'after' pictures showing what the conveyors actually 
 </tr>
 </table>
 </div>
+<div class="paragraph">
+To fix the bug:
 </div>
-<div><a name="invalidGridLocation"></a></div>
+<div class="paragraph">
+<div>POKE 36178,151</div>
+<div>POKE 36181,9</div>
+<div>POKE 36183,205</div>
+<div>POKE 36184,38</div>
+<div>POKE 36185,255</div>
+<div>POKE 65318,9</div>
+<div>POKE 65319,190</div>
+<div>POKE 65322,75</div>
+<div>POKE 65323,35</div>
+<div>POKE 65324,201</div>
+</div>
+</div>
+<div><span id="invalidGridLocation"></span></div>
 <div class="box box-2">
 <div class="box-title">Invalid grid location</div>
 <div class="paragraph">
-If the LSB of the system variable FRAMES (at 23672) is 142 when the game starts, the routine at <a class="link" href="../asm/34499.html">34499</a> will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
+If the LSB of the system variable FRAMES (at 23672) is 142 when the game starts, the routine at <a href="../asm/86C3.html">86C3</a> will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
 </div>
 <div class="paragraph">
 Should you ever need it, the code for 'D>' is 1444.
 </div>
 <div class="paragraph">
-POKE <a class="link" href="../asm/34499.html#34555">34556</a>,180
+POKE <a href="../asm/86C3.html#86fb">34556</a>,180
 </div>
 </div>
-<div><a name="thePauseBug"></a></div>
+<div><span id="thePauseBug"></span></div>
 <div class="box box-1">
 <div class="box-title">The pause bug</div>
 <div class="paragraph">
-The Spectrum will hang when trying to resume the game after being paused if an Interface 1 is connected. This happens because the <span class="register">C</span> register holds 0 instead of 254 when the keyboard is read by the IN A,(C) instruction at <a class="link" href="../asm/35591.html#35620">35620</a>.
+The Spectrum will hang when trying to resume the game after being paused if an Interface 1 is connected. This happens because the <span class="register">C</span> register holds 0 instead of 254 when the keyboard is read by the IN A,(C) instruction at <a href="../asm/8B07.html#8b24">8B24</a>.
 </div>
 <div class="paragraph">
-POKE <a class="link" href="../asm/35591.html#35615">35615</a>,62: POKE <a class="link" href="../asm/35591.html#35620">35620</a>,219: POKE <a class="link" href="../asm/35591.html#35620">35621</a>,254
+POKE <a href="../asm/8B07.html#8b1f">35615</a>,62: POKE <a href="../asm/8B07.html#8b24">35620</a>,219: POKE <a href="../asm/8B07.html#8b24">35621</a>,254
 </div>
 </div>
-<div><a name="theAtticBug"></a></div>
+<div><span id="theAtticBug"></span></div>
 <div class="box box-2">
 <div class="box-title">The Attic bug</div>
 <div class="paragraph">
-Perhaps the most famous of all the bugs in Jet Set Willy, the Attic bug is responsible for certain rooms becoming impossible to navigate after Willy has visited <a class="link" href="../asm/59648.html">The Attic</a>, thus making it impossible to complete the game.
+Perhaps the most famous of all the bugs in Jet Set Willy, the Attic bug is responsible for certain rooms becoming impossible to navigate after Willy has visited <a href="../asm/E900.html">The Attic</a>, thus making it impossible to complete the game.
 </div>
 <div class="paragraph">
-The root cause of the bug is a misplaced arrow, defined by the entity specification at <a class="link" href="../asm/59648.html#59900">59900</a>. The second byte of the entity specification is an index into the table of screen buffer addresses at <a class="link" href="../asm/33280.html">33280</a>, and determines the arrow's y-coordinate; the index should be an even number, but the value of the second byte is 213, which means the arrow-drawing routine at <a class="link" href="../asm/37310.html">37310</a> looks up the word at 33493 (33280+213) and finds 41066, way outside the actual screen buffer at 24576-28671. As a result, the misplaced arrow is 'drawn' at the following addresses:
+The root cause of the bug is a misplaced arrow, defined by the entity specification at <a href="../asm/E900.html#e9fc">E9FC</a>. The second byte of the entity specification is an index into the table of screen buffer addresses at <a href="../asm/8200.html">8200</a>, and determines the arrow's y-coordinate; the index should be an even number, but the value of the second byte is 213, which means the arrow-drawing routine at <a href="../asm/91BE.html">91BE</a> looks up the word at 33493 (33280+213) and finds 41066, way outside the actual screen buffer at 24576-28671. As a result, the misplaced arrow is 'drawn' at the following addresses:
 </div>
 <div class="paragraph">
 <ul>
-<li><a class="link" href="../asm/40627.html#40704">40810-40841</a>: unused (set to 65, with no effect on the game)</li>
-<li><a class="link" href="../asm/40960.html#41064">41066-41097</a>: the third byte of entity definition 13 through to the second byte of entity definition 17 (set to 255); this affects the guardians in <a class="link" href="../asm/52736.html">Rescue Esmerelda</a>, <a class="link" href="../asm/52992.html">I'm sure I've seen this before..</a>, <a class="link" href="../asm/53248.html">We must perform a Quirkafleeg</a>, <a class="link" href="../asm/49408.html">The Bridge</a>, <a class="link" href="../asm/50688.html">Entrance to Hades</a>, <a class="link" href="../asm/56064.html">The Chapel</a> and <a class="link" href="../asm/58880.html">Priests' Hole</a></li>
-<li><a class="link" href="../asm/40960.html#41320">41322-41353</a>: the third byte of entity definition 45 through to the second byte of entity definition 49 (set to 65); this affects the guardians in <a class="link" href="../asm/52480.html">Out on a limb</a>, <a class="link" href="../asm/55808.html">East Wall Base</a>, <a class="link" href="../asm/52224.html">Tree Top</a>, <a class="link" href="../asm/51200.html">Inside the MegaTrunk</a>, <a class="link" href="../asm/55040.html">The Kitchen</a> and <a class="link" href="../asm/55296.html">West of Kitchen</a></li>
+<li><a href="../asm/9EB3.html#9f00">40810-40841</a>: unused (set to 65, with no effect on the game)</li>
+<li><a href="../asm/A000.html#a068">41066-41097</a>: the third byte of entity definition 13 through to the second byte of entity definition 17 (set to 255); this affects the guardians in <a href="../asm/CE00.html">Rescue Esmerelda</a>, <a href="../asm/CF00.html">I'm sure I've seen this before..</a>, <a href="../asm/D000.html">We must perform a Quirkafleeg</a>, <a href="../asm/C100.html">The Bridge</a>, <a href="../asm/C600.html">Entrance to Hades</a>, <a href="../asm/DB00.html">The Chapel</a> and <a href="../asm/E600.html">Priests' Hole</a></li>
+<li><a href="../asm/A000.html#a168">41322-41353</a>: the third byte of entity definition 45 through to the second byte of entity definition 49 (set to 65); this affects the guardians in <a href="../asm/CD00.html">Out on a limb</a>, <a href="../asm/DA00.html">East Wall Base</a>, <a href="../asm/CC00.html">Tree Top</a>, <a href="../asm/C800.html">Inside the MegaTrunk</a>, <a href="../asm/D700.html">The Kitchen</a> and <a href="../asm/D800.html">West of Kitchen</a></li>
 </ul>
 </div>
 <div class="paragraph">
-The <a class="link" href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to fix the Attic bug is
+The <a href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to fix the Attic bug is
 </div>
 <div class="paragraph">
-POKE <a class="link" href="../asm/59648.html#59900">59901</a>,82
+POKE <a href="../asm/E900.html#e9fc">59901</a>,82
 </div>
 <div class="paragraph">
 which sets the pixel y-coordinate of the arrow to 41.
 </div>
 </div>
-<div class="footer">
-<div class="release">The complete Jet Set Willy RAM disassembly 20150328</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2015 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a class="link" href="http://skoolkit.ca/">SkoolKit</a> 4.3.</div>
-</div>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
 </body>
 </html>

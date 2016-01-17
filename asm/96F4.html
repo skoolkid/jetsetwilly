@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Unused RAM at 96F4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-u">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="page-header">Unused</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="96DE.html">96DE</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#96f4">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="9718.html">9718</a></span></td>
+</tr>
+</table>
+<div class="description">96F4: Unused routine</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="96f4"></span>96F4</td>
+<td class="instruction">LD HL,$5E00</td>
+<td class="comment-11" rowspan="4">Copy the attribute buffer at <a href="5E00.html">5E00</a> to the top two-thirds of the screen</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="96f7"></span>96F7</td>
+<td class="instruction">LD DE,$5800</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="96fa"></span>96FA</td>
+<td class="instruction">LD BC,$0200</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="96fd"></span>96FD</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="96ff"></span>96FF</td>
+<td class="instruction">LD HL,$4000</td>
+<td class="comment-11" rowspan="5">Fill the top two-thirds of the display file with the byte value 24 (00011000)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9702"></span>9702</td>
+<td class="instruction">LD DE,$4001</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9705"></span>9705</td>
+<td class="instruction">LD BC,$0FFF</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9708"></span>9708</td>
+<td class="instruction">LD (HL),$18</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="970a"></span>970A</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="970c"></span>970C</td>
+<td class="instruction">LD BC,$FEFE</td>
+<td class="comment-11" rowspan="1">Prepare <span class="register">BC</span> for reading keys SHIFT-Z-X-C-V</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="970f"></span>970F</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-11" rowspan="1">Read these keys</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9711"></span>9711</td>
+<td class="instruction">BIT 2,A</td>
+<td class="comment-11" rowspan="1">Is 'X' being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9713"></span>9713</td>
+<td class="instruction">JP Z,$0000</td>
+<td class="comment-11" rowspan="1">Jump if so to reset the machine</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="9716"></span>9716</td>
+<td class="instruction">JR $970F</td>
+<td class="comment-11" rowspan="1">Otherwise jump back to read the keyboard again</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="96DE.html">96DE</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#96f4">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="9718.html">9718</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

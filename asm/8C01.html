@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Routine at 8C01</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="8B07.html">8B07</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8c01">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8C4A.html">8C4A</a></span></td>
+</tr>
+</table>
+<div class="description">8C01: Lose a life</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="8B07.html">8B07</a>.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8c01"></span>8C01</td>
+<td class="instruction">LD A,$47</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=71 (INK 7: PAPER 0: BRIGHT 1)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8c03"></span>
+<div class="comments">
+<div class="paragraph">
+The following loop fills the top two thirds of the attribute file with a single value (71 TO 64 STEP -1) and makes a sound effect.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8c03"></span>8C03</td>
+<td class="instruction">LD HL,$5800</td>
+<td class="comment-11" rowspan="5">Fill the top two thirds of the attribute file with the value in <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c06"></span>8C06</td>
+<td class="instruction">LD DE,$5801</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c09"></span>8C09</td>
+<td class="instruction">LD BC,$01FF</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c0c"></span>8C0C</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c0d"></span>8C0D</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c0f"></span>8C0F</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-11" rowspan="1">Save the attribute byte (64-71) in <span class="register">E</span> for later retrieval</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c10"></span>8C10</td>
+<td class="instruction">CPL</td>
+<td class="comment-11" rowspan="7"><span class="register">D</span>=7+8*(7-(<span class="register">E</span> AND 7)); this value determines the pitch of the short note that will be played</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c11"></span>8C11</td>
+<td class="instruction">AND $07</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c13"></span>8C13</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c14"></span>8C14</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c15"></span>8C15</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c16"></span>8C16</td>
+<td class="instruction">OR $07</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c18"></span>8C18</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c19"></span>8C19</td>
+<td class="instruction">LD C,E</td>
+<td class="comment-11" rowspan="4"><span class="register">C</span>=8+32*(<span class="register">E</span> AND 7); this value determines the duration of the short note that will be played</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c1a"></span>8C1A</td>
+<td class="instruction">RRC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c1c"></span>8C1C</td>
+<td class="instruction">RRC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c1e"></span>8C1E</td>
+<td class="instruction">RRC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c20"></span>8C20</td>
+<td class="instruction">OR $10</td>
+<td class="comment-11" rowspan="1">Set bit 4 of <span class="register">A</span> (for no apparent reason)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c22"></span>8C22</td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="1">Set <span class="register">A</span>=0 (this will make the border black)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8c23"></span>8C23</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-11" rowspan="6">Produce a short note whose pitch is determined by <span class="register">D</span> and whose duration is determined by <span class="register">C</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c25"></span>8C25</td>
+<td class="instruction">XOR $18</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c27"></span>8C27</td>
+<td class="instruction">LD B,D</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8c28"></span>8C28</td>
+<td class="instruction">DJNZ <a href="8C01.html#8c28">$8C28</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c2a"></span>8C2A</td>
+<td class="instruction">DEC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c2b"></span>8C2B</td>
+<td class="instruction">JR NZ,<a href="8C01.html#8c23">$8C23</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c2d"></span>8C2D</td>
+<td class="instruction">LD A,E</td>
+<td class="comment-11" rowspan="1">Restore the attribute byte (originally 71) to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c2e"></span>8C2E</td>
+<td class="instruction">DEC A</td>
+<td class="comment-11" rowspan="1">Decrement it (effectively decrementing the INK colour)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c2f"></span>8C2F</td>
+<td class="instruction">CP $3F</td>
+<td class="comment-11" rowspan="1">Have we used attribute value 64 (INK 0) yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c31"></span>8C31</td>
+<td class="instruction">JR NZ,<a href="8C01.html#8c03">$8C03</a></td>
+<td class="comment-11" rowspan="1">If not, jump back to update the INK colour in the top two thirds of the screen and make another sound effect</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8c33"></span>
+<div class="comments">
+<div class="paragraph">
+Now check whether any lives remain.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c33"></span>8C33</td>
+<td class="instruction">LD HL,$85CC</td>
+<td class="comment-11" rowspan="2">Pick up the number of lives remaining from <a href="85CC.html">85CC</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c36"></span>8C36</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c37"></span>8C37</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Are there any lives remaining?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c38"></span>8C38</td>
+<td class="instruction">JP Z,<a href="8C4A.html">$8C4A</a></td>
+<td class="comment-11" rowspan="1">If not, display the game over sequence</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c3b"></span>8C3B</td>
+<td class="instruction">DEC (HL)</td>
+<td class="comment-11" rowspan="1">Decrease the number of lives remaining by one</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c3c"></span>8C3C</td>
+<td class="instruction">LD HL,$85D7</td>
+<td class="comment-11" rowspan="4">Restore Willy's state upon entry to the room by copying the seven bytes at <a href="85D7.html">85D7</a> back into <a href="../buffers/gbuffer.html#85cf">85CF-85D5</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c3f"></span>8C3F</td>
+<td class="instruction">LD DE,$85CF</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c42"></span>8C42</td>
+<td class="instruction">LD BC,$0007</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c45"></span>8C45</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8c47"></span>8C47</td>
+<td class="instruction">JP <a href="88FC.html#8912">$8912</a></td>
+<td class="comment-11" rowspan="1">Reinitialise the room and resume the game</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="8B07.html">8B07</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#8c01">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8C4A.html">8C4A</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

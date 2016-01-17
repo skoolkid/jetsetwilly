@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Routine at 89AD</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="898B.html">898B</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#89ad">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8AEB.html">8AEB</a></span></td>
+</tr>
+</table>
+<div class="description">89AD: Main loop (1)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="88FC.html">88FC</a> and <a href="8B07.html">8B07</a>.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="89ad"></span>89AD</td>
+<td class="instruction">CALL <a href="898B.html">$898B</a></td>
+<td class="comment-11" rowspan="1">Draw the remaining lives</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89b0"></span>89B0</td>
+<td class="instruction">LD HL,$5E00</td>
+<td class="comment-11" rowspan="4">Copy the contents of the attribute buffer at <a href="5E00.html">5E00</a> (the attributes for the empty room) into the attribute buffer at <a href="5C00.html">5C00</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89b3"></span>89B3</td>
+<td class="instruction">LD DE,$5C00</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89b6"></span>89B6</td>
+<td class="instruction">LD BC,$0200</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89b9"></span>89B9</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89bb"></span>89BB</td>
+<td class="instruction">LD HL,$7000</td>
+<td class="comment-11" rowspan="4">Copy the contents of the screen buffer at <a href="7000.html">7000</a> (the tiles for the empty room) into the screen buffer at <a href="6000.html">6000</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89be"></span>89BE</td>
+<td class="instruction">LD DE,$6000</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89c1"></span>89C1</td>
+<td class="instruction">LD BC,$1000</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89c4"></span>89C4</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89c6"></span>89C6</td>
+<td class="instruction">CALL <a href="90C0.html">$90C0</a></td>
+<td class="comment-11" rowspan="1">Move the rope and guardians in the current room</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89c9"></span>89C9</td>
+<td class="instruction">LD A,($85DF)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="85DF.html">85DF</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89cc"></span>89CC</td>
+<td class="instruction">CP $03</td>
+<td class="comment-11" rowspan="1">Is Willy's head down the toilet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89ce"></span>89CE</td>
+<td class="instruction">CALL NZ,<a href="8DD3.html">$8DD3</a></td>
+<td class="comment-11" rowspan="1">If not, move Willy</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89d1"></span>89D1</td>
+<td class="instruction">LD A,($85CF)</td>
+<td class="comment-11" rowspan="1">Pick up Willy's pixel y-coordinate from <a href="85CF.html">85CF</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89d4"></span>89D4</td>
+<td class="instruction">CP $E1</td>
+<td class="comment-11" rowspan="1">Has Willy just moved up a ramp past the top of the screen?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89d6"></span>89D6</td>
+<td class="instruction">CALL NC,<a href="94B0.html">$94B0</a></td>
+<td class="comment-11" rowspan="1">If so, move Willy into the room above</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89d9"></span>89D9</td>
+<td class="instruction">LD A,($85DF)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="85DF.html">85DF</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89dc"></span>89DC</td>
+<td class="instruction">CP $03</td>
+<td class="comment-11" rowspan="1">Is Willy's head down the toilet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89de"></span>89DE</td>
+<td class="instruction">CALL NZ,<a href="95C8.html">$95C8</a></td>
+<td class="comment-11" rowspan="1">If not, check and set the attribute bytes for Willy's sprite in the buffer at <a href="5C00.html">5C00</a>, and draw Willy to the screen buffer at <a href="6000.html">6000</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89e1"></span>89E1</td>
+<td class="instruction">LD A,($85DF)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="85DF.html">85DF</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89e4"></span>89E4</td>
+<td class="instruction">CP $02</td>
+<td class="comment-11" rowspan="1">Is Willy on his way to the toilet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89e6"></span>89E6</td>
+<td class="instruction">CALL Z,<a href="9584.html">$9584</a></td>
+<td class="comment-11" rowspan="1">If so, check whether he's reached it yet</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89e9"></span>89E9</td>
+<td class="instruction">CALL <a href="9534.html">$9534</a></td>
+<td class="comment-11" rowspan="1">Deal with special rooms (<a href="E300.html">Master Bedroom</a>, <a href="E100.html">The Bathroom</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89ec"></span>89EC</td>
+<td class="instruction">CALL <a href="91BE.html">$91BE</a></td>
+<td class="comment-11" rowspan="1">Draw the rope, arrows and guardians in the current room</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89ef"></span>89EF</td>
+<td class="instruction">CALL <a href="94F9.html">$94F9</a></td>
+<td class="comment-11" rowspan="1">Move the conveyor in the current room (if there is one)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89f2"></span>89F2</td>
+<td class="instruction">CALL <a href="93D1.html">$93D1</a></td>
+<td class="comment-11" rowspan="1">Draw the items in the current room (if there are any) and collect any that Willy is touching</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="89f5"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="90B6.html">90B6</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="89f5"></span>89F5</td>
+<td class="instruction">LD HL,$6000</td>
+<td class="comment-11" rowspan="4">Copy the contents of the screen buffer at <a href="6000.html">6000</a> to the display file</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89f8"></span>89F8</td>
+<td class="instruction">LD DE,$4000</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89fb"></span>89FB</td>
+<td class="instruction">LD BC,$1000</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="89fe"></span>89FE</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a00"></span>8A00</td>
+<td class="instruction">LD A,($85DF)</td>
+<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="85DF.html">85DF</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a03"></span>8A03</td>
+<td class="instruction">AND $02</td>
+<td class="comment-11" rowspan="2">Now <span class="register">A</span>=1 if Willy is running to the toilet or already has his head down it, 0 otherwise</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a05"></span>8A05</td>
+<td class="instruction">RRCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a06"></span>8A06</td>
+<td class="instruction">LD HL,$85D2</td>
+<td class="comment-11" rowspan="3">Set Willy's animation frame at <a href="85D2.html">85D2</a> to 1 or 3 if Willy is running to the toilet or already has his head down it; this has the effect of moving Willy at twice his normal speed as he makes his way to the toilet</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a09"></span>8A09</td>
+<td class="instruction">OR (HL)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a0a"></span>8A0A</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a0b"></span>8A0B</td>
+<td class="instruction">LD A,($85CD)</td>
+<td class="comment-11" rowspan="1">Pick up the screen flash counter (unused and always 0) from <a href="85CD.html">85CD</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a0e"></span>8A0E</td>
+<td class="instruction">OR A</td>
+<td class="comment-11" rowspan="1">Is it zero?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a0f"></span>8A0F</td>
+<td class="instruction">JR Z,<a href="89AD.html#8a26">$8A26</a></td>
+<td class="comment-11" rowspan="1">Jump if so (this jump is always made)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8a11"></span>
+<div class="comments">
+<div class="paragraph">
+The next section of code is never executed.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a11"></span>8A11</td>
+<td class="instruction">DEC A</td>
+<td class="comment-11" rowspan="2">Decrement the screen flash counter at <a href="85CD.html">85CD</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a12"></span>8A12</td>
+<td class="instruction">LD ($85CD),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a15"></span>8A15</td>
+<td class="instruction">RLCA</td>
+<td class="comment-11" rowspan="4">Move bits 0-2 into bits 3-5 and clear all the other bits</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a16"></span>8A16</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a17"></span>8A17</td>
+<td class="instruction">RLCA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a18"></span>8A18</td>
+<td class="instruction">AND $38</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a1a"></span>8A1A</td>
+<td class="instruction">LD HL,$5C00</td>
+<td class="comment-11" rowspan="5">Set every attribute byte in the buffer at <a href="5C00.html">5C00</a> to this value</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a1d"></span>8A1D</td>
+<td class="instruction">LD DE,$5C01</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a20"></span>8A20</td>
+<td class="instruction">LD BC,$01FF</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a23"></span>8A23</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a24"></span>8A24</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8a26"></span>
+<div class="comments">
+<div class="paragraph">
+Normal service resumes here.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8a26"></span>8A26</td>
+<td class="instruction">LD HL,$5C00</td>
+<td class="comment-11" rowspan="4">Copy the contents of the attribute buffer at <a href="5C00.html">5C00</a> to the attribute file</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a29"></span>8A29</td>
+<td class="instruction">LD DE,$5800</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a2c"></span>8A2C</td>
+<td class="instruction">LD BC,$0200</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a2f"></span>8A2F</td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a31"></span>8A31</td>
+<td class="instruction">LD IX,$857F</td>
+<td class="comment-11" rowspan="4">Print the current time (see <a href="857F.html">857F</a>) at (19,25)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a35"></span>8A35</td>
+<td class="instruction">LD DE,$5079</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a38"></span>8A38</td>
+<td class="instruction">LD C,$06</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a3a"></span>8A3A</td>
+<td class="instruction">CALL <a href="9680.html">$9680</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a3d"></span>8A3D</td>
+<td class="instruction">LD IX,$857C</td>
+<td class="comment-11" rowspan="4">Print the number of items collected (see <a href="857C.html">857C</a>) at (19,16)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a41"></span>8A41</td>
+<td class="instruction">LD DE,$5070</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a44"></span>8A44</td>
+<td class="instruction">LD C,$03</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a46"></span>8A46</td>
+<td class="instruction">CALL <a href="9680.html">$9680</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a49"></span>8A49</td>
+<td class="instruction">LD A,($85CB)</td>
+<td class="comment-11" rowspan="3">Increment the minute counter at <a href="85CB.html">85CB</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a4c"></span>8A4C</td>
+<td class="instruction">INC A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a4d"></span>8A4D</td>
+<td class="instruction">LD ($85CB),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a50"></span>8A50</td>
+<td class="instruction">JR NZ,<a href="89AD.html#8aab">$8AAB</a></td>
+<td class="comment-11" rowspan="1">Jump unless the minute counter has ticked over to 0</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8a52"></span>
+<div class="comments">
+<div class="paragraph">
+A minute of game time has passed. Update the game clock accordingly.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a52"></span>8A52</td>
+<td class="instruction">LD IX,$857F</td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the current time at <a href="857F.html">857F</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a56"></span>8A56</td>
+<td class="instruction">INC (IX+$04)</td>
+<td class="comment-11" rowspan="1">Increment the units digit of the minute</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a59"></span>8A59</td>
+<td class="instruction">LD A,(IX+$04)</td>
+<td class="comment-11" rowspan="1">Pick up the new units digit</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a5c"></span>8A5C</td>
+<td class="instruction">CP $3A</td>
+<td class="comment-11" rowspan="1">Was it '9' before?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a5e"></span>8A5E</td>
+<td class="instruction">JR NZ,<a href="89AD.html#8aab">$8AAB</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a60"></span>8A60</td>
+<td class="instruction">LD (IX+$04),$30</td>
+<td class="comment-11" rowspan="1">Set the units digit of the minute to '0'</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a64"></span>8A64</td>
+<td class="instruction">INC (IX+$03)</td>
+<td class="comment-11" rowspan="1">Increment the tens digit of the minute</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a67"></span>8A67</td>
+<td class="instruction">LD A,(IX+$03)</td>
+<td class="comment-11" rowspan="1">Pick up the new tens digit</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a6a"></span>8A6A</td>
+<td class="instruction">CP $36</td>
+<td class="comment-11" rowspan="1">Was it '5' before?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a6c"></span>8A6C</td>
+<td class="instruction">JR NZ,<a href="89AD.html#8aab">$8AAB</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a6e"></span>8A6E</td>
+<td class="instruction">LD (IX+$03),$30</td>
+<td class="comment-11" rowspan="1">Set the tens digit of the minute to '0'</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a72"></span>8A72</td>
+<td class="instruction">LD A,(IX+$00)</td>
+<td class="comment-11" rowspan="1">Pick up the tens digit of the hour</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a75"></span>8A75</td>
+<td class="instruction">CP $31</td>
+<td class="comment-11" rowspan="1">Is it currently '1'?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a77"></span>8A77</td>
+<td class="instruction">JR NZ,<a href="89AD.html#8a99">$8A99</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a79"></span>8A79</td>
+<td class="instruction">INC (IX+$01)</td>
+<td class="comment-11" rowspan="1">Increment the units digit of the hour</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a7c"></span>8A7C</td>
+<td class="instruction">LD A,(IX+$01)</td>
+<td class="comment-11" rowspan="1">Pick up the new units digit</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a7f"></span>8A7F</td>
+<td class="instruction">CP $33</td>
+<td class="comment-11" rowspan="1">Was it '2' before?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a81"></span>8A81</td>
+<td class="instruction">JR NZ,<a href="89AD.html#8aab">$8AAB</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a83"></span>8A83</td>
+<td class="instruction">LD A,(IX+$05)</td>
+<td class="comment-11" rowspan="1">Pick up the 'a' or 'p' of 'am/pm'</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a86"></span>8A86</td>
+<td class="instruction">CP $70</td>
+<td class="comment-11" rowspan="1">Is it 'p'?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a88"></span>8A88</td>
+<td class="instruction">JP Z,<a href="87CA.html">$87CA</a></td>
+<td class="comment-11" rowspan="1">If so, quit the game (it's 1am)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a8b"></span>8A8B</td>
+<td class="instruction">LD (IX+$00),$20</td>
+<td class="comment-11" rowspan="1">Set the tens digit of the hour to ' ' (space)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a8f"></span>8A8F</td>
+<td class="instruction">LD (IX+$01),$31</td>
+<td class="comment-11" rowspan="1">Set the units digit of the hour to '1'</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a93"></span>8A93</td>
+<td class="instruction">LD (IX+$05),$70</td>
+<td class="comment-11" rowspan="1">Change the 'a' of 'am' to 'p'</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a97"></span>8A97</td>
+<td class="instruction">JR <a href="89AD.html#8aab">$8AAB</a></td>
+<td class="comment-11" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8a99"></span>8A99</td>
+<td class="instruction">INC (IX+$01)</td>
+<td class="comment-11" rowspan="1">Increment the units digit of the hour</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a9c"></span>8A9C</td>
+<td class="instruction">LD A,(IX+$01)</td>
+<td class="comment-11" rowspan="1">Pick up the new units digit</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8a9f"></span>8A9F</td>
+<td class="instruction">CP $3A</td>
+<td class="comment-11" rowspan="1">Was it '9' before?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aa1"></span>8AA1</td>
+<td class="instruction">JR NZ,<a href="89AD.html#8aab">$8AAB</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aa3"></span>8AA3</td>
+<td class="instruction">LD (IX+$01),$30</td>
+<td class="comment-11" rowspan="1">Set the units digit of the hour to '0'</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aa7"></span>8AA7</td>
+<td class="instruction">LD (IX+$00),$31</td>
+<td class="comment-11" rowspan="1">Set the tens digit of the hour to '1'</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8aab"></span>
+<div class="comments">
+<div class="paragraph">
+Now check whether any non-movement keys are being pressed.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8aab"></span>8AAB</td>
+<td class="instruction">LD BC,$FEFE</td>
+<td class="comment-11" rowspan="2">Read keys SHIFT-Z-X-C-V</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aae"></span>8AAE</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ab0"></span>8AB0</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-11" rowspan="1">Save the result in <span class="register">E</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ab1"></span>8AB1</td>
+<td class="instruction">LD B,$7F</td>
+<td class="comment-11" rowspan="2">Read keys B-N-M-SS-SPACE</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ab3"></span>8AB3</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ab5"></span>8AB5</td>
+<td class="instruction">OR E</td>
+<td class="comment-11" rowspan="1">Combine the results</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ab6"></span>8AB6</td>
+<td class="instruction">AND $01</td>
+<td class="comment-11" rowspan="1">Are SHIFT and SPACE being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ab8"></span>8AB8</td>
+<td class="instruction">JP Z,<a href="87CA.html">$87CA</a></td>
+<td class="comment-11" rowspan="1">If so, quit the game</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8abb"></span>8ABB</td>
+<td class="instruction">LD A,($85E0)</td>
+<td class="comment-11" rowspan="3">Increment the inactivity timer at <a href="85E0.html">85E0</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8abe"></span>8ABE</td>
+<td class="instruction">INC A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8abf"></span>8ABF</td>
+<td class="instruction">LD ($85E0),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ac2"></span>8AC2</td>
+<td class="instruction">JR Z,<a href="89AD.html#8ad1">$8AD1</a></td>
+<td class="comment-11" rowspan="1">Jump if the inactivity timer is now 0 (no keys have been pressed for a while)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ac4"></span>8AC4</td>
+<td class="instruction">LD B,$FD</td>
+<td class="comment-11" rowspan="2">Read keys A-S-D-F-G</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ac6"></span>8AC6</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ac8"></span>8AC8</td>
+<td class="instruction">AND $1F</td>
+<td class="comment-11" rowspan="2">Are any of these keys being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8aca"></span>8ACA</td>
+<td class="instruction">CP $1F</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8acc"></span>8ACC</td>
+<td class="instruction">JR Z,<a href="8B07.html#8b17">$8B17</a></td>
+<td class="comment-11" rowspan="1">Jump if not</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ace"></span>8ACE</td>
+<td class="instruction">LD DE,$0000</td>
+<td class="comment-11" rowspan="1">Prepare the delay counters in <span class="register">D</span> and <span class="register">E</span> for the pause loop that follows</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="8ad1"></span>
+<div class="comments">
+<div class="paragraph">
+The following loop pauses the game until any key except A, S, D, F or G is pressed.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="8ad1"></span>8AD1</td>
+<td class="instruction">LD B,$02</td>
+<td class="comment-11" rowspan="2">Read every half-row of keys except A-S-D-F-G</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ad3"></span>8AD3</td>
+<td class="instruction">IN A,(C)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ad5"></span>8AD5</td>
+<td class="instruction">AND $1F</td>
+<td class="comment-11" rowspan="2">Are any of these keys being pressed?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ad7"></span>8AD7</td>
+<td class="instruction">CP $1F</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ad9"></span>8AD9</td>
+<td class="instruction">JR NZ,<a href="8B07.html">$8B07</a></td>
+<td class="comment-11" rowspan="1">If so, resume the game</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8adb"></span>8ADB</td>
+<td class="instruction">INC E</td>
+<td class="comment-11" rowspan="1">Increment the delay counter in <span class="register">E</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8adc"></span>8ADC</td>
+<td class="instruction">JR NZ,<a href="89AD.html#8ad1">$8AD1</a></td>
+<td class="comment-11" rowspan="1">Jump back unless it's zero</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ade"></span>8ADE</td>
+<td class="instruction">INC D</td>
+<td class="comment-11" rowspan="1">Increment the delay counter in <span class="register">D</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8adf"></span>8ADF</td>
+<td class="instruction">JR NZ,<a href="89AD.html#8ad1">$8AD1</a></td>
+<td class="comment-11" rowspan="1">Jump back unless it's zero</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ae1"></span>8AE1</td>
+<td class="instruction">LD A,($85E3)</td>
+<td class="comment-11" rowspan="1">Pick up the WRITETYPER key counter from <a href="85E3.html">85E3</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ae4"></span>8AE4</td>
+<td class="instruction">CP $0A</td>
+<td class="comment-11" rowspan="1">Has WRITETYPER been keyed in yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ae6"></span>8AE6</td>
+<td class="instruction">CALL NZ,<a href="8AEB.html">$8AEB</a></td>
+<td class="comment-11" rowspan="1">If not, cycle the INK and PAPER colours</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="8ae9"></span>8AE9</td>
+<td class="instruction">JR <a href="89AD.html#8ad1">$8AD1</a></td>
+<td class="comment-11" rowspan="1">Jump back to the beginning of the pause loop</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="898B.html">898B</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#89ad">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="8AEB.html">8AEB</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>

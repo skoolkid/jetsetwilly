@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Data at DB00</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="DA00.html">DA00</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#db00">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="DC00.html">DC00</a></span></td>
+</tr>
+</table>
+<div class="description">DB00: Room 27: The Chapel (teleport: 12459)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="4">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="88FC.html">88FC</a>.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="the_chapel" src="../images/scr/the_chapel.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The first 128 bytes are copied to <a href="8000.html">8000</a> and define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db00"></span>DB00</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$0A</td>
+<td class="comment-11" rowspan="16">Room layout</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db08"></span>DB08</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$0A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db10"></span>DB10</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$0A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db18"></span>DB18</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$0A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db20"></span>DB20</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$0A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db28"></span>DB28</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$0A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db30"></span>DB30</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$0A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db38"></span>DB38</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$80,$1A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db40"></span>DB40</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$02,$80,$1A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db48"></span>DB48</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$0A,$80,$1A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db50"></span>DB50</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$2A,$80,$1A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db58"></span>DB58</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$AA,$80,$1A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db60"></span>DB60</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$1A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db68"></span>DB68</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$1A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db70"></span>DB70</td>
+<td class="instruction">DEFB $AA,$AA,$AA,$AA,$AA,$AA,$A0,$AA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db78"></span>DB78</td>
+<td class="instruction">DEFB $AA,$AA,$AA,$AA,$AA,$AA,$A0,$AA</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="db80"></span>
+<div class="comments">
+<div class="paragraph">
+The next 32 bytes are copied to <a href="8080.html">8080</a> and specify the room name.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="db80"></span>DB80</td>
+<td class="instruction">DEFM "           The Chapel           "</td>
+<td class="comment-11" rowspan="1">Room name</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="dba0"></span>
+<div class="comments">
+<div class="paragraph">
+The next 54 bytes are copied to <a href="80A0.html">80A0</a> and contain the attributes and graphic data for the tiles used to build the room.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="background27" src="../images/udgs/background27.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="floor27" src="../images/udgs/floor27.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="wall27" src="../images/udgs/wall27.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="nasty27" src="../images/udgs/nasty27.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ramp27" src="../images/udgs/ramp27.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor27" src="../images/udgs/conveyor27.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dba0"></span>DBA0</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00</td>
+<td class="comment-11" rowspan="1">Background</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dba9"></span>DBA9</td>
+<td class="instruction">DEFB $0D,$49,$49,$49,$49,$49,$49,$49,$49</td>
+<td class="comment-11" rowspan="1">Floor</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbb2"></span>DBB2</td>
+<td class="instruction">DEFB $16,$A8,$25,$00,$25,$A8,$40,$DD,$40</td>
+<td class="comment-11" rowspan="1">Wall</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbbb"></span>DBBB</td>
+<td class="instruction">DEFB $42,$28,$54,$AA,$55,$AA,$28,$28,$28</td>
+<td class="comment-11" rowspan="1">Nasty (unused)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbc4"></span>DBC4</td>
+<td class="instruction">DEFB $07,$03,$00,$0C,$00,$30,$00,$C0,$00</td>
+<td class="comment-11" rowspan="1">Ramp</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbcd"></span>DBCD</td>
+<td class="instruction">DEFB $07,$00,$0A,$BD,$FF,$00,$AA,$55,$AA</td>
+<td class="comment-11" rowspan="1">Conveyor (unused)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="dbd6"></span>
+<div class="comments">
+<div class="paragraph">
+The next four bytes are copied to <a href="80D6.html">80D6</a> and specify the direction, location and length of the conveyor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbd6"></span>DBD6</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-11" rowspan="1">Direction (left)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbd7"></span>DBD7</td>
+<td class="instruction">DEFW $0000</td>
+<td class="comment-11" rowspan="1">Location in the attribute buffer at <a href="5E00.html">5E00</a> (unused)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbd9"></span>DBD9</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-11" rowspan="1">Length: 0 (there is no conveyor in this room)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="dbda"></span>
+<div class="comments">
+<div class="paragraph">
+The next four bytes are copied to <a href="80DA.html">80DA</a> and specify the direction, location and length of the ramp.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbda"></span>DBDA</td>
+<td class="instruction">DEFB $01</td>
+<td class="comment-11" rowspan="1">Direction (up to the right)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbdb"></span>DBDB</td>
+<td class="instruction">DEFW $5FB1</td>
+<td class="comment-11" rowspan="1">Location in the attribute buffer at <a href="5E00.html">5E00</a>: (13,17)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbdd"></span>DBDD</td>
+<td class="instruction">DEFB $07</td>
+<td class="comment-11" rowspan="1">Length</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="dbde"></span>
+<div class="comments">
+<div class="paragraph">
+The next byte is copied to <a href="80DE.html">80DE</a> and specifies the border colour.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbde"></span>DBDE</td>
+<td class="instruction">DEFB $02</td>
+<td class="comment-11" rowspan="1">Border colour</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="dbdf"></span>
+<div class="comments">
+<div class="paragraph">
+The next two bytes are copied to <a href="80DF.html">80DF</a>, but are not used.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbdf"></span>DBDF</td>
+<td class="instruction">DEFB $00,$00</td>
+<td class="comment-11" rowspan="1">Unused</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="dbe1"></span>
+<div class="comments">
+<div class="paragraph">
+The next eight bytes are copied to <a href="80E1.html">80E1</a> and define the item graphic.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="item27" src="../images/udgs/item27.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbe1"></span>DBE1</td>
+<td class="instruction">DEFB $10,$30,$38,$6C,$C6,$C6,$6C,$10</td>
+<td class="comment-11" rowspan="1">Item graphic</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="dbe9"></span>
+<div class="comments">
+<div class="paragraph">
+The next four bytes are copied to <a href="80E9.html">80E9</a> and specify the rooms to the left, to the right, above and below.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbe9"></span>DBE9</td>
+<td class="instruction">DEFB $1C</td>
+<td class="comment-11" rowspan="1">Room to the left (<a href="DC00.html">First Landing</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbea"></span>DBEA</td>
+<td class="instruction">DEFB $1A</td>
+<td class="comment-11" rowspan="1">Room to the right (<a href="DA00.html">East Wall Base</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbeb"></span>DBEB</td>
+<td class="instruction">DEFB $21</td>
+<td class="comment-11" rowspan="1">Room above (<a href="E100.html">The Bathroom</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbec"></span>DBEC</td>
+<td class="instruction">DEFB $15</td>
+<td class="comment-11" rowspan="1">Room below (<a href="D500.html">Ballroom West</a>)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="dbed"></span>
+<div class="comments">
+<div class="paragraph">
+The next three bytes are copied to <a href="80ED.html">80ED</a>, but are not used.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbed"></span>DBED</td>
+<td class="instruction">DEFB $00,$00,$00</td>
+<td class="comment-11" rowspan="1">Unused</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="4">
+<span id="dbf0"></span>
+<div class="comments">
+<div class="paragraph">
+The next eight pairs of bytes are copied to <a href="80F0.html">80F0</a> and specify the entities (ropes, arrows, guardians) in this room.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbf0"></span>DBF0</td>
+<td class="instruction">DEFB $10,$99</td>
+<td class="comment-11" rowspan="1">Guardian no. 16 (vertical), base sprite 4, x=25 (<a href="A000.html#a080">A080</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbf2"></span>DBF2</td>
+<td class="instruction">DEFB $11,$BB</td>
+<td class="comment-11" rowspan="1">Guardian no. 17 (vertical), base sprite 5, x=27 (<a href="A000.html#a088">A088</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbf4"></span>DBF4</td>
+<td class="instruction">DEFB $12,$DA</td>
+<td class="comment-11" rowspan="1">Guardian no. 18 (vertical), base sprite 6, x=26 (<a href="A000.html#a090">A090</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbf6"></span>DBF6</td>
+<td class="instruction">DEFB $67,$0C</td>
+<td class="comment-11" rowspan="1">Guardian no. 103 (horizontal), base sprite 0, initial x=12 (<a href="A000.html#a338">A338</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbf8"></span>DBF8</td>
+<td class="instruction">DEFB $64,$06</td>
+<td class="comment-11" rowspan="1">Guardian no. 100 (vertical), base sprite 0, x=6 (<a href="A000.html#a320">A320</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbfa"></span>DBFA</td>
+<td class="instruction">DEFB $66,$91</td>
+<td class="comment-11" rowspan="1">Guardian no. 102 (vertical), base sprite 4, x=17 (<a href="A000.html#a330">A330</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbfc"></span>DBFC</td>
+<td class="instruction">DEFB $FF,$00</td>
+<td class="comment-11" rowspan="1">Terminator (<a href="A000.html#a3f8">A3F8</a>)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="dbfe"></span>DBFE</td>
+<td class="instruction">DEFB $00,$00</td>
+<td class="comment-11" rowspan="1">Nothing (<a href="A000.html#a000">A000</a>)</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="DA00.html">DA00</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#db00">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="DC00.html">DC00</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+</footer>
+</body>
+</html>
