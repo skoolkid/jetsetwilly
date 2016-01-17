@@ -1,4 +1,4 @@
-; Copyright 2012-2015 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2016 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
 HtmlWriterClass=:jetsetwilly.JetSetWillyHtmlWriter
@@ -9,8 +9,8 @@ GameDir=jet_set_willy
 Game=Jet Set Willy
 Logo=#LOGO{4,4,200,120}(/images/logo.png|Jet Set Willy)
 StyleSheet=skoolkit.css;jsw.css
-Copyright=&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2015 Richard Dymond (this disassembly).
-Release=The complete Jet Set Willy RAM disassembly YYYYMMDD
+Copyright=&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).
+Release=The complete Jet Set Willy RAM disassembly 20160117
 LinkInternalOperands=1
 
 [ImageWriter]
