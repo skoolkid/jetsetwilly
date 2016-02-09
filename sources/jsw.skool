@@ -1,4 +1,4 @@
-; Copyright 2012-2015 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2016 Richard Dymond (rjdymond@gmail.com)
 
 ; Attribute buffer (room + Willy + entities + items)
 ;
@@ -32,12 +32,13 @@ b28672 DEFS 4096
 @replace=/<tmap>/#MAP($n%256)(,160:background,169:floor,178:wall,187:nasty,196:ramp,205:conveyor)
 @replace=/#item\i/#UDG(49377+256*\1,(#PEEK(49312+256*\1)&120)+3)(item#EVAL\1,,2)
 @replace=/#sprite\i,\i/#UDGARRAY2,\2,2,2;\1-(\1+17)-1-16
+@replace=/#n\i/#N\1,,,1($)
 @writer=:jetsetwilly.JetSetWillyAsmWriter
 ; Jet Set Willy disassembly
 ; http://skoolkit.ca/
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
-; Copyright 2012-2015 Richard Dymond (this disassembly)
+; Copyright 2012-2016 Richard Dymond (this disassembly)
 @bfix+begin
 ;
 ; This disassembly contains fixes for the following bugs:
@@ -464,7 +465,7 @@ c33792 DI            ; Disable interrupts
 @ssub=LD (HL),34463%256
  33799 LD (HL),159   ;
  33801 LD SP,23550   ; }
- 33804 SUB A         ; {Set #REGhl=34048 in a roundabout way
+ 33804 SUB A         ; {Set #REGhl=#N34048 in a roundabout way
  33805 LD L,A        ;
  33806 XOR 10        ;
  33808 LD B,A        ;
@@ -472,10 +473,10 @@ c33792 DI            ; Disable interrupts
  33810 LD H,B        ;
  33811 RRC H         ; }
 @ignoreua
-*33813 LD C,(HL)     ; {Read through addresses 34048-65535, without changing
- 33814 LD A,L        ; their contents; perhaps this code was once used to
- 33815 XOR C         ; descramble the contents of pages 133-255, but now all it
- 33816 XOR H         ; does is introduce a pause of about 0.47s before
+*33813 LD C,(HL)     ; {Read through addresses #N34048-#N(65535), without
+ 33814 LD A,L        ; changing their contents; perhaps this code was once used
+ 33815 XOR C         ; to descramble the contents of pages 133-255, but now all
+ 33816 XOR H         ; it does is introduce a pause of about 0.47s before
  33817 LD (HL),C     ; displaying the code entry screen
  33818 INC HL        ;
  33819 BIT 7,H       ;
@@ -704,7 +705,7 @@ g34257 DEFB 0
 @label=FRAME
 g34258 DEFB 0
 
-; Address of Willy's location in the attribute buffer at 23552
+; Address of Willy's location in the attribute buffer at #N23552
 ;
 ; Initialised by the routine at #R34762, and used by the routines at #R36307,
 ; #R36796, #R37310, #R38026, #R38046, #R38064, #R38098, #R38196, #R38276,
@@ -919,7 +920,7 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
 @ignoreua
 @ssub=LD H,40448/256
  34562 LD H,158      ; Point #REGhl at one of the entries in the table at
-                     ; #R40448 (or at 40703 if #REGl=255)
+                     ; #R40448 (or at #N40703 if #REGl=255)
 @bfix+else
  34559 SUB 180       ; Otherwise subtract 180
 *34561 LD L,A        ; Now #REGl holds some number between 0 and 179
@@ -1837,7 +1838,7 @@ c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
  36142 JR NZ,36072   ; Jump back unless it's zero
  36144 JP 34762      ; Display the title screen and play the theme tune
 
-; Draw the current room to the screen buffer at 28672
+; Draw the current room to the screen buffer at #N28672
 ;
 ; Used by the routine at #R35068.
 @label=DRAWROOM
@@ -1848,17 +1849,17 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
 @ignoreua
  36154 LD A,112      ; {Set the operand of the 'LD D,n' instruction at #R36188
 @ssub=LD (36188+1),A
- 36156 LD (36189),A  ; (below) to 112}
+ 36156 LD (36189),A  ; (below) to #n112}
  36159 CALL 36171    ; Draw the tiles for the top half of the room to the
                      ; screen buffer at #R28672
  36162 LD IX,24320   ; Point #REGix at the 256th byte of the attribute buffer
                      ; at #R24064 in preparation for drawing the bottom half of
                      ; the room; this instruction is redundant, since #REGix
-                     ; already holds 24320
+                     ; already holds #N24320
 @ignoreua
  36166 LD A,120      ; {Set the operand of the 'LD D,n' instruction at #R36188
 @ssub=LD (36188+1),A
- 36168 LD (36189),A  ; (below) to 120}
+ 36168 LD (36189),A  ; (below) to #n120}
 *36171 LD C,0        ; #REGc will count 256 tiles
 ; The following loop draws 256 tiles (for either the top half or the bottom
 ; half of the room) to the screen buffer at #R28672.
@@ -1876,8 +1877,8 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
  36185 LD C,E        ; Restore the value of the tile counter in #REGc
  36186 LD B,8        ; There are eight bytes in the tile
 @label=BUFMSB
- 36188 LD D,0        ; This instruction is set to either 'LD D,112' or 'LD
-                     ; D,120' above; now #REGde holds the appropriate address
+ 36188 LD D,0        ; This instruction is set to either 'LD D,#n112' or 'LD
+                     ; D,#n120' above; now #REGde holds the appropriate address
                      ; in the screen buffer at #R28672
 *36190 LD A,(HL)     ; {Copy the tile graphic data to the screen buffer at
  36191 LD (DE),A     ; #R28672
@@ -1890,7 +1891,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
  36199 JP NZ,36173   ; If not, jump back to draw the next one
  36202 RET           ;
 
-; Fill the buffer at 24064 with attribute bytes for the current room
+; Fill the buffer at #N24064 with attribute bytes for the current room
 ;
 ; Used by the routine at #R36147. Fills the buffer at #R24064 with attribute
 ; bytes for the background, floor, wall, nasty, conveyor and ramp tiles in the
@@ -1959,14 +1960,14 @@ c36203 LD HL,32768   ; Point #REGhl at the first room layout byte at #R32768
  36285 DJNZ 36283    ; }
  36287 RET           ;
 
-; Copy a room attribute byte into the buffer at 24064
+; Copy a room attribute byte into the buffer at #N24064
 ;
 ; Used by the routine at #R36203. On entry, #REGa holds a room layout byte,
 ; rotated such that the bit-pair corresponding to the tile of interest is in
 ; bits 0 and 1.
 ;
 ; A Room layout byte (rotated)
-; IX Attribute buffer address (#R24064(24064-24575))
+; IX Attribute buffer address (#R24064(#N24064-#N24575))
 @label=ROOMATTR
 c36288 AND 3         ; Keep only bits 0 and 1; #REGa=0 (background), 1 (floor),
                      ; 2 (wall) or 3 (nasty)
@@ -2958,8 +2959,8 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
 @ignoreua
 ; This routine is not used, but if it were, it would set the INK colour for a
 ; 3x2 block of cells, maintaining the PAPER, BRIGHT and FLASH attributes of the
-; current room background. It is identical to the code at 36447 in Manic Miner
-; that is used to set the attributes for a vertical guardian.
+; current room background. It is identical to the code at #N36447 in Manic
+; Miner that is used to set the attributes for a vertical guardian.
 ;
 ; A INK colour (0-7)
 ; HL Attribute buffer address
@@ -3362,7 +3363,7 @@ c38298 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38340 LD (24028),HL ; #R23552}
  38343 RET           ;
 
-; Check and set the attribute bytes for Willy's sprite in the buffer at 23552
+; Check and set the attribute bytes for Willy's sprite in the buffer at #N23552
 ;
 ; Used by the routine at #R35245. Sets the attribute bytes in the buffer at
 ; #R23552 for the six cells (in three rows of two) occupied by or under Willy's
@@ -3459,7 +3460,7 @@ c38430 LD A,(32928)  ; Pick up the attribute byte of the background tile in the
  38451 JP Z,37046    ; Kill Willy if so
  38454 RET           ;
 
-; Draw Willy to the screen buffer at 24576
+; Draw Willy to the screen buffer at #N24576
 ;
 ; Used by the routine at #R38344.
 ;
