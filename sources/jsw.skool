@@ -818,7 +818,10 @@ g34276 DEFB 0
 
 ; WRITETYPER
 ;
-; Used by the routine at #R35591.
+; Used by the routine at #R35591. In each pair of bytes here, bits 0-4 of the
+; first byte correspond to keys Q-W-E-R-T, and bits 0-4 of the second byte
+; correspond to keys P-O-I-U-Y; among those bits, a zero indicates a key being
+; pressed.
 b34277 DEFB %00011111,%00011111 ; (no keys pressed)
 @label=WRITETYPER
  34279 DEFB %00011101,%00011111 ; W
