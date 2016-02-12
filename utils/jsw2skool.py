@@ -162,15 +162,15 @@ class JetSetWilly:
         lines = ['b 40960 Entity definitions']
         lines.append('@ 40960 label=ENTITYDEFS')
         lines.append('D 40960 Used by the routine at #R35068.')
-        lines.append('N 40960 The following (empty) entity definition (0) is copied into the entity buffer at #R33024 for any entity specification whose first byte is zero.')
+        lines.append('N 40960 The following (empty) entity definition (#ed0) is copied into the entity buffer at #R33024 for any entity specification whose first byte is zero.')
         lines.append('B 40960,8')
         for num in range(1, 112):
             addr = 40960 + num * 8
             if num in defs:
                 room_links = self._get_room_links(sorted(defs[num]))
-                comment = 'The following entity definition ({}) is used in {}.'.format(num, room_links)
+                comment = 'The following entity definition (#ed{}) is used in {}.'.format(num, room_links)
             else:
-                comment = 'The following entity definition ({}) is not used.'.format(num)
+                comment = 'The following entity definition (#ed{}) is not used.'.format(num)
             lines.append('N {} {}'.format(addr, comment))
             if num in sprite_addrs:
                 ink = self.snapshot[40961 + 8 * num] & 7
@@ -194,7 +194,7 @@ class JetSetWilly:
                     desc2 = 'Replaced by the base sprite index and initial x-coordinate (copied from the second byte of the entity specification in the room definition)'
                     desc3 = 'Pixel y-coordinate: {}'.format(entity_def[3] // 2)
                     desc4 = 'Unused'
-                    desc5 = 'Page containing the sprite graphic data: #R{}({})'.format(entity_def[5] * 256, entity_def[5])
+                    desc5 = 'Page containing the sprite graphic data: #R{}(#N{})'.format(entity_def[5] * 256, entity_def[5])
                     desc6 = 'Minimum x-coordinate'
                     desc7 = 'Maximum x-coordinate'
                 elif entity_type & 3 == 2:
@@ -212,7 +212,7 @@ class JetSetWilly:
                     else:
                         direction = 'moving up'
                     desc4 = 'Initial pixel y-coordinate increment: {} ({})'.format(y_inc // 2, direction)
-                    desc5 = 'Page containing the sprite graphic data: #R{}({})'.format(entity_def[5] * 256, entity_def[5])
+                    desc5 = 'Page containing the sprite graphic data: #R{}(#N{})'.format(entity_def[5] * 256, entity_def[5])
                     desc6 = 'Minimum pixel y-coordinate: {}'.format(entity_def[6] // 2)
                     desc7 = 'Maximum pixel y-coordinate: {}'.format(entity_def[7] // 2)
                 elif entity_type & 3 == 3:
@@ -247,12 +247,12 @@ class JetSetWilly:
                 lines.append('B {} {}'.format(addr + 7, desc7))
             else:
                 lines.append('B {},8'.format(addr))
-        lines.append('N 41856 The next 15 entity definitions (112-126) are unused.')
+        lines.append('N 41856 The next 15 entity definitions (#ed112-#ed126) are unused.')
         lines.append('B 41856,120,8')
         lines.append('@ 41976 label=ENTITY127')
-        lines.append('N 41976 The following entity definition (127) - whose eighth byte is at #R41983 - '
+        lines.append('N 41976 The following entity definition (#ed127) - whose eighth byte is at #R41983 - '
                      'is copied into the entity buffer at #R33024 for any entity specification whose '
-                     'first byte is 127 or 255; the first byte of the definition (255) serves to '
+                     'first byte is #n127 or #n255; the first byte of the definition (#n255) serves to '
                      'terminate the entity buffer.')
         lines.append('B 41976,7')
         lines.append('i 41983')
