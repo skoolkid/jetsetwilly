@@ -1636,7 +1636,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
 @keep
  35772 LD BC,64510   ; {Read keys Q-W-E-R-T
  35775 IN A,(C)      ; }
- 35777 AND 31        ; Keep only bits 0-5
+ 35777 AND 31        ; Keep only bits 0-4
  35779 CP (IX+0)     ; Does this match the first byte of the entry in the
                      ; WRITETYPER table?
  35782 JR Z,35802    ; Jump if so
@@ -1650,7 +1650,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35799 JP 35245      ; Jump back to the start of the main loop
 *35802 LD B,223      ; {Read keys Y-U-I-O-P
  35804 IN A,(C)      ; }
- 35806 AND 31        ; Keep only bits 0-5
+ 35806 AND 31        ; Keep only bits 0-4
  35808 CP (IX+1)     ; Does this match the second byte of the entry in the
                      ; WRITETYPER table?
  35811 JR Z,35831    ; If so, jump to increment the WRITETYPER key counter
@@ -2131,7 +2131,7 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36514 ADC A,92      ; {#REGh=92 or 93 (MSB of the address of Willy's location
  36516 LD H,A        ; in the attribute buffer)}
  36517 LD A,(34259)  ; {Pick up Willy's screen x-coordinate (0-30) from bits
- 36520 AND 31        ; 0-5 at #R34259}
+ 36520 AND 31        ; 0-4 at #R34259}
  36522 OR L          ; {Now #REGl holds the LSB of Willy's attribute buffer
  36523 LD L,A        ; address}
  36524 LD (34259),HL ; Store Willy's updated attribute buffer location at
