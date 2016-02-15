@@ -702,7 +702,7 @@ g34257 DEFB 0
 ; Willy's animation frame
 ;
 ; Used by the routines at #R38344 and #R38455, and updated by the routines at
-; #R35245, #R36796 and #R37310.
+; #R35245, #R36796 and #R37310. Possible values are 0, 1, 2 and 3.
 @label=FRAME
 g34258 DEFB 0
 
