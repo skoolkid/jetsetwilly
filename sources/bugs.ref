@@ -1,4 +1,4 @@
-; Copyright 2014, 2015 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:faultyClock:12:30am in the afternoon]
 The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm (instead of 12 noon), and also doesn't switch from 'pm' to 'am' at midnight.
@@ -101,7 +101,7 @@ To fix the bug:
 <div>POKE 65324,201</div>
 
 [Bug:invalidGridLocation:Invalid grid location]
-If the LSB of the system variable FRAMES (at 23672) is 142 when the game starts, the routine at #R34499 will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
+If the LSB of the system variable FRAMES is 142 when the game starts, the routine at #R34499 will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
 
 Should you ever need it, the code for 'D>' is 1444.
 
@@ -115,12 +115,12 @@ POKE #R35615(35615),62: POKE #R35620(35620),219: POKE #R35620(35621),254
 [Bug:theAtticBug:The Attic bug]
 Perhaps the most famous of all the bugs in Jet Set Willy, the Attic bug is responsible for certain rooms becoming impossible to navigate after Willy has visited #R59648(The Attic), thus making it impossible to complete the game.
 
-The root cause of the bug is a misplaced arrow, defined by the entity specification at #R59900. The second byte of the entity specification is an index into the table of screen buffer addresses at #R33280, and determines the arrow's y-coordinate; the index should be an even number, but the value of the second byte is 213, which means the arrow-drawing routine at #R37310 looks up the word at 33493 (33280+213) and finds 41066, way outside the actual screen buffer at 24576-28671. As a result, the misplaced arrow is 'drawn' at the following addresses:
+The root cause of the bug is a misplaced arrow, defined by the entity specification at #R59900. The second byte of the entity specification is an index into the table of screen buffer addresses at #R33280, and determines the arrow's y-coordinate; the index should be an even number, but the value of the second byte is #N(213,,,1)(0x), which means the arrow-drawing routine at #R37310 looks up the word at #N33493 and finds #N(41066), way outside the actual screen buffer at #N24576-#N28671. As a result, the misplaced arrow is 'drawn' at the following addresses:
 
 <ul>
-<li>#R40704(40810-40841): unused (set to 65, with no effect on the game)</li>
-<li>#R41064(41066-41097): the third byte of entity definition 13 through to the second byte of entity definition 17 (set to 255); this affects the guardians in #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..), #R53248(We must perform a Quirkafleeg), #R49408(The Bridge), #R50688(Entrance to Hades), #R56064(The Chapel) and #R58880(Priests' Hole)</li>
-<li>#R41320(41322-41353): the third byte of entity definition 45 through to the second byte of entity definition 49 (set to 65); this affects the guardians in #R52480(Out on a limb), #R55808(East Wall Base), #R52224(Tree Top), #R51200(Inside the MegaTrunk), #R55040(The Kitchen) and #R55296(West of Kitchen)</li>
+<li>#R40704(#N40810-#N40841): unused (set to #N(65,,,1)(0x), with no effect on the game)</li>
+<li>#R41064(#N41066-#N41097): the third byte of entity definition #ed13 through to the second byte of entity definition #ed17 (set to #N(255,,,1)(0x)); this affects the guardians in #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..), #R53248(We must perform a Quirkafleeg), #R49408(The Bridge), #R50688(Entrance to Hades), #R56064(The Chapel) and #R58880(Priests' Hole)</li>
+<li>#R41320(#N41322-#N41353): the third byte of entity definition #ed45 through to the second byte of entity definition #ed49 (set to #N(65,,,1)(0x)); this affects the guardians in #R52480(Out on a limb), #R55808(East Wall Base), #R52224(Tree Top), #R51200(Inside the MegaTrunk), #R55040(The Kitchen) and #R55296(West of Kitchen)</li>
 </ul>
 
 The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix the Attic bug is
