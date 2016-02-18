@@ -101,7 +101,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             address = 49152 + room_num * 256
             room_name = self.room_names_wp[room_num]
             teleport_code = self._get_teleport_code(room_num)
-            lines.append('{{ {} | #R{} | {} | {} }}'.format(room_num, address, room_name, teleport_code))
+            lines.append('{{ #N{0} | #N{1} | #R{1}({2}) | {3} }}'.format(room_num, address, room_name, teleport_code))
         lines.append('TABLE#')
         return ''.join(lines)
 
