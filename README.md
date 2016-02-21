@@ -8,7 +8,7 @@ using [SkoolKit](http://skoolkit.ca/).
 Decide which number base you prefer and then click the corresponding link below
 to browse the latest release:
 
-* [Jet Set Willy disassembly](http://skoolkid.github.io/jetsetwilly/) (hexadecimal)
+* [Jet Set Willy disassembly](http://skoolkid.github.io/jetsetwilly/) (hexadecimal; mirror [here](https://skoolkid.gitlab.io/jetsetwilly/))
 * [Jet Set Willy disassembly](http://skoolkit.ca/disassemblies/jet_set_willy/) (decimal)
 
 To build the current development version, first either install SkoolKit, or
