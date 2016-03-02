@@ -120,7 +120,7 @@ g32986 DEFB 0        ; Direction (0=up to the left, 1=up to the right; used by
 ; Border colour
 ;
 ; Initialised upon entry to a room and then used by the routine at #R35068, and
-; also used by the routines at #R35068, #R35591, #R36307, #R37310 and #R37841.
+; also used by the routines at #R35591, #R36307, #R37310 and #R37841.
 @label=BORDER
 g32990 DEFB 0
 
