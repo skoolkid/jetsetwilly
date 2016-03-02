@@ -435,9 +435,9 @@ class JetSetWilly:
                 desc = 'Terminator'
                 terminated = True
             elif guardian_type == 1:
-                desc = 'Guardian no. {} (horizontal), base sprite {}, initial x={}'.format(num, coords // 32, coords & 31)
+                desc = 'Guardian no. #ed{} (horizontal), base sprite {}, initial x={}'.format(num, coords // 32, coords & 31)
             elif guardian_type == 2:
-                desc = 'Guardian no. {} (vertical), base sprite {}, x={}'.format(num, coords // 32, coords & 31)
+                desc = 'Guardian no. #ed{} (vertical), base sprite {}, x={}'.format(num, coords // 32, coords & 31)
             elif guardian_type == 3:
                 desc = 'Rope at x={}'.format(coords & 31)
             else:
