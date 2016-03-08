@@ -77,7 +77,7 @@ The conveyor tile in #R60160(Conservatory Roof) is completely blank and its attr
 [Bug:corruptedConveyors:Corrupted conveyors]
 The conveyors in #R55296(West of Kitchen), #R56576(The Nightmare Room), #R61696(The Wine Cellar) and #R62208(Tool#SPACE(2)Shed) don't look quite as they should. The reason for this is a bug in the code at #R36177: if a graphic data byte of the background, floor, wall, nasty or ramp tile in a room matches the attribute byte of the conveyor tile to be drawn, the CPIR instruction exits early, leaving #REGhl pointing at the wrong location.
 
-Here are some 'before' and 'after' pictures showing what the conveyors actually look like and what they should look like.
+Here are some 'before' and 'after' pictures showing what the conveyors actually look like and what they look like when drawn properly.
 
 #UDGTABLE(gallery)
 { #R55296(West of Kitchen)    | #ROOM55296,2,21,11,7,3,1,0,1(conveyor24_before) | #ROOM55296,2,21,11,7,3,1,1,1(conveyor24_after) }
@@ -99,6 +99,14 @@ To fix the bug:
 <div>POKE 65322,75</div>
 <div>POKE 65323,35</div>
 <div>POKE 65324,201</div>
+
+[Bug:veryCorruptedConveyor:Very corrupted conveyor]
+You might be thinking that the fix given above for the corrupted conveyors bug does not do much for the appearance of the conveyor in #R56576(The Nightmare Room). Perhaps that's because the real problem with this conveyor is that its attribute byte and graphic data - which should occupy addresses #R56781(#N56781-#N56789) - appear to have been shifted by one byte back to #N56780-#N56788 (overwriting the eighth graphic byte of the ramp tile). If they are shifted along to the right spot, the conveyor takes on a much more reasonable appearance:
+
+#UDGTABLE(gallery)
+{ #ROOM56576,2,26,6,3,3,1(conveyor29_before) | #PUSHS #FOR(56789,56781,-1)||n|#POKES(n,#PEEK(n-1))|| #ROOM56576,2,26,6,3,3,1,1,1(conveyor29_after2) #POPS }
+{ Before                                     | After }
+TABLE#
 
 [Bug:invalidGridLocation:Invalid grid location]
 If the LSB of the system variable FRAMES is 142 when the game starts, the routine at #R34499 will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.

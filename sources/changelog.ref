@@ -1,5 +1,11 @@
 ; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
 
+[Changelog:YYYYMMDD]
+-
+
+Documented a bug: #BUG#veryCorruptedConveyor() (thanks IRF)
+Made various improvements to the hexadecimal version of the disassembly
+
 [Changelog:20160117]
 -
 
