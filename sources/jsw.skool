@@ -4039,7 +4039,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; and #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
-; { #guardian191,4,4 | #guardian191,4,12 | #guardian191,6,20 }
+; { #guardian191,4,4 | #guardian191,5,4 }
+; { #guardian191,4,12 | #guardian191,5,12 }
+; { #guardian191,6,20 | #guardian191,7,20 }
 ; TABLE#
 @label=ENTITY2
  40976 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4063,7 +4065,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Battlements).
 ; .
 ; #UDGTABLE
-; { #guardian191,4,66 | #guardian191,4,74 }
+; { #guardian191,4,66 | #guardian191,5,66 }
+; { #guardian191,4,74 | #guardian191,5,74 }
 ; TABLE#
 @label=ENTITY3
  40984 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4087,7 +4090,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; and #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
-; { #guardian191,4,6 | #guardian191,4,14 | #guardian191,6,22 }
+; { #guardian191,4,6 | #guardian191,5,6 }
+; { #guardian191,4,14 | #guardian191,5,14 }
+; { #guardian191,6,22 | #guardian191,7,22 }
 ; TABLE#
 @label=ENTITY4
  40992 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4110,7 +4115,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; this before..) and #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
-; { #guardian191,4,5 | #guardian191,4,13 }
+; { #guardian191,4,5 | #guardian191,5,5 }
+; { #guardian191,4,13 | #guardian191,5,13 }
 ; TABLE#
 @label=ENTITY5
  41000 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4133,7 +4139,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,5 }
+; { #guardian191,0,5 | #guardian191,1,5 }
 ; TABLE#
 @label=ENTITY6
  41008 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4156,7 +4162,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree) and #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,5 | #guardian191,6,5 }
+; { #guardian191,0,5 | #guardian191,1,5 | #guardian191,2,5 | #guardian191,3,5 }
+; { #guardian191,6,5 | #guardian191,7,5 }
 ; TABLE#
 @label=ENTITY7
  41016 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4179,7 +4186,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,66 }
+; { #guardian191,0,66 | #guardian191,1,66 | #guardian191,2,66 |
+; #guardian191,3,66 }
 ; TABLE#
 @label=ENTITY8
  41024 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4202,7 +4210,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTrunk) and #R51456(On a Branch Over the Drive).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,67 | #guardian191,0,75 }
+; { #guardian191,0,67 | #guardian191,1,67 }
+; { #guardian191,0,75 | #guardian191,1,75 }
 ; TABLE#
 @label=ENTITY9
  41032 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4224,7 +4233,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed10) is used in #R49152(The Off Licence).
 ; .
 ; #UDGTABLE
-; { #guardian190,4,69 }
+; { #guardian190,4,69 | #guardian190,5,69 | #guardian190,6,69 |
+; #guardian190,7,69 }
 ; TABLE#
 @label=ENTITY10
  41040 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4247,7 +4257,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; never believe this) and #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,6 }
+; { #guardian191,0,6 | #guardian191,1,6 | #guardian191,2,6 | #guardian191,3,6 }
 ; TABLE#
 @label=ENTITY11
  41048 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4269,7 +4279,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed12) is used in #R49152(The Off Licence).
 ; .
 ; #UDGTABLE
-; { #guardian190,0,4 }
+; { #guardian190,0,4 | #guardian190,1,4 | #guardian190,2,4 | #guardian190,3,4 }
 ; TABLE#
 @label=ENTITY12
  41056 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4292,7 +4302,14 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Quirkafleeg).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,4 | #guardian188,0,12 | #guardian188,0,20 }
+; { #guardian188,0,4 | #guardian188,1,4 | #guardian188,2,4 | #guardian188,3,4 |
+; #guardian188,4,4 | #guardian188,5,4 | #guardian188,6,4 | #guardian188,7,4 }
+; { #guardian188,0,12 | #guardian188,1,12 | #guardian188,2,12 |
+; #guardian188,3,12 | #guardian188,4,12 | #guardian188,5,12 | #guardian188,6,12
+; | #guardian188,7,12 }
+; { #guardian188,0,20 | #guardian188,1,20 | #guardian188,2,20 |
+; #guardian188,3,20 | #guardian188,4,20 | #guardian188,5,20 | #guardian188,6,20
+; | #guardian188,7,20 }
 ; TABLE#
 @label=ENTITY13
  41064 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4313,7 +4330,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed14) is used in #R49408(The Bridge).
 ; .
 ; #UDGTABLE
-; { #guardian185,4,68 }
+; { #guardian185,4,68 | #guardian185,5,68 | #guardian185,6,68 |
+; #guardian185,7,68 }
 ; TABLE#
 @label=ENTITY14
  41072 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4335,7 +4353,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed15) is used in #R52736(Rescue Esmerelda).
 ; .
 ; #UDGTABLE
-; { #guardian176,4,23 }
+; { #guardian176,4,23 | #guardian176,5,23 }
 ; TABLE#
 @label=ENTITY15
  41080 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4358,7 +4376,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Hades), #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
-; { #guardian186,4,4 | #guardian186,4,52 }
+; { #guardian186,4,4 }
+; { #guardian186,4,52 }
 ; TABLE#
 @label=ENTITY16
  41088 DEFB %00000010         ; Vertical guardian (bits 0-2), initial animation
@@ -4380,7 +4399,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Hades), #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
-; { #guardian186,5,4 | #guardian186,5,52 }
+; { #guardian186,5,4 }
+; { #guardian186,5,52 }
 ; TABLE#
 @label=ENTITY17
  41096 DEFB %00000010         ; Vertical guardian (bits 0-2), initial animation
@@ -4402,7 +4422,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Hades), #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
-; { #guardian186,6,4 | #guardian186,6,52 }
+; { #guardian186,6,4 | #guardian186,7,4 }
+; { #guardian186,6,52 | #guardian186,7,52 }
 ; TABLE#
 @label=ENTITY18
  41104 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4447,7 +4468,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,66 }
+; { #guardian188,0,66 | #guardian188,1,66 | #guardian188,2,66 |
+; #guardian188,3,66 | #guardian188,4,66 | #guardian188,5,66 | #guardian188,6,66
+; | #guardian188,7,66 }
 ; TABLE#
 @label=ENTITY20
  41120 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4469,7 +4492,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R50176(The Drive) and #R54272(Ballroom East).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,3 }
+; { #guardian188,0,3 | #guardian188,1,3 | #guardian188,2,3 | #guardian188,3,3 |
+; #guardian188,4,3 | #guardian188,5,3 | #guardian188,6,3 | #guardian188,7,3 }
 ; TABLE#
 @label=ENTITY21
  41128 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -4491,7 +4515,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R51200(Inside the MegaTrunk).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,4 }
+; { #guardian188,0,4 | #guardian188,1,4 | #guardian188,2,4 | #guardian188,3,4 |
+; #guardian188,4,4 | #guardian188,5,4 | #guardian188,6,4 | #guardian188,7,4 }
 ; TABLE#
 @label=ENTITY22
  41136 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4512,7 +4537,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed23) is used in #R50176(The Drive).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,6 }
+; { #guardian188,0,6 | #guardian188,1,6 | #guardian188,2,6 | #guardian188,3,6 |
+; #guardian188,4,6 | #guardian188,5,6 | #guardian188,6,6 | #guardian188,7,6 }
 ; TABLE#
 @label=ENTITY23
  41144 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4534,7 +4560,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R51200(Inside the MegaTrunk) and #R52224(Tree Top).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,69 }
+; { #guardian188,0,69 | #guardian188,1,69 | #guardian188,2,69 |
+; #guardian188,3,69 | #guardian188,4,69 | #guardian188,5,69 | #guardian188,6,69
+; | #guardian188,7,69 }
 ; TABLE#
 @label=ENTITY24
  41152 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4555,7 +4583,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed25) is used in #R52480(Out on a limb).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,67 }
+; { #guardian188,0,67 | #guardian188,1,67 | #guardian188,2,67 |
+; #guardian188,3,67 | #guardian188,4,67 | #guardian188,5,67 | #guardian188,6,67
+; | #guardian188,7,67 }
 ; TABLE#
 @label=ENTITY25
  41160 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4578,7 +4608,12 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Generator).
 ; .
 ; #UDGTABLE
-; { #guardian182,0,66 | #guardian182,0,74 }
+; { #guardian182,0,66 | #guardian182,1,66 | #guardian182,2,66 |
+; #guardian182,3,66 | #guardian182,4,66 | #guardian182,5,66 | #guardian182,6,66
+; | #guardian182,7,66 }
+; { #guardian182,0,74 | #guardian182,1,74 | #guardian182,2,74 |
+; #guardian182,3,74 | #guardian182,4,74 | #guardian182,5,74 | #guardian182,6,74
+; | #guardian182,7,74 }
 ; TABLE#
 @label=ENTITY26
  41168 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4601,7 +4636,12 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R64256(The Yacht).
 ; .
 ; #UDGTABLE
-; { #guardian178,0,66 | #guardian178,4,66 | #guardian178,4,74 }
+; { #guardian178,0,66 | #guardian178,1,66 | #guardian178,2,66 |
+; #guardian178,3,66 }
+; { #guardian178,4,66 | #guardian178,5,66 | #guardian178,6,66 |
+; #guardian178,7,66 }
+; { #guardian178,4,74 | #guardian178,5,74 | #guardian178,6,74 |
+; #guardian178,7,74 }
 ; TABLE#
 @label=ENTITY27
  41176 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4624,7 +4664,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; and #R63488(West Wing Roof).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,6 }
+; { #guardian188,0,6 | #guardian188,1,6 | #guardian188,2,6 | #guardian188,3,6 |
+; #guardian188,4,6 | #guardian188,5,6 | #guardian188,6,6 | #guardian188,7,6 }
 ; TABLE#
 @label=ENTITY28
  41184 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4647,7 +4688,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian178,0,13 | #guardian178,4,5 }
+; { #guardian178,0,13 | #guardian178,1,13 | #guardian178,2,13 |
+; #guardian178,3,13 }
+; { #guardian178,4,5 | #guardian178,5,5 | #guardian178,6,5 | #guardian178,7,5 }
 ; TABLE#
 @label=ENTITY29
  41192 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4670,7 +4713,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R63232(West Bedroom).
 ; .
 ; #UDGTABLE
-; { #guardian173,4,5 }
+; { #guardian173,4,5 | #guardian173,5,5 | #guardian173,6,5 | #guardian173,7,5 }
 ; TABLE#
 @label=ENTITY30
  41200 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4692,7 +4735,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed31) is used in #R60928(Tree Root).
 ; .
 ; #UDGTABLE
-; { #guardian183,2,3 }
+; { #guardian183,2,3 | #guardian183,3,3 }
 ; TABLE#
 @label=ENTITY31
  41208 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4715,7 +4758,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree).
 ; .
 ; #UDGTABLE
-; { #guardian184,0,5 }
+; { #guardian184,0,5 | #guardian184,1,5 | #guardian184,2,5 | #guardian184,3,5 |
+; #guardian184,4,5 | #guardian184,5,5 | #guardian184,6,5 | #guardian184,7,5 }
 ; TABLE#
 @label=ENTITY32
  41216 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4736,7 +4780,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed33) is used in #R54528(Ballroom West).
 ; .
 ; #UDGTABLE
-; { #guardian184,0,3 }
+; { #guardian184,0,3 | #guardian184,1,3 | #guardian184,2,3 | #guardian184,3,3 |
+; #guardian184,4,3 | #guardian184,5,3 | #guardian184,6,3 | #guardian184,7,3 }
 ; TABLE#
 @label=ENTITY33
  41224 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4757,7 +4802,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed34) is used in #R53760(On the Roof).
 ; .
 ; #UDGTABLE
-; { #guardian184,0,5 }
+; { #guardian184,0,5 | #guardian184,1,5 | #guardian184,2,5 | #guardian184,3,5 |
+; #guardian184,4,5 | #guardian184,5,5 | #guardian184,6,5 | #guardian184,7,5 }
 ; TABLE#
 @label=ENTITY34
  41232 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -4778,7 +4824,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed35) is used in #R60928(Tree Root).
 ; .
 ; #UDGTABLE
-; { #guardian184,0,66 }
+; { #guardian184,0,66 | #guardian184,1,66 | #guardian184,2,66 |
+; #guardian184,3,66 | #guardian184,4,66 | #guardian184,5,66 | #guardian184,6,66
+; | #guardian184,7,66 }
 ; TABLE#
 @label=ENTITY35
  41240 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -4800,7 +4848,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R57856(Top Landing) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian175,0,5 | #guardian175,4,5 }
+; { #guardian175,0,5 | #guardian175,1,5 | #guardian175,2,5 | #guardian175,3,5 }
+; { #guardian175,4,5 | #guardian175,5,5 | #guardian175,6,5 | #guardian175,7,5 }
 ; TABLE#
 @label=ENTITY36
  41248 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -4821,7 +4870,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed37) is used in #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,66 }
+; { #guardian188,0,66 | #guardian188,1,66 | #guardian188,2,66 |
+; #guardian188,3,66 | #guardian188,4,66 | #guardian188,5,66 | #guardian188,6,66
+; | #guardian188,7,66 }
 ; TABLE#
 @label=ENTITY37
  41256 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4843,7 +4894,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; East Wall).
 ; .
 ; #UDGTABLE
-; { #guardian174,0,70 }
+; { #guardian174,0,70 | #guardian174,1,70 | #guardian174,2,70 |
+; #guardian174,3,70 }
 ; TABLE#
 @label=ENTITY38
  41264 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4865,7 +4917,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R59904(Under the Roof).
 ; .
 ; #UDGTABLE
-; { #guardian175,0,13 | #guardian175,4,5 }
+; { #guardian175,0,13 | #guardian175,1,13 | #guardian175,2,13 |
+; #guardian175,3,13 }
+; { #guardian175,4,5 | #guardian175,5,5 | #guardian175,6,5 | #guardian175,7,5 }
 ; TABLE#
 @label=ENTITY39
  41272 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4887,7 +4941,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R54528(Ballroom West) and #R60928(Tree Root).
 ; .
 ; #UDGTABLE
-; { #guardian186,0,5 }
+; { #guardian186,0,5 | #guardian186,2,5 }
 ; TABLE#
 @label=ENTITY40
  41280 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4909,7 +4963,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed41) is used in #R54272(Ballroom East).
 ; .
 ; #UDGTABLE
-; { #guardian186,1,6 }
+; { #guardian186,1,6 | #guardian186,3,6 }
 ; TABLE#
 @label=ENTITY41
  41288 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4932,7 +4986,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree), #R54272(Ballroom East) and #R54528(Ballroom West).
 ; .
 ; #UDGTABLE
-; { #guardian186,0,67 }
+; { #guardian186,0,67 | #guardian186,2,67 }
 ; TABLE#
 @label=ENTITY42
  41296 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4973,7 +5027,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; and #R51200(Inside the MegaTrunk).
 ; .
 ; #UDGTABLE
-; { #guardian186,1,66 }
+; { #guardian186,1,66 | #guardian186,3,66 }
 ; TABLE#
 @label=ENTITY44
  41312 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4996,7 +5050,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R55808(East Wall Base).
 ; .
 ; #UDGTABLE
-; { #guardian186,1,5 | #guardian186,2,5 }
+; { #guardian186,1,5 | #guardian186,3,5 }
+; { #guardian186,2,5 }
 ; TABLE#
 @label=ENTITY45
  41320 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5018,7 +5073,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed46) is used in #R52224(Tree Top).
 ; .
 ; #UDGTABLE
-; { #guardian187,4,6 }
+; { #guardian187,4,6 | #guardian187,5,6 | #guardian187,6,6 | #guardian187,7,6 }
 ; TABLE#
 @label=ENTITY46
  41328 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5040,7 +5095,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTrunk).
 ; .
 ; #UDGTABLE
-; { #guardian187,4,70 }
+; { #guardian187,4,70 | #guardian187,5,70 | #guardian187,6,70 |
+; #guardian187,7,70 }
 ; TABLE#
 @label=ENTITY47
  41336 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5062,7 +5118,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
-; { #guardian183,0,67 }
+; { #guardian183,0,67 | #guardian183,1,67 }
 ; TABLE#
 @label=ENTITY48
  41344 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5085,7 +5141,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
-; { #guardian183,0,6 }
+; { #guardian183,0,6 | #guardian183,1,6 }
 ; TABLE#
 @label=ENTITY49
  41352 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5108,7 +5164,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
-; { #guardian183,0,4 }
+; { #guardian183,0,4 | #guardian183,1,4 }
 ; TABLE#
 @label=ENTITY50
  41360 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5131,7 +5187,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
-; { #guardian183,2,66 }
+; { #guardian183,2,66 | #guardian183,3,66 }
 ; TABLE#
 @label=ENTITY51
  41368 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5154,7 +5210,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R62208(Tool#SPACE(2)Shed) and #R63488(West Wing Roof).
 ; .
 ; #UDGTABLE
-; { #guardian181,2,3 }
+; { #guardian181,0,3 | #guardian181,1,3 | #guardian181,2,3 | #guardian181,3,3 |
+; #guardian181,4,3 | #guardian181,5,3 | #guardian181,6,3 | #guardian181,7,3 }
 ; TABLE#
 @label=ENTITY52
  41376 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5176,7 +5233,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree) and #R64256(The Yacht).
 ; .
 ; #UDGTABLE
-; { #guardian181,2,67 }
+; { #guardian181,0,67 | #guardian181,1,67 | #guardian181,2,67 |
+; #guardian181,3,67 | #guardian181,4,67 | #guardian181,5,67 | #guardian181,6,67
+; | #guardian181,7,67 }
 ; TABLE#
 @label=ENTITY53
  41384 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5197,7 +5256,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed54) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
-; { #guardian189,0,14 }
+; { #guardian189,0,14 | #guardian189,1,14 | #guardian189,2,14 |
+; #guardian189,3,14 | #guardian189,4,14 | #guardian189,5,14 | #guardian189,6,14
+; | #guardian189,7,14 }
 ; TABLE#
 @label=ENTITY54
  41392 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5219,7 +5280,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R59904(Under the Roof).
 ; .
 ; #UDGTABLE
-; { #guardian187,0,15 }
+; { #guardian187,0,15 | #guardian187,1,15 | #guardian187,2,15 |
+; #guardian187,3,15 }
 ; TABLE#
 @label=ENTITY55
  41400 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5240,7 +5302,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed56) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
-; { #guardian189,0,12 }
+; { #guardian189,0,12 | #guardian189,1,12 | #guardian189,2,12 |
+; #guardian189,3,12 | #guardian189,4,12 | #guardian189,5,12 | #guardian189,6,12
+; | #guardian189,7,12 }
 ; TABLE#
 @label=ENTITY56
  41408 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5261,7 +5325,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed57) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
-; { #guardian187,0,11 }
+; { #guardian187,0,11 | #guardian187,1,11 | #guardian187,2,11 |
+; #guardian187,3,11 }
 ; TABLE#
 @label=ENTITY57
  41416 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5282,7 +5347,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed58) is used in #R57856(Top Landing).
 ; .
 ; #UDGTABLE
-; { #guardian173,4,7 }
+; { #guardian173,4,7 | #guardian173,5,7 | #guardian173,6,7 | #guardian173,7,7 }
 ; TABLE#
 @label=ENTITY58
  41424 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5304,7 +5369,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed59) is used in #R57600(The Bathroom).
 ; .
 ; #UDGTABLE
-; { #guardian185,0,4 }
+; { #guardian185,0,4 | #guardian185,1,4 | #guardian185,2,4 | #guardian185,3,4 }
 ; TABLE#
 @label=ENTITY59
  41432 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5343,7 +5408,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; the Drive) and #R60160(Conservatory Roof).
 ; .
 ; #UDGTABLE
-; { #guardian173,0,6 | #guardian173,0,14 }
+; { #guardian173,0,6 | #guardian173,1,6 | #guardian173,2,6 | #guardian173,3,6 }
+; { #guardian173,0,14 | #guardian173,1,14 | #guardian173,2,14 |
+; #guardian173,3,14 }
 ; TABLE#
 @label=ENTITY61
  41448 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5365,7 +5432,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; the Drive).
 ; .
 ; #UDGTABLE
-; { #guardian185,0,13 }
+; { #guardian185,0,13 | #guardian185,1,13 | #guardian185,2,13 |
+; #guardian185,3,13 }
 ; TABLE#
 @label=ENTITY62
  41456 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5389,7 +5457,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed64) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,3 }
+; { #guardian180,0,3 | #guardian180,1,3 | #guardian180,2,3 | #guardian180,3,3 |
+; #guardian180,4,3 | #guardian180,5,3 | #guardian180,6,3 | #guardian180,7,3 }
 ; TABLE#
 @label=ENTITY64
  41472 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5410,7 +5479,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed65) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,6 }
+; { #guardian180,0,6 | #guardian180,1,6 | #guardian180,2,6 | #guardian180,3,6 |
+; #guardian180,4,6 | #guardian180,5,6 | #guardian180,6,6 | #guardian180,7,6 }
 ; TABLE#
 @label=ENTITY65
  41480 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5431,7 +5501,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed66) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,4 }
+; { #guardian180,0,4 | #guardian180,1,4 | #guardian180,2,4 | #guardian180,3,4 |
+; #guardian180,4,4 | #guardian180,5,4 | #guardian180,6,4 | #guardian180,7,4 }
 ; TABLE#
 @label=ENTITY66
  41488 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5452,7 +5523,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed67) is used in #R56320(First Landing).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,6 }
+; { #guardian180,0,6 | #guardian180,1,6 | #guardian180,2,6 | #guardian180,3,6 |
+; #guardian180,4,6 | #guardian180,5,6 | #guardian180,6,6 | #guardian180,7,6 }
 ; TABLE#
 @label=ENTITY67
  41496 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5473,7 +5545,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed68) is used in #R60672(Under the Drive).
 ; .
 ; #UDGTABLE
-; { #guardian174,4,3 }
+; { #guardian174,4,3 | #guardian174,5,3 | #guardian174,6,3 | #guardian174,7,3 }
 ; TABLE#
 @label=ENTITY68
  41504 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5510,7 +5582,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Room).
 ; .
 ; #UDGTABLE
-; { #guardian156,4,5 }
+; { #guardian156,4,5 | #guardian156,5,5 | #guardian156,6,5 | #guardian156,7,5 }
 ; TABLE#
 @label=ENTITY70
  41520 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5533,7 +5605,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Room).
 ; .
 ; #UDGTABLE
-; { #guardian156,4,3 | #guardian156,6,3 }
+; { #guardian156,4,3 | #guardian156,5,3 }
+; { #guardian156,6,3 | #guardian156,7,3 }
 ; TABLE#
 @label=ENTITY71
  41528 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5556,7 +5629,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Room).
 ; .
 ; #UDGTABLE
-; { #guardian156,2,6 | #guardian156,4,6 }
+; { #guardian156,2,6 }
+; { #guardian156,4,6 }
 ; TABLE#
 @label=ENTITY72
  41536 DEFB %00010010         ; Vertical guardian (bits 0-2), initial animation
@@ -5578,7 +5652,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Room).
 ; .
 ; #UDGTABLE
-; { #guardian156,6,66 }
+; { #guardian156,6,66 | #guardian156,7,66 }
 ; TABLE#
 @label=ENTITY73
  41544 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5601,7 +5675,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,4 }
+; { #guardian180,0,4 | #guardian180,1,4 | #guardian180,2,4 | #guardian180,3,4 |
+; #guardian180,4,4 | #guardian180,5,4 | #guardian180,6,4 | #guardian180,7,4 }
 ; TABLE#
 @label=ENTITY74
  41552 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5623,7 +5698,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,6 }
+; { #guardian180,0,6 | #guardian180,1,6 | #guardian180,2,6 | #guardian180,3,6 |
+; #guardian180,4,6 | #guardian180,5,6 | #guardian180,6,6 | #guardian180,7,6 }
 ; TABLE#
 @label=ENTITY75
  41560 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5645,7 +5721,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,66 }
+; { #guardian180,0,66 | #guardian180,1,66 | #guardian180,2,66 |
+; #guardian180,3,66 | #guardian180,4,66 | #guardian180,5,66 | #guardian180,6,66
+; | #guardian180,7,66 }
 ; TABLE#
 @label=ENTITY76
  41568 DEFB %00100001         ; Horizontal guardian (bits 0-2), initial
@@ -5667,7 +5745,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,7 }
+; { #guardian180,0,7 | #guardian180,1,7 | #guardian180,2,7 | #guardian180,3,7 |
+; #guardian180,4,7 | #guardian180,5,7 | #guardian180,6,7 | #guardian180,7,7 }
 ; TABLE#
 @label=ENTITY77
  41576 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5689,7 +5768,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey) and #R57088(Swimming Pool).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,6 }
+; { #guardian180,0,6 | #guardian180,1,6 | #guardian180,2,6 | #guardian180,3,6 |
+; #guardian180,4,6 | #guardian180,5,6 | #guardian180,6,6 | #guardian180,7,6 }
 ; TABLE#
 @label=ENTITY78
  41584 DEFB %00100001         ; Horizontal guardian (bits 0-2), initial
@@ -5711,7 +5791,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,65 }
+; { #guardian180,0,65 | #guardian180,1,65 | #guardian180,2,65 |
+; #guardian180,3,65 | #guardian180,4,65 | #guardian180,5,65 | #guardian180,6,65
+; | #guardian180,7,65 }
 ; TABLE#
 @label=ENTITY79
  41592 DEFB %01000001         ; Horizontal guardian (bits 0-2), initial
@@ -5733,7 +5815,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,4 }
+; { #guardian180,0,4 | #guardian180,1,4 | #guardian180,2,4 | #guardian180,3,4 |
+; #guardian180,4,4 | #guardian180,5,4 | #guardian180,6,4 | #guardian180,7,4 }
 ; TABLE#
 @label=ENTITY80
  41600 DEFB %01100001         ; Horizontal guardian (bits 0-2), initial
@@ -5755,7 +5838,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,2 }
+; { #guardian180,0,2 | #guardian180,1,2 | #guardian180,2,2 | #guardian180,3,2 |
+; #guardian180,4,2 | #guardian180,5,2 | #guardian180,6,2 | #guardian180,7,2 }
 ; TABLE#
 @label=ENTITY81
  41608 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5776,7 +5860,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed82) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,3 }
+; { #guardian176,0,3 | #guardian176,1,3 }
 ; TABLE#
 @label=ENTITY82
  41616 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5798,7 +5882,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed83) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,6 }
+; { #guardian176,0,6 | #guardian176,1,6 }
 ; TABLE#
 @label=ENTITY83
  41624 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5820,7 +5904,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed84) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,65 }
+; { #guardian176,0,65 | #guardian176,1,65 }
 ; TABLE#
 @label=ENTITY84
  41632 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5842,7 +5926,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed85) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,4 }
+; { #guardian176,0,4 | #guardian176,1,4 }
 ; TABLE#
 @label=ENTITY85
  41640 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5864,7 +5948,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed86) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,2 }
+; { #guardian176,0,2 | #guardian176,1,2 }
 ; TABLE#
 @label=ENTITY86
  41648 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5886,7 +5970,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed87) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,2,5 }
+; { #guardian176,2,5 | #guardian176,3,5 }
 ; TABLE#
 @label=ENTITY87
  41656 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5909,7 +5993,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
-; { #guardian181,2,6 }
+; { #guardian181,0,6 | #guardian181,1,6 | #guardian181,2,6 | #guardian181,3,6 |
+; #guardian181,4,6 | #guardian181,5,6 | #guardian181,6,6 | #guardian181,7,6 }
 ; TABLE#
 @label=ENTITY88
  41664 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5931,7 +6016,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
-; { #guardian176,6,6 }
+; { #guardian176,6,6 | #guardian176,7,6 }
 ; TABLE#
 @label=ENTITY89
  41672 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5954,7 +6039,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian174,0,11 }
+; { #guardian174,0,11 | #guardian174,1,11 | #guardian174,2,11 |
+; #guardian174,3,11 }
 ; TABLE#
 @label=ENTITY90
  41680 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5976,7 +6062,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian190,0,14 }
+; { #guardian190,0,14 | #guardian190,1,14 | #guardian190,2,14 |
+; #guardian190,3,14 }
 ; TABLE#
 @label=ENTITY91
  41688 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5998,7 +6085,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Kitchens#SPACE(4)Main Stairway) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian183,4,7 | #guardian183,4,15 }
+; { #guardian183,4,7 | #guardian183,5,7 | #guardian183,6,7 | #guardian183,7,7 }
+; { #guardian183,4,15 | #guardian183,5,15 | #guardian183,6,15 |
+; #guardian183,7,15 }
 ; TABLE#
 @label=ENTITY92
  41696 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6020,7 +6109,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian185,0,10 }
+; { #guardian185,0,10 | #guardian185,1,10 | #guardian185,2,10 |
+; #guardian185,3,10 }
 ; TABLE#
 @label=ENTITY93
  41704 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -6042,7 +6132,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian175,4,12 }
+; { #guardian175,4,12 | #guardian175,5,12 | #guardian175,6,12 |
+; #guardian175,7,12 }
 ; TABLE#
 @label=ENTITY94
  41712 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6064,7 +6155,11 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R54784(To the Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,6 | #guardian188,0,14 }
+; { #guardian188,0,6 | #guardian188,1,6 | #guardian188,2,6 | #guardian188,3,6 |
+; #guardian188,4,6 | #guardian188,5,6 | #guardian188,6,6 | #guardian188,7,6 }
+; { #guardian188,0,14 | #guardian188,1,14 | #guardian188,2,14 |
+; #guardian188,3,14 | #guardian188,4,14 | #guardian188,5,14 | #guardian188,6,14
+; | #guardian188,7,14 }
 ; TABLE#
 @label=ENTITY95
  41720 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6085,7 +6180,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed96) is used in #R55808(East Wall Base).
 ; .
 ; #UDGTABLE
-; { #guardian172,0,66 }
+; { #guardian172,0,66 | #guardian172,1,66 | #guardian172,2,66 |
+; #guardian172,3,66 }
 ; TABLE#
 @label=ENTITY96
  41728 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -6108,7 +6204,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
-; { #guardian172,0,5 | #guardian172,4,5 }
+; { #guardian172,0,5 | #guardian172,1,5 | #guardian172,2,5 | #guardian172,3,5 }
+; { #guardian172,4,5 | #guardian172,5,5 | #guardian172,6,5 | #guardian172,7,5 }
 ; TABLE#
 @label=ENTITY97
  41736 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -6131,7 +6228,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
-; { #guardian175,0,6 }
+; { #guardian175,0,6 | #guardian175,1,6 | #guardian175,2,6 | #guardian175,3,6 }
 ; TABLE#
 @label=ENTITY98
  41744 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -6153,7 +6250,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
-; { #guardian173,0,4 }
+; { #guardian173,0,4 | #guardian173,1,4 | #guardian173,2,4 | #guardian173,3,4 }
 ; TABLE#
 @label=ENTITY99
  41752 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6175,7 +6272,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
-; { #guardian172,0,4 | #guardian172,4,4 }
+; { #guardian172,0,4 | #guardian172,1,4 | #guardian172,2,4 | #guardian172,3,4 }
+; { #guardian172,4,4 | #guardian172,5,4 | #guardian172,6,4 | #guardian172,7,4 }
 ; TABLE#
 @label=ENTITY100
  41760 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -6198,7 +6296,10 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; and #R58368(A bit of tree).
 ; .
 ; #UDGTABLE
-; { #guardian171,0,67 | #guardian171,4,67 }
+; { #guardian171,0,67 | #guardian171,1,67 | #guardian171,2,67 |
+; #guardian171,3,67 }
+; { #guardian171,4,67 | #guardian171,5,67 | #guardian171,6,67 |
+; #guardian171,7,67 }
 ; TABLE#
 @label=ENTITY101
  41768 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -6221,7 +6322,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
-; { #guardian171,0,5 | #guardian171,4,5 }
+; { #guardian171,0,5 | #guardian171,1,5 | #guardian171,2,5 | #guardian171,3,5 }
+; { #guardian171,4,5 | #guardian171,5,5 | #guardian171,6,5 | #guardian171,7,5 }
 ; TABLE#
 @label=ENTITY102
  41776 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -6243,7 +6345,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed103) is used in #R56064(The Chapel).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,3 }
+; { #guardian180,0,3 | #guardian180,1,3 | #guardian180,2,3 | #guardian180,3,3 }
 ; TABLE#
 @label=ENTITY103
  41784 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6265,7 +6367,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; and #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,6 }
+; { #guardian188,0,6 | #guardian188,1,6 | #guardian188,2,6 | #guardian188,3,6 |
+; #guardian188,4,6 | #guardian188,5,6 | #guardian188,6,6 | #guardian188,7,6 }
 ; TABLE#
 @label=ENTITY104
  41792 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6286,7 +6389,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed105) is used in #R64512(The Bow).
 ; .
 ; #UDGTABLE
-; { #guardian190,0,6 }
+; { #guardian190,0,6 | #guardian190,1,6 | #guardian190,2,6 | #guardian190,3,6 }
 ; TABLE#
 @label=ENTITY105
  41800 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6308,7 +6411,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Roof).
 ; .
 ; #UDGTABLE
-; { #guardian174,0,66 }
+; { #guardian174,0,66 | #guardian174,1,66 | #guardian174,2,66 |
+; #guardian174,3,66 }
 ; TABLE#
 @label=ENTITY106
  41808 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6329,7 +6433,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed107) is used in #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
-; { #guardian190,0,4 }
+; { #guardian190,0,4 | #guardian190,1,4 | #guardian190,2,4 | #guardian190,3,4 }
 ; TABLE#
 @label=ENTITY107
  41816 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -6350,7 +6454,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed108) is used in #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
-; { #guardian187,4,11 }
+; { #guardian187,4,11 | #guardian187,5,11 | #guardian187,6,11 |
+; #guardian187,7,11 }
 ; TABLE#
 @label=ENTITY108
  41824 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -6371,7 +6476,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed109) is used in #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,14 }
+; { #guardian188,0,14 | #guardian188,1,14 | #guardian188,2,14 |
+; #guardian188,3,14 | #guardian188,4,14 | #guardian188,5,14 | #guardian188,6,14
+; | #guardian188,7,14 }
 ; TABLE#
 @label=ENTITY109
  41832 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6392,7 +6499,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed110) is used in #R64512(The Bow).
 ; .
 ; #UDGTABLE
-; { #guardian174,0,3 }
+; { #guardian174,0,3 | #guardian174,1,3 | #guardian174,2,3 | #guardian174,3,3 }
 ; TABLE#
 @label=ENTITY110
  41840 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6413,7 +6520,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed111) is used in #R50944(Cuckoo's Nest).
 ; .
 ; #UDGTABLE
-; { #guardian181,2,3 }
+; { #guardian181,0,3 | #guardian181,1,3 | #guardian181,2,3 | #guardian181,3,3 }
 ; TABLE#
 @label=ENTITY111
  41848 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial

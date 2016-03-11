@@ -153,11 +153,14 @@ class JetSetWilly:
                 guardian_def = self.snapshot[def_addr:def_addr + 8]
                 guardian_type = guardian_def[0] & 7
                 if guardian_type & 3 in (1, 2):
-                    sprite_addr = 256 * guardian_def[5] + (start & 224)
-                    if sprite_addr == 46336:
-                        # Use frame 2 instead of frame 0 for the saw sprite
-                        sprite_addr = 46400
-                    sprite_addrs.setdefault(num, set()).add((sprite_addr, room_bg))
+                    frame_addrs = []
+                    base_addr = 256 * guardian_def[5]
+                    base_index = start & 224
+                    for i in range(0, 256, 32):
+                        frame_addr = base_addr + (guardian_def[1] & i | base_index)
+                        if frame_addr not in frame_addrs:
+                            frame_addrs.append(frame_addr)
+                    sprite_addrs.setdefault(num, set()).add((tuple(frame_addrs), room_bg))
 
         lines = ['b 40960 Entity definitions']
         lines.append('@ 40960 label=ENTITYDEFS')
@@ -175,10 +178,11 @@ class JetSetWilly:
             if num in sprite_addrs:
                 ink = self.snapshot[40961 + 8 * num] & 7
                 bright = 8 * (self.snapshot[40961 + 8 * num] & 8)
-                sprites = []
-                for a, room_bg in sorted(sprite_addrs[num]):
-                    sprites.append(self._get_guardian_macro(a, bright | room_bg | ink))
-                lines.append('N {} #UDGTABLE {{ {} }} TABLE#'.format(addr, ' | '.join(sprites)))
+                rows = []
+                for frame_addrs, room_bg in sorted(sprite_addrs[num]):
+                    attr = bright | room_bg | ink
+                    rows.append('{ ' + ' | '.join([self._get_guardian_macro(a, attr) for a in frame_addrs]) + ' }')
+                lines.append('N {} #UDGTABLE {} TABLE#'.format(addr, ' '.join(rows)))
             if num in defs or num == 43:
                 entity_def = self.snapshot[addr:addr + 8]
                 entity_type = entity_def[0] & 7
