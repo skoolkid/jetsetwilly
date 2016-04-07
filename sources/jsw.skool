@@ -6811,8 +6811,8 @@ u42624 DEFB 128,128,128,128,140,143,143,143,143,143,128,128,191,143,143,143
 ;
 ; Used by the routine at #R37310.
 ; .
-; This guardian (page 171, sprites 0-3) appears in #R56832(The Banyan Tree) and
-; #R58368(A bit of tree).
+; This guardian (page #N(171), sprites 0-3) appears in #R56832(The Banyan Tree)
+; and #R58368(A bit of tree).
 ; .
 ; #UDGTABLE
 ; { #guardian171,0,5 | #guardian171,1,5 | #guardian171,2,5 | #guardian171,3,5 }
@@ -6826,7 +6826,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  43856 DEFB 15,240,23,232,15,240,23,232,8,16,23,232,16,8,0,0
  43872 DEFB 18,0,52,128,61,32,127,72,127,210,254,116,252,61,62,127
  43888 DEFB 79,255,147,254,164,254,41,60,10,76,2,144,0,160,0,32
-; This guardian (page 171, sprites 4-7) appears in #R56064(The Chapel) and
+; This guardian (page #N(171), sprites 4-7) appears in #R56064(The Chapel) and
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
@@ -6840,7 +6840,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  43984 DEFB 43,251,150,248,108,216,5,84,2,138,1,0,0,128,0,64
  44000 DEFB 0,0,2,2,2,2,1,116,0,216,81,84,82,250,35,222
  44016 DEFB 231,171,30,249,24,217,8,217,9,84,6,138,4,0,0,0
-; This guardian (page 172, sprites 0-3) appears in #R55808(East Wall Base),
+; This guardian (page #N(172), sprites 0-3) appears in #R55808(East Wall Base),
 ; #R56064(The Chapel) and #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
@@ -6855,8 +6855,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44112 DEFB 27,112,32,4,61,189,162,69,251,119,160,5,61,237,32,4
  44128 DEFB 32,4,59,117,160,5,253,191,160,5,59,117,32,4,29,184
  44144 DEFB 0,0,59,116,36,132,61,189,224,7,59,117,46,236,32,4
-; This guardian (page 172, sprites 4-7) appears in #R56832(The Banyan Tree) and
-; #R58624(Orangery).
+; This guardian (page #N(172), sprites 4-7) appears in #R56832(The Banyan Tree)
+; and #R58624(Orangery).
 ; .
 ; #UDGTABLE
 ; { #guardian172,4,4 | #guardian172,5,4 | #guardian172,6,4 | #guardian172,7,4 }
@@ -6869,8 +6869,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44240 DEFB 212,149,210,37,201,201,228,19,115,230,24,24,7,224,1,128
  44256 DEFB 7,0,8,224,31,220,48,38,103,146,200,74,211,42,212,171
  44272 DEFB 84,43,82,75,73,147,36,38,51,204,40,24,31,240,1,224
-; This guardian (page 173, sprites 0-3) appears in #R51456(On a Branch Over the
-; Drive), #R60160(Conservatory Roof) and #R62208(Tool#SPACE(2)Shed).
+; This guardian (page #N(173), sprites 0-3) appears in #R51456(On a Branch Over
+; the Drive), #R60160(Conservatory Roof) and #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
 ; { #guardian173,0,14 | #guardian173,1,14 | #guardian173,2,14 |
@@ -6884,7 +6884,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44368 DEFB 14,220,12,12,24,6,24,6,16,2,48,3,32,1,32,1
  44384 DEFB 0,48,0,48,0,48,0,48,0,48,0,120,0,72,0,204
  44400 DEFB 0,252,1,206,1,134,1,134,3,3,3,3,2,1,2,1
-; This guardian (page 173, sprites 4-7) appears in #R57856(Top Landing),
+; This guardian (page #N(173), sprites 4-7) appears in #R57856(Top Landing),
 ; #R60928(Tree Root) and #R63232(West Bedroom).
 ; .
 ; #UDGTABLE
@@ -6898,7 +6898,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44496 DEFB 20,40,22,104,22,104,22,104,22,104,20,40,31,248,7,224
  44512 DEFB 0,80,0,184,1,108,2,230,5,195,11,142,22,29,44,58
  44528 DEFB 92,52,184,104,113,208,195,160,103,64,54,128,29,0,10,0
-; This guardian (page 174, sprites 0-3) appears in #R54784(To the
+; This guardian (page #N(174), sprites 0-3) appears in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway), #R57344(Halfway up the East Wall),
 ; #R60160(Conservatory Roof) and #R64512(The Bow).
 ; .
@@ -6914,7 +6914,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44624 DEFB 27,216,96,6,128,1,224,7,160,5,192,3,160,5,224,7
  44640 DEFB 0,0,1,248,2,100,3,156,3,12,1,248,0,144,1,8
  44656 DEFB 2,4,4,2,8,1,14,7,10,5,12,3,10,5,14,7
-; This guardian (page 174, sprites 4-7) appears in #R60672(Under the Drive).
+; This guardian (page #N(174), sprites 4-7) appears in #R60672(Under the
+; Drive).
 ; .
 ; #UDGTABLE
 ; { #guardian174,4,3 | #guardian174,5,3 | #guardian174,6,3 | #guardian174,7,3 }
@@ -6927,7 +6928,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44752 DEFB 5,248,5,248,5,248,0,0,15,252,11,116,11,116,15,252
  44768 DEFB 0,0,0,0,8,48,4,204,2,49,1,74,0,188,0,188
  44784 DEFB 1,126,1,126,1,126,0,0,3,255,2,237,2,237,3,255
-; This guardian (page 175, sprites 0-3) appears in #R57856(Top Landing),
+; This guardian (page #N(175), sprites 0-3) appears in #R57856(Top Landing),
 ; #R59904(Under the Roof) and #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
@@ -6941,7 +6942,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44880 DEFB 239,192,143,192,119,192,7,192,7,192,7,192,6,192,3,128
  44896 DEFB 0,224,1,240,1,240,1,178,1,21,1,181,1,250,1,250
  44912 DEFB 7,244,13,244,13,248,9,248,7,240,1,240,1,176,0,224
-; This guardian (page 175, sprites 4-7) appears in #R50176(The Drive),
+; This guardian (page #N(175), sprites 4-7) appears in #R50176(The Drive),
 ; #R50944(Cuckoo's Nest), #R54784(To the Kitchens#SPACE(4)Main Stairway) and
 ; #R62464(Back Stairway).
 ; .
@@ -6956,7 +6957,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45008 DEFB 95,254,159,255,191,239,95,86,95,174,35,84,31,248,3,192
  45024 DEFB 0,0,0,0,0,0,14,0,23,192,23,240,19,252,11,254
  45040 DEFB 11,254,11,215,5,235,5,215,2,234,2,126,1,140,0,112
-; This guardian (page 176, sprites 0-3) appears in #R59648(The Attic).
+; This guardian (page #N(176), sprites 0-3) appears in #R59648(The Attic).
 ; .
 ; #UDGTABLE
 ; { #guardian176,0,3 | #guardian176,1,6 | #guardian176,2,5 | #guardian176,3,5 }
@@ -6969,7 +6970,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45136 DEFB 255,128,127,240,127,252,63,248,31,240,7,192,0,0,0,0
  45152 DEFB 7,192,31,240,60,248,120,124,124,252,255,128,252,0,240,0
  45168 DEFB 248,0,126,0,127,128,63,224,31,240,7,192,0,0,0,0
-; This guardian (page 176, sprites 4-5) appears in #R52736(Rescue Esmerelda).
+; This guardian (page #N(176), sprites 4-5) appears in #R52736(Rescue
+; Esmerelda).
 ; .
 ; #UDGTABLE
 ; { #guardian176,4,23 | #guardian176,5,23 }
@@ -6978,7 +6980,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45200 DEFB 61,120,70,196,7,192,2,128,5,64,15,224,20,128,8,192
  45216 DEFB 7,192,8,32,10,160,8,32,57,56,0,0,5,64,10,160
  45232 DEFB 29,112,22,208,23,208,10,160,5,64,15,224,2,80,6,32
-; This guardian (page 176, sprites 6-7) appears in #R51968(The Hall) and
+; This guardian (page #N(176), sprites 6-7) appears in #R51968(The Hall) and
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
@@ -6988,7 +6990,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45264 DEFB 205,179,205,179,205,179,205,179,35,196,18,72,13,176,0,0
  45280 DEFB 1,128,0,0,1,128,137,162,1,128,69,145,137,162,1,128
  45296 DEFB 205,179,205,179,205,179,205,179,35,196,18,72,13,176,0,0
-; This guardian (page 177, sprites 0-7) is not used.
+; This guardian (page #N(177), sprites 0-7) is not used.
 ; .
 ; #UDGTABLE
 ; { #guardian177,0,7 | #guardian177,1,7 | #guardian177,2,7 | #guardian177,3,7 |
@@ -7010,8 +7012,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45520 DEFB 9,96,1,96,1,96,1,96,1,96,1,96,1,96,1,96
  45536 DEFB 0,48,0,220,0,188,1,126,1,126,0,188,0,188,0,88
  45552 DEFB 0,88,0,88,0,88,0,88,0,88,0,88,0,88,0,88
-; This guardian (page 178, sprites 0-3) appears in #R60416(On top of the house)
-; and #R64256(The Yacht).
+; This guardian (page #N(178), sprites 0-3) appears in #R60416(On top of the
+; house) and #R64256(The Yacht).
 ; .
 ; #UDGTABLE
 ; { #guardian178,0,13 | #guardian178,1,13 | #guardian178,2,13 |
@@ -7025,8 +7027,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45648 DEFB 223,255,223,255,255,255,252,127,248,63,112,63,0,31,0,14
  45664 DEFB 0,56,0,254,1,255,131,255,199,255,223,255,95,255,155,255
  45680 DEFB 199,255,223,255,223,199,255,1,254,0,124,0,56,0,0,0
-; This guardian (page 178, sprites 4-7) appears in #R51456(On a Branch Over the
-; Drive), #R58624(Orangery), #R59392(Dr Jones will never believe this),
+; This guardian (page #N(178), sprites 4-7) appears in #R51456(On a Branch Over
+; the Drive), #R58624(Orangery), #R59392(Dr Jones will never believe this),
 ; #R60672(Under the Drive), #R61440(Nomen Luni) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
@@ -7043,7 +7045,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45808 DEFB 93,187,170,119,95,250,114,78,56,28,28,56,11,240,2,192
 ; The next 256 bytes are unused.
  45824 DEFS 256
-; This guardian (page 180, sprites 0-7) appears in #R54016(The Forgotten
+; This guardian (page #N(180), sprites 0-7) appears in #R54016(The Forgotten
 ; Abbey), #R56064(The Chapel), #R56320(First Landing), #R57088(Swimming Pool)
 ; and #R61696(The Wine Cellar).
 ; .
@@ -7067,10 +7069,10 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  46288 DEFB 7,240,3,248,1,80,3,248,3,216,3,248,1,24,0,28
  46304 DEFB 0,112,0,168,1,84,0,232,0,255,0,104,0,48,1,248
  46320 DEFB 1,252,0,254,0,84,0,254,0,246,0,254,0,24,0,28
-; This guardian (page 181, sprites 0-7) appears in #R49920(At the Foot of the
-; MegaTree), #R50944(Cuckoo's Nest), #R52480(Out on a limb), #R56832(The Banyan
-; Tree), #R61696(The Wine Cellar), #R62208(Tool#SPACE(2)Shed), #R63488(West
-; Wing Roof) and #R64256(The Yacht).
+; This guardian (page #N(181), sprites 0-7) appears in #R49920(At the Foot of
+; the MegaTree), #R50944(Cuckoo's Nest), #R52480(Out on a limb), #R56832(The
+; Banyan Tree), #R61696(The Wine Cellar), #R62208(Tool#SPACE(2)Shed),
+; #R63488(West Wing Roof) and #R64256(The Yacht).
 ; .
 ; #UDGTABLE
 ; { #guardian181,0,67 | #guardian181,1,67 | #guardian181,2,67 |
@@ -7093,8 +7095,9 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  46544 DEFB 9,208,9,128,9,232,9,194,9,128,17,232,17,192,17,130
  46560 DEFB 0,0,0,0,0,0,0,0,0,0,0,192,1,248,1,112
  46576 DEFB 1,96,1,120,1,112,2,96,2,120,2,112,2,97,2,120
-; This guardian (page 182, sprites 0-7) appears in #R49664(Under the MegaTree),
-; #R51968(The Hall), #R52224(Tree Top) and #R59136(Emergency Generator).
+; This guardian (page #N(182), sprites 0-7) appears in #R49664(Under the
+; MegaTree), #R51968(The Hall), #R52224(Tree Top) and #R59136(Emergency
+; Generator).
 ; .
 ; #UDGTABLE
 ; { #guardian182,0,66 | #guardian182,1,66 | #guardian182,2,66 |
@@ -7118,7 +7121,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  46800 DEFB 13,104,10,188,21,124,10,224,21,64,42,64,20,0,40,0
  46816 DEFB 0,0,0,0,0,0,0,0,0,0,2,200,1,232,3,252
  46832 DEFB 2,170,5,95,2,191,5,248,1,16,0,160,0,0,0,0
-; This guardian (page 183, sprites 0-1) appears in #R55040(The Kitchen) and
+; This guardian (page #N(183), sprites 0-1) appears in #R55040(The Kitchen) and
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
@@ -7128,7 +7131,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  46864 DEFB 15,227,60,127,123,191,239,227,174,226,71,194,206,192,192,224
  46880 DEFB 192,0,202,160,213,80,202,160,69,64,69,66,167,197,205,101
  46896 DEFB 111,226,124,122,58,191,15,239,14,227,7,194,6,226,14,2
-; This guardian (page 183, sprites 2-3) appears in #R60928(Tree Root),
+; This guardian (page #N(183), sprites 2-3) appears in #R60928(Tree Root),
 ; #R63232(West Bedroom) and #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
@@ -7138,7 +7141,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  46928 DEFB 19,144,45,104,47,120,47,120,47,120,47,120,175,121,127,254
  46944 DEFB 0,192,1,32,1,112,2,232,5,80,5,216,5,216,7,248
  46960 DEFB 9,200,22,180,23,188,23,188,23,188,23,188,151,189,127,254
-; This guardian (page 183, sprites 4-7) appears in #R54784(To the
+; This guardian (page #N(183), sprites 4-7) appears in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
@@ -7153,8 +7156,9 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47056 DEFB 164,145,154,5,72,66,85,10,40,84,18,136,13,112,3,192
  47072 DEFB 1,184,0,84,6,228,13,138,11,210,1,9,23,85,29,41
  47088 DEFB 1,137,27,85,0,137,0,170,13,210,6,212,0,36,1,184
-; This guardian (page 184, sprites 0-7) appears in #R49664(Under the MegaTree),
-; #R53760(On the Roof), #R54528(Ballroom West) and #R60928(Tree Root).
+; This guardian (page #N(184), sprites 0-7) appears in #R49664(Under the
+; MegaTree), #R53760(On the Roof), #R54528(Ballroom West) and #R60928(Tree
+; Root).
 ; .
 ; #UDGTABLE
 ; { #guardian184,0,5 | #guardian184,1,5 | #guardian184,2,5 | #guardian184,3,5 |
@@ -7176,8 +7180,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47312 DEFB 1,228,3,240,3,240,3,240,3,248,1,168,0,224,1,128
  47328 DEFB 0,72,0,132,1,50,1,2,1,122,1,122,1,254,1,182
  47344 DEFB 2,121,0,252,0,252,0,252,0,252,0,110,0,112,0,32
-; This guardian (page 185, sprites 0-3) appears in #R51456(On a Branch Over the
-; Drive), #R54784(To the Kitchens#SPACE(4)Main Stairway) and #R57600(The
+; This guardian (page #N(185), sprites 0-3) appears in #R51456(On a Branch Over
+; the Drive), #R54784(To the Kitchens#SPACE(4)Main Stairway) and #R57600(The
 ; Bathroom).
 ; .
 ; #UDGTABLE
@@ -7192,7 +7196,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47440 DEFB 52,52,70,70,197,197,238,238,165,165,229,229,118,118,60,60
  47456 DEFB 0,0,0,0,15,0,27,128,62,64,48,64,34,0,63,192
  47472 DEFB 18,180,13,70,0,197,0,238,0,165,0,229,0,118,0,60
-; This guardian (page 185, sprites 4-7) appears in #R49408(The Bridge).
+; This guardian (page #N(185), sprites 4-7) appears in #R49408(The Bridge).
 ; .
 ; #UDGTABLE
 ; { #guardian185,4,68 | #guardian185,5,68 | #guardian185,6,68 |
@@ -7206,10 +7210,10 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47568 DEFB 168,147,237,219,127,254,21,120,37,164,2,64,17,136,4,32
  47584 DEFB 3,192,6,96,13,240,26,232,53,92,32,4,127,254,219,183
  47600 DEFB 201,21,219,183,127,254,21,120,10,66,65,144,4,0,17,68
-; This guardian (page 186, sprites 0-3) appears in #R49152(The Off Licence),
-; #R49664(Under the MegaTree), #R51200(Inside the MegaTrunk), #R52480(Out on a
-; limb), #R54272(Ballroom East), #R54528(Ballroom West), #R55808(East Wall
-; Base) and #R60928(Tree Root).
+; This guardian (page #N(186), sprites 0-3) appears in #R49152(The Off
+; Licence), #R49664(Under the MegaTree), #R51200(Inside the MegaTrunk),
+; #R52480(Out on a limb), #R54272(Ballroom East), #R54528(Ballroom West),
+; #R55808(East Wall Base) and #R60928(Tree Root).
 ; .
 ; #UDGTABLE
 ; { #guardian186,0,66 | #guardian186,1,66 | #guardian186,2,66 |
@@ -7223,8 +7227,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47696 DEFB 48,140,93,250,141,177,154,89,18,72,24,24,44,52,199,227
  47712 DEFB 7,224,143,241,95,250,63,252,31,248,17,136,46,116,42,84
  47728 DEFB 113,142,94,250,141,241,29,184,18,72,120,30,140,49,7,224
-; This guardian (page 186, sprites 4-7) appears in #R50688(Entrance to Hades),
-; #R56064(The Chapel) and #R58880(Priests' Hole).
+; This guardian (page #N(186), sprites 4-7) appears in #R50688(Entrance to
+; Hades), #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
 ; { #guardian186,4,52 | #guardian186,5,52 | #guardian186,6,52 |
@@ -7238,7 +7242,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47824 DEFB 80,0,18,10,64,12,42,34,20,168,32,132,20,40,5,32
  47840 DEFB 253,191,255,251,172,215,170,209,42,84,130,68,66,1,8,4
  47856 DEFB 74,16,34,130,8,168,20,4,10,144,1,64,0,0,0,0
-; This guardian (page 187, sprites 0-3) appears in #R55552(Cold Store) and
+; This guardian (page #N(187), sprites 0-3) appears in #R55552(Cold Store) and
 ; #R59904(Under the Roof).
 ; .
 ; #UDGTABLE
@@ -7253,7 +7257,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47952 DEFB 5,80,10,160,1,64,2,160,9,64,0,128,1,64,0,128
  47968 DEFB 0,48,0,218,1,253,1,250,3,244,3,250,3,254,3,252
  47984 DEFB 3,84,2,168,0,80,0,168,0,80,0,32,0,80,0,32
-; This guardian (page 187, sprites 4-7) appears in #R51200(Inside the
+; This guardian (page #N(187), sprites 4-7) appears in #R51200(Inside the
 ; MegaTrunk), #R52224(Tree Top) and #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
@@ -7268,7 +7272,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48080 DEFB 5,84,2,168,0,64,0,64,0,112,1,136,2,4,0,0
  48096 DEFB 0,32,1,84,2,170,1,212,2,34,5,125,2,250,1,84
  48112 DEFB 2,170,1,84,0,32,0,32,0,16,0,124,0,130,0,129
-; This guardian (page 188, sprites 0-7) appears in #R49408(The Bridge),
+; This guardian (page #N(188), sprites 0-7) appears in #R49408(The Bridge),
 ; #R50176(The Drive), #R51200(Inside the MegaTrunk), #R51968(The Hall),
 ; #R52224(Tree Top), #R52480(Out on a limb), #R52736(Rescue Esmerelda),
 ; #R52992(I'm sure I've seen this before..), #R53248(We must perform a
@@ -7298,7 +7302,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48336 DEFB 7,236,3,192,0,0,0,0,0,0,0,0,0,0,0,0
  48352 DEFB 0,0,0,0,0,0,0,0,0,0,2,246,1,221,2,174
  48368 DEFB 1,88,0,160,1,0,0,0,0,0,0,0,0,0,0,0
-; This guardian (page 189, sprites 0-7) appears in #R55552(Cold Store).
+; This guardian (page #N(189), sprites 0-7) appears in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
 ; { #guardian189,0,14 | #guardian189,1,14 | #guardian189,2,14 |
@@ -7321,9 +7325,9 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48592 DEFB 3,136,6,8,2,16,1,16,1,224,0,64,0,64,0,224
  48608 DEFB 0,24,0,60,0,43,0,116,0,92,0,92,0,90,0,186
  48624 DEFB 0,242,0,194,1,132,0,68,0,120,0,80,1,144,0,120
-; This guardian (page 190, sprites 0-3) appears in #R49152(The Off Licence),
-; #R54784(To the Kitchens#SPACE(4)Main Stairway), #R61440(Nomen Luni) and
-; #R64512(The Bow).
+; This guardian (page #N(190), sprites 0-3) appears in #R49152(The Off
+; Licence), #R54784(To the Kitchens#SPACE(4)Main Stairway), #R61440(Nomen Luni)
+; and #R64512(The Bow).
 ; .
 ; #UDGTABLE
 ; { #guardian190,0,4 | #guardian190,1,4 | #guardian190,2,4 | #guardian190,3,4 }
@@ -7336,7 +7340,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48720 DEFB 1,224,0,0,1,208,4,8,8,212,10,192,0,8,3,176
  48736 DEFB 0,220,1,110,0,62,1,254,0,62,1,110,0,220,0,48
  48752 DEFB 0,120,0,0,0,184,1,2,2,177,0,53,1,0,0,220
-; This guardian (page 190, sprites 4-7) appears in #R49152(The Off Licence).
+; This guardian (page #N(190), sprites 4-7) appears in #R49152(The Off
+; Licence).
 ; .
 ; #UDGTABLE
 ; { #guardian190,4,69 | #guardian190,5,69 | #guardian190,6,69 |
@@ -7350,8 +7355,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48848 DEFB 55,252,63,236,63,236,31,216,31,56,15,240,7,224,1,128
  48864 DEFB 0,0,1,128,7,224,15,240,30,184,63,252,63,244,123,254
  48880 DEFB 119,246,55,236,63,220,31,56,15,240,7,224,1,128,0,0
-; This guardian (page 191, sprites 0-3) appears in #R49920(At the Foot of the
-; MegaTree), #R51200(Inside the MegaTrunk), #R51456(On a Branch Over the
+; This guardian (page #N(191), sprites 0-3) appears in #R49920(At the Foot of
+; the MegaTree), #R51200(Inside the MegaTrunk), #R51456(On a Branch Over the
 ; Drive), #R59392(Dr Jones will never believe this) and #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
@@ -7365,8 +7370,9 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48976 DEFB 163,106,69,213,130,34,3,225,3,226,3,96,3,96,7,112
  48992 DEFB 0,0,0,0,6,48,86,48,169,192,86,160,11,224,7,244
  49008 DEFB 2,42,5,213,2,34,3,225,3,224,3,116,3,56,7,16
-; This guardian (page 191, sprites 4-5) appears in #R50432(The Security Guard),
-; #R52992(I'm sure I've seen this before..) and #R53504(Up on the Battlements).
+; This guardian (page #N(191), sprites 4-5) appears in #R50432(The Security
+; Guard), #R52992(I'm sure I've seen this before..) and #R53504(Up on the
+; Battlements).
 ; .
 ; #UDGTABLE
 ; { #guardian191,4,4 | #guardian191,5,4 }
@@ -7375,8 +7381,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  49040 DEFB 8,130,7,44,21,80,42,164,85,68,170,132,69,0,29,192
  49056 DEFB 2,0,5,0,10,132,21,206,23,68,43,228,47,228,18,68
  49072 DEFB 8,128,7,4,21,82,42,172,85,64,170,132,69,4,29,196
-; This guardian (page 191, sprites 6-7) appears in #R52736(Rescue Esmerelda)
-; and #R63744(Above the West Bedroom).
+; This guardian (page #N(191), sprites 6-7) appears in #R52736(Rescue
+; Esmerelda) and #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
 ; { #guardian191,6,22 | #guardian191,7,22 }

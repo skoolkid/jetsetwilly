@@ -292,9 +292,9 @@ class JetSetWilly:
             end_index = base_index + num - 1
             if a in guardians:
                 room_links = self._get_room_links(sorted(guardians[a]))
-                comment = 'This guardian (page {}, sprites {}-{}) appears in {}.'.format(page, base_index, end_index, room_links)
+                comment = 'This guardian (page #N({}), sprites {}-{}) appears in {}.'.format(page, base_index, end_index, room_links)
             elif a == 45312:
-                comment = 'This guardian (page {}, sprites {}-{}) is not used.'.format(page, base_index, end_index)
+                comment = 'This guardian (page #N({}), sprites {}-{}) is not used.'.format(page, base_index, end_index)
             elif a == 45824:
                 comment = 'The next 256 bytes are unused.'
             lines.append('{} {} {}'.format(directive, a, comment))
