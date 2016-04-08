@@ -216,7 +216,9 @@ class JetSetWilly:
                     else:
                         direction = 'moving up'
                     desc4 = 'Initial pixel y-coordinate increment: {} ({})'.format(y_inc // 2, direction)
-                    desc5 = 'Page containing the sprite graphic data: #R{}(#N{})'.format(entity_def[5] * 256, entity_def[5])
+                    page = entity_def[5]
+                    anchor = '#43776' if page == 171 else ''
+                    desc5 = 'Page containing the sprite graphic data: #R{}{}(#N{})'.format(page * 256, anchor, page)
                     desc6 = 'Minimum pixel y-coordinate: {}'.format(entity_def[6] // 2)
                     desc7 = 'Maximum pixel y-coordinate: {}'.format(entity_def[7] // 2)
                 elif entity_type & 3 == 3:
@@ -280,7 +282,6 @@ class JetSetWilly:
         lines.append('@ 43776 label=GUARDIANS')
         lines.append('D 43776 Used by the routine at #R37310.')
         lines.append('@ 46592 label=FLYINGPIG0')
-        directive = 'D'
         for a in sorted(GUARDIANS.keys()):
             page = a // 256
             base_index = (a % 256) // 32
@@ -297,16 +298,15 @@ class JetSetWilly:
                 comment = 'This guardian (page #N({}), sprites {}-{}) is not used.'.format(page, base_index, end_index)
             elif a == 45824:
                 comment = 'The next 256 bytes are unused.'
-            lines.append('{} {} {}'.format(directive, a, comment))
+            lines.append('N {} {}'.format(a, comment))
             if num:
                 sprites = []
                 for addr in range(a, a + num * 32, 32):
                     sprites.append(self._get_guardian_macro(addr, attrs.pop(0)))
-                lines.append('{} {} #UDGTABLE {{ {} }} TABLE#'.format(directive, a, ' | '.join(sprites)))
+                lines.append('N {} #UDGTABLE {{ {} }} TABLE#'.format(a, ' | '.join(sprites)))
                 lines.append('B {},{},16'.format(a, 32 * num))
             else:
                 lines.append('S {},256'.format(a))
-            directive = 'N'
         lines.append('i 49152')
         return '\n'.join(lines)
 

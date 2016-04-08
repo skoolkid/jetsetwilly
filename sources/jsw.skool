@@ -6315,7 +6315,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41772 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41773 DEFB 171               ; Page containing the sprite graphic data:
-                              ; #R43776(#N171)
+                              ; #R43776#43776(#N171)
  41774 DEFB 80                ; Minimum pixel y-coordinate: 40
  41775 DEFB 160               ; Maximum pixel y-coordinate: 80
 ; The following entity definition (#ed102) is used in #R56064(The Chapel) and
@@ -6339,7 +6339,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41780 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41781 DEFB 171               ; Page containing the sprite graphic data:
-                              ; #R43776(#N171)
+                              ; #R43776#43776(#N171)
  41782 DEFB 80                ; Minimum pixel y-coordinate: 40
  41783 DEFB 160               ; Maximum pixel y-coordinate: 80
 ; The following entity definition (#ed103) is used in #R56064(The Chapel).
@@ -6810,7 +6810,9 @@ u42624 DEFB 128,128,128,128,140,143,143,143,143,143,128,128,191,143,143,143
 ; Guardian graphics
 ;
 ; Used by the routine at #R37310.
+;
 ; .
+;
 ; This guardian (page #N(171), sprites 0-3) appears in #R56832(The Banyan Tree)
 ; and #R58368(A bit of tree).
 ; .
