@@ -4461,7 +4461,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41116 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41117 DEFB 156               ; Page containing the sprite graphic data:
-                              ; #R39936(#N156)
+                              ; #R40000(#N156)
  41118 DEFB 32                ; Minimum pixel y-coordinate: 16
  41119 DEFB 96                ; Maximum pixel y-coordinate: 48
 ; The following entity definition (#ed20) is used in #R49408(The Bridge) and
@@ -5598,7 +5598,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41524 DEFB 252               ; Initial pixel y-coordinate increment: -2
                               ; (moving up)
  41525 DEFB 156               ; Page containing the sprite graphic data:
-                              ; #R39936(#N156)
+                              ; #R40064(#N156)
  41526 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41527 DEFB 160               ; Maximum pixel y-coordinate: 80
 ; The following entity definition (#ed71) is used in #R56576(The Nightmare
@@ -5622,7 +5622,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41532 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41533 DEFB 156               ; Page containing the sprite graphic data:
-                              ; #R39936(#N156)
+                              ; #R40064(#N156)
  41534 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41535 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#ed72) is used in #R56576(The Nightmare
@@ -5645,7 +5645,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41540 DEFB 6                 ; Initial pixel y-coordinate increment: 3 (moving
                               ; down)
  41541 DEFB 156               ; Page containing the sprite graphic data:
-                              ; #R39936(#N156)
+                              ; #N156#HTML[ (#R40000(foot), #R40064(Maria))]
  41542 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41543 DEFB 192               ; Maximum pixel y-coordinate: 96
 ; The following entity definition (#ed73) is used in #R56576(The Nightmare
@@ -5668,7 +5668,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41548 DEFB 248               ; Initial pixel y-coordinate increment: -4
                               ; (moving up)
  41549 DEFB 156               ; Page containing the sprite graphic data:
-                              ; #R39936(#N156)
+                              ; #R40064(#N156)
  41550 DEFB 16                ; Minimum pixel y-coordinate: 8
  41551 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#ed74) is used in #R54016(The Forgotten

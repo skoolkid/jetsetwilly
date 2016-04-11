@@ -175,13 +175,18 @@ class JetSetWilly:
             else:
                 comment = 'The following entity definition (#ed{}) is not used.'.format(num)
             lines.append('N {} {}'.format(addr, comment))
+            base_indexes = set()
             if num in sprite_addrs:
                 ink = self.snapshot[40961 + 8 * num] & 7
                 bright = 8 * (self.snapshot[40961 + 8 * num] & 8)
                 rows = []
                 for frame_addrs, room_bg in sorted(sprite_addrs[num]):
+                    macros = []
                     attr = bright | room_bg | ink
-                    rows.append('{ ' + ' | '.join([self._get_guardian_macro(a, attr) for a in frame_addrs]) + ' }')
+                    for a in frame_addrs:
+                        macros.append(self._get_guardian_macro(a, attr))
+                        base_indexes.add((a & 255) // 32)
+                    rows.append('{ ' + ' | '.join(macros) + ' }')
                 lines.append('N {} #UDGTABLE {} TABLE#'.format(addr, ' '.join(rows)))
             if num in defs or num == 43:
                 entity_def = self.snapshot[addr:addr + 8]
@@ -217,8 +222,24 @@ class JetSetWilly:
                         direction = 'moving up'
                     desc4 = 'Initial pixel y-coordinate increment: {} ({})'.format(y_inc // 2, direction)
                     page = entity_def[5]
-                    anchor = '#43776' if page == 171 else ''
-                    desc5 = 'Page containing the sprite graphic data: #R{}{}(#N{})'.format(page * 256, anchor, page)
+                    if page == 156:
+                        links = []
+                        if 2 in base_indexes:
+                            e_addr = 40000
+                            links.append('#R40000(foot)')
+                        if 3 in base_indexes:
+                            e_addr = 40000
+                            links.append('#R40000(barrel)')
+                        if base_indexes & {4, 6}:
+                            e_addr = 40064
+                            links.append('#R40064(Maria)')
+                        if len(links) == 1:
+                            desc5 = 'Page containing the sprite graphic data: #R{}(#N{})'.format(e_addr, page)
+                        else:
+                            desc5 = 'Page containing the sprite graphic data: #N{}#HTML[ ({})]'.format(page, ', '.join(links))
+                    else:
+                        anchor = '#43776' if page == 171 else ''
+                        desc5 = 'Page containing the sprite graphic data: #R{}{}(#N{})'.format(page * 256, anchor, page)
                     desc6 = 'Minimum pixel y-coordinate: {}'.format(entity_def[6] // 2)
                     desc7 = 'Maximum pixel y-coordinate: {}'.format(entity_def[7] // 2)
                 elif entity_type & 3 == 3:
