@@ -3,6 +3,7 @@
 [Changelog:YYYYMMDD]
 -
 
+Added a trivia entry: #FACT#oneWaySaw()
 Documented a bug: #BUG#veryCorruptedConveyor() (thanks IRF)
 The table of #R40960(entity definitions) now shows every animation frame for each guardian
 Made various improvements to the hexadecimal version of the disassembly
