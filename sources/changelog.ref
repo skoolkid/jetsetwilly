@@ -6,7 +6,9 @@
 Added trivia entries:
   #FACT#oneWaySaw()
   #FACT#mostGuardians()
-Documented a bug: #BUG#veryCorruptedConveyor() (thanks IRF)
+Documented bugs:
+  #BUG#veryCorruptedConveyor() (thanks IRF)
+  #BUG#guardianHalos()
 The table of #R40960(entity definitions) now shows every animation frame for each guardian
 Made various improvements to the hexadecimal version of the disassembly
 

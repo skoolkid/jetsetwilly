@@ -62,6 +62,26 @@ POKE #R60160#60160(60231),0
 
 which removes the nasty next to the item.
 
+[Bug:guardianHalos:Guardian halos]
+In a room with a non-black background, a guardian defined with BRIGHT INK is drawn with a 'halo': a BRIGHT sprite background that contrasts with the non-BRIGHT room background. There are four guardians affected by this phenomenon:
+
+#UDGTABLE(gallery)
+{ #ROOM51456,2,5,7,6,6(halo1) #ROOM51456,2,26,8,6,6(halo2) | #ROOM52992,2,9,8,6,6(halo3)               | #ROOM59136,2,6,1,6,6(halo4) }
+{ #R51456(On a Branch Over the Drive)                      | #R52992(I'm sure I've seen this before..) | #R59136(Emergency Generator) }
+TABLE#
+
+The following POKEs modify the section of code at #R37334 so that a guardian is drawn in non-BRIGHT INK and PAPER when the room background is not black, thus preventing any halo:
+
+<div>POKE 37371,40</div>
+<div>POKE 37372,2</div>
+<div>POKE 37373,203</div>
+<div>POKE 37374,177</div>
+<div>POKE 37375,177</div>
+<div>POKE 37376,205</div>
+<div>POKE 37377,201</div>
+<div>POKE 37378,147</div>
+<div>POKE 37379,79</div>
+
 [Bug:dontMindYourHead:Don't mind your head]
 The code at #R36828 onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in #R57600(The Bathroom) and guide Willy through it:
 
