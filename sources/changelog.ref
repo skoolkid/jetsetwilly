@@ -6,6 +6,7 @@
 Added trivia entries:
   #FACT#oneWaySaw()
   #FACT#mostGuardians()
+  #FACT#quadridirectionalGuardian()
 Documented bugs:
   #BUG#veryCorruptedConveyor() (thanks IRF)
   #BUG#guardianHalos()

@@ -201,6 +201,15 @@ To see this happen in #R64000(The Beach):
 <div>POKE #R34789(34790),128 (set Willy's initial pixel y-coordinate to 64)</div>
 <div>POKE #R34799(34800),2: POKE #R34799(34801),93 (set Willy's initial attribute buffer location)</div>
 
+[Fact:quadridirectionalGuardian:The quadridirectional guardian]
+The cyan guardian in #R51456(On a Branch Over the Drive) moves up and down (not very gracefully), while its red and green cousins in #R54784(To the Kitchens#SPACE(4)Main Stairway) and #R57600(The Bathroom) move left and right.
+
+#UDGTABLE
+{ #guardian185,0,13 | #guardian185,1,13 | #guardian185,2,13 | #guardian185,3,13 }
+TABLE#
+
+It is the only type of guardian that can be seen moving vertically in one room and horizontally in another.
+
 [Fact:guardianColours:Guardian colours]
 The most common guardian colour is yellow (25 instances), and the least common colour is blue (2 instances, both BRIGHT, in #R54016(The Forgotten Abbey) and #R59648(The Attic)).
 
