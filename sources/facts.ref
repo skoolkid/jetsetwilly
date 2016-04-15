@@ -227,6 +227,16 @@ Entity 89, defined at #R41672, and appearing in #R51968(The Hall) and #R62976(We
 
 #UDGTABLE { #UDGARRAY2,6,,2;45248-45265-1-16(guardian176-6-6) } TABLE#
 
+[Fact:unanimatedGuardians:Unanimated guardians]
+There are a few vertical guardians that have only one animation frame, and so are in a sense unanimated (though they do still move up and down).
+
+#UDGTABLE(gallery)
+{ #guardian156,3,66                                                | #guardian186,2,5       | #guardian156,2,6 #guardian156,4,6 }
+{ <div>#R54272(Ballroom East)</div><div>#R57856(Top Landing)</div> | #R52480(Out on a limb) | #R56576(The Nightmare Room) }
+TABLE#
+
+In contrast, every horizontal guardian has either 4 or 8 animation frames.
+
 [Fact:unusedEntityDefinition:Unused entity definition]
 Entity definition 43 at #R41304 contains data but is not used.
 
