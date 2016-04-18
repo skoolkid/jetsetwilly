@@ -210,6 +210,13 @@ TABLE#
 
 It is the only type of guardian that can be seen moving vertically in one room and horizontally in another.
 
+[Fact:doubleDescent:Double descent]
+There is a maximum distance that Willy can fall before the landing will kill him, but it's possible for Willy to fall a greater distance than that if his descent is punctuated by a transition from one room into the room below; if each portion of his descent on either side of the transition is less than the maximum distance, he will land safely.
+
+To demonstrate this, jump left near the bottom of the ramp in #R60160(Conservatory Roof) - Willy will land safely on the ramp in the room below (#R58624(Orangery)). But if Willy jumps left off the ramp in Orangery, he will die when he lands on a lower part of the ramp.
+
+The code responsible for this is at #R38115 - it resets the airborne status indicator at #R34257 to 2 if it's currently 10 or less.
+
 [Fact:guardianColours:Guardian colours]
 The most common guardian colour is yellow (25 instances), and the least common colour is blue (2 instances, both BRIGHT, in #R54016(The Forgotten Abbey) and #R59648(The Attic)).
 
