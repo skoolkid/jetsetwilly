@@ -82,6 +82,18 @@ The following POKEs modify the section of code at #R37334 so that a guardian is 
 <div>POKE 37378,147</div>
 <div>POKE 37379,79</div>
 
+[Bug:fromTopToBottom:From top to bottom]
+In a room that contains a rope and has no exit to the room above, Willy can jump while at the highest point on the rope (when it's at the leftmost or rightmost extent of its swing) through the top of the room and reappear on the floor of the same room. The only rooms where this can happen are #R53760(On the Roof) and #R64000(The Beach).
+
+To prevent Willy from climbing high enough up the rope to be able to jump through the top of the room:
+
+<div>POKE #R37781(37782),15</div>
+<div>POKE 37786,15</div>
+
+The number 15 here determines the highest segment of rope that Willy can reach (originally 12). At segment 15, Willy's y-coordinate never goes below 25 while he's on the rope, and is adjusted down to 24 (see #R36782) when he jumps off, which is too far from the top the room (the maximum height Willy can jump is 20 pixels). At segment 14, Willy's y-coordinate never goes below 23 while he's on the rope, but is adjusted down to 16 when he jumps off, which is close enough to the top of the room to be able to jump through it.
+
+The code at #R37601 adjusts Willy's location depending on where he's hanging on to the rope. Specifically, his pixel y-coordinate is set to Y-8, where Y is the pixel y-coordinate of the segment of rope whose index matches the value of the rope status indicator at #R34262.
+
 [Bug:dontMindYourHead:Don't mind your head]
 The code at #R36828 onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in #R57600(The Bathroom) and guide Willy through it:
 

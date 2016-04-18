@@ -726,10 +726,11 @@ g34261 DEFB 0
 ; checked and updated by the routines at #R36564 and #R37310. Possible values
 ; are:
 ; .
-; #TABLE(default,centre)
+; #TABLE(default,centre,:w)
 ; { =h Value | =h Meaning }
 ; { 0 | Willy is not on the rope }
-; { 12-32 | Willy is on the rope at this distance from the top }
+; { 2-32 | Willy is on the rope, with the centre of his sprite anchored at this
+; segment }
 ; { 240-255 | Willy has just jumped or fallen off the rope }
 ; TABLE#
 @label=ROPE
