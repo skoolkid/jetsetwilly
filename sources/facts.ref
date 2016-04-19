@@ -259,6 +259,20 @@ To move one of the items two cells to the left:
 
 POKE #R42438(42438),180
 
+[Fact:itemsAndWhiteness:Items and whiteness]
+If an item lies in the path of an arrow or white guardian, it will be collected when the arrow or guardian hits it. This is because the routine at #R37841 collects an item if the cell it occupies has white INK.
+
+To replace the guardian in #R57600(The Bathroom) with an arrow and watch it collect the item (make sure Willy jumps as the arrow approaches):
+
+<div>POKE #R57840(57840),60</div>
+<div>POKE 57841,214</div>
+
+To make the guardian in #R57600(The Bathroom) white and place the item in its path:
+
+<div>POKE #R41432(41433),103</div>
+<div>POKE #R42239(42239),33</div>
+<div>POKE #R42495(42495),135</div>
+
 [Fact:slipperySlopes:Slippery slopes]
 In #R56064(The Chapel) and #R57344(Halfway up the East Wall), the ramps act as conveyors that push Willy down the slope, because the ramp tile has the same attribute byte as the conveyor tile (which is not actually used in either room). There are no conveyor-ramps anywhere else in the game.
 
