@@ -1355,8 +1355,8 @@ c35245 CALL 35211    ; Draw the remaining lives
  35278 CALL NZ,36307 ; If not, move Willy
 @label=AFTERMOVE1
  35281 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
- 35284 CP 225        ; Has Willy just moved up a ramp past the top of the
-                     ; screen?
+ 35284 CP 225        ; Has Willy just moved up a ramp or a rope past the top of
+                     ; the screen?
  35286 CALL NC,38064 ; If so, move Willy into the room above
 @label=AFTERMOVE2
  35289 LD A,(34271)  ; Pick up the game mode indicator from #R34271
