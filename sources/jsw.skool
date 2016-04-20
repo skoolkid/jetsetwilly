@@ -2720,12 +2720,12 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37389 INC HL        ; sprite
  37390 LD (HL),C     ; }
 *37391 LD C,1        ; Prepare #REGc for the call to #R37974 later on
- 37393 LD A,(IX+1)   ; {Point #REGde at the graphic data for the guardian's
- 37396 AND (IX+0)    ; current animation frame (see #R43776)
- 37399 OR (IX+2)     ;
- 37402 AND 224       ;
- 37404 LD E,A        ;
- 37405 LD D,(IX+5)   ; }
+ 37393 LD A,(IX+1)   ; Now bits 5-7 of #REGa hold the animation frame mask
+ 37396 AND (IX+0)    ; AND on the current animation frame (bits 5-7)
+ 37399 OR (IX+2)     ; OR on the base sprite index (bits 5-7)
+ 37402 AND 224       ; Keep only bits 5-7
+ 37404 LD E,A        ; {Point #REGde at the graphic data for the guardian's
+ 37405 LD D,(IX+5)   ; current animation frame (see #R43776)}
 @ssub=LD H,33280/256
  37408 LD H,130      ; {Point #REGhl at the guardian's current location in the
  37410 LD L,(IX+3)   ; screen buffer at #R24576
