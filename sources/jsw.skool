@@ -27,7 +27,7 @@ b24576 DEFS 4096
 b28672 DEFS 4096
 
 @start
-@replace=/#guardian\i,\i,\i/#UDGARRAY2,\3,,2;(\1*256+\2*32)-(\1*256+\2*32+17)-1-16(guardian\1-\2-\3)
+@replace=/#guardian\i,\i,\i/#UDGARRAY2,\3,,2;(\1*256+\2*32)-(\1*256+\2*32+17)-1-16(guardian\1-\2-\3*)
 @replace=/#tiles\i/#FOR(49312+\1*256,49357+\1*256,9);;$n;#UDG($n+1,#PEEK$n)(<tmap>#EVAL\1,,2); | ;;
 @replace=/<tmap>/#MAP($n%256)(,160:background,169:floor,178:wall,187:nasty,196:ramp,205:conveyor)
 @replace=/#item\i/#UDG(49377+256*\1,(#PEEK(49312+256*\1)&120)+3)(item#EVAL\1,,2)
