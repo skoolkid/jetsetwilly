@@ -188,7 +188,7 @@ Whether Maria raises her arm at Willy in #R58112(Master Bedroom) depends on his 
 In order to climb down a rope, Willy must move in the same direction as the rope is swinging (left if the rope is swinging right to left, right if the rope is swinging left to right); to climb up a rope, he must move in the opposite direction (see #R37756).
 
 [Fact:theEncroachingRope:The encroaching rope]
-In the entity buffer at #R33024, the definition for a rope uses the second and fourth bytes of the following definition (in addition to the eight bytes of its own slot); this means that to avoid corrupting another entity, the rope must be either the last entity specified in a room, or followed by an arrow (which doesn't use the second and fourth bytes of its slot).
+In the entity buffer at #R33024, the definition for a rope uses the second and fourth bytes of the following definition (in addition to the eight bytes of its own slot); this means that to avoid corrupting another entity, the rope must be either the last entity specified in a room (in which case it will use the first and third bytes in the otherwise unused area at #R33089), or followed by an arrow (which doesn't use the second and fourth bytes of its slot).
 
 [Fact:ropesBeforeArrows:Ropes before arrows]
 The rope-drawing code at #R37540 places Willy on the rope if it is touching anything else (Willy or otherwise) that's already been drawn. This means, for example, that if an arrow is drawn before the rope (by appearing before it in the room's entity specifications), Willy will be immediately transported onto the rope when the arrow hits it.
