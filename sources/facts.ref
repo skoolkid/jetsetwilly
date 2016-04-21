@@ -273,6 +273,8 @@ To make the guardian in #R57600(The Bathroom) white and place the item in its pa
 <div>POKE #R42239(42239),33</div>
 <div>POKE #R42495(42495),135</div>
 
+In addition, any item situated in a room that has a background with white INK will be automatically collected as soon as Willy enters the room (see #BUG#selfCollectingItem()).
+
 [Fact:slipperySlopes:Slippery slopes]
 In #R56064(The Chapel) and #R57344(Halfway up the East Wall), the ramps act as conveyors that push Willy down the slope, because the ramp tile has the same attribute byte as the conveyor tile (which is not actually used in either room). There are no conveyor-ramps anywhere else in the game.
 
