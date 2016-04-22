@@ -50,6 +50,7 @@ b28672 DEFS 4096
 ;   * The pause bug
 ;   * The Attic bug
 ;   * Corrupted conveyors
+;   * Very corrupted conveyor
 ; See http://skoolkit.ca/disassemblies/jet_set_willy/reference/bugs.html for
 ; full descriptions of these bugs.
 @bfix+end
@@ -10189,6 +10190,7 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  56754 DEFB 51,0,42,84,0,0,162,69,0            ; Wall
  56763 DEFB 69,66,153,102,161,159,129,102,90   ; Nasty (unused)
  56772 DEFB 7,128,192,160,240,248,92,186,2     ; Ramp
+@bfix=DEFB 2,165,255,90,255,255,170,85,170
  56781 DEFB 165,255,90,255,255,170,85,170,85   ; Conveyor
 ; The next four bytes are copied to #R32982 and specify the direction, location
 ; and length of the conveyor.
