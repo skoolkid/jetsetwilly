@@ -52,6 +52,7 @@ b28672 DEFS 4096
 ;   * Corrupted conveyors
 ;   * Very corrupted conveyor
 ;   * Guardian halos
+;   * Long distance nasties
 ; See http://skoolkit.ca/disassemblies/jet_set_willy/reference/bugs.html for
 ; full descriptions of these bugs.
 @bfix+end
@@ -3499,8 +3500,14 @@ c38430 LD A,(32928)  ; Pick up the attribute byte of the background tile in the
                      ; #R23552
 *38447 LD A,(32955)  ; Pick up the attribute byte of the nasty tile in the
                      ; current room from #R32955
+@bfix-begin
  38450 CP (HL)       ; Has Willy hit a nasty?
  38451 JP Z,37046    ; Kill Willy if so
+@bfix+else
+@rem=Long distance nasties fix
+ 38450 CP (HL)       ; Is there a nasty here?
+ 38451 JP Z,64976    ; If so, kill Willy if he's collided with it
+@bfix+end
  38454 RET           ;
 
 ; Draw Willy to the screen buffer at #N24576
@@ -13223,11 +13230,18 @@ u64768 ADD HL,BC
  64969 LD DE,26629
  64972 CALL NZ,25694
  64975 POP HL
+@bfix-begin
  64976 LD A,(HL)
  64977 INC HL
  64978 LD H,(HL)
  64979 LD L,A
  64980 POP DE
+@bfix+else
+@rem=Long distance nasties fix
+@label=CHKNASTY
+ 64976 BIT 1,H       ; Is #REGhl pointing to a tile in the buffer at 23552?
+ 64978 JP Z,37046    ; Kill Willy if so
+@bfix+end
  64981 RET
  64982 LD A,(HL)
  64983 OR A
