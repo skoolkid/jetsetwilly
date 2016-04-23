@@ -51,6 +51,7 @@ b28672 DEFS 4096
 ;   * The Attic bug
 ;   * Corrupted conveyors
 ;   * Very corrupted conveyor
+;   * Guardian halos
 ; See http://skoolkit.ca/disassemblies/jet_set_willy/reference/bugs.html for
 ; full descriptions of these bugs.
 @bfix+end
@@ -2723,6 +2724,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37368 LD A,(HL)     ; Pick up the room attribute byte at the guardian's
                      ; location from the buffer at #R23552
  37369 AND 56        ; Keep only bits 3-5 (PAPER colour)
+@bfix-begin
  37371 XOR C         ; Merge the INK colour and BRIGHT value from #REGc
  37372 LD C,A        ; Copy this attribute value to #REGc
  37373 LD (HL),C     ; {Set the attribute bytes in the buffer at #R23552 for
@@ -2732,6 +2734,16 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37377 LD (HL),C     ;
  37378 INC HL        ;
  37379 LD (HL),C     ; }
+@bfix+else
+@rem=Guardian halos fix
+ 37371 JR Z,37375    ; Jump if the room background is black
+ 37373 RES 6,C       ; Reset the BRIGHT bit of the guardian's colour
+@label=BLACKBG
+ 37375 OR C          ; Merge the INK colour and BRIGHT value from #REGc
+ 37376 CALL 37833    ; Set the attribute bytes in the buffer at #R23552 for the
+                     ; top two rows of cells occupied by the guardian's sprite
+ 37379 LD C,A        ; Copy the guardian's attribute byte to #REGc
+@bfix+end
  37380 LD A,(IX+3)   ; Pick up the fourth byte of the entity definition
  37383 AND 14        ; Does the guardian's sprite occupy only two rows of cells
                      ; at the moment?
@@ -3001,7 +3013,12 @@ u37819 LD (HL),A     ; Store the INK colour (bits 0-2)
  37830 INC HL        ; {Move right one cell and store the attribute byte there
  37831 LD (HL),A     ; }
  37832 ADD HL,DE     ; {Move left one cell and down a row and store the
+@bfix-begin
  37833 LD (HL),A     ; attribute byte there}
+@bfix+else
+@rem=Guardian halos fix
+*37833 LD (HL),A     ; attribute byte there}
+@bfix+end
  37834 INC HL        ; {Move right one cell and store the attribute byte there
  37835 LD (HL),A     ; }
  37836 ADD HL,DE     ; {Move left one cell and down a row and store the
