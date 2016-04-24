@@ -1398,7 +1398,8 @@ c35245 CALL 35211    ; Draw the remaining lives
  35334 LD HL,34258   ; {Set Willy's animation frame at #R34258 to 1 or 3 if
  35337 OR (HL)       ; Willy is running to the toilet or already has his head
  35338 LD (HL),A     ; down it; this has the effect of moving Willy at twice
-                     ; his normal speed as he makes his way to the toilet}
+                     ; his normal speed as he makes his way to the toilet
+                     ; (using animation frames 2 and 0)}
 @label=SCRFLASH
  35339 LD A,(34253)  ; Pick up the screen flash counter (unused and always 0)
                      ; from #R34253
