@@ -103,13 +103,13 @@ POKE 34795,42
 
 The problem lies in the section of code at #R38392, which sets the attribute bytes for the cells occupied by and below Willy's sprite. If Willy is below the level of the floor, #REGhl (which holds the address of the cell in the attribute buffer at #R23552) is eventually incremented so that it points to the cell in the ceiling above Willy in the attribute buffer at #R24064. Then the routine at #R38430 is called to actually set the attribute byte for the cell, detects the nasty there, and kills Willy.
 
-<div>POKE 38452,203</div>
-<div>POKE 38453,147</div>
-<div>POKE 37835,203</div>
-<div>POKE 37836,76</div>
-<div>POKE 37837,202</div>
-<div>POKE 37838,182</div>
-<div>POKE 37839,144</div>
+<div>POKE 38452,208</div>
+<div>POKE 38453,253</div>
+<div>POKE 64976,203</div>
+<div>POKE 64977,76</div>
+<div>POKE 64978,202</div>
+<div>POKE 64979,182</div>
+<div>POKE 64980,144</div>
 
 [Bug:dontMindYourHead:Don't mind your head]
 The code at #R36828 onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in #R57600(The Bathroom) and guide Willy through it:
