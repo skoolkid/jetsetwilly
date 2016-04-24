@@ -1119,8 +1119,8 @@ c34762 XOR A         ; #REGa=0
  34841 LD BC,6143    ;
  34844 LD (HL),0     ;
  34846 LDIR          ; }
- 34848 LD HL,38912   ; {Copy the attribute bytes for the top two-thirds of the
- 34851 LD BC,768     ; title screen from #R38912 to the attribute file
+ 34848 LD HL,38912   ; {Copy the attribute bytes for the title screen from
+ 34851 LD BC,768     ; #R38912 and #R39424 to the attribute file
  34854 LDIR          ; }
  34856 LD HL,23136   ; {Copy the attribute value 70 (INK 6: PAPER 0: BRIGHT 1)
  34859 LD DE,23137   ; into the row of 32 cells from (19,0) to (19,31) on the
@@ -3753,9 +3753,9 @@ b38912 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
  39392 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
  39408 DEFB 0,0,8,8,4,4,0,0,0,0,0,0,0,0,0,0
 
-; Attributes for the bottom third of the screen during gameplay
+; Attributes for the bottom third of the screen
 ;
-; Used by the routines at #R35068 and #R35591.
+; Used by the routines at #R34762, #R35068 and #R35591.
 @label=ATTRSLOWER
 b39424 DEFB 70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70
  39440 DEFB 70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70
