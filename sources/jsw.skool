@@ -53,6 +53,7 @@ b28672 DEFS 4096
 ;   * Very corrupted conveyor
 ;   * Guardian halos
 ;   * Long distance nasties
+;   * From top to bottom
 ; See http://skoolkit.ca/disassemblies/jet_set_willy/reference/bugs.html for
 ; full descriptions of these bugs.
 @bfix+end
@@ -2972,10 +2973,19 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37777 CP C          ; Is there a room above this one?
  37778 JR NZ,37787   ; Jump if so
  37780 LD A,(HL)     ; Pick up the rope status indicator at #R34262
+@bfix-begin
  37781 CP 12         ; Is it 12 or greater?
+@bfix+else
+ 37781 CP 15         ; Is it 15 or greater?
+@bfix+end
  37783 JR NC,37787   ; Jump if so
+@bfix-begin
  37785 LD (HL),12    ; Set the rope status indicator at #R34262 to 12 (there is
                      ; nowhere to go above this rope)
+@bfix+else
+ 37785 LD (HL),15    ; Set the rope status indicator at #R34262 to 15 (there is
+                     ; nowhere to go above this rope)
+@bfix+end
 *37787 LD A,(HL)     ; Pick up the rope status indicator at #R34262
  37788 CP (IX+4)     ; Compare it with the length of the rope
  37791 JR C,37811    ; {If Willy is at or above the bottom of the rope, jump to
