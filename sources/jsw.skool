@@ -54,6 +54,7 @@ b28672 DEFS 4096
 ;   * Guardian halos
 ;   * Long distance nasties
 ;   * From top to bottom
+;   * The self-collecting item
 ; See http://skoolkit.ca/disassemblies/jet_set_willy/reference/bugs.html for
 ; full descriptions of these bugs.
 @bfix+end
@@ -10412,6 +10413,7 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; #UDGTABLE
 ; { #tiles31 }
 ; TABLE#
+@bfix=DEFB 5,0,0,0,0,0,0,0,0
  57248 DEFB 7,0,0,0,0,0,0,0,0                  ; Background
  57257 DEFB 41,0,0,0,0,0,0,0,0                 ; Floor
  57266 DEFB 58,68,68,187,68,68,68,187,68       ; Wall
