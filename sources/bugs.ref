@@ -90,7 +90,7 @@ To prevent Willy from climbing high enough up the rope to be able to jump throug
 <div>POKE #R37781(37782),15</div>
 <div>POKE 37786,15</div>
 
-The number 15 here determines the highest segment of rope that Willy can reach (originally 12). At segment 15, Willy's y-coordinate never goes below 25 while he's on the rope, and is adjusted down to 24 (see #R36782) when he jumps off, which is too far from the top the room (the maximum height Willy can jump is 20 pixels). At segment 14, Willy's y-coordinate never goes below 23 while he's on the rope, but is adjusted down to 16 when he jumps off, which is close enough to the top of the room to be able to jump through it.
+The number 15 here determines the highest segment of rope that Willy can reach (originally 12, three segments higher up). At segment 15, Willy's y-coordinate never goes below 25 while he's on the rope, and is adjusted down to 24 (see #R36782) when he jumps off, which is too far from the top the room (the maximum height Willy can jump is 20 pixels). At segment 14, Willy's y-coordinate never goes below 23 while he's on the rope, but is adjusted down to 16 when he jumps off, which is close enough to the top of the room to be able to jump through it.
 
 The code at #R37601 adjusts Willy's location depending on where he's hanging on to the rope. Specifically, his pixel y-coordinate is set to Y-8, where Y is the pixel y-coordinate of the segment of rope whose index matches the value of the rope status indicator at #R34262.
 
