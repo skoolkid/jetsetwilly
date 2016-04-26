@@ -3476,7 +3476,10 @@ c38344 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
  38418 ADD A,B       ; {Add the y-coordinate offset calculated earlier (to get
  38419 LD C,A        ; Willy's true pixel y-coordinate if he's standing on a
                      ; ramp) and transfer the result to #REGc}
- 38420 ADD HL,DE     ; Move #REGhl down a row and back one cell to the left
+ 38420 ADD HL,DE     ; Move #REGhl down a row and back one cell to the left; at
+                     ; this point #REGhl may be pointing at one of the cells in
+                     ; the top row of the buffer at #R24064, which is a
+                     ; #BUG#longDistanceNasties
  38421 CALL 38430    ; Check and set the attribute byte for the bottom-left
                      ; cell
  38424 INC HL        ; Move #REGhl to the next cell to the right
