@@ -118,6 +118,23 @@ POKE 57708,32
 
 However, the code at #R36942 onwards that moves Willy right does check for a wall tile at head height (at #R37031), so Willy (correctly) cannot move left to right through a wall tile at that position.
 
+[Bug:stuckInTheWall:Stuck in the wall]
+If Willy enters #R61696(The Wine Cellar) from the ledge in #R54016(The Forgotten Abbey), he must keep moving left until he clears all the wall tiles, otherwise he can become trapped inside them by the conveyor below trying to move him to the right.
+
+To get on the conveyor, stand facing left at the top of the ramp in The Forgotten Abbey (see the first image below) and jump left towards the exit - Willy will land on the ledge (second image). Then walk left into The Wine Cellar.
+
+#UDGTABLE(gallery)
+{ #WILLY19,2,88,6,0,9,6,6(sitw1_1) | #WILLY19,1,80,7,0,9,6,6(sitw1_2) | #WILLY49,29,80,3,26,9,6,6(sitw1_3) }
+TABLE#
+
+Willy can get also stuck in the wall tiles that make up the elephant's head in #R59392(Dr Jones will never believe this). Start at the location shown in the first image below, and then walk left.
+
+#UDGTABLE(gallery)
+{ #WILLY40,18,24,7,16,1,6,6(sitw2_1) | #WILLY40,15,24,3,13,1,6,6(sitw2_2) }
+TABLE#
+
+Getting stuck in these places is possible because Willy can walk right to left through wall tiles at head height, but not left to right (see #BUG#dontMindYourHead()).
+
 [Bug:theBlankConveyor:The blank conveyor]
 The conveyor tile in #R60160(Conservatory Roof) is completely blank and its attribute byte is 255 - a solid, bright white block - which is characteristic of unused tiles elsewhere. However, the conveyor tile <em>is</em> used in this room, and it doesn't look good:
 
