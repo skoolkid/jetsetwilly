@@ -85,6 +85,21 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
         return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
 
+    def expand_willy(self, text, index, cwd):
+        # #WILLYroom,x,y,sprite[,left,top,width,height,scale](fname)
+        names = ('room', 'x', 'y', 'sprite', 'left', 'top', 'width', 'height', 'scale')
+        defaults = (0, 0, 32, 17, 2)
+        end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
+        room, x, y, sprite, left, top, width, height, scale = params
+        room_addr = 49152 + 256 * room
+        room_udgs = self._get_room_udgs(room_addr)
+        willy = self._get_graphic(40192 + 32 * sprite, 7)
+        room_bg = self.snapshot[room_addr + 160]
+        self._place_graphic(room_udgs, willy, x, y // 8, y % 8, room_bg)
+        img_udgs = [room_udgs[i][left:left + width] for i in range(top, top + min(height, 17 - top))]
+        frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
+        return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
+
     def expand_gbuf(self, text, index, cwd):
         end, addr_from, addr_to = parse_gbuf(text, index)
         link_text = '#N{}'.format(addr_from)
@@ -198,6 +213,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         for a in range(addr + 160, addr + 196, 9):
             attr = self.snapshot[a]
             block_graphics.append(Udg(attr, self.snapshot[a + 1:a + 9]))
+        room_bg = block_graphics[0].attr
 
         # Build the room UDG array
         udg_array = []
@@ -276,8 +292,8 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 ink = b1 & 7
                 attr = bright + ink
                 sprite_addr = 256 * guardian_def[5] + (start & 224)
-                sprite = self._get_graphic(sprite_addr)
-                self._place_graphic(udg_array, sprite, x, y, attr, y_delta)
+                sprite = self._get_graphic(sprite_addr, attr)
+                self._place_graphic(udg_array, sprite, x, y, y_delta)
             elif guardian_type & 3 == 3:
                 # Rope
                 x = start & 31
@@ -294,8 +310,8 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 rope_udg_data += [0] * (8 - (len(rope_udg_data) & 7))
                 rope_udg_array = []
                 for i in range(0, len(rope_udg_data), 8):
-                    rope_udg_array.append([Udg(0, rope_udg_data[i:i + 8])])
-                self._place_graphic(udg_array, rope_udg_array, x, 0)
+                    rope_udg_array.append([Udg(room_bg, rope_udg_data[i:i + 8])])
+                self._place_graphic(udg_array, rope_udg_array, x, 0, bg_attr=room_bg)
             elif guardian_type == 4:
                 # Arrow; first get the display file address at which the middle
                 # of the arrow will be drawn
@@ -308,18 +324,18 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                     y_delta = (df_addr // 256) & 7
                     x = guardian_def[4] & 31
                     arrow_udg_data = [0] * (y_delta - 1) + [guardian_def[6], 255, guardian_def[6]] + [0] * (6 - y_delta)
-                    arrow_udg = Udg(0, arrow_udg_data)
-                    self._place_graphic(udg_array, [[arrow_udg]], x, y, 7)
+                    arrow_udg = Udg(7, arrow_udg_data)
+                    self._place_graphic(udg_array, [[arrow_udg]], x, y)
 
         if addr == 57600:
             # Toilet in the bathroom
-            toilet = self._get_graphic(42496)
-            self._place_graphic(udg_array, toilet, 28, 13, 7)
+            toilet = self._get_graphic(42496, 7)
+            self._place_graphic(udg_array, toilet, 28, 13)
         elif addr == 58112:
             # Maria in the master bedroom
-            maria = self._get_graphic(40064)
-            self._place_graphic(udg_array, [maria[0]], 14, 11, 69)
-            self._place_graphic(udg_array, [maria[1]], 14, 12, 7)
+            maria = self._get_graphic(40064, 7)
+            maria[0][0].attr = maria[0][1].attr = 69
+            self._place_graphic(udg_array, maria, 14, 11)
 
         return udg_array
 
@@ -333,29 +349,32 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 udgs[-1].append(Udg(attr, self.snapshot[a:a + 16:2]))
         return udgs
 
-    def _place_graphic(self, udg_array, graphic, x, y, ink=None, y_delta=0):
-        if y_delta == 0:
-            for row in graphic:
-                for i, udg in enumerate(row):
-                    bg_udg = udg_array[y][x + i]
-                    new_udg_attr = (bg_udg.attr & 56) + ink if ink is not None else bg_udg.attr
-                    new_udg_data = [b1 | b2 for b1, b2 in zip(bg_udg.data, udg.data)]
-                    udg_array[y][x + i] = Udg(new_udg_attr, new_udg_data)
-                y += 1
-            return
+    def _place_graphic(self, udg_array, graphic, x, y, y_delta=0, bg_attr=None):
+        if y_delta > 0:
+            graphic = self._shift_graphic(graphic, y_delta)
+        for i, row in enumerate(graphic):
+            for j, udg in enumerate(row):
+                old_udg = udg_array[y + i][x + j]
+                if bg_attr is None or old_udg.attr == bg_attr:
+                    new_attr = (old_udg.attr & 56) | (udg.attr & 71)
+                else:
+                    new_attr = old_udg.attr
+                new_data = [old_udg.data[k] | udg.data[k] for k in range(8)]
+                udg_array[y + i][x + j] = Udg(new_attr, new_data)
 
-        blank_udg = Udg(0, [0] * 8)
+    def _shift_graphic(self, graphic, y_delta):
+        attr = graphic[0][0].attr
+        blank_udg = Udg(attr, [0] * 8)
         width = len(graphic[0])
         prev_row = [blank_udg] * width
+        shifted_graphic = []
         for row in graphic + [[blank_udg] * width]:
+            shifted_graphic.append([])
             for i, udg in enumerate(row):
-                bg_udg = udg_array[y][x + i]
-                new_udg_attr = (bg_udg.attr & 56) + ink if ink is not None else bg_udg.attr
                 shifted_udg_data = prev_row[i].data[-y_delta:] + udg.data[:-y_delta]
-                new_udg_data = [b1 | b2 for b1, b2 in zip(bg_udg.data, shifted_udg_data)]
-                udg_array[y][x + i] = Udg(new_udg_attr, new_udg_data)
+                shifted_graphic[-1].append(Udg(attr, shifted_udg_data))
                 prev_row[i] = udg
-            y += 1
+        return shifted_graphic
 
 class JetSetWillyAsmWriter(AsmWriter):
     def expand_gbuf(self, text, index):
