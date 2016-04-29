@@ -92,7 +92,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
         room, x, y, sprite, left, top, width, height, scale = params
         room_addr = 49152 + 256 * room
-        room_udgs = self._get_room_udgs(room_addr)
+        room_udgs = self._get_room_udgs(room_addr, 1)
         willy = self._get_graphic(40192 + 32 * sprite, 7)
         room_bg = self.snapshot[room_addr + 160]
         self._place_graphic(room_udgs, willy, x, y // 8, y % 8, room_bg)

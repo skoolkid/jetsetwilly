@@ -10,6 +10,7 @@ Added trivia entries:
   #FACT#mostGuardians()
   #FACT#quadridirectionalGuardian()
   #FACT#unanimatedGuardians()
+  #FACT#highJump()
 Documented bugs:
   #BUG#veryCorruptedConveyor() (thanks IRF)
   #BUG#fromTopToBottom() (thanks Spider, IRF and jetsetdanny)

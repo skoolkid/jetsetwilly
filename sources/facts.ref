@@ -217,6 +217,19 @@ To demonstrate this, jump left near the bottom of the ramp in #R60160(Conservato
 
 The code responsible for this is at #R38115 - it resets the airborne status indicator at #R34257 to 2 if it's currently 10 or less.
 
+[Fact:highJump:High jump]
+At certain points on a ramp, Willy can jump higher than the normal 20 pixels above his starting point. Depending on where he is standing on the ramp, he will jump 20, 22, 24 or 26 pixels.
+
+#UDGTABLE(gallery)
+{ #WILLY28,8,102,0,6,10,6,6(high_jump0) | #WILLY28,8,100,1,6,10,6,6(high_jump1) | #WILLY28,8,98,2,6,10,6,6(high_jump2) | #WILLY28,8,96,3,6,10,6,6(high_jump3) }
+{ #WILLY21,3,94,7,1,9,6,6(high_jump7)   | #WILLY21,3,92,6,1,9,6,6(high_jump6)   | #WILLY21,3,90,5,1,9,6,6(high_jump5)  | #WILLY21,3,88,4,1,9,6,6(high_jump4) }
+{ 26 pixels                             | 24 pixels                             | 22 pixels                            | 20 pixels }
+TABLE#
+
+When the jump key is pressed while Willy is standing on a ramp, he is drawn at the pixel y-coordinate Y, where Y is his original pixel y-coordinate rounded down to the nearest multiple of 8 (see #R38344, which ignores the ramp below Willy when the airborne status indicator at #R34257 is 1, and enters #R38455 with #REGb=0). So before the jumping animation even starts, Willy is already up to 6 pixels above the ramp itself.
+
+Also, during a jump Willy rises and then falls until his pixel y-coordinate is Y again, and if the jump key is still being pressed, he will jump from that point instead of falling all the way back to the ramp first.
+
 [Fact:guardianColours:Guardian colours]
 The most common guardian colour is yellow (25 instances), and the least common colour is blue (2 instances, both BRIGHT, in #R54016(The Forgotten Abbey) and #R59648(The Attic)).
 
