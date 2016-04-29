@@ -248,7 +248,7 @@ In addition, if an arrow appears before a guardian in a room's list of entity sp
 <div>POKE 58097,56</div>
 
 [Fact:guardianOrFixture:Guardian or fixture?]
-Entity 89, defined at #R41672, and appearing in #R51968(The Hall) and #R62976(West Wing), is the only guardian that does not move up, down, left or right.
+Entity #ed89, defined at #R41672, and appearing in #R51968(The Hall) and #R62976(West Wing), is the only guardian that does not move up, down, left or right.
 
 #UDGTABLE { #UDGARRAY*guardian176-6-6;guardian176-7-6(entity89) } TABLE#
 
