@@ -38,7 +38,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             y = 8 * (b1 >> 7) + b2 // 32
             self.items.setdefault(room_num, []).append((x, y))
         self.room_names, self.room_names_wp = self._get_room_names()
-        self.addr_anchor_fmt = self.get_dictionary('Game')['AddressAnchor']
 
     def _build_logo(self):
         udgs = []
