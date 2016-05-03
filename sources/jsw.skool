@@ -2081,11 +2081,11 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36399 JR Z,36406    ; Jump if so
  36401 CP 13         ; Is the jumping animation counter now 13?
  36403 JP NZ,36796   ; Jump if not
-; If we get here, then Willy is standing on the floor, or he's falling, or his
-; jumping animation counter is 13 (at which point Willy is on his way down and
-; is exactly two cell-heights above where he started the jump) or 16 (at which
-; point Willy is on his way down and is exactly one cell-height above where he
-; started the jump).
+; If we get here, then Willy is standing on the floor or a ramp, or he's
+; falling, or his jumping animation counter is 13 (at which point Willy is on
+; his way down and is exactly two cell-heights above where he started the jump)
+; or 16 (at which point Willy is on his way down and is exactly one cell-height
+; above where he started the jump).
 *36406 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
  36409 AND 14        ; Does Willy's sprite occupy six cells at the moment?
  36411 JR NZ,36450   ; Jump if so
