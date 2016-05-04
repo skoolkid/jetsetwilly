@@ -7455,7 +7455,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  49120 DEFB 0,0,7,0,47,164,80,86,34,36,82,84,63,228,23,68
  49136 DEFB 8,128,7,4,21,82,42,172,85,64,170,132,69,4,25,132
 
-; Room 0: The Off Licence (teleport: 9)
+; Room #N0,,,1(0x): The Off Licence (teleport: 9)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -7544,7 +7544,7 @@ b49152 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  49404 DEFB 0,0                                ; Nothing (#R40960#40960)
  49406 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 1: The Bridge (teleport: 19)
+; Room #N1,,,1(0x): The Bridge (teleport: 19)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -7636,7 +7636,7 @@ b49408 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  49660 DEFB 0,0                                ; Nothing (#R40960#40960)
  49662 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 2: Under the MegaTree (teleport: 29)
+; Room #N2,,,1(0x): Under the MegaTree (teleport: 29)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -7730,7 +7730,7 @@ b49664 DEFB 0,3,255,207,252,0,0,0              ; {Room layout
  49916 DEFB 0,0                                ; Nothing (#R40960#40960)
  49918 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 3: At the Foot of the MegaTree (teleport: 129)
+; Room #N3,,,1(0x): At the Foot of the MegaTree (teleport: 129)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -7823,7 +7823,7 @@ b49920 DEFB 48,195,8,0,8,0,0,0                 ; {Room layout
  50172 DEFB 0,0                                ; Nothing (#R40960#40960)
  50174 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 4: The Drive (teleport: 39)
+; Room #N4,,,1(0x): The Drive (teleport: 39)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -7920,7 +7920,7 @@ b50176 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  50428 DEFB 0,0                                ; Nothing (#R40960#40960)
  50430 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 5: The Security Guard (teleport: 139)
+; Room #N5,,,1(0x): The Security Guard (teleport: 139)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8011,7 +8011,7 @@ b50432 DEFB 128,0,0,0,0,0,0,0                  ; {Room layout
  50684 DEFB 0,0                                ; Nothing (#R40960#40960)
  50686 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 6: Entrance to Hades (teleport: 239)
+; Room #N6,,,1(0x): Entrance to Hades (teleport: 239)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8103,7 +8103,7 @@ b50688 DEFB 160,0,0,0,0,0,0,0                  ; {Room layout
  50940 DEFB 0,0                                ; Nothing (#R40960#40960)
  50942 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 7: Cuckoo's Nest (teleport: 1239)
+; Room #N7,,,1(0x): Cuckoo's Nest (teleport: 1239)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8198,7 +8198,7 @@ b50944 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  51196 DEFB 0,0                                ; Nothing (#R40960#40960)
  51198 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 8: Inside the MegaTrunk (teleport: 49)
+; Room #N8,,,1(0x): Inside the MegaTrunk (teleport: 49)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8295,7 +8295,7 @@ b51200 DEFB 0,0,8,0,8,0,0,0                    ; {Room layout
                                                ; initial x=19 (#R41336)
  51454 DEFB 255,0                              ; Terminator (#R41976)
 
-; Room 9: On a Branch Over the Drive (teleport: 149)
+; Room #N9,,,1(0x): On a Branch Over the Drive (teleport: 149)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8391,7 +8391,7 @@ b51456 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  51708 DEFB 0,0                                ; Nothing (#R40960#40960)
  51710 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 10: The Front Door (teleport: 249)
+; Room #N10,,,1(0x): The Front Door (teleport: 249)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8479,7 +8479,7 @@ b51712 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  51964 DEFB 0,0                                ; Nothing (#R40960#40960)
  51966 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 11: The Hall (teleport: 1249)
+; Room #N11,,,1(0x): The Hall (teleport: 1249)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8578,7 +8578,7 @@ b51968 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; (unused)
  52222 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 12: Tree Top (teleport: 349)
+; Room #N12,,,1(0x): Tree Top (teleport: 349)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8674,7 +8674,7 @@ b52224 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  52476 DEFB 0,0                                ; Nothing (#R40960#40960)
  52478 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 13: Out on a limb (teleport: 1349)
+; Room #N13,,,1(0x): Out on a limb (teleport: 1349)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8768,7 +8768,7 @@ b52480 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  52732 DEFB 0,0                                ; Nothing (#R40960#40960)
  52734 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 14: Rescue Esmerelda (teleport: 2349)
+; Room #N14,,,1(0x): Rescue Esmerelda (teleport: 2349)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8861,7 +8861,7 @@ b52736 DEFB 0,0,0,0,0,0,8,2                    ; {Room layout
  52988 DEFB 0,0                                ; Nothing (#R40960#40960)
  52990 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 15: I'm sure I've seen this before.. (teleport: 12349)
+; Room #N15,,,1(0x): I'm sure I've seen this before.. (teleport: 12349)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -8960,7 +8960,7 @@ b52992 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; (#R41440)
  53246 DEFB 255,0                              ; Terminator (#R41976)
 
-; Room 16: We must perform a Quirkafleeg (teleport: 59)
+; Room #N16,,,1(0x): We must perform a Quirkafleeg (teleport: 59)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9052,7 +9052,7 @@ b53248 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  53500 DEFB 0,0                                ; Nothing (#R40960#40960)
  53502 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 17: Up on the Battlements (teleport: 159)
+; Room #N17,,,1(0x): Up on the Battlements (teleport: 159)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9146,7 +9146,7 @@ b53504 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  53756 DEFB 0,0                                ; Nothing (#R40960#40960)
  53758 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 18: On the Roof (teleport: 259)
+; Room #N18,,,1(0x): On the Roof (teleport: 259)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9235,7 +9235,7 @@ b53760 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  54012 DEFB 0,0                                ; Nothing (#R40960#40960)
  54014 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 19: The Forgotten Abbey (teleport: 1259)
+; Room #N19,,,1(0x): The Forgotten Abbey (teleport: 1259)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9338,7 +9338,7 @@ b54016 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
                                                ; (horizontal), base sprite 0,
                                                ; initial x=24 (#R41608)
 
-; Room 20: Ballroom East (teleport: 359)
+; Room #N20,,,1(0x): Ballroom East (teleport: 359)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9433,7 +9433,7 @@ b54272 DEFB 160,64,10,0,0,0,0,0                ; {Room layout
  54524 DEFB 0,0                                ; Nothing (#R40960#40960)
  54526 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 21: Ballroom West (teleport: 1359)
+; Room #N21,,,1(0x): Ballroom West (teleport: 1359)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9525,7 +9525,7 @@ b54528 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  54780 DEFB 0,0                                ; Nothing (#R40960#40960)
  54782 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 22: To the Kitchens#SPACE(4)Main Stairway (teleport: 2359)
+; Room #N22,,,1(0x): To the Kitchens#SPACE(4)Main Stairway (teleport: 2359)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9624,7 +9624,7 @@ b54784 DEFB 0,0,128,0,0,0,0,0                  ; {Room layout
  55036 DEFB 255,0                              ; Terminator (#R41976)
  55038 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 23: The Kitchen (teleport: 12359)
+; Room #N23,,,1(0x): The Kitchen (teleport: 12359)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9717,7 +9717,7 @@ b55040 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  55292 DEFB 0,0                                ; Nothing (#R40960#40960)
  55294 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 24: West of Kitchen (teleport: 459)
+; Room #N24,,,1(0x): West of Kitchen (teleport: 459)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9810,7 +9810,7 @@ b55296 DEFB 0,0,1,0,0,0,0,0                    ; {Room layout
  55548 DEFB 0,0                                ; Nothing (#R40960#40960)
  55550 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 25: Cold Store (teleport: 1459)
+; Room #N25,,,1(0x): Cold Store (teleport: 1459)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9907,7 +9907,7 @@ b55552 DEFB 0,3,0,0,0,0,0,0                    ; {Room layout
  55804 DEFB 0,0                                ; Nothing (#R40960#40960)
  55806 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 26: East Wall Base (teleport: 2459)
+; Room #N26,,,1(0x): East Wall Base (teleport: 2459)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -9998,7 +9998,7 @@ b55808 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
  56060 DEFB 0,0                                ; Nothing (#R40960#40960)
  56062 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 27: The Chapel (teleport: 12459)
+; Room #N27,,,1(0x): The Chapel (teleport: 12459)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -10095,7 +10095,7 @@ b56064 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  56316 DEFB 255,0                              ; Terminator (#R41976)
  56318 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 28: First Landing (teleport: 3459)
+; Room #N28,,,1(0x): First Landing (teleport: 3459)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -10186,7 +10186,7 @@ b56320 DEFB 160,0,0,0,0,0,160,0                 ; {Room layout
  56572 DEFB 0,0                                 ; Nothing (#R40960#40960)
  56574 DEFB 0,0                                 ; Nothing (#R40960#40960)
 
-; Room 29: The Nightmare Room (teleport: 13459)
+; Room #N29,,,1(0x): The Nightmare Room (teleport: 13459)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -10229,7 +10229,6 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  56754 DEFB 51,0,42,84,0,0,162,69,0            ; Wall
  56763 DEFB 69,66,153,102,161,159,129,102,90   ; Nasty (unused)
  56772 DEFB 7,128,192,160,240,248,92,186,2     ; Ramp
-@bfix=DEFB 2,165,255,90,255,255,170,85,170
  56781 DEFB 165,255,90,255,255,170,85,170,85   ; Conveyor
 ; The next four bytes are copied to #R32982 and specify the direction, location
 ; and length of the conveyor.
@@ -10283,7 +10282,7 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
                                                ; base sprite 4, x=28 (#R41536)
  56830 DEFB 255,0                              ; Terminator (#R41976)
 
-; Room 30: The Banyan Tree (teleport: 23459)
+; Room #N30,,,1(0x): The Banyan Tree (teleport: 23459)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -10380,7 +10379,7 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
  57084 DEFB 0,0                                ; Nothing (#R40960#40960)
  57086 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 31: Swimming Pool (teleport: 123459)
+; Room #N31,,,1(0x): Swimming Pool (teleport: 123459)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -10416,7 +10415,6 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; #UDGTABLE
 ; { #tiles31 }
 ; TABLE#
-@bfix=DEFB 5,0,0,0,0,0,0,0,0
  57248 DEFB 7,0,0,0,0,0,0,0,0                  ; Background
  57257 DEFB 41,0,0,0,0,0,0,0,0                 ; Floor
  57266 DEFB 58,68,68,187,68,68,68,187,68       ; Wall
@@ -10470,7 +10468,7 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  57340 DEFB 0,0                                ; Nothing (#R40960#40960)
  57342 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 32: Halfway up the East Wall (teleport: 69)
+; Room #N32,,,1(0x): Halfway up the East Wall (teleport: 69)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -10560,7 +10558,7 @@ b57344 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
  57596 DEFB 0,0                                ; Nothing (#R40960#40960)
  57598 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 33: The Bathroom (teleport: 169)
+; Room #N33,,,1(0x): The Bathroom (teleport: 169)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -10650,7 +10648,7 @@ b57600 DEFB 160,0,0,0,0,0,0,10                 ; {Room layout
  57852 DEFB 0,0                                ; Nothing (#R40960#40960)
  57854 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 34: Top Landing (teleport: 269)
+; Room #N34,,,1(0x): Top Landing (teleport: 269)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -10742,7 +10740,7 @@ b57856 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
  58108 DEFB 0,0                                ; Nothing (#R40960#40960)
  58110 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 35: Master Bedroom (teleport: 1269)
+; Room #N35,,,1(0x): Master Bedroom (teleport: 1269)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -10829,7 +10827,7 @@ b58112 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
  58364 DEFB 0,0                                ; Nothing (#R40960#40960)
  58366 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 36: A bit of tree (teleport: 369)
+; Room #N36,,,1(0x): A bit of tree (teleport: 369)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -10923,7 +10921,7 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
  58620 DEFB 0,0                                ; Nothing (#R40960#40960)
  58622 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 37: Orangery (teleport: 1369)
+; Room #N37,,,1(0x): Orangery (teleport: 1369)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -11014,7 +11012,7 @@ b58624 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  58876 DEFB 0,0                                ; Nothing (#R40960#40960)
  58878 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 38: Priests' Hole (teleport: 2369)
+; Room #N38,,,1(0x): Priests' Hole (teleport: 2369)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -11107,7 +11105,7 @@ b58880 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
  59132 DEFB 0,0                                ; Nothing (#R40960#40960)
  59134 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 39: Emergency Generator (teleport: 12369)
+; Room #N39,,,1(0x): Emergency Generator (teleport: 12369)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -11197,7 +11195,7 @@ b59136 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  59388 DEFB 0,0                                ; Nothing (#R40960#40960)
  59390 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 40: Dr Jones will never believe this (teleport: 469)
+; Room #N40,,,1(0x): Dr Jones will never believe this (teleport: 469)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -11286,7 +11284,7 @@ b59392 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  59644 DEFB 0,0                                ; Nothing (#R40960#40960)
  59646 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 41: The Attic (teleport: 1469)
+; Room #N41,,,1(0x): The Attic (teleport: 1469)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -11386,7 +11384,7 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; pixel y-coordinate 73
                                                ; (#R41440)
 
-; Room 42: Under the Roof (teleport: 2469)
+; Room #N42,,,1(0x): Under the Roof (teleport: 2469)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -11479,7 +11477,7 @@ b59904 DEFB 0,0,0,255,255,255,255,240          ; {Room layout
  60156 DEFB 0,0                                ; Nothing (#R40960#40960)
  60158 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 43: Conservatory Roof (teleport: 12469)
+; Room #N43,,,1(0x): Conservatory Roof (teleport: 12469)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -11570,7 +11568,7 @@ b60160 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  60412 DEFB 0,0                                ; Nothing (#R40960#40960)
  60414 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 44: On top of the house (teleport: 3469)
+; Room #N44,,,1(0x): On top of the house (teleport: 3469)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -11659,7 +11657,7 @@ b60416 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  60668 DEFB 0,0                                ; Nothing (#R40960#40960)
  60670 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 45: Under the Drive (teleport: 13469)
+; Room #N45,,,1(0x): Under the Drive (teleport: 13469)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -11751,7 +11749,7 @@ b60672 DEFB 160,0,0,0,0,0,170,170              ; {Room layout
  60924 DEFB 0,0                                ; Nothing (#R40960#40960)
  60926 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 46: Tree Root (teleport: 23469)
+; Room #N46,,,1(0x): Tree Root (teleport: 23469)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -11842,7 +11840,7 @@ b60928 DEFB 170,10,170,170,170,170,170,170     ; {Room layout
  61180 DEFB 0,0                                ; Nothing (#R40960#40960)
  61182 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 47: [ (teleport: 123469)
+; Room #N47,,,1(0x): [ (teleport: 123469)
 ;
 ; This room is not used.
 ; .
@@ -11929,7 +11927,7 @@ b61184 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout (completely
  61436 DEFB 0,0                                ; Nothing (#R40960#40960)
  61438 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 48: Nomen Luni (teleport: 569)
+; Room #N48,,,1(0x): Nomen Luni (teleport: 569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12023,7 +12021,7 @@ b61440 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  61692 DEFB 0,0                                ; Nothing (#R40960#40960)
  61694 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 49: The Wine Cellar (teleport: 1569)
+; Room #N49,,,1(0x): The Wine Cellar (teleport: 1569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12120,7 +12118,7 @@ b61696 DEFB 0,0,0,0,0,12,2,170                 ; {Room layout
  61948 DEFB 0,0                                ; Nothing (#R40960#40960)
  61950 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 50: Watch Tower (teleport: 2569)
+; Room #N50,,,1(0x): Watch Tower (teleport: 2569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12211,7 +12209,7 @@ b61952 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  62204 DEFB 0,0                                ; Nothing (#R40960#40960)
  62206 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 51: Tool#SPACE(2)Shed (teleport: 12569)
+; Room #N51,,,1(0x): Tool#SPACE(2)Shed (teleport: 12569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12306,7 +12304,7 @@ b62208 DEFB 0,0,2,170,160,0,0,0                ; {Room layout
  62460 DEFB 0,0                                ; Nothing (#R40960#40960)
  62462 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 52: Back Stairway (teleport: 3569)
+; Room #N52,,,1(0x): Back Stairway (teleport: 3569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12399,7 +12397,7 @@ b62464 DEFB 0,0,0,0,10,170,170,170             ; {Room layout
  62716 DEFB 0,0                                ; Nothing (#R40960#40960)
  62718 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 53: Back Door (teleport: 13569)
+; Room #N53,,,1(0x): Back Door (teleport: 13569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12486,7 +12484,7 @@ b62720 DEFB 0,0,0,0,160,0,0,0                  ; {Room layout
  62972 DEFB 0,0                                ; Nothing (#R40960#40960)
  62974 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 54: West#SPACE(2)Wing (teleport: 23569)
+; Room #N54,,,1(0x): West#SPACE(2)Wing (teleport: 23569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12578,7 +12576,7 @@ b62976 DEFB 0,160,0,0,0,0,0,0                  ; {Room layout
  63228 DEFB 0,0                                ; Nothing (#R40960#40960)
  63230 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 55: West Bedroom (teleport: 123569)
+; Room #N55,,,1(0x): West Bedroom (teleport: 123569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12668,7 +12666,7 @@ b63232 DEFB 0,0,4,0,160,64,0,0                 ; {Room layout
  63484 DEFB 0,0                                ; Nothing (#R40960#40960)
  63486 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 56: West Wing Roof (teleport: 4569)
+; Room #N56,,,1(0x): West Wing Roof (teleport: 4569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12763,7 +12761,7 @@ b63488 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  63740 DEFB 0,0                                ; Nothing (#R40960#40960)
  63742 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 57: Above the West Bedroom (teleport: 14569)
+; Room #N57,,,1(0x): Above the West Bedroom (teleport: 14569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12853,7 +12851,7 @@ b63744 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  63996 DEFB 0,0                                ; Nothing (#R40960#40960)
  63998 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 58: The Beach (teleport: 24569)
+; Room #N58,,,1(0x): The Beach (teleport: 24569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -12941,7 +12939,7 @@ b64000 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  64252 DEFB 0,0                                ; Nothing (#R40960#40960)
  64254 DEFB 0,0                                ; Nothing (#R40960#40960)
 
-; Room 59: The Yacht (teleport: 124569)
+; Room #N59,,,1(0x): The Yacht (teleport: 124569)
 ;
 ; Used by the routine at #R35068.
 ; .
@@ -13032,7 +13030,7 @@ b64256 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  64510 DEFB 0,0                                ; Nothing (#R40960#40960)
 
 @ignoreua
-; Room 60: The Bow (teleport: 34569)
+; Room #N60,,,1(0x): The Bow (teleport: 34569)
 ;
 ; Used by the routine at #R35068.
 ; .
