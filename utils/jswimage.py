@@ -54,7 +54,9 @@ def _do_pokes(specs, snapshot):
         for a in range(addr1, addr2, step):
             snapshot[a] = value
 
-def _place_willy(jsw, udg_array, spec):
+def _place_willy(jsw, room, spec):
+    room_addr = 49152 + 256 * room
+    udg_array = jsw._get_room_udgs(room_addr)
     if spec:
         values = []
         for n in spec.split(','):
@@ -65,15 +67,16 @@ def _place_willy(jsw, udg_array, spec):
         values += [None] * (3 - len(values))
         x, y, frame = values
         if x is not None and y is not None:
-            willy = jsw._get_graphic(40192 + 32 * (frame or 0))
-            jsw._place_graphic(udg_array, willy, x, y, 7)
+            willy = jsw._get_graphic(40192 + 32 * (frame or 0), 7)
+            bg_attr = jsw.snapshot[room_addr + 160]
+            jsw._place_graphic(udg_array, willy, x, y, 0, bg_attr)
+    return udg_array
 
 def run(imgfname, options):
     snapshot = get_snapshot('{}/build/jet_set_willy.z80'.format(JETSETWILLY_HOME))
     _do_pokes(options.pokes, snapshot)
     jsw = JetSetWilly(snapshot)
-    udg_array = jsw._get_room_udgs(49152 + 256 * options.room)
-    _place_willy(jsw, udg_array, options.willy)
+    udg_array = _place_willy(jsw, options.room, options.willy)
     if options.geometry:
         wh, xy = options.geometry.split('+', 1)
         width, height = [int(n) for n in wh.split('x')]
