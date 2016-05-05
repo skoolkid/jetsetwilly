@@ -69,7 +69,7 @@ def _place_willy(jsw, room, spec):
         if x is not None and y is not None:
             willy = jsw._get_graphic(40192 + 32 * (frame or 0), 7)
             bg_attr = jsw.snapshot[room_addr + 160]
-            jsw._place_graphic(udg_array, willy, x, y, 0, bg_attr)
+            jsw._place_graphic(udg_array, willy, x, y * 8, bg_attr)
     return udg_array
 
 def run(imgfname, options):

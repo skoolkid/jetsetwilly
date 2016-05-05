@@ -89,12 +89,12 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         names = ('room', 'x', 'y', 'sprite', 'left', 'top', 'width', 'height', 'scale')
         defaults = (0, 0, 32, 17, 2)
         end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
-        room, x, y, sprite, left, top, width, height, scale = params
+        room, x, pixel_y, sprite, left, top, width, height, scale = params
         room_addr = 49152 + 256 * room
         room_udgs = self._get_room_udgs(room_addr, 1)
         willy = self._get_graphic(40192 + 32 * sprite, 7)
         room_bg = self.snapshot[room_addr + 160]
-        self._place_graphic(room_udgs, willy, x, y // 8, y % 8, room_bg)
+        self._place_graphic(room_udgs, willy, x, pixel_y, room_bg)
         img_udgs = [room_udgs[i][left:left + width] for i in range(top, top + min(height, 17 - top))]
         frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
         return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
@@ -283,16 +283,14 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             if guardian_type & 3 in (1, 2):
                 # Horizontal and vertical guardians
                 x = start & 31
-                y0 = guardian_def[3]
-                y = (y0 & 240) // 16
-                y_delta = (y0 & 14) // 2
+                pixel_y = guardian_def[3] // 2
                 b1 = guardian_def[1]
                 bright = 8 * (b1 & 8)
                 ink = b1 & 7
                 attr = bright + ink
                 sprite_addr = 256 * guardian_def[5] + (start & 224)
                 sprite = self._get_graphic(sprite_addr, attr)
-                self._place_graphic(udg_array, sprite, x, y, y_delta)
+                self._place_graphic(udg_array, sprite, x, pixel_y)
             elif guardian_type & 3 == 3:
                 # Rope
                 x = start & 31
@@ -310,7 +308,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 rope_udg_array = []
                 for i in range(0, len(rope_udg_data), 8):
                     rope_udg_array.append([Udg(room_bg, rope_udg_data[i:i + 8])])
-                self._place_graphic(udg_array, rope_udg_array, x, 0, bg_attr=room_bg)
+                self._place_graphic(udg_array, rope_udg_array, x, 0, room_bg)
             elif guardian_type == 4:
                 # Arrow; first get the display file address at which the middle
                 # of the arrow will be drawn
@@ -319,22 +317,22 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 # upper two-thirds of the screen (unlike the first arrow in The
                 # Attic!)
                 if 16384 <= df_addr < 20480:
-                    y = ((df_addr // 256 - 64) & 24) + (df_addr % 256) // 32
+                    pixel_y = 64 * ((df_addr - 16384) // 2048) + (df_addr % 256) // 4
                     y_delta = (df_addr // 256) & 7
                     x = guardian_def[4] & 31
                     arrow_udg_data = [0] * (y_delta - 1) + [guardian_def[6], 255, guardian_def[6]] + [0] * (6 - y_delta)
                     arrow_udg = Udg(7, arrow_udg_data)
-                    self._place_graphic(udg_array, [[arrow_udg]], x, y)
+                    self._place_graphic(udg_array, [[arrow_udg]], x, pixel_y)
 
         if addr == 57600:
             # Toilet in the bathroom
             toilet = self._get_graphic(42496, 7)
-            self._place_graphic(udg_array, toilet, 28, 13)
+            self._place_graphic(udg_array, toilet, 28, 13 * 8)
         elif addr == 58112:
             # Maria in the master bedroom
             maria = self._get_graphic(40064, 7)
             maria[0][0].attr = maria[0][1].attr = 69
-            self._place_graphic(udg_array, maria, 14, 11)
+            self._place_graphic(udg_array, maria, 14, 11 * 8)
 
         return udg_array
 
@@ -348,9 +346,10 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 udgs[-1].append(Udg(attr, self.snapshot[a:a + 16:2]))
         return udgs
 
-    def _place_graphic(self, udg_array, graphic, x, y, y_delta=0, bg_attr=None):
-        if y_delta > 0:
-            graphic = self._shift_graphic(graphic, y_delta)
+    def _place_graphic(self, udg_array, graphic, x, pixel_y, bg_attr=None):
+        if pixel_y & 7:
+            graphic = self._shift_graphic(graphic, pixel_y & 7)
+        y = pixel_y // 8
         for i, row in enumerate(graphic):
             for j, udg in enumerate(row):
                 old_udg = udg_array[y + i][x + j]
