@@ -388,11 +388,15 @@ class JetSetWilly:
                 comment += ' Note that because of a #BUG#corruptedConveyors in the game engine, the conveyor tile is not drawn correctly (see the room image above).'
         lines.append('N {} {}'.format(a + 160, comment))
         lines.append('N {} {}'.format(a + 160, tiles_table))
+        if a == 57088:
+            lines.append('@ 57248 bfix=DEFB 5,0,0,0,0,0,0,0,0')
         lines.append('B {},9,9 Background{}'.format(a + 160, tile_usage[0]))
         lines.append('B {},9,9 Floor{}'.format(a + 169, tile_usage[1]))
         lines.append('B {},9,9 Wall{}'.format(a + 178, tile_usage[2]))
         lines.append('B {},9,9 Nasty{}'.format(a + 187, tile_usage[3]))
         lines.append('B {},9,9 Ramp{}'.format(a + 196, tile_usage[4]))
+        if a == 56576:
+            lines.append('@ 56781 bfix=DEFB 2,165,255,90,255,255,170,85,170')
         lines.append('B {},9,9 Conveyor{}'.format(a + 205, tile_usage[5]))
 
     def _get_coordinates(self, lsb, msb):
