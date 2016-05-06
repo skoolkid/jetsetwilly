@@ -679,7 +679,8 @@ g34254 DEFB 0
 ; #R38196, #R38344 and #R38455. Holds the LSB of the address of the entry in
 ; the screen buffer address lookup table at #R33280 that corresponds to Willy's
 ; pixel y-coordinate; in practice, this is twice Willy's actual pixel
-; y-coordinate.
+; y-coordinate. Note that when Willy is standing on a ramp, this holds his
+; pixel y-coordinate rounded down to the nearest value of 16 (8x2).
 @label=PIXEL_Y
 g34255 DEFB 0
 
