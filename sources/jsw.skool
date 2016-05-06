@@ -1106,8 +1106,8 @@ c34762 XOR A         ; #REGa=0
  34813 INC HL        ;
  34814 LD (HL),48    ; }
 @ssub=LD H,41984/256
- 34816 LD H,164      ; Page #R41984(164) holds the first byte of each entry in
-                     ; the item table
+ 34816 LD H,164      ; Page #R41984(#N164) holds the first byte of each entry
+                     ; in the item table
  34818 LD A,(41983)  ; Pick up the index of the first item from #R41983
  34821 LD L,A        ; Point #REGhl at the entry for the first item
  34822 LD (34270),A  ; Initialise the counter of items remaining at #R34270
