@@ -131,7 +131,7 @@ Used by the routines at <a href="88FC.html">88FC</a> and <a href="8B07.html">8B0
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="89d4"></span>89D4</td>
 <td class="instruction">CP $E1</td>
-<td class="comment-11" rowspan="1">Has Willy just moved up a ramp past the top of the screen?</td>
+<td class="comment-11" rowspan="1">Has Willy just moved up a ramp or a rope past the top of the screen?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -255,7 +255,7 @@ This entry point is used by the routine at <a href="90B6.html">90B6</a>.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8a06"></span>8A06</td>
 <td class="instruction">LD HL,$85D2</td>
-<td class="comment-11" rowspan="3">Set Willy's animation frame at <a href="85D2.html">85D2</a> to 1 or 3 if Willy is running to the toilet or already has his head down it; this has the effect of moving Willy at twice his normal speed as he makes his way to the toilet</td>
+<td class="comment-11" rowspan="3">Set Willy's animation frame at <a href="85D2.html">85D2</a> to 1 or 3 if Willy is running to the toilet or already has his head down it; this has the effect of moving Willy at twice his normal speed as he makes his way to the toilet (using animation frames 2 and 0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -880,9 +880,9 @@ The following loop pauses the game until any key except A, S, D, F or G is press
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

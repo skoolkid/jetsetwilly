@@ -20,7 +20,7 @@
 <td class="next"><span class="next-1">Next: <a href="961E.html">961E</a></span></td>
 </tr>
 </table>
-<div class="description">95C8: Check and set the attribute bytes for Willy's sprite in the buffer at 23552</div>
+<div class="description">95C8: Check and set the attribute bytes for Willy's sprite in the buffer at 5C00</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
@@ -301,7 +301,7 @@ Now <span class="register">B</span> holds a y-coordinate offset of 0, 4, 8 or 12
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9614"></span>9614</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="1">Move <span class="register">HL</span> down a row and back one cell to the left</td>
+<td class="comment-11" rowspan="1">Move <span class="register">HL</span> down a row and back one cell to the left; at this point <span class="register">HL</span> may be pointing at one of the cells in the top row of the buffer at <a href="5E00.html">5E00</a>, which is a <a href="../reference/bugs.html#longDistanceNasties">bug</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -336,9 +336,9 @@ Now <span class="register">B</span> holds a y-coordinate offset of 0, 4, 8 or 12
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

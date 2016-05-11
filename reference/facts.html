@@ -37,17 +37,23 @@
 <li><a href="#commonestItem">Commonest item</a></li>
 <li><a href="#commonestCodes">Commonest codes</a></li>
 <li><a href="#codesFromCode">Codes from code</a></li>
+<li><a href="#oneWaySaw">The one-way saw</a></li>
 <li><a href="#someAirLeft">Some air left?</a></li>
 <li><a href="#mariasDodgyDepthPerception">Maria's dodgy depth perception</a></li>
 <li><a href="#ropeClimbingForBeginners">Rope climbing for beginners</a></li>
 <li><a href="#theEncroachingRope">The encroaching rope</a></li>
 <li><a href="#ropesBeforeArrows">Ropes before arrows</a></li>
+<li><a href="#quadridirectionalGuardian">The quadridirectional guardian</a></li>
+<li><a href="#doubleDescent">Double descent</a></li>
+<li><a href="#highJump">High jump</a></li>
 <li><a href="#guardianColours">Guardian colours</a></li>
 <li><a href="#guardiansNeedAClearPath">Guardians need a clear path</a></li>
 <li><a href="#guardianOrFixture">Guardian or fixture?</a></li>
+<li><a href="#unanimatedGuardians">Unanimated guardians</a></li>
 <li><a href="#unusedEntityDefinition">Unused entity definition</a></li>
 <li><a href="#untouchableEntityDefinition">Untouchable entity definition</a></li>
 <li><a href="#oneItemBehindAnother">One item behind another</a></li>
+<li><a href="#itemsAndWhiteness">Items and whiteness</a></li>
 <li><a href="#slipperySlopes">Slippery slopes</a></li>
 <li><a href="#toPauseOrNotToPause">To pause or not to pause</a></li>
 <li><a href="#cheatsNeverCycleColours">Cheats never cycle colours</a></li>
@@ -56,6 +62,7 @@
 <li><a href="#rescueEsmerelda">Rescue Esmerelda?</a></li>
 <li><a href="#drJonesWillNeverBelieveThis">Dr Jones will never believe this?</a></li>
 <li><a href="#emptiestRooms">The emptiest rooms</a></li>
+<li><a href="#mostGuardians">The most guardians</a></li>
 <li><a href="#mostItems">The most items</a></li>
 </ul>
 <div><span id="gameOverAt1am"></span></div>
@@ -426,36 +433,56 @@ The commonest codes on the code sheet are 2411 (at H7, O7, R7 and C9) and 3443 (
 The codes for grid locations A0-Q9 are derived not from a deliberately crafted data table but from the unused code remnants at <a href="../asm/9E00.html">9E00</a>.
 </div>
 </div>
-<div><span id="someAirLeft"></span></div>
+<div><span id="oneWaySaw"></span></div>
 <div class="box box-2">
+<div class="box-title">The one-way saw</div>
+<div class="paragraph">
+The saw guardian in <a href="../asm/C700.html">Cuckoo's Nest</a> always has its blade facing left, even when it's moving left to right (see <a href="../asm/A000.html#a378">A378</a>). The reason for this is that its base sprite is 0 and its animation frame mask is 011, which means it cycles through sprites 0, 1, 2 and 3 only (see <a href="../asm/91BE.html#9211">9211</a>).
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="guardian181-0-3" src="../images/udgs/guardian181-0-3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian181-1-3" src="../images/udgs/guardian181-1-3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian181-2-3" src="../images/udgs/guardian181-2-3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian181-3-3" src="../images/udgs/guardian181-3-3.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+All the other saw guardians in the game have the blade facing right when moving in that direction, because their animation frame mask is 111 (see <a href="../asm/A000.html#a1a0">A1A0</a>, <a href="../asm/A000.html#a1a8">A1A8</a> and <a href="../asm/A000.html#a2c0">A2C0</a>).
+</div>
+</div>
+<div><span id="someAirLeft"></span></div>
+<div class="box box-1">
 <div class="box-title">Some air left?</div>
 <div class="paragraph">
 The message at <a href="../asm/8451.html">8451</a> ('AIR') may be unused, but it is still a poignant reminder of Willy's former career as a miner.
 </div>
 </div>
 <div><span id="mariasDodgyDepthPerception"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Maria's dodgy depth perception</div>
 <div class="paragraph">
 Whether Maria raises her arm at Willy in <a href="../asm/E300.html">Master Bedroom</a> depends on his height above floor level, as opposed to his distance away from her (see the code at <a href="../asm/9534.html#9550">9550</a>); this means that she raises her arm not only as Willy walks up the ramp towards her, but also if he jumps in the air at the entrance to the room.
 </div>
 </div>
 <div><span id="ropeClimbingForBeginners"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Rope climbing for beginners</div>
 <div class="paragraph">
 In order to climb down a rope, Willy must move in the same direction as the rope is swinging (left if the rope is swinging right to left, right if the rope is swinging left to right); to climb up a rope, he must move in the opposite direction (see <a href="../asm/91BE.html#937c">937C</a>).
 </div>
 </div>
 <div><span id="theEncroachingRope"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">The encroaching rope</div>
 <div class="paragraph">
-In the entity buffer at <a href="../asm/8100.html">8100</a>, the definition for a rope uses the second and fourth bytes of the following definition (in addition to the eight bytes of its own slot); this means that to avoid corrupting another entity, the rope must be either the last entity specified in a room, or followed by an arrow (which doesn't use the second and fourth bytes of its slot).
+In the entity buffer at <a href="../asm/8100.html">8100</a>, the definition for a rope uses the second and fourth bytes of the following definition (in addition to the eight bytes of its own slot); this means that to avoid corrupting another entity, the rope must be either the last entity specified in a room (in which case it will use the first and third bytes in the otherwise unused area at <a href="../asm/8141.html">8141</a>), or followed by an arrow (which doesn't use the second and fourth bytes of its slot).
 </div>
 </div>
 <div><span id="ropesBeforeArrows"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Ropes before arrows</div>
 <div class="paragraph">
 The rope-drawing code at <a href="../asm/91BE.html#92a4">92A4</a> places Willy on the rope if it is touching anything else (Willy or otherwise) that's already been drawn. This means, for example, that if an arrow is drawn before the rope (by appearing before it in the room's entity specifications), Willy will be immediately transported onto the rope when the arrow hits it.
@@ -469,6 +496,74 @@ To see this happen in <a href="../asm/FA00.html">The Beach</a>:
 <div>POKE <a href="../asm/FA00.html#faf2">64242</a>,1: POKE <a href="../asm/FA00.html#faf2">64243</a>,14 (entity specification for the rope)</div>
 <div>POKE <a href="../asm/87CA.html#87e5">34790</a>,128 (set Willy's initial pixel y-coordinate to 64)</div>
 <div>POKE <a href="../asm/87CA.html#87ef">34800</a>,2: POKE <a href="../asm/87CA.html#87ef">34801</a>,93 (set Willy's initial attribute buffer location)</div>
+</div>
+</div>
+<div><span id="quadridirectionalGuardian"></span></div>
+<div class="box box-2">
+<div class="box-title">The quadridirectional guardian</div>
+<div class="paragraph">
+The cyan guardian in <a href="../asm/C900.html">On a Branch Over the Drive</a> moves up and down (not very gracefully), while its red and green cousins in <a href="../asm/D600.html">To the Kitchens&#160;&#160;&#160;&#160;Main Stairway</a> and <a href="../asm/E100.html">The Bathroom</a> move left and right.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="guardian185-0-13" src="../images/udgs/guardian185-0-13.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian185-1-13" src="../images/udgs/guardian185-1-13.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian185-2-13" src="../images/udgs/guardian185-2-13.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian185-3-13" src="../images/udgs/guardian185-3-13.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+It is the only type of guardian that can be seen moving vertically in one room and horizontally in another.
+</div>
+</div>
+<div><span id="doubleDescent"></span></div>
+<div class="box box-1">
+<div class="box-title">Double descent</div>
+<div class="paragraph">
+There is a maximum distance that Willy can fall before the landing will kill him, but it's possible for Willy to fall a greater distance than that if his descent is punctuated by a transition from one room into the room below; if each portion of his descent on either side of the transition is less than the maximum distance, he will land safely.
+</div>
+<div class="paragraph">
+To demonstrate this, jump left near the bottom of the ramp in <a href="../asm/EB00.html">Conservatory Roof</a> - Willy will land safely on the ramp in the room below (<a href="../asm/E500.html">Orangery</a>). But if Willy jumps left off the ramp in Orangery, he will die when he lands on a lower part of the ramp.
+</div>
+<div class="paragraph">
+The code responsible for this is at <a href="../asm/94D2.html#94e3">94E3</a> - it resets the airborne status indicator at <a href="../asm/85D1.html">85D1</a> to 2 if it's currently 10 or less.
+</div>
+</div>
+<div><span id="highJump"></span></div>
+<div class="box box-2">
+<div class="box-title">High jump</div>
+<div class="paragraph">
+At certain points on a ramp, Willy can jump higher than the normal 20 pixels above his starting point. Depending on where he is standing on the ramp, he will jump 20, 22, 24 or 26 pixels.
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="high_jump0" src="../images/scr/high_jump0.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="high_jump1" src="../images/scr/high_jump1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="high_jump2" src="../images/scr/high_jump2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="high_jump3" src="../images/scr/high_jump3.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="high_jump7" src="../images/scr/high_jump7.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="high_jump6" src="../images/scr/high_jump6.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="high_jump5" src="../images/scr/high_jump5.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="high_jump4" src="../images/scr/high_jump4.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">26 pixels</td>
+<td class="" colspan="1" rowspan="1">24 pixels</td>
+<td class="" colspan="1" rowspan="1">22 pixels</td>
+<td class="" colspan="1" rowspan="1">20 pixels</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+When the jump key is pressed while Willy is standing on a ramp, he is drawn at the pixel y-coordinate Y, where Y is his original pixel y-coordinate rounded down to the nearest multiple of 8 (see <a href="../asm/95C8.html">95C8</a>, which ignores the ramp below Willy when the airborne status indicator at <a href="../asm/85D1.html">85D1</a> is 1, and enters <a href="../asm/9637.html">9637</a> with <span class="register">B</span>=0). So before the jumping animation even starts, Willy is already up to 6 pixels above the ramp itself.
+</div>
+<div class="paragraph">
+Also, during a jump Willy rises and then falls until his pixel y-coordinate is Y again, and if the jump key is still being pressed, he will jump from that point instead of falling all the way back to the ramp first.
 </div>
 </div>
 <div><span id="guardianColours"></span></div>
@@ -493,23 +588,54 @@ See this happen by placing a wall block in the path of the guardian in <a href="
 <div class="paragraph">
 POKE <a href="../asm/E100.html#e100">57635</a>,128
 </div>
+<div class="paragraph">
+In addition, if an arrow appears before a guardian in a room's list of entity specifications, Willy will be killed if the arrow hits the guardian. See this happen by replacing the first guardian in <a href="../asm/E200.html">Top Landing</a> with an arrow:
+</div>
+<div class="paragraph">
+<div>POKE <a href="../asm/E200.html#e2f0">58096</a>,<a href="../asm/A000.html#a1e0">60</a></div>
+<div>POKE 58097,56</div>
+</div>
 </div>
 <div><span id="guardianOrFixture"></span></div>
 <div class="box box-1">
 <div class="box-title">Guardian or fixture?</div>
 <div class="paragraph">
-Entity 89, defined at <a href="../asm/A000.html#a2c8">A2C8</a>, and appearing in <a href="../asm/CB00.html">The Hall</a> and <a href="../asm/F600.html">West Wing</a>, is the only guardian that does not move up, down, left or right.
+Entity 0x59, defined at <a href="../asm/A000.html#a2c8">A2C8</a>, and appearing in <a href="../asm/CB00.html">The Hall</a> and <a href="../asm/F600.html">West Wing</a>, is the only guardian that does not move up, down, left or right.
 </div>
 <div class="paragraph">
 <table class="">
 <tr>
-<td class="" colspan="1" rowspan="1"><img alt="guardian176-6-6" src="../images/udgs/guardian176-6-6.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="entity89" src="../images/udgs/entity89.gif" /></td>
 </tr>
 </table>
 </div>
 </div>
-<div><span id="unusedEntityDefinition"></span></div>
+<div><span id="unanimatedGuardians"></span></div>
 <div class="box box-2">
+<div class="box-title">Unanimated guardians</div>
+<div class="paragraph">
+There are a few vertical guardians that have only one animation frame, and so are in a sense unanimated (though they do still move up and down).
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="guardian156-3-66" src="../images/udgs/guardian156-3-66.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian186-2-5" src="../images/udgs/guardian186-2-5.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian156-2-6" src="../images/udgs/guardian156-2-6.png" /> <img alt="guardian156-4-6" src="../images/udgs/guardian156-4-6.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><div><a href="../asm/D400.html">Ballroom East</a></div><div><a href="../asm/E200.html">Top Landing</a></div></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/CD00.html">Out on a limb</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/DD00.html">The Nightmare Room</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+In contrast, every horizontal guardian has either 4 or 8 animation frames.
+</div>
+</div>
+<div><span id="unusedEntityDefinition"></span></div>
+<div class="box box-1">
 <div class="box-title">Unused entity definition</div>
 <div class="paragraph">
 Entity definition 43 at <a href="../asm/A000.html#a158">A158</a> contains data but is not used.
@@ -519,14 +645,14 @@ Which room might this vertical guardian have inhabited at some point while the g
 </div>
 </div>
 <div><span id="untouchableEntityDefinition"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Untouchable entity definition</div>
 <div class="paragraph">
 Entity definition 127 at <a href="../asm/A000.html#a3f8">A3F8</a> should not be modified or used to define an actual entity, because its first byte (255) is used to terminate the entity buffer at <a href="../asm/8100.html">8100</a>.
 </div>
 </div>
 <div><span id="oneItemBehindAnother"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">One item behind another</div>
 <div class="paragraph">
 There are two items in <a href="../asm/FA00.html">The Beach</a>, but they are both at the same location, so it looks as if there is only one.
@@ -536,6 +662,31 @@ To move one of the items two cells to the left:
 </div>
 <div class="paragraph">
 POKE <a href="../asm/A400.html#a5c6">42438</a>,180
+</div>
+</div>
+<div><span id="itemsAndWhiteness"></span></div>
+<div class="box box-2">
+<div class="box-title">Items and whiteness</div>
+<div class="paragraph">
+If an item lies in the path of an arrow or white guardian, it will be collected when the arrow or guardian hits it. This is because the routine at <a href="../asm/93D1.html">93D1</a> collects an item if the cell it occupies has white INK.
+</div>
+<div class="paragraph">
+To replace the guardian in <a href="../asm/E100.html">The Bathroom</a> with an arrow and watch it collect the item (make sure Willy jumps as the arrow approaches):
+</div>
+<div class="paragraph">
+<div>POKE <a href="../asm/E100.html#e1f0">57840</a>,60</div>
+<div>POKE 57841,214</div>
+</div>
+<div class="paragraph">
+To make the guardian in <a href="../asm/E100.html">The Bathroom</a> white and place the item in its path:
+</div>
+<div class="paragraph">
+<div>POKE <a href="../asm/A000.html#a1d8">41433</a>,103</div>
+<div>POKE <a href="../asm/A400.html#a4ff">42239</a>,33</div>
+<div>POKE <a href="../asm/A400.html#a5ff">42495</a>,135</div>
+</div>
+<div class="paragraph">
+In addition, any item situated in a room that has a background with white INK will be automatically collected as soon as Willy enters the room (see <a href="bugs.html#selfCollectingItem">The self-collecting item</a>).
 </div>
 </div>
 <div><span id="slipperySlopes"></span></div>
@@ -613,8 +764,21 @@ The name of the room <a href="../asm/E800.html">Dr Jones will never believe this
 <img alt="the_front_door" src="../images/scr/the_front_door.png" />
 </div>
 </div>
-<div><span id="mostItems"></span></div>
+<div><span id="mostGuardians"></span></div>
 <div class="box box-1">
+<div class="box-title">The most guardians</div>
+<div class="paragraph">
+<a href="../asm/D300.html">The Forgotten Abbey</a> is the only room with a full complement of eight guardians.
+</div>
+<div class="paragraph">
+<img alt="the_forgotten_abbey" src="../images/scr/the_forgotten_abbey.png" />
+</div>
+<div class="paragraph">
+<a href="../asm/E900.html">The Attic</a> is the only other room with eight entities defined: six vertical guardians and two arrows.
+</div>
+</div>
+<div><span id="mostItems"></span></div>
+<div class="box box-2">
 <div class="box-title">The most items</div>
 <div class="paragraph">
 The room with the most items is <a href="../asm/C000.html">The Off Licence</a> with 12.
@@ -624,9 +788,9 @@ The room with the most items is <a href="../asm/C000.html">The Off Licence</a> w
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

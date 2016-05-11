@@ -20,7 +20,7 @@
 <td class="next"><span class="next-1">Next: <a href="8D6B.html">8D6B</a></span></td>
 </tr>
 </table>
-<div class="description">8D33: Draw the current room to the screen buffer at 28672</div>
+<div class="description">8D33: Draw the current room to the screen buffer at 7000</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
@@ -59,7 +59,7 @@ Used by the routine at <a href="88FC.html">88FC</a>.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8d3a"></span>8D3A</td>
 <td class="instruction">LD A,$70</td>
-<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8D33.html#8d5c">8D5C</a> (below) to 112</td>
+<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8D33.html#8d5c">8D5C</a> (below) to $70</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -77,13 +77,13 @@ Used by the routine at <a href="88FC.html">88FC</a>.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8d42"></span>8D42</td>
 <td class="instruction">LD IX,$5F00</td>
-<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the 256th byte of the attribute buffer at <a href="5E00.html">5E00</a> in preparation for drawing the bottom half of the room; this instruction is redundant, since <span class="register">IX</span> already holds 24320</td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the 256th byte of the attribute buffer at <a href="5E00.html">5E00</a> in preparation for drawing the bottom half of the room; this instruction is redundant, since <span class="register">IX</span> already holds 5F00</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8d46"></span>8D46</td>
 <td class="instruction">LD A,$78</td>
-<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8D33.html#8d5c">8D5C</a> (below) to 120</td>
+<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8D33.html#8d5c">8D5C</a> (below) to $78</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -153,7 +153,7 @@ The following loop draws 256 tiles (for either the top half or the bottom half o
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8d5c"></span>8D5C</td>
 <td class="instruction">LD D,$00</td>
-<td class="comment-11" rowspan="1">This instruction is set to either 'LD D,112' or 'LD D,120' above; now <span class="register">DE</span> holds the appropriate address in the screen buffer at <a href="7000.html">7000</a></td>
+<td class="comment-11" rowspan="1">This instruction is set to either 'LD D,$70' or 'LD D,$78' above; now <span class="register">DE</span> holds the appropriate address in the screen buffer at <a href="7000.html">7000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -218,9 +218,9 @@ The following loop draws 256 tiles (for either the top half or the bottom half o
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

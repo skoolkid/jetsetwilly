@@ -355,31 +355,31 @@ We are dealing with a horizontal or vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9211"></span>9211</td>
 <td class="instruction">LD A,(IX+$01)</td>
-<td class="comment-11" rowspan="6">Point <span class="register">DE</span> at the graphic data for the guardian's current animation frame (see <a href="AB00.html">AB00</a>)</td>
+<td class="comment-11" rowspan="1">Now bits 5-7 of <span class="register">A</span> hold the animation frame mask</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9214"></span>9214</td>
 <td class="instruction">AND (IX+$00)</td>
-<td class="comment-01" rowspan="1"></td>
+<td class="comment-11" rowspan="1">AND on the current animation frame (bits 5-7)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9217"></span>9217</td>
 <td class="instruction">OR (IX+$02)</td>
-<td class="comment-01" rowspan="1"></td>
+<td class="comment-11" rowspan="1">OR on the base sprite index (bits 5-7)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="921a"></span>921A</td>
 <td class="instruction">AND $E0</td>
-<td class="comment-01" rowspan="1"></td>
+<td class="comment-11" rowspan="1">Keep only bits 5-7</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="921c"></span>921C</td>
 <td class="instruction">LD E,A</td>
-<td class="comment-01" rowspan="1"></td>
+<td class="comment-11" rowspan="2">Point <span class="register">DE</span> at the graphic data for the guardian's current animation frame (see <a href="AB00.html">AB00</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1568,9 +1568,9 @@ The current entity definition has been dealt with. Time for the next one.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

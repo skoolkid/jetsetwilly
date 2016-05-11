@@ -20,7 +20,7 @@
 <td class="next"><span class="next-1">Next: <a href="9680.html">9680</a></span></td>
 </tr>
 </table>
-<div class="description">9637: Draw Willy to the screen buffer at 24576</div>
+<div class="description">9637: Draw Willy to the screen buffer at 6000</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
@@ -98,13 +98,13 @@ Used by the routine at <a href="95C8.html">95C8</a>.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9647"></span>9647</td>
 <td class="instruction">LD A,($85D2)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's animation frame from <a href="85D2.html">85D2</a></td>
+<td class="comment-11" rowspan="1">Pick up Willy's animation frame (0-3) from <a href="85D2.html">85D2</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="964a"></span>964A</td>
 <td class="instruction">AND $03</td>
-<td class="comment-11" rowspan="7">Point <span class="register">DE</span> at the sprite graphic data for Willy's current animation frame (<a href="9D00.html">9D00</a>+32*<span class="register">A</span>)</td>
+<td class="comment-11" rowspan="7">Point <span class="register">DE</span> at the sprite graphic data for Willy's current animation frame (see <a href="9D00.html">9D00</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -329,9 +329,9 @@ This entry point is used by the routine at <a href="959A.html">959A</a> to draw 
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

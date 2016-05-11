@@ -346,7 +346,7 @@ Willy is currently jumping.
 <span id="8e36"></span>
 <div class="comments">
 <div class="paragraph">
-If we get here, then Willy is standing on the floor, or he's falling, or his jumping animation counter is 13 (at which point Willy is on his way down and is exactly two cell-heights above where he started the jump) or 16 (at which point Willy is on his way down and is exactly one cell-height above where he started the jump).
+If we get here, then Willy is standing on the floor or a ramp, or he's falling, or his jumping animation counter is 13 (at which point Willy is on his way down and is exactly two cell-heights above where he started the jump) or 16 (at which point Willy is on his way down and is exactly one cell-height above where he started the jump).
 </div>
 </div>
 </td>
@@ -711,7 +711,7 @@ This entry point is used by the routine at <a href="91BE.html">91BE</a> to updat
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8ea5"></span>8EA5</td>
 <td class="instruction">LD A,($85D3)</td>
-<td class="comment-11" rowspan="2">Pick up Willy's screen x-coordinate (0-30) from bits 0-5 at <a href="85D3.html">85D3</a></td>
+<td class="comment-11" rowspan="2">Pick up Willy's screen x-coordinate (0-30) from bits 0-4 at <a href="85D3.html">85D3</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -878,9 +878,9 @@ The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>

@@ -99,7 +99,7 @@ The following loop fills the top two thirds of the attribute file with a single 
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8c10"></span>8C10</td>
 <td class="instruction">CPL</td>
-<td class="comment-11" rowspan="7"><span class="register">D</span>=7+8*(7-(<span class="register">E</span> AND 7)); this value determines the pitch of the short note that will be played</td>
+<td class="comment-11" rowspan="7"><span class="register">D</span>=63-8*(<span class="register">E</span> AND 7); this value determines the pitch of the short note that will be played</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -312,9 +312,9 @@ Now check whether any lives remain.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160117</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.1.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
 </footer>
 </body>
 </html>
