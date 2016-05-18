@@ -10,7 +10,7 @@ Game=Jet Set Willy
 Logo=#LOGO{4,4,200,120}(/images/logo.png|Jet Set Willy)
 StyleSheet=skoolkit.css;jsw.css
 Copyright=&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).
-Release=The complete Jet Set Willy RAM disassembly 20160511
+Release=The complete Jet Set Willy RAM disassembly YYYYMMDD
 LinkInternalOperands=1
 
 [ImageWriter]
@@ -89,6 +89,21 @@ Credits
 Credits=reference/credits.html
 Rooms=tables/rooms.html
 Codes=tables/codes.html
+
+[MemoryMap:UnusedMap]
+Intro=#INCLUDE(UnusedMapIntro,Y)
+
+[UnusedMapIntro]
+In addition to the entries in the table below, the following embedded sections of code and data are unused:
+
+#LIST
+{ The entries at #R33622(#N33622-#N33663) and #R33750(#N33750-#N33791) in the rope animation table (84 bytes) }
+{ The section of code at #R35345(#N35345-#N35365) in the main loop (21 bytes) }
+{ Entity definitions #ed112-#ed126 at #R41856 (120 bytes) }
+{ Slots 0-172 at #R41984#41984 and #R42240 in the item table (346 bytes) }
+{ Pages #R45312(#N177) and #R45824(#N179) in the guardian graphic data (512 bytes) }
+{ Room #R61184(#N(47,,,1)(0x)) (256 bytes) }
+LIST#
 
 [PageContent:Rooms]
 #CALL:rooms()
