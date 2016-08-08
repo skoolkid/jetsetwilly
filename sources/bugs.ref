@@ -1,26 +1,40 @@
 ; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:faultyClock:12:30am in the afternoon]
-The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm (instead of 12 noon), and also doesn't switch from 'pm' to 'am' at midnight.
+The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm
+(instead of 12 noon), and also doesn't switch from 'pm' to 'am' at midnight.
 
 [Bug:theStickyBed:The sticky bed]
-After collecting all the items, if Willy jumps onto the bed in #R58112(Master Bedroom) (which is a conveyor moving right) instead of walking up to the foot of it, he will stop moving and the 'P' (right) key becomes unresponsive. This happens because the code at #R36619 flips bit 0 of #REGe - which has already been reset because Willy is on a conveyor moving right - to 1, thus preventing the conveyor from moving Willy, and also effectively disabling the 'P' key.
+After collecting all the items, if Willy jumps onto the bed in #R58112(Master
+Bedroom) (which is a conveyor moving right) instead of walking up to the foot
+of it, he will stop moving and the 'P' (right) key becomes unresponsive. This
+happens because the code at #R36619 flips bit 0 of #REGe - which has already
+been reset because Willy is on a conveyor moving right - to 1, thus preventing
+the conveyor from moving Willy, and also effectively disabling the 'P' key.
 
-To see this, use POKE #R41983(41983),255 to make the tap in #R57600(The Bathroom) the only item that needs to be collected to complete the game, make your way to the bedroom, and jump onto the bed.
+To see this, use POKE #R41983(41983),255 to make the tap in #R57600(The
+Bathroom) the only item that needs to be collected to complete the game, make
+your way to the bedroom, and jump onto the bed.
 
-However, all is not lost. Willy can be moved off the bed by using one of the other 'right' keys: 'I', 'Y', 'R', 'W', '7' or '8'.
+However, all is not lost. Willy can be moved off the bed by using one of the
+other 'right' keys: 'I', 'Y', 'R', 'W', '7' or '8'.
 
 [Bug:selfCollectingItem:The self-collecting item]
-The item in #R57088(Swimming Pool) is automatically collected as soon as Willy enters the room; this is because the room's background tile has white INK, and the routine at #R37841 collects any item that is drawn on a cell with white INK. There are no other rooms whose background tile has white INK.
+The item in #R57088(Swimming Pool) is automatically collected as soon as Willy
+enters the room; this is because the room's background tile has white INK, and
+the routine at #R37841 collects any item that is drawn on a cell with white
+INK. There are no other rooms whose background tile has white INK.
 
-To change the INK of the room's background tile from white to cyan, enabling Willy to collect the item himself:
+To change the INK of the room's background tile from white to cyan, enabling
+Willy to collect the item himself:
 
 POKE #R57248(57248),5
 
 Note that this changes the rope's colour from white to cyan.
 
 [Bug:theInvisibleItem:The invisible item]
-There is an item in #R56320(First Landing), but you could be forgiven for not knowing because it's invisible. To give the item a shape and make it visible:
+There is an item in #R56320(First Landing), but you could be forgiven for not
+knowing because it's invisible. To give the item a shape and make it visible:
 
 POKE 56548,24: POKE 56549,24
 
@@ -38,39 +52,57 @@ POKE 56350,0: POKE 56358,0: POKE 56365,170
 #ROOM56320,2,16,0,16,16(first_landing_item2)
 #POPS
 
-The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix this bug is
+The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to
+fix this bug is
 
 POKE #R42183(42183),11
 
-which moves the item to #R51968(The Hall) (where it is still invisible, but now reachable).
+which moves the item to #R51968(The Hall) (where it is still invisible, but now
+reachable).
 
 [Bug:theInaccessibleItems:The inaccessible items]
-The items in #R60160(Conservatory Roof) can only be collected by entering the room from the ledge on the lower left in #R59904(Under the Roof), but that ledge is unreachable.
+The items in #R60160(Conservatory Roof) can only be collected by entering the
+room from the ledge on the lower left in #R59904(Under the Roof), but that
+ledge is unreachable.
 
-The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix this bug is
+The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to
+fix this bug is
 
 POKE #R56832(56876),4
 
-which makes it possible to access the right-hand side of #R58368(A bit of tree) (and from there the lower right side in #R59904(Under the Roof)) from #R56832(The Banyan Tree).
+which makes it possible to access the right-hand side of #R58368(A bit of tree)
+(and from there the lower right side in #R59904(Under the Roof)) from
+#R56832(The Banyan Tree).
 
 [Bug:theUncollectableItem:The uncollectable item]
-The item on the far right in #R60160(Conservatory Roof) cannot be collected because there is an unavoidable nasty in the way.
+The item on the far right in #R60160(Conservatory Roof) cannot be collected
+because there is an unavoidable nasty in the way.
 
-The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix this bug is
+The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to
+fix this bug is
 
 POKE #R60160#60160(60231),0
 
 which removes the nasty next to the item.
 
 [Bug:guardianHalos:Guardian halos]
-In a room with a non-black background, a guardian defined with BRIGHT INK is drawn with a 'halo': a BRIGHT sprite background that contrasts with the non-BRIGHT room background. There are four guardians affected by this phenomenon:
+In a room with a non-black background, a guardian defined with BRIGHT INK is
+drawn with a 'halo': a BRIGHT sprite background that contrasts with the
+non-BRIGHT room background. There are four guardians affected by this
+phenomenon:
 
 #UDGTABLE(gallery)
-{ #ROOM51456,2,5,7,6,6(halo1) #ROOM51456,2,26,8,6,6(halo2) | #ROOM52992,2,9,8,6,6(halo3)               | #ROOM59136,2,6,1,6,6(halo4) }
-{ #R51456(On a Branch Over the Drive)                      | #R52992(I'm sure I've seen this before..) | #R59136(Emergency Generator) }
+{ #ROOM51456,2,5,7,6,6(halo1) #ROOM51456,2,26,8,6,6(halo2) |
+  #ROOM52992,2,9,8,6,6(halo3) |
+  #ROOM59136,2,6,1,6,6(halo4) }
+{ #R51456(On a Branch Over the Drive) |
+  #R52992(I'm sure I've seen this before..) |
+  #R59136(Emergency Generator) }
 TABLE#
 
-The following POKEs modify the section of code at #R37334 so that a guardian is drawn in non-BRIGHT INK and PAPER when the room background is not black, thus preventing any halo:
+The following POKEs modify the section of code at #R37334 so that a guardian is
+drawn in non-BRIGHT INK and PAPER when the room background is not black, thus
+preventing any halo:
 
 <div>POKE 37371,40</div>
 <div>POKE 37372,2</div>
@@ -83,25 +115,50 @@ The following POKEs modify the section of code at #R37334 so that a guardian is 
 <div>POKE 37379,79</div>
 
 [Bug:fromTopToBottom:From top to bottom]
-In a room that contains a rope and has no exit to the room above, Willy can jump while at the highest point on the rope (when it's at the leftmost or rightmost extent of its swing) through the top of the room and reappear on the floor of the same room. The only rooms where this can happen are #R53760(On the Roof) and #R64000(The Beach).
+In a room that contains a rope and has no exit to the room above, Willy can
+jump while at the highest point on the rope (when it's at the leftmost or
+rightmost extent of its swing) through the top of the room and reappear on the
+floor of the same room. The only rooms where this can happen are #R53760(On the
+Roof) and #R64000(The Beach).
 
-To prevent Willy from climbing high enough up the rope to be able to jump through the top of the room:
+To prevent Willy from climbing high enough up the rope to be able to jump
+through the top of the room:
 
 <div>POKE #R37781(37782),15</div>
 <div>POKE 37786,15</div>
 
-The number 15 here determines the highest segment of rope that Willy can reach (originally 12, three segments higher up). At segment 15, Willy's y-coordinate never goes below 25 while he's on the rope, and is adjusted down to 24 (see #R36782) when he jumps off, which is too far from the top the room (the maximum height Willy can jump is 20 pixels). At segment 14, Willy's y-coordinate never goes below 23 while he's on the rope, but is adjusted down to 16 when he jumps off, which is close enough to the top of the room to be able to jump through it.
+The number 15 here determines the highest segment of rope that Willy can reach
+(originally 12, three segments higher up). At segment 15, Willy's y-coordinate
+never goes below 25 while he's on the rope, and is adjusted down to 24 (see
+#R36782) when he jumps off, which is too far from the top the room (the maximum
+height Willy can jump is 20 pixels). At segment 14, Willy's y-coordinate never
+goes below 23 while he's on the rope, but is adjusted down to 16 when he jumps
+off, which is close enough to the top of the room to be able to jump through
+it.
 
-The code at #R37601 adjusts Willy's location depending on where he's hanging on to the rope. Specifically, his pixel y-coordinate is set to Y-8, where Y is the pixel y-coordinate of the segment of rope whose index matches the value of the rope status indicator at #R34262.
+The code at #R37601 adjusts Willy's location depending on where he's hanging on
+to the rope. Specifically, his pixel y-coordinate is set to Y-8, where Y is the
+pixel y-coordinate of the segment of rope whose index matches the value of the
+rope status indicator at #R34262.
 
 [Bug:longDistanceNasties:Long distance nasties]
-If Willy falls through the bottom of a room and there is a nasty at the top of the room in a direct line above him, he will die before he reaches the room below.
+If Willy falls through the bottom of a room and there is a nasty at the top of
+the room in a direct line above him, he will die before he reaches the room
+below.
 
-The only room affected by this bug is #R59904(Under the Roof). Use the following POKE to start the game in that room and see what happens when Willy steps off the ledge:
+The only room affected by this bug is #R59904(Under the Roof). Use the
+following POKE to start the game in that room and see what happens when Willy
+steps off the ledge:
 
 POKE 34795,42
 
-The problem lies in the section of code at #R38392, which sets the attribute bytes for the cells occupied by and below Willy's sprite. If Willy is below the level of the floor, #REGhl (which holds the address of the cell in the attribute buffer at #R23552) is eventually incremented so that it points to the cell in the ceiling above Willy in the attribute buffer at #R24064. Then the routine at #R38430 is called to actually set the attribute byte for the cell, detects the nasty there, and kills Willy.
+The problem lies in the section of code at #R38392, which sets the attribute
+bytes for the cells occupied by and below Willy's sprite. If Willy is below the
+level of the floor, #REGhl (which holds the address of the cell in the
+attribute buffer at #R23552) is eventually incremented so that it points to the
+cell in the ceiling above Willy in the attribute buffer at #R24064. Then the
+routine at #R38430 is called to actually set the attribute byte for the cell,
+detects the nasty there, and kills Willy.
 
 <div>POKE 38452,208</div>
 <div>POKE 38453,253</div>
@@ -112,45 +169,79 @@ The problem lies in the section of code at #R38392, which sets the attribute byt
 <div>POKE 64980,144</div>
 
 [Bug:dontMindYourHead:Don't mind your head]
-The code at #R36828 onwards that moves Willy left does not check for a wall tile at head height, which means Willy can move right to left through a wall tile at that position. To see this, add a wall tile at head height in #R57600(The Bathroom) and guide Willy through it:
+The code at #R36828 onwards that moves Willy left does not check for a wall
+tile at head height, which means Willy can move right to left through a wall
+tile at that position. To see this, add a wall tile at head height in
+#R57600(The Bathroom) and guide Willy through it:
 
 POKE 57708,32
 
-However, the code at #R36942 onwards that moves Willy right does check for a wall tile at head height (at #R37031), so Willy (correctly) cannot move left to right through a wall tile at that position.
+However, the code at #R36942 onwards that moves Willy right does check for a
+wall tile at head height (at #R37031), so Willy (correctly) cannot move left to
+right through a wall tile at that position.
 
 [Bug:stuckInTheWall:Stuck in the wall]
-If Willy enters #R61696(The Wine Cellar) from the ledge in #R54016(The Forgotten Abbey), he must keep moving left until he clears all the wall tiles, otherwise he can become trapped inside them by the conveyor below trying to move him to the right.
+If Willy enters #R61696(The Wine Cellar) from the ledge in #R54016(The
+Forgotten Abbey), he must keep moving left until he clears all the wall tiles,
+otherwise he can become trapped inside them by the conveyor below trying to
+move him to the right.
 
-To get on the conveyor, stand facing left at the top of the ramp in The Forgotten Abbey (see the first image below) and jump left towards the exit - Willy will land on the ledge (second image). Then walk left into The Wine Cellar.
+To get on the conveyor, stand facing left at the top of the ramp in The
+Forgotten Abbey (see the first image below) and jump left towards the exit -
+Willy will land on the ledge (second image). Then walk left into The Wine
+Cellar.
 
-#UDGTABLE(gallery)
-{ #WILLY19,2,88,6,0,9,6,6(sitw1_1) | #WILLY19,1,80,7,0,9,6,6(sitw1_2) | #WILLY49,29,80,3,26,9,6,6(sitw1_3) }
-TABLE#
+#UDGTABLE(gallery) {
+  #WILLY19,2,88,6,0,9,6,6(sitw1_1) |
+  #WILLY19,1,80,7,0,9,6,6(sitw1_2) |
+  #WILLY49,29,80,3,26,9,6,6(sitw1_3)
+} TABLE#
 
-Willy can get also stuck in the wall tiles that make up the elephant's head in #R59392(Dr Jones will never believe this). Start at the location shown in the first image below, and then walk left.
+Willy can get also stuck in the wall tiles that make up the elephant's head in
+#R59392(Dr Jones will never believe this). Start at the location shown in the
+first image below, and then walk left.
 
 #UDGTABLE(gallery)
 { #WILLY40,18,24,7,16,1,6,6(sitw2_1) | #WILLY40,15,24,3,13,1,6,6(sitw2_2) }
 TABLE#
 
-Getting stuck in these places is possible because Willy can walk right to left through wall tiles at head height, but not left to right (see #BUG#dontMindYourHead()).
+Getting stuck in these places is possible because Willy can walk right to left
+through wall tiles at head height, but not left to right (see
+#BUG#dontMindYourHead()).
 
 [Bug:theBlankConveyor:The blank conveyor]
-The conveyor tile in #R60160(Conservatory Roof) is completely blank and its attribute byte is 255 - a solid, bright white block - which is characteristic of unused tiles elsewhere. However, the conveyor tile <em>is</em> used in this room, and it doesn't look good:
+The conveyor tile in #R60160(Conservatory Roof) is completely blank and its
+attribute byte is 255 - a solid, bright white block - which is characteristic
+of unused tiles elsewhere. However, the conveyor tile <em>is</em> used in this
+room, and it doesn't look good:
 
 #UDGTABLE { #ROOM60160,2,22,12,10,4(blank_conveyor) } TABLE#
 
 [Bug:corruptedConveyors:Corrupted conveyors]
-The conveyors in #R55296(West of Kitchen), #R56576(The Nightmare Room), #R61696(The Wine Cellar) and #R62208(Tool#SPACE(2)Shed) don't look quite as they should. The reason for this is a bug in the code at #R36177: if a graphic data byte of the background, floor, wall, nasty or ramp tile in a room matches the attribute byte of the conveyor tile to be drawn, the CPIR instruction exits early, leaving #REGhl pointing at the wrong location.
+The conveyors in #R55296(West of Kitchen), #R56576(The Nightmare Room),
+#R61696(The Wine Cellar) and #R62208(Tool#SPACE(2)Shed) don't look quite as
+they should. The reason for this is a bug in the code at #R36177: if a graphic
+data byte of the background, floor, wall, nasty or ramp tile in a room matches
+the attribute byte of the conveyor tile to be drawn, the CPIR instruction exits
+early, leaving #REGhl pointing at the wrong location.
 
-Here are some 'before' and 'after' pictures showing what the conveyors actually look like and what they look like when drawn properly.
+Here are some 'before' and 'after' pictures showing what the conveyors actually
+look like and what they look like when drawn properly.
 
 #UDGTABLE(gallery)
-{ #R55296(West of Kitchen)    | #ROOM55296,2,21,11,7,3,1,0,1(conveyor24_before) | #ROOM55296,2,21,11,7,3,1,1,1(conveyor24_after) }
-{ #R56576(The Nightmare Room) | #ROOM56576,2,26,6,3,3,1(conveyor29_before)      | #ROOM56576,2,26,6,3,3,1,1(conveyor29_after) }
-{ #R61696(The Wine Cellar)    | #ROOM61696,2,26,11,7,3,1,0,1(conveyor49_before) | #ROOM61696,2,26,11,7,3,1,1(conveyor49_after) }
-{ #R62208(Tool#SPACE(2)Shed)  | #ROOM62208,2,6,14,20,2,1,0,1(conveyor51_before) | #ROOM62208,2,6,14,20,2,1,1,1(conveyor51_after) }
-{ =t                          | Before                                          | After }
+{ #R55296(West of Kitchen) |
+  #ROOM55296,2,21,11,7,3,1,0,1(conveyor24_before) |
+  #ROOM55296,2,21,11,7,3,1,1,1(conveyor24_after) }
+{ #R56576(The Nightmare Room) |
+  #ROOM56576,2,26,6,3,3,1(conveyor29_before) |
+  #ROOM56576,2,26,6,3,3,1,1(conveyor29_after) }
+{ #R61696(The Wine Cellar) |
+  #ROOM61696,2,26,11,7,3,1,0,1(conveyor49_before) |
+  #ROOM61696,2,26,11,7,3,1,1(conveyor49_after) }
+{ #R62208(Tool#SPACE(2)Shed) |
+  #ROOM62208,2,6,14,20,2,1,0,1(conveyor51_before) |
+  #ROOM62208,2,6,14,20,2,1,1,1(conveyor51_after) }
+{ =t | Before | After }
 TABLE#
 
 To fix the bug:
@@ -167,37 +258,72 @@ To fix the bug:
 <div>POKE 65324,201</div>
 
 [Bug:veryCorruptedConveyor:Very corrupted conveyor]
-You might be thinking that the fix given above for the corrupted conveyors bug does not do much for the appearance of the conveyor in #R56576(The Nightmare Room). Perhaps that's because the real problem with this conveyor is that its attribute byte and graphic data - which should occupy addresses #R56781(#N56781-#N56789) - appear to have been shifted by one byte back to #N56780-#N56788 (overwriting the eighth graphic byte of the ramp tile). If they are shifted along to the right spot, the conveyor takes on a much more reasonable appearance:
+You might be thinking that the fix given above for the corrupted conveyors bug
+does not do much for the appearance of the conveyor in #R56576(The Nightmare
+Room). Perhaps that's because the real problem with this conveyor is that its
+attribute byte and graphic data - which should occupy addresses
+#R56781(#N56781-#N56789) - appear to have been shifted by one byte back to
+#N56780-#N56788 (overwriting the eighth graphic byte of the ramp tile). If they
+are shifted along to the right spot, the conveyor takes on a much more
+reasonable appearance:
 
 #UDGTABLE(gallery)
-{ #ROOM56576,2,26,6,3,3,1(conveyor29_before) | #PUSHS #FOR(56789,56781,-1)||n|#POKES(n,#PEEK(n-1))|| #ROOM56576,2,26,6,3,3,1,1,1(conveyor29_after2) #POPS }
-{ Before                                     | After }
+{ #ROOM56576,2,26,6,3,3,1(conveyor29_before) |
+  #PUSHS #FOR(56789,56781,-1)||n|#POKES(n,#PEEK(n-1))||
+  #ROOM56576,2,26,6,3,3,1,1,1(conveyor29_after2)
+  #POPS }
+{ Before | After }
 TABLE#
 
 [Bug:invalidGridLocation:Invalid grid location]
-If the LSB of the system variable FRAMES is 142 when the game starts, the routine at #R34499 will ask for the code at the grid location 'D>', which doesn't exist on the code sheet.
+If the LSB of the system variable FRAMES is 142 when the game starts, the
+routine at #R34499 will ask for the code at the grid location 'D>', which
+doesn't exist on the code sheet.
 
 Should you ever need it, the code for 'D>' is 1444.
 
 POKE #R34555(34556),180
 
 [Bug:thePauseBug:The pause bug]
-The Spectrum will hang when trying to resume the game after being paused if an Interface 1 is connected. This happens because the #REGc register holds 0 instead of 254 when the keyboard is read by the IN A,(C) instruction at #R35620.
+The Spectrum will hang when trying to resume the game after being paused if an
+Interface 1 is connected. This happens because the #REGc register holds 0
+instead of 254 when the keyboard is read by the IN A,(C) instruction at
+#R35620.
 
 POKE #R35615(35615),62: POKE #R35620(35620),219: POKE #R35620(35621),254
 
 [Bug:theAtticBug:The Attic bug]
-Perhaps the most famous of all the bugs in Jet Set Willy, the Attic bug is responsible for certain rooms becoming impossible to navigate after Willy has visited #R59648(The Attic), thus making it impossible to complete the game.
+Perhaps the most famous of all the bugs in Jet Set Willy, the Attic bug is
+responsible for certain rooms becoming impossible to navigate after Willy has
+visited #R59648(The Attic), thus making it impossible to complete the game.
 
-The root cause of the bug is a misplaced arrow, defined by the entity specification at #R59900. The second byte of the entity specification is an index into the table of screen buffer addresses at #R33280, and determines the arrow's y-coordinate; the index should be an even number, but the value of the second byte is #N(213,,,1)(0x), which means the arrow-drawing routine at #R37310 looks up the word at #N33493 and finds #N(41066), way outside the actual screen buffer at #N24576-#N28671. As a result, the misplaced arrow is 'drawn' at the following addresses:
+The root cause of the bug is a misplaced arrow, defined by the entity
+specification at #R59900. The second byte of the entity specification is an
+index into the table of screen buffer addresses at #R33280, and determines the
+arrow's y-coordinate; the index should be an even number, but the value of the
+second byte is #N(213,,,1)(0x), which means the arrow-drawing routine at
+#R37310 looks up the word at #N33493 and finds #N(41066), way outside the
+actual screen buffer at #N24576-#N28671. As a result, the misplaced arrow is
+'drawn' at the following addresses:
 
-<ul>
-<li>#R40704(#N40810-#N40841): unused (set to #N(65,,,1)(0x), with no effect on the game)</li>
-<li>#R41064(#N41066-#N41097): the third byte of entity definition #ed13 through to the second byte of entity definition #ed17 (set to #N(255,,,1)(0x)); this affects the guardians in #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..), #R53248(We must perform a Quirkafleeg), #R49408(The Bridge), #R50688(Entrance to Hades), #R56064(The Chapel) and #R58880(Priests' Hole)</li>
-<li>#R41320(#N41322-#N41353): the third byte of entity definition #ed45 through to the second byte of entity definition #ed49 (set to #N(65,,,1)(0x)); this affects the guardians in #R52480(Out on a limb), #R55808(East Wall Base), #R52224(Tree Top), #R51200(Inside the MegaTrunk), #R55040(The Kitchen) and #R55296(West of Kitchen)</li>
-</ul>
+#LIST
+{ #R40704(#N40810-#N40841): unused (set to #N(65,,,1)(0x), with no effect on
+  the game) }
+{ #R41064(#N41066-#N41097): the third byte of entity definition #ed13 through
+  to the second byte of entity definition #ed17 (set to #N(255,,,1)(0x)); this
+  affects the guardians in #R52736(Rescue Esmerelda), #R52992(I'm sure I've
+  seen this before..), #R53248(We must perform a Quirkafleeg), #R49408(The
+  Bridge), #R50688(Entrance to Hades), #R56064(The Chapel) and #R58880(Priests'
+  Hole) }
+{ #R41320(#N41322-#N41353): the third byte of entity definition #ed45 through
+  to the second byte of entity definition #ed49 (set to #N(65,,,1)(0x)); this
+  affects the guardians in #R52480(Out on a limb), #R55808(East Wall Base),
+  #R52224(Tree Top), #R51200(Inside the MegaTrunk), #R55040(The Kitchen) and
+  #R55296(West of Kitchen) }
+LIST#
 
-The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to fix the Attic bug is
+The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to
+fix the Attic bug is
 
 POKE #R59900(59901),82
 
