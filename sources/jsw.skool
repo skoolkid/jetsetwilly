@@ -265,8 +265,8 @@ g33008 DEFS 2        ; Entity 1
 ; { 6 | Unused }
 ; { 7 | Animation frame at which the rope changes direction (54) }
 ; { 9 | Index of the segment of rope being drawn (0-31) }
-; { =r2 11 | Bit 7: Willy is on the rope (set), or not (reset) }
-; { Bits 0-6: unused }
+; { =r2 11 | Bits 1-7: unused }
+; { Bit 0: Willy is on the rope (set), or not (reset) }
 ; TABLE#
 ; .
 ; Note that if a rope were the eighth entity specified in a room, its buffer
