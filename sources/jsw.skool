@@ -23,7 +23,9 @@ b24576 DEFS 4096
 
 ; Screen buffer (empty room)
 ;
-; Initialised upon entry to a room by the routine at #R36147.
+; Initialised upon entry to a room by the routine at #R36147, and updated on
+; each pass through the main loop by the routine at #R38137 if there is a
+; conveyor in the room.
 b28672 DEFS 4096
 
 @start
