@@ -2090,8 +2090,8 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
 ; or 16 (at which point Willy is on his way down and is exactly one cell-height
 ; above where he started the jump).
 *36406 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
- 36409 AND 14        ; Does Willy's sprite occupy six cells at the moment?
- 36411 JR NZ,36450   ; Jump if so
+ 36409 AND 14        ; Is Willy either on a ramp, or occupying only four cells?
+ 36411 JR NZ,36450   ; Jump if not
  36413 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
                      ; #R34259
  36416 LD DE,64      ; {Point #REGhl at the left-hand cell below Willy's
