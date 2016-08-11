@@ -17,7 +17,7 @@ Added trivia entries:
   #FACT#unanimatedGuardians()
   #FACT#highJump()
 Documented bugs:
-  #BUG#veryCorruptedConveyor() (thanks IRF)
+  #BUG#veryCorruptedConveyor() (thanks Stuart Brady and IRF)
   #BUG#fromTopToBottom() (thanks Spider, IRF and jetsetdanny)
   #BUG#longDistanceNasties() (thanks IRF)
   #BUG#stuckInTheWall() (thanks IRF)
