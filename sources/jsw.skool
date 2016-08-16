@@ -3895,7 +3895,7 @@ b40064 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
 
 ; Willy sprite graphic data
 ;
-; Used by the routines at #R35211 and #R38455.
+; Used by the routines at #R35211, #R35914 and #R38455.
 ; .
 ; #UDGTABLE
 ; { #sprite40192,7(willy0*) | #sprite40224,7(willy1*) |
