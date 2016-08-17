@@ -218,8 +218,7 @@ g33008 DEFS 2        ; Entity 1
 ; .
 ; #TABLE(default,centre,:w)
 ; { =h Byte | =h Contents }
-; { =r4 0 | Bit 7: unused }
-; { Bits 5-6: animation frame index }
+; { =r3 0 | Bits 5-7: animation frame index }
 ; { Bits 3-4: animation frame update flags (see #R37247) }
 ; { Bits 0-2: entity type (010) }
 ; { =r4 1 | Bits 5-7: animation frame index mask }
@@ -2663,8 +2662,8 @@ c37056 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
                      ; it is updated on every second pass when bit 3 is set)}
  37255 AND 24        ; Are bits 3 and 4 both reset now?
  37257 JR Z,37267    ; Jump if so
- 37259 LD A,(IX+0)   ; {Update the guardian's animation frame (in bits 5 and 6
- 37262 ADD A,32      ; of the first byte of the entity definition)
+ 37259 LD A,(IX+0)   ; {Update the guardian's animation frame (in bits 5-7 of
+ 37262 ADD A,32      ; the first byte of the entity definition)
  37264 LD (IX+0),A   ; }
 *37267 LD A,(IX+3)   ; {Update the guardian's y-coordinate
  37270 ADD A,(IX+4)  ;
