@@ -265,7 +265,7 @@ g33008 DEFS 2        ; Entity 1
 ; { 5 | Segment drawing byte }
 ; { 6 | Unused }
 ; { 7 | Animation frame at which the rope changes direction (54) }
-; { 9 | Index of the segment of rope being drawn (0-31) }
+; { 9 | Index of the segment of rope being drawn (0-32) }
 ; { =r2 11 | Bits 1-7: unused }
 ; { Bit 0: Willy is on the rope (set), or not (reset) }
 ; TABLE#
