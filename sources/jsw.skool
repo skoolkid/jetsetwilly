@@ -432,9 +432,10 @@ w33280 DEFW 24576    ; y=0
 ; Used by the routine at #R37310. The first half of this table controls the
 ; x-coordinates at which the segments of rope are drawn, and the second half
 ; controls the y-coordinates. For a given rope animation frame F (0<=F<=54),
-; the 32 entries from F to F+31 inclusive (one for each segment of rope) in
-; each half of the table are used; thus the batch of entries used 'slides' up
-; and down the table as F increases and decreases.
+; the 32 entries from F to F+31 inclusive (one for each of the 32 segments of
+; rope below the topmost one) in each half of the table are used; thus the
+; batch of entries used 'slides' up and down the table as F increases and
+; decreases.
 @label=ROPEANIM
 b33536 DEFB 0,0,0,0,0,0,0,0 ; {These values determine how much to rotate the
  33544 DEFB 0,0,0,0,0,0,0,0 ; rope drawing byte (which in turn determines the
