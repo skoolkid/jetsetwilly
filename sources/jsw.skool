@@ -3715,6 +3715,10 @@ c38622 LD E,A        ; Save the value of #REGa in #REGe for later retrieval
  38643 RET           ;
 
 ; Unused routine
+;
+; This routine copies the attribute bytes for an empty room to the screen, so
+; perhaps it was used during development of the game to check that the layout
+; of a room had been defined correctly.
 u38644 LD HL,24064   ; {Copy the attribute buffer at #R24064 to the top
  38647 LD DE,22528   ; two-thirds of the screen
  38650 LD BC,512
