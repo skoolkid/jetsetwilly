@@ -201,7 +201,8 @@ g33008 DEFS 2        ; Entity 1
 ; { Bits 5-6: animation frame index }
 ; { Bits 3-4: unused }
 ; { Bits 0-2: entity type (001) }
-; { =r4 1 | Bits 5-7: animation frame index mask }
+; { =r4 1 | Bits 5-7: #LINK:Glossary#animation_frame_index_mask(animation frame
+; index mask) }
 ; { Bit 4: unused }
 ; { Bit 3: BRIGHT value }
 ; { Bits 0-2: INK colour }
@@ -221,7 +222,8 @@ g33008 DEFS 2        ; Entity 1
 ; { =r3 0 | Bits 5-7: animation frame index }
 ; { Bits 3-4: animation frame update flags (see #R37247) }
 ; { Bits 0-2: entity type (010) }
-; { =r4 1 | Bits 5-7: animation frame index mask }
+; { =r4 1 | Bits 5-7: #LINK:Glossary#animation_frame_index_mask(animation frame
+; index mask) }
 ; { Bit 4: unused }
 ; { Bit 3: BRIGHT value }
 ; { Bits 0-2: INK colour }

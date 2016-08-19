@@ -1,3 +1,9 @@
 table.gallery td {
   border-color: #ffffff;
 }
+table.boxData td {
+  background-color: #664422;
+}
+table.boxData th {
+  background-color: #886644;
+}
