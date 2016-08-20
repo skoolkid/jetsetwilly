@@ -186,10 +186,10 @@ g33008 DEFS 2        ; Entity 1
  33020 DEFS 2        ; Entity 7
  33022 DEFS 2        ; Entity 8
 
-; Entity buffer
+; Entity buffers
 ;
 ; Initialised by the routine at #R35068, and used by the routines at #R37056
-; and #R37310. There are eight slots here, each one eight bytes long, used to
+; and #R37310. There are eight buffers here, each one eight bytes long, used to
 ; hold the state of the entities (rope, arrows and guardians) in the current
 ; room.
 ; .
@@ -252,7 +252,7 @@ g33008 DEFS 2        ; Entity 1
 ; { 7 | Unused }
 ; TABLE#
 ; .
-; The rope uses the second and fourth bytes of the following slot in addition
+; The rope uses the second and fourth bytes of the following buffer in addition
 ; to its own; these ten bytes are used as follows:
 ; .
 ; #TABLE(default,centre,:w)
@@ -288,8 +288,8 @@ g33024 DEFS 8        ; Entity 1
 ; Unused
 ;
 ; This area is not used, but if a rope were the eighth entity specified in a
-; room, its buffer would spill over from the eighth slot in the entity buffer
-; at #R33024 and use the first and third bytes here.
+; room, its buffer would spill over from the eighth slot at #R33024 and use the
+; first and third bytes here.
 @label=EBOVERFLOW
 s33089 DEFS 191
 
@@ -1277,8 +1277,8 @@ c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
  35104 LDIR          ; }
  35106 LD IX,33008   ; Point #REGix at the first byte of the first entity
                      ; specification for the current room at #R33008
- 35110 LD DE,33024   ; Point #REGde at the first byte of the entity buffer at
-                     ; #R33024
+ 35110 LD DE,33024   ; Point #REGde at the first byte of the first entity
+                     ; buffer at #R33024
  35113 LD A,8        ; There are at most eight entities in a room
 *35115 LD L,(IX+0)   ; Pick up the first byte of the entity specification
  35118 RES 7,L       ; {Point #REGhl at the corresponding entry in the table of
@@ -1295,7 +1295,7 @@ c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
  35139 INC IX        ; {Point #REGix at the first byte of the next entity
  35141 INC IX        ; specification}
  35143 DEC A         ; Have we copied all eight entity definitions into the
-                     ; entity buffer yet?
+                     ; entity buffers yet?
  35144 JR NZ,35115   ; If not, jump back to copy the next one
 @ignoreua
  35146 LD HL,34255   ; {Copy the seven bytes that define Willy's state
@@ -2556,16 +2556,16 @@ c37046 POP HL        ; Drop the return address from the stack
 ;
 ; Used by the routine at #R35245.
 @label=MOVETHINGS
-c37056 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
-                     ; #R33024
+c37056 LD IX,33024   ; Point #REGix at the first byte of the first entity
+                     ; buffer at #R33024
 ; The entity-moving loop begins here.
-*37060 LD A,(IX+0)   ; Pick up the first byte of the current entity definition
- 37063 CP 255        ; Have we reached the end of the entity buffer?
+*37060 LD A,(IX+0)   ; Pick up the first byte of the current entity's buffer
+ 37063 CP 255        ; Have we already dealt with every entity?
  37065 RET Z         ; Return if so
  37066 AND 3         ; Keep only bits 0 and 1 (which determine the type of
                      ; entity)
- 37068 JP Z,37302    ; Jump to consider the next entity definition if this one
-                     ; is an arrow or is empty
+ 37068 JP Z,37302    ; Jump to consider the next entity buffer if this one
+                     ; belongs to an arrow or is unused
  37071 CP 1          ; Is this a horizontal guardian?
  37073 JP Z,37171    ; Jump if so
  37076 CP 2          ; Is this a vertical guardian?
@@ -2615,58 +2615,58 @@ c37056 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
 ; Now #REGa holds the rope's next animation frame index.
 *37149 LD (IX+1),A   ; Update the animation frame index
  37152 AND 127       ; Reset bit 7
- 37154 CP (IX+7)     ; Does #REGa match the eighth byte of the entity
-                     ; definition (54)?
- 37157 JP NZ,37302   ; If not, jump to consider the next entity definition
- 37160 LD A,(IX+0)   ; {Flip bit 7 of the first byte of the entity definition:
- 37163 XOR 128       ; the rope has just changed direction and will now swing
- 37165 LD (IX+0),A   ; back towards the centre}
- 37168 JP 37302      ; Jump to consider the next entity definition
+ 37154 CP (IX+7)     ; Does #REGa match the eighth byte of the rope's buffer
+                     ; (54)?
+ 37157 JP NZ,37302   ; If not, jump to consider the next entity
+ 37160 LD A,(IX+0)   ; {Flip bit 7 of the first byte of the rope's buffer: the
+ 37163 XOR 128       ; rope has just changed direction and will now swing back
+ 37165 LD (IX+0),A   ; towards the centre}
+ 37168 JP 37302      ; Jump to consider the next entity
 ; We are dealing with a horizontal guardian.
 *37171 BIT 7,(IX+0)  ; Is the guardian currently moving left to right?
  37175 JR NZ,37212   ; Jump if so
 ; This guardian is moving right to left.
  37177 LD A,(IX+0)   ; {Update the guardian's animation frame (in bits 5 and 6
- 37180 SUB 32        ; of the first byte of the entity definition)
+ 37180 SUB 32        ; of the first byte of its buffer)
  37182 AND 127       ;
  37184 LD (IX+0),A   ; }
  37187 CP 96         ; Is it time to update the x-coordinate of the guardian
                      ; sprite?
- 37189 JR C,37302    ; If not, jump to consider the next entity definition
+ 37189 JR C,37302    ; If not, jump to consider the next entity
  37191 LD A,(IX+2)   ; {Pick up the sprite's current screen x-coordinate
  37194 AND 31        ; (0-31)}
  37196 CP (IX+6)     ; Has the guardian reached the leftmost point of its path?
  37199 JR Z,37206    ; Jump if so
  37201 DEC (IX+2)    ; Decrement the sprite's x-coordinate
- 37204 JR 37302      ; Jump to consider the next entity definition
+ 37204 JR 37302      ; Jump to consider the next entity
 *37206 LD (IX+0),129 ; The guardian will now start moving left to right
- 37210 JR 37302      ; Jump to consider the next entity definition
+ 37210 JR 37302      ; Jump to consider the next entity
 ; This guardian is moving left to right.
 *37212 LD A,(IX+0)   ; {Update the guardian's animation frame (in bits 5 and 6
- 37215 ADD A,32      ; of the first byte of the entity definition)
+ 37215 ADD A,32      ; of the first byte of its buffer)
  37217 OR 128        ;
  37219 LD (IX+0),A   ; }
  37222 CP 160        ; Is it time to update the x-coordinate of the guardian
                      ; sprite?
- 37224 JR NC,37302   ; If not, jump to consider the next entity definition
+ 37224 JR NC,37302   ; If not, jump to consider the next entity
  37226 LD A,(IX+2)   ; {Pick up the sprite's current screen x-coordinate
  37229 AND 31        ; (0-31)}
  37231 CP (IX+7)     ; Has the guardian reached the rightmost point of its
                      ; path?
  37234 JR Z,37241    ; Jump if so
  37236 INC (IX+2)    ; Increment the sprite's x-coordinate
- 37239 JR 37302      ; Jump to consider the next entity definition
+ 37239 JR 37302      ; Jump to consider the next entity
 *37241 LD (IX+0),97  ; The guardian will now start moving right to left
- 37245 JR 37302      ; Jump to consider the next entity definition
+ 37245 JR 37302      ; Jump to consider the next entity
 ; We are dealing with a vertical guardian.
-*37247 LD A,(IX+0)   ; {Flip bit 3 of the first byte of the entity definition
+*37247 LD A,(IX+0)   ; {Flip bit 3 of the first byte of the guardian's buffer
  37250 XOR 8         ; (if bit 4 is set, the guardian's animation frame is
  37252 LD (IX+0),A   ; updated on every pass through this routine; otherwise,
                      ; it is updated on every second pass when bit 3 is set)}
  37255 AND 24        ; Are bits 3 and 4 both reset now?
  37257 JR Z,37267    ; Jump if so
  37259 LD A,(IX+0)   ; {Update the guardian's animation frame (in bits 5-7 of
- 37262 ADD A,32      ; the first byte of the entity definition)
+ 37262 ADD A,32      ; the first byte of its buffer)
  37264 LD (IX+0),A   ; }
 *37267 LD A,(IX+3)   ; {Update the guardian's y-coordinate
  37270 ADD A,(IX+4)  ;
@@ -2679,15 +2679,15 @@ c37056 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37284 JR Z,37288    ; If they match, jump to change the guardian's direction
                      ; of movement
  37286 JR NC,37302   ; If the new y-coordinate is above the minimum value, jump
-                     ; to consider the next entity definition
+                     ; to consider the next entity
 *37288 LD A,(IX+6)   ; {Make sure that the guardian's y-coordinate is set to
  37291 LD (IX+3),A   ; its minimum value}
 *37294 LD A,(IX+4)   ; {Negate the y-coordinate increment; this changes the
  37297 NEG           ; guardian's direction of movement
  37299 LD (IX+4),A   ; }
-; The current entity definition has been dealt with. Time for the next one.
-*37302 LD DE,8       ; {Point #REGix at the first byte of the next entity
- 37305 ADD IX,DE     ; definition}
+; The current entity has been dealt with. Time for the next one.
+*37302 LD DE,8       ; {Point #REGix at the first byte of the next entity's
+ 37305 ADD IX,DE     ; buffer}
  37307 JP 37060      ; Jump back to deal with it
 
 ; Draw the rope, arrows and guardians in the current room
@@ -2695,15 +2695,15 @@ c37056 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
 ; Used by the routine at #R35245. Draws the rope, arrows and guardians in the
 ; current room to the screen buffer at #R24576.
 @label=DRAWTHINGS
-c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
-                     ; #R33024
+c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
+                     ; buffer at #R33024
 ; The drawing loop begins here.
-*37314 LD A,(IX+0)   ; Pick up the first byte of the current entity definition
- 37317 CP 255        ; Have we reached the end of the entity buffer?
+*37314 LD A,(IX+0)   ; Pick up the first byte of the current entity's buffer
+ 37317 CP 255        ; Have we already dealt with every entity?
  37319 RET Z         ; Return if so
  37320 AND 7         ; Keep only bits 0-2 (which determine the type of entity)
- 37322 JP Z,37811    ; Jump to consider the next entity definition if this one
-                     ; is empty
+ 37322 JP Z,37811    ; Jump to consider the next entity buffer if this one is
+                     ; not being used
  37325 CP 3          ; Is this a rope?
  37327 JP Z,37540    ; Jump if so
  37330 CP 4          ; Is this an arrow?
@@ -2716,16 +2716,16 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37339 LD A,(DE)     ; {Copy the LSB of the screen buffer address to #REGl
  37340 LD L,A        ; }
  37341 LD A,(IX+2)   ; {Pick up the guardian's x-coordinate from bits 0-4 of
- 37344 AND 31        ; the third byte of the entity definition}
+ 37344 AND 31        ; the third byte of its buffer}
  37346 ADD A,L       ; {Adjust the LSB of the screen buffer address in #REGl
  37347 LD L,A        ; for the guardian's x-coordinate}
- 37348 LD A,E        ; Copy the fourth byte of the entity definition to #REGa
+ 37348 LD A,E        ; Copy the fourth byte of the guardian's buffer to #REGa
  37349 RLCA          ; {#REGh=92 or 93; now #REGhl holds the address of the
  37350 AND 1         ; guardian's current location in the attribute buffer at
  37352 OR 92         ; #R23552
  37354 LD H,A        ; }
  37355 LD DE,31      ; Prepare #REGde for later addition
- 37358 LD A,(IX+1)   ; Pick up the second byte of the entity definition
+ 37358 LD A,(IX+1)   ; Pick up the second byte of the guardian's buffer
  37361 AND 15        ; Keep only bits 0-2 (INK colour) and 3 (BRIGHT value)
  37363 ADD A,56      ; Push bit 3 up to bit 6
  37365 AND 71        ; Keep only bits 0-2 (INK colour) and 6 (BRIGHT value)
@@ -2753,7 +2753,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
                      ; top two rows of cells occupied by the guardian's sprite
  37379 LD C,A        ; Copy the guardian's attribute byte to #REGc
 @bfix+end
- 37380 LD A,(IX+3)   ; Pick up the fourth byte of the entity definition
+ 37380 LD A,(IX+3)   ; Pick up the fourth byte of the guardian's buffer
  37383 AND 14        ; Does the guardian's sprite occupy only two rows of cells
                      ; at the moment?
  37385 JR Z,37391    ; Jump if so
@@ -2779,7 +2779,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37421 LD L,A        ; }
  37422 CALL 37974    ; Draw the guardian
  37425 JP NZ,37047   ; Kill Willy if the guardian collided with him
- 37428 JP 37811      ; Jump to consider the next entity definition
+ 37428 JP 37811      ; Jump to consider the next entity
 ; We are dealing with an arrow.
 *37431 BIT 7,(IX+0)  ; Is the arrow travelling left to right?
  37435 JR NZ,37444   ; Jump if so
@@ -2803,10 +2803,10 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37467 LD B,C        ;
  37468 DEC C         ;
  37469 JR NZ,37461   ; }
- 37471 JP 37811      ; Jump to consider the next entity definition
+ 37471 JP 37811      ; Jump to consider the next entity
 *37474 AND 224       ; Is the arrow's x-coordinate in the range 0-31 (i.e.
                      ; on-screen)?
- 37476 JP NZ,37811   ; If not, jump to consider the next entity definition
+ 37476 JP NZ,37811   ; If not, jump to consider the next entity
  37479 LD E,(IX+2)   ; {Point #REGde at the entry in the screen buffer address
 @ssub=LD D,33280/256
  37482 LD D,130      ; lookup table at #R33280 that corresponds to the arrow's
@@ -2845,18 +2845,18 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
                      ; location in the screen buffer at #R24576
  37533 LD A,(IX+6)   ; {Draw the bottom pixel row of the arrow
  37536 LD (HL),A     ; }
- 37537 JP 37811      ; Jump to consider the next entity definition
+ 37537 JP 37811      ; Jump to consider the next entity
 ; We are dealing with a rope.
 *37540 LD IY,33280   ; Point #REGiy at the first byte of the screen buffer
                      ; address lookup table at #R33280
  37544 LD (IX+9),0   ; Initialise the second byte in the following entity
-                     ; definition to zero; this will count the segments of rope
-                     ; to draw
- 37548 LD A,(IX+2)   ; {Initialise the fourth byte of the entity definition;
- 37551 LD (IX+3),A   ; this holds the x-coordinate of the cell in which the
-                     ; segment of rope under consideration will be drawn}
- 37554 LD (IX+5),128 ; Initialise the sixth byte of the entity definition to
-                     ; 128 (bit 7 set); the value held here is used to draw the
+                     ; buffer to zero; this will count the segments of rope to
+                     ; draw
+ 37548 LD A,(IX+2)   ; {Initialise the fourth byte of the rope's buffer; this
+ 37551 LD (IX+3),A   ; holds the x-coordinate of the cell in which the segment
+                     ; of rope under consideration will be drawn}
+ 37554 LD (IX+5),128 ; Initialise the sixth byte of the rope's buffer to 128
+                     ; (bit 7 set); the value held here is used to draw the
                      ; segment of rope under consideration
 ; The following loop draws each segment of the rope from top to bottom.
 *37558 LD A,(IY+0)   ; {Point #REGhl at the location of the segment of rope
@@ -2957,13 +2957,13 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37733 INC A         ; {Update the rope status indicator at #R34262
  37734 LD (34262),A  ; }
  37737 RES 0,(IX+11) ; Signal: Willy is not on the rope
- 37741 JR 37811      ; Jump to consider the next entity definition
+ 37741 JR 37811      ; Jump to consider the next entity
 *37743 BIT 0,(IX+11) ; Is Willy on the rope?
- 37747 JR Z,37811    ; If not, jump to consider the next entity definition
+ 37747 JR Z,37811    ; If not, jump to consider the next entity
  37749 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; #R34256
  37752 BIT 1,A       ; Is Willy moving up or down the rope?
- 37754 JR Z,37811    ; If not, jump to consider the next entity definition
+ 37754 JR Z,37811    ; If not, jump to consider the next entity
  37756 RRCA          ; {XOR Willy's direction bit (0=facing right, 1=facing
  37757 XOR (IX+0)    ; left) with the rope's direction bit (0=swinging right to
  37760 RLCA          ; left, 1=swinging left to right)}
@@ -2995,7 +2995,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
 *37787 LD A,(HL)     ; Pick up the rope status indicator at #R34262
  37788 CP (IX+4)     ; Compare it with the length of the rope
  37791 JR C,37811    ; {If Willy is at or above the bottom of the rope, jump to
- 37793 JR Z,37811    ; consider the next entity definition}
+ 37793 JR Z,37811    ; consider the next entity}
  37795 LD (HL),240   ; Set the rope status indicator at #R34262 to 240 (Willy
                      ; has just dropped off the bottom of the rope)
  37797 LD A,(34255)  ; {Round down Willy's pixel y-coordinate at #R34255 to the
@@ -3005,9 +3005,9 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the entity buffer at
  37805 XOR A         ; {Initialise the airborne status indicator at #R34257
  37806 LD (34257),A  ; }
  37809 JR 37811      ; Make a redundant jump to the next instruction
-; The current entity definition has been dealt with. Time for the next one.
-*37811 LD DE,8       ; {Point #REGix at the first byte of the next entity
- 37814 ADD IX,DE     ; definition}
+; The current entity has been dealt with. Time for the next one.
+*37811 LD DE,8       ; {Point #REGix at the first byte of the next entity's
+ 37814 ADD IX,DE     ; buffer}
  37816 JP 37314      ; Jump back to deal with it
 
 ; Unused routine
@@ -4084,8 +4084,9 @@ u40627 JP 7519
 ;
 ; .
 ;
-; The following (empty) entity definition (#ed0) is copied into the entity
-; buffer at #R33024 for any entity specification whose first byte is zero.
+; The following (empty) entity definition (#ed0) is copied into one of the
+; entity buffers at #R33024 for any entity specification whose first byte is
+; zero.
 @label=ENTITYDEFS
 b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed1) is used in #R53248(We must perform a
@@ -6625,9 +6626,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41960 DEFB 0,0,0,0,0,0,0,0
  41968 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#ed127) - whose eighth byte is at #R41983 -
-; is copied into the entity buffer at #R33024 for any entity specification
-; whose first byte is #n127 or #n255; the first byte of the definition (#n255)
-; serves to terminate the entity buffer.
+; is copied into one of the entity buffers at #R33024 for any entity
+; specification whose first byte is #n127 or #n255; the first byte of the
+; definition (#n255) serves to terminate the entity buffers.
 @label=ENTITY127
  41976 DEFB 255,0,0,0,0,0,0
 
