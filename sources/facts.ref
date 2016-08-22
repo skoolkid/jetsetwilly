@@ -248,6 +248,26 @@ All the other saw guardians in the game have the blade facing right when moving
 in that direction, because their animation frame mask is 111 (see #R41376,
 #R41384 and #R41664).
 
+[Fact:disrespectfulMonk:The disrespectful monk]
+Like the <a href="#oneWaySaw">one-way saw</a> in Cuckoo's Nest, the monk in
+#R56064(The Chapel) always faces left, even when he's moving left to right.
+Also like the one-way saw, the reason for this is that his base sprite is 0 and
+his animation frame mask is 011, which means he cycles through sprites 0, 1, 2
+and 3 only.
+
+#UDGTABLE
+{ #guardian180,0,3 | #guardian180,1,3 | #guardian180,2,3 | #guardian180,3,3 }
+TABLE#
+
+Use the following POKE to make the monk face right when walking in that
+direction:
+
+POKE #R41784(41785),227
+
+The saw in Cuckoo's Nest and the monk in The Chapel are the only horizontal
+guardians that use only 4 out of 8 possible animation frames in a particular
+room.
+
 [Fact:someAirLeft:Some air left?]
 The message at #R33873 ('AIR') may be unused, but it is still a poignant
 reminder of Willy's former career as a miner.
