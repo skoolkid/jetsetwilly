@@ -244,6 +244,11 @@ through sprites 0, 1, 2 and 3 only (see #R37393).
 { #guardian181,0,3 | #guardian181,1,3 | #guardian181,2,3 | #guardian181,3,3 }
 TABLE#
 
+Use the following POKE to make the saw face right when moving in that
+direction:
+
+POKE #R41848(41849),227
+
 All the other saw guardians in the game have the blade facing right when moving
 in that direction, because their animation frame mask is 111 (see #R41376,
 #R41384 and #R41664).
