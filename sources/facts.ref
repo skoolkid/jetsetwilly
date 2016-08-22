@@ -442,6 +442,18 @@ conveyors that push Willy down the slope, because the ramp tile has the same
 attribute byte as the conveyor tile (which is not actually used in either
 room). There are no conveyor-ramps anywhere else in the game.
 
+[Fact:floorRamps:Floor ramps]
+There are five rooms in which the floor tiles behave like ramps because their
+attribute byte matches that of the (unused) ramp tile:
+
+#LIST
+{ #R52480(Out on a limb) (25 tiles) }
+{ #R52736(Rescue Esmerelda) (13 tiles) }
+{ #R52992(I'm sure I've seen this before..) (4 tiles) }
+{ #R53504(Up on the Battlements) (4 tiles) }
+{ #R53760(On the Roof) (5 tiles) }
+LIST#
+
 [Fact:toPauseOrNotToPause:To pause or not to pause]
 If the in-game music has been switched off, the game will pause automatically
 after a period of inactivity; however, if the in-game music is playing, it will
