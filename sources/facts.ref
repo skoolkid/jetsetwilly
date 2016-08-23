@@ -461,6 +461,24 @@ In addition, any item situated in a room that has a background with white INK
 will be automatically collected as soon as Willy enters the room (see
 #BUG#selfCollectingItem()).
 
+[Fact:uneconomicalUnderworld:The uneconomical underworld]
+The demonic face guardian (as seen in #R50688(Entrance to Hades), #R56064(The
+Chapel) and  #R58880(Priests' Hole)) uses three entity definitions
+(#R41088(#ed16), #R41096(#ed17) and #R41104(#ed18)), but it could be adjusted
+to use only two, where the upper-left and upper-right portions share an entity
+definition with a different base sprite and x-coordinate.
+
+#UDGTABLE(gallery)
+{ #guardian186,4,4 | #guardian186,5,4 }
+{ =c2 #guardian186,6,4 }
+TABLE#
+
+Use the following POKEs to free up entity definition #ed16:
+
+<div>POKE #R50928(50928),17</div>
+<div>POKE #R56304(56304),17</div>
+<div>POKE #R59120(59120),17</div>
+
 [Fact:slipperySlopes:Slippery slopes]
 In #R56064(The Chapel) and #R57344(Halfway up the East Wall), the ramps act as
 conveyors that push Willy down the slope, because the ramp tile has the same
