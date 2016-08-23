@@ -93,10 +93,14 @@ is #R53248(We must perform a Quirkafleeg), where the long row of nasties at the
 bottom of the pit ensures certain (repeated) death.
 
 [Fact:unusedRoom:Unused room]
-There are 61 room definitions occupying pages 192-252, but the definition for
-room 47 in #R61184(page 239) is not used. Room 47 is completely empty and can
-only be accessed by activating #FACT#writetyper(cheat mode) and using the
-teleport code '123469'.
+There are 61 room definitions occupying pages #N192-#N(252), but the definition
+for room #N47,,,1(0x) in #R61184(page #N239) is not used. Room #N47,,,1(0x) is
+completely empty and can only be accessed by activating #FACT#writetyper(cheat
+mode) and using the teleport code '123469'.
+
+However, the (inaccessible) right exit from #R60928(Tree Root) is set to
+#N47 (see #R61161(#N61162)), which suggests that there was an intention to
+place room #N47,,,1(0x) there at some point during the game's development.
 
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the

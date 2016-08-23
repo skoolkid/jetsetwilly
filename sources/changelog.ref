@@ -9,6 +9,7 @@ Added trivia entries:
   #FACT#uneconomicalUnderworld() (thanks IRF)
   #FACT#underanimatedGuardians() (thanks IRF)
 In #FACT#oneWaySaw(), added a POKE to make the saw face right when moving in that direction
+In #FACT#unusedRoom(), added a note about the right exit from #R60928(Tree Root) (thanks IRF)
 On the #LINK:UnusedMap() page, added a list of unused areas embedded in code and data blocks
 Added a glossary entry: #LINK:Glossary#animation_frame_index_mask(Animation frame index mask)
 
