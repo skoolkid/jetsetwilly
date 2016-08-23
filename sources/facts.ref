@@ -420,6 +420,13 @@ TABLE#
 
 In contrast, every horizontal guardian has either 4 or 8 animation frames.
 
+[Fact:underanimatedGuardians:Underanimated guardians]
+Though the game engine can manage a vertical guardian with eight frames of
+animation, there are no such guardians in the game: no vertical guardian uses
+more than four animation frames. This means that in byte 0 of a vertical
+guardian's buffer - bits 5-7 of which hold the animation frame index - bit 7 is
+always unused in practice.
+
 [Fact:unusedEntityDefinition:Unused entity definition]
 Entity definition 43 at #R41304 contains data but is not used.
 
