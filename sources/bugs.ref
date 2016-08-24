@@ -176,6 +176,11 @@ tile at that position. To see this, add a wall tile at head height in
 
 POKE 57708,32
 
+#PUSHS
+#POKES57708,32
+#WILLY33,17,104,4,15,12,6,4(dmyh)
+#POPS
+
 However, the code at #R36942 onwards that moves Willy right does check for a
 wall tile at head height (at #R37031), so Willy (correctly) cannot move left to
 right through a wall tile at that position.
