@@ -275,6 +275,18 @@ reasonable appearance:
 { Before | After }
 TABLE#
 
+In addition, if the byte at #N56789 (#N85,,,1(0x)) is shifted back round to
+#N56780, it seems to fix the appearance of the ramp tile (by filling the gap at
+the bottom):
+
+#UDGTABLE(gallery)
+{ #ROOM56576,2,6,12,5,4(ramp29_before) |
+  #PUSHS #POKES56780,85
+  #ROOM56576,2,6,12,5,4(ramp29_after)
+  #POPS }
+{ Before | After }
+TABLE#
+
 [Bug:invalidGridLocation:Invalid grid location]
 If the LSB of the system variable FRAMES is 142 when the game starts, the
 routine at #R34499 will ask for the code at the grid location 'D>', which
