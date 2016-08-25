@@ -42,8 +42,16 @@ One of the eight pairs of bytes at the end of a room definition (e.g. at
 [Glossary:Guardian]
 An inhabitant of a room that continuously moves left and right (horizontal
 guardian) or up and down (vertical guardian) in a straight line, or
-#FACT#guardianOrFixture(stays still). Contact with a guardian is fatal. The
-graphic data for all the guardians in the game can be found at #R43776.
+#FACT#guardianOrFixture(stays still). Contact with a guardian is fatal. Some
+examples are:
+
+#UDGTABLE(gallery)
+{ #R50432(The Security Guard)  | #guardian191,4,66 }
+{ #R54016(The Forgotten Abbey) | #guardian180,2,6 }
+{ #R57600(The Bathroom)        | #guardian185,1,4 }
+TABLE#
+
+The graphic data for all the guardians in the game can be found at #R43776.
 
 [Glossary:Nasty]
 An immobile object drawn in a single cell as part of a room along with the
