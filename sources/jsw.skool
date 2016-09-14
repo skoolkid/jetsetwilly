@@ -1262,12 +1262,18 @@ c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
  35082 LD DE,23040   ; third of the screen
  35085 LD BC,256     ;
  35088 LDIR          ; }
-; This entry point is used by the routines at #R35591 (to teleport into a
-; room), #R35841 (to reinitialise the room after Willy has lost a life),
-; #R38026 (when Willy has entered the room from the right), #R38046 (when Willy
-; has entered the room from the left), #R38064 (when Willy has entered the room
-; from below) and #R38098 (when Willy has entered the room from above).
-*35090 LD A,(33824)  ; Pick up the current room number from #R33824
+; This routine continues into the one at #R35090.
+
+; Initialise the current room
+;
+; Used by the routines at #R35591 (to teleport into a room), #R35841 (to
+; reinitialise the room after Willy has lost a life), #R38026 (when Willy has
+; entered the room from the right), #R38046 (when Willy has entered the room
+; from the left), #R38064 (when Willy has entered the room from below) and
+; #R38098 (when Willy has entered the room from above). The routine at #R35068
+; also continues here.
+@label=INITROOM
+c35090 LD A,(33824)  ; Pick up the current room number from #R33824
  35093 OR 192        ; {Point #REGhl at the first byte of the room definition
  35095 LD H,A        ;
  35096 LD L,0        ; }
