@@ -165,7 +165,7 @@ class JetSetWilly:
         lines = ['b 40960 Entity definitions']
         lines.append('@ 40960 label=ENTITYDEFS')
         lines.append('D 40960 Used by the routine at #R35068.')
-        lines.append('N 40960 The following (empty) entity definition (#ed0) is copied into the entity buffer at #R33024 for any entity specification whose first byte is zero.')
+        lines.append('N 40960 The following (empty) entity definition (#ed0) is copied into one of the entity buffers at #R33024 for any entity specification whose first byte is zero.')
         lines.append('B 40960,8')
         for num in range(1, 112):
             addr = 40960 + num * 8
@@ -278,9 +278,9 @@ class JetSetWilly:
         lines.append('B 41856,120,8')
         lines.append('@ 41976 label=ENTITY127')
         lines.append('N 41976 The following entity definition (#ed127) - whose eighth byte is at #R41983 - '
-                     'is copied into the entity buffer at #R33024 for any entity specification whose '
+                     'is copied into one of the entity buffers at #R33024 for any entity specification whose '
                      'first byte is #n127 or #n255; the first byte of the definition (#n255) serves to '
-                     'terminate the entity buffer.')
+                     'terminate the entity buffers.')
         lines.append('B 41976,7')
         lines.append('i 41983')
         return '\n'.join(lines)
