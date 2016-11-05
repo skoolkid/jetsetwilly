@@ -38,6 +38,7 @@
 <li><a href="#commonestCodes">Commonest codes</a></li>
 <li><a href="#codesFromCode">Codes from code</a></li>
 <li><a href="#oneWaySaw">The one-way saw</a></li>
+<li><a href="#disrespectfulMonk">The disrespectful monk</a></li>
 <li><a href="#someAirLeft">Some air left?</a></li>
 <li><a href="#mariasDodgyDepthPerception">Maria's dodgy depth perception</a></li>
 <li><a href="#ropeClimbingForBeginners">Rope climbing for beginners</a></li>
@@ -50,11 +51,15 @@
 <li><a href="#guardiansNeedAClearPath">Guardians need a clear path</a></li>
 <li><a href="#guardianOrFixture">Guardian or fixture?</a></li>
 <li><a href="#unanimatedGuardians">Unanimated guardians</a></li>
+<li><a href="#underanimatedGuardians">Underanimated guardians</a></li>
 <li><a href="#unusedEntityDefinition">Unused entity definition</a></li>
 <li><a href="#untouchableEntityDefinition">Untouchable entity definition</a></li>
+<li><a href="#rampsVsWalls">Ramps v. walls</a></li>
 <li><a href="#oneItemBehindAnother">One item behind another</a></li>
 <li><a href="#itemsAndWhiteness">Items and whiteness</a></li>
+<li><a href="#uneconomicalUnderworld">The uneconomical underworld</a></li>
 <li><a href="#slipperySlopes">Slippery slopes</a></li>
+<li><a href="#floorRamps">Floor ramps</a></li>
 <li><a href="#toPauseOrNotToPause">To pause or not to pause</a></li>
 <li><a href="#cheatsNeverCycleColours">Cheats never cycle colours</a></li>
 <li><a href="#nomenLuni">Nomen Luni?</a></li>
@@ -69,24 +74,33 @@
 <div class="box box-1">
 <div class="box-title">Game over at 1am</div>
 <div class="paragraph">
-The game ends abruptly at 1am (see <a href="../asm/89AD.html#8a72">8A72</a>), even if Willy has collected all the items, or has reached his bed and is already on his way to the toilet, or already has his head down the toilet.
+The game ends abruptly at 1am (see <a href="../asm/89AD.html#8a72">8A72</a>), even if Willy has collected all
+the items, or has reached his bed and is already on his way to the toilet, or
+already has his head down the toilet.
 </div>
 <div class="paragraph">
-This fact seems to contradict the message that scrolls across the lower part of the title screen (see <a href="../asm/8454.html">8454</a>), which implies that Willy must collect all the items before <em>midnight</em>.
+This fact seems to contradict the message that scrolls across the lower part of
+the title screen (see <a href="../asm/8454.html">8454</a>), which implies that Willy must collect all the
+items before <em>midnight</em>.
 </div>
 </div>
 <div><span id="tunes"></span></div>
 <div class="box box-2">
 <div class="box-title">Tunes</div>
 <div class="paragraph">
-The tune played on the title screen is Beethoven's <i>Moonlight Sonata</i>. The tune played during gameplay is <i>If I Were a Rich Man</i> from the musical <i>Fiddler on the Roof</i>.
+The tune played on the title screen is Beethoven's <i>Moonlight Sonata</i>. The
+tune played during gameplay is <i>If I Were a Rich Man</i> from the musical
+<i>Fiddler on the Roof</i>.
 </div>
 </div>
 <div><span id="theMovingBed"></span></div>
 <div class="box box-1">
 <div class="box-title">The moving bed</div>
 <div class="paragraph">
-The bed in <a href="../asm/E300.html">Master Bedroom</a> is actually a conveyor moving left to right, but it doesn't appear to move because the first and third bytes of the conveyor tile (shown below) are 85 (01010101), which remains 85 after being rotated left or right twice.
+The bed in <a href="../asm/E300.html">Master Bedroom</a> is actually a conveyor moving left to right,
+but it doesn't appear to move because the first and third bytes of the conveyor
+tile (shown below) are 85 (01010101), which remains 85 after being rotated left
+or right twice.
 </div>
 <div class="paragraph">
 <table class="">
@@ -100,7 +114,8 @@ The bed in <a href="../asm/E300.html">Master Bedroom</a> is actually a conveyor 
 <div class="box box-2">
 <div class="box-title">The music of life</div>
 <div class="paragraph">
-When Willy loses a life, the pitch of the notes in the in-game music decreases, and their length increases; see <a href="../asm/8B07.html#8b54">8B54</a>.
+When Willy loses a life, the pitch of the notes in the in-game music decreases,
+and their length increases; see <a href="../asm/8B07.html#8b54">8B54</a>.
 </div>
 <div class="paragraph">
 To prevent this from happening:
@@ -113,47 +128,65 @@ POKE 35674,126
 <div class="box box-1">
 <div class="box-title">Taking a BREAK</div>
 <div class="paragraph">
-The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see <a href="../asm/89AD.html#8ab1">8AB1</a>). This works at any time, including when Willy is running to the toilet or already has his head down it.
+The game quits if BREAK - that is, CAPS SHIFT and SPACE - is pressed (see
+<a href="../asm/89AD.html#8ab1">8AB1</a>). This works at any time, including when Willy is running to the toilet
+or already has his head down it.
 </div>
 </div>
 <div><span id="writetyper"></span></div>
 <div class="box box-2">
 <div class="box-title">WRITETYPER</div>
 <div class="paragraph">
-If you take Willy to the floor at the bottom of the staircase in <a href="../asm/DC00.html">First Landing</a> and type the word WRITETYPER, a cheat mode is activated that enables Willy to teleport to any room (see <a href="../asm/8B07.html#8b9f">8B9F</a>).
+If you take Willy to the floor at the bottom of the staircase in <a href="../asm/DC00.html">First
+Landing</a> and type the word WRITETYPER, a cheat mode is activated that enables
+Willy to teleport to any room (see <a href="../asm/8B07.html#8b9f">8B9F</a>).
 </div>
 <div class="paragraph">
-For example, to teleport to <a href="../asm/E300.html">Master Bedroom</a>, hold down keys '1', '2' and '6', and then press '9' to activate the teleporter. For a list of all the rooms and their teleport codes, see the <a href="../tables/rooms.html">Rooms page</a>.
+For example, to teleport to <a href="../asm/E300.html">Master Bedroom</a>, hold down keys '1', '2'
+and '6', and then press '9' to activate the teleporter. For a list of all the
+rooms and their teleport codes, see the <a href="../tables/rooms.html">Rooms page</a>.
 </div>
 </div>
 <div><span id="asYouWere"></span></div>
 <div class="box box-1">
 <div class="box-title">As you were</div>
 <div class="paragraph">
-Willy's animation frame at <a href="../asm/85D2.html">85D2</a> and direction flag at <a href="../asm/85D0.html">85D0</a> are not initialised before the game starts, so his animation frame and the direction he's facing at the start of a game will be whatever they were when he died in the previous game. (The first time the game starts, Willy's animation frame is 0 and he's facing right.)
+Willy's animation frame at <a href="../asm/85D2.html">85D2</a> and direction flag at <a href="../asm/85D0.html">85D0</a> are not
+initialised before the game starts, so his animation frame and the direction
+he's facing at the start of a game will be whatever they were when he died in
+the previous game. (The first time the game starts, Willy's animation frame is
+0 and he's facing right.)
 </div>
 </div>
 <div><span id="whiteSeekingMissile"></span></div>
 <div class="box box-2">
 <div class="box-title">White-seeking missile</div>
 <div class="paragraph">
-The routine at <a href="../asm/91BE.html">91BE</a>, when drawing an arrow, kills Willy if the arrow hits anything with white INK; this means, for example, that Willy would be killed if the arrow hits a white rope. It is no coincidence, then, that in the rooms that have both a rope and an arrow (<a href="../asm/D000.html">We must perform a Quirkafleeg</a>, <a href="../asm/D200.html">On the Roof</a> and <a href="../asm/FA00.html">The Beach</a>), the rope is not white.
+The routine at <a href="../asm/91BE.html">91BE</a>, when drawing an arrow, kills Willy if the arrow hits
+anything with white INK; this means, for example, that Willy would be killed if
+the arrow hits a white rope. It is no coincidence, then, that in the rooms that
+have both a rope and an arrow (<a href="../asm/D000.html">We must perform a Quirkafleeg</a>,
+<a href="../asm/D200.html">On the Roof</a> and <a href="../asm/FA00.html">The Beach</a>), the rope is not white.
 </div>
 <div class="paragraph">
 To see Willy die when the arrow hits the rope in <a href="../asm/FA00.html">The Beach</a>:
 </div>
 <div class="paragraph">
 <div>POKE <a href="../asm/87CA.html#87ea">34795</a>,58 (start in <a href="../asm/FA00.html">The Beach</a>)</div>
-<div>POKE <a href="../asm/FA00.html#faa0">64160</a>,15 (set the INK of the room's background tile to white)</div>
-<div>POKE <a href="../asm/87CA.html#87e5">34790</a>,128 (set Willy's initial pixel y-coordinate to 64)</div>
-<div>POKE <a href="../asm/87CA.html#87ef">34800</a>,2: POKE <a href="../asm/87CA.html#87ef">34801</a>,93 (set Willy's initial attribute buffer location)</div>
+<div>POKE <a href="../asm/FA00.html#faa0">64160</a>,15 (set the INK of the room's background tile to
+white)</div>
+<div>POKE <a href="../asm/87CA.html#87e5">34790</a>,128 (set Willy's initial pixel y-coordinate to 64)
+</div>
+<div>POKE <a href="../asm/87CA.html#87ef">34800</a>,2: POKE <a href="../asm/87CA.html#87ef">34801</a>,93 (set Willy's initial
+attribute buffer location)</div>
 </div>
 </div>
 <div><span id="beerInTheWall"></span></div>
 <div class="box box-1">
 <div class="box-title">Beer in the wall?</div>
 <div class="paragraph">
-The wall tile in <a href="../asm/F600.html">West Wing</a> is very similar to the beer mug item in <a href="../asm/DD00.html">The Nightmare Room</a>; they differ only in the bottom row of pixels:
+The wall tile in <a href="../asm/F600.html">West Wing</a> is very similar to the beer mug item in
+<a href="../asm/DD00.html">The Nightmare Room</a>; they differ only in the bottom row of pixels:
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -172,27 +205,44 @@ The wall tile in <a href="../asm/F600.html">West Wing</a> is very similar to the
 <div class="box box-2">
 <div class="box-title">Dangerous connections</div>
 <div class="paragraph">
-There are several places in Willy's mansion where it is obvious that he is in danger of falling from a great height and entering an infinite death loop. However, there are also some places where it is far from obvious that merely moving from one room to another will lead to an infinite death loop.
+There are several places in Willy's mansion where it is obvious that he is in
+danger of falling from a great height and entering an infinite death loop.
+However, there are also some places where it is far from obvious that merely
+moving from one room to another will lead to an infinite death loop.
 </div>
 <div class="paragraph">
-For example, the room below <a href="../asm/C500.html">The Security Guard</a> is <a href="../asm/C600.html">Entrance to Hades</a>, from which there is no escape.
+For example, the room below <a href="../asm/C500.html">The Security Guard</a> is <a href="../asm/C600.html">Entrance to
+Hades</a>, from which there is no escape.
 </div>
 <div class="paragraph">
-For another example, the room above <a href="../asm/E800.html">Dr Jones will never believe this</a> is <a href="../asm/D000.html">We must perform a Quirkafleeg</a>, where the long row of nasties at the bottom of the pit ensures certain (repeated) death.
+For another example, the room above <a href="../asm/E800.html">Dr Jones will never believe this</a>
+is <a href="../asm/D000.html">We must perform a Quirkafleeg</a>, where the long row of nasties at the
+bottom of the pit ensures certain (repeated) death.
 </div>
 </div>
 <div><span id="unusedRoom"></span></div>
 <div class="box box-1">
 <div class="box-title">Unused room</div>
 <div class="paragraph">
-There are 61 room definitions occupying pages 192-252, but the definition for room 47 in <a href="../asm/EF00.html">page 239</a> is not used. Room 47 is completely empty and can only be accessed by activating <a href="facts.html#writetyper">cheat mode</a> and using the teleport code '123469'.
+There are 61 room definitions occupying pages C0-FC, but the definition
+for room 0x2F in <a href="../asm/EF00.html">page EF</a> is not used. Room 0x2F is
+completely empty and can only be accessed by activating <a href="facts.html#writetyper">cheat
+mode</a> and using the teleport code '123469'.
+</div>
+<div class="paragraph">
+However, the (inaccessible) right exit from <a href="../asm/EE00.html">Tree Root</a> is set to
+2F (see <a href="../asm/EE00.html#eee9">EEEA</a>), which suggests that there was an intention to
+place room 0x2F there at some point during the game's development.
 </div>
 </div>
 <div><span id="unusedGridLocation"></span></div>
 <div class="box box-2">
 <div class="box-title">Unused grid location</div>
 <div class="paragraph">
-The routine at <a href="../asm/86C3.html">86C3</a>, which is responsible for randomly selecting one of the 180 grid locations on the code sheet by its index (0-179), never selects index 179 (R9); as a result, the code at grid location R9 is never asked for, even though it's present on the code sheet (it's 2423).
+The routine at <a href="../asm/86C3.html">86C3</a>, which is responsible for randomly selecting one of the
+180 grid locations on the code sheet by its index (0-179), never selects index
+179 (R9); as a result, the code at grid location R9 is never asked for, even
+though it's present on the code sheet (it's 2423).
 </div>
 <div class="paragraph">
 To give the code at grid location R9 a chance of being asked for:
@@ -205,7 +255,8 @@ POKE <a href="../asm/86C3.html#86fb">34556</a>,180
 <div class="box box-1">
 <div class="box-title">Unused items</div>
 <div class="paragraph">
-There are five rooms in which nontrivial item graphics are defined, but not used.
+There are five rooms in which nontrivial item graphics are defined, but not
+used.
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -236,7 +287,8 @@ There are five rooms in which nontrivial item graphics are defined, but not used
 <div class="box box-2">
 <div class="box-title">Unused nasties</div>
 <div class="paragraph">
-There are seven rooms in which nontrivial nasty graphics are defined, but not used.
+There are seven rooms in which nontrivial nasty graphics are defined, but not
+used.
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -301,14 +353,16 @@ There is one room in which a nontrivial ramp graphic is defined, but not used.
 </table>
 </div>
 <div class="paragraph">
-Though unused, the ramp has its location set to (14,7); perhaps it was used at some point during development.
+Though unused, the ramp has its location set to (14,7); perhaps it was used at
+some point during development.
 </div>
 </div>
 <div><span id="unusedConveyor"></span></div>
 <div class="box box-1">
 <div class="box-title">Unused conveyor</div>
 <div class="paragraph">
-There is one room in which a nontrivial conveyor graphic is defined, but not used.
+There is one room in which a nontrivial conveyor graphic is defined, but not
+used.
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -336,14 +390,16 @@ The guardian whose graphic data lives at <a href="../asm/AB00.html#b100">B100</a
 </table>
 </div>
 <div class="paragraph">
-However, this guardian made an appearance later on in the room 'Macaroni Ted' in Jet Set Willy II.
+However, this guardian made an appearance later on in the room 'Macaroni Ted'
+in Jet Set Willy II.
 </div>
 </div>
 <div><span id="uniqueGuardians"></span></div>
 <div class="box box-1">
 <div class="box-title">Unique guardians</div>
 <div class="paragraph">
-There are seven rooms that contain a unique guardian (that is, a guardian that does not appear in any other room).
+There are seven rooms that contain a unique guardian (that is, a guardian that
+does not appear in any other room).
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -399,14 +455,23 @@ The commonest guardian is the bird, whose graphic data lives at <a href="../asm/
 </table>
 </div>
 <div class="paragraph">
-There are 23 instances of this guardian spread over 18 rooms: four in <a href="../asm/C400.html">The Drive</a>, two in each of <a href="../asm/C100.html">The Bridge</a> and <a href="../asm/C800.html">Inside the MegaTrunk</a>, and one in each of <a href="../asm/CB00.html">The Hall</a>, <a href="../asm/CC00.html">Tree Top</a>, <a href="../asm/CD00.html">Out on a limb</a>, <a href="../asm/CE00.html">Rescue Esmerelda</a>, <a href="../asm/CF00.html">I'm sure I've seen this before..</a>, <a href="../asm/D000.html">We must perform a Quirkafleeg</a>, <a href="../asm/D400.html">Ballroom East</a>, <a href="../asm/D600.html">To the Kitchens Main Stairway</a>, <a href="../asm/E400.html">A bit of tree</a>, <a href="../asm/E600.html">Priests' Hole</a>, <a href="../asm/ED00.html">Under the Drive</a>, <a href="../asm/F000.html">Nomen Luni</a>, <a href="../asm/F200.html">Watch Tower</a>, <a href="../asm/F600.html">West  Wing</a> and <a href="../asm/F800.html">West Wing Roof</a>.
+There are 23 instances of this guardian spread over 18 rooms: four in
+<a href="../asm/C400.html">The Drive</a>, two in each of <a href="../asm/C100.html">The Bridge</a> and <a href="../asm/C800.html">Inside the
+MegaTrunk</a>, and one in each of <a href="../asm/CB00.html">The Hall</a>, <a href="../asm/CC00.html">Tree Top</a>,
+<a href="../asm/CD00.html">Out on a limb</a>, <a href="../asm/CE00.html">Rescue Esmerelda</a>, <a href="../asm/CF00.html">I'm sure I've seen
+this before..</a>, <a href="../asm/D000.html">We must perform a Quirkafleeg</a>, <a href="../asm/D400.html">Ballroom East</a>,
+<a href="../asm/D600.html">To the Kitchens Main Stairway</a>, <a href="../asm/E400.html">A bit of tree</a>,
+<a href="../asm/E600.html">Priests' Hole</a>, <a href="../asm/ED00.html">Under the Drive</a>, <a href="../asm/F000.html">Nomen Luni</a>,
+<a href="../asm/F200.html">Watch Tower</a>, <a href="../asm/F600.html">West  Wing</a> and <a href="../asm/F800.html">West Wing Roof</a>.
 </div>
 </div>
 <div><span id="commonestItem"></span></div>
 <div class="box box-1">
 <div class="box-title">Commonest item</div>
 <div class="paragraph">
-The commonest item is the bell, which appears in <a href="../asm/D100.html">Up on the Battlements</a>, <a href="../asm/D000.html">We must perform a Quirkafleeg</a> and <a href="../asm/CF00.html">I'm sure I've seen this before..</a>.
+The commonest item is the bell, which appears in <a href="../asm/D100.html">Up on the
+Battlements</a>, <a href="../asm/D000.html">We must perform a Quirkafleeg</a> and <a href="../asm/CF00.html">I'm sure I've
+seen this before..</a>.
 </div>
 <div class="paragraph">
 <table class="">
@@ -423,21 +488,26 @@ Every other item is unique to its own room.
 <div class="box box-2">
 <div class="box-title">Commonest codes</div>
 <div class="paragraph">
-The commonest codes on the code sheet are 2411 (at H7, O7, R7 and C9) and 3443 (at O3, D6, L8 and R8).
+The commonest codes on the code sheet are 2411 (at H7, O7, R7 and C9) and 3443
+(at O3, D6, L8 and R8).
 </div>
 </div>
 <div><span id="codesFromCode"></span></div>
 <div class="box box-1">
 <div class="box-title">Codes from code</div>
 <div class="paragraph">
-The codes for grid locations A0-Q9 are derived not from a deliberately crafted data table but from the unused code remnants at <a href="../asm/9E00.html">9E00</a>.
+The codes for grid locations A0-Q9 are derived not from a deliberately crafted
+data table but from the unused code remnants at <a href="../asm/9E00.html">9E00</a>.
 </div>
 </div>
 <div><span id="oneWaySaw"></span></div>
 <div class="box box-2">
 <div class="box-title">The one-way saw</div>
 <div class="paragraph">
-The saw guardian in <a href="../asm/C700.html">Cuckoo's Nest</a> always has its blade facing left, even when it's moving left to right (see <a href="../asm/A000.html#a378">A378</a>). The reason for this is that its base sprite is 0 and its animation frame mask is 011, which means it cycles through sprites 0, 1, 2 and 3 only (see <a href="../asm/91BE.html#9211">9211</a>).
+The saw guardian in <a href="../asm/C700.html">Cuckoo's Nest</a> always has its blade facing left,
+even when it's moving left to right (see <a href="../asm/A000.html#a378">A378</a>). The reason for this is that
+its base sprite is 0 and its animation frame mask is 011, which means it cycles
+through sprites 0, 1, 2 and 3 only (see <a href="../asm/91BE.html#9211">9211</a>).
 </div>
 <div class="paragraph">
 <table class="">
@@ -450,59 +520,124 @@ The saw guardian in <a href="../asm/C700.html">Cuckoo's Nest</a> always has its 
 </table>
 </div>
 <div class="paragraph">
-All the other saw guardians in the game have the blade facing right when moving in that direction, because their animation frame mask is 111 (see <a href="../asm/A000.html#a1a0">A1A0</a>, <a href="../asm/A000.html#a1a8">A1A8</a> and <a href="../asm/A000.html#a2c0">A2C0</a>).
+Use the following POKE to make the saw face right when moving in that
+direction:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/A000.html#a378">41849</a>,227
+</div>
+<div class="paragraph">
+All the other saw guardians in the game have the blade facing right when moving
+in that direction, because their animation frame mask is 111 (see <a href="../asm/A000.html#a1a0">A1A0</a>,
+<a href="../asm/A000.html#a1a8">A1A8</a> and <a href="../asm/A000.html#a2c0">A2C0</a>).
+</div>
+</div>
+<div><span id="disrespectfulMonk"></span></div>
+<div class="box box-1">
+<div class="box-title">The disrespectful monk</div>
+<div class="paragraph">
+Like the <a href="#oneWaySaw">one-way saw</a> in Cuckoo's Nest, the monk in
+<a href="../asm/DB00.html">The Chapel</a> always faces left, even when he's moving left to right.
+Also like the one-way saw, the reason for this is that his base sprite is 0 and
+his animation frame mask is 011, which means he cycles through sprites 0, 1, 2
+and 3 only.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="guardian180-0-3" src="../images/udgs/guardian180-0-3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian180-1-3" src="../images/udgs/guardian180-1-3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian180-2-3" src="../images/udgs/guardian180-2-3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian180-3-3" src="../images/udgs/guardian180-3-3.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Use the following POKE to make the monk face right when walking in that
+direction:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/A000.html#a338">41785</a>,227
+</div>
+<div class="paragraph">
+The saw in Cuckoo's Nest and the monk in The Chapel are the only horizontal
+guardians that use only 4 out of 8 possible animation frames in a particular
+room.
 </div>
 </div>
 <div><span id="someAirLeft"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Some air left?</div>
 <div class="paragraph">
-The message at <a href="../asm/8451.html">8451</a> ('AIR') may be unused, but it is still a poignant reminder of Willy's former career as a miner.
+The message at <a href="../asm/8451.html">8451</a> ('AIR') may be unused, but it is still a poignant
+reminder of Willy's former career as a miner.
 </div>
 </div>
 <div><span id="mariasDodgyDepthPerception"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Maria's dodgy depth perception</div>
 <div class="paragraph">
-Whether Maria raises her arm at Willy in <a href="../asm/E300.html">Master Bedroom</a> depends on his height above floor level, as opposed to his distance away from her (see the code at <a href="../asm/9534.html#9550">9550</a>); this means that she raises her arm not only as Willy walks up the ramp towards her, but also if he jumps in the air at the entrance to the room.
+Whether Maria raises her arm at Willy in <a href="../asm/E300.html">Master Bedroom</a> depends on his
+height above floor level, as opposed to his distance away from her (see the
+code at <a href="../asm/9534.html#9550">9550</a>); this means that she raises her arm not only as Willy walks up
+the ramp towards her, but also if he jumps in the air at the entrance to the
+room.
 </div>
 </div>
 <div><span id="ropeClimbingForBeginners"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Rope climbing for beginners</div>
 <div class="paragraph">
-In order to climb down a rope, Willy must move in the same direction as the rope is swinging (left if the rope is swinging right to left, right if the rope is swinging left to right); to climb up a rope, he must move in the opposite direction (see <a href="../asm/91BE.html#937c">937C</a>).
+In order to climb down a rope, Willy must move in the same direction as the
+rope is swinging (left if the rope is swinging right to left, right if the rope
+is swinging left to right); to climb up a rope, he must move in the opposite
+direction (see <a href="../asm/91BE.html#937c">937C</a>).
 </div>
 </div>
 <div><span id="theEncroachingRope"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">The encroaching rope</div>
 <div class="paragraph">
-In the entity buffer at <a href="../asm/8100.html">8100</a>, the definition for a rope uses the second and fourth bytes of the following definition (in addition to the eight bytes of its own slot); this means that to avoid corrupting another entity, the rope must be either the last entity specified in a room (in which case it will use the first and third bytes in the otherwise unused area at <a href="../asm/8141.html">8141</a>), or followed by an arrow (which doesn't use the second and fourth bytes of its slot).
+In the entity buffer at <a href="../asm/8100.html">8100</a>, the definition for a rope uses the second and
+fourth bytes of the following definition (in addition to the eight bytes of its
+own slot); this means that to avoid corrupting another entity, the rope must be
+either the last entity specified in a room (in which case it will use the first
+and third bytes in the otherwise unused area at <a href="../asm/8141.html">8141</a>), or followed by an
+arrow (which doesn't use the second and fourth bytes of its slot).
 </div>
 </div>
 <div><span id="ropesBeforeArrows"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Ropes before arrows</div>
 <div class="paragraph">
-The rope-drawing code at <a href="../asm/91BE.html#92a4">92A4</a> places Willy on the rope if it is touching anything else (Willy or otherwise) that's already been drawn. This means, for example, that if an arrow is drawn before the rope (by appearing before it in the room's entity specifications), Willy will be immediately transported onto the rope when the arrow hits it.
+The rope-drawing code at <a href="../asm/91BE.html#92a4">92A4</a> places Willy on the rope if it is touching
+anything else (Willy or otherwise) that's already been drawn. This means, for
+example, that if an arrow is drawn before the rope (by appearing before it in
+the room's entity specifications), Willy will be immediately transported onto
+the rope when the arrow hits it.
 </div>
 <div class="paragraph">
 To see this happen in <a href="../asm/FA00.html">The Beach</a>:
 </div>
 <div class="paragraph">
 <div>POKE <a href="../asm/87CA.html#87ea">34795</a>,58 (start in <a href="../asm/FA00.html">The Beach</a>)</div>
-<div>POKE <a href="../asm/FA00.html#faf0">64240</a>,60: POKE <a href="../asm/FA00.html#faf0">64241</a>,84 (entity specification for the arrow)</div>
-<div>POKE <a href="../asm/FA00.html#faf2">64242</a>,1: POKE <a href="../asm/FA00.html#faf2">64243</a>,14 (entity specification for the rope)</div>
-<div>POKE <a href="../asm/87CA.html#87e5">34790</a>,128 (set Willy's initial pixel y-coordinate to 64)</div>
-<div>POKE <a href="../asm/87CA.html#87ef">34800</a>,2: POKE <a href="../asm/87CA.html#87ef">34801</a>,93 (set Willy's initial attribute buffer location)</div>
+<div>POKE <a href="../asm/FA00.html#faf0">64240</a>,60: POKE <a href="../asm/FA00.html#faf0">64241</a>,84 (entity specification for
+the arrow)</div>
+<div>POKE <a href="../asm/FA00.html#faf2">64242</a>,1: POKE <a href="../asm/FA00.html#faf2">64243</a>,14 (entity specification for
+the rope)</div>
+<div>POKE <a href="../asm/87CA.html#87e5">34790</a>,128 (set Willy's initial pixel y-coordinate to 64)
+</div>
+<div>POKE <a href="../asm/87CA.html#87ef">34800</a>,2: POKE <a href="../asm/87CA.html#87ef">34801</a>,93 (set Willy's initial
+attribute buffer location)</div>
 </div>
 </div>
 <div><span id="quadridirectionalGuardian"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">The quadridirectional guardian</div>
 <div class="paragraph">
-The cyan guardian in <a href="../asm/C900.html">On a Branch Over the Drive</a> moves up and down (not very gracefully), while its red and green cousins in <a href="../asm/D600.html">To the Kitchens&#160;&#160;&#160;&#160;Main Stairway</a> and <a href="../asm/E100.html">The Bathroom</a> move left and right.
+The cyan guardian in <a href="../asm/C900.html">On a Branch Over the Drive</a> moves up and down (not
+very gracefully), while its red and green cousins in <a href="../asm/D600.html">To the
+Kitchens&#160;&#160;&#160;&#160;Main Stairway</a> and <a href="../asm/E100.html">The Bathroom</a> move left and right.
 </div>
 <div class="paragraph">
 <table class="">
@@ -515,27 +650,38 @@ The cyan guardian in <a href="../asm/C900.html">On a Branch Over the Drive</a> m
 </table>
 </div>
 <div class="paragraph">
-It is the only type of guardian that can be seen moving vertically in one room and horizontally in another.
+It is the only type of guardian that can be seen moving vertically in one room
+and horizontally in another.
 </div>
 </div>
 <div><span id="doubleDescent"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Double descent</div>
 <div class="paragraph">
-There is a maximum distance that Willy can fall before the landing will kill him, but it's possible for Willy to fall a greater distance than that if his descent is punctuated by a transition from one room into the room below; if each portion of his descent on either side of the transition is less than the maximum distance, he will land safely.
+There is a maximum distance that Willy can fall before the landing will kill
+him, but it's possible for Willy to fall a greater distance than that if his
+descent is punctuated by a transition from one room into the room below; if
+each portion of his descent on either side of the transition is less than the
+maximum distance, he will land safely.
 </div>
 <div class="paragraph">
-To demonstrate this, jump left near the bottom of the ramp in <a href="../asm/EB00.html">Conservatory Roof</a> - Willy will land safely on the ramp in the room below (<a href="../asm/E500.html">Orangery</a>). But if Willy jumps left off the ramp in Orangery, he will die when he lands on a lower part of the ramp.
+To demonstrate this, jump left near the bottom of the ramp in
+<a href="../asm/EB00.html">Conservatory Roof</a> - Willy will land safely on the ramp in the room
+below (<a href="../asm/E500.html">Orangery</a>). But if Willy jumps left off the ramp in Orangery,
+he will die when he lands on a lower part of the ramp.
 </div>
 <div class="paragraph">
-The code responsible for this is at <a href="../asm/94D2.html#94e3">94E3</a> - it resets the airborne status indicator at <a href="../asm/85D1.html">85D1</a> to 2 if it's currently 10 or less.
+The code responsible for this is at <a href="../asm/94D2.html#94e3">94E3</a> - it resets the airborne status
+indicator at <a href="../asm/85D1.html">85D1</a> to 2 if it's currently 10 or less.
 </div>
 </div>
 <div><span id="highJump"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">High jump</div>
 <div class="paragraph">
-At certain points on a ramp, Willy can jump higher than the normal 20 pixels above his starting point. Depending on where he is standing on the ramp, he will jump 20, 22, 24 or 26 pixels.
+At certain points on a ramp, Willy can jump higher than the normal 20 pixels
+above his starting point. Depending on where he is standing on the ramp, he
+will jump 20, 22, 24 or 26 pixels.
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -560,36 +706,52 @@ At certain points on a ramp, Willy can jump higher than the normal 20 pixels abo
 </table>
 </div>
 <div class="paragraph">
-When the jump key is pressed while Willy is standing on a ramp, he is drawn at the pixel y-coordinate Y, where Y is his original pixel y-coordinate rounded down to the nearest multiple of 8 (see <a href="../asm/95C8.html">95C8</a>, which ignores the ramp below Willy when the airborne status indicator at <a href="../asm/85D1.html">85D1</a> is 1, and enters <a href="../asm/9637.html">9637</a> with <span class="register">B</span>=0). So before the jumping animation even starts, Willy is already up to 6 pixels above the ramp itself.
+When the jump key is pressed while Willy is standing on a ramp, he is drawn at
+the pixel y-coordinate Y, where Y is his original pixel y-coordinate rounded
+down to the nearest multiple of 8 (see <a href="../asm/95C8.html">95C8</a>, which ignores the ramp below
+Willy when the airborne status indicator at <a href="../asm/85D1.html">85D1</a> is 1, and enters <a href="../asm/9637.html">9637</a>
+with <span class="register">B</span>=0). So before the jumping animation even starts, Willy is already up
+to 6 pixels above the ramp itself.
 </div>
 <div class="paragraph">
-Also, during a jump Willy rises and then falls until his pixel y-coordinate is Y again, and if the jump key is still being pressed, he will jump from that point instead of falling all the way back to the ramp first.
+Also, during a jump Willy rises and then falls until his pixel y-coordinate is
+Y again, and if the jump key is still being pressed, he will jump from that
+point instead of falling all the way back to the ramp first.
 </div>
 </div>
 <div><span id="guardianColours"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Guardian colours</div>
 <div class="paragraph">
-The most common guardian colour is yellow (25 instances), and the least common colour is blue (2 instances, both BRIGHT, in <a href="../asm/D300.html">The Forgotten Abbey</a> and <a href="../asm/E900.html">The Attic</a>).
+The most common guardian colour is yellow (25 instances), and the least common
+colour is blue (2 instances, both BRIGHT, in <a href="../asm/D300.html">The Forgotten Abbey</a> and
+<a href="../asm/E900.html">The Attic</a>).
 </div>
 <div class="paragraph">
-As for the other colours, there are 18 red guardians, 20 magenta guardians, 19 green guardians, 18 cyan guardians, and 7 white guardians; there are no black guardians anywhere.
+As for the other colours, there are 18 red guardians, 20 magenta guardians, 19
+green guardians, 18 cyan guardians, and 7 white guardians; there are no black
+guardians anywhere.
 </div>
 </div>
 <div><span id="guardiansNeedAClearPath"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Guardians need a clear path</div>
 <div class="paragraph">
-The guardian-drawing code at <a href="../asm/91BE.html#91d6">91D6</a> kills Willy if a guardian collides with anything that's already been drawn in the room. This means, for example, that Willy is killed if a guardian hits a nasty, a wall or the floor.
+The guardian-drawing code at <a href="../asm/91BE.html#91d6">91D6</a> kills Willy if a guardian collides with
+anything that's already been drawn in the room. This means, for example, that
+Willy is killed if a guardian hits a nasty, a wall or the floor.
 </div>
 <div class="paragraph">
-See this happen by placing a wall block in the path of the guardian in <a href="../asm/E100.html">The Bathroom</a>:
+See this happen by placing a wall block in the path of the guardian in
+<a href="../asm/E100.html">The Bathroom</a>:
 </div>
 <div class="paragraph">
 POKE <a href="../asm/E100.html#e100">57635</a>,128
 </div>
 <div class="paragraph">
-In addition, if an arrow appears before a guardian in a room's list of entity specifications, Willy will be killed if the arrow hits the guardian. See this happen by replacing the first guardian in <a href="../asm/E200.html">Top Landing</a> with an arrow:
+In addition, if an arrow appears before a guardian in a room's list of entity
+specifications, Willy will be killed if the arrow hits the guardian. See this
+happen by replacing the first guardian in <a href="../asm/E200.html">Top Landing</a> with an arrow:
 </div>
 <div class="paragraph">
 <div>POKE <a href="../asm/E200.html#e2f0">58096</a>,<a href="../asm/A000.html#a1e0">60</a></div>
@@ -597,10 +759,12 @@ In addition, if an arrow appears before a guardian in a room's list of entity sp
 </div>
 </div>
 <div><span id="guardianOrFixture"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Guardian or fixture?</div>
 <div class="paragraph">
-Entity 0x59, defined at <a href="../asm/A000.html#a2c8">A2C8</a>, and appearing in <a href="../asm/CB00.html">The Hall</a> and <a href="../asm/F600.html">West Wing</a>, is the only guardian that does not move up, down, left or right.
+Entity 0x59, defined at <a href="../asm/A000.html#a2c8">A2C8</a>, and appearing in <a href="../asm/CB00.html">The Hall</a> and
+<a href="../asm/F600.html">West Wing</a>, is the only guardian that does not move up, down, left or
+right.
 </div>
 <div class="paragraph">
 <table class="">
@@ -611,10 +775,11 @@ Entity 0x59, defined at <a href="../asm/A000.html#a2c8">A2C8</a>, and appearing 
 </div>
 </div>
 <div><span id="unanimatedGuardians"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Unanimated guardians</div>
 <div class="paragraph">
-There are a few vertical guardians that have only one animation frame, and so are in a sense unanimated (though they do still move up and down).
+There are a few vertical guardians that have only one animation frame, and so
+are in a sense unanimated (though they do still move up and down).
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -634,6 +799,17 @@ There are a few vertical guardians that have only one animation frame, and so ar
 In contrast, every horizontal guardian has either 4 or 8 animation frames.
 </div>
 </div>
+<div><span id="underanimatedGuardians"></span></div>
+<div class="box box-2">
+<div class="box-title">Underanimated guardians</div>
+<div class="paragraph">
+Though the game engine can manage a vertical guardian with eight frames of
+animation, there are no such guardians in the game: no vertical guardian uses
+more than four animation frames. This means that in byte 0 of a vertical
+guardian's buffer - bits 5-7 of which hold the animation frame index - bit 7 is
+always unused in practice.
+</div>
+</div>
 <div><span id="unusedEntityDefinition"></span></div>
 <div class="box box-1">
 <div class="box-title">Unused entity definition</div>
@@ -641,21 +817,49 @@ In contrast, every horizontal guardian has either 4 or 8 animation frames.
 Entity definition 43 at <a href="../asm/A000.html#a158">A158</a> contains data but is not used.
 </div>
 <div class="paragraph">
-Which room might this vertical guardian have inhabited at some point while the game was being developed? We'll probably never know.
+Which room might this vertical guardian have inhabited at some point while the
+game was being developed? We'll probably never know.
 </div>
 </div>
 <div><span id="untouchableEntityDefinition"></span></div>
 <div class="box box-2">
 <div class="box-title">Untouchable entity definition</div>
 <div class="paragraph">
-Entity definition 127 at <a href="../asm/A000.html#a3f8">A3F8</a> should not be modified or used to define an actual entity, because its first byte (255) is used to terminate the entity buffer at <a href="../asm/8100.html">8100</a>.
+Entity definition 127 at <a href="../asm/A000.html#a3f8">A3F8</a> should not be modified or used to define an
+actual entity, because its first byte (255) is used to terminate the entity
+buffer at <a href="../asm/8100.html">8100</a>.
+</div>
+</div>
+<div><span id="rampsVsWalls"></span></div>
+<div class="box box-1">
+<div class="box-title">Ramps v. walls</div>
+<div class="paragraph">
+Wall tiles usually block Willy's path, but if he's on a ramp, he can sometimes
+walk straight through them. This can be seen when Willy walks down the ramp in
+<a href="../asm/EC00.html">On top of the house</a>.
+</div>
+<div class="paragraph">
+<img alt="rvw1" src="../images/scr/rvw1.png" />
+</div>
+<div class="paragraph">
+Willy can also walk through a wall tile while going up a ramp. There are no
+opportunities for him to perform this feat in the original game, but the
+following POKE adds a wall tile near the ramp in <a href="../asm/E100.html">The Bathroom</a> to
+illustrate the phenomenon:
+</div>
+<div class="paragraph">
+POKE 57682,128
+</div>
+<div class="paragraph">
+<img alt="rvw2" src="../images/scr/rvw2.png" />
 </div>
 </div>
 <div><span id="oneItemBehindAnother"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">One item behind another</div>
 <div class="paragraph">
-There are two items in <a href="../asm/FA00.html">The Beach</a>, but they are both at the same location, so it looks as if there is only one.
+There are two items in <a href="../asm/FA00.html">The Beach</a>, but they are both at the same
+location, so it looks as if there is only one.
 </div>
 <div class="paragraph">
 To move one of the items two cells to the left:
@@ -665,20 +869,24 @@ POKE <a href="../asm/A400.html#a5c6">42438</a>,180
 </div>
 </div>
 <div><span id="itemsAndWhiteness"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Items and whiteness</div>
 <div class="paragraph">
-If an item lies in the path of an arrow or white guardian, it will be collected when the arrow or guardian hits it. This is because the routine at <a href="../asm/93D1.html">93D1</a> collects an item if the cell it occupies has white INK.
+If an item lies in the path of an arrow or white guardian, it will be collected
+when the arrow or guardian hits it. This is because the routine at <a href="../asm/93D1.html">93D1</a>
+collects an item if the cell it occupies has white INK.
 </div>
 <div class="paragraph">
-To replace the guardian in <a href="../asm/E100.html">The Bathroom</a> with an arrow and watch it collect the item (make sure Willy jumps as the arrow approaches):
+To replace the guardian in <a href="../asm/E100.html">The Bathroom</a> with an arrow and watch it
+collect the item (make sure Willy jumps as the arrow approaches):
 </div>
 <div class="paragraph">
 <div>POKE <a href="../asm/E100.html#e1f0">57840</a>,60</div>
 <div>POKE 57841,214</div>
 </div>
 <div class="paragraph">
-To make the guardian in <a href="../asm/E100.html">The Bathroom</a> white and place the item in its path:
+To make the guardian in <a href="../asm/E100.html">The Bathroom</a> white and place the item in its
+path:
 </div>
 <div class="paragraph">
 <div>POKE <a href="../asm/A000.html#a1d8">41433</a>,103</div>
@@ -686,38 +894,99 @@ To make the guardian in <a href="../asm/E100.html">The Bathroom</a> white and pl
 <div>POKE <a href="../asm/A400.html#a5ff">42495</a>,135</div>
 </div>
 <div class="paragraph">
-In addition, any item situated in a room that has a background with white INK will be automatically collected as soon as Willy enters the room (see <a href="bugs.html#selfCollectingItem">The self-collecting item</a>).
+In addition, any item situated in a room that has a background with white INK
+will be automatically collected as soon as Willy enters the room (see
+<a href="bugs.html#selfCollectingItem">The self-collecting item</a>).
+</div>
+</div>
+<div><span id="uneconomicalUnderworld"></span></div>
+<div class="box box-2">
+<div class="box-title">The uneconomical underworld</div>
+<div class="paragraph">
+The demonic face guardian (as seen in <a href="../asm/C600.html">Entrance to Hades</a>, <a href="../asm/DB00.html">The
+Chapel</a> and  <a href="../asm/E600.html">Priests' Hole</a>) uses three entity definitions
+(<a href="../asm/A000.html#a080">0x10</a>, <a href="../asm/A000.html#a088">0x11</a> and <a href="../asm/A000.html#a090">0x12</a>), but it could be adjusted
+to use only two, where the upper-left and upper-right portions share an entity
+definition with a different base sprite and x-coordinate.
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="guardian186-4-4" src="../images/udgs/guardian186-4-4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian186-5-4" src="../images/udgs/guardian186-5-4.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="2" rowspan="1"><img alt="guardian186-6-4" src="../images/udgs/guardian186-6-4.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Use the following POKEs to free up entity definition 0x10:
+</div>
+<div class="paragraph">
+<div>POKE <a href="../asm/C600.html#c6f0">50928</a>,17</div>
+<div>POKE <a href="../asm/DB00.html#dbf0">56304</a>,17</div>
+<div>POKE <a href="../asm/E600.html#e6f0">59120</a>,17</div>
 </div>
 </div>
 <div><span id="slipperySlopes"></span></div>
 <div class="box box-1">
 <div class="box-title">Slippery slopes</div>
 <div class="paragraph">
-In <a href="../asm/DB00.html">The Chapel</a> and <a href="../asm/E000.html">Halfway up the East Wall</a>, the ramps act as conveyors that push Willy down the slope, because the ramp tile has the same attribute byte as the conveyor tile (which is not actually used in either room). There are no conveyor-ramps anywhere else in the game.
+In <a href="../asm/DB00.html">The Chapel</a> and <a href="../asm/E000.html">Halfway up the East Wall</a>, the ramps act as
+conveyors that push Willy down the slope, because the ramp tile has the same
+attribute byte as the conveyor tile (which is not actually used in either
+room). There are no conveyor-ramps anywhere else in the game.
+</div>
+</div>
+<div><span id="floorRamps"></span></div>
+<div class="box box-2">
+<div class="box-title">Floor ramps</div>
+<div class="paragraph">
+There are five rooms in which the floor tiles behave like ramps because their
+attribute byte matches that of the (unused) ramp tile:
+</div>
+<div class="paragraph">
+<ul class="">
+<li><a href="../asm/CD00.html">Out on a limb</a> (25 tiles)</li>
+<li><a href="../asm/CE00.html">Rescue Esmerelda</a> (13 tiles)</li>
+<li><a href="../asm/CF00.html">I'm sure I've seen this before..</a> (4 tiles)</li>
+<li><a href="../asm/D100.html">Up on the Battlements</a> (4 tiles)</li>
+<li><a href="../asm/D200.html">On the Roof</a> (5 tiles)</li>
+</ul>
 </div>
 </div>
 <div><span id="toPauseOrNotToPause"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">To pause or not to pause</div>
 <div class="paragraph">
-If the in-game music has been switched off, the game will pause automatically after a period of inactivity; however, if the in-game music is playing, it will not (see <a href="../asm/8B07.html#8b3c">8B3C</a>).
+If the in-game music has been switched off, the game will pause automatically
+after a period of inactivity; however, if the in-game music is playing, it will
+not (see <a href="../asm/8B07.html#8b3c">8B3C</a>).
 </div>
 </div>
 <div><span id="cheatsNeverCycleColours"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Cheats never cycle colours</div>
 <div class="paragraph">
-While the game is paused, the INK and PAPER colours are cycled at regular intervals, unless the <a href="facts.html#writetyper">WRITETYPER cheat mode</a> has been activated (see <a href="../asm/89AD.html#8ae1">8AE1</a>).
+While the game is paused, the INK and PAPER colours are cycled at regular
+intervals, unless the <a href="facts.html#writetyper">WRITETYPER cheat mode</a> has been
+activated (see <a href="../asm/89AD.html#8ae1">8AE1</a>).
 </div>
 </div>
 <div><span id="nomenLuni"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Nomen Luni?</div>
 <div class="paragraph">
-The name of the room <a href="../asm/F000.html">Nomen Luni</a> is a pun on 'Nomen Ludi', a Latin translation of 'The Name of the Game', which appeared in adverts for the aeroplane shoot-em-up game <a href="http://www.worldofspectrum.org/infoseekid.cgi?id=0005894">Zzoom</a> by Imagine Software Ltd.
+The name of the room <a href="../asm/F000.html">Nomen Luni</a> is a pun on 'Nomen Ludi', a Latin
+translation of 'The Name of the Game', which appeared in adverts for the
+aeroplane shoot-em-up game
+<a href="http://worldofspectrum.org/infoseekid.cgi?id=0005894">Zzoom</a> by
+Imagine Software Ltd.
 </div>
 <div class="paragraph">
-In <a href="../asm/F000.html">Nomen Luni</a> and the room below (<a href="../asm/EA00.html">Under the Roof</a>) you can see an aeroplane that has crashed into the roof of Willy's mansion:
+In <a href="../asm/F000.html">Nomen Luni</a> and the room below (<a href="../asm/EA00.html">Under the Roof</a>) you can see
+an aeroplane that has crashed into the roof of Willy's mansion:
 </div>
 <div class="paragraph">
 <table class="">
@@ -728,57 +997,77 @@ In <a href="../asm/F000.html">Nomen Luni</a> and the room below (<a href="../asm
 </div>
 </div>
 <div><span id="weMustPerformAQuirkafleeg"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">We must perform a Quirkafleeg?</div>
 <div class="paragraph">
-The name of the room <a href="../asm/D000.html">We must perform a Quirkafleeg</a> is a reference to issue 5 of the comic book <i>The Adventures of Fat Freddy's Cat</i>, in which the inhabitants of Pootweet, upon seeing a suitcase full of dead mice, exclaim 'We must perform a Quirkafleeg!' and promptly lie down on their backs and start waving their arms and legs in the air.
+The name of the room <a href="../asm/D000.html">We must perform a Quirkafleeg</a> is a reference to
+issue 5 of the comic book <i>The Adventures of Fat Freddy's Cat</i>, in which
+the inhabitants of Pootweet, upon seeing a suitcase full of dead mice, exclaim
+'We must perform a Quirkafleeg!' and promptly lie down on their backs and
+start waving their arms and legs in the air.
 </div>
 </div>
 <div><span id="rescueEsmerelda"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Rescue Esmerelda?</div>
 <div class="paragraph">
-The sequence of rooms <a href="../asm/D100.html">Up on the Battlements</a>, <a href="../asm/D000.html">We must perform a Quirkafleeg</a>, <a href="../asm/CF00.html">I'm sure I've seen this before..</a> and <a href="../asm/CE00.html">Rescue Esmerelda</a> - with the guards, battlements, rope, bells and Esmerelda - are a reference to <a href="http://www.worldofspectrum.org/infoseekid.cgi?id=0002383">Hunchback</a> by Ocean Software Ltd.
+The sequence of rooms <a href="../asm/D100.html">Up on the Battlements</a>, <a href="../asm/D000.html">We must perform a
+Quirkafleeg</a>, <a href="../asm/CF00.html">I'm sure I've seen this before..</a> and <a href="../asm/CE00.html">Rescue
+Esmerelda</a> - with the guards, battlements, rope, bells and Esmerelda - are a
+reference to
+<a href="http://worldofspectrum.org/infoseekid.cgi?id=0002383">Hunchback</a> by
+Ocean Software Ltd.
 </div>
 </div>
 <div><span id="drJonesWillNeverBelieveThis"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Dr Jones will never believe this?</div>
 <div class="paragraph">
-The name of the room <a href="../asm/E800.html">Dr Jones will never believe this</a> may be a reference to the 'Myth of Jones', a story told by the philosopher Wilfrid Sellars in his most famous paper, <i>Empiricism and the Philosophy of Mind</i>. In this story, the hero, Jones, seeks to explain how a person can have a sensation of something that doesn't exist; for example, how it can be that people behave just as they would if there were a pink elephant in the room when in fact there is no such thing there. In this particular room, however, there <em>is</em> a pink (well, magenta) elephant.
+The name of the room <a href="../asm/E800.html">Dr Jones will never believe this</a> may be a
+reference to the 'Myth of Jones', a story told by the philosopher Wilfrid
+Sellars in his most famous paper, <i>Empiricism and the Philosophy of Mind</i>.
+In this story, the hero, Jones, seeks to explain how a person can have a
+sensation of something that doesn't exist; for example, how it can be that
+people behave just as they would if there were a pink elephant in the room when
+in fact there is no such thing there. In this particular room, however, there
+<em>is</em> a pink (well, magenta) elephant.
 </div>
 </div>
 <div><span id="emptiestRooms"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">The emptiest rooms</div>
 <div class="paragraph">
-<a href="../asm/F500.html">Back Door</a> is the only room that has no items, nasties, rope, arrows or guardians.
+<a href="../asm/F500.html">Back Door</a> is the only room that has no items, nasties, rope, arrows or
+guardians.
 </div>
 <div class="paragraph">
 <img alt="back_door" src="../images/scr/back_door.png" />
 </div>
 <div class="paragraph">
-<a href="../asm/CA00.html">The Front Door</a> is the only other room that has no rope, arrows or guardians; it also has no nasties, but does contain an item.
+<a href="../asm/CA00.html">The Front Door</a> is the only other room that has no rope, arrows or
+guardians; it also has no nasties, but does contain an item.
 </div>
 <div class="paragraph">
 <img alt="the_front_door" src="../images/scr/the_front_door.png" />
 </div>
 </div>
 <div><span id="mostGuardians"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">The most guardians</div>
 <div class="paragraph">
-<a href="../asm/D300.html">The Forgotten Abbey</a> is the only room with a full complement of eight guardians.
+<a href="../asm/D300.html">The Forgotten Abbey</a> is the only room with a full complement of eight
+guardians.
 </div>
 <div class="paragraph">
 <img alt="the_forgotten_abbey" src="../images/scr/the_forgotten_abbey.png" />
 </div>
 <div class="paragraph">
-<a href="../asm/E900.html">The Attic</a> is the only other room with eight entities defined: six vertical guardians and two arrows.
+<a href="../asm/E900.html">The Attic</a> is the only other room with eight entities defined: six
+vertical guardians and two arrows.
 </div>
 </div>
 <div><span id="mostItems"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">The most items</div>
 <div class="paragraph">
 The room with the most items is <a href="../asm/C000.html">The Off Licence</a> with 12.
@@ -788,9 +1077,9 @@ The room with the most items is <a href="../asm/C000.html">The Off Licence</a> w
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>

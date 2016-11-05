@@ -14,45 +14,134 @@
 </tr>
 </table>
 <ul class="contents">
+<li><a href="#animation_frame_index_mask">Animation frame index mask</a></li>
 <li><a href="#entity">Entity</a></li>
 <li><a href="#entity_definition">Entity definition</a></li>
 <li><a href="#entity_specification">Entity specification</a></li>
 <li><a href="#guardian">Guardian</a></li>
 <li><a href="#nasty">Nasty</a></li>
 </ul>
-<div><span id="entity"></span></div>
+<div><span id="animation_frame_index_mask"></span></div>
 <div class="box box-1">
+<div class="box-title">Animation frame index mask</div>
+<div class="paragraph">
+The animation frame index mask for a <a href="#guardian">guardian</a> is found
+in bits 5-7 of byte 1 of its buffer (see <a href="../asm/8100.html">8100</a>) while it is on-screen, having
+been copied there from the corresponding <a href="#entity_definition">entity
+definition</a> (see <a href="../asm/A000.html">A000</a>). The mask determines the animation frames that the
+guardian's sprite cycles through. If 'B' is the guardian's base frame (0-7),
+then its sprite will cycle through animation frames as follows, where '|'
+denotes a bitwise OR operation (see <a href="../asm/91BE.html#9211">9211</a>):
+</div>
+<div class="paragraph">
+<table class="boxData">
+<tr>
+<th colspan="1" rowspan="1">Mask</th>
+<th colspan="1" rowspan="1">Frames</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">000</td>
+<td class="" colspan="1" rowspan="1">B (1 frame)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">001</td>
+<td class="" colspan="1" rowspan="1">B, B|1 (1 or 2 distinct frames)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">010</td>
+<td class="" colspan="1" rowspan="1">B, B, B|2, B|2 (1 or 2 distinct frames)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">011</td>
+<td class="" colspan="1" rowspan="1">B, B|1, B|2, B|3 (1, 2 or 4 distinct frames)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">100</td>
+<td class="" colspan="1" rowspan="1">B, B, B, B, B|4, B|4, B|4, B|4 (1 or 2 distinct frames)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">101</td>
+<td class="" colspan="1" rowspan="1">B, B|1, B, B|1, B|4, B|5, B|4, B|5 (1, 2 or 4 distinct frames)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">110</td>
+<td class="" colspan="1" rowspan="1">B, B, B|2, B|2, B|4, B|4, B|6, B|6 (1, 2 or 4 distinct frames)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">111</td>
+<td class="" colspan="1" rowspan="1">B, B|1, B|2, B|3, B|4, B|5, B|6, B|7 (1, 2, 4 or 8 distinct frames)</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+For example, if a guardian's base frame is 2 and its animation frame index mask
+is 011, then its sprite will cycle through frames 2, 2|1, 2|2 and 2|3 (i.e.
+frames 2 and 3).
+</div>
+<div class="paragraph">
+Note that the animation frame masks 100, 101 and 110 are not used by any
+guardians in the game, and no guardian has a base frame of 7.
+</div>
+</div>
+<div><span id="entity"></span></div>
+<div class="box box-2">
 <div class="box-title">Entity</div>
 <div class="paragraph">
 A guardian, arrow or rope.
 </div>
 </div>
 <div><span id="entity_definition"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Entity definition</div>
 <div class="paragraph">
-One of the 128 8-byte blocks located at <a href="../asm/A000.html">A000</a> onwards. Each one defines the location and movement characteristics of a guardian, arrow or rope.
+One of the 128 8-byte blocks located at <a href="../asm/A000.html">A000</a> onwards. Each one defines the
+location and movement characteristics of a guardian, arrow or rope.
 </div>
 </div>
 <div><span id="entity_specification"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Entity specification</div>
 <div class="paragraph">
-One of the eight pairs of bytes at the end of a room definition (e.g. at <a href="../asm/D000.html#d0f0">D0F0</a>). Each one specifies a guardian, arrow or rope present in the room.
+One of the eight pairs of bytes at the end of a room definition (e.g. at
+<a href="../asm/D000.html#d0f0">D0F0</a>). Each one specifies a guardian, arrow or rope present in the room.
 </div>
 </div>
 <div><span id="guardian"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Guardian</div>
 <div class="paragraph">
-An inhabitant of a room that continuously moves left and right (horizontal guardian) or up and down (vertical guardian) in a straight line, or <a href="facts.html#guardianOrFixture">stays still</a>. Contact with a guardian is fatal. The graphic data for all the guardians in the game can be found at <a href="../asm/AB00.html">AB00</a>.
+An inhabitant of a room that continuously moves left and right (horizontal
+guardian) or up and down (vertical guardian) in a straight line, or
+<a href="facts.html#guardianOrFixture">stays still</a>. Contact with a guardian is fatal. Some
+examples are:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/C500.html">The Security Guard</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian191-4-66" src="../images/udgs/guardian191-4-66.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/D300.html">The Forgotten Abbey</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian180-2-6" src="../images/udgs/guardian180-2-6.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/E100.html">The Bathroom</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="guardian185-1-4" src="../images/udgs/guardian185-1-4.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The graphic data for all the guardians in the game can be found at <a href="../asm/AB00.html">AB00</a>.
 </div>
 </div>
 <div><span id="nasty"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Nasty</div>
 <div class="paragraph">
-An immobile object drawn in a single cell as part of a room along with the background, walls, floors, ramp and conveyor. Contact with a nasty is fatal. Some examples are:
+An immobile object drawn in a single cell as part of a room along with the
+background, walls, floors, ramp and conveyor. Contact with a nasty is fatal.
+Some examples are:
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -72,9 +161,9 @@ An immobile object drawn in a single cell as part of a room along with the backg
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>

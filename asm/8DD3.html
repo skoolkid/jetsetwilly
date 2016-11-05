@@ -361,13 +361,13 @@ If we get here, then Willy is standing on the floor or a ramp, or he's falling, 
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e39"></span>8E39</td>
 <td class="instruction">AND $0E</td>
-<td class="comment-11" rowspan="1">Does Willy's sprite occupy six cells at the moment?</td>
+<td class="comment-11" rowspan="1">Is Willy either on a ramp, or occupying only four cells?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e3b"></span>8E3B</td>
 <td class="instruction">JR NZ,<a href="8DD3.html#8e62">$8E62</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -878,9 +878,9 @@ The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>

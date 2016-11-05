@@ -47,7 +47,7 @@ Used by the routine at <a href="89AD.html">89AD</a>. Draws the rope, arrows and 
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="91be"></span>91BE</td>
 <td class="instruction">LD IX,$8100</td>
-<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the first byte of the entity buffer at <a href="8100.html">8100</a></td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the first byte of the first entity buffer at <a href="8100.html">8100</a></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -63,13 +63,13 @@ The drawing loop begins here.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="91c2"></span>91C2</td>
 <td class="instruction">LD A,(IX+$00)</td>
-<td class="comment-11" rowspan="1">Pick up the first byte of the current entity definition</td>
+<td class="comment-11" rowspan="1">Pick up the first byte of the current entity's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91c5"></span>91C5</td>
 <td class="instruction">CP $FF</td>
-<td class="comment-11" rowspan="1">Have we reached the end of the entity buffer?</td>
+<td class="comment-11" rowspan="1">Have we already dealt with every entity?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -87,7 +87,7 @@ The drawing loop begins here.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91ca"></span>91CA</td>
 <td class="instruction">JP Z,<a href="91BE.html#93b3">$93B3</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition if this one is empty</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity buffer if this one is not being used</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -151,7 +151,7 @@ We are dealing with a horizontal or vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91dd"></span>91DD</td>
 <td class="instruction">LD A,(IX+$02)</td>
-<td class="comment-11" rowspan="2">Pick up the guardian's x-coordinate from bits 0-4 of the third byte of the entity definition</td>
+<td class="comment-11" rowspan="2">Pick up the guardian's x-coordinate from bits 0-4 of the third byte of its buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -175,7 +175,7 @@ We are dealing with a horizontal or vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91e4"></span>91E4</td>
 <td class="instruction">LD A,E</td>
-<td class="comment-11" rowspan="1">Copy the fourth byte of the entity definition to <span class="register">A</span></td>
+<td class="comment-11" rowspan="1">Copy the fourth byte of the guardian's buffer to <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -211,7 +211,7 @@ We are dealing with a horizontal or vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91ee"></span>91EE</td>
 <td class="instruction">LD A,(IX+$01)</td>
-<td class="comment-11" rowspan="1">Pick up the second byte of the entity definition</td>
+<td class="comment-11" rowspan="1">Pick up the second byte of the guardian's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -307,7 +307,7 @@ We are dealing with a horizontal or vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9204"></span>9204</td>
 <td class="instruction">LD A,(IX+$03)</td>
-<td class="comment-11" rowspan="1">Pick up the fourth byte of the entity definition</td>
+<td class="comment-11" rowspan="1">Pick up the fourth byte of the guardian's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -451,7 +451,7 @@ We are dealing with a horizontal or vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9234"></span>9234</td>
 <td class="instruction">JP <a href="91BE.html#93b3">$93B3</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -575,7 +575,7 @@ We are dealing with an arrow.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="925f"></span>925F</td>
 <td class="instruction">JP <a href="91BE.html#93b3">$93B3</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -587,7 +587,7 @@ We are dealing with an arrow.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9264"></span>9264</td>
 <td class="instruction">JP NZ,<a href="91BE.html#93b3">$93B3</a></td>
-<td class="comment-11" rowspan="1">If not, jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -791,7 +791,7 @@ We are dealing with an arrow.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92a1"></span>92A1</td>
 <td class="instruction">JP <a href="91BE.html#93b3">$93B3</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -813,13 +813,13 @@ We are dealing with a rope.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92a8"></span>92A8</td>
 <td class="instruction">LD (IX+$09),$00</td>
-<td class="comment-11" rowspan="1">Initialise the second byte in the following entity definition to zero; this will count the segments of rope to draw</td>
+<td class="comment-11" rowspan="1">Initialise the second byte in the following entity buffer to zero; this will count the segments of rope to draw</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ac"></span>92AC</td>
 <td class="instruction">LD A,(IX+$02)</td>
-<td class="comment-11" rowspan="2">Initialise the fourth byte of the entity definition; this holds the x-coordinate of the cell in which the segment of rope under consideration will be drawn</td>
+<td class="comment-11" rowspan="2">Initialise the fourth byte of the rope's buffer; this holds the x-coordinate of the cell in which the segment of rope under consideration will be drawn</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -831,7 +831,7 @@ We are dealing with a rope.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b2"></span>92B2</td>
 <td class="instruction">LD (IX+$05),$80</td>
-<td class="comment-11" rowspan="1">Initialise the sixth byte of the entity definition to 128 (bit 7 set); the value held here is used to draw the segment of rope under consideration</td>
+<td class="comment-11" rowspan="1">Initialise the sixth byte of the rope's buffer to 128 (bit 7 set); the value held here is used to draw the segment of rope under consideration</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -1325,7 +1325,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="936d"></span>936D</td>
 <td class="instruction">JR <a href="91BE.html#93b3">$93B3</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1337,7 +1337,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9373"></span>9373</td>
 <td class="instruction">JR Z,<a href="91BE.html#93b3">$93B3</a></td>
-<td class="comment-11" rowspan="1">If not, jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1355,7 +1355,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="937a"></span>937A</td>
 <td class="instruction">JR Z,<a href="91BE.html#93b3">$93B3</a></td>
-<td class="comment-11" rowspan="1">If not, jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1481,7 +1481,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="939f"></span>939F</td>
 <td class="instruction">JR C,<a href="91BE.html#93b3">$93B3</a></td>
-<td class="comment-11" rowspan="2">If Willy is at or above the bottom of the rope, jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="2">If Willy is at or above the bottom of the rope, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1536,7 +1536,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <span id="93b3"></span>
 <div class="comments">
 <div class="paragraph">
-The current entity definition has been dealt with. Time for the next one.
+The current entity has been dealt with. Time for the next one.
 </div>
 </div>
 </td>
@@ -1545,7 +1545,7 @@ The current entity definition has been dealt with. Time for the next one.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="93b3"></span>93B3</td>
 <td class="instruction">LD DE,$0008</td>
-<td class="comment-11" rowspan="2">Point <span class="register">IX</span> at the first byte of the next entity definition</td>
+<td class="comment-11" rowspan="2">Point <span class="register">IX</span> at the first byte of the next entity's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1568,9 +1568,9 @@ The current entity definition has been dealt with. Time for the next one.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>

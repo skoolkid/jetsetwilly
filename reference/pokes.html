@@ -57,7 +57,8 @@ POKE <a href="../asm/87CA.html#87ea">34795</a>,N
 For a list of all the rooms and their numbers, see the <a href="../tables/rooms.html">Rooms page</a>.
 </div>
 <div class="paragraph">
-The default start location, (13,20), may not be suitable, depending on the room chosen; to change Willy's start location to (y,x):
+The default start location, (13,20), may not be suitable, depending on the room
+chosen; to change Willy's start location to (y,x):
 </div>
 <div class="paragraph">
 <div>POKE <a href="../asm/87CA.html#87e5">34790</a>,y*16</div>
@@ -128,32 +129,38 @@ POKE <a href="../asm/8ED4.html#8ef9">36601</a>,0
 <div class="box box-2">
 <div class="box-title">Deal with Maria</div>
 <div class="paragraph">
-To get rid of Maria entirely, leaving the bedroom free to enter without collecting any items:
+To get rid of Maria entirely, leaving the bedroom free to enter without
+collecting any items:
 </div>
 <div class="paragraph">
 POKE <a href="../asm/9534.html#953f">38207</a>,24
 </div>
 <div class="paragraph">
-Or if that makes things a little too easy, try the following POKE that gets rid of Maria after N items have been collected:
+Or if that makes things a little too easy, try the following POKE that gets rid
+of Maria after N items have been collected:
 </div>
 <div class="paragraph">
 POKE <a href="../asm/A3FF.html">41983</a>,256-N (1&lt;=N&lt;=83)
 </div>
 <div class="paragraph">
-Exactly which N items need to be collected is determined by the item table at <a href="../asm/A400.html">A400</a>. When N=1, the only item that needs to be collected is the one in <a href="../asm/E100.html">The Bathroom</a>.
+Exactly which N items need to be collected is determined by the item table at
+<a href="../asm/A400.html">A400</a>. When N=1, the only item that needs to be collected is the one in
+<a href="../asm/E100.html">The Bathroom</a>.
 </div>
 </div>
 <div><span id="cheatModeCheat"></span></div>
 <div class="box box-1">
 <div class="box-title">Cheat mode cheat</div>
 <div class="paragraph">
-To activate the <a href="facts.html#writetyper">WRITETYPER cheat mode</a> immediately (without having to type WRITETYPER in <a href="../asm/DC00.html">First Landing</a>):
+To activate the <a href="facts.html#writetyper">WRITETYPER cheat mode</a> immediately (without
+having to type WRITETYPER in <a href="../asm/DC00.html">First Landing</a>):
 </div>
 <div class="paragraph">
 POKE <a href="../asm/85E3.html">34275</a>,10
 </div>
 <div class="paragraph">
-For a list of all the rooms and their teleport codes, see the <a href="../tables/rooms.html">Rooms page</a>.
+For a list of all the rooms and their teleport codes, see the <a href="../tables/rooms.html">Rooms
+page</a>.
 </div>
 </div>
 <div><span id="moreLives"></span></div>
@@ -166,7 +173,9 @@ To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=7):
 POKE <a href="../asm/87CA.html#87e0">34785</a>,N
 </div>
 <div class="paragraph">
-Note that the routine at <a href="../asm/898B.html">898B</a> tries to draw all remaining lives at the bottom of the screen, which means that for large N, there is screen corruption and the game slows down considerably; to avoid this, disable the routine:
+Note that the routine at <a href="../asm/898B.html">898B</a> tries to draw all remaining lives at the
+bottom of the screen, which means that for large N, there is screen corruption
+and the game slows down considerably; to avoid this, disable the routine:
 </div>
 <div class="paragraph">
 POKE <a href="../asm/898B.html">35211</a>,201
@@ -196,7 +205,9 @@ POKE <a href="../asm/89AD.html#8a50">35408</a>,24
 <div class="box box-1">
 <div class="box-title">The official Software Projects POKEs</div>
 <div class="paragraph">
-When it became clear that the <a href="bugs.html#theAtticBug">Attic bug</a> was actually a bug and not a feature, Software Projects published some POKEs to fix it and some other problems with the game:
+When it became clear that the <a href="bugs.html#theAtticBug">Attic bug</a> was actually a bug
+and not a feature, Software Projects published some POKEs to fix it and some
+other problems with the game:
 </div>
 <div class="paragraph">
 <div>POKE <a href="../asm/EB00.html#eb00">60231</a>,0</div>
@@ -205,7 +216,9 @@ When it became clear that the <a href="bugs.html#theAtticBug">Attic bug</a> was 
 <div>POKE <a href="../asm/DE00.html#de00">56876</a>,4</div>
 </div>
 <div class="paragraph">
-The first POKE (<a href="../asm/EB00.html#eb00">60231</a>,0) removes a nasty from <a href="../asm/EB00.html">Conservatory Roof</a>, which makes it possible to collect the otherwise <a href="bugs.html#theUncollectableItem">uncollectable item</a> on the far right:
+The first POKE (<a href="../asm/EB00.html#eb00">60231</a>,0) removes a nasty from
+<a href="../asm/EB00.html">Conservatory Roof</a>, which makes it possible to collect the otherwise
+<a href="bugs.html#theUncollectableItem">uncollectable item</a> on the far right:
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -220,13 +233,22 @@ The first POKE (<a href="../asm/EB00.html#eb00">60231</a>,0) removes a nasty fro
 </table>
 </div>
 <div class="paragraph">
-The second POKE (<a href="../asm/A400.html#a4c7">A4C7</a>,11) moves the unreachable <a href="bugs.html#theInvisibleItem">invisible item</a> at (3,26) in <a href="../asm/DC00.html">First Landing</a> to the same coordinates in <a href="../asm/CB00.html">The Hall</a> (where it is still invisible, but now reachable).
+The second POKE (<a href="../asm/A400.html#a4c7">A4C7</a>,11) moves the unreachable
+<a href="bugs.html#theInvisibleItem">invisible item</a> at (3,26) in <a href="../asm/DC00.html">First Landing</a> to
+the same coordinates in <a href="../asm/CB00.html">The Hall</a> (where it is still invisible, but now
+reachable).
 </div>
 <div class="paragraph">
-The third POKE (<a href="../asm/E900.html#e9fc">59901</a>,82) fixes the misplaced arrow in <a href="../asm/E900.html">The Attic</a> by setting its pixel y-coordinate to 41.
+The third POKE (<a href="../asm/E900.html#e9fc">59901</a>,82) fixes the misplaced arrow in <a href="../asm/E900.html">The
+Attic</a> by setting its pixel y-coordinate to 41.
 </div>
 <div class="paragraph">
-The fourth POKE (<a href="../asm/DE00.html#de00">56876</a>,4) replaces a wall block with a floor block in <a href="../asm/DE00.html">The Banyan Tree</a>, which makes it possible to access the room above (<a href="../asm/E400.html">A bit of tree</a>) from the right-hand side (which in turn makes it possible to reach the otherwise <a href="bugs.html#theInaccessibleItems">inaccessible items</a> in <a href="../asm/EB00.html">Conservatory Roof</a> via the ledge on the lower left in <a href="../asm/EA00.html">Under the Roof</a>):
+The fourth POKE (<a href="../asm/DE00.html#de00">56876</a>,4) replaces a wall block with a floor
+block in <a href="../asm/DE00.html">The Banyan Tree</a>, which makes it possible to access the room
+above (<a href="../asm/E400.html">A bit of tree</a>) from the right-hand side (which in turn makes it
+possible to reach the otherwise <a href="bugs.html#theInaccessibleItems">inaccessible items</a>
+in <a href="../asm/EB00.html">Conservatory Roof</a> via the ledge on the lower left in
+<a href="../asm/EA00.html">Under the Roof</a>):
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -242,9 +264,9 @@ The fourth POKE (<a href="../asm/DE00.html#de00">56876</a>,4) replaces a wall bl
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>

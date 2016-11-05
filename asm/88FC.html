@@ -17,7 +17,7 @@
 <tr>
 <td class="prev"><span class="prev-1">Prev: <a href="87CA.html">87CA</a></span></td>
 <td class="up">Up: <a href="../maps/all.html#88fc">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="898B.html">898B</a></span></td>
+<td class="next"><span class="next-1">Next: <a href="8912.html">8912</a></span></td>
 </tr>
 </table>
 <div class="description">88FC: Start the game</div>
@@ -93,326 +93,26 @@ Used by the routine at <a href="87CA.html">87CA</a>.
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
-<span id="8912"></span>
+
 <div class="comments">
 <div class="paragraph">
-This entry point is used by the routines at <a href="8B07.html">8B07</a> (to teleport into a room), <a href="8C01.html">8C01</a> (to reinitialise the room after Willy has lost a life), <a href="948A.html">948A</a> (when Willy has entered the room from the right), <a href="949E.html">949E</a> (when Willy has entered the room from the left), <a href="94B0.html">94B0</a> (when Willy has entered the room from below) and <a href="94D2.html">94D2</a> (when Willy has entered the room from above).
+This routine continues into the one at <a href="8912.html">8912</a>.
 </div>
 </div>
 </td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-2"><span id="8912"></span>8912</td>
-<td class="instruction">LD A,($8420)</td>
-<td class="comment-11" rowspan="1">Pick up the current room number from <a href="8420.html">8420</a></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8915"></span>8915</td>
-<td class="instruction">OR $C0</td>
-<td class="comment-11" rowspan="3">Point <span class="register">HL</span> at the first byte of the room definition</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8917"></span>8917</td>
-<td class="instruction">LD H,A</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8918"></span>8918</td>
-<td class="instruction">LD L,$00</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="891a"></span>891A</td>
-<td class="instruction">LD DE,$8000</td>
-<td class="comment-11" rowspan="3">Copy the room definition into the game status buffer at <a href="../buffers/gbuffer.html#8000">8000</a></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="891d"></span>891D</td>
-<td class="instruction">LD BC,$0100</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8920"></span>8920</td>
-<td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8922"></span>8922</td>
-<td class="instruction">LD IX,$80F0</td>
-<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the first byte of the first entity specification for the current room at <a href="80F0.html">80F0</a></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8926"></span>8926</td>
-<td class="instruction">LD DE,$8100</td>
-<td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the first byte of the entity buffer at <a href="8100.html">8100</a></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8929"></span>8929</td>
-<td class="instruction">LD A,$08</td>
-<td class="comment-11" rowspan="1">There are at most eight entities in a room</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-2"><span id="892b"></span>892B</td>
-<td class="instruction">LD L,(IX+$00)</td>
-<td class="comment-11" rowspan="1">Pick up the first byte of the entity specification</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="892e"></span>892E</td>
-<td class="instruction">RES 7,L</td>
-<td class="comment-11" rowspan="5">Point <span class="register">HL</span> at the corresponding entry in the table of entity definitions at <a href="A000.html">A000</a></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8930"></span>8930</td>
-<td class="instruction">LD H,$14</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8932"></span>8932</td>
-<td class="instruction">ADD HL,HL</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8933"></span>8933</td>
-<td class="instruction">ADD HL,HL</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8934"></span>8934</td>
-<td class="instruction">ADD HL,HL</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8935"></span>8935</td>
-<td class="instruction">LD BC,$0002</td>
-<td class="comment-11" rowspan="2">Copy the first two bytes of the entity definition into the entity buffer</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8938"></span>8938</td>
-<td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="893a"></span>893A</td>
-<td class="instruction">LD C,(IX+$01)</td>
-<td class="comment-11" rowspan="2">Copy the second byte of the entity specification into the third byte of the entity definition</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="893d"></span>893D</td>
-<td class="instruction">LD (HL),C</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="893e"></span>893E</td>
-<td class="instruction">LD BC,$0006</td>
-<td class="comment-11" rowspan="2">Copy the remaining six bytes of the entity definition into the entity buffer</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8941"></span>8941</td>
-<td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8943"></span>8943</td>
-<td class="instruction">INC IX</td>
-<td class="comment-11" rowspan="2">Point <span class="register">IX</span> at the first byte of the next entity specification</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8945"></span>8945</td>
-<td class="instruction">INC IX</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8947"></span>8947</td>
-<td class="instruction">DEC A</td>
-<td class="comment-11" rowspan="1">Have we copied all eight entity definitions into the entity buffer yet?</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8948"></span>8948</td>
-<td class="instruction">JR NZ,<a href="88FC.html#892b">$892B</a></td>
-<td class="comment-11" rowspan="1">If not, jump back to copy the next one</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="894a"></span>894A</td>
-<td class="instruction">LD HL,$85CF</td>
-<td class="comment-11" rowspan="4">Copy the seven bytes that define Willy's state (position, animation frame etc.) on entry to this room from <a href="../buffers/gbuffer.html#85cf">85CF-85D5</a> to <a href="85D7.html">85D7</a></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="894d"></span>894D</td>
-<td class="instruction">LD DE,$85D7</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8950"></span>8950</td>
-<td class="instruction">LD BC,$0007</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8953"></span>8953</td>
-<td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8955"></span>8955</td>
-<td class="instruction">CALL <a href="8D33.html">$8D33</a></td>
-<td class="comment-11" rowspan="1">Draw the current room to the screen buffer at <a href="7000.html">7000</a> and the attribute buffer at <a href="5E00.html">5E00</a></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8958"></span>8958</td>
-<td class="instruction">LD HL,$5000</td>
-<td class="comment-11" rowspan="5">Clear the bottom third of the display file</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="895b"></span>895B</td>
-<td class="instruction">LD DE,$5001</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="895e"></span>895E</td>
-<td class="instruction">LD BC,$07FF</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8961"></span>8961</td>
-<td class="instruction">LD (HL),$00</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8963"></span>8963</td>
-<td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8965"></span>8965</td>
-<td class="instruction">LD IX,$8080</td>
-<td class="comment-11" rowspan="4">Print the room name (see <a href="8080.html">8080</a>) at (16,0)</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8969"></span>8969</td>
-<td class="instruction">LD C,$20</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="896b"></span>896B</td>
-<td class="instruction">LD DE,$5000</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="896e"></span>896E</td>
-<td class="instruction">CALL <a href="9680.html">$9680</a></td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8971"></span>8971</td>
-<td class="instruction">LD IX,$8554</td>
-<td class="comment-11" rowspan="4">Print "Items collected 000 Time 00:00 m" (see <a href="8554.html">8554</a>) at (19,0)</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8975"></span>8975</td>
-<td class="instruction">LD DE,$5060</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8978"></span>8978</td>
-<td class="instruction">LD C,$20</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="897a"></span>897A</td>
-<td class="instruction">CALL <a href="9680.html">$9680</a></td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="897d"></span>897D</td>
-<td class="instruction">LD A,($80DE)</td>
-<td class="comment-11" rowspan="1">Pick up the border colour for the current room from <a href="80DE.html">80DE</a></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8980"></span>8980</td>
-<td class="instruction">LD C,$FE</td>
-<td class="comment-11" rowspan="2">Set the border colour</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8982"></span>8982</td>
-<td class="instruction">OUT (C),A</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8984"></span>8984</td>
-<td class="instruction">XOR A</td>
-<td class="comment-11" rowspan="2">Initialise the rope status indicator at <a href="85D6.html">85D6</a> to 0</td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8985"></span>8985</td>
-<td class="instruction">LD ($85D6),A</td>
-<td class="comment-01" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label-0"></td>
-<td class="address-1"><span id="8988"></span>8988</td>
-<td class="instruction">JP <a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">Enter the main loop</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
 <td class="prev"><span class="prev-1">Prev: <a href="87CA.html">87CA</a></span></td>
 <td class="up">Up: <a href="../maps/all.html#88fc">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="898B.html">898B</a></span></td>
+<td class="next"><span class="next-1">Next: <a href="8912.html">8912</a></span></td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>

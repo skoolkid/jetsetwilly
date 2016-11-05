@@ -13,7 +13,20 @@
 <td class="page-header">Unused addresses</td>
 </tr>
 </table>
-<div class="map-intro"></div>
+<div class="map-intro"><div class="paragraph">
+In addition to the entries in the table below, the following embedded sections
+of code and data are unused:
+</div>
+<div class="paragraph">
+<ul class="">
+<li>The entries at <a href="../asm/8300.html#8356">8356-837F</a> and <a href="../asm/8300.html#83d6">83D6-83FF</a> in the rope animation table (84 bytes)</li>
+<li>The section of code at <a href="../asm/89AD.html#8a11">8A11-8A25</a> in the main loop (21 bytes)</li>
+<li>Entity definitions 0x70-0x7E at <a href="../asm/A000.html#a380">A380</a> (120 bytes)</li>
+<li>Slots 0-172 at <a href="../asm/A400.html#a400">A400</a> and <a href="../asm/A400.html#a500">A500</a> in the item table (346 bytes)</li>
+<li>Pages <a href="../asm/AB00.html#b100">B1</a> and <a href="../asm/AB00.html#b300">B3</a> in the guardian graphic data (512 bytes)</li>
+<li>Room <a href="../asm/EF00.html">0x2F</a> (256 bytes)</li>
+</ul>
+</div></div>
 <table class="map">
 <tr>
 <th class="map-page-0">Page</th>
@@ -144,9 +157,9 @@
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>

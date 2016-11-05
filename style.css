@@ -282,8 +282,20 @@ table.gallery td {
 table.gallery td.transparent {
   border-style: none;
 }
+table.boxData td {
+  background-color: #99bbdd;
+}
+table.boxData th {
+  background-color: #7799bb;
+}
 
 table.gallery td {
   border-color: #ffffff;
+}
+table.boxData td {
+  background-color: #669933;
+}
+table.boxData th {
+  background-color: #99cc66;
 }
 

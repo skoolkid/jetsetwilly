@@ -20,13 +20,13 @@
 <td class="next"><span class="next-1">Next: <a href="8141.html">8141</a></span></td>
 </tr>
 </table>
-<div class="description">8100: Entity buffer</div>
+<div class="description">8100: Entity buffers</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Initialised by the routine at <a href="88FC.html">88FC</a>, and used by the routines at <a href="90C0.html">90C0</a> and <a href="91BE.html">91BE</a>. There are eight slots here, each one eight bytes long, used to hold the state of the entities (rope, arrows and guardians) in the current room.
+Initialised by the routine at <a href="88FC.html">88FC</a>, and used by the routines at <a href="90C0.html">90C0</a> and <a href="91BE.html">91BE</a>. There are eight buffers here, each one eight bytes long, used to hold the state of the entities (rope, arrows and guardians) in the current room.
 </div>
 <div class="paragraph">
 For a horizontal guardian, the eight bytes are used as follows:
@@ -52,7 +52,7 @@ For a horizontal guardian, the eight bytes are used as follows:
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="4">1</td>
-<td class="" colspan="1" rowspan="1">Bits 5-7: animation frame index mask</td>
+<td class="" colspan="1" rowspan="1">Bits 5-7: <a href="../reference/glossary.html#animation_frame_index_mask">animation frame index mask</a></td>
 </tr>
 <tr>
 <td class="" colspan="1" rowspan="1">Bit 4: unused</td>
@@ -102,11 +102,8 @@ For a vertical guardian, the eight bytes are used as follows:
 <th colspan="1" rowspan="1">Contents</th>
 </tr>
 <tr>
-<td class="centre" colspan="1" rowspan="4">0</td>
-<td class="" colspan="1" rowspan="1">Bit 7: unused</td>
-</tr>
-<tr>
-<td class="" colspan="1" rowspan="1">Bits 5-6: animation frame index</td>
+<td class="centre" colspan="1" rowspan="3">0</td>
+<td class="" colspan="1" rowspan="1">Bits 5-7: animation frame index</td>
 </tr>
 <tr>
 <td class="" colspan="1" rowspan="1">Bits 3-4: animation frame update flags (see <a href="90C0.html#917f">917F</a>)</td>
@@ -116,7 +113,7 @@ For a vertical guardian, the eight bytes are used as follows:
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="4">1</td>
-<td class="" colspan="1" rowspan="1">Bits 5-7: animation frame index mask</td>
+<td class="" colspan="1" rowspan="1">Bits 5-7: <a href="../reference/glossary.html#animation_frame_index_mask">animation frame index mask</a></td>
 </tr>
 <tr>
 <td class="" colspan="1" rowspan="1">Bit 4: unused</td>
@@ -206,7 +203,7 @@ For an arrow, the eight bytes are used as follows:
 </table>
 </div>
 <div class="paragraph">
-The rope uses the second and fourth bytes of the following slot in addition to its own; these ten bytes are used as follows:
+The rope uses the second and fourth bytes of the following buffer in addition to its own; these ten bytes are used as follows:
 </div>
 <div class="paragraph">
 <table class="default">
@@ -254,14 +251,14 @@ The rope uses the second and fourth bytes of the following slot in addition to i
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="1">9</td>
-<td class="" colspan="1" rowspan="1">Index of the segment of rope being drawn (0-31)</td>
+<td class="" colspan="1" rowspan="1">Index of the segment of rope being drawn (0-32)</td>
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="2">11</td>
-<td class="" colspan="1" rowspan="1">Bit 7: Willy is on the rope (set), or not (reset)</td>
+<td class="" colspan="1" rowspan="1">Bits 1-7: unused</td>
 </tr>
 <tr>
-<td class="" colspan="1" rowspan="1">Bits 0-6: unused</td>
+<td class="" colspan="1" rowspan="1">Bit 0: Willy is on the rope (set), or not (reset)</td>
 </tr>
 </table>
 </div>
@@ -346,9 +343,9 @@ Note that if a rope were the eighth entity specified in a room, its buffer would
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>

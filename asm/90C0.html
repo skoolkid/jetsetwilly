@@ -47,7 +47,7 @@ Used by the routine at <a href="89AD.html">89AD</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="90c0"></span>90C0</td>
 <td class="instruction">LD IX,$8100</td>
-<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the first byte of the entity buffer at <a href="8100.html">8100</a></td>
+<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the first byte of the first entity buffer at <a href="8100.html">8100</a></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -63,13 +63,13 @@ The entity-moving loop begins here.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="90c4"></span>90C4</td>
 <td class="instruction">LD A,(IX+$00)</td>
-<td class="comment-11" rowspan="1">Pick up the first byte of the current entity definition</td>
+<td class="comment-11" rowspan="1">Pick up the first byte of the current entity's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90c7"></span>90C7</td>
 <td class="instruction">CP $FF</td>
-<td class="comment-11" rowspan="1">Have we reached the end of the entity buffer?</td>
+<td class="comment-11" rowspan="1">Have we already dealt with every entity?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -87,7 +87,7 @@ The entity-moving loop begins here.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90cc"></span>90CC</td>
 <td class="instruction">JP Z,<a href="90C0.html#91b6">$91B6</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition if this one is an arrow or is empty</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity buffer if this one belongs to an arrow or is unused</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -407,19 +407,19 @@ Now <span class="register">A</span> holds the rope's next animation frame index.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9122"></span>9122</td>
 <td class="instruction">CP (IX+$07)</td>
-<td class="comment-11" rowspan="1">Does <span class="register">A</span> match the eighth byte of the entity definition (54)?</td>
+<td class="comment-11" rowspan="1">Does <span class="register">A</span> match the eighth byte of the rope's buffer (54)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9125"></span>9125</td>
 <td class="instruction">JP NZ,<a href="90C0.html#91b6">$91B6</a></td>
-<td class="comment-11" rowspan="1">If not, jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9128"></span>9128</td>
 <td class="instruction">LD A,(IX+$00)</td>
-<td class="comment-11" rowspan="3">Flip bit 7 of the first byte of the entity definition: the rope has just changed direction and will now swing back towards the centre</td>
+<td class="comment-11" rowspan="3">Flip bit 7 of the first byte of the rope's buffer: the rope has just changed direction and will now swing back towards the centre</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -437,7 +437,7 @@ Now <span class="register">A</span> holds the rope's next animation frame index.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9130"></span>9130</td>
 <td class="instruction">JP <a href="90C0.html#91b6">$91B6</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -475,7 +475,7 @@ This guardian is moving right to left.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9139"></span>9139</td>
 <td class="instruction">LD A,(IX+$00)</td>
-<td class="comment-11" rowspan="4">Update the guardian's animation frame (in bits 5 and 6 of the first byte of the entity definition)</td>
+<td class="comment-11" rowspan="4">Update the guardian's animation frame (in bits 5 and 6 of the first byte of its buffer)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -505,7 +505,7 @@ This guardian is moving right to left.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9145"></span>9145</td>
 <td class="instruction">JR C,<a href="90C0.html#91b6">$91B6</a></td>
-<td class="comment-11" rowspan="1">If not, jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -541,7 +541,7 @@ This guardian is moving right to left.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9154"></span>9154</td>
 <td class="instruction">JR <a href="90C0.html#91b6">$91B6</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -553,7 +553,7 @@ This guardian is moving right to left.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="915a"></span>915A</td>
 <td class="instruction">JR <a href="90C0.html#91b6">$91B6</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -569,7 +569,7 @@ This guardian is moving left to right.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="915c"></span>915C</td>
 <td class="instruction">LD A,(IX+$00)</td>
-<td class="comment-11" rowspan="4">Update the guardian's animation frame (in bits 5 and 6 of the first byte of the entity definition)</td>
+<td class="comment-11" rowspan="4">Update the guardian's animation frame (in bits 5 and 6 of the first byte of its buffer)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -599,7 +599,7 @@ This guardian is moving left to right.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9168"></span>9168</td>
 <td class="instruction">JR NC,<a href="90C0.html#91b6">$91B6</a></td>
-<td class="comment-11" rowspan="1">If not, jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -635,7 +635,7 @@ This guardian is moving left to right.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9177"></span>9177</td>
 <td class="instruction">JR <a href="90C0.html#91b6">$91B6</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -647,7 +647,7 @@ This guardian is moving left to right.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="917d"></span>917D</td>
 <td class="instruction">JR <a href="90C0.html#91b6">$91B6</a></td>
-<td class="comment-11" rowspan="1">Jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -663,7 +663,7 @@ We are dealing with a vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="917f"></span>917F</td>
 <td class="instruction">LD A,(IX+$00)</td>
-<td class="comment-11" rowspan="3">Flip bit 3 of the first byte of the entity definition (if bit 4 is set, the guardian's animation frame is updated on every pass through this routine; otherwise, it is updated on every second pass when bit 3 is set)</td>
+<td class="comment-11" rowspan="3">Flip bit 3 of the first byte of the guardian's buffer (if bit 4 is set, the guardian's animation frame is updated on every pass through this routine; otherwise, it is updated on every second pass when bit 3 is set)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -693,7 +693,7 @@ We are dealing with a vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="918b"></span>918B</td>
 <td class="instruction">LD A,(IX+$00)</td>
-<td class="comment-11" rowspan="3">Update the guardian's animation frame (in bits 5 and 6 of the first byte of the entity definition)</td>
+<td class="comment-11" rowspan="3">Update the guardian's animation frame (in bits 5-7 of the first byte of its buffer)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -753,7 +753,7 @@ We are dealing with a vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91a6"></span>91A6</td>
 <td class="instruction">JR NC,<a href="90C0.html#91b6">$91B6</a></td>
-<td class="comment-11" rowspan="1">If the new y-coordinate is above the minimum value, jump to consider the next entity definition</td>
+<td class="comment-11" rowspan="1">If the new y-coordinate is above the minimum value, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -790,7 +790,7 @@ We are dealing with a vertical guardian.
 <span id="91b6"></span>
 <div class="comments">
 <div class="paragraph">
-The current entity definition has been dealt with. Time for the next one.
+The current entity has been dealt with. Time for the next one.
 </div>
 </div>
 </td>
@@ -799,7 +799,7 @@ The current entity definition has been dealt with. Time for the next one.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="91b6"></span>91B6</td>
 <td class="instruction">LD DE,$0008</td>
-<td class="comment-11" rowspan="2">Point <span class="register">IX</span> at the first byte of the next entity definition</td>
+<td class="comment-11" rowspan="2">Point <span class="register">IX</span> at the first byte of the next entity's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -822,9 +822,9 @@ The current entity definition has been dealt with. Time for the next one.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20160511</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd (Jet Set Willy). &#169; 2016 Richard Dymond (this disassembly).</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
 </footer>
 </body>
 </html>
