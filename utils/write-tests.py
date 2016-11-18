@@ -32,8 +32,8 @@ Copying ../sources/jsw.css to {odir}/jet_set_willy/jsw.css
   Writing jet_set_willy/tables/rooms.html
   Writing jet_set_willy/tables/codes.html
   Writing jet_set_willy/reference/credits.html
-  Writing jet_set_willy/reference/changelog.html
   Writing jet_set_willy/reference/bugs.html
+  Writing jet_set_willy/reference/changelog.html
   Writing jet_set_willy/reference/facts.html
   Writing jet_set_willy/reference/glossary.html
   Writing jet_set_willy/reference/pokes.html
