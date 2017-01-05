@@ -1,4 +1,4 @@
-; Copyright 2012-2016 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2017 Richard Dymond (rjdymond@gmail.com)
 
 ; Attribute buffer (room + Willy + entities + items)
 ;
@@ -41,7 +41,7 @@ b28672 DEFS 4096
 ; http://skoolkit.ca/
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
-; Copyright 2012-2016 Richard Dymond (this disassembly)
+; Copyright 2012-2017 Richard Dymond (this disassembly)
 @bfix+begin
 ;
 ; This disassembly contains fixes for the following bugs:
@@ -690,11 +690,12 @@ g34255 DEFB 0
 
 ; Willy's direction and movement flags
 ;
-; #TABLE(default,centre,:w)
+; #TABLE(default,centre,:w,:w)
 ; { =h Bit(s) | =h Meaning | =h Used by }
 ; { 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R36796,
 ; #R38455 }
-; { 1 | Willy's movement flag (set=moving) | #R36564, #R36796, #R37310 }
+; { 1 | Willy's movement flag (set=moving) | #R36307, #R36564, #R36796, #R37310
+; }
 ; { 2-7 | Unused (always reset) | }
 ; TABLE#
 @label=DMFLAGS
