@@ -122,7 +122,10 @@ Content=asm/40960.html
 [PageContent:Codes]
 #CALL:codes()
 
-[PageContent:Credits]
+[Page:Credits]
+PageContent=#INCLUDE(Credits)
+
+[Credits]
 <div class="box box-1">
 This disassembly would have taken a lot longer to finish if it weren't for the
 research and documentation already done and made available by:
