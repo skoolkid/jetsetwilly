@@ -164,7 +164,7 @@ class JetSetWilly:
 
         lines = ['b 40960 Entity definitions']
         lines.append('@ 40960 label=ENTITYDEFS')
-        lines.append('D 40960 Used by the routine at #R35068.')
+        lines.append('D 40960 Used by the routine at #R35090.')
         lines.append('N 40960 The following (empty) entity definition (#ed0) is copied into one of the entity buffers at #R33024 for any entity specification whose first byte is zero.')
         lines.append('B 40960,8')
         for num in range(1, 112):
@@ -510,7 +510,7 @@ class JetSetWilly:
                 lines.append('D 61184 This room is not used.')
             else:
                 room_image = '#ROOM{}'.format(a)
-                lines.append('D {} Used by the routine at #R35068.'.format(a))
+                lines.append('D {} Used by the routine at #R35090.'.format(a))
             lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a, room_image))
             if room_num == 47:
                 lines.append('D 61184 The first 128 bytes define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.')
