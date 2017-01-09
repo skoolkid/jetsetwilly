@@ -110,8 +110,8 @@ of code and data are unused:
 { Room #R61184(#N(47,,,1)(0x)) (256 bytes) }
 LIST#
 
-[PageContent:Rooms]
-#CALL:rooms()
+[Page:Rooms]
+PageContent=#CALL:rooms()
 
 [Page:Items]
 Content=asm/41984.html
