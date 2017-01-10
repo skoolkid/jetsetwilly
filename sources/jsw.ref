@@ -119,8 +119,8 @@ Content=asm/41984.html
 [Page:Entity definitions]
 Content=asm/40960.html
 
-[PageContent:Codes]
-#CALL:codes()
+[Page:Codes]
+PageContent=#CALL:codes()
 
 [Page:Credits]
 PageContent=#INCLUDE(Credits)
