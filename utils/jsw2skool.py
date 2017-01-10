@@ -385,7 +385,7 @@ class JetSetWilly:
             while b < a + 205 and self.snapshot[b] != conveyor_attr:
                 b += 1
             if b < a + 205:
-                comment += ' Note that because of a #BUG#corruptedConveyors in the game engine, the conveyor tile is not drawn correctly (see the room image above).'
+                comment += ' Note that because of a #BUG#corruptedConveyors(bug) in the game engine, the conveyor tile is not drawn correctly (see the room image above).'
         lines.append('N {} {}'.format(a + 160, comment))
         lines.append('N {} {}'.format(a + 160, tiles_table))
         if a == 57088:

@@ -36,6 +36,9 @@ b28672 DEFS 4096
 @replace=/#sprite\i,\i/#UDGARRAY2,\2,2,2;\1-(\1+17)-1-16
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#ed\i/#N\1,,,1(0x)
+@replace=/#BUG(?![A-Z])/#LINK:Bugs
+@replace=/#FACT(?![A-Z])/#LINK:Facts
+@replace=/#POKE(?![A-Z])/#LINK:Pokes
 @writer=:jetsetwilly.JetSetWillyAsmWriter
 ; Jet Set Willy disassembly
 ; http://skoolkit.ca/
@@ -941,7 +944,7 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
  34559 SUB 180       ; Otherwise subtract 180; note that if the original value
                      ; of the LSB of the system variable FRAMES was 142, this
                      ; leaves #REGa holding 255, which is a
-                     ; #BUG#invalidGridLocation
+                     ; #BUG#invalidGridLocation(bug)
 *34561 LD L,A        ; Now #REGl holds either 255 or some number between 0 and
                      ; 178
 @ignoreua
@@ -1573,7 +1576,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
 @bfix-begin
  35620 IN A,(C)      ; Read keys H-J-K-L-ENTER; note that if the game has just
                      ; resumed after being paused, #REGc holds 0 instead of
-                     ; 254, which is a #BUG#thePauseBug
+                     ; 254, which is a #BUG#thePauseBug(bug)
 @bfix+else
  35620 IN A,(254)    ; Read keys H-J-K-L-ENTER
 @bfix+end
@@ -1908,7 +1911,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
                      ; that matches the attribute byte of the tile to be drawn;
                      ; note that if a graphic data byte matches the attribute
                      ; byte being searched for, the CPIR instruction can exit
-                     ; early, which is a #BUG#corruptedConveyors}
+                     ; early, which is a #BUG#corruptedConveyors(bug)}
  36185 LD C,E        ; Restore the value of the tile counter in #REGc
 @bfix+else
 @rem=Corrupted conveyors fix
@@ -2246,7 +2249,7 @@ c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
  36620 LD E,A        ; forcing him to move right (unless he's jumped onto the
                      ; bed, in which case bit 0 of #REGe is now set, meaning
                      ; that the conveyor does not move him, and the 'P' key has
-                     ; no effect; this is a #BUG#theStickyBed)}
+                     ; no effect; this is a #BUG#theStickyBed(bug))}
 @keep
  36621 LD BC,64510   ; {Read keys Q-W-E-R-T (left, right, left, right, left)
  36624 IN A,(C)      ; into bits 0-4 of #REGa}
@@ -3491,7 +3494,7 @@ c38344 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
  38420 ADD HL,DE     ; Move #REGhl down a row and back one cell to the left; at
                      ; this point #REGhl may be pointing at one of the cells in
                      ; the top row of the buffer at #R24064, which is a
-                     ; #BUG#longDistanceNasties
+                     ; #BUG#longDistanceNasties(bug)
  38421 CALL 38430    ; Check and set the attribute byte for the bottom-left
                      ; cell
  38424 INC HL        ; Move #REGhl to the next cell to the right
@@ -9766,8 +9769,8 @@ b55296 DEFB 0,0,1,0,0,0,0,0                    ; {Room layout
  55424 DEFM "    West of Kitchen             " ; Room name
 ; The next 54 bytes are copied to #R32928 and contain the attributes and
 ; graphic data for the tiles used to build the room. Note that because of a
-; #BUG#corruptedConveyors in the game engine, the conveyor tile is not drawn
-; correctly (see the room image above).
+; #BUG#corruptedConveyors(bug) in the game engine, the conveyor tile is not
+; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
 ; { #tiles24 }
@@ -10235,8 +10238,8 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  56704 DEFM "       The Nightmare Room       " ; Room name
 ; The next 54 bytes are copied to #R32928 and contain the attributes and
 ; graphic data for the tiles used to build the room. Note that because of a
-; #BUG#corruptedConveyors in the game engine, the conveyor tile is not drawn
-; correctly (see the room image above).
+; #BUG#corruptedConveyors(bug) in the game engine, the conveyor tile is not
+; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
 ; { #tiles29 }
@@ -12072,8 +12075,8 @@ b61696 DEFB 0,0,0,0,0,12,2,170                 ; {Room layout
  61824 DEFM "        The Wine Cellar         " ; Room name
 ; The next 54 bytes are copied to #R32928 and contain the attributes and
 ; graphic data for the tiles used to build the room. Note that because of a
-; #BUG#corruptedConveyors in the game engine, the conveyor tile is not drawn
-; correctly (see the room image above).
+; #BUG#corruptedConveyors(bug) in the game engine, the conveyor tile is not
+; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
 ; { #tiles49 }
@@ -12260,8 +12263,8 @@ b62208 DEFB 0,0,2,170,160,0,0,0                ; {Room layout
  62336 DEFM "           Tool  Shed           " ; Room name
 ; The next 54 bytes are copied to #R32928 and contain the attributes and
 ; graphic data for the tiles used to build the room. Note that because of a
-; #BUG#corruptedConveyors in the game engine, the conveyor tile is not drawn
-; correctly (see the room image above).
+; #BUG#corruptedConveyors(bug) in the game engine, the conveyor tile is not
+; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
 ; { #tiles51 }
