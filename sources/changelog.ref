@@ -1,171 +1,188 @@
-; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
+
+[Page:Changelog]
+SectionType=BulletPoints
 
 [Changelog:20161105]
 -
 
-Added trivia entries:
-  #FACT#floorRamps() (thanks IRF)
-  #FACT#disrespectfulMonk() (thanks IRF)
-  #FACT#uneconomicalUnderworld() (thanks IRF)
-  #FACT#underanimatedGuardians() (thanks IRF)
-  #FACT#rampsVsWalls() (thanks IRF)
-In #FACT#oneWaySaw(), added a POKE to make the saw face right when moving in that direction
-In #FACT#unusedRoom(), added a note about the right exit from #R60928(Tree Root) (thanks IRF)
-In #BUG#veryCorruptedConveyor(), added a note about fixing the appearance of the ramp tile (thanks IRF)
-On the #LINK:UnusedMap() page, added a list of unused areas embedded in code and data blocks
-Added a glossary entry: #LINK:Glossary#animation_frame_index_mask(Animation frame index mask)
+- Added trivia entries:
+  - #FACT#floorRamps() (thanks IRF)
+  - #FACT#disrespectfulMonk() (thanks IRF)
+  - #FACT#uneconomicalUnderworld() (thanks IRF)
+  - #FACT#underanimatedGuardians() (thanks IRF)
+  - #FACT#rampsVsWalls() (thanks IRF)
+- In #FACT#oneWaySaw(), added a POKE to make the saw face right when moving in
+  that direction
+- In #FACT#unusedRoom(), added a note about the right exit from #R60928(Tree
+  Root) (thanks IRF)
+- In #BUG#veryCorruptedConveyor(), added a note about fixing the appearance of
+  the ramp tile (thanks IRF)
+- On the #LINK:UnusedMap() page, added a list of unused areas embedded in code
+  and data blocks
+- Added a glossary entry: #LINK:Glossary#animation_frame_index_mask(Animation
+  frame index mask)
 
 [Changelog:20160511]
 -
 
-Added trivia entries:
-  #FACT#doubleDescent() (thanks IRF)
-  #FACT#itemsAndWhiteness() (thanks IRF)
-  #FACT#oneWaySaw()
-  #FACT#mostGuardians()
-  #FACT#quadridirectionalGuardian()
-  #FACT#unanimatedGuardians()
-  #FACT#highJump()
-Documented bugs:
-  #BUG#veryCorruptedConveyor() (thanks Stuart Brady and IRF)
-  #BUG#fromTopToBottom() (thanks Spider, IRF and jetsetdanny)
-  #BUG#longDistanceNasties() (thanks IRF)
-  #BUG#stuckInTheWall() (thanks IRF)
-  #BUG#guardianHalos()
-In #FACT#guardiansNeedAClearPath(), added a note about arrows hitting guardians (thanks IRF)
-The table of #R40960(entity definitions) now shows every animation frame for each guardian
-Made various improvements to the hexadecimal version of the disassembly
+- Added trivia entries:
+  - #FACT#doubleDescent() (thanks IRF)
+  - #FACT#itemsAndWhiteness() (thanks IRF)
+  - #FACT#oneWaySaw()
+  - #FACT#mostGuardians()
+  - #FACT#quadridirectionalGuardian()
+  - #FACT#unanimatedGuardians()
+  - #FACT#highJump()
+- Documented bugs:
+  - #BUG#veryCorruptedConveyor() (thanks Stuart Brady and IRF)
+  - #BUG#fromTopToBottom() (thanks Spider, IRF and jetsetdanny)
+  - #BUG#longDistanceNasties() (thanks IRF)
+  - #BUG#stuckInTheWall() (thanks IRF)
+  - #BUG#guardianHalos()
+- In #FACT#guardiansNeedAClearPath(), added a note about arrows hitting
+  guardians (thanks IRF)
+- The table of #R40960(entity definitions) now shows every animation frame for
+  each guardian
+- Made various improvements to the hexadecimal version of the disassembly
 
 [Changelog:20160117]
 -
 
-In #FACT#theMusicOfLife(), added a POKE to prevent the in-game music from deteriorating as Willy loses lives
-In #BUG#theStickyBed(), added a note about using 'right' keys other than 'P' to move Willy off the bed (thanks jetsetdanny)
-In #BUG#selfCollectingItem(), added a POKE that enables Willy to collect the item himself (thanks Stuart Brady)
-In #FACT#gameOverAt1am(), added a note about the message that scrolls across the lower part of the title screen
-In #BUG#corruptedConveyors(), added POKEs that fix how conveyors are drawn
-In #FACT#oneItemBehindAnother(), added a POKE that moves one of the items to a different location (thanks Stuart Brady)
+- In #FACT#theMusicOfLife(), added a POKE to prevent the in-game music from
+  deteriorating as Willy loses lives
+- In #BUG#theStickyBed(), added a note about using 'right' keys other than 'P'
+  to move Willy off the bed (thanks jetsetdanny)
+- In #BUG#selfCollectingItem(), added a POKE that enables Willy to collect the
+  item himself (thanks Stuart Brady)
+- In #FACT#gameOverAt1am(), added a note about the message that scrolls across
+  the lower part of the title screen
+- In #BUG#corruptedConveyors(), added POKEs that fix how conveyors are drawn
+- In #FACT#oneItemBehindAnother(), added a POKE that moves one of the items to
+  a different location (thanks Stuart Brady)
 
 [Changelog:20150328]
 -
 
-Added a POKE: #POKE#infiniteTime()
+- Added a POKE: #POKE#infiniteTime()
 
 [Changelog:20141114]
 -
 
-Added trivia entries:
-  #FACT#tunes()
-  #FACT#unusedRoom()
-  #FACT#codesFromCode()
-  #FACT#someAirLeft()
-  #FACT#drJonesWillNeverBelieveThis() (thanks Dunny)
-Added animated images to the #BUG#corruptedConveyors() bug
+- Added trivia entries:
+  - #FACT#tunes()
+  - #FACT#unusedRoom()
+  - #FACT#codesFromCode()
+  - #FACT#someAirLeft()
+  - #FACT#drJonesWillNeverBelieveThis() (thanks Dunny)
+- Added animated images to the #BUG#corruptedConveyors() bug
 
 [Changelog:20140913]
 The disassembly is now 'complete'.
 
-Annotated all the #LINK:RoutinesMap(routines)
-Annotated every byte of the entity definitions at #R40960
-Added the #LINK:Rooms(Rooms page)
-Added trivia entries:
-  #FACT#gameOverAt1am()
-  #FACT#theMovingBed()
-  #FACT#theMusicOfLife()
-  #FACT#takingABreak()
-  #FACT#writetyper()
-  #FACT#asYouWere()
-  #FACT#whiteSeekingMissile()
-  #FACT#beerInTheWall()
-  #FACT#dangerousConnections()
-  #FACT#commonestItem()
-  #FACT#commonestCodes()
-  #FACT#mariasDodgyDepthPerception()
-  #FACT#ropeClimbingForBeginners()
-  #FACT#theEncroachingRope()
-  #FACT#ropesBeforeArrows()
-  #FACT#guardianColours()
-  #FACT#guardiansNeedAClearPath()
-  #FACT#guardianOrFixture()
-  #FACT#unusedEntityDefinition()
-  #FACT#untouchableEntityDefinition()
-  #FACT#oneItemBehindAnother()
-  #FACT#slipperySlopes()
-  #FACT#toPauseOrNotToPause()
-  #FACT#cheatsNeverCycleColours()
-  #FACT#nomenLuni()
-  #FACT#weMustPerformAQuirkafleeg()
-  #FACT#rescueEsmerelda()
-Documented bugs:
-  #BUG#faultyClock()
-  #BUG#theStickyBed()
-  #BUG#selfCollectingItem()
-  #BUG#theInvisibleItem()
-  #BUG#theInaccessibleItems()
-  #BUG#theUncollectableItem()
-  #BUG#dontMindYourHead()
-  #BUG#theBlankConveyor()
-  #BUG#corruptedConveyors()
-  #BUG#thePauseBug()
-  #BUG#theAtticBug()
-Added POKEs:
-  #POKE#dealWithMaria()
-  #POKE#startInAnyRoom()
-  #POKE#gentleGuardians()
-  #POKE#niceNasties()
-  #POKE#agreeableArrows()
-  #POKE#harmlessHeights()
-  #POKE#noConveyors()
-  #POKE#cheatModeCheat()
-  #POKE#theOfficialSoftwareProjectsPOKEs()
+- Annotated all the #LINK:RoutinesMap(routines)
+- Annotated every byte of the entity definitions at #R40960
+- Added the #LINK:Rooms(Rooms page)
+- Added trivia entries:
+  - #FACT#gameOverAt1am()
+  - #FACT#theMovingBed()
+  - #FACT#theMusicOfLife()
+  - #FACT#takingABreak()
+  - #FACT#writetyper()
+  - #FACT#asYouWere()
+  - #FACT#whiteSeekingMissile()
+  - #FACT#beerInTheWall()
+  - #FACT#dangerousConnections()
+  - #FACT#commonestItem()
+  - #FACT#commonestCodes()
+  - #FACT#mariasDodgyDepthPerception()
+  - #FACT#ropeClimbingForBeginners()
+  - #FACT#theEncroachingRope()
+  - #FACT#ropesBeforeArrows()
+  - #FACT#guardianColours()
+  - #FACT#guardiansNeedAClearPath()
+  - #FACT#guardianOrFixture()
+  - #FACT#unusedEntityDefinition()
+  - #FACT#untouchableEntityDefinition()
+  - #FACT#oneItemBehindAnother()
+  - #FACT#slipperySlopes()
+  - #FACT#toPauseOrNotToPause()
+  - #FACT#cheatsNeverCycleColours()
+  - #FACT#nomenLuni()
+  - #FACT#weMustPerformAQuirkafleeg()
+  - #FACT#rescueEsmerelda()
+- Documented bugs:
+  - #BUG#faultyClock()
+  - #BUG#theStickyBed()
+  - #BUG#selfCollectingItem()
+  - #BUG#theInvisibleItem()
+  - #BUG#theInaccessibleItems()
+  - #BUG#theUncollectableItem()
+  - #BUG#dontMindYourHead()
+  - #BUG#theBlankConveyor()
+  - #BUG#corruptedConveyors()
+  - #BUG#thePauseBug()
+  - #BUG#theAtticBug()
+- Added POKEs:
+  - #POKE#dealWithMaria()
+  - #POKE#startInAnyRoom()
+  - #POKE#gentleGuardians()
+  - #POKE#niceNasties()
+  - #POKE#agreeableArrows()
+  - #POKE#harmlessHeights()
+  - #POKE#noConveyors()
+  - #POKE#cheatModeCheat()
+  - #POKE#theOfficialSoftwareProjectsPOKEs()
 
 [Changelog:20140807]
 -
 
-Added trivia entries:
-  #FACT#unusedGridLocation()
-  #FACT#unusedGuardian()
-  #FACT#uniqueGuardians()
-  #FACT#commonestGuardian()
-Documented a bug: #BUG#invalidGridLocation()
-Added POKEs:
-  #POKE#noCodeSheetRequired()
-  #POKE#moreLives()
-  #POKE#infiniteLives()
-Added routine titles
-Added a description to each #LINK:GameStatusBuffer(game status buffer entry), #LINK:MessagesMap(message entry) and #LINK:DataMap(data block) listing the routines that use it
-Added item locations to the entry at #R41984
-Listed the rooms in which each guardian appears (see #R40000, #R40064 and #R43776)
-Listed the rooms in which each entity definition is used (see #R40960)
-Added the code for each grid location to the entry at #R40448
+- Added trivia entries:
+  - #FACT#unusedGridLocation()
+  - #FACT#unusedGuardian()
+  - #FACT#uniqueGuardians()
+  - #FACT#commonestGuardian()
+- Documented a bug: #BUG#invalidGridLocation()
+- Added POKEs:
+  - #POKE#noCodeSheetRequired()
+  - #POKE#moreLives()
+  - #POKE#infiniteLives()
+- Added routine titles
+- Added a description to each #LINK:GameStatusBuffer(game status buffer entry),
+  #LINK:MessagesMap(message entry) and #LINK:DataMap(data block) listing the routines that use it
+- Added item locations to the entry at #R41984
+- Listed the rooms in which each guardian appears (see #R40000, #R40064 and
+  #R43776)
+- Listed the rooms in which each entity definition is used (see #R40960)
+- Added the code for each grid location to the entry at #R40448
 
 [Changelog:20131102]
 Included in SkoolKit 3.6.
 
-Added animated images of Willy to the entry at #R40192
-Added animated images of the toilet to the entry at #R42496
+- Added animated images of Willy to the entry at #R40192
+- Added animated images of the toilet to the entry at #R42496
 
 [Changelog:20130901]
 Included in SkoolKit 3.5.
 
-Annotated the source code remnants at #R39936
+- Annotated the source code remnants at #R39936
 
 [Changelog:20121101]
 Included in SkoolKit 3.2.
 
-Added the first seven trivia entries:
-  #FACT#unusedItems()
-  #FACT#unusedNasties()
-  #FACT#unusedFloor()
-  #FACT#unusedRamp()
-  #FACT#unusedConveyor()
-  #FACT#emptiestRooms()
-  #FACT#mostItems()
+- Added the first seven trivia entries:
+  - #FACT#unusedItems()
+  - #FACT#unusedNasties()
+  - #FACT#unusedFloor()
+  - #FACT#unusedRamp()
+  - #FACT#unusedConveyor()
+  - #FACT#emptiestRooms()
+  - #FACT#mostItems()
 
 [Changelog:20120501]
 Included in SkoolKit 3.0.2.
 
-Added room images and descriptions
+- Added room images and descriptions
 
 [Changelog:20120411]
 Initial version, included in SkoolKit 3.0.1.
