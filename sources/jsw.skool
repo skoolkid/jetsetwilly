@@ -36,6 +36,7 @@ b28672 DEFS 4096
 @replace=/#sprite\i,\i/#UDGARRAY2,\2,2,2;\1-(\1+17)-1-16
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#ed\i/#N\1,,,1(0x)
+@replace=/#ld_d/#IF({case}==1)(ld d,LD D)
 @replace=/#BUG(?![A-Z])/#LINK:Bugs
 @replace=/#FACT(?![A-Z])/#LINK:Facts
 @replace=/#POKE(?![A-Z])/#LINK:Pokes
@@ -1884,7 +1885,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
  36150 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; at #R24064
 @ignoreua
- 36154 LD A,112      ; {Set the operand of the 'LD D,n' instruction at #R36188
+ 36154 LD A,112      ; {Set the operand of the '#ld_d,n' instruction at #R36188
 @ssub=LD (36188+1),A
  36156 LD (36189),A  ; (below) to #n112}
  36159 CALL 36171    ; Draw the tiles for the top half of the room to the
@@ -1894,7 +1895,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
                      ; the room; this instruction is redundant, since #REGix
                      ; already holds #N24320
 @ignoreua
- 36166 LD A,120      ; {Set the operand of the 'LD D,n' instruction at #R36188
+ 36166 LD A,120      ; {Set the operand of the '#ld_d,n' instruction at #R36188
 @ssub=LD (36188+1),A
  36168 LD (36189),A  ; (below) to #n120}
 *36171 LD C,0        ; #REGc will count 256 tiles
@@ -1923,9 +1924,9 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
 @bfix+end
  36186 LD B,8        ; There are eight bytes in the tile
 @label=BUFMSB
- 36188 LD D,0        ; This instruction is set to either 'LD D,#n112' or 'LD
-                     ; D,#n120' above; now #REGde holds the appropriate address
-                     ; in the screen buffer at #R28672
+ 36188 LD D,0        ; This instruction is set to either '#ld_d,#n112' or
+                     ; '#ld_d,#n120' above; now #REGde holds the appropriate
+                     ; address in the screen buffer at #R28672
 *36190 LD A,(HL)     ; {Copy the tile graphic data to the screen buffer at
  36191 LD (DE),A     ; #R28672
  36192 INC HL        ;
