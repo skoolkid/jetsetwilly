@@ -2416,38 +2416,32 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
  36878 AND 31        ; }
  36880 JP Z,38026    ; If so, move Willy into the room to the left
  36883 ADD HL,BC     ; {Point #REGhl at the cell at (x-1,y+1), or at the cell
- 36884 DEC HL        ; at (x-1,y) if Willy is on or approaching a ramp that
- 36885 LD DE,32      ; goes up to the left, or at the cell at (x-1,y+2) if
+ 36884 DEC HL        ; at (x-1,y) if Willy is on or about to step onto a ramp
+ 36885 LD DE,32      ; that goes up to the left, or at the cell at (x-1,y+2) if
  36888 ADD HL,DE     ; Willy is walking down a ramp}
  36889 LD A,(32946)  ; Pick up the attribute byte of the wall tile for the
                      ; current room from #R32946
  36892 CP (HL)       ; Is there a wall tile in the cell pointed to by #REGhl?
  36893 RET Z         ; Return if so without moving Willy (his path is blocked)
  36894 LD A,(34255)  ; Pick up Willy's pixel y-coordinate (Y) from #R34255
- 36897 SRA C         ; {Now #REGb=Y (if Willy is neither on nor approaching a
- 36899 ADD A,C       ; ramp), or Y+16 (if Willy is walking down a ramp), or
- 36900 LD B,A        ; Y-16 (if Willy is on or approaching a ramp that goes up
-                     ; to the left); this will be Willy's new pixel
-                     ; y-coordinate}
- 36901 AND 15        ; Does Willy's sprite currently occupy only two rows of
-                     ; cells?
- 36903 JR Z,36914    ; Jump if so
+ 36897 SRA C         ; {Now #REGb=Y (if Willy is neither on nor about to step
+ 36899 ADD A,C       ; onto a ramp), or Y+16 (if Willy is walking down a ramp),
+ 36900 LD B,A        ; or Y-16 (if Willy is on or about to step onto a ramp
+                     ; that goes up to the left); this will be Willy's new
+                     ; pixel y-coordinate}
+ 36901 AND 15        ; Is Willy jumping (left)?
+ 36903 JR Z,36914    ; Jump if not
  36905 LD A,(32946)  ; Pick up the attribute byte of the wall tile for the
                      ; current room from #R32946
- 36908 ADD HL,DE     ; Point #REGhl at the cell at (x-1,y+2), or at the cell at
-                     ; (x-1,y+1) if Willy is on or approaching a ramp that goes
-                     ; up to the left, or at the cell at (x-1,y+3) if Willy is
-                     ; on a ramp that goes up to the right
- 36909 CP (HL)       ; Is there a wall tile in the cell pointed to by #REGhl?
+ 36908 ADD HL,DE     ; Point #REGhl at the cell at (x-1,y+2)
+ 36909 CP (HL)       ; Is there a wall tile there?
  36910 RET Z         ; Return if so without moving Willy (his path is blocked)
- 36911 OR A          ; {Point #REGhl at the cell at (x-1,y+1), or at the cell
- 36912 SBC HL,DE     ; at (x-1,y) if Willy is on or approaching a ramp that
-                     ; goes up to the left, or at the cell at (x-1,y+2) if
-                     ; Willy is walking down a ramp}
+ 36911 OR A          ; {Point #REGhl at the cell at (x-1,y+1)
+ 36912 SBC HL,DE     ; }
 *36914 OR A          ; {Point #REGhl at the cell at (x-1,y), or at the cell at
- 36915 SBC HL,DE     ; (x-1,y-1) if Willy is on or approaching a ramp that goes
-                     ; up to the left, or at the cell at (x-1,y+1) if Willy is
-                     ; walking down a ramp}
+ 36915 SBC HL,DE     ; (x-1,y-1) if Willy is on or about to step onto a ramp
+                     ; that goes up to the left, or at the cell at (x-1,y+1) if
+                     ; Willy is walking down a ramp}
  36917 LD (34259),HL ; Save Willy's new attribute buffer coordinates (in
                      ; #REGhl) at #R34259
  36920 LD A,B        ; {Save Willy's new pixel y-coordinate at #R34255
@@ -2468,7 +2462,7 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
 ; occupied by Willy's sprite.
 *36942 LD A,(34257)  ; Pick up the airborne status indicator from #R34257
  36945 LD BC,0       ; Prepare #REGbc for later addition
- 36948 OR A          ; Is Willy jumping or falling?
+ 36948 OR A          ; Is Willy jumping?
  36949 JR NZ,36984   ; Jump if so
  36951 LD HL,(34259) ; Collect Willy's attribute buffer coordinates from
                      ; #R34259
@@ -2495,8 +2489,8 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; #R34259
  36987 ADD HL,BC     ; {Point #REGhl at the cell at (x+2,y), or at the cell at
  36988 INC HL        ; (x+2,y+1) if Willy is walking down a ramp, or at the
- 36989 INC HL        ; cell at (x+2,y-1) if Willy is on or approaching a ramp
-                     ; that goes up to the right}
+ 36989 INC HL        ; cell at (x+2,y-1) if Willy is on or about to step onto a
+                     ; ramp that goes up to the right}
  36990 LD A,L        ; {Is Willy's screen x-coordinate 30 (on the far right)?
  36991 AND 31        ; }
  36993 JP Z,38046    ; If so, move Willy into the room on the right
@@ -2505,43 +2499,37 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; current room from #R32946
  37002 ADD HL,DE     ; Point #REGhl at the cell at (x+2,y+1), or at the cell at
                      ; (x+2,y+2) if Willy is walking down a ramp, or at the
-                     ; cell at (x+2,y) if Willy is on or approaching a ramp
-                     ; that goes up to the right
+                     ; cell at (x+2,y) if Willy is on or about to step onto a
+                     ; ramp that goes up to the right
  37003 CP (HL)       ; Is there a wall tile in the cell pointed to by #REGhl?
  37004 RET Z         ; Return if so without moving Willy (his path is blocked)
  37005 LD A,(34255)  ; Pick up Willy's pixel y-coordinate (Y) from #R34255
- 37008 SRA C         ; {Now #REGb=Y (if Willy is neither on nor approaching a
- 37010 ADD A,C       ; ramp), or Y+16 (if Willy is walking down a ramp), or
- 37011 LD B,A        ; Y-16 (if Willy is on or approaching a ramp that goes up
-                     ; to the right); this will be Willy's new pixel
-                     ; y-coordinate}
- 37012 AND 15        ; Does Willy's sprite currently occupy only two rows of
-                     ; cells?
- 37014 JR Z,37025    ; Jump if so
+ 37008 SRA C         ; {Now #REGb=Y (if Willy is neither on nor about to step
+ 37010 ADD A,C       ; onto a ramp), or Y+16 (if Willy is walking down a ramp),
+ 37011 LD B,A        ; or Y-16 (if Willy is on or about to step onto a ramp
+                     ; that goes up to the right); this will be Willy's new
+                     ; pixel y-coordinate}
+ 37012 AND 15        ; Is Willy jumping (right)?
+ 37014 JR Z,37025    ; Jump if not
  37016 LD A,(32946)  ; Pick up the attribute byte of the wall tile for the
                      ; current room from #R32946
- 37019 ADD HL,DE     ; Point #REGhl at the cell at (x+2,y+2), or at the cell at
-                     ; (x+2,y+3) if Willy is walking down a ramp, or at the
-                     ; cell at (x+2,y+1) if Willy is on or approaching a ramp
-                     ; that goes up to the right
- 37020 CP (HL)       ; Is there a wall tile in the cell pointed to by #REGhl?
+ 37019 ADD HL,DE     ; Point #REGhl at the cell at (x+2,y+2)
+ 37020 CP (HL)       ; Is there a wall tile there?
  37021 RET Z         ; Return if so without moving Willy (his path is blocked)
- 37022 OR A          ; {Point #REGhl at the cell at (x+2,y+1), or at the cell
- 37023 SBC HL,DE     ; at (x+2,y+2) if Willy is walking down a ramp, or at the
-                     ; cell at (x+2,y) if Willy is on or approaching a ramp
-                     ; that goes up to the right}
+ 37022 OR A          ; {Point #REGhl at the cell at (x+2,y+1)
+ 37023 SBC HL,DE     ; }
 *37025 LD A,(32946)  ; Pick up the attribute byte of the wall tile for the
                      ; current room from #R32946
  37028 OR A          ; {Point #REGhl at the cell at (x+2,y), or at the cell at
  37029 SBC HL,DE     ; (x+2,y+1) if Willy is walking down a ramp, or at the
-                     ; cell at (x+2,y-1) if Willy is on or approaching a ramp
-                     ; that goes up to the right}
+                     ; cell at (x+2,y-1) if Willy is on or about to step onto a
+                     ; ramp that goes up to the right}
  37031 CP (HL)       ; Is there a wall tile in the cell pointed to by #REGhl?
  37032 RET Z         ; Return if so without moving Willy (his path is blocked)
  37033 DEC HL        ; Point #REGhl at the cell at (x+1,y), or at the cell at
                      ; (x+1,y+1) if Willy is walking down a ramp, or at the
-                     ; cell at (x+1,y-1) if Willy is on or approaching a ramp
-                     ; that goes up to the right
+                     ; cell at (x+1,y-1) if Willy is on or about to step onto a
+                     ; ramp that goes up to the right
  37034 LD (34259),HL ; Save Willy's new attribute buffer coordinates (in
                      ; #REGhl) at #R34259
  37037 XOR A         ; {Change Willy's animation frame at #R34258 from 3 to 0

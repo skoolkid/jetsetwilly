@@ -3,6 +3,11 @@
 [Page:Changelog]
 SectionType=BulletPoints
 
+[Changelog:YYYYMMDD]
+-
+
+- Fixed comments in the entry at #R36796 with regard to ramps (thanks IRF)
+
 [Changelog:20161105]
 -
 
@@ -149,7 +154,8 @@ The disassembly is now 'complete'.
   - #POKE#infiniteLives()
 - Added routine titles
 - Added a description to each #LINK:GameStatusBuffer(game status buffer entry),
-  #LINK:MessagesMap(message entry) and #LINK:DataMap(data block) listing the routines that use it
+  #LINK:MessagesMap(message entry) and #LINK:DataMap(data block) listing the
+  routines that use it
 - Added item locations to the entry at #R41984
 - Listed the rooms in which each guardian appears (see #R40000, #R40064 and
   #R43776)
