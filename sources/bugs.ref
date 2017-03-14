@@ -1,4 +1,4 @@
-; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:faultyClock:12:30am in the afternoon]
 The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm
@@ -213,6 +213,12 @@ TABLE#
 Getting stuck in these places is possible because Willy can walk right to left
 through wall tiles at head height, but not left to right (see
 #BUG#dontMindYourHead()).
+
+[Bug:missedNote:The missed note]
+Each note of the #R34399(in-game tune) is played twice by the section of code
+at #R35644, <em>except</em> the first note when a new game starts. This is
+because the in-game music note index at #R34273 is incremented from 0 to 1 on
+the first pass through the code <em>before</em> the first note is played.
 
 [Bug:theBlankConveyor:The blank conveyor]
 The conveyor tile in #R60160(Conservatory Roof) is completely blank and its

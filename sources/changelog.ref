@@ -7,6 +7,7 @@ SectionType=BulletPoints
 -
 
 - Fixed comments in the entry at #R36796 with regard to ramps (thanks IRF)
+- Documented a bug: #BUG#missedNote() (thanks IRF)
 
 [Changelog:20161105]
 -
