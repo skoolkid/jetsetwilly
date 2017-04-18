@@ -1,5 +1,4 @@
 GAME=jsw
-GHCONFIG='-c Page:Items/Content=asm/A400.html -c "Page:Entity definitions/Content=asm/A000.html"'
 GHTHEME=green
 SRCFILES=$(echo jsw.skool {jsw,bugs,changelog,facts,glossary,pokes}.ref {jsw,dark,green,plum}.css jetsetwilly.py COPYING)
 SKOOL2BINOPTS="-i -S 32765"
