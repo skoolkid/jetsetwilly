@@ -1,4 +1,3 @@
 GAME=jsw
-GHTHEME=green
 SRCFILES=$(echo jsw.skool {jsw,bugs,changelog,facts,glossary,pokes}.ref {jsw,dark,green,plum}.css jetsetwilly.py COPYING)
 SKOOL2BINOPTS="-i -S 32765"
