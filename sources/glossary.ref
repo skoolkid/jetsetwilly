@@ -7,7 +7,7 @@ been copied there from the corresponding <a href="#entity_definition">entity
 definition</a> (see #R40960). The mask determines the animation frames that the
 guardian's sprite cycles through. If 'B' is the guardian's base frame (0-7),
 then its sprite will cycle through animation frames as follows, where '|'
-denotes a bitwise OR operation (see #R37393):
+denotes a bitwise '#S/OR/' operation (see #R37393):
 
 #TABLE(boxData,centre)
 { =h Mask | =h Frames }

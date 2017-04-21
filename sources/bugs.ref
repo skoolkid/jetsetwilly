@@ -233,8 +233,8 @@ The conveyors in #R55296(West of Kitchen), #R56576(The Nightmare Room),
 #R61696(The Wine Cellar) and #R62208(Tool#SPACE(2)Shed) don't look quite as
 they should. The reason for this is a bug in the code at #R36177: if a graphic
 data byte of the background, floor, wall, nasty or ramp tile in a room matches
-the attribute byte of the conveyor tile to be drawn, the CPIR instruction exits
-early, leaving #REGhl pointing at the wrong location.
+the attribute byte of the conveyor tile to be drawn, the '#S/CPIR/' instruction
+exits early, leaving #REGhl pointing at the wrong location.
 
 Here are some 'before' and 'after' pictures showing what the conveyors actually
 look like and what they look like when drawn properly.
@@ -310,7 +310,7 @@ POKE #R34555(34556),180
 [Bug:thePauseBug:The pause bug]
 The Spectrum will hang when trying to resume the game after being paused if an
 Interface 1 is connected. This happens because the #REGc register holds 0
-instead of 254 when the keyboard is read by the IN A,(C) instruction at
+instead of 254 when the keyboard is read by the '#S/IN A,(C)/' instruction at
 #R35620.
 
 POKE #R35615(35615),62: POKE #R35620(35620),219: POKE #R35620(35621),254

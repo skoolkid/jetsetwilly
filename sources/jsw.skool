@@ -36,7 +36,6 @@ b28672 DEFS 4096
 @replace=/#sprite\i,\i/#UDGARRAY2,\2,2,2;\1-(\1+17)-1-16
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#ed\i/#N\1,,,1(0x)
-@replace=/#ld_d/#IF({case}==1)(ld d,LD D)
 @replace=/#BUG(?![A-Z])/#LINK:Bugs
 @replace=/#FACT(?![A-Z])/#LINK:Facts
 @replace=/#POKE(?![A-Z])/#LINK:Pokes
@@ -1715,14 +1714,14 @@ c35841 LD A,71       ; #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
  35853 LDIR          ; }
  35855 LD E,A        ; Save the attribute byte (64-71) in #REGe for later
                      ; retrieval
- 35856 CPL           ; {#REGd=63-8*(#REGe AND 7); this value determines the
+ 35856 CPL           ; {#REGd=63-8*(#REGe #S/AND/ 7); this value determines the
  35857 AND 7         ; pitch of the short note that will be played
  35859 RLCA          ;
  35860 RLCA          ;
  35861 RLCA          ;
  35862 OR 7          ;
  35864 LD D,A        ; }
- 35865 LD C,E        ; {#REGc=8+32*(#REGe AND 7); this value determines the
+ 35865 LD C,E        ; {#REGc=8+32*(#REGe #S/AND/ 7); this value determines the
  35866 RRC C         ; duration of the short note that will be played
  35868 RRC C         ;
  35870 RRC C         ; }
@@ -1885,9 +1884,9 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
  36150 LD IX,24064   ; Point #REGix at the first byte of the attribute buffer
                      ; at #R24064
 @ignoreua
- 36154 LD A,112      ; {Set the operand of the '#ld_d,n' instruction at #R36188
+ 36154 LD A,112      ; {Set the operand of the '#S/LD D/,n' instruction at
 @ssub=LD (36188+1),A
- 36156 LD (36189),A  ; (below) to #n112}
+ 36156 LD (36189),A  ; #R36188 (below) to #n112}
  36159 CALL 36171    ; Draw the tiles for the top half of the room to the
                      ; screen buffer at #R28672
  36162 LD IX,24320   ; Point #REGix at the 256th byte of the attribute buffer
@@ -1895,9 +1894,9 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
                      ; the room; this instruction is redundant, since #REGix
                      ; already holds #N24320
 @ignoreua
- 36166 LD A,120      ; {Set the operand of the '#ld_d,n' instruction at #R36188
+ 36166 LD A,120      ; {Set the operand of the '#S/LD D/,n' instruction at
 @ssub=LD (36188+1),A
- 36168 LD (36189),A  ; (below) to #n120}
+ 36168 LD (36189),A  ; #R36188 (below) to #n120}
 *36171 LD C,0        ; #REGc will count 256 tiles
 ; The following loop draws 256 tiles (for either the top half or the bottom
 ; half of the room) to the screen buffer at #R28672.
@@ -1911,8 +1910,8 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
  36183 CPIR          ; conveyor tiles starting at #R32928 until we find a byte
                      ; that matches the attribute byte of the tile to be drawn;
                      ; note that if a graphic data byte matches the attribute
-                     ; byte being searched for, the CPIR instruction can exit
-                     ; early, which is a #BUG#corruptedConveyors(bug)}
+                     ; byte being searched for, the #S/CPIR/ instruction can
+                     ; exit early, which is a #BUG#corruptedConveyors(bug)}
  36185 LD C,E        ; Restore the value of the tile counter in #REGc
 @bfix+else
 @rem=Corrupted conveyors fix
@@ -1924,8 +1923,8 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
 @bfix+end
  36186 LD B,8        ; There are eight bytes in the tile
 @label=BUFMSB
- 36188 LD D,0        ; This instruction is set to either '#ld_d,#n112' or
-                     ; '#ld_d,#n120' above; now #REGde holds the appropriate
+ 36188 LD D,0        ; This instruction is set to either '#S/LD D/,#n112' or
+                     ; '#S/LD D/,#n120' above; now #REGde holds the appropriate
                      ; address in the screen buffer at #R28672
 *36190 LD A,(HL)     ; {Copy the tile graphic data to the screen buffer at
  36191 LD (DE),A     ; #R28672
@@ -2762,8 +2761,8 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37390 LD (HL),C     ; }
 *37391 LD C,1        ; Prepare #REGc for the call to #R37974 later on
  37393 LD A,(IX+1)   ; Now bits 5-7 of #REGa hold the animation frame mask
- 37396 AND (IX+0)    ; AND on the current animation frame (bits 5-7)
- 37399 OR (IX+2)     ; OR on the base sprite index (bits 5-7)
+ 37396 AND (IX+0)    ; '#S/AND/' on the current animation frame (bits 5-7)
+ 37399 OR (IX+2)     ; '#S/OR/' on the base sprite index (bits 5-7)
  37402 AND 224       ; Keep only bits 5-7
  37404 LD E,A        ; {Point #REGde at the graphic data for the guardian's
  37405 LD D,(IX+5)   ; current animation frame (see #R43776)}
@@ -2963,7 +2962,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
                      ; #R34256
  37752 BIT 1,A       ; Is Willy moving up or down the rope?
  37754 JR Z,37811    ; If not, jump to consider the next entity
- 37756 RRCA          ; {XOR Willy's direction bit (0=facing right, 1=facing
+ 37756 RRCA          ; {#S/XOR/ Willy's direction bit (0=facing right, 1=facing
  37757 XOR (IX+0)    ; left) with the rope's direction bit (0=swinging right to
  37760 RLCA          ; left, 1=swinging left to right)}
  37761 RLCA          ; {Now #REGa=1 if Willy is facing the same direction as

@@ -90,7 +90,7 @@ Credits
 Credits=reference/credits.html
 Rooms=tables/rooms.html
 Codes=tables/codes.html
-CodeFiles={address#IF({base}==16)(:04#IF({case}==1)//x/X//)}.html
+CodeFiles={address#IF({base}==16)(:04#S/X/)}.html
 
 [MemoryMap:MemoryMap]
 PageByteColumns=#IF({base}==16)(0,1)
