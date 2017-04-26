@@ -332,14 +332,14 @@ actual screen buffer at #N24576-#N28671. As a result, the misplaced arrow is
 #LIST
 { #R40704(#N40810-#N40841): unused (set to #N(65,,,1)(0x), with no effect on
   the game) }
-{ #R41064(#N41066-#N41097): the third byte of entity definition #ed13 through
-  to the second byte of entity definition #ed17 (set to #N(255,,,1)(0x)); this
+{ #R41064(#N41066-#N41097): the third byte of entity definition #b13 through to
+  the second byte of entity definition #b17 (set to #N(255,,,1)(0x)); this
   affects the guardians in #R52736(Rescue Esmerelda), #R52992(I'm sure I've
   seen this before..), #R53248(We must perform a Quirkafleeg), #R49408(The
   Bridge), #R50688(Entrance to Hades), #R56064(The Chapel) and #R58880(Priests'
   Hole) }
-{ #R41320(#N41322-#N41353): the third byte of entity definition #ed45 through
-  to the second byte of entity definition #ed49 (set to #N(65,,,1)(0x)); this
+{ #R41320(#N41322-#N41353): the third byte of entity definition #b45 through to
+  the second byte of entity definition #b49 (set to #N(65,,,1)(0x)); this
   affects the guardians in #R52480(Out on a limb), #R55808(East Wall Base),
   #R52224(Tree Top), #R51200(Inside the MegaTrunk), #R55040(The Kitchen) and
   #R55296(West of Kitchen) }

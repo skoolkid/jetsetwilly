@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2016 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014-2017 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:gameOverAt1am:Game over at 1am]
 The game ends abruptly at 1am (see #R35442), even if Willy has collected all
@@ -403,7 +403,7 @@ happen by replacing the first guardian in #R57856(Top Landing) with an arrow:
 <div>POKE 58097,56</div>
 
 [Fact:guardianOrFixture:Guardian or fixture?]
-Entity #ed89, defined at #R41672, and appearing in #R51968(The Hall) and
+Entity #b89, defined at #R41672, and appearing in #R51968(The Hall) and
 #R62976(West Wing), is the only guardian that does not move up, down, left or
 right.
 
@@ -494,8 +494,8 @@ will be automatically collected as soon as Willy enters the room (see
 [Fact:uneconomicalUnderworld:The uneconomical underworld]
 The demonic face guardian (as seen in #R50688(Entrance to Hades), #R56064(The
 Chapel) and  #R58880(Priests' Hole)) uses three entity definitions
-(#R41088(#ed16), #R41096(#ed17) and #R41104(#ed18)), but it could be adjusted
-to use only two, where the upper-left and upper-right portions share an entity
+(#R41088(#b16), #R41096(#b17) and #R41104(#b18)), but it could be adjusted to
+use only two, where the upper-left and upper-right portions share an entity
 definition with a different base sprite and x-coordinate.
 
 #UDGTABLE(gallery)
@@ -503,7 +503,7 @@ definition with a different base sprite and x-coordinate.
 { =c2 #guardian186,6,4 }
 TABLE#
 
-Use the following POKEs to free up entity definition #ed16:
+Use the following POKEs to free up entity definition #b16:
 
 <div>POKE #R50928(50928),17</div>
 <div>POKE #R56304(56304),17</div>

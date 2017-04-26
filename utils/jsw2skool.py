@@ -162,15 +162,15 @@ class JetSetWilly:
         lines = ['b 40960 Entity definitions']
         lines.append('@ 40960 label=ENTITYDEFS')
         lines.append('D 40960 Used by the routine at #R35090.')
-        lines.append('N 40960 The following (empty) entity definition (#ed0) is copied into one of the entity buffers at #R33024 for any entity specification whose first byte is zero.')
+        lines.append('N 40960 The following (empty) entity definition (#b0) is copied into one of the entity buffers at #R33024 for any entity specification whose first byte is zero.')
         lines.append('B 40960,8')
         for num in range(1, 112):
             addr = 40960 + num * 8
             if num in defs:
                 room_links = self._get_room_links(sorted(defs[num]))
-                comment = 'The following entity definition (#ed{}) is used in {}.'.format(num, room_links)
+                comment = 'The following entity definition (#b{}) is used in {}.'.format(num, room_links)
             else:
-                comment = 'The following entity definition (#ed{}) is not used.'.format(num)
+                comment = 'The following entity definition (#b{}) is not used.'.format(num)
             lines.append('N {} {}'.format(addr, comment))
             base_indexes = set()
             if num in sprite_addrs:
@@ -271,10 +271,10 @@ class JetSetWilly:
                 lines.append('B {} {}'.format(addr + 7, desc7))
             else:
                 lines.append('B {},8'.format(addr))
-        lines.append('N 41856 The next 15 entity definitions (#ed112-#ed126) are unused.')
+        lines.append('N 41856 The next 15 entity definitions (#b112-#b126) are unused.')
         lines.append('B 41856,120,8')
         lines.append('@ 41976 label=ENTITY127')
-        lines.append('N 41976 The following entity definition (#ed127) - whose eighth byte is at #R41983 - '
+        lines.append('N 41976 The following entity definition (#b127) - whose eighth byte is at #R41983 - '
                      'is copied into one of the entity buffers at #R33024 for any entity specification whose '
                      'first byte is #n127 or #n255; the first byte of the definition (#n255) serves to '
                      'terminate the entity buffers.')
@@ -461,9 +461,9 @@ class JetSetWilly:
                 desc = 'Terminator'
                 terminated = True
             elif guardian_type == 1:
-                desc = 'Guardian no. #ed{} (horizontal), base sprite {}, initial x={}'.format(num, coords // 32, coords & 31)
+                desc = 'Guardian no. #b{} (horizontal), base sprite {}, initial x={}'.format(num, coords // 32, coords & 31)
             elif guardian_type == 2:
-                desc = 'Guardian no. #ed{} (vertical), base sprite {}, x={}'.format(num, coords // 32, coords & 31)
+                desc = 'Guardian no. #b{} (vertical), base sprite {}, x={}'.format(num, coords // 32, coords & 31)
             elif guardian_type == 3:
                 desc = 'Rope at x={}'.format(coords & 31)
             else:

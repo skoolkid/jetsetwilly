@@ -35,7 +35,7 @@ b28672 DEFS 4096
 @replace=/#item\i/#UDG(49377+256*\1,(#PEEK(49312+256*\1)&120)+3)(item#EVAL\1,,2)
 @replace=/#sprite\i,\i/#UDGARRAY2,\2,2,2;\1-(\1+17)-1-16
 @replace=/#n\i/#N\1,,,1($)
-@replace=/#ed\i/#N\1,,,1(0x)
+@replace=/#b\i/#N\1,,,1(0x)
 @replace=/#BUG(?![A-Z])/#LINK:Bugs
 @replace=/#FACT(?![A-Z])/#LINK:Facts
 @replace=/#POKE(?![A-Z])/#LINK:Pokes
@@ -4082,12 +4082,12 @@ u40627 JP 7519
 ;
 ; .
 ;
-; The following (empty) entity definition (#ed0) is copied into one of the
+; The following (empty) entity definition (#b0) is copied into one of the
 ; entity buffers at #R33024 for any entity specification whose first byte is
 ; zero.
 @label=ENTITYDEFS
 b40960 DEFB 0,0,0,0,0,0,0,0
-; The following entity definition (#ed1) is used in #R53248(We must perform a
+; The following entity definition (#b1) is used in #R53248(We must perform a
 ; Quirkafleeg), #R53760(On the Roof), #R55552(Cold Store), #R57088(Swimming
 ; Pool) and #R64000(The Beach).
 @label=ENTITY1
@@ -4103,9 +4103,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  40974 DEFB 131               ; Unused
  40975 DEFB 54                ; Animation frame at which the rope changes
                               ; direction
-; The following entity definition (#ed2) is used in #R50432(The Security
-; Guard), #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..)
-; and #R53504(Up on the Battlements).
+; The following entity definition (#b2) is used in #R50432(The Security Guard),
+; #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..) and
+; #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
 ; { #guardian191,4,4 | #guardian191,5,4 }
@@ -4129,9 +4129,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48896(#N191)
  40982 DEFB 80                ; Minimum pixel y-coordinate: 40
  40983 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed3) is used in #R50432(The Security
-; Guard), #R52992(I'm sure I've seen this before..) and #R53504(Up on the
-; Battlements).
+; The following entity definition (#b3) is used in #R50432(The Security Guard),
+; #R52992(I'm sure I've seen this before..) and #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
 ; { #guardian191,4,66 | #guardian191,5,66 }
@@ -4154,9 +4153,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48896(#N191)
  40990 DEFB 88                ; Minimum pixel y-coordinate: 44
  40991 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed4) is used in #R50432(The Security
-; Guard), #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..)
-; and #R53504(Up on the Battlements).
+; The following entity definition (#b4) is used in #R50432(The Security Guard),
+; #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this before..) and
+; #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
 ; { #guardian191,4,6 | #guardian191,5,6 }
@@ -4180,7 +4179,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48896(#N191)
  40998 DEFB 96                ; Minimum pixel y-coordinate: 48
  40999 DEFB 192               ; Maximum pixel y-coordinate: 96
-; The following entity definition (#ed5) is used in #R52992(I'm sure I've seen
+; The following entity definition (#b5) is used in #R52992(I'm sure I've seen
 ; this before..) and #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
@@ -4204,7 +4203,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48896(#N191)
  41006 DEFB 64                ; Minimum pixel y-coordinate: 32
  41007 DEFB 192               ; Maximum pixel y-coordinate: 96
-; The following entity definition (#ed6) is used in #R49920(At the Foot of the
+; The following entity definition (#b6) is used in #R49920(At the Foot of the
 ; MegaTree).
 ; .
 ; #UDGTABLE
@@ -4227,7 +4226,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48896(#N191)
  41014 DEFB 64                ; Minimum pixel y-coordinate: 32
  41015 DEFB 176               ; Maximum pixel y-coordinate: 88
-; The following entity definition (#ed7) is used in #R49920(At the Foot of the
+; The following entity definition (#b7) is used in #R49920(At the Foot of the
 ; MegaTree) and #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
@@ -4251,7 +4250,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48896(#N191)
  41022 DEFB 32                ; Minimum pixel y-coordinate: 16
  41023 DEFB 160               ; Maximum pixel y-coordinate: 80
-; The following entity definition (#ed8) is used in #R49920(At the Foot of the
+; The following entity definition (#b8) is used in #R49920(At the Foot of the
 ; MegaTree).
 ; .
 ; #UDGTABLE
@@ -4275,7 +4274,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48896(#N191)
  41030 DEFB 38                ; Minimum pixel y-coordinate: 19
  41031 DEFB 176               ; Maximum pixel y-coordinate: 88
-; The following entity definition (#ed9) is used in #R51200(Inside the
+; The following entity definition (#b9) is used in #R51200(Inside the
 ; MegaTrunk) and #R51456(On a Branch Over the Drive).
 ; .
 ; #UDGTABLE
@@ -4299,7 +4298,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48896(#N191)
  41038 DEFB 128               ; Minimum pixel y-coordinate: 64
  41039 DEFB 224               ; Maximum pixel y-coordinate: 112
-; The following entity definition (#ed10) is used in #R49152(The Off Licence).
+; The following entity definition (#b10) is used in #R49152(The Off Licence).
 ; .
 ; #UDGTABLE
 ; { #guardian190,4,69 | #guardian190,5,69 | #guardian190,6,69 |
@@ -4322,8 +4321,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48640(#N190)
  41046 DEFB 16                ; Minimum pixel y-coordinate: 8
  41047 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed11) is used in #R59392(Dr Jones will
-; never believe this) and #R61440(Nomen Luni).
+; The following entity definition (#b11) is used in #R59392(Dr Jones will never
+; believe this) and #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
 ; { #guardian191,0,6 | #guardian191,1,6 | #guardian191,2,6 | #guardian191,3,6 }
@@ -4345,7 +4344,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48896(#N191)
  41054 DEFB 112               ; Minimum pixel y-coordinate: 56
  41055 DEFB 192               ; Maximum pixel y-coordinate: 96
-; The following entity definition (#ed12) is used in #R49152(The Off Licence).
+; The following entity definition (#b12) is used in #R49152(The Off Licence).
 ; .
 ; #UDGTABLE
 ; { #guardian190,0,4 | #guardian190,1,4 | #guardian190,2,4 | #guardian190,3,4 }
@@ -4366,7 +4365,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48640(#N190)
  41062 DEFB 19                ; Minimum x-coordinate
  41063 DEFB 29                ; Maximum x-coordinate
-; The following entity definition (#ed13) is used in #R52736(Rescue Esmerelda),
+; The following entity definition (#b13) is used in #R52736(Rescue Esmerelda),
 ; #R52992(I'm sure I've seen this before..) and #R53248(We must perform a
 ; Quirkafleeg).
 ; .
@@ -4396,7 +4395,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41070 DEFB 0                 ; Minimum x-coordinate
  41071 DEFB 9                 ; Maximum x-coordinate
-; The following entity definition (#ed14) is used in #R49408(The Bridge).
+; The following entity definition (#b14) is used in #R49408(The Bridge).
 ; .
 ; #UDGTABLE
 ; { #guardian185,4,68 | #guardian185,5,68 | #guardian185,6,68 |
@@ -4419,7 +4418,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47360(#N185)
  41078 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41079 DEFB 192               ; Maximum pixel y-coordinate: 96
-; The following entity definition (#ed15) is used in #R52736(Rescue Esmerelda).
+; The following entity definition (#b15) is used in #R52736(Rescue Esmerelda).
 ; .
 ; #UDGTABLE
 ; { #guardian176,4,23 | #guardian176,5,23 }
@@ -4441,8 +4440,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R45056(#N176)
  41086 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41087 DEFB 32                ; Maximum pixel y-coordinate: 16
-; The following entity definition (#ed16) is used in #R50688(Entrance to
-; Hades), #R56064(The Chapel) and #R58880(Priests' Hole).
+; The following entity definition (#b16) is used in #R50688(Entrance to Hades),
+; #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
 ; { #guardian186,4,4 }
@@ -4464,8 +4463,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47616(#N186)
  41094 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41095 DEFB 176               ; Maximum pixel y-coordinate: 88
-; The following entity definition (#ed17) is used in #R50688(Entrance to
-; Hades), #R56064(The Chapel) and #R58880(Priests' Hole).
+; The following entity definition (#b17) is used in #R50688(Entrance to Hades),
+; #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
 ; { #guardian186,5,4 }
@@ -4487,8 +4486,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47616(#N186)
  41102 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41103 DEFB 176               ; Maximum pixel y-coordinate: 88
-; The following entity definition (#ed18) is used in #R50688(Entrance to
-; Hades), #R56064(The Chapel) and #R58880(Priests' Hole).
+; The following entity definition (#b18) is used in #R50688(Entrance to Hades),
+; #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
 ; { #guardian186,6,4 | #guardian186,7,4 }
@@ -4511,7 +4510,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47616(#N186)
  41110 DEFB 32                ; Minimum pixel y-coordinate: 16
  41111 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed19) is used in #R54272(Ballroom East) and
+; The following entity definition (#b19) is used in #R54272(Ballroom East) and
 ; #R57856(Top Landing).
 ; .
 ; #UDGTABLE
@@ -4533,7 +4532,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R40000(#N156)
  41118 DEFB 32                ; Minimum pixel y-coordinate: 16
  41119 DEFB 96                ; Maximum pixel y-coordinate: 48
-; The following entity definition (#ed20) is used in #R49408(The Bridge) and
+; The following entity definition (#b20) is used in #R49408(The Bridge) and
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
@@ -4557,7 +4556,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41126 DEFB 0                 ; Minimum x-coordinate
  41127 DEFB 10                ; Maximum x-coordinate
-; The following entity definition (#ed21) is used in #R49408(The Bridge),
+; The following entity definition (#b21) is used in #R49408(The Bridge),
 ; #R50176(The Drive) and #R54272(Ballroom East).
 ; .
 ; #UDGTABLE
@@ -4580,7 +4579,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41134 DEFB 14                ; Minimum x-coordinate
  41135 DEFB 29                ; Maximum x-coordinate
-; The following entity definition (#ed22) is used in #R50176(The Drive) and
+; The following entity definition (#b22) is used in #R50176(The Drive) and
 ; #R51200(Inside the MegaTrunk).
 ; .
 ; #UDGTABLE
@@ -4603,7 +4602,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41142 DEFB 16                ; Minimum x-coordinate
  41143 DEFB 29                ; Maximum x-coordinate
-; The following entity definition (#ed23) is used in #R50176(The Drive).
+; The following entity definition (#b23) is used in #R50176(The Drive).
 ; .
 ; #UDGTABLE
 ; { #guardian188,0,6 | #guardian188,1,6 | #guardian188,2,6 | #guardian188,3,6 |
@@ -4625,7 +4624,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41150 DEFB 5                 ; Minimum x-coordinate
  41151 DEFB 29                ; Maximum x-coordinate
-; The following entity definition (#ed24) is used in #R50176(The Drive),
+; The following entity definition (#b24) is used in #R50176(The Drive),
 ; #R51200(Inside the MegaTrunk) and #R52224(Tree Top).
 ; .
 ; #UDGTABLE
@@ -4649,7 +4648,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41158 DEFB 0                 ; Minimum x-coordinate
  41159 DEFB 10                ; Maximum x-coordinate
-; The following entity definition (#ed25) is used in #R52480(Out on a limb).
+; The following entity definition (#b25) is used in #R52480(Out on a limb).
 ; .
 ; #UDGTABLE
 ; { #guardian188,0,67 | #guardian188,1,67 | #guardian188,2,67 |
@@ -4672,7 +4671,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41166 DEFB 14                ; Minimum x-coordinate
  41167 DEFB 23                ; Maximum x-coordinate
-; The following entity definition (#ed26) is used in #R49664(Under the
+; The following entity definition (#b26) is used in #R49664(Under the
 ; MegaTree), #R51968(The Hall), #R52224(Tree Top) and #R59136(Emergency
 ; Generator).
 ; .
@@ -4700,7 +4699,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46592(#N182)
  41174 DEFB 5                 ; Minimum x-coordinate
  41175 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed27) is used in #R51456(On a Branch Over
+; The following entity definition (#b27) is used in #R51456(On a Branch Over
 ; the Drive), #R58624(Orangery), #R59392(Dr Jones will never believe this) and
 ; #R64256(The Yacht).
 ; .
@@ -4729,7 +4728,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R45568(#N178)
  41182 DEFB 128               ; Minimum pixel y-coordinate: 64
  41183 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed28) is used in #R60672(Under the Drive)
+; The following entity definition (#b28) is used in #R60672(Under the Drive)
 ; and #R63488(West Wing Roof).
 ; .
 ; #UDGTABLE
@@ -4752,7 +4751,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41190 DEFB 12                ; Minimum x-coordinate
  41191 DEFB 29                ; Maximum x-coordinate
-; The following entity definition (#ed29) is used in #R60416(On top of the
+; The following entity definition (#b29) is used in #R60416(On top of the
 ; house), #R60672(Under the Drive), #R61440(Nomen Luni) and #R62464(Back
 ; Stairway).
 ; .
@@ -4778,7 +4777,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R45568(#N178)
  41198 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41199 DEFB 128               ; Maximum pixel y-coordinate: 64
-; The following entity definition (#ed30) is used in #R60928(Tree Root) and
+; The following entity definition (#b30) is used in #R60928(Tree Root) and
 ; #R63232(West Bedroom).
 ; .
 ; #UDGTABLE
@@ -4801,7 +4800,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44288(#N173)
  41206 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41207 DEFB 128               ; Maximum pixel y-coordinate: 64
-; The following entity definition (#ed31) is used in #R60928(Tree Root).
+; The following entity definition (#b31) is used in #R60928(Tree Root).
 ; .
 ; #UDGTABLE
 ; { #guardian183,2,3 | #guardian183,3,3 }
@@ -4823,7 +4822,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46848(#N183)
  41214 DEFB 64                ; Minimum pixel y-coordinate: 32
  41215 DEFB 160               ; Maximum pixel y-coordinate: 80
-; The following entity definition (#ed32) is used in #R49664(Under the
+; The following entity definition (#b32) is used in #R49664(Under the
 ; MegaTree).
 ; .
 ; #UDGTABLE
@@ -4846,7 +4845,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47104(#N184)
  41222 DEFB 0                 ; Minimum x-coordinate
  41223 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed33) is used in #R54528(Ballroom West).
+; The following entity definition (#b33) is used in #R54528(Ballroom West).
 ; .
 ; #UDGTABLE
 ; { #guardian184,0,3 | #guardian184,1,3 | #guardian184,2,3 | #guardian184,3,3 |
@@ -4868,7 +4867,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47104(#N184)
  41230 DEFB 16                ; Minimum x-coordinate
  41231 DEFB 26                ; Maximum x-coordinate
-; The following entity definition (#ed34) is used in #R53760(On the Roof).
+; The following entity definition (#b34) is used in #R53760(On the Roof).
 ; .
 ; #UDGTABLE
 ; { #guardian184,0,5 | #guardian184,1,5 | #guardian184,2,5 | #guardian184,3,5 |
@@ -4890,7 +4889,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47104(#N184)
  41238 DEFB 14                ; Minimum x-coordinate
  41239 DEFB 24                ; Maximum x-coordinate
-; The following entity definition (#ed35) is used in #R60928(Tree Root).
+; The following entity definition (#b35) is used in #R60928(Tree Root).
 ; .
 ; #UDGTABLE
 ; { #guardian184,0,66 | #guardian184,1,66 | #guardian184,2,66 |
@@ -4913,7 +4912,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47104(#N184)
  41246 DEFB 15                ; Minimum x-coordinate
  41247 DEFB 23                ; Maximum x-coordinate
-; The following entity definition (#ed36) is used in #R50176(The Drive),
+; The following entity definition (#b36) is used in #R50176(The Drive),
 ; #R57856(Top Landing) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
@@ -4936,7 +4935,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44800(#N175)
  41254 DEFB 10                ; Minimum x-coordinate
  41255 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed37) is used in #R58880(Priests' Hole).
+; The following entity definition (#b37) is used in #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
 ; { #guardian188,0,66 | #guardian188,1,66 | #guardian188,2,66 |
@@ -4959,8 +4958,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41262 DEFB 8                 ; Minimum x-coordinate
  41263 DEFB 24                ; Maximum x-coordinate
-; The following entity definition (#ed38) is used in #R57344(Halfway up the
-; East Wall).
+; The following entity definition (#b38) is used in #R57344(Halfway up the East
+; Wall).
 ; .
 ; #UDGTABLE
 ; { #guardian174,0,70 | #guardian174,1,70 | #guardian174,2,70 |
@@ -4982,7 +4981,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44544(#N174)
  41270 DEFB 2                 ; Minimum x-coordinate
  41271 DEFB 7                 ; Maximum x-coordinate
-; The following entity definition (#ed39) is used in #R50944(Cuckoo's Nest) and
+; The following entity definition (#b39) is used in #R50944(Cuckoo's Nest) and
 ; #R59904(Under the Roof).
 ; .
 ; #UDGTABLE
@@ -5006,7 +5005,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44800(#N175)
  41278 DEFB 12                ; Minimum x-coordinate
  41279 DEFB 18                ; Maximum x-coordinate
-; The following entity definition (#ed40) is used in #R54272(Ballroom East),
+; The following entity definition (#b40) is used in #R54272(Ballroom East),
 ; #R54528(Ballroom West) and #R60928(Tree Root).
 ; .
 ; #UDGTABLE
@@ -5029,7 +5028,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47616(#N186)
  41286 DEFB 96                ; Minimum pixel y-coordinate: 48
  41287 DEFB 192               ; Maximum pixel y-coordinate: 96
-; The following entity definition (#ed41) is used in #R54272(Ballroom East).
+; The following entity definition (#b41) is used in #R54272(Ballroom East).
 ; .
 ; #UDGTABLE
 ; { #guardian186,1,6 | #guardian186,3,6 }
@@ -5051,7 +5050,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47616(#N186)
  41294 DEFB 144               ; Minimum pixel y-coordinate: 72
  41295 DEFB 192               ; Maximum pixel y-coordinate: 96
-; The following entity definition (#ed42) is used in #R49664(Under the
+; The following entity definition (#b42) is used in #R49664(Under the
 ; MegaTree), #R54272(Ballroom East) and #R54528(Ballroom West).
 ; .
 ; #UDGTABLE
@@ -5074,7 +5073,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47616(#N186)
  41302 DEFB 96                ; Minimum pixel y-coordinate: 48
  41303 DEFB 174               ; Maximum pixel y-coordinate: 87
-; The following entity definition (#ed43) is not used.
+; The following entity definition (#b43) is not used.
 @label=ENTITY43
  41304 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
                               ; updated on every second pass (bit 4), initial
@@ -5092,7 +5091,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47616(#N186)
  41310 DEFB 144               ; Minimum pixel y-coordinate: 72
  41311 DEFB 184               ; Maximum pixel y-coordinate: 92
-; The following entity definition (#ed44) is used in #R49152(The Off Licence)
+; The following entity definition (#b44) is used in #R49152(The Off Licence)
 ; and #R51200(Inside the MegaTrunk).
 ; .
 ; #UDGTABLE
@@ -5115,7 +5114,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47616(#N186)
  41318 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41319 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed45) is used in #R52480(Out on a limb) and
+; The following entity definition (#b45) is used in #R52480(Out on a limb) and
 ; #R55808(East Wall Base).
 ; .
 ; #UDGTABLE
@@ -5139,7 +5138,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47616(#N186)
  41326 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41327 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed46) is used in #R52224(Tree Top).
+; The following entity definition (#b46) is used in #R52224(Tree Top).
 ; .
 ; #UDGTABLE
 ; { #guardian187,4,6 | #guardian187,5,6 | #guardian187,6,6 | #guardian187,7,6 }
@@ -5160,7 +5159,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47872(#N187)
  41334 DEFB 0                 ; Minimum x-coordinate
  41335 DEFB 19                ; Maximum x-coordinate
-; The following entity definition (#ed47) is used in #R51200(Inside the
+; The following entity definition (#b47) is used in #R51200(Inside the
 ; MegaTrunk).
 ; .
 ; #UDGTABLE
@@ -5183,7 +5182,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47872(#N187)
  41342 DEFB 17                ; Minimum x-coordinate
  41343 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed48) is used in #R55040(The Kitchen) and
+; The following entity definition (#b48) is used in #R55040(The Kitchen) and
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
@@ -5206,7 +5205,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46848(#N183)
  41350 DEFB 16                ; Minimum pixel y-coordinate: 8
  41351 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed49) is used in #R55040(The Kitchen) and
+; The following entity definition (#b49) is used in #R55040(The Kitchen) and
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
@@ -5229,7 +5228,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46848(#N183)
  41358 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41359 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed50) is used in #R55040(The Kitchen) and
+; The following entity definition (#b50) is used in #R55040(The Kitchen) and
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
@@ -5252,7 +5251,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46848(#N183)
  41366 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41367 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed51) is used in #R63232(West Bedroom) and
+; The following entity definition (#b51) is used in #R63232(West Bedroom) and
 ; #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
@@ -5275,7 +5274,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46848(#N183)
  41374 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41375 DEFB 160               ; Maximum pixel y-coordinate: 80
-; The following entity definition (#ed52) is used in #R61696(The Wine Cellar),
+; The following entity definition (#b52) is used in #R61696(The Wine Cellar),
 ; #R62208(Tool#SPACE(2)Shed) and #R63488(West Wing Roof).
 ; .
 ; #UDGTABLE
@@ -5298,7 +5297,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46336(#N181)
  41382 DEFB 7                 ; Minimum x-coordinate
  41383 DEFB 22                ; Maximum x-coordinate
-; The following entity definition (#ed53) is used in #R49920(At the Foot of the
+; The following entity definition (#b53) is used in #R49920(At the Foot of the
 ; MegaTree) and #R64256(The Yacht).
 ; .
 ; #UDGTABLE
@@ -5322,7 +5321,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46336(#N181)
  41390 DEFB 4                 ; Minimum x-coordinate
  41391 DEFB 14                ; Maximum x-coordinate
-; The following entity definition (#ed54) is used in #R55552(Cold Store).
+; The following entity definition (#b54) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
 ; { #guardian189,0,14 | #guardian189,1,14 | #guardian189,2,14 |
@@ -5345,7 +5344,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48384(#N189)
  41398 DEFB 0                 ; Minimum x-coordinate
  41399 DEFB 24                ; Maximum x-coordinate
-; The following entity definition (#ed55) is used in #R55552(Cold Store) and
+; The following entity definition (#b55) is used in #R55552(Cold Store) and
 ; #R59904(Under the Roof).
 ; .
 ; #UDGTABLE
@@ -5368,7 +5367,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47872(#N187)
  41406 DEFB 0                 ; Minimum x-coordinate
  41407 DEFB 5                 ; Maximum x-coordinate
-; The following entity definition (#ed56) is used in #R55552(Cold Store).
+; The following entity definition (#b56) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
 ; { #guardian189,0,12 | #guardian189,1,12 | #guardian189,2,12 |
@@ -5391,7 +5390,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48384(#N189)
  41414 DEFB 0                 ; Minimum x-coordinate
  41415 DEFB 6                 ; Maximum x-coordinate
-; The following entity definition (#ed57) is used in #R55552(Cold Store).
+; The following entity definition (#b57) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
 ; { #guardian187,0,11 | #guardian187,1,11 | #guardian187,2,11 |
@@ -5413,7 +5412,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47872(#N187)
  41422 DEFB 0                 ; Minimum x-coordinate
  41423 DEFB 9                 ; Maximum x-coordinate
-; The following entity definition (#ed58) is used in #R57856(Top Landing).
+; The following entity definition (#b58) is used in #R57856(Top Landing).
 ; .
 ; #UDGTABLE
 ; { #guardian173,4,7 | #guardian173,5,7 | #guardian173,6,7 | #guardian173,7,7 }
@@ -5435,7 +5434,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44288(#N173)
  41430 DEFB 32                ; Minimum pixel y-coordinate: 16
  41431 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed59) is used in #R57600(The Bathroom).
+; The following entity definition (#b59) is used in #R57600(The Bathroom).
 ; .
 ; #UDGTABLE
 ; { #guardian185,0,4 | #guardian185,1,4 | #guardian185,2,4 | #guardian185,3,4 }
@@ -5456,7 +5455,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47360(#N185)
  41438 DEFB 0                 ; Minimum x-coordinate
  41439 DEFB 27                ; Maximum x-coordinate
-; The following entity definition (#ed60) is used in #R50944(Cuckoo's Nest),
+; The following entity definition (#b60) is used in #R50944(Cuckoo's Nest),
 ; #R51456(On a Branch Over the Drive), #R51968(The Hall), #R52992(I'm sure I've
 ; seen this before..), #R53248(We must perform a Quirkafleeg),
 ; #R58624(Orangery), #R59648(The Attic), #R59904(Under the Roof), #R63488(West
@@ -5473,7 +5472,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41446 DEFB %10000010         ; Top/bottom pixel row (drawn either side of the
                               ; shaft)
  41447 DEFB 0                 ; Unused
-; The following entity definition (#ed61) is used in #R51456(On a Branch Over
+; The following entity definition (#b61) is used in #R51456(On a Branch Over
 ; the Drive) and #R60160(Conservatory Roof).
 ; .
 ; #UDGTABLE
@@ -5497,7 +5496,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44288(#N173)
  41454 DEFB 16                ; Minimum x-coordinate
  41455 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed62) is used in #R51456(On a Branch Over
+; The following entity definition (#b62) is used in #R51456(On a Branch Over
 ; the Drive).
 ; .
 ; #UDGTABLE
@@ -5521,9 +5520,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47360(#N185)
  41462 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41463 DEFB 112               ; Maximum pixel y-coordinate: 56
-; The following entity definition (#ed63) is not used.
+; The following entity definition (#b63) is not used.
  41464 DEFB 255,0,0,0,0,0,0,0
-; The following entity definition (#ed64) is used in #R61696(The Wine Cellar).
+; The following entity definition (#b64) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
 ; { #guardian180,0,3 | #guardian180,1,3 | #guardian180,2,3 | #guardian180,3,3 |
@@ -5545,7 +5544,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41478 DEFB 0                 ; Minimum x-coordinate
  41479 DEFB 27                ; Maximum x-coordinate
-; The following entity definition (#ed65) is used in #R61696(The Wine Cellar).
+; The following entity definition (#b65) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
 ; { #guardian180,0,6 | #guardian180,1,6 | #guardian180,2,6 | #guardian180,3,6 |
@@ -5567,7 +5566,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41486 DEFB 4                 ; Minimum x-coordinate
  41487 DEFB 27                ; Maximum x-coordinate
-; The following entity definition (#ed66) is used in #R61696(The Wine Cellar).
+; The following entity definition (#b66) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
 ; { #guardian180,0,4 | #guardian180,1,4 | #guardian180,2,4 | #guardian180,3,4 |
@@ -5589,7 +5588,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41494 DEFB 2                 ; Minimum x-coordinate
  41495 DEFB 27                ; Maximum x-coordinate
-; The following entity definition (#ed67) is used in #R56320(First Landing).
+; The following entity definition (#b67) is used in #R56320(First Landing).
 ; .
 ; #UDGTABLE
 ; { #guardian180,0,6 | #guardian180,1,6 | #guardian180,2,6 | #guardian180,3,6 |
@@ -5611,7 +5610,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41502 DEFB 24                ; Minimum x-coordinate
  41503 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed68) is used in #R60672(Under the Drive).
+; The following entity definition (#b68) is used in #R60672(Under the Drive).
 ; .
 ; #UDGTABLE
 ; { #guardian174,4,3 | #guardian174,5,3 | #guardian174,6,3 | #guardian174,7,3 }
@@ -5632,7 +5631,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44544(#N174)
  41510 DEFB 21                ; Minimum x-coordinate
  41511 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed69) is used in #R51968(The Hall),
+; The following entity definition (#b69) is used in #R51968(The Hall),
 ; #R52224(Tree Top), #R52992(I'm sure I've seen this before..), #R53504(Up on
 ; the Battlements), #R58368(A bit of tree) and #R59648(The Attic).
 @label=ENTITY69
@@ -5647,7 +5646,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41518 DEFB %01000001         ; Top/bottom pixel row (drawn either side of the
                               ; shaft)
  41519 DEFB 0                 ; Unused
-; The following entity definition (#ed70) is used in #R56576(The Nightmare
+; The following entity definition (#b70) is used in #R56576(The Nightmare
 ; Room).
 ; .
 ; #UDGTABLE
@@ -5670,7 +5669,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R40064(#N156)
  41526 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41527 DEFB 160               ; Maximum pixel y-coordinate: 80
-; The following entity definition (#ed71) is used in #R56576(The Nightmare
+; The following entity definition (#b71) is used in #R56576(The Nightmare
 ; Room).
 ; .
 ; #UDGTABLE
@@ -5694,7 +5693,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R40064(#N156)
  41534 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41535 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed72) is used in #R56576(The Nightmare
+; The following entity definition (#b72) is used in #R56576(The Nightmare
 ; Room).
 ; .
 ; #UDGTABLE
@@ -5717,7 +5716,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #N156#HTML[ (#R40000(foot), #R40064(Maria))]
  41542 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41543 DEFB 192               ; Maximum pixel y-coordinate: 96
-; The following entity definition (#ed73) is used in #R56576(The Nightmare
+; The following entity definition (#b73) is used in #R56576(The Nightmare
 ; Room).
 ; .
 ; #UDGTABLE
@@ -5740,7 +5739,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R40064(#N156)
  41550 DEFB 16                ; Minimum pixel y-coordinate: 8
  41551 DEFB 208               ; Maximum pixel y-coordinate: 104
-; The following entity definition (#ed74) is used in #R54016(The Forgotten
+; The following entity definition (#b74) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
 ; #UDGTABLE
@@ -5763,7 +5762,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41558 DEFB 4                 ; Minimum x-coordinate
  41559 DEFB 20                ; Maximum x-coordinate
-; The following entity definition (#ed75) is used in #R54016(The Forgotten
+; The following entity definition (#b75) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
 ; #UDGTABLE
@@ -5786,7 +5785,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41566 DEFB 12                ; Minimum x-coordinate
  41567 DEFB 28                ; Maximum x-coordinate
-; The following entity definition (#ed76) is used in #R54016(The Forgotten
+; The following entity definition (#b76) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
 ; #UDGTABLE
@@ -5810,7 +5809,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41574 DEFB 9                 ; Minimum x-coordinate
  41575 DEFB 20                ; Maximum x-coordinate
-; The following entity definition (#ed77) is used in #R54016(The Forgotten
+; The following entity definition (#b77) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
 ; #UDGTABLE
@@ -5833,7 +5832,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41582 DEFB 22                ; Minimum x-coordinate
  41583 DEFB 27                ; Maximum x-coordinate
-; The following entity definition (#ed78) is used in #R54016(The Forgotten
+; The following entity definition (#b78) is used in #R54016(The Forgotten
 ; Abbey) and #R57088(Swimming Pool).
 ; .
 ; #UDGTABLE
@@ -5856,7 +5855,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41590 DEFB 5                 ; Minimum x-coordinate
  41591 DEFB 12                ; Maximum x-coordinate
-; The following entity definition (#ed79) is used in #R54016(The Forgotten
+; The following entity definition (#b79) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
 ; #UDGTABLE
@@ -5880,7 +5879,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41598 DEFB 11                ; Minimum x-coordinate
  41599 DEFB 18                ; Maximum x-coordinate
-; The following entity definition (#ed80) is used in #R54016(The Forgotten
+; The following entity definition (#b80) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
 ; #UDGTABLE
@@ -5903,7 +5902,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41606 DEFB 16                ; Minimum x-coordinate
  41607 DEFB 23                ; Maximum x-coordinate
-; The following entity definition (#ed81) is used in #R54016(The Forgotten
+; The following entity definition (#b81) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
 ; #UDGTABLE
@@ -5926,7 +5925,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41614 DEFB 23                ; Minimum x-coordinate
  41615 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed82) is used in #R59648(The Attic).
+; The following entity definition (#b82) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
 ; { #guardian176,0,3 | #guardian176,1,3 }
@@ -5948,7 +5947,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R45056(#N176)
  41622 DEFB 112               ; Minimum pixel y-coordinate: 56
  41623 DEFB 176               ; Maximum pixel y-coordinate: 88
-; The following entity definition (#ed83) is used in #R59648(The Attic).
+; The following entity definition (#b83) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
 ; { #guardian176,0,6 | #guardian176,1,6 }
@@ -5970,7 +5969,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R45056(#N176)
  41630 DEFB 112               ; Minimum pixel y-coordinate: 56
  41631 DEFB 176               ; Maximum pixel y-coordinate: 88
-; The following entity definition (#ed84) is used in #R59648(The Attic).
+; The following entity definition (#b84) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
 ; { #guardian176,0,65 | #guardian176,1,65 }
@@ -5992,7 +5991,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R45056(#N176)
  41638 DEFB 112               ; Minimum pixel y-coordinate: 56
  41639 DEFB 176               ; Maximum pixel y-coordinate: 88
-; The following entity definition (#ed85) is used in #R59648(The Attic).
+; The following entity definition (#b85) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
 ; { #guardian176,0,4 | #guardian176,1,4 }
@@ -6014,7 +6013,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R45056(#N176)
  41646 DEFB 112               ; Minimum pixel y-coordinate: 56
  41647 DEFB 176               ; Maximum pixel y-coordinate: 88
-; The following entity definition (#ed86) is used in #R59648(The Attic).
+; The following entity definition (#b86) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
 ; { #guardian176,0,2 | #guardian176,1,2 }
@@ -6036,7 +6035,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R45056(#N176)
  41654 DEFB 112               ; Minimum pixel y-coordinate: 56
  41655 DEFB 176               ; Maximum pixel y-coordinate: 88
-; The following entity definition (#ed87) is used in #R59648(The Attic).
+; The following entity definition (#b87) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
 ; { #guardian176,2,5 | #guardian176,3,5 }
@@ -6058,7 +6057,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R45056(#N176)
  41662 DEFB 112               ; Minimum pixel y-coordinate: 56
  41663 DEFB 176               ; Maximum pixel y-coordinate: 88
-; The following entity definition (#ed88) is used in #R52480(Out on a limb) and
+; The following entity definition (#b88) is used in #R52480(Out on a limb) and
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
@@ -6081,7 +6080,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46336(#N181)
  41670 DEFB 19                ; Minimum x-coordinate
  41671 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed89) is used in #R51968(The Hall) and
+; The following entity definition (#b89) is used in #R51968(The Hall) and
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
@@ -6104,7 +6103,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R45056(#N176)
  41678 DEFB 80                ; Minimum pixel y-coordinate: 40
  41679 DEFB 112               ; Maximum pixel y-coordinate: 56
-; The following entity definition (#ed90) is used in #R54784(To the
+; The following entity definition (#b90) is used in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
@@ -6127,7 +6126,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44544(#N174)
  41686 DEFB 0                 ; Minimum x-coordinate
  41687 DEFB 11                ; Maximum x-coordinate
-; The following entity definition (#ed91) is used in #R54784(To the
+; The following entity definition (#b91) is used in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
@@ -6150,7 +6149,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48640(#N190)
  41694 DEFB 13                ; Minimum x-coordinate
  41695 DEFB 21                ; Maximum x-coordinate
-; The following entity definition (#ed92) is used in #R54784(To the
+; The following entity definition (#b92) is used in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
@@ -6174,7 +6173,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46848(#N183)
  41702 DEFB 12                ; Minimum x-coordinate
  41703 DEFB 24                ; Maximum x-coordinate
-; The following entity definition (#ed93) is used in #R54784(To the
+; The following entity definition (#b93) is used in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
@@ -6197,7 +6196,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47360(#N185)
  41710 DEFB 2                 ; Minimum x-coordinate
  41711 DEFB 6                 ; Maximum x-coordinate
-; The following entity definition (#ed94) is used in #R54784(To the
+; The following entity definition (#b94) is used in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
@@ -6220,7 +6219,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44800(#N175)
  41718 DEFB 0                 ; Minimum x-coordinate
  41719 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed95) is used in #R51968(The Hall) and
+; The following entity definition (#b95) is used in #R51968(The Hall) and
 ; #R54784(To the Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
@@ -6246,7 +6245,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41726 DEFB 9                 ; Minimum x-coordinate
  41727 DEFB 17                ; Maximum x-coordinate
-; The following entity definition (#ed96) is used in #R55808(East Wall Base).
+; The following entity definition (#b96) is used in #R55808(East Wall Base).
 ; .
 ; #UDGTABLE
 ; { #guardian172,0,66 | #guardian172,1,66 | #guardian172,2,66 |
@@ -6269,7 +6268,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44032(#N172)
  41734 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41735 DEFB 192               ; Maximum pixel y-coordinate: 96
-; The following entity definition (#ed97) is used in #R58624(Orangery) and
+; The following entity definition (#b97) is used in #R58624(Orangery) and
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
@@ -6293,8 +6292,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44032(#N172)
  41742 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41743 DEFB 192               ; Maximum pixel y-coordinate: 96
-; The following entity definition (#ed98) is used in
-; #R62208(Tool#SPACE(2)Shed).
+; The following entity definition (#b98) is used in #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
 ; { #guardian175,0,6 | #guardian175,1,6 | #guardian175,2,6 | #guardian175,3,6 }
@@ -6315,8 +6313,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44800(#N175)
  41750 DEFB 7                 ; Minimum x-coordinate
  41751 DEFB 20                ; Maximum x-coordinate
-; The following entity definition (#ed99) is used in
-; #R62208(Tool#SPACE(2)Shed).
+; The following entity definition (#b99) is used in #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
 ; { #guardian173,0,4 | #guardian173,1,4 | #guardian173,2,4 | #guardian173,3,4 }
@@ -6337,7 +6334,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44288(#N173)
  41758 DEFB 7                 ; Minimum x-coordinate
  41759 DEFB 17                ; Maximum x-coordinate
-; The following entity definition (#ed100) is used in #R56064(The Chapel) and
+; The following entity definition (#b100) is used in #R56064(The Chapel) and
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
@@ -6361,7 +6358,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44032(#N172)
  41766 DEFB 112               ; Minimum pixel y-coordinate: 56
  41767 DEFB 160               ; Maximum pixel y-coordinate: 80
-; The following entity definition (#ed101) is used in #R56832(The Banyan Tree)
+; The following entity definition (#b101) is used in #R56832(The Banyan Tree)
 ; and #R58368(A bit of tree).
 ; .
 ; #UDGTABLE
@@ -6387,7 +6384,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R43776#43776(#N171)
  41774 DEFB 80                ; Minimum pixel y-coordinate: 40
  41775 DEFB 160               ; Maximum pixel y-coordinate: 80
-; The following entity definition (#ed102) is used in #R56064(The Chapel) and
+; The following entity definition (#b102) is used in #R56064(The Chapel) and
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
@@ -6411,7 +6408,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R43776#43776(#N171)
  41782 DEFB 80                ; Minimum pixel y-coordinate: 40
  41783 DEFB 160               ; Maximum pixel y-coordinate: 80
-; The following entity definition (#ed103) is used in #R56064(The Chapel).
+; The following entity definition (#b103) is used in #R56064(The Chapel).
 ; .
 ; #UDGTABLE
 ; { #guardian180,0,3 | #guardian180,1,3 | #guardian180,2,3 | #guardian180,3,3 }
@@ -6432,8 +6429,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46080(#N180)
  41790 DEFB 0                 ; Minimum x-coordinate
  41791 DEFB 15                ; Maximum x-coordinate
-; The following entity definition (#ed104) is used in #R58368(A bit of tree)
-; and #R61440(Nomen Luni).
+; The following entity definition (#b104) is used in #R58368(A bit of tree) and
+; #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
 ; { #guardian188,0,6 | #guardian188,1,6 | #guardian188,2,6 | #guardian188,3,6 |
@@ -6455,7 +6452,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41798 DEFB 0                 ; Minimum x-coordinate
  41799 DEFB 10                ; Maximum x-coordinate
-; The following entity definition (#ed105) is used in #R64512(The Bow).
+; The following entity definition (#b105) is used in #R64512(The Bow).
 ; .
 ; #UDGTABLE
 ; { #guardian190,0,6 | #guardian190,1,6 | #guardian190,2,6 | #guardian190,3,6 }
@@ -6476,7 +6473,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48640(#N190)
  41806 DEFB 22                ; Minimum x-coordinate
  41807 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed106) is used in #R60160(Conservatory
+; The following entity definition (#b106) is used in #R60160(Conservatory
 ; Roof).
 ; .
 ; #UDGTABLE
@@ -6499,7 +6496,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44544(#N174)
  41814 DEFB 17                ; Minimum x-coordinate
  41815 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed107) is used in #R61440(Nomen Luni).
+; The following entity definition (#b107) is used in #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
 ; { #guardian190,0,4 | #guardian190,1,4 | #guardian190,2,4 | #guardian190,3,4 }
@@ -6520,7 +6517,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48640(#N190)
  41822 DEFB 18                ; Minimum x-coordinate
  41823 DEFB 22                ; Maximum x-coordinate
-; The following entity definition (#ed108) is used in #R61952(Watch Tower).
+; The following entity definition (#b108) is used in #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
 ; { #guardian187,4,11 | #guardian187,5,11 | #guardian187,6,11 |
@@ -6542,7 +6539,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R47872(#N187)
  41830 DEFB 11                ; Minimum x-coordinate
  41831 DEFB 18                ; Maximum x-coordinate
-; The following entity definition (#ed109) is used in #R61952(Watch Tower).
+; The following entity definition (#b109) is used in #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
 ; { #guardian188,0,14 | #guardian188,1,14 | #guardian188,2,14 |
@@ -6565,7 +6562,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R48128(#N188)
  41838 DEFB 9                 ; Minimum x-coordinate
  41839 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed110) is used in #R64512(The Bow).
+; The following entity definition (#b110) is used in #R64512(The Bow).
 ; .
 ; #UDGTABLE
 ; { #guardian174,0,3 | #guardian174,1,3 | #guardian174,2,3 | #guardian174,3,3 }
@@ -6586,7 +6583,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R44544(#N174)
  41846 DEFB 17                ; Minimum x-coordinate
  41847 DEFB 30                ; Maximum x-coordinate
-; The following entity definition (#ed111) is used in #R50944(Cuckoo's Nest).
+; The following entity definition (#b111) is used in #R50944(Cuckoo's Nest).
 ; .
 ; #UDGTABLE
 ; { #guardian181,0,3 | #guardian181,1,3 | #guardian181,2,3 | #guardian181,3,3 }
@@ -6607,7 +6604,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
                               ; #R46336(#N181)
  41854 DEFB 0                 ; Minimum x-coordinate
  41855 DEFB 11                ; Maximum x-coordinate
-; The next 15 entity definitions (#ed112-#ed126) are unused.
+; The next 15 entity definitions (#b112-#b126) are unused.
  41856 DEFB 0,0,0,0,0,0,0,0
  41864 DEFB 0,0,0,0,0,0,0,0
  41872 DEFB 0,0,0,0,0,0,0,0
@@ -6623,7 +6620,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41952 DEFB 0,0,0,0,0,0,0,0
  41960 DEFB 0,0,0,0,0,0,0,0
  41968 DEFB 0,0,0,0,0,0,0,0
-; The following entity definition (#ed127) - whose eighth byte is at #R41983 -
+; The following entity definition (#b127) - whose eighth byte is at #R41983 -
 ; is copied into one of the entity buffers at #R33024 for any entity
 ; specification whose first byte is #n127 or #n255; the first byte of the
 ; definition (#n255) serves to terminate the entity buffers.
@@ -7539,12 +7536,12 @@ b49152 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  49389 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 49392 DEFB 10,138                             ; Guardian no. #ed10 (vertical),
+ 49392 DEFB 10,138                             ; Guardian no. #b10 (vertical),
                                                ; base sprite 4, x=10 (#R41040)
- 49394 DEFB 12,29                              ; Guardian no. #ed12
+ 49394 DEFB 12,29                              ; Guardian no. #b12
                                                ; (horizontal), base sprite 0,
                                                ; initial x=29 (#R41056)
- 49396 DEFB 44,39                              ; Guardian no. #ed44 (vertical),
+ 49396 DEFB 44,39                              ; Guardian no. #b44 (vertical),
                                                ; base sprite 1, x=7 (#R41312)
  49398 DEFB 255,0                              ; Terminator (#R41976)
  49400 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -7630,13 +7627,13 @@ b49408 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  49645 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 49648 DEFB 20,8                               ; Guardian no. #ed20
+ 49648 DEFB 20,8                               ; Guardian no. #b20
                                                ; (horizontal), base sprite 0,
                                                ; initial x=8 (#R41120)
- 49650 DEFB 21,20                              ; Guardian no. #ed21
+ 49650 DEFB 21,20                              ; Guardian no. #b21
                                                ; (horizontal), base sprite 0,
                                                ; initial x=20 (#R41128)
- 49652 DEFB 14,140                             ; Guardian no. #ed14 (vertical),
+ 49652 DEFB 14,140                             ; Guardian no. #b14 (vertical),
                                                ; base sprite 4, x=12 (#R41072)
  49654 DEFB 255,0                              ; Terminator (#R41976)
  49656 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -7724,12 +7721,12 @@ b49664 DEFB 0,3,255,207,252,0,0,0              ; {Room layout
  49901 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 49904 DEFB 32,16                              ; Guardian no. #ed32
+ 49904 DEFB 32,16                              ; Guardian no. #b32
                                                ; (horizontal), base sprite 0,
                                                ; initial x=16 (#R41216)
- 49906 DEFB 42,14                              ; Guardian no. #ed42 (vertical),
+ 49906 DEFB 42,14                              ; Guardian no. #b42 (vertical),
                                                ; base sprite 0, x=14 (#R41296)
- 49908 DEFB 26,27                              ; Guardian no. #ed26
+ 49908 DEFB 26,27                              ; Guardian no. #b26
                                                ; (horizontal), base sprite 0,
                                                ; initial x=27 (#R41168)
  49910 DEFB 255,0                              ; Terminator (#R41976)
@@ -7817,13 +7814,13 @@ b49920 DEFB 48,195,8,0,8,0,0,0                 ; {Room layout
  50157 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 50160 DEFB 6,2                                ; Guardian no. #ed6 (vertical),
+ 50160 DEFB 6,2                                ; Guardian no. #b6 (vertical),
                                                ; base sprite 0, x=2 (#R41008)
- 50162 DEFB 7,5                                ; Guardian no. #ed7 (vertical),
+ 50162 DEFB 7,5                                ; Guardian no. #b7 (vertical),
                                                ; base sprite 0, x=5 (#R41016)
- 50164 DEFB 8,8                                ; Guardian no. #ed8 (vertical),
+ 50164 DEFB 8,8                                ; Guardian no. #b8 (vertical),
                                                ; base sprite 0, x=8 (#R41024)
- 50166 DEFB 53,9                               ; Guardian no. #ed53
+ 50166 DEFB 53,9                               ; Guardian no. #b53
                                                ; (horizontal), base sprite 0,
                                                ; initial x=9 (#R41384)
  50168 DEFB 255,0                              ; Terminator (#R41976)
@@ -7909,19 +7906,19 @@ b50176 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  50413 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 50416 DEFB 21,18                              ; Guardian no. #ed21
+ 50416 DEFB 21,18                              ; Guardian no. #b21
                                                ; (horizontal), base sprite 0,
                                                ; initial x=18 (#R41128)
- 50418 DEFB 22,21                              ; Guardian no. #ed22
+ 50418 DEFB 22,21                              ; Guardian no. #b22
                                                ; (horizontal), base sprite 0,
                                                ; initial x=21 (#R41136)
- 50420 DEFB 23,8                               ; Guardian no. #ed23
+ 50420 DEFB 23,8                               ; Guardian no. #b23
                                                ; (horizontal), base sprite 0,
                                                ; initial x=8 (#R41144)
- 50422 DEFB 24,20                              ; Guardian no. #ed24
+ 50422 DEFB 24,20                              ; Guardian no. #b24
                                                ; (horizontal), base sprite 0,
                                                ; initial x=20 (#R41152)
- 50424 DEFB 36,143                             ; Guardian no. #ed36
+ 50424 DEFB 36,143                             ; Guardian no. #b36
                                                ; (horizontal), base sprite 4,
                                                ; initial x=15 (#R41248)
  50426 DEFB 255,0                              ; Terminator (#R41976)
@@ -8006,13 +8003,13 @@ b50432 DEFB 128,0,0,0,0,0,0,0                  ; {Room layout
  50669 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 50672 DEFB 2,142                              ; Guardian no. #ed2 (vertical),
+ 50672 DEFB 2,142                              ; Guardian no. #b2 (vertical),
                                                ; base sprite 4, x=14 (#R40976)
- 50674 DEFB 3,139                              ; Guardian no. #ed3 (vertical),
+ 50674 DEFB 3,139                              ; Guardian no. #b3 (vertical),
                                                ; base sprite 4, x=11 (#R40984)
- 50676 DEFB 3,151                              ; Guardian no. #ed3 (vertical),
+ 50676 DEFB 3,151                              ; Guardian no. #b3 (vertical),
                                                ; base sprite 4, x=23 (#R40984)
- 50678 DEFB 4,145                              ; Guardian no. #ed4 (vertical),
+ 50678 DEFB 4,145                              ; Guardian no. #b4 (vertical),
                                                ; base sprite 4, x=17 (#R40992)
  50680 DEFB 255,0                              ; Terminator (#R41976)
  50682 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -8099,11 +8096,11 @@ b50688 DEFB 160,0,0,0,0,0,0,0                  ; {Room layout
  50925 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 50928 DEFB 16,130                             ; Guardian no. #ed16 (vertical),
+ 50928 DEFB 16,130                             ; Guardian no. #b16 (vertical),
                                                ; base sprite 4, x=2 (#R41088)
- 50930 DEFB 17,164                             ; Guardian no. #ed17 (vertical),
+ 50930 DEFB 17,164                             ; Guardian no. #b17 (vertical),
                                                ; base sprite 5, x=4 (#R41096)
- 50932 DEFB 18,195                             ; Guardian no. #ed18 (vertical),
+ 50932 DEFB 18,195                             ; Guardian no. #b18 (vertical),
                                                ; base sprite 6, x=3 (#R41104)
  50934 DEFB 255,0                              ; Terminator (#R41976)
  50936 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -8191,10 +8188,10 @@ b50944 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  51181 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 51184 DEFB 39,144                             ; Guardian no. #ed39
+ 51184 DEFB 39,144                             ; Guardian no. #b39
                                                ; (horizontal), base sprite 4,
                                                ; initial x=16 (#R41272)
- 51186 DEFB 111,5                              ; Guardian no. #ed111
+ 51186 DEFB 111,5                              ; Guardian no. #b111
                                                ; (horizontal), base sprite 0,
                                                ; initial x=5 (#R41848)
  51188 DEFB 60,164                             ; Arrow flying left to right at
@@ -8284,21 +8281,21 @@ b51200 DEFB 0,0,8,0,8,0,0,0                    ; {Room layout
  51437 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 51440 DEFB 9,2                                ; Guardian no. #ed9 (vertical),
+ 51440 DEFB 9,2                                ; Guardian no. #b9 (vertical),
                                                ; base sprite 0, x=2 (#R41032)
- 51442 DEFB 9,5                                ; Guardian no. #ed9 (vertical),
+ 51442 DEFB 9,5                                ; Guardian no. #b9 (vertical),
                                                ; base sprite 0, x=5 (#R41032)
- 51444 DEFB 9,8                                ; Guardian no. #ed9 (vertical),
+ 51444 DEFB 9,8                                ; Guardian no. #b9 (vertical),
                                                ; base sprite 0, x=8 (#R41032)
- 51446 DEFB 24,6                               ; Guardian no. #ed24
+ 51446 DEFB 24,6                               ; Guardian no. #b24
                                                ; (horizontal), base sprite 0,
                                                ; initial x=6 (#R41152)
- 51448 DEFB 44,44                              ; Guardian no. #ed44 (vertical),
+ 51448 DEFB 44,44                              ; Guardian no. #b44 (vertical),
                                                ; base sprite 1, x=12 (#R41312)
- 51450 DEFB 22,27                              ; Guardian no. #ed22
+ 51450 DEFB 22,27                              ; Guardian no. #b22
                                                ; (horizontal), base sprite 0,
                                                ; initial x=27 (#R41136)
- 51452 DEFB 47,147                             ; Guardian no. #ed47
+ 51452 DEFB 47,147                             ; Guardian no. #b47
                                                ; (horizontal), base sprite 4,
                                                ; initial x=19 (#R41336)
  51454 DEFB 255,0                              ; Terminator (#R41976)
@@ -8383,14 +8380,14 @@ b51456 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  51693 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 51696 DEFB 9,30                               ; Guardian no. #ed9 (vertical),
+ 51696 DEFB 9,30                               ; Guardian no. #b9 (vertical),
                                                ; base sprite 0, x=30 (#R41032)
- 51698 DEFB 27,135                             ; Guardian no. #ed27 (vertical),
+ 51698 DEFB 27,135                             ; Guardian no. #b27 (vertical),
                                                ; base sprite 4, x=7 (#R41176)
- 51700 DEFB 61,19                              ; Guardian no. #ed61
+ 51700 DEFB 61,19                              ; Guardian no. #b61
                                                ; (horizontal), base sprite 0,
                                                ; initial x=19 (#R41448)
- 51702 DEFB 62,14                              ; Guardian no. #ed62 (vertical),
+ 51702 DEFB 62,14                              ; Guardian no. #b62 (vertical),
                                                ; base sprite 0, x=14 (#R41456)
  51704 DEFB 60,68                              ; Arrow flying left to right at
                                                ; pixel y-coordinate 34
@@ -8566,12 +8563,12 @@ b51968 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  52205 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 52208 DEFB 89,202                             ; Guardian no. #ed89 (vertical),
+ 52208 DEFB 89,202                             ; Guardian no. #b89 (vertical),
                                                ; base sprite 6, x=10 (#R41672)
- 52210 DEFB 26,19                              ; Guardian no. #ed26
+ 52210 DEFB 26,19                              ; Guardian no. #b26
                                                ; (horizontal), base sprite 0,
                                                ; initial x=19 (#R41168)
- 52212 DEFB 95,19                              ; Guardian no. #ed95
+ 52212 DEFB 95,19                              ; Guardian no. #b95
                                                ; (horizontal), base sprite 0,
                                                ; initial x=19 (#R41720)
  52214 DEFB 69,68                              ; Arrow flying right to left at
@@ -8581,7 +8578,7 @@ b51968 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
                                                ; pixel y-coordinate 11
                                                ; (#R41440)
  52218 DEFB 255,0                              ; Terminator (#R41976)
- 52220 DEFB 89,0                               ; Guardian no. #ed89 (vertical),
+ 52220 DEFB 89,0                               ; Guardian no. #b89 (vertical),
                                                ; base sprite 0, x=0 (#R41672)
                                                ; (unused)
  52222 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -8665,13 +8662,13 @@ b52224 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  52461 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 52464 DEFB 24,7                               ; Guardian no. #ed24
+ 52464 DEFB 24,7                               ; Guardian no. #b24
                                                ; (horizontal), base sprite 0,
                                                ; initial x=7 (#R41152)
- 52466 DEFB 46,136                             ; Guardian no. #ed46
+ 52466 DEFB 46,136                             ; Guardian no. #b46
                                                ; (horizontal), base sprite 4,
                                                ; initial x=8 (#R41328)
- 52468 DEFB 26,24                              ; Guardian no. #ed26
+ 52468 DEFB 26,24                              ; Guardian no. #b26
                                                ; (horizontal), base sprite 0,
                                                ; initial x=24 (#R41168)
  52470 DEFB 69,132                             ; Arrow flying right to left at
@@ -8762,12 +8759,12 @@ b52480 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  52717 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 52720 DEFB 45,76                              ; Guardian no. #ed45 (vertical),
+ 52720 DEFB 45,76                              ; Guardian no. #b45 (vertical),
                                                ; base sprite 2, x=12 (#R41320)
- 52722 DEFB 25,19                              ; Guardian no. #ed25
+ 52722 DEFB 25,19                              ; Guardian no. #b25
                                                ; (horizontal), base sprite 0,
                                                ; initial x=19 (#R41160)
- 52724 DEFB 88,20                              ; Guardian no. #ed88
+ 52724 DEFB 88,20                              ; Guardian no. #b88
                                                ; (horizontal), base sprite 0,
                                                ; initial x=20 (#R41664)
  52726 DEFB 255,0                              ; Terminator (#R41976)
@@ -8855,14 +8852,14 @@ b52736 DEFB 0,0,0,0,0,0,8,2                    ; {Room layout
  52973 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 52976 DEFB 4,196                              ; Guardian no. #ed4 (vertical),
+ 52976 DEFB 4,196                              ; Guardian no. #b4 (vertical),
                                                ; base sprite 6, x=4 (#R40992)
- 52978 DEFB 2,204                              ; Guardian no. #ed2 (vertical),
+ 52978 DEFB 2,204                              ; Guardian no. #b2 (vertical),
                                                ; base sprite 6, x=12 (#R40976)
- 52980 DEFB 13,5                               ; Guardian no. #ed13
+ 52980 DEFB 13,5                               ; Guardian no. #b13
                                                ; (horizontal), base sprite 0,
                                                ; initial x=5 (#R41064)
- 52982 DEFB 15,152                             ; Guardian no. #ed15 (vertical),
+ 52982 DEFB 15,152                             ; Guardian no. #b15 (vertical),
                                                ; base sprite 4, x=24 (#R41080)
  52984 DEFB 255,0                              ; Terminator (#R41976)
  52986 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -8949,15 +8946,15 @@ b52992 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  53229 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 53232 DEFB 4,133                              ; Guardian no. #ed4 (vertical),
+ 53232 DEFB 4,133                              ; Guardian no. #b4 (vertical),
                                                ; base sprite 4, x=5 (#R40992)
- 53234 DEFB 3,139                              ; Guardian no. #ed3 (vertical),
+ 53234 DEFB 3,139                              ; Guardian no. #b3 (vertical),
                                                ; base sprite 4, x=11 (#R40984)
- 53236 DEFB 5,147                              ; Guardian no. #ed5 (vertical),
+ 53236 DEFB 5,147                              ; Guardian no. #b5 (vertical),
                                                ; base sprite 4, x=19 (#R41000)
- 53238 DEFB 2,153                              ; Guardian no. #ed2 (vertical),
+ 53238 DEFB 2,153                              ; Guardian no. #b2 (vertical),
                                                ; base sprite 4, x=25 (#R40976)
- 53240 DEFB 13,6                               ; Guardian no. #ed13
+ 53240 DEFB 13,6                               ; Guardian no. #b13
                                                ; (horizontal), base sprite 0,
                                                ; initial x=6 (#R41064)
  53242 DEFB 69,100                             ; Arrow flying right to left at
@@ -9047,7 +9044,7 @@ b53248 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  53485 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 53488 DEFB 13,8                               ; Guardian no. #ed13
+ 53488 DEFB 13,8                               ; Guardian no. #b13
                                                ; (horizontal), base sprite 0,
                                                ; initial x=8 (#R41064)
  53490 DEFB 1,16                               ; Rope at x=16 (#R40968)
@@ -9139,13 +9136,13 @@ b53504 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  53741 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 53744 DEFB 2,133                              ; Guardian no. #ed2 (vertical),
+ 53744 DEFB 2,133                              ; Guardian no. #b2 (vertical),
                                                ; base sprite 4, x=5 (#R40976)
- 53746 DEFB 3,139                              ; Guardian no. #ed3 (vertical),
+ 53746 DEFB 3,139                              ; Guardian no. #b3 (vertical),
                                                ; base sprite 4, x=11 (#R40984)
- 53748 DEFB 4,147                              ; Guardian no. #ed4 (vertical),
+ 53748 DEFB 4,147                              ; Guardian no. #b4 (vertical),
                                                ; base sprite 4, x=19 (#R40992)
- 53750 DEFB 5,153                              ; Guardian no. #ed5 (vertical),
+ 53750 DEFB 5,153                              ; Guardian no. #b5 (vertical),
                                                ; base sprite 4, x=25 (#R41000)
  53752 DEFB 69,132                             ; Arrow flying right to left at
                                                ; pixel y-coordinate 66
@@ -9232,7 +9229,7 @@ b53760 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  53997 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 54000 DEFB 34,22                              ; Guardian no. #ed34
+ 54000 DEFB 34,22                              ; Guardian no. #b34
                                                ; (horizontal), base sprite 0,
                                                ; initial x=22 (#R41232)
  54002 DEFB 1,16                               ; Rope at x=16 (#R40968)
@@ -9321,28 +9318,28 @@ b54016 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
  54253 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 54256 DEFB 74,8                               ; Guardian no. #ed74
+ 54256 DEFB 74,8                               ; Guardian no. #b74
                                                ; (horizontal), base sprite 0,
                                                ; initial x=8 (#R41552)
- 54258 DEFB 75,16                              ; Guardian no. #ed75
+ 54258 DEFB 75,16                              ; Guardian no. #b75
                                                ; (horizontal), base sprite 0,
                                                ; initial x=16 (#R41560)
- 54260 DEFB 76,11                              ; Guardian no. #ed76
+ 54260 DEFB 76,11                              ; Guardian no. #b76
                                                ; (horizontal), base sprite 0,
                                                ; initial x=11 (#R41568)
- 54262 DEFB 77,24                              ; Guardian no. #ed77
+ 54262 DEFB 77,24                              ; Guardian no. #b77
                                                ; (horizontal), base sprite 0,
                                                ; initial x=24 (#R41576)
- 54264 DEFB 78,7                               ; Guardian no. #ed78
+ 54264 DEFB 78,7                               ; Guardian no. #b78
                                                ; (horizontal), base sprite 0,
                                                ; initial x=7 (#R41584)
- 54266 DEFB 79,12                              ; Guardian no. #ed79
+ 54266 DEFB 79,12                              ; Guardian no. #b79
                                                ; (horizontal), base sprite 0,
                                                ; initial x=12 (#R41592)
- 54268 DEFB 80,18                              ; Guardian no. #ed80
+ 54268 DEFB 80,18                              ; Guardian no. #b80
                                                ; (horizontal), base sprite 0,
                                                ; initial x=18 (#R41600)
- 54270 DEFB 81,24                              ; Guardian no. #ed81
+ 54270 DEFB 81,24                              ; Guardian no. #b81
                                                ; (horizontal), base sprite 0,
                                                ; initial x=24 (#R41608)
 
@@ -9426,15 +9423,15 @@ b54272 DEFB 160,64,10,0,0,0,0,0                ; {Room layout
  54509 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 54512 DEFB 19,108                             ; Guardian no. #ed19 (vertical),
+ 54512 DEFB 19,108                             ; Guardian no. #b19 (vertical),
                                                ; base sprite 3, x=12 (#R41112)
- 54514 DEFB 42,5                               ; Guardian no. #ed42 (vertical),
+ 54514 DEFB 42,5                               ; Guardian no. #b42 (vertical),
                                                ; base sprite 0, x=5 (#R41296)
- 54516 DEFB 40,7                               ; Guardian no. #ed40 (vertical),
+ 54516 DEFB 40,7                               ; Guardian no. #b40 (vertical),
                                                ; base sprite 0, x=7 (#R41280)
- 54518 DEFB 41,43                              ; Guardian no. #ed41 (vertical),
+ 54518 DEFB 41,43                              ; Guardian no. #b41 (vertical),
                                                ; base sprite 1, x=11 (#R41288)
- 54520 DEFB 21,24                              ; Guardian no. #ed21
+ 54520 DEFB 21,24                              ; Guardian no. #b21
                                                ; (horizontal), base sprite 0,
                                                ; initial x=24 (#R41128)
  54522 DEFB 255,0                              ; Terminator (#R41976)
@@ -9520,12 +9517,12 @@ b54528 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  54765 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 54768 DEFB 33,24                              ; Guardian no. #ed33
+ 54768 DEFB 33,24                              ; Guardian no. #b33
                                                ; (horizontal), base sprite 0,
                                                ; initial x=24 (#R41224)
- 54770 DEFB 40,14                              ; Guardian no. #ed40 (vertical),
+ 54770 DEFB 40,14                              ; Guardian no. #b40 (vertical),
                                                ; base sprite 0, x=14 (#R41280)
- 54772 DEFB 42,6                               ; Guardian no. #ed42 (vertical),
+ 54772 DEFB 42,6                               ; Guardian no. #b42 (vertical),
                                                ; base sprite 0, x=6 (#R41296)
  54774 DEFB 255,0                              ; Terminator (#R41976)
  54776 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -9611,22 +9608,22 @@ b54784 DEFB 0,0,128,0,0,0,0,0                  ; {Room layout
  55021 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 55024 DEFB 90,4                               ; Guardian no. #ed90
+ 55024 DEFB 90,4                               ; Guardian no. #b90
                                                ; (horizontal), base sprite 0,
                                                ; initial x=4 (#R41680)
- 55026 DEFB 91,16                              ; Guardian no. #ed91
+ 55026 DEFB 91,16                              ; Guardian no. #b91
                                                ; (horizontal), base sprite 0,
                                                ; initial x=16 (#R41688)
- 55028 DEFB 92,150                             ; Guardian no. #ed92
+ 55028 DEFB 92,150                             ; Guardian no. #b92
                                                ; (horizontal), base sprite 4,
                                                ; initial x=22 (#R41696)
- 55030 DEFB 93,4                               ; Guardian no. #ed93
+ 55030 DEFB 93,4                               ; Guardian no. #b93
                                                ; (horizontal), base sprite 0,
                                                ; initial x=4 (#R41704)
- 55032 DEFB 94,150                             ; Guardian no. #ed94
+ 55032 DEFB 94,150                             ; Guardian no. #b94
                                                ; (horizontal), base sprite 4,
                                                ; initial x=22 (#R41712)
- 55034 DEFB 95,11                              ; Guardian no. #ed95
+ 55034 DEFB 95,11                              ; Guardian no. #b95
                                                ; (horizontal), base sprite 0,
                                                ; initial x=11 (#R41720)
  55036 DEFB 255,0                              ; Terminator (#R41976)
@@ -9712,13 +9709,13 @@ b55040 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  55277 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 55280 DEFB 48,3                               ; Guardian no. #ed48 (vertical),
+ 55280 DEFB 48,3                               ; Guardian no. #b48 (vertical),
                                                ; base sprite 0, x=3 (#R41344)
- 55282 DEFB 49,9                               ; Guardian no. #ed49 (vertical),
+ 55282 DEFB 49,9                               ; Guardian no. #b49 (vertical),
                                                ; base sprite 0, x=9 (#R41352)
- 55284 DEFB 50,15                              ; Guardian no. #ed50 (vertical),
+ 55284 DEFB 50,15                              ; Guardian no. #b50 (vertical),
                                                ; base sprite 0, x=15 (#R41360)
- 55286 DEFB 48,20                              ; Guardian no. #ed48 (vertical),
+ 55286 DEFB 48,20                              ; Guardian no. #b48 (vertical),
                                                ; base sprite 0, x=20 (#R41344)
  55288 DEFB 255,0                              ; Terminator (#R41976)
  55290 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -9805,13 +9802,13 @@ b55296 DEFB 0,0,1,0,0,0,0,0                    ; {Room layout
  55533 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 55536 DEFB 49,9                               ; Guardian no. #ed49 (vertical),
+ 55536 DEFB 49,9                               ; Guardian no. #b49 (vertical),
                                                ; base sprite 0, x=9 (#R41352)
- 55538 DEFB 50,14                              ; Guardian no. #ed50 (vertical),
+ 55538 DEFB 50,14                              ; Guardian no. #b50 (vertical),
                                                ; base sprite 0, x=14 (#R41360)
- 55540 DEFB 49,20                              ; Guardian no. #ed49 (vertical),
+ 55540 DEFB 49,20                              ; Guardian no. #b49 (vertical),
                                                ; base sprite 0, x=20 (#R41352)
- 55542 DEFB 48,27                              ; Guardian no. #ed48 (vertical),
+ 55542 DEFB 48,27                              ; Guardian no. #b48 (vertical),
                                                ; base sprite 0, x=27 (#R41344)
  55544 DEFB 255,0                              ; Terminator (#R41976)
  55546 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -9898,16 +9895,16 @@ b55552 DEFB 0,3,0,0,0,0,0,0                    ; {Room layout
  55789 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 55792 DEFB 54,16                              ; Guardian no. #ed54
+ 55792 DEFB 54,16                              ; Guardian no. #b54
                                                ; (horizontal), base sprite 0,
                                                ; initial x=16 (#R41392)
- 55794 DEFB 55,4                               ; Guardian no. #ed55
+ 55794 DEFB 55,4                               ; Guardian no. #b55
                                                ; (horizontal), base sprite 0,
                                                ; initial x=4 (#R41400)
- 55796 DEFB 56,3                               ; Guardian no. #ed56
+ 55796 DEFB 56,3                               ; Guardian no. #b56
                                                ; (horizontal), base sprite 0,
                                                ; initial x=3 (#R41408)
- 55798 DEFB 57,8                               ; Guardian no. #ed57
+ 55798 DEFB 57,8                               ; Guardian no. #b57
                                                ; (horizontal), base sprite 0,
                                                ; initial x=8 (#R41416)
  55800 DEFB 1,16                               ; Rope at x=16 (#R40968)
@@ -9995,9 +9992,9 @@ b55808 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
  56045 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 56048 DEFB 96,3                               ; Guardian no. #ed96 (vertical),
+ 56048 DEFB 96,3                               ; Guardian no. #b96 (vertical),
                                                ; base sprite 0, x=3 (#R41728)
- 56050 DEFB 45,39                              ; Guardian no. #ed45 (vertical),
+ 56050 DEFB 45,39                              ; Guardian no. #b45 (vertical),
                                                ; base sprite 1, x=7 (#R41320)
  56052 DEFB 255,0                              ; Terminator (#R41976)
  56054 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -10085,21 +10082,19 @@ b56064 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  56301 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 56304 DEFB 16,153                             ; Guardian no. #ed16 (vertical),
+ 56304 DEFB 16,153                             ; Guardian no. #b16 (vertical),
                                                ; base sprite 4, x=25 (#R41088)
- 56306 DEFB 17,187                             ; Guardian no. #ed17 (vertical),
+ 56306 DEFB 17,187                             ; Guardian no. #b17 (vertical),
                                                ; base sprite 5, x=27 (#R41096)
- 56308 DEFB 18,218                             ; Guardian no. #ed18 (vertical),
+ 56308 DEFB 18,218                             ; Guardian no. #b18 (vertical),
                                                ; base sprite 6, x=26 (#R41104)
- 56310 DEFB 103,12                             ; Guardian no. #ed103
+ 56310 DEFB 103,12                             ; Guardian no. #b103
                                                ; (horizontal), base sprite 0,
                                                ; initial x=12 (#R41784)
- 56312 DEFB 100,6                              ; Guardian no. #ed100
-                                               ; (vertical), base sprite 0, x=6
-                                               ; (#R41760)
- 56314 DEFB 102,145                            ; Guardian no. #ed102
-                                               ; (vertical), base sprite 4,
-                                               ; x=17 (#R41776)
+ 56312 DEFB 100,6                              ; Guardian no. #b100 (vertical),
+                                               ; base sprite 0, x=6 (#R41760)
+ 56314 DEFB 102,145                            ; Guardian no. #b102 (vertical),
+                                               ; base sprite 4, x=17 (#R41776)
  56316 DEFB 255,0                              ; Terminator (#R41976)
  56318 DEFB 0,0                                ; Nothing (#R40960#40960)
 
@@ -10183,7 +10178,7 @@ b56320 DEFB 160,0,0,0,0,0,160,0                 ; {Room layout
  56557 DEFB 0,0,0                               ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 56560 DEFB 67,25                               ; Guardian no. #ed67
+ 56560 DEFB 67,25                               ; Guardian no. #b67
                                                 ; (horizontal), base sprite 0,
                                                 ; initial x=25 (#R41496)
  56562 DEFB 255,0                               ; Terminator (#R41976)
@@ -10275,19 +10270,19 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  56813 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 56816 DEFB 70,136                             ; Guardian no. #ed70 (vertical),
+ 56816 DEFB 70,136                             ; Guardian no. #b70 (vertical),
                                                ; base sprite 4, x=8 (#R41520)
- 56818 DEFB 71,203                             ; Guardian no. #ed71 (vertical),
+ 56818 DEFB 71,203                             ; Guardian no. #b71 (vertical),
                                                ; base sprite 6, x=11 (#R41528)
- 56820 DEFB 72,78                              ; Guardian no. #ed72 (vertical),
+ 56820 DEFB 72,78                              ; Guardian no. #b72 (vertical),
                                                ; base sprite 2, x=14 (#R41536)
- 56822 DEFB 73,209                             ; Guardian no. #ed73 (vertical),
+ 56822 DEFB 73,209                             ; Guardian no. #b73 (vertical),
                                                ; base sprite 6, x=17 (#R41544)
- 56824 DEFB 70,148                             ; Guardian no. #ed70 (vertical),
+ 56824 DEFB 70,148                             ; Guardian no. #b70 (vertical),
                                                ; base sprite 4, x=20 (#R41520)
- 56826 DEFB 71,151                             ; Guardian no. #ed71 (vertical),
+ 56826 DEFB 71,151                             ; Guardian no. #b71 (vertical),
                                                ; base sprite 4, x=23 (#R41528)
- 56828 DEFB 72,156                             ; Guardian no. #ed72 (vertical),
+ 56828 DEFB 72,156                             ; Guardian no. #b72 (vertical),
                                                ; base sprite 4, x=28 (#R41536)
  56830 DEFB 255,0                              ; Terminator (#R41976)
 
@@ -10371,16 +10366,13 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
  57069 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 57072 DEFB 100,138                            ; Guardian no. #ed100
-                                               ; (vertical), base sprite 4,
-                                               ; x=10 (#R41760)
- 57074 DEFB 101,141                            ; Guardian no. #ed101
-                                               ; (vertical), base sprite 4,
-                                               ; x=13 (#R41768)
- 57076 DEFB 102,16                             ; Guardian no. #ed102
-                                               ; (vertical), base sprite 0,
-                                               ; x=16 (#R41776)
- 57078 DEFB 88,22                              ; Guardian no. #ed88
+ 57072 DEFB 100,138                            ; Guardian no. #b100 (vertical),
+                                               ; base sprite 4, x=10 (#R41760)
+ 57074 DEFB 101,141                            ; Guardian no. #b101 (vertical),
+                                               ; base sprite 4, x=13 (#R41768)
+ 57076 DEFB 102,16                             ; Guardian no. #b102 (vertical),
+                                               ; base sprite 0, x=16 (#R41776)
+ 57078 DEFB 88,22                              ; Guardian no. #b88
                                                ; (horizontal), base sprite 0,
                                                ; initial x=22 (#R41664)
  57080 DEFB 255,0                              ; Terminator (#R41976)
@@ -10467,7 +10459,7 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  57325 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 57328 DEFB 78,12                              ; Guardian no. #ed78
+ 57328 DEFB 78,12                              ; Guardian no. #b78
                                                ; (horizontal), base sprite 0,
                                                ; initial x=12 (#R41584)
  57330 DEFB 1,16                               ; Rope at x=16 (#R40968)
@@ -10557,7 +10549,7 @@ b57344 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
  57581 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 57584 DEFB 38,4                               ; Guardian no. #ed38
+ 57584 DEFB 38,4                               ; Guardian no. #b38
                                                ; (horizontal), base sprite 0,
                                                ; initial x=4 (#R41264)
  57586 DEFB 255,0                              ; Terminator (#R41976)
@@ -10647,7 +10639,7 @@ b57600 DEFB 160,0,0,0,0,0,0,10                 ; {Room layout
  57837 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 57840 DEFB 59,16                              ; Guardian no. #ed59
+ 57840 DEFB 59,16                              ; Guardian no. #b59
                                                ; (horizontal), base sprite 0,
                                                ; initial x=16 (#R41432)
  57842 DEFB 255,0                              ; Terminator (#R41976)
@@ -10737,11 +10729,11 @@ b57856 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
  58093 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 58096 DEFB 58,134                             ; Guardian no. #ed58 (vertical),
+ 58096 DEFB 58,134                             ; Guardian no. #b58 (vertical),
                                                ; base sprite 4, x=6 (#R41424)
- 58098 DEFB 19,108                             ; Guardian no. #ed19 (vertical),
+ 58098 DEFB 19,108                             ; Guardian no. #b19 (vertical),
                                                ; base sprite 3, x=12 (#R41112)
- 58100 DEFB 36,16                              ; Guardian no. #ed36
+ 58100 DEFB 36,16                              ; Guardian no. #b36
                                                ; (horizontal), base sprite 0,
                                                ; initial x=16 (#R41248)
  58102 DEFB 255,0                              ; Terminator (#R41976)
@@ -10916,12 +10908,11 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
  58605 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 58608 DEFB 104,2                              ; Guardian no. #ed104
+ 58608 DEFB 104,2                              ; Guardian no. #b104
                                                ; (horizontal), base sprite 0,
                                                ; initial x=2 (#R41792)
- 58610 DEFB 101,7                              ; Guardian no. #ed101
-                                               ; (vertical), base sprite 0, x=7
-                                               ; (#R41768)
+ 58610 DEFB 101,7                              ; Guardian no. #b101 (vertical),
+                                               ; base sprite 0, x=7 (#R41768)
  58612 DEFB 69,146                             ; Arrow flying right to left at
                                                ; pixel y-coordinate 73
                                                ; (#R41512)
@@ -11009,9 +11000,9 @@ b58624 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  58861 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 58864 DEFB 97,148                             ; Guardian no. #ed97 (vertical),
+ 58864 DEFB 97,148                             ; Guardian no. #b97 (vertical),
                                                ; base sprite 4, x=20 (#R41736)
- 58866 DEFB 27,137                             ; Guardian no. #ed27 (vertical),
+ 58866 DEFB 27,137                             ; Guardian no. #b27 (vertical),
                                                ; base sprite 4, x=9 (#R41176)
  58868 DEFB 60,132                             ; Arrow flying left to right at
                                                ; pixel y-coordinate 66
@@ -11101,13 +11092,13 @@ b58880 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
  59117 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 59120 DEFB 16,132                             ; Guardian no. #ed16 (vertical),
+ 59120 DEFB 16,132                             ; Guardian no. #b16 (vertical),
                                                ; base sprite 4, x=4 (#R41088)
- 59122 DEFB 17,166                             ; Guardian no. #ed17 (vertical),
+ 59122 DEFB 17,166                             ; Guardian no. #b17 (vertical),
                                                ; base sprite 5, x=6 (#R41096)
- 59124 DEFB 18,197                             ; Guardian no. #ed18 (vertical),
+ 59124 DEFB 18,197                             ; Guardian no. #b18 (vertical),
                                                ; base sprite 6, x=5 (#R41104)
- 59126 DEFB 37,22                              ; Guardian no. #ed37
+ 59126 DEFB 37,22                              ; Guardian no. #b37
                                                ; (horizontal), base sprite 0,
                                                ; initial x=22 (#R41256)
  59128 DEFB 255,0                              ; Terminator (#R41976)
@@ -11194,7 +11185,7 @@ b59136 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  59373 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 59376 DEFB 26,8                               ; Guardian no. #ed26
+ 59376 DEFB 26,8                               ; Guardian no. #b26
                                                ; (horizontal), base sprite 0,
                                                ; initial x=8 (#R41168)
  59378 DEFB 255,0                              ; Terminator (#R41976)
@@ -11283,9 +11274,9 @@ b59392 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  59629 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 59632 DEFB 27,146                             ; Guardian no. #ed27 (vertical),
+ 59632 DEFB 27,146                             ; Guardian no. #b27 (vertical),
                                                ; base sprite 4, x=18 (#R41176)
- 59634 DEFB 11,10                              ; Guardian no. #ed11 (vertical),
+ 59634 DEFB 11,10                              ; Guardian no. #b11 (vertical),
                                                ; base sprite 0, x=10 (#R41048)
  59636 DEFB 255,0                              ; Terminator (#R41976)
  59638 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -11374,17 +11365,17 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  59885 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 59888 DEFB 82,4                               ; Guardian no. #ed82 (vertical),
+ 59888 DEFB 82,4                               ; Guardian no. #b82 (vertical),
                                                ; base sprite 0, x=4 (#R41616)
- 59890 DEFB 83,6                               ; Guardian no. #ed83 (vertical),
+ 59890 DEFB 83,6                               ; Guardian no. #b83 (vertical),
                                                ; base sprite 0, x=6 (#R41624)
- 59892 DEFB 84,8                               ; Guardian no. #ed84 (vertical),
+ 59892 DEFB 84,8                               ; Guardian no. #b84 (vertical),
                                                ; base sprite 0, x=8 (#R41632)
- 59894 DEFB 85,10                              ; Guardian no. #ed85 (vertical),
+ 59894 DEFB 85,10                              ; Guardian no. #b85 (vertical),
                                                ; base sprite 0, x=10 (#R41640)
- 59896 DEFB 86,12                              ; Guardian no. #ed86 (vertical),
+ 59896 DEFB 86,12                              ; Guardian no. #b86 (vertical),
                                                ; base sprite 0, x=12 (#R41648)
- 59898 DEFB 87,78                              ; Guardian no. #ed87 (vertical),
+ 59898 DEFB 87,78                              ; Guardian no. #b87 (vertical),
                                                ; base sprite 2, x=14 (#R41656)
 @bfix=DEFB 69,82
  59900 DEFB 69,213                             ; Arrow flying right to left at
@@ -11472,10 +11463,10 @@ b59904 DEFB 0,0,0,255,255,255,255,240          ; {Room layout
  60141 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 60144 DEFB 55,4                               ; Guardian no. #ed55
+ 60144 DEFB 55,4                               ; Guardian no. #b55
                                                ; (horizontal), base sprite 0,
                                                ; initial x=4 (#R41400)
- 60146 DEFB 39,16                              ; Guardian no. #ed39
+ 60146 DEFB 39,16                              ; Guardian no. #b39
                                                ; (horizontal), base sprite 0,
                                                ; initial x=16 (#R41272)
  60148 DEFB 60,194                             ; Arrow flying left to right at
@@ -11565,10 +11556,10 @@ b60160 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  60397 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 60400 DEFB 106,20                             ; Guardian no. #ed106
+ 60400 DEFB 106,20                             ; Guardian no. #b106
                                                ; (horizontal), base sprite 0,
                                                ; initial x=20 (#R41808)
- 60402 DEFB 61,24                              ; Guardian no. #ed61
+ 60402 DEFB 61,24                              ; Guardian no. #b61
                                                ; (horizontal), base sprite 0,
                                                ; initial x=24 (#R41448)
  60404 DEFB 255,0                              ; Terminator (#R41976)
@@ -11657,7 +11648,7 @@ b60416 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  60653 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 60656 DEFB 29,20                              ; Guardian no. #ed29 (vertical),
+ 60656 DEFB 29,20                              ; Guardian no. #b29 (vertical),
                                                ; base sprite 0, x=20 (#R41192)
  60658 DEFB 255,0                              ; Terminator (#R41976)
  60660 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -11745,12 +11736,12 @@ b60672 DEFB 160,0,0,0,0,0,170,170              ; {Room layout
  60909 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 60912 DEFB 28,16                              ; Guardian no. #ed28
+ 60912 DEFB 28,16                              ; Guardian no. #b28
                                                ; (horizontal), base sprite 0,
                                                ; initial x=16 (#R41184)
- 60914 DEFB 29,146                             ; Guardian no. #ed29 (vertical),
+ 60914 DEFB 29,146                             ; Guardian no. #b29 (vertical),
                                                ; base sprite 4, x=18 (#R41192)
- 60916 DEFB 68,150                             ; Guardian no. #ed68
+ 60916 DEFB 68,150                             ; Guardian no. #b68
                                                ; (horizontal), base sprite 4,
                                                ; initial x=22 (#R41504)
  60918 DEFB 255,0                              ; Terminator (#R41976)
@@ -11836,14 +11827,14 @@ b60928 DEFB 170,10,170,170,170,170,170,170     ; {Room layout
  61165 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 61168 DEFB 30,132                             ; Guardian no. #ed30 (vertical),
+ 61168 DEFB 30,132                             ; Guardian no. #b30 (vertical),
                                                ; base sprite 4, x=4 (#R41200)
- 61170 DEFB 40,13                              ; Guardian no. #ed40 (vertical),
+ 61170 DEFB 40,13                              ; Guardian no. #b40 (vertical),
                                                ; base sprite 0, x=13 (#R41280)
- 61172 DEFB 35,19                              ; Guardian no. #ed35
+ 61172 DEFB 35,19                              ; Guardian no. #b35
                                                ; (horizontal), base sprite 0,
                                                ; initial x=19 (#R41240)
- 61174 DEFB 31,89                              ; Guardian no. #ed31 (vertical),
+ 61174 DEFB 31,89                              ; Guardian no. #b31 (vertical),
                                                ; base sprite 2, x=25 (#R41208)
  61176 DEFB 255,0                              ; Terminator (#R41976)
  61178 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -12016,15 +12007,15 @@ b61440 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  61677 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 61680 DEFB 104,5                              ; Guardian no. #ed104
+ 61680 DEFB 104,5                              ; Guardian no. #b104
                                                ; (horizontal), base sprite 0,
                                                ; initial x=5 (#R41792)
- 61682 DEFB 107,20                             ; Guardian no. #ed107
+ 61682 DEFB 107,20                             ; Guardian no. #b107
                                                ; (horizontal), base sprite 0,
                                                ; initial x=20 (#R41816)
- 61684 DEFB 29,144                             ; Guardian no. #ed29 (vertical),
+ 61684 DEFB 29,144                             ; Guardian no. #b29 (vertical),
                                                ; base sprite 4, x=16 (#R41192)
- 61686 DEFB 11,22                              ; Guardian no. #ed11 (vertical),
+ 61686 DEFB 11,22                              ; Guardian no. #b11 (vertical),
                                                ; base sprite 0, x=22 (#R41048)
  61688 DEFB 255,0                              ; Terminator (#R41976)
  61690 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -12111,16 +12102,16 @@ b61696 DEFB 0,0,0,0,0,12,2,170                 ; {Room layout
  61933 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 61936 DEFB 52,16                              ; Guardian no. #ed52
+ 61936 DEFB 52,16                              ; Guardian no. #b52
                                                ; (horizontal), base sprite 0,
                                                ; initial x=16 (#R41376)
- 61938 DEFB 64,25                              ; Guardian no. #ed64
+ 61938 DEFB 64,25                              ; Guardian no. #b64
                                                ; (horizontal), base sprite 0,
                                                ; initial x=25 (#R41472)
- 61940 DEFB 65,9                               ; Guardian no. #ed65
+ 61940 DEFB 65,9                               ; Guardian no. #b65
                                                ; (horizontal), base sprite 0,
                                                ; initial x=9 (#R41480)
- 61942 DEFB 66,19                              ; Guardian no. #ed66
+ 61942 DEFB 66,19                              ; Guardian no. #b66
                                                ; (horizontal), base sprite 0,
                                                ; initial x=19 (#R41488)
  61944 DEFB 255,0                              ; Terminator (#R41976)
@@ -12206,10 +12197,10 @@ b61952 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  62189 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 62192 DEFB 108,145                            ; Guardian no. #ed108
+ 62192 DEFB 108,145                            ; Guardian no. #b108
                                                ; (horizontal), base sprite 4,
                                                ; initial x=17 (#R41824)
- 62194 DEFB 109,11                             ; Guardian no. #ed109
+ 62194 DEFB 109,11                             ; Guardian no. #b109
                                                ; (horizontal), base sprite 0,
                                                ; initial x=11 (#R41832)
  62196 DEFB 255,0                              ; Terminator (#R41976)
@@ -12299,13 +12290,13 @@ b62208 DEFB 0,0,2,170,160,0,0,0                ; {Room layout
  62445 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 62448 DEFB 52,16                              ; Guardian no. #ed52
+ 62448 DEFB 52,16                              ; Guardian no. #b52
                                                ; (horizontal), base sprite 0,
                                                ; initial x=16 (#R41376)
- 62450 DEFB 98,9                               ; Guardian no. #ed98
+ 62450 DEFB 98,9                               ; Guardian no. #b98
                                                ; (horizontal), base sprite 0,
                                                ; initial x=9 (#R41744)
- 62452 DEFB 99,20                              ; Guardian no. #ed99
+ 62452 DEFB 99,20                              ; Guardian no. #b99
                                                ; (horizontal), base sprite 0,
                                                ; initial x=20 (#R41752)
  62454 DEFB 255,0                              ; Terminator (#R41976)
@@ -12393,13 +12384,13 @@ b62464 DEFB 0,0,0,0,10,170,170,170             ; {Room layout
  62701 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 62704 DEFB 36,150                             ; Guardian no. #ed36
+ 62704 DEFB 36,150                             ; Guardian no. #b36
                                                ; (horizontal), base sprite 4,
                                                ; initial x=22 (#R41248)
- 62706 DEFB 92,144                             ; Guardian no. #ed92
+ 62706 DEFB 92,144                             ; Guardian no. #b92
                                                ; (horizontal), base sprite 4,
                                                ; initial x=16 (#R41696)
- 62708 DEFB 29,131                             ; Guardian no. #ed29 (vertical),
+ 62708 DEFB 29,131                             ; Guardian no. #b29 (vertical),
                                                ; base sprite 4, x=3 (#R41192)
  62710 DEFB 255,0                              ; Terminator (#R41976)
  62712 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -12573,11 +12564,11 @@ b62976 DEFB 0,160,0,0,0,0,0,0                  ; {Room layout
  63213 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 63216 DEFB 97,14                              ; Guardian no. #ed97 (vertical),
+ 63216 DEFB 97,14                              ; Guardian no. #b97 (vertical),
                                                ; base sprite 0, x=14 (#R41736)
- 63218 DEFB 89,196                             ; Guardian no. #ed89 (vertical),
+ 63218 DEFB 89,196                             ; Guardian no. #b89 (vertical),
                                                ; base sprite 6, x=4 (#R41672)
- 63220 DEFB 20,9                               ; Guardian no. #ed20
+ 63220 DEFB 20,9                               ; Guardian no. #b20
                                                ; (horizontal), base sprite 0,
                                                ; initial x=9 (#R41120)
  63222 DEFB 255,0                              ; Terminator (#R41976)
@@ -12665,9 +12656,9 @@ b63232 DEFB 0,0,4,0,160,64,0,0                 ; {Room layout
  63469 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 63472 DEFB 30,139                             ; Guardian no. #ed30 (vertical),
+ 63472 DEFB 30,139                             ; Guardian no. #b30 (vertical),
                                                ; base sprite 4, x=11 (#R41200)
- 63474 DEFB 51,78                              ; Guardian no. #ed51 (vertical),
+ 63474 DEFB 51,78                              ; Guardian no. #b51 (vertical),
                                                ; base sprite 2, x=14 (#R41368)
  63476 DEFB 255,0                              ; Terminator (#R41976)
  63478 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -12756,10 +12747,10 @@ b63488 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  63725 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 63728 DEFB 52,19                              ; Guardian no. #ed52
+ 63728 DEFB 52,19                              ; Guardian no. #b52
                                                ; (horizontal), base sprite 0,
                                                ; initial x=19 (#R41376)
- 63730 DEFB 28,20                              ; Guardian no. #ed28
+ 63730 DEFB 28,20                              ; Guardian no. #b28
                                                ; (horizontal), base sprite 0,
                                                ; initial x=20 (#R41184)
  63732 DEFB 60,84                              ; Arrow flying left to right at
@@ -12850,9 +12841,9 @@ b63744 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  63981 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 63984 DEFB 7,203                              ; Guardian no. #ed7 (vertical),
+ 63984 DEFB 7,203                              ; Guardian no. #b7 (vertical),
                                                ; base sprite 6, x=11 (#R41016)
- 63986 DEFB 51,78                              ; Guardian no. #ed51 (vertical),
+ 63986 DEFB 51,78                              ; Guardian no. #b51 (vertical),
                                                ; base sprite 2, x=14 (#R41368)
  63988 DEFB 255,0                              ; Terminator (#R41976)
  63990 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -13027,10 +13018,10 @@ b64256 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  64493 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 64496 DEFB 53,8                               ; Guardian no. #ed53
+ 64496 DEFB 53,8                               ; Guardian no. #b53
                                                ; (horizontal), base sprite 0,
                                                ; initial x=8 (#R41384)
- 64498 DEFB 27,21                              ; Guardian no. #ed27 (vertical),
+ 64498 DEFB 27,21                              ; Guardian no. #b27 (vertical),
                                                ; base sprite 0, x=21 (#R41176)
  64500 DEFB 255,17                             ; Terminator (#R41976)
  64502 DEFB 0,0                                ; Nothing (#R40960#40960)
@@ -13118,10 +13109,10 @@ b64512 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
  64749 DEFB 0,0,0                              ; Unused
 ; The next eight pairs of bytes are copied to #R33008 and specify the entities
 ; (ropes, arrows, guardians) in this room.
- 64752 DEFB 105,23                             ; Guardian no. #ed105
+ 64752 DEFB 105,23                             ; Guardian no. #b105
                                                ; (horizontal), base sprite 0,
                                                ; initial x=23 (#R41800)
- 64754 DEFB 110,20                             ; Guardian no. #ed110
+ 64754 DEFB 110,20                             ; Guardian no. #b110
                                                ; (horizontal), base sprite 0,
                                                ; initial x=20 (#R41840)
  64756 DEFB 255,0                              ; Terminator (#R41976)

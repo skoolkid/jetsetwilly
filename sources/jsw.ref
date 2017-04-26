@@ -110,9 +110,9 @@ of code and data are unused:
 { The entries at #R33622(#N33622-#N33663) and #R33750(#N33750-#N33791) in the
   rope animation table (84 bytes) }
 { The section of code at #R35345(#N35345-#N35365) in the main loop (21 bytes) }
-{ Entity definition #ed43 at #R41304 (8 bytes) }
-{ Entity definition #ed63 at #R41464 (8 bytes) }
-{ Entity definitions #ed112-#ed126 at #R41856 (120 bytes) }
+{ Entity definition #b43 at #R41304 (8 bytes) }
+{ Entity definition #b63 at #R41464 (8 bytes) }
+{ Entity definitions #b112-#b126 at #R41856 (120 bytes) }
 { Slots 0-172 at #R41984#41984 and #R42240 in the item table (346 bytes) }
 { Pages #R45312(#N177) and #R45824(#N179) in the guardian graphic data (512
   bytes) }
