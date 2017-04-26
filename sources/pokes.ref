@@ -1,4 +1,4 @@
-; Copyright 2014-2016 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
 
 [Poke:noCodeSheetRequired:No code sheet required]
 To make any combination work on the code entry screen:
@@ -10,7 +10,7 @@ Alternatively, to bypass the code entry screen altogether:
 POKE #R33796(33797),135: POKE #R33799(33800),202
 
 [Poke:startInAnyRoom:Start in any room]
-To start the game in room N (normally 33: #R57600(The Bathroom)):
+To start the game in room N (normally #b33: #R57600(The Bathroom)):
 
 POKE #R34794(34795),N
 
@@ -23,7 +23,7 @@ chosen; to change Willy's start location to (y,x):
 <div>POKE #R34799(34800),32*(y-8*INT(y/8))+x</div>
 <div>POKE #R34799(34801),92+INT(y/8)</div>
 
-For example, to start at (6,28) in room 25 (#R55552(Cold Store)):
+For example, to start at (6,28) in room #b25 (#R55552(Cold Store)):
 
 <div>POKE 34795,25</div>
 <div>POKE 34790,96</div>

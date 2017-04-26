@@ -222,7 +222,7 @@ the first pass through the code <em>before</em> the first note is played.
 
 [Bug:theBlankConveyor:The blank conveyor]
 The conveyor tile in #R60160(Conservatory Roof) is completely blank and its
-attribute byte is 255 - a solid, bright white block - which is characteristic
+attribute byte is #b255 - a solid, bright white block - which is characteristic
 of unused tiles elsewhere. However, the conveyor tile <em>is</em> used in this
 room, and it doesn't look good:
 
@@ -286,9 +286,9 @@ reasonable appearance:
 { Before | After }
 TABLE#
 
-In addition, if the byte at #N56789 (#N85,,,1(0x)) is shifted back round to
-#N56780, it seems to fix the appearance of the ramp tile (by filling the gap at
-the bottom):
+In addition, if the byte at #N56789 (#b85) is shifted back round to #N(56780),
+it seems to fix the appearance of the ramp tile (by filling the gap at the
+bottom):
 
 #UDGTABLE(gallery)
 { #ROOM56576,2,6,12,5,4(ramp29_before) |
@@ -299,7 +299,7 @@ the bottom):
 TABLE#
 
 [Bug:invalidGridLocation:Invalid grid location]
-If the LSB of the system variable FRAMES is 142 when the game starts, the
+If the LSB of the system variable FRAMES is #b142 when the game starts, the
 routine at #R34499 will ask for the code at the grid location 'D>', which
 doesn't exist on the code sheet.
 
@@ -309,8 +309,8 @@ POKE #R34555(34556),180
 
 [Bug:thePauseBug:The pause bug]
 The Spectrum will hang when trying to resume the game after being paused if an
-Interface 1 is connected. This happens because the #REGc register holds 0
-instead of 254 when the keyboard is read by the '#S/IN A,(C)/' instruction at
+Interface 1 is connected. This happens because the #REGc register holds #b0
+instead of #b254 when the keyboard is read by the '#S/IN A,(C)/' instruction at
 #R35620.
 
 POKE #R35615(35615),62: POKE #R35620(35620),219: POKE #R35620(35621),254
@@ -324,25 +324,23 @@ The root cause of the bug is a misplaced arrow, defined by the entity
 specification at #R59900. The second byte of the entity specification is an
 index into the table of screen buffer addresses at #R33280, and determines the
 arrow's y-coordinate; the index should be an even number, but the value of the
-second byte is #N(213,,,1)(0x), which means the arrow-drawing routine at
-#R37310 looks up the word at #N33493 and finds #N(41066), way outside the
-actual screen buffer at #N24576-#N28671. As a result, the misplaced arrow is
-'drawn' at the following addresses:
+second byte is #b213, which means the arrow-drawing routine at #R37310 looks up
+the word at #N33493 and finds #N(41066), way outside the actual screen buffer
+at #N24576-#N28671. As a result, the misplaced arrow is 'drawn' at the
+following addresses:
 
 #LIST
-{ #R40704(#N40810-#N40841): unused (set to #N(65,,,1)(0x), with no effect on
-  the game) }
+{ #R40704(#N40810-#N40841): unused (set to #b65, with no effect on the game) }
 { #R41064(#N41066-#N41097): the third byte of entity definition #b13 through to
-  the second byte of entity definition #b17 (set to #N(255,,,1)(0x)); this
-  affects the guardians in #R52736(Rescue Esmerelda), #R52992(I'm sure I've
-  seen this before..), #R53248(We must perform a Quirkafleeg), #R49408(The
-  Bridge), #R50688(Entrance to Hades), #R56064(The Chapel) and #R58880(Priests'
-  Hole) }
+  the second byte of entity definition #b17 (set to #b255); this affects the
+  guardians in #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen this
+  before..), #R53248(We must perform a Quirkafleeg), #R49408(The Bridge),
+  #R50688(Entrance to Hades), #R56064(The Chapel) and #R58880(Priests' Hole) }
 { #R41320(#N41322-#N41353): the third byte of entity definition #b45 through to
-  the second byte of entity definition #b49 (set to #N(65,,,1)(0x)); this
-  affects the guardians in #R52480(Out on a limb), #R55808(East Wall Base),
-  #R52224(Tree Top), #R51200(Inside the MegaTrunk), #R55040(The Kitchen) and
-  #R55296(West of Kitchen) }
+  the second byte of entity definition #b49 (set to #b65); this affects the
+  guardians in #R52480(Out on a limb), #R55808(East Wall Base), #R52224(Tree
+  Top), #R51200(Inside the MegaTrunk), #R55040(The Kitchen) and #R55296(West of
+  Kitchen) }
 LIST#
 
 The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to

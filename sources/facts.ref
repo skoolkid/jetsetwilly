@@ -17,8 +17,8 @@ tune played during gameplay is <i>If I Were a Rich Man</i> from the musical
 [Fact:theMovingBed:The moving bed]
 The bed in #R58112(Master Bedroom) is actually a conveyor moving left to right,
 but it doesn't appear to move because the first and third bytes of the conveyor
-tile (shown below) are 85 (01010101), which remains 85 after being rotated left
-or right twice.
+tile (shown below) are #b85 (01010101), which remains #b85 after being rotated
+left or right twice.
 
 #UDGTABLE
 { #UDG58318,41(moving_bed) }
@@ -93,20 +93,20 @@ is #R53248(We must perform a Quirkafleeg), where the long row of nasties at the
 bottom of the pit ensures certain (repeated) death.
 
 [Fact:unusedRoom:Unused room]
-There are 61 room definitions occupying pages #N192-#N(252), but the definition
-for room #b47 in #R61184(page #N239) is not used. Room #b47 is completely empty
+There are 61 room definitions occupying pages #b192-#b252, but the definition
+for room #b47 in #R61184(page #b239) is not used. Room #b47 is completely empty
 and can only be accessed by activating #FACT#writetyper(cheat mode) and using
 the teleport code '123469'.
 
 However, the (inaccessible) right exit from #R60928(Tree Root) is set to
-#N47 (see #R61161(#N61162)), which suggests that there was an intention to
+#b47 (see #R61161(#N61162)), which suggests that there was an intention to
 place room #b47 there at some point during the game's development.
 
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the
-180 grid locations on the code sheet by its index (0-179), never selects index
-179 (R9); as a result, the code at grid location R9 is never asked for, even
-though it's present on the code sheet (it's 2423).
+180 grid locations on the code sheet by its index (#b0-#b179), never selects
+index #b179 (R9); as a result, the code at grid location R9 is never asked for,
+even though it's present on the code sheet (it's 2423).
 
 To give the code at grid location R9 a chance of being asked for:
 
@@ -432,14 +432,14 @@ guardian's buffer - bits 5-7 of which hold the animation frame index - bit 7 is
 always unused in practice.
 
 [Fact:unusedEntityDefinition:Unused entity definition]
-Entity definition 43 at #R41304 contains data but is not used.
+Entity definition #b43 at #R41304 contains data but is not used.
 
 Which room might this vertical guardian have inhabited at some point while the
 game was being developed? We'll probably never know.
 
 [Fact:untouchableEntityDefinition:Untouchable entity definition]
-Entity definition 127 at #R41976 should not be modified or used to define an
-actual entity, because its first byte (255) is used to terminate the entity
+Entity definition #b127 at #R41976 should not be modified or used to define an
+actual entity, because its first byte (#b255) is used to terminate the entity
 buffer at #R33024.
 
 [Fact:rampsVsWalls:Ramps v. walls]
