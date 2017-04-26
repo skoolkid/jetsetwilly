@@ -500,7 +500,7 @@ class JetSetWilly:
             room_name = self.room_names[room_num]
             if room_num == 60:
                 lines.append('@ {} ignoreua:t'.format(a))
-            lines.append('b {} Room #N{},,,1(0x): {} (teleport: {})'.format(a, room_num, self.room_names_wp[room_num], self._get_teleport_code(room_num)))
+            lines.append('b {} Room #b{}: {} (teleport: {})'.format(a, room_num, self.room_names_wp[room_num], self._get_teleport_code(room_num)))
             if a == 61184:
                 # [
                 room_image = '#ROOM{}(left_square_bracket)'.format(a)

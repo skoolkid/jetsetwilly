@@ -116,7 +116,7 @@ of code and data are unused:
 { Slots 0-172 at #R41984#41984 and #R42240 in the item table (346 bytes) }
 { Pages #R45312(#N177) and #R45824(#N179) in the guardian graphic data (512
   bytes) }
-{ Room #R61184(#N(47,,,1)(0x)) (256 bytes) }
+{ Room #R61184(#b47) (256 bytes) }
 LIST#
 
 [Page:Rooms]
