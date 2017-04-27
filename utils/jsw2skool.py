@@ -200,7 +200,7 @@ class JetSetWilly:
                     desc2 = 'Replaced by the base sprite index and initial x-coordinate (copied from the second byte of the entity specification in the room definition)'
                     desc3 = 'Pixel y-coordinate: {}'.format(entity_def[3] // 2)
                     desc4 = 'Unused'
-                    desc5 = 'Page containing the sprite graphic data: #R{}(#N{})'.format(entity_def[5] * 256, entity_def[5])
+                    desc5 = 'Page containing the sprite graphic data: #R{}(#b{})'.format(entity_def[5] * 256, entity_def[5])
                     desc6 = 'Minimum x-coordinate'
                     desc7 = 'Maximum x-coordinate'
                 elif entity_type & 3 == 2:
@@ -231,12 +231,12 @@ class JetSetWilly:
                             e_addr = 40064
                             links.append('#R40064(Maria)')
                         if len(links) == 1:
-                            desc5 = 'Page containing the sprite graphic data: #R{}(#N{})'.format(e_addr, page)
+                            desc5 = 'Page containing the sprite graphic data: #R{}(#b{})'.format(e_addr, page)
                         else:
-                            desc5 = 'Page containing the sprite graphic data: #N{}#HTML[ ({})]'.format(page, ', '.join(links))
+                            desc5 = 'Page containing the sprite graphic data: #b{}#HTML[ ({})]'.format(page, ', '.join(links))
                     else:
                         anchor = '#43776' if page == 171 else ''
-                        desc5 = 'Page containing the sprite graphic data: #R{}{}(#N{})'.format(page * 256, anchor, page)
+                        desc5 = 'Page containing the sprite graphic data: #R{}{}(#b{})'.format(page * 256, anchor, page)
                     desc6 = 'Minimum pixel y-coordinate: {}'.format(entity_def[6] // 2)
                     desc7 = 'Maximum pixel y-coordinate: {}'.format(entity_def[7] // 2)
                 elif entity_type & 3 == 3:
@@ -276,7 +276,7 @@ class JetSetWilly:
         lines.append('@ 41976 label=ENTITY127')
         lines.append('N 41976 The following entity definition (#b127) - whose eighth byte is at #R41983 - '
                      'is copied into one of the entity buffers at #R33024 for any entity specification whose '
-                     'first byte is #n127 or #n255; the first byte of the definition (#n255) serves to '
+                     'first byte is #b127 or #b255; the first byte of the definition (#b255) serves to '
                      'terminate the entity buffers.')
         lines.append('B 41976,7')
         lines.append('i 41983')
@@ -311,9 +311,9 @@ class JetSetWilly:
             end_index = base_index + num - 1
             if a in guardians:
                 room_links = self._get_room_links(sorted(guardians[a]))
-                comment = 'This guardian (page #N({}), sprites {}-{}) appears in {}.'.format(page, base_index, end_index, room_links)
+                comment = 'This guardian (page #b{}, sprites {}-{}) appears in {}.'.format(page, base_index, end_index, room_links)
             elif a == 45312:
-                comment = 'This guardian (page #N({}), sprites {}-{}) is not used.'.format(page, base_index, end_index)
+                comment = 'This guardian (page #b{}, sprites {}-{}) is not used.'.format(page, base_index, end_index)
             elif a == 45824:
                 comment = 'The next 256 bytes are unused.'
             lines.append('N {} {}'.format(a, comment))
@@ -331,7 +331,7 @@ class JetSetWilly:
     def get_item_table(self):
         lines = ['b 41984 Item table']
         lines.append('D 41984 Used by the routines at #R34762 and #R37841.')
-        lines.append('D 41984 The location of item N (173<=N<=255) is defined by the pair of bytes at '
+        lines.append('D 41984 The location of item N (#b173<=N<=#b255) is defined by the pair of bytes at '
                      'addresses #R41984+N and #R42240+N. The meaning of the bits in each byte-pair is '
                      'as follows:')
         lines.append('D 41984 #TABLE(default,centre) '
@@ -352,13 +352,13 @@ class JetSetWilly:
             items[index] = (room_link, (x, y))
             if a == 42183:
                 lines.append('@ {} bfix=DEFB 11'.format(a))
-            lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, y, x, room_link))
+            lines.append('B {} Item #b{} at ({},{}) in {}'.format(a, index, y, x, room_link))
         lines.append('@ 42240 label=ITEMTABLE2')
         lines.append('S 42240 Unused')
         for a in range(42413, 42496):
             index = a % 256
             room_link, (x, y) = items[index]
-            lines.append('B {} Item {} at ({},{}) in {}'.format(a, index, y, x, room_link))
+            lines.append('B {} Item #b{} at ({},{}) in {}'.format(a, index, y, x, room_link))
         lines.append('i 42496')
         return '\n'.join(lines)
 

@@ -250,7 +250,7 @@ g33008 DEFS 2        ; Entity 1
 ; { 2 | Pixel y-coordinate x2 (index into the table at #R33280) }
 ; { 3 | Unused }
 ; { 4 | x-coordinate }
-; { 5 | Collision detection byte (0=off, 255=on) }
+; { 5 | Collision detection byte (#b0=off, #b255=on) }
 ; { 6 | Top/bottom pixel row (drawn either side of the shaft) }
 ; { 7 | Unused }
 ; TABLE#
@@ -266,11 +266,11 @@ g33008 DEFS 2        ; Entity 1
 ; { 1 | Animation frame index }
 ; { 2 | x-coordinate of the top of the rope }
 ; { 3 | x-coordinate of the segment of rope being drawn }
-; { 4 | Length (32) }
+; { 4 | Length (#b32) }
 ; { 5 | Segment drawing byte }
 ; { 6 | Unused }
-; { 7 | Animation frame at which the rope changes direction (54) }
-; { 9 | Index of the segment of rope being drawn (0-32) }
+; { 7 | Animation frame at which the rope changes direction (#b54) }
+; { 9 | Index of the segment of rope being drawn (#b0-#b32) }
 ; { =r2 11 | Bits 1-7: unused }
 ; { Bit 0: Willy is on the rope (set), or not (reset) }
 ; TABLE#
@@ -436,11 +436,11 @@ w33280 DEFW 24576    ; y=0
 ;
 ; Used by the routine at #R37310. The first half of this table controls the
 ; x-coordinates at which the segments of rope are drawn, and the second half
-; controls the y-coordinates. For a given rope animation frame F (0<=F<=54),
-; the 32 entries from F to F+31 inclusive (one for each of the 32 segments of
-; rope below the topmost one) in each half of the table are used; thus the
-; batch of entries used 'slides' up and down the table as F increases and
-; decreases.
+; controls the y-coordinates. For a given rope animation frame F
+; (#b0<=F<=#b54), the 32 entries from F to F+31 inclusive (one for each of the
+; 32 segments of rope below the topmost one) in each half of the table are
+; used; thus the batch of entries used 'slides' up and down the table as F
+; increases and decreases.
 @label=ROPEANIM
 b33536 DEFB 0,0,0,0,0,0,0,0 ; {These values determine how much to rotate the
  33544 DEFB 0,0,0,0,0,0,0,0 ; rope drawing byte (which in turn determines the
@@ -499,8 +499,8 @@ c33792 DI            ; Disable interrupts
 @ignoreua
 *33813 LD C,(HL)     ; {Read through addresses #N34048-#N(65535), without
  33814 LD A,L        ; changing their contents; perhaps this code was once used
- 33815 XOR C         ; to descramble the contents of pages 133-255, but now all
- 33816 XOR H         ; it does is introduce a pause of about 0.47s before
+ 33815 XOR C         ; to descramble the contents of pages #b133-#b255, but now
+ 33816 XOR H         ; all it does is introduce a pause of about 0.47s before
  33817 LD (HL),C     ; displaying the code entry screen
  33818 INC HL        ;
  33819 BIT 7,H       ;
@@ -509,10 +509,10 @@ c33792 DI            ; Disable interrupts
 
 ; Current room number
 ;
-; Initialised to 33 (#R57600(The Bathroom)) by the routine at #R34762, checked
-; by the routines at #R35090, #R37310, #R37841, #R38196, #R38276, #R38298 and
-; #R38455, and updated by the routines at #R35591, #R38026, #R38046, #R38064
-; and #R38098.
+; Initialised to #b33 (#R57600(The Bathroom)) by the routine at #R34762,
+; checked by the routines at #R35090, #R37310, #R37841, #R38196, #R38276,
+; #R38298 and #R38455, and updated by the routines at #R35591, #R38026,
+; #R38046, #R38064 and #R38098.
 @label=ROOM
 g33824 DEFB 0
 
@@ -713,13 +713,13 @@ g34256 DEFB 0
 ; are:
 ; .
 ; #TABLE(default,centre,:w)
-; { =h Value | =h Meaning }
-; { 0 | Willy is neither falling nor jumping }
-; { 1 | Willy is jumping }
-; { 2-11 | Willy is falling, and can land safely }
-; { 12-15 | Willy is falling, and has fallen too far to land safely }
-; { 255 | Willy has collided with a nasty, an arrow, a guardian, or Maria (see
-; #R37046) }
+; { =h Value  | =h Meaning }
+; { #b0       | Willy is neither falling nor jumping }
+; { #b1       | Willy is jumping }
+; { #b2-#b11  | Willy is falling, and can land safely }
+; { #b12-#b15 | Willy is falling, and has fallen too far to land safely }
+; { #b255     | Willy has collided with a nasty, an arrow, a guardian, or Maria
+; (see #R37046) }
 ; TABLE#
 @label=AIRBORNE
 g34257 DEFB 0
@@ -752,11 +752,11 @@ g34261 DEFB 0
 ; are:
 ; .
 ; #TABLE(default,centre,:w)
-; { =h Value | =h Meaning }
-; { 0 | Willy is not on the rope }
-; { 2-32 | Willy is on the rope, with the centre of his sprite anchored at this
-; segment }
-; { 240-255 | Willy has just jumped or fallen off the rope }
+; { =h Value    | =h Meaning }
+; { #b0         | Willy is not on the rope }
+; { #b2-#b32    | Willy is on the rope, with the centre of his sprite anchored
+; at this segment }
+; { #b240-#b255 | Willy has just jumped or fallen off the rope }
 ; TABLE#
 @label=ROPE
 g34262 DEFB 0
@@ -930,30 +930,30 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
  34542 LD BC,128     ;
  34545 LDIR          ; }
  34547 LD A,(23672)  ; Collect the LSB of the system variable FRAMES
- 34550 ADD A,37      ; {Add 37 to this value and replace it; this ensures that
- 34552 LD (23672),A  ; the value collected on the second pass through this
+ 34550 ADD A,37      ; {Add #b37 to this value and replace it; this ensures
+ 34552 LD (23672),A  ; that the value collected on the second pass through this
                      ; routine is different from the value collected on the
                      ; first pass}
 @bfix-begin
- 34555 CP 179        ; Is the value between 0 and 178?
+ 34555 CP 179        ; Is the value between #b0 and #b178?
 @bfix+else
- 34555 CP 180        ; Is the value between 0 and 179?
+ 34555 CP 180        ; Is the value between #b0 and #b179?
 @bfix+end
  34557 JR C,34561    ; Jump if so
 @bfix-begin
- 34559 SUB 180       ; Otherwise subtract 180; note that if the original value
-                     ; of the LSB of the system variable FRAMES was 142, this
-                     ; leaves #REGa holding 255, which is a
+ 34559 SUB 180       ; Otherwise subtract #b180; note that if the original
+                     ; value of the LSB of the system variable FRAMES was
+                     ; #b142, this leaves #REGa holding #b255, which is a
                      ; #BUG#invalidGridLocation(bug)
-*34561 LD L,A        ; Now #REGl holds either 255 or some number between 0 and
-                     ; 178
+*34561 LD L,A        ; Now #REGl holds either #b255 or some number between #b0
+                     ; and #b178
 @ignoreua
 @ssub=LD H,40448/256
  34562 LD H,158      ; Point #REGhl at one of the entries in the table at
-                     ; #R40448 (or at #N40703 if #REGl=255)
+                     ; #R40448 (or at #N40703 if #REGl=#b255)
 @bfix+else
- 34559 SUB 180       ; Otherwise subtract 180
-*34561 LD L,A        ; Now #REGl holds some number between 0 and 179
+ 34559 SUB 180       ; Otherwise subtract #b180
+*34561 LD L,A        ; Now #REGl holds some number between #b0 and #b179
 @ssub=LD H,40448/256
  34562 LD H,158      ; Point #REGhl at one of the entries in the table at
                      ; #R40448
@@ -1060,16 +1060,16 @@ c34620 LD BC,63486   ; {Read keys 1-2-3-4-5
  34709 LD BC,63486   ; {Read keys 1-2-3-4-5
  34712 IN A,(C)      ; }
  34714 AND 15        ; Keep only bits 0-3 (keys 1-2-3-4)
- 34716 LD E,8        ; #REGe=8 (INK 0: PAPER 1)
+ 34716 LD E,8        ; #REGe=#b8 (INK 0: PAPER 1)
  34718 CP 14         ; Is '1' alone being pressed?
  34720 JR Z,34741    ; Jump if so
- 34722 LD E,16       ; #REGe=16 (INK 0: PAPER 2)
+ 34722 LD E,16       ; #REGe=#b16 (INK 0: PAPER 2)
  34724 CP 13         ; Is '2' alone being pressed?
  34726 JR Z,34741    ; Jump if so
- 34728 LD E,24       ; #REGe=24 (INK 0: PAPER 3)
+ 34728 LD E,24       ; #REGe=#b24 (INK 0: PAPER 3)
  34730 CP 11         ; Is '3' alone being pressed?
  34732 JR Z,34741    ; Jump if so
- 34734 LD E,32       ; #REGe=32 (INK 0: PAPER 4)
+ 34734 LD E,32       ; #REGe=#b32 (INK 0: PAPER 4)
  34736 CP 7          ; Is '4' alone being pressed?
  34738 JP NZ,34631   ; If not, jump back to check the ENTER key
 ; Exactly one of the number keys '1', '2', '3' or '4' is being pressed. #REGe
@@ -1103,7 +1103,7 @@ c34762 XOR A         ; #REGa=0
  34786 LD (34252),A  ; }
  34789 LD A,208      ; {Initialise Willy's pixel y-coordinate at #R34255
  34791 LD (34255),A  ; }
- 34794 LD A,33       ; {Initialise the current room number at #R33824 to 33
+ 34794 LD A,33       ; {Initialise the current room number at #R33824 to #b33
  34796 LD (33824),A  ; (#R57600(The Bathroom))}
  34799 LD HL,23988   ; {Initialise Willy's coordinates at #R34259 to (13,20)
  34802 LD (34259),HL ; }
@@ -1114,7 +1114,7 @@ c34762 XOR A         ; #REGa=0
  34813 INC HL        ;
  34814 LD (HL),48    ; }
 @ssub=LD H,41984/256
- 34816 LD H,164      ; Page #R41984(#N164) holds the first byte of each entry
+ 34816 LD H,164      ; Page #R41984(#b164) holds the first byte of each entry
                      ; in the item table
  34818 LD A,(41983)  ; Pick up the index of the first item from #R41983
  34821 LD L,A        ; Point #REGhl at the entry for the first item
@@ -1133,9 +1133,9 @@ c34762 XOR A         ; #REGa=0
  34848 LD HL,38912   ; {Copy the attribute bytes for the title screen from
  34851 LD BC,768     ; #R38912 and #R39424 to the attribute file
  34854 LDIR          ; }
- 34856 LD HL,23136   ; {Copy the attribute value 70 (INK 6: PAPER 0: BRIGHT 1)
- 34859 LD DE,23137   ; into the row of 32 cells from (19,0) to (19,31) on the
- 34862 LD BC,31      ; screen
+ 34856 LD HL,23136   ; {Copy the attribute value #b70 (INK 6: PAPER 0: BRIGHT
+ 34859 LD DE,23137   ; 1) into the row of 32 cells from (19,0) to (19,31) on
+ 34862 LD BC,31      ; the screen
  34865 LD (HL),70    ;
  34867 LDIR          ; }
  34869 LD IX,33876   ; {Print "+++++ Press ENTER to Start +++++" (see #R33876)
@@ -1144,39 +1144,40 @@ c34762 XOR A         ; #REGa=0
  34878 CALL 38528    ; }
  34881 LD DE,22528   ; Point #REGde at the first byte of the attribute file
 ; The following loop scans the top two-thirds of the attribute file, which
-; contains values 0, 4, 5, 8, 9, 36, 37, 40, 41, 44, 45 and 211 (copied from
-; #R38912). Whenever a value other than 0, 9, 36, 45 or 211 is found, a
-; triangle UDG is drawn at the corresponding location in the display file.
+; contains values #b0, #b4, #b5, #b8, #b9, #b36, #b37, #b40, #b41, #b44, #b45
+; and #b211 (copied from #R38912). Whenever a value other than #b0, #b9, #b36,
+; #b45 or #b211 is found, a triangle UDG is drawn at the corresponding location
+; in the display file.
 *34884 LD A,(DE)     ; Pick up a byte from the attribute file
- 34885 OR A          ; Is it 0 (INK 0: PAPER 0)?
+ 34885 OR A          ; Is it #b0 (INK 0: PAPER 0)?
  34886 JR Z,34958    ; If so, jump to consider the next byte in the attribute
                      ; file
- 34888 CP 211        ; Is it 211 (INK 3: PAPER 2: BRIGHT 1: FLASH 1)?
+ 34888 CP 211        ; Is it #b211 (INK 3: PAPER 2: BRIGHT 1: FLASH 1)?
  34890 JR Z,34958    ; If so, jump to consider the next byte in the attribute
                      ; file
- 34892 CP 9          ; Is it 9 (INK 1: PAPER 1)?
+ 34892 CP 9          ; Is it #b9 (INK 1: PAPER 1)?
  34894 JR Z,34958    ; If so, jump to consider the next byte in the attribute
                      ; file
- 34896 CP 45         ; Is it 45 (INK 5: PAPER 5)?
+ 34896 CP 45         ; Is it #b45 (INK 5: PAPER 5)?
  34898 JR Z,34958    ; If so, jump to consider the next byte in the attribute
                      ; file
- 34900 CP 36         ; Is it 36 (INK 4: PAPER 4)?
+ 34900 CP 36         ; Is it #b36 (INK 4: PAPER 4)?
  34902 JR Z,34958    ; If so, jump to consider the next byte in the attribute
                      ; file
  34904 LD C,0        ; #REGc=0; this will be used as an offset from the
                      ; triangle UDG base address (#R33841)
- 34906 CP 8          ; Is the attribute value 8 (INK 0: PAPER 1)?
+ 34906 CP 8          ; Is the attribute value #b8 (INK 0: PAPER 1)?
  34908 JR Z,34929    ; Jump if so
- 34910 CP 41         ; Is it 41 (INK 1: PAPER 5)?
+ 34910 CP 41         ; Is it #b41 (INK 1: PAPER 5)?
  34912 JR Z,34929    ; Jump if so
- 34914 CP 44         ; Is it 44 (INK 4: PAPER 5)?
+ 34914 CP 44         ; Is it #b44 (INK 4: PAPER 5)?
  34916 JR Z,34926    ; Jump if so
- 34918 CP 5          ; Is it 5 (INK 5: PAPER 0)?
+ 34918 CP 5          ; Is it #b5 (INK 5: PAPER 0)?
  34920 JR Z,34929    ; Jump if so
- 34922 LD C,16       ; Set the triangle UDG offset to 16
+ 34922 LD C,16       ; Set the triangle UDG offset to #b16
  34924 JR 34929      ;
-*34926 LD A,37       ; {Change the attribute byte here from 44 (INK 4: PAPER 5)
- 34928 LD (DE),A     ; to 37 (INK 5: PAPER 4)}
+*34926 LD A,37       ; {Change the attribute byte here from #b44 (INK 4: PAPER
+ 34928 LD (DE),A     ; 5) to #b37 (INK 5: PAPER 4)}
 *34929 LD A,E        ; {Point #REGhl at the triangle UDG to draw (#R33841,
  34930 AND 1         ; #R33849, #R33857 or #R33865)
  34932 RLCA          ;
@@ -1202,7 +1203,7 @@ c34762 XOR A         ; #REGa=0
  34960 CP 90         ; attribute file yet?}
  34962 JP NZ,34884   ; If not, jump back to examine the next byte
 ; Now check whether there is a joystick connected.
- 34965 LD BC,31      ; #REGb=0, #REGc=31 (joystick port)
+ 34965 LD BC,31      ; This is the joystick port
  34968 DI            ; Disable interrupts (which are already disabled)
  34969 XOR A         ; #REGa=0
 *34970 IN E,(C)      ; {Combine 256 readings of the joystick port in #REGa; if
@@ -1221,9 +1222,9 @@ c34762 XOR A         ; #REGa=0
  34994 LD (34276),A  ; #R34276 to 0; this will be used as an index for the
                      ; message scrolled across the screen (see #R33876)}
 *34997 CALL 35563    ; Cycle the INK and PAPER colours
- 35000 LD HL,23136   ; {Copy the attribute value 79 (INK 7: PAPER 1: BRIGHT 1)
- 35003 LD DE,23137   ; into the row of 32 cells from (19,0) to (19,31) on the
- 35006 LD BC,31      ; screen
+ 35000 LD HL,23136   ; {Copy the attribute value #b79 (INK 7: PAPER 1: BRIGHT
+ 35003 LD DE,23137   ; 1) into the row of 32 cells from (19,0) to (19,31) on
+ 35006 LD BC,31      ; the screen
  35009 LD (HL),79    ;
  35011 LDIR          ; }
  35013 LD A,(34276)  ; Pick up the message index from #R34276
@@ -1234,7 +1235,7 @@ c34762 XOR A         ; #REGa=0
  35025 LD DE,20576   ; {Print 32 characters of the message at (19,0)
  35028 LD C,32       ;
  35030 CALL 38528    ; }
- 35033 LD A,(34276)  ; {Prepare a value between 50 and 81 in #REGa (for the
+ 35033 LD A,(34276)  ; {Prepare a value between #b50 and #b81 in #REGa (for the
  35036 AND 31        ; routine at #R38622)
  35038 ADD A,50      ; }
  35040 CALL 38622    ; Make a sound effect
@@ -1352,8 +1353,8 @@ c35211 LD A,(34252)  ; Pick up the number of lives remaining from #R34252
  35223 PUSH BC       ; }
  35224 LD A,(34273)  ; Pick up the in-game music note index from #R34273; this
                      ; will determine the animation frame for the Willy sprites
- 35227 RLCA          ; {Now #REGa=0 (frame 0), 32 (frame 1), 64 (frame 2) or 96
- 35228 RLCA          ; (frame 3)
+ 35227 RLCA          ; {Now #REGa=#b0 (frame 0), #b32 (frame 1), #b64 (frame 2)
+ 35228 RLCA          ; or #b96 (frame 3)
  35229 RLCA          ;
  35230 AND 96        ; }
  35232 LD E,A        ; {Point #REGde at the corresponding Willy sprite (at
@@ -1575,8 +1576,8 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35617 LD HL,34274   ; Point #REGhl at the music flags at #R34274
 @bfix-begin
  35620 IN A,(C)      ; Read keys H-J-K-L-ENTER; note that if the game has just
-                     ; resumed after being paused, #REGc holds 0 instead of
-                     ; 254, which is a #BUG#thePauseBug(bug)
+                     ; resumed after being paused, #REGc holds #b0 instead of
+                     ; #b254, which is a #BUG#thePauseBug(bug)
 @bfix+else
  35620 IN A,(254)    ; Read keys H-J-K-L-ENTER
 @bfix+end
@@ -1704,15 +1705,16 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
 ;
 ; Used by the routine at #R35591.
 @label=LOSELIFE
-c35841 LD A,71       ; #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
+c35841 LD A,71       ; #REGa=#b71 (INK 7: PAPER 0: BRIGHT 1)
 ; The following loop fills the top two thirds of the attribute file with a
-; single value (71 TO 64 STEP -1) and makes a sound effect.
+; single value (#b71, #b70, #b69, #b68, #b67, #b66, #b65 or #b64) and makes a
+; sound effect.
 *35843 LD HL,22528   ; {Fill the top two thirds of the attribute file with the
  35846 LD DE,22529   ; value in #REGa
  35849 LD BC,511     ;
  35852 LD (HL),A     ;
  35853 LDIR          ; }
- 35855 LD E,A        ; Save the attribute byte (64-71) in #REGe for later
+ 35855 LD E,A        ; Save the attribute byte (#b64-#b71) in #REGe for later
                      ; retrieval
  35856 CPL           ; {#REGd=63-8*(#REGe #S/AND/ 7); this value determines the
  35857 AND 7         ; pitch of the short note that will be played
@@ -1733,9 +1735,9 @@ c35841 LD A,71       ; #REGa=71 (INK 7: PAPER 0: BRIGHT 1)
 *35880 DJNZ 35880    ;
  35882 DEC C         ;
  35883 JR NZ,35875   ; }
- 35885 LD A,E        ; Restore the attribute byte (originally 71) to #REGa
+ 35885 LD A,E        ; Restore the attribute byte (originally #b71) to #REGa
  35886 DEC A         ; Decrement it (effectively decrementing the INK colour)
- 35887 CP 63         ; Have we used attribute value 64 (INK 0) yet?
+ 35887 CP 63         ; Have we used attribute value #b64 (INK 0) yet?
  35889 JR NZ,35843   ; If not, jump back to update the INK colour in the top
                      ; two thirds of the screen and make another sound effect
 ; Now check whether any lives remain.
@@ -1790,11 +1792,11 @@ c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
                      ; makes the foot appear as if it's at the end of a long,
                      ; extending leg}
  35976 LD A,(34276)  ; Pick up the distance variable from #R34276
- 35979 CPL           ; #REGa=255-#REGa
- 35980 LD E,A        ; Store this value (63-255) in #REGe; it determines the
-                     ; (rising) pitch of the sound effect that will be made
+ 35979 CPL           ; #REGa=#b255-#REGa
+ 35980 LD E,A        ; Store this value (#b63-#b255) in #REGe; it determines
+                     ; the (rising) pitch of the sound effect that will be made
  35981 XOR A         ; #REGa=0 (black border)
- 35982 LD BC,64      ; #REGc=64; this value determines the duration of the
+ 35982 LD BC,64      ; #REGc=#b64; this value determines the duration of the
                      ; sound effect
 *35985 OUT (254),A   ; {Produce a short note whose pitch is determined by
  35987 XOR 24        ; #REGe
@@ -2017,9 +2019,9 @@ c36203 LD HL,32768   ; Point #REGhl at the first room layout byte at #R32768
 @label=ROOMATTR
 c36288 AND 3         ; Keep only bits 0 and 1; #REGa=0 (background), 1 (floor),
                      ; 2 (wall) or 3 (nasty)
- 36290 LD C,A        ; {Multiply by 9 and add 160; now #REGa=160 (background),
- 36291 RLCA          ; 169 (floor), 178 (wall) or 187 (nasty)
- 36292 RLCA          ;
+ 36290 LD C,A        ; {Multiply by 9 and add #b160; now #REGa=#b160
+ 36291 RLCA          ; (background), #b169 (floor), #b178 (wall) or #b187
+ 36292 RLCA          ; (nasty)
  36293 RLCA          ;
  36294 ADD A,C       ;
  36295 ADD A,160     ; }
@@ -2078,8 +2080,8 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36371 RLCA          ; of the jumping sound effect (rising as Willy rises,
  36372 RLCA          ; falling as Willy falls)
  36373 LD D,A        ; }
- 36374 LD C,32       ; #REGc=32; this value determines the duration of the
-                     ; jumping sound effect
+ 36374 LD C,32       ; This value determines the duration of the jumping sound
+                     ; effect
  36376 LD A,(32990)  ; Pick up the border colour for the current room from
                      ; #R32990
 *36379 OUT (254),A   ; {Make a jumping sound effect
@@ -2143,15 +2145,15 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36470 INC A         ; Increment the airborne status indicator
  36471 CP 16         ; Is it 16 now?
  36473 JR NZ,36477   ; Jump if not
- 36475 LD A,12       ; Decrease the airborne status indicator from 16 to 12
+ 36475 LD A,12       ; Decrease the airborne status indicator from #b16 to #b12
 *36477 LD (34257),A  ; Update the airborne status indicator at #R34257
  36480 RLCA          ; {#REGd=16*#REGa; this value determines the pitch of the
  36481 RLCA          ; falling sound effect
  36482 RLCA          ;
  36483 RLCA          ;
  36484 LD D,A        ; }
- 36485 LD C,32       ; #REGc=32; this value determines the duration of the
-                     ; falling sound effect
+ 36485 LD C,32       ; This value determines the duration of the falling sound
+                     ; effect
  36487 LD A,(32990)  ; Pick up the border colour for the current room from
                      ; #R32990
 *36490 OUT (254),A   ; {Make a falling sound effect
@@ -2170,8 +2172,8 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36511 XOR A         ; Clear #REGa and the carry flag
  36512 RL L          ; Now #REGl=32*(Y-8*INT(Y/8)), and the carry flag is set
                      ; if Willy is in the lower half of the room (Y>=8)
- 36514 ADC A,92      ; {#REGh=92 or 93 (MSB of the address of Willy's location
- 36516 LD H,A        ; in the attribute buffer)}
+ 36514 ADC A,92      ; {#REGh=#b92 or #b93 (MSB of the address of Willy's
+ 36516 LD H,A        ; location in the attribute buffer)}
  36517 LD A,(34259)  ; {Pick up Willy's screen x-coordinate (0-30) from bits
  36520 AND 31        ; 0-4 at #R34259}
  36522 OR L          ; {Now #REGl holds the LSB of Willy's attribute buffer
@@ -2180,12 +2182,12 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
                      ; #R34259
  36527 RET           ;
 ; Willy has just finished a jump.
-*36528 LD A,6        ; {Set the airborne status indicator at #R34257 to 6:
+*36528 LD A,6        ; {Set the airborne status indicator at #R34257 to #b6:
  36530 LD (34257),A  ; Willy will continue to fall unless he's landed on a wall
                      ; or floor block}
  36533 RET           ;
 ; Willy has just started falling.
-*36534 LD A,2        ; {Set the airborne status indicator at #R34257 to 2
+*36534 LD A,2        ; {Set the airborne status indicator at #R34257 to #b2
  36536 LD (34257),A  ; }
  36539 RET           ;
 ; The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
@@ -2195,7 +2197,7 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36547 LD (34255),A  ; }
  36550 CALL 36508    ; Adjust Willy's attribute buffer location at #R34259 to
                      ; account for this new pixel y-coordinate
- 36553 LD A,2        ; {Set the airborne status indicator at #R34257 to 2:
+ 36553 LD A,2        ; {Set the airborne status indicator at #R34257 to #b2:
  36555 LD (34257),A  ; Willy has started falling}
  36558 LD HL,34256   ; {Reset bit 1 at #R34256: Willy is not moving left or
  36561 RES 1,(HL)    ; right}
@@ -2209,8 +2211,8 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
 ; HL Attribute buffer address of the left-hand cell below Willy's sprite (if
 ; .  Willy is not on a rope)
 @label=MOVEWILLY2
-c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
-                     ; to hold keyboard and joystick readings
+c36564 LD E,255      ; Initialise #REGe to #b255 (all bits set); it will be
+                     ; used to hold keyboard and joystick readings
  36566 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36569 DEC A         ; {Is Willy on a rope?
  36570 BIT 7,A       ; }
@@ -2232,8 +2234,8 @@ c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
  36594 JR NZ,36602   ; Jump if not
 *36596 LD A,(32982)  ; Pick up the direction byte of the conveyor definition
                      ; from #R32982 (0=left, 1=right)
- 36599 SUB 3         ; {Now #REGe=253 (bit 1 reset) if the conveyor is moving
- 36601 LD E,A        ; left, or 254 (bit 0 reset) if it's moving right}
+ 36599 SUB 3         ; {Now #REGe=#b253 (bit 1 reset) if the conveyor is moving
+ 36601 LD E,A        ; left, or #b254 (bit 0 reset) if it's moving right}
 @keep
 *36602 LD BC,57342   ; {Read keys P-O-I-U-Y (right, left, right, left, right)
  36605 IN A,(C)      ; into bits 0-4 of #REGa}
@@ -2337,13 +2339,13 @@ c36564 LD E,255      ; Initialise #REGe to 255 (all bits set); it will be used
  36758 XOR A         ; {Initialise the jumping animation counter at #R34261 to
  36759 LD (34261),A  ; 0}
  36762 LD (34272),A  ; Reset the inactivity timer at #R34272
- 36765 INC A         ; {Set the airborne status indicator at #R34257 to 1:
+ 36765 INC A         ; {Set the airborne status indicator at #R34257 to #b1:
  36766 LD (34257),A  ; Willy is jumping}
  36769 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36772 DEC A         ; {Is Willy on a rope?
  36773 BIT 7,A       ; }
  36775 JR NZ,36796   ; Jump if not
- 36777 LD A,240      ; {Set the rope status indicator at #R34262 to 240
+ 36777 LD A,240      ; {Set the rope status indicator at #R34262 to #b240
  36779 LD (34262),A  ; }
  36782 LD A,(34255)  ; {Round down Willy's pixel y-coordinate at #R34255 to the
  36785 AND 240       ; nearest multiple of 16; this might move him upwards a
@@ -2392,8 +2394,8 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
  36841 LD BC,0       ; Prepare #REGbc for later addition (again, redundantly)
  36844 LD A,(32986)  ; Pick up the direction byte of the ramp definition for
                      ; the current room from #R32986
- 36847 DEC A         ; {Now #REGa=31 if the ramp goes up to the left, or 65 if
- 36848 OR 161        ; it goes up to the right
+ 36847 DEC A         ; {Now #REGa=#b31 if the ramp goes up to the left, or #b65
+ 36848 OR 161        ; if it goes up to the right
  36850 XOR 224       ; }
  36852 LD E,A        ; {Point #REGhl at the cell at (x-1,y+1) if the ramp goes
  36853 LD D,0        ; up to the left, or at the cell at (x+1,y+2) if the ramp
@@ -2467,8 +2469,8 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; #R34259
  36954 LD A,(32986)  ; Pick up the direction byte of the ramp definition for
                      ; the current room from #R32986
- 36957 DEC A         ; {Now #REGa=64 if the ramp goes up to the left, or 34 if
- 36958 OR 157        ; it goes up to the right
+ 36957 DEC A         ; {Now #REGa=#b64 if the ramp goes up to the left, or #b34
+ 36958 OR 157        ; if it goes up to the right
  36960 XOR 191       ; }
  36962 LD E,A        ; {Point #REGhl at the cell at (x,y+2) if the ramp goes up
  36963 LD D,0        ; to the left, or at the cell at (x+2,y+1) if the ramp
@@ -2546,7 +2548,7 @@ c37046 POP HL        ; Drop the return address from the stack
 ; falling from too great a height), #R37310 (when an arrow or guardian hits
 ; Willy) and #R38196 (when Willy gets too close to Maria).
 *37047 POP HL        ; Drop the return address from the stack
- 37048 LD A,255      ; {Set the airborne status indicator at #R34257 to 255
+ 37048 LD A,255      ; {Set the airborne status indicator at #R34257 to #b255
  37050 LD (34257),A  ; (meaning Willy has had a fatal accident)}
  37053 JP 35317      ; Jump back into the main loop
 
@@ -2575,19 +2577,19 @@ c37056 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37087 LD A,(IX+1)   ; Pick up the animation frame index
  37090 BIT 7,A       ; Is the rope currently swinging away from the centre?
  37092 JR Z,37109    ; Jump if so
-; The rope is swinging left to right, towards the centre (132<=#REGa<=182).
+; The rope is swinging left to right, towards the centre (#b132<=#REGa<=#b182).
  37094 SUB 2         ; Subtract 2 from the animation frame index in #REGa
- 37096 CP 148        ; Is it still 148 or greater?
+ 37096 CP 148        ; Is it still #b148 or greater?
  37098 JR NC,37149   ; If so, use it as the next animation frame index
  37100 SUB 2         ; Subtract 2 from the animation frame index again
- 37102 CP 128        ; Is it 128 now?
+ 37102 CP 128        ; Is it #b128 now?
  37104 JR NZ,37149   ; If not, use it as the next animation frame index
  37106 XOR A         ; The rope has reached the centre, so the next animation
                      ; frame index is 0
  37107 JR 37149      ; Jump to set it
-; The rope is swinging left to right, away from the centre (0<=#REGa<=52).
+; The rope is swinging left to right, away from the centre (#b0<=#REGa<=#b52).
 *37109 ADD A,2       ; Add 2 to the animation frame index in #REGa
- 37111 CP 18         ; Is it now 18 or greater?
+ 37111 CP 18         ; Is it now #b18 or greater?
  37113 JR NC,37149   ; If so, use it as the next animation frame index
  37115 ADD A,2       ; Add 2 to the animation frame index again
  37117 JR 37149      ; Use this value as the next animation frame index
@@ -2595,26 +2597,27 @@ c37056 LD IX,33024   ; Point #REGix at the first byte of the first entity
 *37119 LD A,(IX+1)   ; Pick up the animation frame index
  37122 BIT 7,A       ; Is the rope currently swinging away from the centre?
  37124 JR NZ,37141   ; Jump if so
-; The rope is swinging right to left, towards the centre (4<=#REGa<=54).
+; The rope is swinging right to left, towards the centre (#b4<=#REGa<=#b54).
  37126 SUB 2         ; Subtract 2 from the animation frame index in #REGa
- 37128 CP 20         ; Is it still 20 or greater?
+ 37128 CP 20         ; Is it still #b20 or greater?
  37130 JR NC,37149   ; If so, use it as the next animation frame index
  37132 SUB 2         ; Subtract 2 from the animation frame index again
  37134 OR A          ; Is it 0 now?
  37135 JR NZ,37149   ; If not, use it as the next animation frame index
  37137 LD A,128      ; The rope has reached the centre, so the next animation
-                     ; frame index is 128
+                     ; frame index is #b128
  37139 JR 37149      ; Jump to set it
-; The rope is swinging right to left, away from the centre (128<=#REGa<=180).
+; The rope is swinging right to left, away from the centre
+; (#b128<=#REGa<=#b180).
 *37141 ADD A,2       ; Add 2 to the animation frame index in #REGa
- 37143 CP 146        ; Is it now 146 or greater?
+ 37143 CP 146        ; Is it now #b146 or greater?
  37145 JR NC,37149   ; If so, use it as the next animation frame index
  37147 ADD A,2       ; Add 2 to the animation frame index again
 ; Now #REGa holds the rope's next animation frame index.
 *37149 LD (IX+1),A   ; Update the animation frame index
  37152 AND 127       ; Reset bit 7
  37154 CP (IX+7)     ; Does #REGa match the eighth byte of the rope's buffer
-                     ; (54)?
+                     ; (#b54)?
  37157 JP NZ,37302   ; If not, jump to consider the next entity
  37160 LD A,(IX+0)   ; {Flip bit 7 of the first byte of the rope's buffer: the
  37163 XOR 128       ; rope has just changed direction and will now swing back
@@ -2718,7 +2721,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37346 ADD A,L       ; {Adjust the LSB of the screen buffer address in #REGl
  37347 LD L,A        ; for the guardian's x-coordinate}
  37348 LD A,E        ; Copy the fourth byte of the guardian's buffer to #REGa
- 37349 RLCA          ; {#REGh=92 or 93; now #REGhl holds the address of the
+ 37349 RLCA          ; {#REGh=#b92 or #b93; now #REGhl holds the address of the
  37350 AND 1         ; guardian's current location in the attribute buffer at
  37352 OR 92         ; #R23552
  37354 LD H,A        ; }
@@ -2791,8 +2794,8 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
 *37449 LD A,(IX+4)   ; Pick up the arrow's x-coordinate (0-255)
  37452 CP C          ; Is it time to make the arrow sound effect?
  37453 JR NZ,37474   ; Jump if not
- 37455 LD BC,640     ; Prepare the delay counters (#REGb=2, #REGc=128) for the
-                     ; arrow sound effect
+ 37455 LD BC,640     ; Prepare the delay counters (#REGb=#b2, #REGc=#b128) for
+                     ; the arrow sound effect
  37458 LD A,(32990)  ; Pick up the border colour for the current room from
                      ; #R32990
 *37461 OUT (254),A   ; {Produce the arrow sound effect
@@ -2817,7 +2820,8 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37492 RLCA          ;
  37493 OR 92         ;
  37495 LD H,A        ; }
- 37496 LD (IX+5),0   ; Initialise the collision detection byte (0=off, 255=on)
+ 37496 LD (IX+5),0   ; Initialise the collision detection byte (#b0=off,
+                     ; #b255=on)
  37500 LD A,(HL)     ; Pick up the room attribute byte at the arrow's location
  37501 AND 7         ; Keep only bits 0-2 (INK colour)
  37503 CP 7          ; Is the INK white?
@@ -2853,7 +2857,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37548 LD A,(IX+2)   ; {Initialise the fourth byte of the rope's buffer; this
  37551 LD (IX+3),A   ; holds the x-coordinate of the cell in which the segment
                      ; of rope under consideration will be drawn}
- 37554 LD (IX+5),128 ; Initialise the sixth byte of the rope's buffer to 128
+ 37554 LD (IX+5),128 ; Initialise the sixth byte of the rope's buffer to #b128
                      ; (bit 7 set); the value held here is used to draw the
                      ; segment of rope under consideration
 ; The following loop draws each segment of the rope from top to bottom.
@@ -2950,7 +2954,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
 ; Now that the entire rope has been drawn, deal with Willy's movement along it.
 *37726 LD A,(34262)  ; Pick up the rope status indicator at #R34262
  37729 BIT 7,A       ; Has Willy recently jumped off the rope or dropped off
-                     ; the bottom of it (#REGa>=240)?
+                     ; the bottom of it (#REGa>=#b240)?
  37731 JR Z,37743    ; Jump if not
  37733 INC A         ; {Update the rope status indicator at #R34262
  37734 LD (34262),A  ; }
@@ -2978,23 +2982,23 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37778 JR NZ,37787   ; Jump if so
  37780 LD A,(HL)     ; Pick up the rope status indicator at #R34262
 @bfix-begin
- 37781 CP 12         ; Is it 12 or greater?
+ 37781 CP 12         ; Is it #b12 or greater?
 @bfix+else
- 37781 CP 15         ; Is it 15 or greater?
+ 37781 CP 15         ; Is it #b15 or greater?
 @bfix+end
  37783 JR NC,37787   ; Jump if so
 @bfix-begin
- 37785 LD (HL),12    ; Set the rope status indicator at #R34262 to 12 (there is
-                     ; nowhere to go above this rope)
+ 37785 LD (HL),12    ; Set the rope status indicator at #R34262 to #b12 (there
+                     ; is nowhere to go above this rope)
 @bfix+else
- 37785 LD (HL),15    ; Set the rope status indicator at #R34262 to 15 (there is
-                     ; nowhere to go above this rope)
+ 37785 LD (HL),15    ; Set the rope status indicator at #R34262 to #b15 (there
+                     ; is nowhere to go above this rope)
 @bfix+end
 *37787 LD A,(HL)     ; Pick up the rope status indicator at #R34262
  37788 CP (IX+4)     ; Compare it with the length of the rope
  37791 JR C,37811    ; {If Willy is at or above the bottom of the rope, jump to
  37793 JR Z,37811    ; consider the next entity}
- 37795 LD (HL),240   ; Set the rope status indicator at #R34262 to 240 (Willy
+ 37795 LD (HL),240   ; Set the rope status indicator at #R34262 to #b240 (Willy
                      ; has just dropped off the bottom of the rope)
  37797 LD A,(34255)  ; {Round down Willy's pixel y-coordinate at #R34255 to the
  37800 AND 248       ; nearest multiple of 8; this might move him upwards a
@@ -3048,8 +3052,8 @@ u37819 LD (HL),A     ; Store the INK colour (bits 0-2)
 ; Used by the routine at #R35245.
 @label=DRAWITEMS
 @ssub=LD H,41984/256
-c37841 LD H,164      ; Page #R41984(164) holds the first byte of each entry in
-                     ; the item table
+c37841 LD H,164      ; Page #R41984(#b164) holds the first byte of each entry
+                     ; in the item table
  37843 LD A,(41983)  ; Pick up the index of the first item from #R41983
  37846 LD L,A        ; Point #REGhl at the first byte of the first entry in the
                      ; item table
@@ -3114,8 +3118,8 @@ c37841 LD H,164      ; Page #R41984(164) holds the first byte of each entry in
  37934 JR 37970      ; Jump to consider the next entry in the item table
 ; Willy is not touching this item, so draw it and cycle its INK colour.
 *37936 LD A,(34251)  ; {Generate the INK colour for the item from the value of
- 37939 ADD A,L       ; the minute counter at #R34251 (0-255) and the index of
- 37940 AND 3         ; the item in the item table (173-255)
+ 37939 ADD A,L       ; the minute counter at #R34251 (#b0-#b255) and the index
+ 37940 AND 3         ; of the item in the item table (#b173-#b255)
  37942 ADD A,3       ;
  37944 LD C,A        ; }
  37945 LD A,(DE)     ; {Change the INK colour of the item in the attribute
@@ -3256,7 +3260,7 @@ c38098 LD A,(33004)  ; Pick up the number of the room below from #R33004
  38104 XOR A         ; {Set Willy's pixel y-coordinate (at #R34255) to 0
  38105 LD (34255),A  ; }
  38108 LD A,(34257)  ; Pick up the airborne status indicator from #R34257
- 38111 CP 11         ; Is it 11 or greater (meaning Willy has already been
+ 38111 CP 11         ; Is it #b11 or greater (meaning Willy has already been
                      ; falling for a while)?
  38113 JR NC,38120   ; Jump if so
  38115 LD A,2        ; {Otherwise set the airborne status indicator to 2 (Willy
@@ -3341,14 +3345,14 @@ c38196 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38216 RRCA          ;
  38217 RRCA          ;
  38218 OR 128        ; }
- 38220 LD E,A        ; Now #REGe=128 (foot down) or 160 (foot raised)
+ 38220 LD E,A        ; Now #REGe=#b128 (foot down) or #b160 (foot raised)
  38221 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
  38224 CP 208        ; Is Willy on the floor below the ramp?
  38226 JR Z,38236    ; Jump if so
- 38228 LD E,192      ; #REGe=192 (raising arm)
+ 38228 LD E,192      ; #REGe=#b192 (raising arm)
  38230 CP 192        ; Is Willy 8 or fewer pixels above floor level?
  38232 JR NC,38236   ; Jump if so
- 38234 LD E,224      ; #REGe=224 (arm raised)
+ 38234 LD E,224      ; #REGe=#b224 (arm raised)
 @ssub=LD D,40064/256
 *38236 LD D,156      ; Point #REGde at the sprite graphic data for Maria
                      ; (#R40064, #R40096, #R40128 or #R40160)
@@ -3356,10 +3360,10 @@ c38196 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38241 LD C,1        ;
  38243 CALL 37974    ; }
  38246 JP NZ,37047   ; Kill Willy if Maria collided with him
- 38249 LD HL,17733   ; #REGh=#REGl=69 (INK 5: PAPER 0: BRIGHT 1)
+ 38249 LD HL,17733   ; #REGh=#REGl=#b69 (INK 5: PAPER 0: BRIGHT 1)
  38252 LD (23918),HL ; Set the attribute bytes for the top half of Maria's
                      ; sprite in the buffer at #R23552
- 38255 LD HL,1799    ; #REGh=#REGl=7 (INK 7: PAPER 0: BRIGHT 0)
+ 38255 LD HL,1799    ; #REGh=#REGl=#b7 (INK 7: PAPER 0: BRIGHT 0)
  38258 LD (23950),HL ; Set the attribute bytes for the bottom half of Maria's
                      ; sprite in the buffer at #R23552
  38261 RET           ;
@@ -3404,11 +3408,11 @@ c38298 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38309 RRCA          ;
  38310 RRCA          ;
  38311 RRCA          ; }
- 38312 LD E,A        ; Now #REGe=0 or 32
+ 38312 LD E,A        ; Now #REGe=#b0 or #b32
  38313 LD A,(34271)  ; Pick up the game mode indicator from #R34271
  38316 CP 3          ; Is Willy's head down the toilet?
  38318 JR NZ,38322   ; Jump if not
- 38320 SET 6,E       ; Now #REGe=64 or 96
+ 38320 SET 6,E       ; Now #REGe=#b64 or #b96
 @ssub=LD D,42496/256
 *38322 LD D,166      ; Point #REGde at the toilet sprite to use (#R42496,
                      ; #R42528, #R42560 or #R42592)
@@ -3417,7 +3421,7 @@ c38298 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38324 LD IX,33488   ; {Draw the toilet at (13,28) in the screen buffer at
  38328 LD BC,4124    ; #R24576
  38331 CALL 38504    ; }
- 38334 LD HL,1799    ; #REGh=#REGl=7 (INK 7: PAPER 0)
+ 38334 LD HL,1799    ; #REGh=#REGl=#b7 (INK 7: PAPER 0)
  38337 LD (23996),HL ; {Set the attribute bytes for the toilet in the buffer at
  38340 LD (24028),HL ; #R23552}
  38343 RET           ;
@@ -3466,8 +3470,8 @@ c38344 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
 *38392 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
                      ; #R34259
  38395 LD DE,31      ; Prepare #REGde for later addition
- 38398 LD C,15       ; Set #REGc=15 for the top two rows of cells (to make the
-                     ; routine at #R38430 force white INK)
+ 38398 LD C,15       ; Set #REGc=#b15 for the top two rows of cells (to make
+                     ; the routine at #R38430 force white INK)
  38400 CALL 38430    ; Check and set the attribute byte for the top-left cell
  38403 INC HL        ; Move #REGhl to the next cell to the right
  38404 CALL 38430    ; Check and set the attribute byte for the top-right cell
@@ -3495,10 +3499,10 @@ c38344 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
 ; Used by the routine at #R38344. Sets the attribute byte in the buffer at
 ; #R23552 for one of the six cells (in three rows of two) occupied by or under
 ; Willy's sprite, or kills Willy if the cell contains a nasty. On entry, #REGc
-; holds either 15 if the cell is in the top two rows, or Willy's pixel
+; holds either #b15 if the cell is in the top two rows, or Willy's pixel
 ; y-coordinate if the cell is in the bottom row.
 ;
-; C 15 or Willy's pixel y-coordinate
+; C #b15 or Willy's pixel y-coordinate
 ; HL Address of the attribute byte in the buffer at #R23552
 @label=WILLYATTR
 c38430 LD A,(32928)  ; Pick up the attribute byte of the background tile in the
@@ -3543,8 +3547,8 @@ c38455 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
                      ; y-coordinate}
  38464 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; #R34256
- 38467 AND 1         ; {Now #REGe=0 if Willy is facing right, or 128 if he's
- 38469 RRCA          ; facing left
+ 38467 AND 1         ; {Now #REGe=#b0 if Willy is facing right, or #b128 if
+ 38469 RRCA          ; he's facing left
  38470 LD E,A        ; }
  38471 LD A,(34258)  ; Pick up Willy's animation frame (0-3) from #R34258
  38474 AND 3         ; {Point #REGde at the sprite graphic data for Willy's
@@ -3694,10 +3698,10 @@ c38601 LD A,(34254)  ; Collect the Kempston joystick indicator from #R34254
 ;
 ; Used by the routine at #R34762.
 ;
-; A Value between 50 and 81
+; A Value between #b50 and #b81
 @label=INTROSOUND
 c38622 LD E,A        ; Save the value of #REGa in #REGe for later retrieval
- 38623 LD C,254      ; We will output to port 254
+ 38623 LD C,254      ; We will output to port #b254
 *38625 LD D,A        ; Copy #REGa into #REGd; bits 0-2 of #REGd determine the
                      ; initial border colour
  38626 RES 4,D       ; Reset bit 4 of #REGd (initial speaker state)
@@ -3724,7 +3728,7 @@ u38644 LD HL,24064   ; {Copy the attribute buffer at #R24064 to the top
  38650 LD BC,512
  38653 LDIR          ; }
  38655 LD HL,16384   ; {Fill the top two-thirds of the display file with the
- 38658 LD DE,16385   ; byte value 24 (00011000)
+ 38658 LD DE,16385   ; byte value #b24 (00011000)
  38661 LD BC,4095
  38664 LD (HL),24
  38666 LDIR          ; }
@@ -4126,7 +4130,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  40980 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  40981 DEFB 191               ; Page containing the sprite graphic data:
-                              ; #R48896(#N191)
+                              ; #R48896(#b191)
  40982 DEFB 80                ; Minimum pixel y-coordinate: 40
  40983 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b3) is used in #R50432(The Security Guard),
@@ -4150,7 +4154,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  40988 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  40989 DEFB 191               ; Page containing the sprite graphic data:
-                              ; #R48896(#N191)
+                              ; #R48896(#b191)
  40990 DEFB 88                ; Minimum pixel y-coordinate: 44
  40991 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b4) is used in #R50432(The Security Guard),
@@ -4176,7 +4180,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  40996 DEFB 8                 ; Initial pixel y-coordinate increment: 4 (moving
                               ; down)
  40997 DEFB 191               ; Page containing the sprite graphic data:
-                              ; #R48896(#N191)
+                              ; #R48896(#b191)
  40998 DEFB 96                ; Minimum pixel y-coordinate: 48
  40999 DEFB 192               ; Maximum pixel y-coordinate: 96
 ; The following entity definition (#b5) is used in #R52992(I'm sure I've seen
@@ -4200,7 +4204,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41004 DEFB 12                ; Initial pixel y-coordinate increment: 6 (moving
                               ; down)
  41005 DEFB 191               ; Page containing the sprite graphic data:
-                              ; #R48896(#N191)
+                              ; #R48896(#b191)
  41006 DEFB 64                ; Minimum pixel y-coordinate: 32
  41007 DEFB 192               ; Maximum pixel y-coordinate: 96
 ; The following entity definition (#b6) is used in #R49920(At the Foot of the
@@ -4223,7 +4227,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41012 DEFB 10                ; Initial pixel y-coordinate increment: 5 (moving
                               ; down)
  41013 DEFB 191               ; Page containing the sprite graphic data:
-                              ; #R48896(#N191)
+                              ; #R48896(#b191)
  41014 DEFB 64                ; Minimum pixel y-coordinate: 32
  41015 DEFB 176               ; Maximum pixel y-coordinate: 88
 ; The following entity definition (#b7) is used in #R49920(At the Foot of the
@@ -4247,7 +4251,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41020 DEFB 244               ; Initial pixel y-coordinate increment: -6
                               ; (moving up)
  41021 DEFB 191               ; Page containing the sprite graphic data:
-                              ; #R48896(#N191)
+                              ; #R48896(#b191)
  41022 DEFB 32                ; Minimum pixel y-coordinate: 16
  41023 DEFB 160               ; Maximum pixel y-coordinate: 80
 ; The following entity definition (#b8) is used in #R49920(At the Foot of the
@@ -4271,7 +4275,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41028 DEFB 6                 ; Initial pixel y-coordinate increment: 3 (moving
                               ; down)
  41029 DEFB 191               ; Page containing the sprite graphic data:
-                              ; #R48896(#N191)
+                              ; #R48896(#b191)
  41030 DEFB 38                ; Minimum pixel y-coordinate: 19
  41031 DEFB 176               ; Maximum pixel y-coordinate: 88
 ; The following entity definition (#b9) is used in #R51200(Inside the
@@ -4295,7 +4299,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41036 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41037 DEFB 191               ; Page containing the sprite graphic data:
-                              ; #R48896(#N191)
+                              ; #R48896(#b191)
  41038 DEFB 128               ; Minimum pixel y-coordinate: 64
  41039 DEFB 224               ; Maximum pixel y-coordinate: 112
 ; The following entity definition (#b10) is used in #R49152(The Off Licence).
@@ -4318,7 +4322,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41044 DEFB 8                 ; Initial pixel y-coordinate increment: 4 (moving
                               ; down)
  41045 DEFB 190               ; Page containing the sprite graphic data:
-                              ; #R48640(#N190)
+                              ; #R48640(#b190)
  41046 DEFB 16                ; Minimum pixel y-coordinate: 8
  41047 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b11) is used in #R59392(Dr Jones will never
@@ -4341,7 +4345,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41052 DEFB 246               ; Initial pixel y-coordinate increment: -5
                               ; (moving up)
  41053 DEFB 191               ; Page containing the sprite graphic data:
-                              ; #R48896(#N191)
+                              ; #R48896(#b191)
  41054 DEFB 112               ; Minimum pixel y-coordinate: 56
  41055 DEFB 192               ; Maximum pixel y-coordinate: 96
 ; The following entity definition (#b12) is used in #R49152(The Off Licence).
@@ -4362,7 +4366,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41059 DEFB 112               ; Pixel y-coordinate: 56
  41060 DEFB 1                 ; Unused
  41061 DEFB 190               ; Page containing the sprite graphic data:
-                              ; #R48640(#N190)
+                              ; #R48640(#b190)
  41062 DEFB 19                ; Minimum x-coordinate
  41063 DEFB 29                ; Maximum x-coordinate
 ; The following entity definition (#b13) is used in #R52736(Rescue Esmerelda),
@@ -4392,7 +4396,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41067 DEFB 64                ; Pixel y-coordinate: 32
  41068 DEFB 0                 ; Unused
  41069 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41070 DEFB 0                 ; Minimum x-coordinate
  41071 DEFB 9                 ; Maximum x-coordinate
 ; The following entity definition (#b14) is used in #R49408(The Bridge).
@@ -4415,7 +4419,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41076 DEFB 12                ; Initial pixel y-coordinate increment: 6 (moving
                               ; down)
  41077 DEFB 185               ; Page containing the sprite graphic data:
-                              ; #R47360(#N185)
+                              ; #R47360(#b185)
  41078 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41079 DEFB 192               ; Maximum pixel y-coordinate: 96
 ; The following entity definition (#b15) is used in #R52736(Rescue Esmerelda).
@@ -4437,7 +4441,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41084 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41085 DEFB 176               ; Page containing the sprite graphic data:
-                              ; #R45056(#N176)
+                              ; #R45056(#b176)
  41086 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41087 DEFB 32                ; Maximum pixel y-coordinate: 16
 ; The following entity definition (#b16) is used in #R50688(Entrance to Hades),
@@ -4460,7 +4464,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41092 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41093 DEFB 186               ; Page containing the sprite graphic data:
-                              ; #R47616(#N186)
+                              ; #R47616(#b186)
  41094 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41095 DEFB 176               ; Maximum pixel y-coordinate: 88
 ; The following entity definition (#b17) is used in #R50688(Entrance to Hades),
@@ -4483,7 +4487,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41100 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41101 DEFB 186               ; Page containing the sprite graphic data:
-                              ; #R47616(#N186)
+                              ; #R47616(#b186)
  41102 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41103 DEFB 176               ; Maximum pixel y-coordinate: 88
 ; The following entity definition (#b18) is used in #R50688(Entrance to Hades),
@@ -4507,7 +4511,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41108 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41109 DEFB 186               ; Page containing the sprite graphic data:
-                              ; #R47616(#N186)
+                              ; #R47616(#b186)
  41110 DEFB 32                ; Minimum pixel y-coordinate: 16
  41111 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b19) is used in #R54272(Ballroom East) and
@@ -4529,7 +4533,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41116 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41117 DEFB 156               ; Page containing the sprite graphic data:
-                              ; #R40000(#N156)
+                              ; #R40000(#b156)
  41118 DEFB 32                ; Minimum pixel y-coordinate: 16
  41119 DEFB 96                ; Maximum pixel y-coordinate: 48
 ; The following entity definition (#b20) is used in #R49408(The Bridge) and
@@ -4553,7 +4557,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41123 DEFB 160               ; Pixel y-coordinate: 80
  41124 DEFB 0                 ; Unused
  41125 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41126 DEFB 0                 ; Minimum x-coordinate
  41127 DEFB 10                ; Maximum x-coordinate
 ; The following entity definition (#b21) is used in #R49408(The Bridge),
@@ -4576,7 +4580,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41131 DEFB 160               ; Pixel y-coordinate: 80
  41132 DEFB 0                 ; Unused
  41133 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41134 DEFB 14                ; Minimum x-coordinate
  41135 DEFB 29                ; Maximum x-coordinate
 ; The following entity definition (#b22) is used in #R50176(The Drive) and
@@ -4599,7 +4603,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41139 DEFB 176               ; Pixel y-coordinate: 88
  41140 DEFB 1                 ; Unused
  41141 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41142 DEFB 16                ; Minimum x-coordinate
  41143 DEFB 29                ; Maximum x-coordinate
 ; The following entity definition (#b23) is used in #R50176(The Drive).
@@ -4621,7 +4625,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41147 DEFB 128               ; Pixel y-coordinate: 64
  41148 DEFB 0                 ; Unused
  41149 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41150 DEFB 5                 ; Minimum x-coordinate
  41151 DEFB 29                ; Maximum x-coordinate
 ; The following entity definition (#b24) is used in #R50176(The Drive),
@@ -4645,7 +4649,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41155 DEFB 80                ; Pixel y-coordinate: 40
  41156 DEFB 0                 ; Unused
  41157 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41158 DEFB 0                 ; Minimum x-coordinate
  41159 DEFB 10                ; Maximum x-coordinate
 ; The following entity definition (#b25) is used in #R52480(Out on a limb).
@@ -4668,7 +4672,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41163 DEFB 112               ; Pixel y-coordinate: 56
  41164 DEFB 0                 ; Unused
  41165 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41166 DEFB 14                ; Minimum x-coordinate
  41167 DEFB 23                ; Maximum x-coordinate
 ; The following entity definition (#b26) is used in #R49664(Under the
@@ -4696,7 +4700,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41171 DEFB 48                ; Pixel y-coordinate: 24
  41172 DEFB 0                 ; Unused
  41173 DEFB 182               ; Page containing the sprite graphic data:
-                              ; #R46592(#N182)
+                              ; #R46592(#b182)
  41174 DEFB 5                 ; Minimum x-coordinate
  41175 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b27) is used in #R51456(On a Branch Over
@@ -4725,7 +4729,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41180 DEFB 252               ; Initial pixel y-coordinate increment: -2
                               ; (moving up)
  41181 DEFB 178               ; Page containing the sprite graphic data:
-                              ; #R45568(#N178)
+                              ; #R45568(#b178)
  41182 DEFB 128               ; Minimum pixel y-coordinate: 64
  41183 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b28) is used in #R60672(Under the Drive)
@@ -4748,7 +4752,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41187 DEFB 176               ; Pixel y-coordinate: 88
  41188 DEFB 0                 ; Unused
  41189 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41190 DEFB 12                ; Minimum x-coordinate
  41191 DEFB 29                ; Maximum x-coordinate
 ; The following entity definition (#b29) is used in #R60416(On top of the
@@ -4774,7 +4778,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41196 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41197 DEFB 178               ; Page containing the sprite graphic data:
-                              ; #R45568(#N178)
+                              ; #R45568(#b178)
  41198 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41199 DEFB 128               ; Maximum pixel y-coordinate: 64
 ; The following entity definition (#b30) is used in #R60928(Tree Root) and
@@ -4797,7 +4801,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41204 DEFB 252               ; Initial pixel y-coordinate increment: -2
                               ; (moving up)
  41205 DEFB 173               ; Page containing the sprite graphic data:
-                              ; #R44288(#N173)
+                              ; #R44288(#b173)
  41206 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41207 DEFB 128               ; Maximum pixel y-coordinate: 64
 ; The following entity definition (#b31) is used in #R60928(Tree Root).
@@ -4819,7 +4823,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41212 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41213 DEFB 183               ; Page containing the sprite graphic data:
-                              ; #R46848(#N183)
+                              ; #R46848(#b183)
  41214 DEFB 64                ; Minimum pixel y-coordinate: 32
  41215 DEFB 160               ; Maximum pixel y-coordinate: 80
 ; The following entity definition (#b32) is used in #R49664(Under the
@@ -4842,7 +4846,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41219 DEFB 208               ; Pixel y-coordinate: 104
  41220 DEFB 1                 ; Unused
  41221 DEFB 184               ; Page containing the sprite graphic data:
-                              ; #R47104(#N184)
+                              ; #R47104(#b184)
  41222 DEFB 0                 ; Minimum x-coordinate
  41223 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b33) is used in #R54528(Ballroom West).
@@ -4864,7 +4868,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41227 DEFB 176               ; Pixel y-coordinate: 88
  41228 DEFB 0                 ; Unused
  41229 DEFB 184               ; Page containing the sprite graphic data:
-                              ; #R47104(#N184)
+                              ; #R47104(#b184)
  41230 DEFB 16                ; Minimum x-coordinate
  41231 DEFB 26                ; Maximum x-coordinate
 ; The following entity definition (#b34) is used in #R53760(On the Roof).
@@ -4886,7 +4890,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41235 DEFB 208               ; Pixel y-coordinate: 104
  41236 DEFB 1                 ; Unused
  41237 DEFB 184               ; Page containing the sprite graphic data:
-                              ; #R47104(#N184)
+                              ; #R47104(#b184)
  41238 DEFB 14                ; Minimum x-coordinate
  41239 DEFB 24                ; Maximum x-coordinate
 ; The following entity definition (#b35) is used in #R60928(Tree Root).
@@ -4909,7 +4913,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41243 DEFB 144               ; Pixel y-coordinate: 72
  41244 DEFB 0                 ; Unused
  41245 DEFB 184               ; Page containing the sprite graphic data:
-                              ; #R47104(#N184)
+                              ; #R47104(#b184)
  41246 DEFB 15                ; Minimum x-coordinate
  41247 DEFB 23                ; Maximum x-coordinate
 ; The following entity definition (#b36) is used in #R50176(The Drive),
@@ -4932,7 +4936,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41251 DEFB 208               ; Pixel y-coordinate: 104
  41252 DEFB 0                 ; Unused
  41253 DEFB 175               ; Page containing the sprite graphic data:
-                              ; #R44800(#N175)
+                              ; #R44800(#b175)
  41254 DEFB 10                ; Minimum x-coordinate
  41255 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b37) is used in #R58880(Priests' Hole).
@@ -4955,7 +4959,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41259 DEFB 160               ; Pixel y-coordinate: 80
  41260 DEFB 0                 ; Unused
  41261 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41262 DEFB 8                 ; Minimum x-coordinate
  41263 DEFB 24                ; Maximum x-coordinate
 ; The following entity definition (#b38) is used in #R57344(Halfway up the East
@@ -4978,7 +4982,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41267 DEFB 96                ; Pixel y-coordinate: 48
  41268 DEFB 0                 ; Unused
  41269 DEFB 174               ; Page containing the sprite graphic data:
-                              ; #R44544(#N174)
+                              ; #R44544(#b174)
  41270 DEFB 2                 ; Minimum x-coordinate
  41271 DEFB 7                 ; Maximum x-coordinate
 ; The following entity definition (#b39) is used in #R50944(Cuckoo's Nest) and
@@ -5002,7 +5006,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41275 DEFB 128               ; Pixel y-coordinate: 64
  41276 DEFB 0                 ; Unused
  41277 DEFB 175               ; Page containing the sprite graphic data:
-                              ; #R44800(#N175)
+                              ; #R44800(#b175)
  41278 DEFB 12                ; Minimum x-coordinate
  41279 DEFB 18                ; Maximum x-coordinate
 ; The following entity definition (#b40) is used in #R54272(Ballroom East),
@@ -5025,7 +5029,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41284 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41285 DEFB 186               ; Page containing the sprite graphic data:
-                              ; #R47616(#N186)
+                              ; #R47616(#b186)
  41286 DEFB 96                ; Minimum pixel y-coordinate: 48
  41287 DEFB 192               ; Maximum pixel y-coordinate: 96
 ; The following entity definition (#b41) is used in #R54272(Ballroom East).
@@ -5047,7 +5051,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41292 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41293 DEFB 186               ; Page containing the sprite graphic data:
-                              ; #R47616(#N186)
+                              ; #R47616(#b186)
  41294 DEFB 144               ; Minimum pixel y-coordinate: 72
  41295 DEFB 192               ; Maximum pixel y-coordinate: 96
 ; The following entity definition (#b42) is used in #R49664(Under the
@@ -5070,7 +5074,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41300 DEFB 250               ; Initial pixel y-coordinate increment: -3
                               ; (moving up)
  41301 DEFB 186               ; Page containing the sprite graphic data:
-                              ; #R47616(#N186)
+                              ; #R47616(#b186)
  41302 DEFB 96                ; Minimum pixel y-coordinate: 48
  41303 DEFB 174               ; Maximum pixel y-coordinate: 87
 ; The following entity definition (#b43) is not used.
@@ -5088,7 +5092,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41308 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41309 DEFB 186               ; Page containing the sprite graphic data:
-                              ; #R47616(#N186)
+                              ; #R47616(#b186)
  41310 DEFB 144               ; Minimum pixel y-coordinate: 72
  41311 DEFB 184               ; Maximum pixel y-coordinate: 92
 ; The following entity definition (#b44) is used in #R49152(The Off Licence)
@@ -5111,7 +5115,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41316 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41317 DEFB 186               ; Page containing the sprite graphic data:
-                              ; #R47616(#N186)
+                              ; #R47616(#b186)
  41318 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41319 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b45) is used in #R52480(Out on a limb) and
@@ -5135,7 +5139,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41324 DEFB 8                 ; Initial pixel y-coordinate increment: 4 (moving
                               ; down)
  41325 DEFB 186               ; Page containing the sprite graphic data:
-                              ; #R47616(#N186)
+                              ; #R47616(#b186)
  41326 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41327 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b46) is used in #R52224(Tree Top).
@@ -5156,7 +5160,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41331 DEFB 160               ; Pixel y-coordinate: 80
  41332 DEFB 0                 ; Unused
  41333 DEFB 187               ; Page containing the sprite graphic data:
-                              ; #R47872(#N187)
+                              ; #R47872(#b187)
  41334 DEFB 0                 ; Minimum x-coordinate
  41335 DEFB 19                ; Maximum x-coordinate
 ; The following entity definition (#b47) is used in #R51200(Inside the
@@ -5179,7 +5183,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41339 DEFB 48                ; Pixel y-coordinate: 24
  41340 DEFB 0                 ; Unused
  41341 DEFB 187               ; Page containing the sprite graphic data:
-                              ; #R47872(#N187)
+                              ; #R47872(#b187)
  41342 DEFB 17                ; Minimum x-coordinate
  41343 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b48) is used in #R55040(The Kitchen) and
@@ -5202,7 +5206,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41348 DEFB 6                 ; Initial pixel y-coordinate increment: 3 (moving
                               ; down)
  41349 DEFB 183               ; Page containing the sprite graphic data:
-                              ; #R46848(#N183)
+                              ; #R46848(#b183)
  41350 DEFB 16                ; Minimum pixel y-coordinate: 8
  41351 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b49) is used in #R55040(The Kitchen) and
@@ -5225,7 +5229,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41356 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41357 DEFB 183               ; Page containing the sprite graphic data:
-                              ; #R46848(#N183)
+                              ; #R46848(#b183)
  41358 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41359 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b50) is used in #R55040(The Kitchen) and
@@ -5248,7 +5252,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41364 DEFB 248               ; Initial pixel y-coordinate increment: -4
                               ; (moving up)
  41365 DEFB 183               ; Page containing the sprite graphic data:
-                              ; #R46848(#N183)
+                              ; #R46848(#b183)
  41366 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41367 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b51) is used in #R63232(West Bedroom) and
@@ -5271,7 +5275,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41372 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41373 DEFB 183               ; Page containing the sprite graphic data:
-                              ; #R46848(#N183)
+                              ; #R46848(#b183)
  41374 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41375 DEFB 160               ; Maximum pixel y-coordinate: 80
 ; The following entity definition (#b52) is used in #R61696(The Wine Cellar),
@@ -5294,7 +5298,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41379 DEFB 208               ; Pixel y-coordinate: 104
  41380 DEFB 0                 ; Unused
  41381 DEFB 181               ; Page containing the sprite graphic data:
-                              ; #R46336(#N181)
+                              ; #R46336(#b181)
  41382 DEFB 7                 ; Minimum x-coordinate
  41383 DEFB 22                ; Maximum x-coordinate
 ; The following entity definition (#b53) is used in #R49920(At the Foot of the
@@ -5318,7 +5322,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41387 DEFB 208               ; Pixel y-coordinate: 104
  41388 DEFB 0                 ; Unused
  41389 DEFB 181               ; Page containing the sprite graphic data:
-                              ; #R46336(#N181)
+                              ; #R46336(#b181)
  41390 DEFB 4                 ; Minimum x-coordinate
  41391 DEFB 14                ; Maximum x-coordinate
 ; The following entity definition (#b54) is used in #R55552(Cold Store).
@@ -5341,7 +5345,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41395 DEFB 208               ; Pixel y-coordinate: 104
  41396 DEFB 0                 ; Unused
  41397 DEFB 189               ; Page containing the sprite graphic data:
-                              ; #R48384(#N189)
+                              ; #R48384(#b189)
  41398 DEFB 0                 ; Minimum x-coordinate
  41399 DEFB 24                ; Maximum x-coordinate
 ; The following entity definition (#b55) is used in #R55552(Cold Store) and
@@ -5364,7 +5368,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41403 DEFB 144               ; Pixel y-coordinate: 72
  41404 DEFB 0                 ; Unused
  41405 DEFB 187               ; Page containing the sprite graphic data:
-                              ; #R47872(#N187)
+                              ; #R47872(#b187)
  41406 DEFB 0                 ; Minimum x-coordinate
  41407 DEFB 5                 ; Maximum x-coordinate
 ; The following entity definition (#b56) is used in #R55552(Cold Store).
@@ -5387,7 +5391,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41411 DEFB 96                ; Pixel y-coordinate: 48
  41412 DEFB 0                 ; Unused
  41413 DEFB 189               ; Page containing the sprite graphic data:
-                              ; #R48384(#N189)
+                              ; #R48384(#b189)
  41414 DEFB 0                 ; Minimum x-coordinate
  41415 DEFB 6                 ; Maximum x-coordinate
 ; The following entity definition (#b57) is used in #R55552(Cold Store).
@@ -5409,7 +5413,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41419 DEFB 48                ; Pixel y-coordinate: 24
  41420 DEFB 0                 ; Unused
  41421 DEFB 187               ; Page containing the sprite graphic data:
-                              ; #R47872(#N187)
+                              ; #R47872(#b187)
  41422 DEFB 0                 ; Minimum x-coordinate
  41423 DEFB 9                 ; Maximum x-coordinate
 ; The following entity definition (#b58) is used in #R57856(Top Landing).
@@ -5431,7 +5435,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41428 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41429 DEFB 173               ; Page containing the sprite graphic data:
-                              ; #R44288(#N173)
+                              ; #R44288(#b173)
  41430 DEFB 32                ; Minimum pixel y-coordinate: 16
  41431 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b59) is used in #R57600(The Bathroom).
@@ -5452,7 +5456,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41435 DEFB 48                ; Pixel y-coordinate: 24
  41436 DEFB 0                 ; Unused
  41437 DEFB 185               ; Page containing the sprite graphic data:
-                              ; #R47360(#N185)
+                              ; #R47360(#b185)
  41438 DEFB 0                 ; Minimum x-coordinate
  41439 DEFB 27                ; Maximum x-coordinate
 ; The following entity definition (#b60) is used in #R50944(Cuckoo's Nest),
@@ -5493,7 +5497,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41451 DEFB 80                ; Pixel y-coordinate: 40
  41452 DEFB 0                 ; Unused
  41453 DEFB 173               ; Page containing the sprite graphic data:
-                              ; #R44288(#N173)
+                              ; #R44288(#b173)
  41454 DEFB 16                ; Minimum x-coordinate
  41455 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b62) is used in #R51456(On a Branch Over
@@ -5517,7 +5521,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41460 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41461 DEFB 185               ; Page containing the sprite graphic data:
-                              ; #R47360(#N185)
+                              ; #R47360(#b185)
  41462 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41463 DEFB 112               ; Maximum pixel y-coordinate: 56
 ; The following entity definition (#b63) is not used.
@@ -5541,7 +5545,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41475 DEFB 48                ; Pixel y-coordinate: 24
  41476 DEFB 0                 ; Unused
  41477 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41478 DEFB 0                 ; Minimum x-coordinate
  41479 DEFB 27                ; Maximum x-coordinate
 ; The following entity definition (#b65) is used in #R61696(The Wine Cellar).
@@ -5563,7 +5567,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41483 DEFB 96                ; Pixel y-coordinate: 48
  41484 DEFB 0                 ; Unused
  41485 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41486 DEFB 4                 ; Minimum x-coordinate
  41487 DEFB 27                ; Maximum x-coordinate
 ; The following entity definition (#b66) is used in #R61696(The Wine Cellar).
@@ -5585,7 +5589,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41491 DEFB 144               ; Pixel y-coordinate: 72
  41492 DEFB 0                 ; Unused
  41493 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41494 DEFB 2                 ; Minimum x-coordinate
  41495 DEFB 27                ; Maximum x-coordinate
 ; The following entity definition (#b67) is used in #R56320(First Landing).
@@ -5607,7 +5611,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41499 DEFB 192               ; Pixel y-coordinate: 96
  41500 DEFB 0                 ; Unused
  41501 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41502 DEFB 24                ; Minimum x-coordinate
  41503 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b68) is used in #R60672(Under the Drive).
@@ -5628,7 +5632,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41507 DEFB 128               ; Pixel y-coordinate: 64
  41508 DEFB 0                 ; Unused
  41509 DEFB 174               ; Page containing the sprite graphic data:
-                              ; #R44544(#N174)
+                              ; #R44544(#b174)
  41510 DEFB 21                ; Minimum x-coordinate
  41511 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b69) is used in #R51968(The Hall),
@@ -5666,7 +5670,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41524 DEFB 252               ; Initial pixel y-coordinate increment: -2
                               ; (moving up)
  41525 DEFB 156               ; Page containing the sprite graphic data:
-                              ; #R40064(#N156)
+                              ; #R40064(#b156)
  41526 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41527 DEFB 160               ; Maximum pixel y-coordinate: 80
 ; The following entity definition (#b71) is used in #R56576(The Nightmare
@@ -5690,7 +5694,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41532 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41533 DEFB 156               ; Page containing the sprite graphic data:
-                              ; #R40064(#N156)
+                              ; #R40064(#b156)
  41534 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41535 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b72) is used in #R56576(The Nightmare
@@ -5713,7 +5717,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41540 DEFB 6                 ; Initial pixel y-coordinate increment: 3 (moving
                               ; down)
  41541 DEFB 156               ; Page containing the sprite graphic data:
-                              ; #N156#HTML[ (#R40000(foot), #R40064(Maria))]
+                              ; #b156#HTML[ (#R40000(foot), #R40064(Maria))]
  41542 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41543 DEFB 192               ; Maximum pixel y-coordinate: 96
 ; The following entity definition (#b73) is used in #R56576(The Nightmare
@@ -5736,7 +5740,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41548 DEFB 248               ; Initial pixel y-coordinate increment: -4
                               ; (moving up)
  41549 DEFB 156               ; Page containing the sprite graphic data:
-                              ; #R40064(#N156)
+                              ; #R40064(#b156)
  41550 DEFB 16                ; Minimum pixel y-coordinate: 8
  41551 DEFB 208               ; Maximum pixel y-coordinate: 104
 ; The following entity definition (#b74) is used in #R54016(The Forgotten
@@ -5759,7 +5763,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41555 DEFB 80                ; Pixel y-coordinate: 40
  41556 DEFB 0                 ; Unused
  41557 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41558 DEFB 4                 ; Minimum x-coordinate
  41559 DEFB 20                ; Maximum x-coordinate
 ; The following entity definition (#b75) is used in #R54016(The Forgotten
@@ -5782,7 +5786,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41563 DEFB 80                ; Pixel y-coordinate: 40
  41564 DEFB 0                 ; Unused
  41565 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41566 DEFB 12                ; Minimum x-coordinate
  41567 DEFB 28                ; Maximum x-coordinate
 ; The following entity definition (#b76) is used in #R54016(The Forgotten
@@ -5806,7 +5810,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41571 DEFB 144               ; Pixel y-coordinate: 72
  41572 DEFB 0                 ; Unused
  41573 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41574 DEFB 9                 ; Minimum x-coordinate
  41575 DEFB 20                ; Maximum x-coordinate
 ; The following entity definition (#b77) is used in #R54016(The Forgotten
@@ -5829,7 +5833,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41579 DEFB 144               ; Pixel y-coordinate: 72
  41580 DEFB 0                 ; Unused
  41581 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41582 DEFB 22                ; Minimum x-coordinate
  41583 DEFB 27                ; Maximum x-coordinate
 ; The following entity definition (#b78) is used in #R54016(The Forgotten
@@ -5852,7 +5856,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41587 DEFB 208               ; Pixel y-coordinate: 104
  41588 DEFB 0                 ; Unused
  41589 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41590 DEFB 5                 ; Minimum x-coordinate
  41591 DEFB 12                ; Maximum x-coordinate
 ; The following entity definition (#b79) is used in #R54016(The Forgotten
@@ -5876,7 +5880,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41595 DEFB 208               ; Pixel y-coordinate: 104
  41596 DEFB 0                 ; Unused
  41597 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41598 DEFB 11                ; Minimum x-coordinate
  41599 DEFB 18                ; Maximum x-coordinate
 ; The following entity definition (#b80) is used in #R54016(The Forgotten
@@ -5899,7 +5903,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41603 DEFB 208               ; Pixel y-coordinate: 104
  41604 DEFB 0                 ; Unused
  41605 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41606 DEFB 16                ; Minimum x-coordinate
  41607 DEFB 23                ; Maximum x-coordinate
 ; The following entity definition (#b81) is used in #R54016(The Forgotten
@@ -5922,7 +5926,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41611 DEFB 208               ; Pixel y-coordinate: 104
  41612 DEFB 0                 ; Unused
  41613 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41614 DEFB 23                ; Minimum x-coordinate
  41615 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b82) is used in #R59648(The Attic).
@@ -5944,7 +5948,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41620 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41621 DEFB 176               ; Page containing the sprite graphic data:
-                              ; #R45056(#N176)
+                              ; #R45056(#b176)
  41622 DEFB 112               ; Minimum pixel y-coordinate: 56
  41623 DEFB 176               ; Maximum pixel y-coordinate: 88
 ; The following entity definition (#b83) is used in #R59648(The Attic).
@@ -5966,7 +5970,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41628 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41629 DEFB 176               ; Page containing the sprite graphic data:
-                              ; #R45056(#N176)
+                              ; #R45056(#b176)
  41630 DEFB 112               ; Minimum pixel y-coordinate: 56
  41631 DEFB 176               ; Maximum pixel y-coordinate: 88
 ; The following entity definition (#b84) is used in #R59648(The Attic).
@@ -5988,7 +5992,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41636 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41637 DEFB 176               ; Page containing the sprite graphic data:
-                              ; #R45056(#N176)
+                              ; #R45056(#b176)
  41638 DEFB 112               ; Minimum pixel y-coordinate: 56
  41639 DEFB 176               ; Maximum pixel y-coordinate: 88
 ; The following entity definition (#b85) is used in #R59648(The Attic).
@@ -6010,7 +6014,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41644 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41645 DEFB 176               ; Page containing the sprite graphic data:
-                              ; #R45056(#N176)
+                              ; #R45056(#b176)
  41646 DEFB 112               ; Minimum pixel y-coordinate: 56
  41647 DEFB 176               ; Maximum pixel y-coordinate: 88
 ; The following entity definition (#b86) is used in #R59648(The Attic).
@@ -6032,7 +6036,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41652 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41653 DEFB 176               ; Page containing the sprite graphic data:
-                              ; #R45056(#N176)
+                              ; #R45056(#b176)
  41654 DEFB 112               ; Minimum pixel y-coordinate: 56
  41655 DEFB 176               ; Maximum pixel y-coordinate: 88
 ; The following entity definition (#b87) is used in #R59648(The Attic).
@@ -6054,7 +6058,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41660 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41661 DEFB 176               ; Page containing the sprite graphic data:
-                              ; #R45056(#N176)
+                              ; #R45056(#b176)
  41662 DEFB 112               ; Minimum pixel y-coordinate: 56
  41663 DEFB 176               ; Maximum pixel y-coordinate: 88
 ; The following entity definition (#b88) is used in #R52480(Out on a limb) and
@@ -6077,7 +6081,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41667 DEFB 160               ; Pixel y-coordinate: 80
  41668 DEFB 0                 ; Unused
  41669 DEFB 181               ; Page containing the sprite graphic data:
-                              ; #R46336(#N181)
+                              ; #R46336(#b181)
  41670 DEFB 19                ; Minimum x-coordinate
  41671 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b89) is used in #R51968(The Hall) and
@@ -6100,7 +6104,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41676 DEFB 0                 ; Initial pixel y-coordinate increment: 0 (not
                               ; moving)
  41677 DEFB 176               ; Page containing the sprite graphic data:
-                              ; #R45056(#N176)
+                              ; #R45056(#b176)
  41678 DEFB 80                ; Minimum pixel y-coordinate: 40
  41679 DEFB 112               ; Maximum pixel y-coordinate: 56
 ; The following entity definition (#b90) is used in #R54784(To the
@@ -6123,7 +6127,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41683 DEFB 48                ; Pixel y-coordinate: 24
  41684 DEFB 0                 ; Unused
  41685 DEFB 174               ; Page containing the sprite graphic data:
-                              ; #R44544(#N174)
+                              ; #R44544(#b174)
  41686 DEFB 0                 ; Minimum x-coordinate
  41687 DEFB 11                ; Maximum x-coordinate
 ; The following entity definition (#b91) is used in #R54784(To the
@@ -6146,7 +6150,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41691 DEFB 48                ; Pixel y-coordinate: 24
  41692 DEFB 0                 ; Unused
  41693 DEFB 190               ; Page containing the sprite graphic data:
-                              ; #R48640(#N190)
+                              ; #R48640(#b190)
  41694 DEFB 13                ; Minimum x-coordinate
  41695 DEFB 21                ; Maximum x-coordinate
 ; The following entity definition (#b92) is used in #R54784(To the
@@ -6170,7 +6174,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41699 DEFB 96                ; Pixel y-coordinate: 48
  41700 DEFB 0                 ; Unused
  41701 DEFB 183               ; Page containing the sprite graphic data:
-                              ; #R46848(#N183)
+                              ; #R46848(#b183)
  41702 DEFB 12                ; Minimum x-coordinate
  41703 DEFB 24                ; Maximum x-coordinate
 ; The following entity definition (#b93) is used in #R54784(To the
@@ -6193,7 +6197,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41707 DEFB 144               ; Pixel y-coordinate: 72
  41708 DEFB 0                 ; Unused
  41709 DEFB 185               ; Page containing the sprite graphic data:
-                              ; #R47360(#N185)
+                              ; #R47360(#b185)
  41710 DEFB 2                 ; Minimum x-coordinate
  41711 DEFB 6                 ; Maximum x-coordinate
 ; The following entity definition (#b94) is used in #R54784(To the
@@ -6216,7 +6220,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41715 DEFB 192               ; Pixel y-coordinate: 96
  41716 DEFB 0                 ; Unused
  41717 DEFB 175               ; Page containing the sprite graphic data:
-                              ; #R44800(#N175)
+                              ; #R44800(#b175)
  41718 DEFB 0                 ; Minimum x-coordinate
  41719 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b95) is used in #R51968(The Hall) and
@@ -6242,7 +6246,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41723 DEFB 160               ; Pixel y-coordinate: 80
  41724 DEFB 0                 ; Unused
  41725 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41726 DEFB 9                 ; Minimum x-coordinate
  41727 DEFB 17                ; Maximum x-coordinate
 ; The following entity definition (#b96) is used in #R55808(East Wall Base).
@@ -6265,7 +6269,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41732 DEFB 252               ; Initial pixel y-coordinate increment: -2
                               ; (moving up)
  41733 DEFB 172               ; Page containing the sprite graphic data:
-                              ; #R44032(#N172)
+                              ; #R44032(#b172)
  41734 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41735 DEFB 192               ; Maximum pixel y-coordinate: 96
 ; The following entity definition (#b97) is used in #R58624(Orangery) and
@@ -6289,7 +6293,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41740 DEFB 8                 ; Initial pixel y-coordinate increment: 4 (moving
                               ; down)
  41741 DEFB 172               ; Page containing the sprite graphic data:
-                              ; #R44032(#N172)
+                              ; #R44032(#b172)
  41742 DEFB 0                 ; Minimum pixel y-coordinate: 0
  41743 DEFB 192               ; Maximum pixel y-coordinate: 96
 ; The following entity definition (#b98) is used in #R62208(Tool#SPACE(2)Shed).
@@ -6310,7 +6314,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41747 DEFB 144               ; Pixel y-coordinate: 72
  41748 DEFB 0                 ; Unused
  41749 DEFB 175               ; Page containing the sprite graphic data:
-                              ; #R44800(#N175)
+                              ; #R44800(#b175)
  41750 DEFB 7                 ; Minimum x-coordinate
  41751 DEFB 20                ; Maximum x-coordinate
 ; The following entity definition (#b99) is used in #R62208(Tool#SPACE(2)Shed).
@@ -6331,7 +6335,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41755 DEFB 96                ; Pixel y-coordinate: 48
  41756 DEFB 0                 ; Unused
  41757 DEFB 173               ; Page containing the sprite graphic data:
-                              ; #R44288(#N173)
+                              ; #R44288(#b173)
  41758 DEFB 7                 ; Minimum x-coordinate
  41759 DEFB 17                ; Maximum x-coordinate
 ; The following entity definition (#b100) is used in #R56064(The Chapel) and
@@ -6355,7 +6359,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41764 DEFB 254               ; Initial pixel y-coordinate increment: -1
                               ; (moving up)
  41765 DEFB 172               ; Page containing the sprite graphic data:
-                              ; #R44032(#N172)
+                              ; #R44032(#b172)
  41766 DEFB 112               ; Minimum pixel y-coordinate: 56
  41767 DEFB 160               ; Maximum pixel y-coordinate: 80
 ; The following entity definition (#b101) is used in #R56832(The Banyan Tree)
@@ -6381,7 +6385,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41772 DEFB 4                 ; Initial pixel y-coordinate increment: 2 (moving
                               ; down)
  41773 DEFB 171               ; Page containing the sprite graphic data:
-                              ; #R43776#43776(#N171)
+                              ; #R43776#43776(#b171)
  41774 DEFB 80                ; Minimum pixel y-coordinate: 40
  41775 DEFB 160               ; Maximum pixel y-coordinate: 80
 ; The following entity definition (#b102) is used in #R56064(The Chapel) and
@@ -6405,7 +6409,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41780 DEFB 2                 ; Initial pixel y-coordinate increment: 1 (moving
                               ; down)
  41781 DEFB 171               ; Page containing the sprite graphic data:
-                              ; #R43776#43776(#N171)
+                              ; #R43776#43776(#b171)
  41782 DEFB 80                ; Minimum pixel y-coordinate: 40
  41783 DEFB 160               ; Maximum pixel y-coordinate: 80
 ; The following entity definition (#b103) is used in #R56064(The Chapel).
@@ -6426,7 +6430,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41787 DEFB 192               ; Pixel y-coordinate: 96
  41788 DEFB 0                 ; Unused
  41789 DEFB 180               ; Page containing the sprite graphic data:
-                              ; #R46080(#N180)
+                              ; #R46080(#b180)
  41790 DEFB 0                 ; Minimum x-coordinate
  41791 DEFB 15                ; Maximum x-coordinate
 ; The following entity definition (#b104) is used in #R58368(A bit of tree) and
@@ -6449,7 +6453,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41795 DEFB 32                ; Pixel y-coordinate: 16
  41796 DEFB 0                 ; Unused
  41797 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41798 DEFB 0                 ; Minimum x-coordinate
  41799 DEFB 10                ; Maximum x-coordinate
 ; The following entity definition (#b105) is used in #R64512(The Bow).
@@ -6470,7 +6474,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41803 DEFB 48                ; Pixel y-coordinate: 24
  41804 DEFB 0                 ; Unused
  41805 DEFB 190               ; Page containing the sprite graphic data:
-                              ; #R48640(#N190)
+                              ; #R48640(#b190)
  41806 DEFB 22                ; Minimum x-coordinate
  41807 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b106) is used in #R60160(Conservatory
@@ -6493,7 +6497,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41811 DEFB 176               ; Pixel y-coordinate: 88
  41812 DEFB 0                 ; Unused
  41813 DEFB 174               ; Page containing the sprite graphic data:
-                              ; #R44544(#N174)
+                              ; #R44544(#b174)
  41814 DEFB 17                ; Minimum x-coordinate
  41815 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b107) is used in #R61440(Nomen Luni).
@@ -6514,7 +6518,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41819 DEFB 48                ; Pixel y-coordinate: 24
  41820 DEFB 0                 ; Unused
  41821 DEFB 190               ; Page containing the sprite graphic data:
-                              ; #R48640(#N190)
+                              ; #R48640(#b190)
  41822 DEFB 18                ; Minimum x-coordinate
  41823 DEFB 22                ; Maximum x-coordinate
 ; The following entity definition (#b108) is used in #R61952(Watch Tower).
@@ -6536,7 +6540,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41827 DEFB 144               ; Pixel y-coordinate: 72
  41828 DEFB 0                 ; Unused
  41829 DEFB 187               ; Page containing the sprite graphic data:
-                              ; #R47872(#N187)
+                              ; #R47872(#b187)
  41830 DEFB 11                ; Minimum x-coordinate
  41831 DEFB 18                ; Maximum x-coordinate
 ; The following entity definition (#b109) is used in #R61952(Watch Tower).
@@ -6559,7 +6563,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41835 DEFB 112               ; Pixel y-coordinate: 56
  41836 DEFB 0                 ; Unused
  41837 DEFB 188               ; Page containing the sprite graphic data:
-                              ; #R48128(#N188)
+                              ; #R48128(#b188)
  41838 DEFB 9                 ; Minimum x-coordinate
  41839 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b110) is used in #R64512(The Bow).
@@ -6580,7 +6584,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41843 DEFB 208               ; Pixel y-coordinate: 104
  41844 DEFB 0                 ; Unused
  41845 DEFB 174               ; Page containing the sprite graphic data:
-                              ; #R44544(#N174)
+                              ; #R44544(#b174)
  41846 DEFB 17                ; Minimum x-coordinate
  41847 DEFB 30                ; Maximum x-coordinate
 ; The following entity definition (#b111) is used in #R50944(Cuckoo's Nest).
@@ -6601,7 +6605,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41851 DEFB 176               ; Pixel y-coordinate: 88
  41852 DEFB 0                 ; Unused
  41853 DEFB 181               ; Page containing the sprite graphic data:
-                              ; #R46336(#N181)
+                              ; #R46336(#b181)
  41854 DEFB 0                 ; Minimum x-coordinate
  41855 DEFB 11                ; Maximum x-coordinate
 ; The next 15 entity definitions (#b112-#b126) are unused.
@@ -6622,8 +6626,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41968 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b127) - whose eighth byte is at #R41983 -
 ; is copied into one of the entity buffers at #R33024 for any entity
-; specification whose first byte is #n127 or #n255; the first byte of the
-; definition (#n255) serves to terminate the entity buffers.
+; specification whose first byte is #b127 or #b255; the first byte of the
+; definition (#b255) serves to terminate the entity buffers.
 @label=ENTITY127
  41976 DEFB 255,0,0,0,0,0,0
 
@@ -6637,7 +6641,7 @@ b41983 DEFB 173
 ;
 ; Used by the routines at #R34762 and #R37841.
 ; .
-; The location of item N (173<=N<=255) is defined by the pair of bytes at
+; The location of item N (#b173<=N<=#b255) is defined by the pair of bytes at
 ; addresses #R41984+N and #R42240+N. The meaning of the bits in each byte-pair
 ; is as follows:
 ; .
@@ -6651,193 +6655,193 @@ b41983 DEFB 173
 ; TABLE#
 @label=ITEMTABLE1
 b41984 DEFS 173      ; Unused
- 42157 DEFB 178      ; Item 173 at (8,25) in #R61952(Watch Tower)
- 42158 DEFB 178      ; Item 174 at (9,10) in #R61952(Watch Tower)
- 42159 DEFB 178      ; Item 175 at (9,20) in #R61952(Watch Tower)
- 42160 DEFB 178      ; Item 176 at (9,24) in #R61952(Watch Tower)
- 42161 DEFB 184      ; Item 177 at (14,9) in #R63488(West Wing Roof)
- 42162 DEFB 184      ; Item 178 at (13,19) in #R63488(West Wing Roof)
- 42163 DEFB 184      ; Item 179 at (11,27) in #R63488(West Wing Roof)
- 42164 DEFB 184      ; Item 180 at (10,6) in #R63488(West Wing Roof)
- 42165 DEFB 171      ; Item 181 at (8,31) in #R60160(Conservatory Roof)
- 42166 DEFB 171      ; Item 182 at (8,25) in #R60160(Conservatory Roof)
- 42167 DEFB 171      ; Item 183 at (8,28) in #R60160(Conservatory Roof)
- 42168 DEFB 171      ; Item 184 at (8,22) in #R60160(Conservatory Roof)
- 42169 DEFB 159      ; Item 185 at (11,4) in #R57088(Swimming Pool)
- 42170 DEFB 146      ; Item 186 at (12,25) in #R53760(On the Roof)
- 42171 DEFB 15       ; Item 187 at (4,31) in #R52992(I'm sure I've seen this
+ 42157 DEFB 178      ; Item #b173 at (8,25) in #R61952(Watch Tower)
+ 42158 DEFB 178      ; Item #b174 at (9,10) in #R61952(Watch Tower)
+ 42159 DEFB 178      ; Item #b175 at (9,20) in #R61952(Watch Tower)
+ 42160 DEFB 178      ; Item #b176 at (9,24) in #R61952(Watch Tower)
+ 42161 DEFB 184      ; Item #b177 at (14,9) in #R63488(West Wing Roof)
+ 42162 DEFB 184      ; Item #b178 at (13,19) in #R63488(West Wing Roof)
+ 42163 DEFB 184      ; Item #b179 at (11,27) in #R63488(West Wing Roof)
+ 42164 DEFB 184      ; Item #b180 at (10,6) in #R63488(West Wing Roof)
+ 42165 DEFB 171      ; Item #b181 at (8,31) in #R60160(Conservatory Roof)
+ 42166 DEFB 171      ; Item #b182 at (8,25) in #R60160(Conservatory Roof)
+ 42167 DEFB 171      ; Item #b183 at (8,28) in #R60160(Conservatory Roof)
+ 42168 DEFB 171      ; Item #b184 at (8,22) in #R60160(Conservatory Roof)
+ 42169 DEFB 159      ; Item #b185 at (11,4) in #R57088(Swimming Pool)
+ 42170 DEFB 146      ; Item #b186 at (12,25) in #R53760(On the Roof)
+ 42171 DEFB 15       ; Item #b187 at (4,31) in #R52992(I'm sure I've seen this
                      ; before..)
- 42172 DEFB 16       ; Item 188 at (4,31) in #R53248(We must perform a
+ 42172 DEFB 16       ; Item #b188 at (4,31) in #R53248(We must perform a
                      ; Quirkafleeg)
- 42173 DEFB 17       ; Item 189 at (4,31) in #R53504(Up on the Battlements)
- 42174 DEFB 188      ; Item 190 at (8,26) in #R64512(The Bow)
- 42175 DEFB 187      ; Item 191 at (14,13) in #R64256(The Yacht)
- 42176 DEFB 186      ; Item 192 at (13,22) in #R64000(The Beach)
- 42177 DEFB 37       ; Item 193 at (1,28) in #R58624(Orangery)
- 42178 DEFB 37       ; Item 194 at (6,16) in #R58624(Orangery)
- 42179 DEFB 165      ; Item 195 at (13,6) in #R58624(Orangery)
- 42180 DEFB 27       ; Item 196 at (6,29) in #R56064(The Chapel)
- 42181 DEFB 185      ; Item 197 at (9,23) in #R63744(Above the West Bedroom)
- 42182 DEFB 186      ; Item 198 at (13,22) in #R64000(The Beach)
+ 42173 DEFB 17       ; Item #b189 at (4,31) in #R53504(Up on the Battlements)
+ 42174 DEFB 188      ; Item #b190 at (8,26) in #R64512(The Bow)
+ 42175 DEFB 187      ; Item #b191 at (14,13) in #R64256(The Yacht)
+ 42176 DEFB 186      ; Item #b192 at (13,22) in #R64000(The Beach)
+ 42177 DEFB 37       ; Item #b193 at (1,28) in #R58624(Orangery)
+ 42178 DEFB 37       ; Item #b194 at (6,16) in #R58624(Orangery)
+ 42179 DEFB 165      ; Item #b195 at (13,6) in #R58624(Orangery)
+ 42180 DEFB 27       ; Item #b196 at (6,29) in #R56064(The Chapel)
+ 42181 DEFB 185      ; Item #b197 at (9,23) in #R63744(Above the West Bedroom)
+ 42182 DEFB 186      ; Item #b198 at (13,22) in #R64000(The Beach)
 @bfix=DEFB 11
- 42183 DEFB 28       ; Item 199 at (3,26) in #R56320(First Landing)
- 42184 DEFB 162      ; Item 200 at (9,2) in #R57856(Top Landing)
- 42185 DEFB 25       ; Item 201 at (2,3) in #R55552(Cold Store)
- 42186 DEFB 25       ; Item 202 at (5,8) in #R55552(Cold Store)
- 42187 DEFB 153      ; Item 203 at (8,6) in #R55552(Cold Store)
- 42188 DEFB 153      ; Item 204 at (11,6) in #R55552(Cold Store)
- 42189 DEFB 179      ; Item 205 at (14,7) in #R62208(Tool#SPACE(2)Shed)
- 42190 DEFB 22       ; Item 206 at (6,9) in #R54784(To the
+ 42183 DEFB 28       ; Item #b199 at (3,26) in #R56320(First Landing)
+ 42184 DEFB 162      ; Item #b200 at (9,2) in #R57856(Top Landing)
+ 42185 DEFB 25       ; Item #b201 at (2,3) in #R55552(Cold Store)
+ 42186 DEFB 25       ; Item #b202 at (5,8) in #R55552(Cold Store)
+ 42187 DEFB 153      ; Item #b203 at (8,6) in #R55552(Cold Store)
+ 42188 DEFB 153      ; Item #b204 at (11,6) in #R55552(Cold Store)
+ 42189 DEFB 179      ; Item #b205 at (14,7) in #R62208(Tool#SPACE(2)Shed)
+ 42190 DEFB 22       ; Item #b206 at (6,9) in #R54784(To the
                      ; Kitchens#SPACE(4)Main Stairway)
- 42191 DEFB 150      ; Item 207 at (9,2) in #R54784(To the
+ 42191 DEFB 150      ; Item #b207 at (9,2) in #R54784(To the
                      ; Kitchens#SPACE(4)Main Stairway)
- 42192 DEFB 40       ; Item 208 at (7,19) in #R59392(Dr Jones will never
+ 42192 DEFB 40       ; Item #b208 at (7,19) in #R59392(Dr Jones will never
                      ; believe this)
- 42193 DEFB 140      ; Item 209 at (13,19) in #R52224(Tree Top)
- 42194 DEFB 12       ; Item 210 at (3,16) in #R52224(Tree Top)
- 42195 DEFB 12       ; Item 211 at (4,22) in #R52224(Tree Top)
- 42196 DEFB 137      ; Item 212 at (11,5) in #R51456(On a Branch Over the
+ 42193 DEFB 140      ; Item #b209 at (13,19) in #R52224(Tree Top)
+ 42194 DEFB 12       ; Item #b210 at (3,16) in #R52224(Tree Top)
+ 42195 DEFB 12       ; Item #b211 at (4,22) in #R52224(Tree Top)
+ 42196 DEFB 137      ; Item #b212 at (11,5) in #R51456(On a Branch Over the
                      ; Drive)
- 42197 DEFB 7        ; Item 213 at (7,15) in #R50944(Cuckoo's Nest)
- 42198 DEFB 46       ; Item 214 at (3,10) in #R60928(Tree Root)
- 42199 DEFB 46       ; Item 215 at (4,29) in #R60928(Tree Root)
- 42200 DEFB 38       ; Item 216 at (2,9) in #R58880(Priests' Hole)
- 42201 DEFB 149      ; Item 217 at (12,17) in #R54528(Ballroom West)
- 42202 DEFB 149      ; Item 218 at (12,18) in #R54528(Ballroom West)
- 42203 DEFB 149      ; Item 219 at (12,20) in #R54528(Ballroom West)
- 42204 DEFB 149      ; Item 220 at (12,22) in #R54528(Ballroom West)
- 42205 DEFB 149      ; Item 221 at (12,23) in #R54528(Ballroom West)
- 42206 DEFB 14       ; Item 222 at (2,26) in #R52736(Rescue Esmerelda)
- 42207 DEFB 10       ; Item 223 at (4,11) in #R51712(The Front Door)
- 42208 DEFB 149      ; Item 224 at (12,25) in #R54528(Ballroom West)
- 42209 DEFB 149      ; Item 225 at (12,27) in #R54528(Ballroom West)
- 42210 DEFB 14       ; Item 226 at (3,26) in #R52736(Rescue Esmerelda)
- 42211 DEFB 13       ; Item 227 at (6,2) in #R52480(Out on a limb)
- 42212 DEFB 13       ; Item 228 at (1,5) in #R52480(Out on a limb)
- 42213 DEFB 44       ; Item 229 at (4,18) in #R60416(On top of the house)
- 42214 DEFB 19       ; Item 230 at (3,2) in #R54016(The Forgotten Abbey)
- 42215 DEFB 131      ; Item 231 at (11,1) in #R49920(At the Foot of the
+ 42197 DEFB 7        ; Item #b213 at (7,15) in #R50944(Cuckoo's Nest)
+ 42198 DEFB 46       ; Item #b214 at (3,10) in #R60928(Tree Root)
+ 42199 DEFB 46       ; Item #b215 at (4,29) in #R60928(Tree Root)
+ 42200 DEFB 38       ; Item #b216 at (2,9) in #R58880(Priests' Hole)
+ 42201 DEFB 149      ; Item #b217 at (12,17) in #R54528(Ballroom West)
+ 42202 DEFB 149      ; Item #b218 at (12,18) in #R54528(Ballroom West)
+ 42203 DEFB 149      ; Item #b219 at (12,20) in #R54528(Ballroom West)
+ 42204 DEFB 149      ; Item #b220 at (12,22) in #R54528(Ballroom West)
+ 42205 DEFB 149      ; Item #b221 at (12,23) in #R54528(Ballroom West)
+ 42206 DEFB 14       ; Item #b222 at (2,26) in #R52736(Rescue Esmerelda)
+ 42207 DEFB 10       ; Item #b223 at (4,11) in #R51712(The Front Door)
+ 42208 DEFB 149      ; Item #b224 at (12,25) in #R54528(Ballroom West)
+ 42209 DEFB 149      ; Item #b225 at (12,27) in #R54528(Ballroom West)
+ 42210 DEFB 14       ; Item #b226 at (3,26) in #R52736(Rescue Esmerelda)
+ 42211 DEFB 13       ; Item #b227 at (6,2) in #R52480(Out on a limb)
+ 42212 DEFB 13       ; Item #b228 at (1,5) in #R52480(Out on a limb)
+ 42213 DEFB 44       ; Item #b229 at (4,18) in #R60416(On top of the house)
+ 42214 DEFB 19       ; Item #b230 at (3,2) in #R54016(The Forgotten Abbey)
+ 42215 DEFB 131      ; Item #b231 at (11,1) in #R49920(At the Foot of the
                      ; MegaTree)
- 42216 DEFB 131      ; Item 232 at (10,4) in #R49920(At the Foot of the
+ 42216 DEFB 131      ; Item #b232 at (10,4) in #R49920(At the Foot of the
                      ; MegaTree)
- 42217 DEFB 131      ; Item 233 at (11,7) in #R49920(At the Foot of the
+ 42217 DEFB 131      ; Item #b233 at (11,7) in #R49920(At the Foot of the
                      ; MegaTree)
- 42218 DEFB 49       ; Item 234 at (4,28) in #R61696(The Wine Cellar)
- 42219 DEFB 49       ; Item 235 at (7,4) in #R61696(The Wine Cellar)
- 42220 DEFB 49       ; Item 236 at (7,28) in #R61696(The Wine Cellar)
- 42221 DEFB 177      ; Item 237 at (10,2) in #R61696(The Wine Cellar)
- 42222 DEFB 177      ; Item 238 at (10,28) in #R61696(The Wine Cellar)
- 42223 DEFB 177      ; Item 239 at (13,4) in #R61696(The Wine Cellar)
- 42224 DEFB 0        ; Item 240 at (4,19) in #R49152(The Off Licence)
- 42225 DEFB 0        ; Item 241 at (4,20) in #R49152(The Off Licence)
- 42226 DEFB 0        ; Item 242 at (4,21) in #R49152(The Off Licence)
- 42227 DEFB 0        ; Item 243 at (4,22) in #R49152(The Off Licence)
- 42228 DEFB 0        ; Item 244 at (4,23) in #R49152(The Off Licence)
- 42229 DEFB 0        ; Item 245 at (4,24) in #R49152(The Off Licence)
- 42230 DEFB 0        ; Item 246 at (4,25) in #R49152(The Off Licence)
- 42231 DEFB 0        ; Item 247 at (4,26) in #R49152(The Off Licence)
- 42232 DEFB 0        ; Item 248 at (4,27) in #R49152(The Off Licence)
- 42233 DEFB 0        ; Item 249 at (4,28) in #R49152(The Off Licence)
- 42234 DEFB 0        ; Item 250 at (4,29) in #R49152(The Off Licence)
- 42235 DEFB 0        ; Item 251 at (4,30) in #R49152(The Off Licence)
- 42236 DEFB 2        ; Item 252 at (0,22) in #R49664(Under the MegaTree)
- 42237 DEFB 157      ; Item 253 at (9,26) in #R56576(The Nightmare Room)
- 42238 DEFB 158      ; Item 254 at (14,8) in #R56832(The Banyan Tree)
- 42239 DEFB 161      ; Item 255 at (13,23) in #R57600(The Bathroom)
+ 42218 DEFB 49       ; Item #b234 at (4,28) in #R61696(The Wine Cellar)
+ 42219 DEFB 49       ; Item #b235 at (7,4) in #R61696(The Wine Cellar)
+ 42220 DEFB 49       ; Item #b236 at (7,28) in #R61696(The Wine Cellar)
+ 42221 DEFB 177      ; Item #b237 at (10,2) in #R61696(The Wine Cellar)
+ 42222 DEFB 177      ; Item #b238 at (10,28) in #R61696(The Wine Cellar)
+ 42223 DEFB 177      ; Item #b239 at (13,4) in #R61696(The Wine Cellar)
+ 42224 DEFB 0        ; Item #b240 at (4,19) in #R49152(The Off Licence)
+ 42225 DEFB 0        ; Item #b241 at (4,20) in #R49152(The Off Licence)
+ 42226 DEFB 0        ; Item #b242 at (4,21) in #R49152(The Off Licence)
+ 42227 DEFB 0        ; Item #b243 at (4,22) in #R49152(The Off Licence)
+ 42228 DEFB 0        ; Item #b244 at (4,23) in #R49152(The Off Licence)
+ 42229 DEFB 0        ; Item #b245 at (4,24) in #R49152(The Off Licence)
+ 42230 DEFB 0        ; Item #b246 at (4,25) in #R49152(The Off Licence)
+ 42231 DEFB 0        ; Item #b247 at (4,26) in #R49152(The Off Licence)
+ 42232 DEFB 0        ; Item #b248 at (4,27) in #R49152(The Off Licence)
+ 42233 DEFB 0        ; Item #b249 at (4,28) in #R49152(The Off Licence)
+ 42234 DEFB 0        ; Item #b250 at (4,29) in #R49152(The Off Licence)
+ 42235 DEFB 0        ; Item #b251 at (4,30) in #R49152(The Off Licence)
+ 42236 DEFB 2        ; Item #b252 at (0,22) in #R49664(Under the MegaTree)
+ 42237 DEFB 157      ; Item #b253 at (9,26) in #R56576(The Nightmare Room)
+ 42238 DEFB 158      ; Item #b254 at (14,8) in #R56832(The Banyan Tree)
+ 42239 DEFB 161      ; Item #b255 at (13,23) in #R57600(The Bathroom)
 @label=ITEMTABLE2
  42240 DEFS 173      ; Unused
- 42413 DEFB 25       ; Item 173 at (8,25) in #R61952(Watch Tower)
- 42414 DEFB 42       ; Item 174 at (9,10) in #R61952(Watch Tower)
- 42415 DEFB 52       ; Item 175 at (9,20) in #R61952(Watch Tower)
- 42416 DEFB 56       ; Item 176 at (9,24) in #R61952(Watch Tower)
- 42417 DEFB 201      ; Item 177 at (14,9) in #R63488(West Wing Roof)
- 42418 DEFB 179      ; Item 178 at (13,19) in #R63488(West Wing Roof)
- 42419 DEFB 123      ; Item 179 at (11,27) in #R63488(West Wing Roof)
- 42420 DEFB 70       ; Item 180 at (10,6) in #R63488(West Wing Roof)
- 42421 DEFB 31       ; Item 181 at (8,31) in #R60160(Conservatory Roof)
- 42422 DEFB 25       ; Item 182 at (8,25) in #R60160(Conservatory Roof)
- 42423 DEFB 28       ; Item 183 at (8,28) in #R60160(Conservatory Roof)
- 42424 DEFB 22       ; Item 184 at (8,22) in #R60160(Conservatory Roof)
- 42425 DEFB 100      ; Item 185 at (11,4) in #R57088(Swimming Pool)
- 42426 DEFB 153      ; Item 186 at (12,25) in #R53760(On the Roof)
- 42427 DEFB 159      ; Item 187 at (4,31) in #R52992(I'm sure I've seen this
+ 42413 DEFB 25       ; Item #b173 at (8,25) in #R61952(Watch Tower)
+ 42414 DEFB 42       ; Item #b174 at (9,10) in #R61952(Watch Tower)
+ 42415 DEFB 52       ; Item #b175 at (9,20) in #R61952(Watch Tower)
+ 42416 DEFB 56       ; Item #b176 at (9,24) in #R61952(Watch Tower)
+ 42417 DEFB 201      ; Item #b177 at (14,9) in #R63488(West Wing Roof)
+ 42418 DEFB 179      ; Item #b178 at (13,19) in #R63488(West Wing Roof)
+ 42419 DEFB 123      ; Item #b179 at (11,27) in #R63488(West Wing Roof)
+ 42420 DEFB 70       ; Item #b180 at (10,6) in #R63488(West Wing Roof)
+ 42421 DEFB 31       ; Item #b181 at (8,31) in #R60160(Conservatory Roof)
+ 42422 DEFB 25       ; Item #b182 at (8,25) in #R60160(Conservatory Roof)
+ 42423 DEFB 28       ; Item #b183 at (8,28) in #R60160(Conservatory Roof)
+ 42424 DEFB 22       ; Item #b184 at (8,22) in #R60160(Conservatory Roof)
+ 42425 DEFB 100      ; Item #b185 at (11,4) in #R57088(Swimming Pool)
+ 42426 DEFB 153      ; Item #b186 at (12,25) in #R53760(On the Roof)
+ 42427 DEFB 159      ; Item #b187 at (4,31) in #R52992(I'm sure I've seen this
                      ; before..)
- 42428 DEFB 159      ; Item 188 at (4,31) in #R53248(We must perform a
+ 42428 DEFB 159      ; Item #b188 at (4,31) in #R53248(We must perform a
                      ; Quirkafleeg)
- 42429 DEFB 159      ; Item 189 at (4,31) in #R53504(Up on the Battlements)
- 42430 DEFB 26       ; Item 190 at (8,26) in #R64512(The Bow)
- 42431 DEFB 205      ; Item 191 at (14,13) in #R64256(The Yacht)
- 42432 DEFB 182      ; Item 192 at (13,22) in #R64000(The Beach)
- 42433 DEFB 60       ; Item 193 at (1,28) in #R58624(Orangery)
- 42434 DEFB 208      ; Item 194 at (6,16) in #R58624(Orangery)
- 42435 DEFB 166      ; Item 195 at (13,6) in #R58624(Orangery)
- 42436 DEFB 221      ; Item 196 at (6,29) in #R56064(The Chapel)
- 42437 DEFB 55       ; Item 197 at (9,23) in #R63744(Above the West Bedroom)
- 42438 DEFB 182      ; Item 198 at (13,22) in #R64000(The Beach)
- 42439 DEFB 122      ; Item 199 at (3,26) in #R56320(First Landing)
- 42440 DEFB 34       ; Item 200 at (9,2) in #R57856(Top Landing)
- 42441 DEFB 67       ; Item 201 at (2,3) in #R55552(Cold Store)
- 42442 DEFB 168      ; Item 202 at (5,8) in #R55552(Cold Store)
- 42443 DEFB 6        ; Item 203 at (8,6) in #R55552(Cold Store)
- 42444 DEFB 102      ; Item 204 at (11,6) in #R55552(Cold Store)
- 42445 DEFB 199      ; Item 205 at (14,7) in #R62208(Tool#SPACE(2)Shed)
- 42446 DEFB 201      ; Item 206 at (6,9) in #R54784(To the
+ 42429 DEFB 159      ; Item #b189 at (4,31) in #R53504(Up on the Battlements)
+ 42430 DEFB 26       ; Item #b190 at (8,26) in #R64512(The Bow)
+ 42431 DEFB 205      ; Item #b191 at (14,13) in #R64256(The Yacht)
+ 42432 DEFB 182      ; Item #b192 at (13,22) in #R64000(The Beach)
+ 42433 DEFB 60       ; Item #b193 at (1,28) in #R58624(Orangery)
+ 42434 DEFB 208      ; Item #b194 at (6,16) in #R58624(Orangery)
+ 42435 DEFB 166      ; Item #b195 at (13,6) in #R58624(Orangery)
+ 42436 DEFB 221      ; Item #b196 at (6,29) in #R56064(The Chapel)
+ 42437 DEFB 55       ; Item #b197 at (9,23) in #R63744(Above the West Bedroom)
+ 42438 DEFB 182      ; Item #b198 at (13,22) in #R64000(The Beach)
+ 42439 DEFB 122      ; Item #b199 at (3,26) in #R56320(First Landing)
+ 42440 DEFB 34       ; Item #b200 at (9,2) in #R57856(Top Landing)
+ 42441 DEFB 67       ; Item #b201 at (2,3) in #R55552(Cold Store)
+ 42442 DEFB 168      ; Item #b202 at (5,8) in #R55552(Cold Store)
+ 42443 DEFB 6        ; Item #b203 at (8,6) in #R55552(Cold Store)
+ 42444 DEFB 102      ; Item #b204 at (11,6) in #R55552(Cold Store)
+ 42445 DEFB 199      ; Item #b205 at (14,7) in #R62208(Tool#SPACE(2)Shed)
+ 42446 DEFB 201      ; Item #b206 at (6,9) in #R54784(To the
                      ; Kitchens#SPACE(4)Main Stairway)
- 42447 DEFB 34       ; Item 207 at (9,2) in #R54784(To the
+ 42447 DEFB 34       ; Item #b207 at (9,2) in #R54784(To the
                      ; Kitchens#SPACE(4)Main Stairway)
- 42448 DEFB 243      ; Item 208 at (7,19) in #R59392(Dr Jones will never
+ 42448 DEFB 243      ; Item #b208 at (7,19) in #R59392(Dr Jones will never
                      ; believe this)
- 42449 DEFB 179      ; Item 209 at (13,19) in #R52224(Tree Top)
- 42450 DEFB 112      ; Item 210 at (3,16) in #R52224(Tree Top)
- 42451 DEFB 150      ; Item 211 at (4,22) in #R52224(Tree Top)
- 42452 DEFB 101      ; Item 212 at (11,5) in #R51456(On a Branch Over the
+ 42449 DEFB 179      ; Item #b209 at (13,19) in #R52224(Tree Top)
+ 42450 DEFB 112      ; Item #b210 at (3,16) in #R52224(Tree Top)
+ 42451 DEFB 150      ; Item #b211 at (4,22) in #R52224(Tree Top)
+ 42452 DEFB 101      ; Item #b212 at (11,5) in #R51456(On a Branch Over the
                      ; Drive)
- 42453 DEFB 239      ; Item 213 at (7,15) in #R50944(Cuckoo's Nest)
- 42454 DEFB 106      ; Item 214 at (3,10) in #R60928(Tree Root)
- 42455 DEFB 157      ; Item 215 at (4,29) in #R60928(Tree Root)
- 42456 DEFB 73       ; Item 216 at (2,9) in #R58880(Priests' Hole)
- 42457 DEFB 145      ; Item 217 at (12,17) in #R54528(Ballroom West)
- 42458 DEFB 146      ; Item 218 at (12,18) in #R54528(Ballroom West)
- 42459 DEFB 148      ; Item 219 at (12,20) in #R54528(Ballroom West)
- 42460 DEFB 150      ; Item 220 at (12,22) in #R54528(Ballroom West)
- 42461 DEFB 151      ; Item 221 at (12,23) in #R54528(Ballroom West)
- 42462 DEFB 90       ; Item 222 at (2,26) in #R52736(Rescue Esmerelda)
- 42463 DEFB 139      ; Item 223 at (4,11) in #R51712(The Front Door)
- 42464 DEFB 153      ; Item 224 at (12,25) in #R54528(Ballroom West)
- 42465 DEFB 155      ; Item 225 at (12,27) in #R54528(Ballroom West)
- 42466 DEFB 122      ; Item 226 at (3,26) in #R52736(Rescue Esmerelda)
- 42467 DEFB 194      ; Item 227 at (6,2) in #R52480(Out on a limb)
- 42468 DEFB 37       ; Item 228 at (1,5) in #R52480(Out on a limb)
- 42469 DEFB 146      ; Item 229 at (4,18) in #R60416(On top of the house)
- 42470 DEFB 98       ; Item 230 at (3,2) in #R54016(The Forgotten Abbey)
- 42471 DEFB 97       ; Item 231 at (11,1) in #R49920(At the Foot of the
+ 42453 DEFB 239      ; Item #b213 at (7,15) in #R50944(Cuckoo's Nest)
+ 42454 DEFB 106      ; Item #b214 at (3,10) in #R60928(Tree Root)
+ 42455 DEFB 157      ; Item #b215 at (4,29) in #R60928(Tree Root)
+ 42456 DEFB 73       ; Item #b216 at (2,9) in #R58880(Priests' Hole)
+ 42457 DEFB 145      ; Item #b217 at (12,17) in #R54528(Ballroom West)
+ 42458 DEFB 146      ; Item #b218 at (12,18) in #R54528(Ballroom West)
+ 42459 DEFB 148      ; Item #b219 at (12,20) in #R54528(Ballroom West)
+ 42460 DEFB 150      ; Item #b220 at (12,22) in #R54528(Ballroom West)
+ 42461 DEFB 151      ; Item #b221 at (12,23) in #R54528(Ballroom West)
+ 42462 DEFB 90       ; Item #b222 at (2,26) in #R52736(Rescue Esmerelda)
+ 42463 DEFB 139      ; Item #b223 at (4,11) in #R51712(The Front Door)
+ 42464 DEFB 153      ; Item #b224 at (12,25) in #R54528(Ballroom West)
+ 42465 DEFB 155      ; Item #b225 at (12,27) in #R54528(Ballroom West)
+ 42466 DEFB 122      ; Item #b226 at (3,26) in #R52736(Rescue Esmerelda)
+ 42467 DEFB 194      ; Item #b227 at (6,2) in #R52480(Out on a limb)
+ 42468 DEFB 37       ; Item #b228 at (1,5) in #R52480(Out on a limb)
+ 42469 DEFB 146      ; Item #b229 at (4,18) in #R60416(On top of the house)
+ 42470 DEFB 98       ; Item #b230 at (3,2) in #R54016(The Forgotten Abbey)
+ 42471 DEFB 97       ; Item #b231 at (11,1) in #R49920(At the Foot of the
                      ; MegaTree)
- 42472 DEFB 68       ; Item 232 at (10,4) in #R49920(At the Foot of the
+ 42472 DEFB 68       ; Item #b232 at (10,4) in #R49920(At the Foot of the
                      ; MegaTree)
- 42473 DEFB 103      ; Item 233 at (11,7) in #R49920(At the Foot of the
+ 42473 DEFB 103      ; Item #b233 at (11,7) in #R49920(At the Foot of the
                      ; MegaTree)
- 42474 DEFB 156      ; Item 234 at (4,28) in #R61696(The Wine Cellar)
- 42475 DEFB 228      ; Item 235 at (7,4) in #R61696(The Wine Cellar)
- 42476 DEFB 252      ; Item 236 at (7,28) in #R61696(The Wine Cellar)
- 42477 DEFB 66       ; Item 237 at (10,2) in #R61696(The Wine Cellar)
- 42478 DEFB 92       ; Item 238 at (10,28) in #R61696(The Wine Cellar)
- 42479 DEFB 164      ; Item 239 at (13,4) in #R61696(The Wine Cellar)
- 42480 DEFB 147      ; Item 240 at (4,19) in #R49152(The Off Licence)
- 42481 DEFB 148      ; Item 241 at (4,20) in #R49152(The Off Licence)
- 42482 DEFB 149      ; Item 242 at (4,21) in #R49152(The Off Licence)
- 42483 DEFB 150      ; Item 243 at (4,22) in #R49152(The Off Licence)
- 42484 DEFB 151      ; Item 244 at (4,23) in #R49152(The Off Licence)
- 42485 DEFB 152      ; Item 245 at (4,24) in #R49152(The Off Licence)
- 42486 DEFB 153      ; Item 246 at (4,25) in #R49152(The Off Licence)
- 42487 DEFB 154      ; Item 247 at (4,26) in #R49152(The Off Licence)
- 42488 DEFB 155      ; Item 248 at (4,27) in #R49152(The Off Licence)
- 42489 DEFB 156      ; Item 249 at (4,28) in #R49152(The Off Licence)
- 42490 DEFB 157      ; Item 250 at (4,29) in #R49152(The Off Licence)
- 42491 DEFB 158      ; Item 251 at (4,30) in #R49152(The Off Licence)
- 42492 DEFB 22       ; Item 252 at (0,22) in #R49664(Under the MegaTree)
- 42493 DEFB 58       ; Item 253 at (9,26) in #R56576(The Nightmare Room)
- 42494 DEFB 200      ; Item 254 at (14,8) in #R56832(The Banyan Tree)
- 42495 DEFB 183      ; Item 255 at (13,23) in #R57600(The Bathroom)
+ 42474 DEFB 156      ; Item #b234 at (4,28) in #R61696(The Wine Cellar)
+ 42475 DEFB 228      ; Item #b235 at (7,4) in #R61696(The Wine Cellar)
+ 42476 DEFB 252      ; Item #b236 at (7,28) in #R61696(The Wine Cellar)
+ 42477 DEFB 66       ; Item #b237 at (10,2) in #R61696(The Wine Cellar)
+ 42478 DEFB 92       ; Item #b238 at (10,28) in #R61696(The Wine Cellar)
+ 42479 DEFB 164      ; Item #b239 at (13,4) in #R61696(The Wine Cellar)
+ 42480 DEFB 147      ; Item #b240 at (4,19) in #R49152(The Off Licence)
+ 42481 DEFB 148      ; Item #b241 at (4,20) in #R49152(The Off Licence)
+ 42482 DEFB 149      ; Item #b242 at (4,21) in #R49152(The Off Licence)
+ 42483 DEFB 150      ; Item #b243 at (4,22) in #R49152(The Off Licence)
+ 42484 DEFB 151      ; Item #b244 at (4,23) in #R49152(The Off Licence)
+ 42485 DEFB 152      ; Item #b245 at (4,24) in #R49152(The Off Licence)
+ 42486 DEFB 153      ; Item #b246 at (4,25) in #R49152(The Off Licence)
+ 42487 DEFB 154      ; Item #b247 at (4,26) in #R49152(The Off Licence)
+ 42488 DEFB 155      ; Item #b248 at (4,27) in #R49152(The Off Licence)
+ 42489 DEFB 156      ; Item #b249 at (4,28) in #R49152(The Off Licence)
+ 42490 DEFB 157      ; Item #b250 at (4,29) in #R49152(The Off Licence)
+ 42491 DEFB 158      ; Item #b251 at (4,30) in #R49152(The Off Licence)
+ 42492 DEFB 22       ; Item #b252 at (0,22) in #R49664(Under the MegaTree)
+ 42493 DEFB 58       ; Item #b253 at (9,26) in #R56576(The Nightmare Room)
+ 42494 DEFB 200      ; Item #b254 at (14,8) in #R56832(The Banyan Tree)
+ 42495 DEFB 183      ; Item #b255 at (13,23) in #R57600(The Bathroom)
 
 ; Toilet graphics
 ;
@@ -6879,7 +6883,7 @@ u42624 DEFB 128,128,128,128,140,143,143,143,143,143,128,128,191,143,143,143
 ;
 ; .
 ;
-; This guardian (page #N(171), sprites 0-3) appears in #R56832(The Banyan Tree)
+; This guardian (page #b171, sprites 0-3) appears in #R56832(The Banyan Tree)
 ; and #R58368(A bit of tree).
 ; .
 ; #UDGTABLE
@@ -6894,7 +6898,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  43856 DEFB 15,240,23,232,15,240,23,232,8,16,23,232,16,8,0,0
  43872 DEFB 18,0,52,128,61,32,127,72,127,210,254,116,252,61,62,127
  43888 DEFB 79,255,147,254,164,254,41,60,10,76,2,144,0,160,0,32
-; This guardian (page #N(171), sprites 4-7) appears in #R56064(The Chapel) and
+; This guardian (page #b171, sprites 4-7) appears in #R56064(The Chapel) and
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
@@ -6908,7 +6912,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  43984 DEFB 43,251,150,248,108,216,5,84,2,138,1,0,0,128,0,64
  44000 DEFB 0,0,2,2,2,2,1,116,0,216,81,84,82,250,35,222
  44016 DEFB 231,171,30,249,24,217,8,217,9,84,6,138,4,0,0,0
-; This guardian (page #N(172), sprites 0-3) appears in #R55808(East Wall Base),
+; This guardian (page #b172, sprites 0-3) appears in #R55808(East Wall Base),
 ; #R56064(The Chapel) and #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
@@ -6923,7 +6927,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44112 DEFB 27,112,32,4,61,189,162,69,251,119,160,5,61,237,32,4
  44128 DEFB 32,4,59,117,160,5,253,191,160,5,59,117,32,4,29,184
  44144 DEFB 0,0,59,116,36,132,61,189,224,7,59,117,46,236,32,4
-; This guardian (page #N(172), sprites 4-7) appears in #R56832(The Banyan Tree)
+; This guardian (page #b172, sprites 4-7) appears in #R56832(The Banyan Tree)
 ; and #R58624(Orangery).
 ; .
 ; #UDGTABLE
@@ -6937,7 +6941,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44240 DEFB 212,149,210,37,201,201,228,19,115,230,24,24,7,224,1,128
  44256 DEFB 7,0,8,224,31,220,48,38,103,146,200,74,211,42,212,171
  44272 DEFB 84,43,82,75,73,147,36,38,51,204,40,24,31,240,1,224
-; This guardian (page #N(173), sprites 0-3) appears in #R51456(On a Branch Over
+; This guardian (page #b173, sprites 0-3) appears in #R51456(On a Branch Over
 ; the Drive), #R60160(Conservatory Roof) and #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
@@ -6952,7 +6956,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44368 DEFB 14,220,12,12,24,6,24,6,16,2,48,3,32,1,32,1
  44384 DEFB 0,48,0,48,0,48,0,48,0,48,0,120,0,72,0,204
  44400 DEFB 0,252,1,206,1,134,1,134,3,3,3,3,2,1,2,1
-; This guardian (page #N(173), sprites 4-7) appears in #R57856(Top Landing),
+; This guardian (page #b173, sprites 4-7) appears in #R57856(Top Landing),
 ; #R60928(Tree Root) and #R63232(West Bedroom).
 ; .
 ; #UDGTABLE
@@ -6966,7 +6970,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44496 DEFB 20,40,22,104,22,104,22,104,22,104,20,40,31,248,7,224
  44512 DEFB 0,80,0,184,1,108,2,230,5,195,11,142,22,29,44,58
  44528 DEFB 92,52,184,104,113,208,195,160,103,64,54,128,29,0,10,0
-; This guardian (page #N(174), sprites 0-3) appears in #R54784(To the
+; This guardian (page #b174, sprites 0-3) appears in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway), #R57344(Halfway up the East Wall),
 ; #R60160(Conservatory Roof) and #R64512(The Bow).
 ; .
@@ -6982,8 +6986,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44624 DEFB 27,216,96,6,128,1,224,7,160,5,192,3,160,5,224,7
  44640 DEFB 0,0,1,248,2,100,3,156,3,12,1,248,0,144,1,8
  44656 DEFB 2,4,4,2,8,1,14,7,10,5,12,3,10,5,14,7
-; This guardian (page #N(174), sprites 4-7) appears in #R60672(Under the
-; Drive).
+; This guardian (page #b174, sprites 4-7) appears in #R60672(Under the Drive).
 ; .
 ; #UDGTABLE
 ; { #guardian174,4,3 | #guardian174,5,3 | #guardian174,6,3 | #guardian174,7,3 }
@@ -6996,7 +6999,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44752 DEFB 5,248,5,248,5,248,0,0,15,252,11,116,11,116,15,252
  44768 DEFB 0,0,0,0,8,48,4,204,2,49,1,74,0,188,0,188
  44784 DEFB 1,126,1,126,1,126,0,0,3,255,2,237,2,237,3,255
-; This guardian (page #N(175), sprites 0-3) appears in #R57856(Top Landing),
+; This guardian (page #b175, sprites 0-3) appears in #R57856(Top Landing),
 ; #R59904(Under the Roof) and #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
@@ -7010,7 +7013,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  44880 DEFB 239,192,143,192,119,192,7,192,7,192,7,192,6,192,3,128
  44896 DEFB 0,224,1,240,1,240,1,178,1,21,1,181,1,250,1,250
  44912 DEFB 7,244,13,244,13,248,9,248,7,240,1,240,1,176,0,224
-; This guardian (page #N(175), sprites 4-7) appears in #R50176(The Drive),
+; This guardian (page #b175, sprites 4-7) appears in #R50176(The Drive),
 ; #R50944(Cuckoo's Nest), #R54784(To the Kitchens#SPACE(4)Main Stairway) and
 ; #R62464(Back Stairway).
 ; .
@@ -7025,7 +7028,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45008 DEFB 95,254,159,255,191,239,95,86,95,174,35,84,31,248,3,192
  45024 DEFB 0,0,0,0,0,0,14,0,23,192,23,240,19,252,11,254
  45040 DEFB 11,254,11,215,5,235,5,215,2,234,2,126,1,140,0,112
-; This guardian (page #N(176), sprites 0-3) appears in #R59648(The Attic).
+; This guardian (page #b176, sprites 0-3) appears in #R59648(The Attic).
 ; .
 ; #UDGTABLE
 ; { #guardian176,0,3 | #guardian176,1,6 | #guardian176,2,5 | #guardian176,3,5 }
@@ -7038,8 +7041,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45136 DEFB 255,128,127,240,127,252,63,248,31,240,7,192,0,0,0,0
  45152 DEFB 7,192,31,240,60,248,120,124,124,252,255,128,252,0,240,0
  45168 DEFB 248,0,126,0,127,128,63,224,31,240,7,192,0,0,0,0
-; This guardian (page #N(176), sprites 4-5) appears in #R52736(Rescue
-; Esmerelda).
+; This guardian (page #b176, sprites 4-5) appears in #R52736(Rescue Esmerelda).
 ; .
 ; #UDGTABLE
 ; { #guardian176,4,23 | #guardian176,5,23 }
@@ -7048,7 +7050,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45200 DEFB 61,120,70,196,7,192,2,128,5,64,15,224,20,128,8,192
  45216 DEFB 7,192,8,32,10,160,8,32,57,56,0,0,5,64,10,160
  45232 DEFB 29,112,22,208,23,208,10,160,5,64,15,224,2,80,6,32
-; This guardian (page #N(176), sprites 6-7) appears in #R51968(The Hall) and
+; This guardian (page #b176, sprites 6-7) appears in #R51968(The Hall) and
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
@@ -7058,7 +7060,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45264 DEFB 205,179,205,179,205,179,205,179,35,196,18,72,13,176,0,0
  45280 DEFB 1,128,0,0,1,128,137,162,1,128,69,145,137,162,1,128
  45296 DEFB 205,179,205,179,205,179,205,179,35,196,18,72,13,176,0,0
-; This guardian (page #N(177), sprites 0-7) is not used.
+; This guardian (page #b177, sprites 0-7) is not used.
 ; .
 ; #UDGTABLE
 ; { #guardian177,0,7 | #guardian177,1,7 | #guardian177,2,7 | #guardian177,3,7 |
@@ -7080,7 +7082,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45520 DEFB 9,96,1,96,1,96,1,96,1,96,1,96,1,96,1,96
  45536 DEFB 0,48,0,220,0,188,1,126,1,126,0,188,0,188,0,88
  45552 DEFB 0,88,0,88,0,88,0,88,0,88,0,88,0,88,0,88
-; This guardian (page #N(178), sprites 0-3) appears in #R60416(On top of the
+; This guardian (page #b178, sprites 0-3) appears in #R60416(On top of the
 ; house) and #R64256(The Yacht).
 ; .
 ; #UDGTABLE
@@ -7095,7 +7097,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45648 DEFB 223,255,223,255,255,255,252,127,248,63,112,63,0,31,0,14
  45664 DEFB 0,56,0,254,1,255,131,255,199,255,223,255,95,255,155,255
  45680 DEFB 199,255,223,255,223,199,255,1,254,0,124,0,56,0,0,0
-; This guardian (page #N(178), sprites 4-7) appears in #R51456(On a Branch Over
+; This guardian (page #b178, sprites 4-7) appears in #R51456(On a Branch Over
 ; the Drive), #R58624(Orangery), #R59392(Dr Jones will never believe this),
 ; #R60672(Under the Drive), #R61440(Nomen Luni) and #R62464(Back Stairway).
 ; .
@@ -7113,7 +7115,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  45808 DEFB 93,187,170,119,95,250,114,78,56,28,28,56,11,240,2,192
 ; The next 256 bytes are unused.
  45824 DEFS 256
-; This guardian (page #N(180), sprites 0-7) appears in #R54016(The Forgotten
+; This guardian (page #b180, sprites 0-7) appears in #R54016(The Forgotten
 ; Abbey), #R56064(The Chapel), #R56320(First Landing), #R57088(Swimming Pool)
 ; and #R61696(The Wine Cellar).
 ; .
@@ -7137,10 +7139,10 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  46288 DEFB 7,240,3,248,1,80,3,248,3,216,3,248,1,24,0,28
  46304 DEFB 0,112,0,168,1,84,0,232,0,255,0,104,0,48,1,248
  46320 DEFB 1,252,0,254,0,84,0,254,0,246,0,254,0,24,0,28
-; This guardian (page #N(181), sprites 0-7) appears in #R49920(At the Foot of
-; the MegaTree), #R50944(Cuckoo's Nest), #R52480(Out on a limb), #R56832(The
-; Banyan Tree), #R61696(The Wine Cellar), #R62208(Tool#SPACE(2)Shed),
-; #R63488(West Wing Roof) and #R64256(The Yacht).
+; This guardian (page #b181, sprites 0-7) appears in #R49920(At the Foot of the
+; MegaTree), #R50944(Cuckoo's Nest), #R52480(Out on a limb), #R56832(The Banyan
+; Tree), #R61696(The Wine Cellar), #R62208(Tool#SPACE(2)Shed), #R63488(West
+; Wing Roof) and #R64256(The Yacht).
 ; .
 ; #UDGTABLE
 ; { #guardian181,0,67 | #guardian181,1,67 | #guardian181,2,67 |
@@ -7163,7 +7165,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  46544 DEFB 9,208,9,128,9,232,9,194,9,128,17,232,17,192,17,130
  46560 DEFB 0,0,0,0,0,0,0,0,0,0,0,192,1,248,1,112
  46576 DEFB 1,96,1,120,1,112,2,96,2,120,2,112,2,97,2,120
-; This guardian (page #N(182), sprites 0-7) appears in #R49664(Under the
+; This guardian (page #b182, sprites 0-7) appears in #R49664(Under the
 ; MegaTree), #R51968(The Hall), #R52224(Tree Top) and #R59136(Emergency
 ; Generator).
 ; .
@@ -7189,7 +7191,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  46800 DEFB 13,104,10,188,21,124,10,224,21,64,42,64,20,0,40,0
  46816 DEFB 0,0,0,0,0,0,0,0,0,0,2,200,1,232,3,252
  46832 DEFB 2,170,5,95,2,191,5,248,1,16,0,160,0,0,0,0
-; This guardian (page #N(183), sprites 0-1) appears in #R55040(The Kitchen) and
+; This guardian (page #b183, sprites 0-1) appears in #R55040(The Kitchen) and
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
@@ -7199,7 +7201,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  46864 DEFB 15,227,60,127,123,191,239,227,174,226,71,194,206,192,192,224
  46880 DEFB 192,0,202,160,213,80,202,160,69,64,69,66,167,197,205,101
  46896 DEFB 111,226,124,122,58,191,15,239,14,227,7,194,6,226,14,2
-; This guardian (page #N(183), sprites 2-3) appears in #R60928(Tree Root),
+; This guardian (page #b183, sprites 2-3) appears in #R60928(Tree Root),
 ; #R63232(West Bedroom) and #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
@@ -7209,7 +7211,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  46928 DEFB 19,144,45,104,47,120,47,120,47,120,47,120,175,121,127,254
  46944 DEFB 0,192,1,32,1,112,2,232,5,80,5,216,5,216,7,248
  46960 DEFB 9,200,22,180,23,188,23,188,23,188,23,188,151,189,127,254
-; This guardian (page #N(183), sprites 4-7) appears in #R54784(To the
+; This guardian (page #b183, sprites 4-7) appears in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
@@ -7224,7 +7226,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47056 DEFB 164,145,154,5,72,66,85,10,40,84,18,136,13,112,3,192
  47072 DEFB 1,184,0,84,6,228,13,138,11,210,1,9,23,85,29,41
  47088 DEFB 1,137,27,85,0,137,0,170,13,210,6,212,0,36,1,184
-; This guardian (page #N(184), sprites 0-7) appears in #R49664(Under the
+; This guardian (page #b184, sprites 0-7) appears in #R49664(Under the
 ; MegaTree), #R53760(On the Roof), #R54528(Ballroom West) and #R60928(Tree
 ; Root).
 ; .
@@ -7248,7 +7250,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47312 DEFB 1,228,3,240,3,240,3,240,3,248,1,168,0,224,1,128
  47328 DEFB 0,72,0,132,1,50,1,2,1,122,1,122,1,254,1,182
  47344 DEFB 2,121,0,252,0,252,0,252,0,252,0,110,0,112,0,32
-; This guardian (page #N(185), sprites 0-3) appears in #R51456(On a Branch Over
+; This guardian (page #b185, sprites 0-3) appears in #R51456(On a Branch Over
 ; the Drive), #R54784(To the Kitchens#SPACE(4)Main Stairway) and #R57600(The
 ; Bathroom).
 ; .
@@ -7264,7 +7266,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47440 DEFB 52,52,70,70,197,197,238,238,165,165,229,229,118,118,60,60
  47456 DEFB 0,0,0,0,15,0,27,128,62,64,48,64,34,0,63,192
  47472 DEFB 18,180,13,70,0,197,0,238,0,165,0,229,0,118,0,60
-; This guardian (page #N(185), sprites 4-7) appears in #R49408(The Bridge).
+; This guardian (page #b185, sprites 4-7) appears in #R49408(The Bridge).
 ; .
 ; #UDGTABLE
 ; { #guardian185,4,68 | #guardian185,5,68 | #guardian185,6,68 |
@@ -7278,10 +7280,10 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47568 DEFB 168,147,237,219,127,254,21,120,37,164,2,64,17,136,4,32
  47584 DEFB 3,192,6,96,13,240,26,232,53,92,32,4,127,254,219,183
  47600 DEFB 201,21,219,183,127,254,21,120,10,66,65,144,4,0,17,68
-; This guardian (page #N(186), sprites 0-3) appears in #R49152(The Off
-; Licence), #R49664(Under the MegaTree), #R51200(Inside the MegaTrunk),
-; #R52480(Out on a limb), #R54272(Ballroom East), #R54528(Ballroom West),
-; #R55808(East Wall Base) and #R60928(Tree Root).
+; This guardian (page #b186, sprites 0-3) appears in #R49152(The Off Licence),
+; #R49664(Under the MegaTree), #R51200(Inside the MegaTrunk), #R52480(Out on a
+; limb), #R54272(Ballroom East), #R54528(Ballroom West), #R55808(East Wall
+; Base) and #R60928(Tree Root).
 ; .
 ; #UDGTABLE
 ; { #guardian186,0,66 | #guardian186,1,66 | #guardian186,2,66 |
@@ -7295,7 +7297,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47696 DEFB 48,140,93,250,141,177,154,89,18,72,24,24,44,52,199,227
  47712 DEFB 7,224,143,241,95,250,63,252,31,248,17,136,46,116,42,84
  47728 DEFB 113,142,94,250,141,241,29,184,18,72,120,30,140,49,7,224
-; This guardian (page #N(186), sprites 4-7) appears in #R50688(Entrance to
+; This guardian (page #b186, sprites 4-7) appears in #R50688(Entrance to
 ; Hades), #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
@@ -7310,7 +7312,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47824 DEFB 80,0,18,10,64,12,42,34,20,168,32,132,20,40,5,32
  47840 DEFB 253,191,255,251,172,215,170,209,42,84,130,68,66,1,8,4
  47856 DEFB 74,16,34,130,8,168,20,4,10,144,1,64,0,0,0,0
-; This guardian (page #N(187), sprites 0-3) appears in #R55552(Cold Store) and
+; This guardian (page #b187, sprites 0-3) appears in #R55552(Cold Store) and
 ; #R59904(Under the Roof).
 ; .
 ; #UDGTABLE
@@ -7325,7 +7327,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  47952 DEFB 5,80,10,160,1,64,2,160,9,64,0,128,1,64,0,128
  47968 DEFB 0,48,0,218,1,253,1,250,3,244,3,250,3,254,3,252
  47984 DEFB 3,84,2,168,0,80,0,168,0,80,0,32,0,80,0,32
-; This guardian (page #N(187), sprites 4-7) appears in #R51200(Inside the
+; This guardian (page #b187, sprites 4-7) appears in #R51200(Inside the
 ; MegaTrunk), #R52224(Tree Top) and #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
@@ -7340,7 +7342,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48080 DEFB 5,84,2,168,0,64,0,64,0,112,1,136,2,4,0,0
  48096 DEFB 0,32,1,84,2,170,1,212,2,34,5,125,2,250,1,84
  48112 DEFB 2,170,1,84,0,32,0,32,0,16,0,124,0,130,0,129
-; This guardian (page #N(188), sprites 0-7) appears in #R49408(The Bridge),
+; This guardian (page #b188, sprites 0-7) appears in #R49408(The Bridge),
 ; #R50176(The Drive), #R51200(Inside the MegaTrunk), #R51968(The Hall),
 ; #R52224(Tree Top), #R52480(Out on a limb), #R52736(Rescue Esmerelda),
 ; #R52992(I'm sure I've seen this before..), #R53248(We must perform a
@@ -7370,7 +7372,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48336 DEFB 7,236,3,192,0,0,0,0,0,0,0,0,0,0,0,0
  48352 DEFB 0,0,0,0,0,0,0,0,0,0,2,246,1,221,2,174
  48368 DEFB 1,88,0,160,1,0,0,0,0,0,0,0,0,0,0,0
-; This guardian (page #N(189), sprites 0-7) appears in #R55552(Cold Store).
+; This guardian (page #b189, sprites 0-7) appears in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
 ; { #guardian189,0,14 | #guardian189,1,14 | #guardian189,2,14 |
@@ -7393,9 +7395,9 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48592 DEFB 3,136,6,8,2,16,1,16,1,224,0,64,0,64,0,224
  48608 DEFB 0,24,0,60,0,43,0,116,0,92,0,92,0,90,0,186
  48624 DEFB 0,242,0,194,1,132,0,68,0,120,0,80,1,144,0,120
-; This guardian (page #N(190), sprites 0-3) appears in #R49152(The Off
-; Licence), #R54784(To the Kitchens#SPACE(4)Main Stairway), #R61440(Nomen Luni)
-; and #R64512(The Bow).
+; This guardian (page #b190, sprites 0-3) appears in #R49152(The Off Licence),
+; #R54784(To the Kitchens#SPACE(4)Main Stairway), #R61440(Nomen Luni) and
+; #R64512(The Bow).
 ; .
 ; #UDGTABLE
 ; { #guardian190,0,4 | #guardian190,1,4 | #guardian190,2,4 | #guardian190,3,4 }
@@ -7408,8 +7410,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48720 DEFB 1,224,0,0,1,208,4,8,8,212,10,192,0,8,3,176
  48736 DEFB 0,220,1,110,0,62,1,254,0,62,1,110,0,220,0,48
  48752 DEFB 0,120,0,0,0,184,1,2,2,177,0,53,1,0,0,220
-; This guardian (page #N(190), sprites 4-7) appears in #R49152(The Off
-; Licence).
+; This guardian (page #b190, sprites 4-7) appears in #R49152(The Off Licence).
 ; .
 ; #UDGTABLE
 ; { #guardian190,4,69 | #guardian190,5,69 | #guardian190,6,69 |
@@ -7423,8 +7424,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48848 DEFB 55,252,63,236,63,236,31,216,31,56,15,240,7,224,1,128
  48864 DEFB 0,0,1,128,7,224,15,240,30,184,63,252,63,244,123,254
  48880 DEFB 119,246,55,236,63,220,31,56,15,240,7,224,1,128,0,0
-; This guardian (page #N(191), sprites 0-3) appears in #R49920(At the Foot of
-; the MegaTree), #R51200(Inside the MegaTrunk), #R51456(On a Branch Over the
+; This guardian (page #b191, sprites 0-3) appears in #R49920(At the Foot of the
+; MegaTree), #R51200(Inside the MegaTrunk), #R51456(On a Branch Over the
 ; Drive), #R59392(Dr Jones will never believe this) and #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
@@ -7438,7 +7439,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  48976 DEFB 163,106,69,213,130,34,3,225,3,226,3,96,3,96,7,112
  48992 DEFB 0,0,0,0,6,48,86,48,169,192,86,160,11,224,7,244
  49008 DEFB 2,42,5,213,2,34,3,225,3,224,3,116,3,56,7,16
-; This guardian (page #N(191), sprites 4-5) appears in #R50432(The Security
+; This guardian (page #b191, sprites 4-5) appears in #R50432(The Security
 ; Guard), #R52992(I'm sure I've seen this before..) and #R53504(Up on the
 ; Battlements).
 ; .
@@ -7449,8 +7450,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
  49040 DEFB 8,130,7,44,21,80,42,164,85,68,170,132,69,0,29,192
  49056 DEFB 2,0,5,0,10,132,21,206,23,68,43,228,47,228,18,68
  49072 DEFB 8,128,7,4,21,82,42,172,85,64,170,132,69,4,29,196
-; This guardian (page #N(191), sprites 6-7) appears in #R52736(Rescue
-; Esmerelda) and #R63744(Above the West Bedroom).
+; This guardian (page #b191, sprites 6-7) appears in #R52736(Rescue Esmerelda)
+; and #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
 ; { #guardian191,6,22 | #guardian191,7,22 }
@@ -13254,7 +13255,7 @@ u64768 ADD HL,BC
 @bfix+else
 @rem=Long distance nasties fix
 @label=CHKNASTY
- 64976 BIT 1,H       ; Is #REGhl pointing to a tile in the buffer at 23552?
+ 64976 BIT 1,H       ; Is #REGhl pointing to a tile in the buffer at #N23552?
  64978 JP Z,37046    ; Kill Willy if so
 @bfix+end
  64981 RET
