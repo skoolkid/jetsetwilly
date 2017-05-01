@@ -1288,8 +1288,10 @@ c35090 LD A,(33824)  ; Pick up the current room number from #R33824
  35104 LDIR          ; }
  35106 LD IX,33008   ; Point #REGix at the first byte of the first entity
                      ; specification for the current room at #R33008
+@ignoreua
  35110 LD DE,33024   ; Point #REGde at the first byte of the first entity
-                     ; buffer at #R33024
+                     ; buffer at #R33024; this instruction is redundant, since
+                     ; #REGde already holds #N33024
  35113 LD A,8        ; There are at most eight entities in a room
 *35115 LD L,(IX+0)   ; Pick up the first byte of the entity specification
  35118 RES 7,L       ; {Point #REGhl at the corresponding entry in the table of
