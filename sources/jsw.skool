@@ -4369,8 +4369,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41060 DEFB 1                 ; Unused
  41061 DEFB 190               ; Page containing the sprite graphic data:
                               ; #R48640(#b190)
- 41062 DEFB 19                ; Minimum x-coordinate
- 41063 DEFB 29                ; Maximum x-coordinate
+ 41062 DEFB 19                ; Minimum x-coordinate: 19
+ 41063 DEFB 29                ; Maximum x-coordinate: 29
 ; The following entity definition (#b13) is used in #R52736(Rescue Esmerelda),
 ; #R52992(I'm sure I've seen this before..) and #R53248(We must perform a
 ; Quirkafleeg).
@@ -4399,8 +4399,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41068 DEFB 0                 ; Unused
  41069 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41070 DEFB 0                 ; Minimum x-coordinate
- 41071 DEFB 9                 ; Maximum x-coordinate
+ 41070 DEFB 0                 ; Minimum x-coordinate: 0
+ 41071 DEFB 9                 ; Maximum x-coordinate: 9
 ; The following entity definition (#b14) is used in #R49408(The Bridge).
 ; .
 ; #UDGTABLE
@@ -4560,8 +4560,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41124 DEFB 0                 ; Unused
  41125 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41126 DEFB 0                 ; Minimum x-coordinate
- 41127 DEFB 10                ; Maximum x-coordinate
+ 41126 DEFB 0                 ; Minimum x-coordinate: 0
+ 41127 DEFB 10                ; Maximum x-coordinate: 10
 ; The following entity definition (#b21) is used in #R49408(The Bridge),
 ; #R50176(The Drive) and #R54272(Ballroom East).
 ; .
@@ -4583,8 +4583,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41132 DEFB 0                 ; Unused
  41133 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41134 DEFB 14                ; Minimum x-coordinate
- 41135 DEFB 29                ; Maximum x-coordinate
+ 41134 DEFB 14                ; Minimum x-coordinate: 14
+ 41135 DEFB 29                ; Maximum x-coordinate: 29
 ; The following entity definition (#b22) is used in #R50176(The Drive) and
 ; #R51200(Inside the MegaTrunk).
 ; .
@@ -4606,8 +4606,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41140 DEFB 1                 ; Unused
  41141 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41142 DEFB 16                ; Minimum x-coordinate
- 41143 DEFB 29                ; Maximum x-coordinate
+ 41142 DEFB 16                ; Minimum x-coordinate: 16
+ 41143 DEFB 29                ; Maximum x-coordinate: 29
 ; The following entity definition (#b23) is used in #R50176(The Drive).
 ; .
 ; #UDGTABLE
@@ -4628,8 +4628,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41148 DEFB 0                 ; Unused
  41149 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41150 DEFB 5                 ; Minimum x-coordinate
- 41151 DEFB 29                ; Maximum x-coordinate
+ 41150 DEFB 5                 ; Minimum x-coordinate: 5
+ 41151 DEFB 29                ; Maximum x-coordinate: 29
 ; The following entity definition (#b24) is used in #R50176(The Drive),
 ; #R51200(Inside the MegaTrunk) and #R52224(Tree Top).
 ; .
@@ -4652,8 +4652,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41156 DEFB 0                 ; Unused
  41157 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41158 DEFB 0                 ; Minimum x-coordinate
- 41159 DEFB 10                ; Maximum x-coordinate
+ 41158 DEFB 0                 ; Minimum x-coordinate: 0
+ 41159 DEFB 10                ; Maximum x-coordinate: 10
 ; The following entity definition (#b25) is used in #R52480(Out on a limb).
 ; .
 ; #UDGTABLE
@@ -4675,8 +4675,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41164 DEFB 0                 ; Unused
  41165 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41166 DEFB 14                ; Minimum x-coordinate
- 41167 DEFB 23                ; Maximum x-coordinate
+ 41166 DEFB 14                ; Minimum x-coordinate: 14
+ 41167 DEFB 23                ; Maximum x-coordinate: 23
 ; The following entity definition (#b26) is used in #R49664(Under the
 ; MegaTree), #R51968(The Hall), #R52224(Tree Top) and #R59136(Emergency
 ; Generator).
@@ -4703,8 +4703,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41172 DEFB 0                 ; Unused
  41173 DEFB 182               ; Page containing the sprite graphic data:
                               ; #R46592(#b182)
- 41174 DEFB 5                 ; Minimum x-coordinate
- 41175 DEFB 30                ; Maximum x-coordinate
+ 41174 DEFB 5                 ; Minimum x-coordinate: 5
+ 41175 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b27) is used in #R51456(On a Branch Over
 ; the Drive), #R58624(Orangery), #R59392(Dr Jones will never believe this) and
 ; #R64256(The Yacht).
@@ -4755,8 +4755,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41188 DEFB 0                 ; Unused
  41189 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41190 DEFB 12                ; Minimum x-coordinate
- 41191 DEFB 29                ; Maximum x-coordinate
+ 41190 DEFB 12                ; Minimum x-coordinate: 12
+ 41191 DEFB 29                ; Maximum x-coordinate: 29
 ; The following entity definition (#b29) is used in #R60416(On top of the
 ; house), #R60672(Under the Drive), #R61440(Nomen Luni) and #R62464(Back
 ; Stairway).
@@ -4849,8 +4849,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41220 DEFB 1                 ; Unused
  41221 DEFB 184               ; Page containing the sprite graphic data:
                               ; #R47104(#b184)
- 41222 DEFB 0                 ; Minimum x-coordinate
- 41223 DEFB 30                ; Maximum x-coordinate
+ 41222 DEFB 0                 ; Minimum x-coordinate: 0
+ 41223 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b33) is used in #R54528(Ballroom West).
 ; .
 ; #UDGTABLE
@@ -4871,8 +4871,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41228 DEFB 0                 ; Unused
  41229 DEFB 184               ; Page containing the sprite graphic data:
                               ; #R47104(#b184)
- 41230 DEFB 16                ; Minimum x-coordinate
- 41231 DEFB 26                ; Maximum x-coordinate
+ 41230 DEFB 16                ; Minimum x-coordinate: 16
+ 41231 DEFB 26                ; Maximum x-coordinate: 26
 ; The following entity definition (#b34) is used in #R53760(On the Roof).
 ; .
 ; #UDGTABLE
@@ -4893,8 +4893,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41236 DEFB 1                 ; Unused
  41237 DEFB 184               ; Page containing the sprite graphic data:
                               ; #R47104(#b184)
- 41238 DEFB 14                ; Minimum x-coordinate
- 41239 DEFB 24                ; Maximum x-coordinate
+ 41238 DEFB 14                ; Minimum x-coordinate: 14
+ 41239 DEFB 24                ; Maximum x-coordinate: 24
 ; The following entity definition (#b35) is used in #R60928(Tree Root).
 ; .
 ; #UDGTABLE
@@ -4916,8 +4916,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41244 DEFB 0                 ; Unused
  41245 DEFB 184               ; Page containing the sprite graphic data:
                               ; #R47104(#b184)
- 41246 DEFB 15                ; Minimum x-coordinate
- 41247 DEFB 23                ; Maximum x-coordinate
+ 41246 DEFB 15                ; Minimum x-coordinate: 15
+ 41247 DEFB 23                ; Maximum x-coordinate: 23
 ; The following entity definition (#b36) is used in #R50176(The Drive),
 ; #R57856(Top Landing) and #R62464(Back Stairway).
 ; .
@@ -4939,8 +4939,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41252 DEFB 0                 ; Unused
  41253 DEFB 175               ; Page containing the sprite graphic data:
                               ; #R44800(#b175)
- 41254 DEFB 10                ; Minimum x-coordinate
- 41255 DEFB 30                ; Maximum x-coordinate
+ 41254 DEFB 10                ; Minimum x-coordinate: 10
+ 41255 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b37) is used in #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
@@ -4962,8 +4962,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41260 DEFB 0                 ; Unused
  41261 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41262 DEFB 8                 ; Minimum x-coordinate
- 41263 DEFB 24                ; Maximum x-coordinate
+ 41262 DEFB 8                 ; Minimum x-coordinate: 8
+ 41263 DEFB 24                ; Maximum x-coordinate: 24
 ; The following entity definition (#b38) is used in #R57344(Halfway up the East
 ; Wall).
 ; .
@@ -4985,8 +4985,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41268 DEFB 0                 ; Unused
  41269 DEFB 174               ; Page containing the sprite graphic data:
                               ; #R44544(#b174)
- 41270 DEFB 2                 ; Minimum x-coordinate
- 41271 DEFB 7                 ; Maximum x-coordinate
+ 41270 DEFB 2                 ; Minimum x-coordinate: 2
+ 41271 DEFB 7                 ; Maximum x-coordinate: 7
 ; The following entity definition (#b39) is used in #R50944(Cuckoo's Nest) and
 ; #R59904(Under the Roof).
 ; .
@@ -5009,8 +5009,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41276 DEFB 0                 ; Unused
  41277 DEFB 175               ; Page containing the sprite graphic data:
                               ; #R44800(#b175)
- 41278 DEFB 12                ; Minimum x-coordinate
- 41279 DEFB 18                ; Maximum x-coordinate
+ 41278 DEFB 12                ; Minimum x-coordinate: 12
+ 41279 DEFB 18                ; Maximum x-coordinate: 18
 ; The following entity definition (#b40) is used in #R54272(Ballroom East),
 ; #R54528(Ballroom West) and #R60928(Tree Root).
 ; .
@@ -5163,8 +5163,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41332 DEFB 0                 ; Unused
  41333 DEFB 187               ; Page containing the sprite graphic data:
                               ; #R47872(#b187)
- 41334 DEFB 0                 ; Minimum x-coordinate
- 41335 DEFB 19                ; Maximum x-coordinate
+ 41334 DEFB 0                 ; Minimum x-coordinate: 0
+ 41335 DEFB 19                ; Maximum x-coordinate: 19
 ; The following entity definition (#b47) is used in #R51200(Inside the
 ; MegaTrunk).
 ; .
@@ -5186,8 +5186,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41340 DEFB 0                 ; Unused
  41341 DEFB 187               ; Page containing the sprite graphic data:
                               ; #R47872(#b187)
- 41342 DEFB 17                ; Minimum x-coordinate
- 41343 DEFB 30                ; Maximum x-coordinate
+ 41342 DEFB 17                ; Minimum x-coordinate: 17
+ 41343 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b48) is used in #R55040(The Kitchen) and
 ; #R55296(West of Kitchen).
 ; .
@@ -5301,8 +5301,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41380 DEFB 0                 ; Unused
  41381 DEFB 181               ; Page containing the sprite graphic data:
                               ; #R46336(#b181)
- 41382 DEFB 7                 ; Minimum x-coordinate
- 41383 DEFB 22                ; Maximum x-coordinate
+ 41382 DEFB 7                 ; Minimum x-coordinate: 7
+ 41383 DEFB 22                ; Maximum x-coordinate: 22
 ; The following entity definition (#b53) is used in #R49920(At the Foot of the
 ; MegaTree) and #R64256(The Yacht).
 ; .
@@ -5325,8 +5325,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41388 DEFB 0                 ; Unused
  41389 DEFB 181               ; Page containing the sprite graphic data:
                               ; #R46336(#b181)
- 41390 DEFB 4                 ; Minimum x-coordinate
- 41391 DEFB 14                ; Maximum x-coordinate
+ 41390 DEFB 4                 ; Minimum x-coordinate: 4
+ 41391 DEFB 14                ; Maximum x-coordinate: 14
 ; The following entity definition (#b54) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
@@ -5348,8 +5348,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41396 DEFB 0                 ; Unused
  41397 DEFB 189               ; Page containing the sprite graphic data:
                               ; #R48384(#b189)
- 41398 DEFB 0                 ; Minimum x-coordinate
- 41399 DEFB 24                ; Maximum x-coordinate
+ 41398 DEFB 0                 ; Minimum x-coordinate: 0
+ 41399 DEFB 24                ; Maximum x-coordinate: 24
 ; The following entity definition (#b55) is used in #R55552(Cold Store) and
 ; #R59904(Under the Roof).
 ; .
@@ -5371,8 +5371,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41404 DEFB 0                 ; Unused
  41405 DEFB 187               ; Page containing the sprite graphic data:
                               ; #R47872(#b187)
- 41406 DEFB 0                 ; Minimum x-coordinate
- 41407 DEFB 5                 ; Maximum x-coordinate
+ 41406 DEFB 0                 ; Minimum x-coordinate: 0
+ 41407 DEFB 5                 ; Maximum x-coordinate: 5
 ; The following entity definition (#b56) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
@@ -5394,8 +5394,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41412 DEFB 0                 ; Unused
  41413 DEFB 189               ; Page containing the sprite graphic data:
                               ; #R48384(#b189)
- 41414 DEFB 0                 ; Minimum x-coordinate
- 41415 DEFB 6                 ; Maximum x-coordinate
+ 41414 DEFB 0                 ; Minimum x-coordinate: 0
+ 41415 DEFB 6                 ; Maximum x-coordinate: 6
 ; The following entity definition (#b57) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
@@ -5416,8 +5416,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41420 DEFB 0                 ; Unused
  41421 DEFB 187               ; Page containing the sprite graphic data:
                               ; #R47872(#b187)
- 41422 DEFB 0                 ; Minimum x-coordinate
- 41423 DEFB 9                 ; Maximum x-coordinate
+ 41422 DEFB 0                 ; Minimum x-coordinate: 0
+ 41423 DEFB 9                 ; Maximum x-coordinate: 9
 ; The following entity definition (#b58) is used in #R57856(Top Landing).
 ; .
 ; #UDGTABLE
@@ -5459,8 +5459,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41436 DEFB 0                 ; Unused
  41437 DEFB 185               ; Page containing the sprite graphic data:
                               ; #R47360(#b185)
- 41438 DEFB 0                 ; Minimum x-coordinate
- 41439 DEFB 27                ; Maximum x-coordinate
+ 41438 DEFB 0                 ; Minimum x-coordinate: 0
+ 41439 DEFB 27                ; Maximum x-coordinate: 27
 ; The following entity definition (#b60) is used in #R50944(Cuckoo's Nest),
 ; #R51456(On a Branch Over the Drive), #R51968(The Hall), #R52992(I'm sure I've
 ; seen this before..), #R53248(We must perform a Quirkafleeg),
@@ -5500,8 +5500,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41452 DEFB 0                 ; Unused
  41453 DEFB 173               ; Page containing the sprite graphic data:
                               ; #R44288(#b173)
- 41454 DEFB 16                ; Minimum x-coordinate
- 41455 DEFB 30                ; Maximum x-coordinate
+ 41454 DEFB 16                ; Minimum x-coordinate: 16
+ 41455 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b62) is used in #R51456(On a Branch Over
 ; the Drive).
 ; .
@@ -5548,8 +5548,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41476 DEFB 0                 ; Unused
  41477 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41478 DEFB 0                 ; Minimum x-coordinate
- 41479 DEFB 27                ; Maximum x-coordinate
+ 41478 DEFB 0                 ; Minimum x-coordinate: 0
+ 41479 DEFB 27                ; Maximum x-coordinate: 27
 ; The following entity definition (#b65) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
@@ -5570,8 +5570,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41484 DEFB 0                 ; Unused
  41485 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41486 DEFB 4                 ; Minimum x-coordinate
- 41487 DEFB 27                ; Maximum x-coordinate
+ 41486 DEFB 4                 ; Minimum x-coordinate: 4
+ 41487 DEFB 27                ; Maximum x-coordinate: 27
 ; The following entity definition (#b66) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
@@ -5592,8 +5592,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41492 DEFB 0                 ; Unused
  41493 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41494 DEFB 2                 ; Minimum x-coordinate
- 41495 DEFB 27                ; Maximum x-coordinate
+ 41494 DEFB 2                 ; Minimum x-coordinate: 2
+ 41495 DEFB 27                ; Maximum x-coordinate: 27
 ; The following entity definition (#b67) is used in #R56320(First Landing).
 ; .
 ; #UDGTABLE
@@ -5614,8 +5614,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41500 DEFB 0                 ; Unused
  41501 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41502 DEFB 24                ; Minimum x-coordinate
- 41503 DEFB 30                ; Maximum x-coordinate
+ 41502 DEFB 24                ; Minimum x-coordinate: 24
+ 41503 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b68) is used in #R60672(Under the Drive).
 ; .
 ; #UDGTABLE
@@ -5635,8 +5635,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41508 DEFB 0                 ; Unused
  41509 DEFB 174               ; Page containing the sprite graphic data:
                               ; #R44544(#b174)
- 41510 DEFB 21                ; Minimum x-coordinate
- 41511 DEFB 30                ; Maximum x-coordinate
+ 41510 DEFB 21                ; Minimum x-coordinate: 21
+ 41511 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b69) is used in #R51968(The Hall),
 ; #R52224(Tree Top), #R52992(I'm sure I've seen this before..), #R53504(Up on
 ; the Battlements), #R58368(A bit of tree) and #R59648(The Attic).
@@ -5766,8 +5766,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41556 DEFB 0                 ; Unused
  41557 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41558 DEFB 4                 ; Minimum x-coordinate
- 41559 DEFB 20                ; Maximum x-coordinate
+ 41558 DEFB 4                 ; Minimum x-coordinate: 4
+ 41559 DEFB 20                ; Maximum x-coordinate: 20
 ; The following entity definition (#b75) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
@@ -5789,8 +5789,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41564 DEFB 0                 ; Unused
  41565 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41566 DEFB 12                ; Minimum x-coordinate
- 41567 DEFB 28                ; Maximum x-coordinate
+ 41566 DEFB 12                ; Minimum x-coordinate: 12
+ 41567 DEFB 28                ; Maximum x-coordinate: 28
 ; The following entity definition (#b76) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
@@ -5813,8 +5813,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41572 DEFB 0                 ; Unused
  41573 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41574 DEFB 9                 ; Minimum x-coordinate
- 41575 DEFB 20                ; Maximum x-coordinate
+ 41574 DEFB 9                 ; Minimum x-coordinate: 9
+ 41575 DEFB 20                ; Maximum x-coordinate: 20
 ; The following entity definition (#b77) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
@@ -5836,8 +5836,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41580 DEFB 0                 ; Unused
  41581 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41582 DEFB 22                ; Minimum x-coordinate
- 41583 DEFB 27                ; Maximum x-coordinate
+ 41582 DEFB 22                ; Minimum x-coordinate: 22
+ 41583 DEFB 27                ; Maximum x-coordinate: 27
 ; The following entity definition (#b78) is used in #R54016(The Forgotten
 ; Abbey) and #R57088(Swimming Pool).
 ; .
@@ -5859,8 +5859,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41588 DEFB 0                 ; Unused
  41589 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41590 DEFB 5                 ; Minimum x-coordinate
- 41591 DEFB 12                ; Maximum x-coordinate
+ 41590 DEFB 5                 ; Minimum x-coordinate: 5
+ 41591 DEFB 12                ; Maximum x-coordinate: 12
 ; The following entity definition (#b79) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
@@ -5883,8 +5883,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41596 DEFB 0                 ; Unused
  41597 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41598 DEFB 11                ; Minimum x-coordinate
- 41599 DEFB 18                ; Maximum x-coordinate
+ 41598 DEFB 11                ; Minimum x-coordinate: 11
+ 41599 DEFB 18                ; Maximum x-coordinate: 18
 ; The following entity definition (#b80) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
@@ -5906,8 +5906,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41604 DEFB 0                 ; Unused
  41605 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41606 DEFB 16                ; Minimum x-coordinate
- 41607 DEFB 23                ; Maximum x-coordinate
+ 41606 DEFB 16                ; Minimum x-coordinate: 16
+ 41607 DEFB 23                ; Maximum x-coordinate: 23
 ; The following entity definition (#b81) is used in #R54016(The Forgotten
 ; Abbey).
 ; .
@@ -5929,8 +5929,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41612 DEFB 0                 ; Unused
  41613 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41614 DEFB 23                ; Minimum x-coordinate
- 41615 DEFB 30                ; Maximum x-coordinate
+ 41614 DEFB 23                ; Minimum x-coordinate: 23
+ 41615 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b82) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
@@ -6084,8 +6084,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41668 DEFB 0                 ; Unused
  41669 DEFB 181               ; Page containing the sprite graphic data:
                               ; #R46336(#b181)
- 41670 DEFB 19                ; Minimum x-coordinate
- 41671 DEFB 30                ; Maximum x-coordinate
+ 41670 DEFB 19                ; Minimum x-coordinate: 19
+ 41671 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b89) is used in #R51968(The Hall) and
 ; #R62976(West#SPACE(2)Wing).
 ; .
@@ -6130,8 +6130,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41684 DEFB 0                 ; Unused
  41685 DEFB 174               ; Page containing the sprite graphic data:
                               ; #R44544(#b174)
- 41686 DEFB 0                 ; Minimum x-coordinate
- 41687 DEFB 11                ; Maximum x-coordinate
+ 41686 DEFB 0                 ; Minimum x-coordinate: 0
+ 41687 DEFB 11                ; Maximum x-coordinate: 11
 ; The following entity definition (#b91) is used in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
@@ -6153,8 +6153,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41692 DEFB 0                 ; Unused
  41693 DEFB 190               ; Page containing the sprite graphic data:
                               ; #R48640(#b190)
- 41694 DEFB 13                ; Minimum x-coordinate
- 41695 DEFB 21                ; Maximum x-coordinate
+ 41694 DEFB 13                ; Minimum x-coordinate: 13
+ 41695 DEFB 21                ; Maximum x-coordinate: 21
 ; The following entity definition (#b92) is used in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway) and #R62464(Back Stairway).
 ; .
@@ -6177,8 +6177,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41700 DEFB 0                 ; Unused
  41701 DEFB 183               ; Page containing the sprite graphic data:
                               ; #R46848(#b183)
- 41702 DEFB 12                ; Minimum x-coordinate
- 41703 DEFB 24                ; Maximum x-coordinate
+ 41702 DEFB 12                ; Minimum x-coordinate: 12
+ 41703 DEFB 24                ; Maximum x-coordinate: 24
 ; The following entity definition (#b93) is used in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
@@ -6200,8 +6200,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41708 DEFB 0                 ; Unused
  41709 DEFB 185               ; Page containing the sprite graphic data:
                               ; #R47360(#b185)
- 41710 DEFB 2                 ; Minimum x-coordinate
- 41711 DEFB 6                 ; Maximum x-coordinate
+ 41710 DEFB 2                 ; Minimum x-coordinate: 2
+ 41711 DEFB 6                 ; Maximum x-coordinate: 6
 ; The following entity definition (#b94) is used in #R54784(To the
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
@@ -6223,8 +6223,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41716 DEFB 0                 ; Unused
  41717 DEFB 175               ; Page containing the sprite graphic data:
                               ; #R44800(#b175)
- 41718 DEFB 0                 ; Minimum x-coordinate
- 41719 DEFB 30                ; Maximum x-coordinate
+ 41718 DEFB 0                 ; Minimum x-coordinate: 0
+ 41719 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b95) is used in #R51968(The Hall) and
 ; #R54784(To the Kitchens#SPACE(4)Main Stairway).
 ; .
@@ -6249,8 +6249,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41724 DEFB 0                 ; Unused
  41725 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41726 DEFB 9                 ; Minimum x-coordinate
- 41727 DEFB 17                ; Maximum x-coordinate
+ 41726 DEFB 9                 ; Minimum x-coordinate: 9
+ 41727 DEFB 17                ; Maximum x-coordinate: 17
 ; The following entity definition (#b96) is used in #R55808(East Wall Base).
 ; .
 ; #UDGTABLE
@@ -6317,8 +6317,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41748 DEFB 0                 ; Unused
  41749 DEFB 175               ; Page containing the sprite graphic data:
                               ; #R44800(#b175)
- 41750 DEFB 7                 ; Minimum x-coordinate
- 41751 DEFB 20                ; Maximum x-coordinate
+ 41750 DEFB 7                 ; Minimum x-coordinate: 7
+ 41751 DEFB 20                ; Maximum x-coordinate: 20
 ; The following entity definition (#b99) is used in #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
@@ -6338,8 +6338,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41756 DEFB 0                 ; Unused
  41757 DEFB 173               ; Page containing the sprite graphic data:
                               ; #R44288(#b173)
- 41758 DEFB 7                 ; Minimum x-coordinate
- 41759 DEFB 17                ; Maximum x-coordinate
+ 41758 DEFB 7                 ; Minimum x-coordinate: 7
+ 41759 DEFB 17                ; Maximum x-coordinate: 17
 ; The following entity definition (#b100) is used in #R56064(The Chapel) and
 ; #R56832(The Banyan Tree).
 ; .
@@ -6433,8 +6433,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41788 DEFB 0                 ; Unused
  41789 DEFB 180               ; Page containing the sprite graphic data:
                               ; #R46080(#b180)
- 41790 DEFB 0                 ; Minimum x-coordinate
- 41791 DEFB 15                ; Maximum x-coordinate
+ 41790 DEFB 0                 ; Minimum x-coordinate: 0
+ 41791 DEFB 15                ; Maximum x-coordinate: 15
 ; The following entity definition (#b104) is used in #R58368(A bit of tree) and
 ; #R61440(Nomen Luni).
 ; .
@@ -6456,8 +6456,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41796 DEFB 0                 ; Unused
  41797 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41798 DEFB 0                 ; Minimum x-coordinate
- 41799 DEFB 10                ; Maximum x-coordinate
+ 41798 DEFB 0                 ; Minimum x-coordinate: 0
+ 41799 DEFB 10                ; Maximum x-coordinate: 10
 ; The following entity definition (#b105) is used in #R64512(The Bow).
 ; .
 ; #UDGTABLE
@@ -6477,8 +6477,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41804 DEFB 0                 ; Unused
  41805 DEFB 190               ; Page containing the sprite graphic data:
                               ; #R48640(#b190)
- 41806 DEFB 22                ; Minimum x-coordinate
- 41807 DEFB 30                ; Maximum x-coordinate
+ 41806 DEFB 22                ; Minimum x-coordinate: 22
+ 41807 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b106) is used in #R60160(Conservatory
 ; Roof).
 ; .
@@ -6500,8 +6500,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41812 DEFB 0                 ; Unused
  41813 DEFB 174               ; Page containing the sprite graphic data:
                               ; #R44544(#b174)
- 41814 DEFB 17                ; Minimum x-coordinate
- 41815 DEFB 30                ; Maximum x-coordinate
+ 41814 DEFB 17                ; Minimum x-coordinate: 17
+ 41815 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b107) is used in #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
@@ -6521,8 +6521,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41820 DEFB 0                 ; Unused
  41821 DEFB 190               ; Page containing the sprite graphic data:
                               ; #R48640(#b190)
- 41822 DEFB 18                ; Minimum x-coordinate
- 41823 DEFB 22                ; Maximum x-coordinate
+ 41822 DEFB 18                ; Minimum x-coordinate: 18
+ 41823 DEFB 22                ; Maximum x-coordinate: 22
 ; The following entity definition (#b108) is used in #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
@@ -6543,8 +6543,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41828 DEFB 0                 ; Unused
  41829 DEFB 187               ; Page containing the sprite graphic data:
                               ; #R47872(#b187)
- 41830 DEFB 11                ; Minimum x-coordinate
- 41831 DEFB 18                ; Maximum x-coordinate
+ 41830 DEFB 11                ; Minimum x-coordinate: 11
+ 41831 DEFB 18                ; Maximum x-coordinate: 18
 ; The following entity definition (#b109) is used in #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
@@ -6566,8 +6566,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41836 DEFB 0                 ; Unused
  41837 DEFB 188               ; Page containing the sprite graphic data:
                               ; #R48128(#b188)
- 41838 DEFB 9                 ; Minimum x-coordinate
- 41839 DEFB 30                ; Maximum x-coordinate
+ 41838 DEFB 9                 ; Minimum x-coordinate: 9
+ 41839 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b110) is used in #R64512(The Bow).
 ; .
 ; #UDGTABLE
@@ -6587,8 +6587,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41844 DEFB 0                 ; Unused
  41845 DEFB 174               ; Page containing the sprite graphic data:
                               ; #R44544(#b174)
- 41846 DEFB 17                ; Minimum x-coordinate
- 41847 DEFB 30                ; Maximum x-coordinate
+ 41846 DEFB 17                ; Minimum x-coordinate: 17
+ 41847 DEFB 30                ; Maximum x-coordinate: 30
 ; The following entity definition (#b111) is used in #R50944(Cuckoo's Nest).
 ; .
 ; #UDGTABLE
@@ -6608,8 +6608,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
  41852 DEFB 0                 ; Unused
  41853 DEFB 181               ; Page containing the sprite graphic data:
                               ; #R46336(#b181)
- 41854 DEFB 0                 ; Minimum x-coordinate
- 41855 DEFB 11                ; Maximum x-coordinate
+ 41854 DEFB 0                 ; Minimum x-coordinate: 0
+ 41855 DEFB 11                ; Maximum x-coordinate: 11
 ; The next 15 entity definitions (#b112-#b126) are unused.
  41856 DEFB 0,0,0,0,0,0,0,0
  41864 DEFB 0,0,0,0,0,0,0,0

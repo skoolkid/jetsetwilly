@@ -201,8 +201,8 @@ class JetSetWilly:
                     desc3 = 'Pixel y-coordinate: {}'.format(entity_def[3] // 2)
                     desc4 = 'Unused'
                     desc5 = 'Page containing the sprite graphic data: #R{}(#b{})'.format(entity_def[5] * 256, entity_def[5])
-                    desc6 = 'Minimum x-coordinate'
-                    desc7 = 'Maximum x-coordinate'
+                    desc6 = 'Minimum x-coordinate: {}'.format(entity_def[6])
+                    desc7 = 'Maximum x-coordinate: {}'.format(entity_def[7])
                 elif entity_type & 3 == 2:
                     desc0_infix = ''
                     if frame_mask != '000':
