@@ -137,7 +137,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             value = (self.snapshot[addr] + i) & 255
             code = '{}{}{}{}'.format((value >> 6) + 1, ((value >> 4) & 3) + 1, ((value >> 2) & 3) + 1, (value & 3) + 1)
             grid_loc = chr(65 + (i % 18)) + chr(48 + i // 18)
-            lines.append('{{ #N{} | #N{} | {} | {} }}'.format(addr, self.snapshot[addr], grid_loc, code))
+            lines.append('{{ #N{} | #N{},,,1(0x) | {} | {} }}'.format(addr, self.snapshot[addr], grid_loc, code))
         lines.append('TABLE#')
         return '\n'.join(lines)
 

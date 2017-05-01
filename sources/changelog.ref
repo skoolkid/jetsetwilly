@@ -6,8 +6,10 @@ SectionType=BulletPoints
 [Changelog:YYYYMMDD]
 -
 
+- Ported the disassembly to SkoolKit 6
 - Fixed comments in the entry at #R36796 with regard to ramps (thanks IRF)
 - Documented a bug: #BUG#missedNote() (thanks IRF)
+- Made more improvements to the hexadecimal version of the disassembly
 
 [Changelog:20161105]
 -
