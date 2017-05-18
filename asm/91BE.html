@@ -181,7 +181,7 @@ We are dealing with a horizontal or vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91e5"></span>91E5</td>
 <td class="instruction">RLCA</td>
-<td class="comment-11" rowspan="4"><span class="register">H</span>=92 or 93; now <span class="register">HL</span> holds the address of the guardian's current location in the attribute buffer at <a href="5C00.html">5C00</a></td>
+<td class="comment-11" rowspan="4"><span class="register">H</span>=0x5C or 0x5D; now <span class="register">HL</span> holds the address of the guardian's current location in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -361,13 +361,13 @@ We are dealing with a horizontal or vertical guardian.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9214"></span>9214</td>
 <td class="instruction">AND (IX+$00)</td>
-<td class="comment-11" rowspan="1">AND on the current animation frame (bits 5-7)</td>
+<td class="comment-11" rowspan="1">'AND' on the current animation frame (bits 5-7)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9217"></span>9217</td>
 <td class="instruction">OR (IX+$02)</td>
-<td class="comment-11" rowspan="1">OR on the base sprite index (bits 5-7)</td>
+<td class="comment-11" rowspan="1">'OR' on the base sprite index (bits 5-7)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -527,7 +527,7 @@ We are dealing with an arrow.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="924f"></span>924F</td>
 <td class="instruction">LD BC,$0280</td>
-<td class="comment-11" rowspan="1">Prepare the delay counters (<span class="register">B</span>=2, <span class="register">C</span>=128) for the arrow sound effect</td>
+<td class="comment-11" rowspan="1">Prepare the delay counters (<span class="register">B</span>=0x02, <span class="register">C</span>=0x80) for the arrow sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -653,7 +653,7 @@ We are dealing with an arrow.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9278"></span>9278</td>
 <td class="instruction">LD (IX+$05),$00</td>
-<td class="comment-11" rowspan="1">Initialise the collision detection byte (0=off, 255=on)</td>
+<td class="comment-11" rowspan="1">Initialise the collision detection byte (0x00=off, 0xFF=on)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -831,7 +831,7 @@ We are dealing with a rope.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b2"></span>92B2</td>
 <td class="instruction">LD (IX+$05),$80</td>
-<td class="comment-11" rowspan="1">Initialise the sixth byte of the rope's buffer to 128 (bit 7 set); the value held here is used to draw the segment of rope under consideration</td>
+<td class="comment-11" rowspan="1">Initialise the sixth byte of the rope's buffer to 0x80 (bit 7 set); the value held here is used to draw the segment of rope under consideration</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="4">
@@ -1295,7 +1295,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9361"></span>9361</td>
 <td class="instruction">BIT 7,A</td>
-<td class="comment-11" rowspan="1">Has Willy recently jumped off the rope or dropped off the bottom of it (<span class="register">A</span>&gt;=240)?</td>
+<td class="comment-11" rowspan="1">Has Willy recently jumped off the rope or dropped off the bottom of it (<span class="register">A</span>&gt;=0xF0)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1451,7 +1451,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9395"></span>9395</td>
 <td class="instruction">CP $0C</td>
-<td class="comment-11" rowspan="1">Is it 12 or greater?</td>
+<td class="comment-11" rowspan="1">Is it 0x0C or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1463,7 +1463,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9399"></span>9399</td>
 <td class="instruction">LD (HL),$0C</td>
-<td class="comment-11" rowspan="1">Set the rope status indicator at <a href="85D6.html">85D6</a> to 12 (there is nowhere to go above this rope)</td>
+<td class="comment-11" rowspan="1">Set the rope status indicator at <a href="85D6.html">85D6</a> to 0x0C (there is nowhere to go above this rope)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1493,7 +1493,7 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93a3"></span>93A3</td>
 <td class="instruction">LD (HL),$F0</td>
-<td class="comment-11" rowspan="1">Set the rope status indicator at <a href="85D6.html">85D6</a> to 240 (Willy has just dropped off the bottom of the rope)</td>
+<td class="comment-11" rowspan="1">Set the rope status indicator at <a href="85D6.html">85D6</a> to 0xF0 (Willy has just dropped off the bottom of the rope)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -1568,9 +1568,9 @@ The current entity has been dealt with. Time for the next one.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

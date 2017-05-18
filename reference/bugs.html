@@ -25,6 +25,7 @@
 <li><a href="#longDistanceNasties">Long distance nasties</a></li>
 <li><a href="#dontMindYourHead">Don't mind your head</a></li>
 <li><a href="#stuckInTheWall">Stuck in the wall</a></li>
+<li><a href="#missedNote">The missed note</a></li>
 <li><a href="#theBlankConveyor">The blank conveyor</a></li>
 <li><a href="#corruptedConveyors">Corrupted conveyors</a></li>
 <li><a href="#veryCorruptedConveyor">Very corrupted conveyor</a></li>
@@ -331,12 +332,22 @@ through wall tiles at head height, but not left to right (see
 <a href="bugs.html#dontMindYourHead">Don't mind your head</a>).
 </div>
 </div>
-<div><span id="theBlankConveyor"></span></div>
+<div><span id="missedNote"></span></div>
 <div class="box box-2">
+<div class="box-title">The missed note</div>
+<div class="paragraph">
+Each note of the <a href="../asm/865F.html">in-game tune</a> is played twice by the section of code
+at <a href="../asm/8B07.html#8b3c">8B3C</a>, <em>except</em> the first note when a new game starts. This is
+because the in-game music note index at <a href="../asm/85E1.html">85E1</a> is incremented from 0 to 1 on
+the first pass through the code <em>before</em> the first note is played.
+</div>
+</div>
+<div><span id="theBlankConveyor"></span></div>
+<div class="box box-1">
 <div class="box-title">The blank conveyor</div>
 <div class="paragraph">
 The conveyor tile in <a href="../asm/EB00.html">Conservatory Roof</a> is completely blank and its
-attribute byte is 255 - a solid, bright white block - which is characteristic
+attribute byte is 0xFF - a solid, bright white block - which is characteristic
 of unused tiles elsewhere. However, the conveyor tile <em>is</em> used in this
 room, and it doesn't look good:
 </div>
@@ -349,15 +360,15 @@ room, and it doesn't look good:
 </div>
 </div>
 <div><span id="corruptedConveyors"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Corrupted conveyors</div>
 <div class="paragraph">
 The conveyors in <a href="../asm/D800.html">West of Kitchen</a>, <a href="../asm/DD00.html">The Nightmare Room</a>,
 <a href="../asm/F100.html">The Wine Cellar</a> and <a href="../asm/F300.html">Tool&#160;&#160;Shed</a> don't look quite as
 they should. The reason for this is a bug in the code at <a href="../asm/8D33.html#8d51">8D51</a>: if a graphic
 data byte of the background, floor, wall, nasty or ramp tile in a room matches
-the attribute byte of the conveyor tile to be drawn, the CPIR instruction exits
-early, leaving <span class="register">HL</span> pointing at the wrong location.
+the attribute byte of the conveyor tile to be drawn, the 'CPIR' instruction
+exits early, leaving <span class="register">HL</span> pointing at the wrong location.
 </div>
 <div class="paragraph">
 Here are some 'before' and 'after' pictures showing what the conveyors actually
@@ -409,7 +420,7 @@ To fix the bug:
 </div>
 </div>
 <div><span id="veryCorruptedConveyor"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Very corrupted conveyor</div>
 <div class="paragraph">
 You might be thinking that the fix given above for the corrupted conveyors bug
@@ -434,9 +445,9 @@ reasonable appearance:
 </table>
 </div>
 <div class="paragraph">
-In addition, if the byte at DDD5 (0x55) is shifted back round to
-DDCC it seems to fix the appearance of the ramp tile (by filling the gap at
-the bottom):
+In addition, if the byte at DDD5 (0x55) is shifted back round to DDCC,
+it seems to fix the appearance of the ramp tile (by filling the gap at the
+bottom):
 </div>
 <div class="paragraph">
 <table class="gallery">
@@ -452,10 +463,10 @@ the bottom):
 </div>
 </div>
 <div><span id="invalidGridLocation"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Invalid grid location</div>
 <div class="paragraph">
-If the LSB of the system variable FRAMES is 142 when the game starts, the
+If the LSB of the system variable FRAMES is 0x8E when the game starts, the
 routine at <a href="../asm/86C3.html">86C3</a> will ask for the code at the grid location 'D>', which
 doesn't exist on the code sheet.
 </div>
@@ -467,12 +478,12 @@ POKE <a href="../asm/86C3.html#86fb">34556</a>,180
 </div>
 </div>
 <div><span id="thePauseBug"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">The pause bug</div>
 <div class="paragraph">
 The Spectrum will hang when trying to resume the game after being paused if an
-Interface 1 is connected. This happens because the <span class="register">C</span> register holds 0
-instead of 254 when the keyboard is read by the IN A,(C) instruction at
+Interface 1 is connected. This happens because the <span class="register">C</span> register holds 0x00
+instead of 0xFE when the keyboard is read by the 'IN A,(C)' instruction at
 <a href="../asm/8B07.html#8b24">8B24</a>.
 </div>
 <div class="paragraph">
@@ -480,7 +491,7 @@ POKE <a href="../asm/8B07.html#8b1f">35615</a>,62: POKE <a href="../asm/8B07.htm
 </div>
 </div>
 <div><span id="theAtticBug"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">The Attic bug</div>
 <div class="paragraph">
 Perhaps the most famous of all the bugs in Jet Set Willy, the Attic bug is
@@ -492,10 +503,10 @@ The root cause of the bug is a misplaced arrow, defined by the entity
 specification at <a href="../asm/E900.html#e9fc">E9FC</a>. The second byte of the entity specification is an
 index into the table of screen buffer addresses at <a href="../asm/8200.html">8200</a>, and determines the
 arrow's y-coordinate; the index should be an even number, but the value of the
-second byte is 0xD5, which means the arrow-drawing routine at
-<a href="../asm/91BE.html">91BE</a> looks up the word at 82D5 and finds A06A, way outside the
-actual screen buffer at 6000-6FFF. As a result, the misplaced arrow is
-'drawn' at the following addresses:
+second byte is 0xD5, which means the arrow-drawing routine at <a href="../asm/91BE.html">91BE</a> looks up
+the word at 82D5 and finds A06A, way outside the actual screen buffer
+at 6000-6FFF. As a result, the misplaced arrow is 'drawn' at the
+following addresses:
 </div>
 <div class="paragraph">
 <ul class="">
@@ -516,9 +527,9 @@ which sets the pixel y-coordinate of the arrow to 41.
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

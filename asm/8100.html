@@ -26,7 +26,7 @@
 <td class="routine-comment" colspan="4">
 <div class="details">
 <div class="paragraph">
-Initialised by the routine at <a href="88FC.html">88FC</a>, and used by the routines at <a href="90C0.html">90C0</a> and <a href="91BE.html">91BE</a>. There are eight buffers here, each one eight bytes long, used to hold the state of the entities (rope, arrows and guardians) in the current room.
+Initialised by the routine at <a href="8912.html">8912</a>, and used by the routines at <a href="90C0.html">90C0</a> and <a href="91BE.html">91BE</a>. There are eight buffers here, each one eight bytes long, used to hold the state of the entities (rope, arrows and guardians) in the current room.
 </div>
 <div class="paragraph">
 For a horizontal guardian, the eight bytes are used as follows:
@@ -190,7 +190,7 @@ For an arrow, the eight bytes are used as follows:
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="1">5</td>
-<td class="" colspan="1" rowspan="1">Collision detection byte (0=off, 255=on)</td>
+<td class="" colspan="1" rowspan="1">Collision detection byte (0x00=off, 0xFF=on)</td>
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="1">6</td>
@@ -235,7 +235,7 @@ The rope uses the second and fourth bytes of the following buffer in addition to
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="1">4</td>
-<td class="" colspan="1" rowspan="1">Length (32)</td>
+<td class="" colspan="1" rowspan="1">Length (0x20)</td>
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="1">5</td>
@@ -247,11 +247,11 @@ The rope uses the second and fourth bytes of the following buffer in addition to
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="1">7</td>
-<td class="" colspan="1" rowspan="1">Animation frame at which the rope changes direction (54)</td>
+<td class="" colspan="1" rowspan="1">Animation frame at which the rope changes direction (0x36)</td>
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="1">9</td>
-<td class="" colspan="1" rowspan="1">Index of the segment of rope being drawn (0-32)</td>
+<td class="" colspan="1" rowspan="1">Index of the segment of rope being drawn (0x00-0x20)</td>
 </tr>
 <tr>
 <td class="centre" colspan="1" rowspan="2">11</td>
@@ -343,9 +343,9 @@ Note that if a rope were the eighth entity specified in a room, its buffer would
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

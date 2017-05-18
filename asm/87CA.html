@@ -122,7 +122,7 @@ The first thing this routine does is initialise some game status buffer variable
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87ea"></span>87EA</td>
 <td class="instruction">LD A,$21</td>
-<td class="comment-11" rowspan="2">Initialise the current room number at <a href="8420.html">8420</a> to 33 (<a href="E100.html">The Bathroom</a>)</td>
+<td class="comment-11" rowspan="2">Initialise the current room number at <a href="8420.html">8420</a> to 0x21 (<a href="E100.html">The Bathroom</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -182,7 +182,7 @@ The first thing this routine does is initialise some game status buffer variable
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8800"></span>8800</td>
 <td class="instruction">LD H,$A4</td>
-<td class="comment-11" rowspan="1">Page <a href="A400.html">A4</a> holds the first byte of each entry in the item table</td>
+<td class="comment-11" rowspan="1">Page <a href="A400.html">0xA4</a> holds the first byte of each entry in the item table</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -294,7 +294,7 @@ Next, prepare the screen.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8828"></span>8828</td>
 <td class="instruction">LD HL,$5A60</td>
-<td class="comment-11" rowspan="5">Copy the attribute value 70 (INK 6: PAPER 0: BRIGHT 1) into the row of 32 cells from (19,0) to (19,31) on the screen</td>
+<td class="comment-11" rowspan="5">Copy the attribute value 0x46 (INK 6: PAPER 0: BRIGHT 1) into the row of 32 cells from (19,0) to (19,31) on the screen</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -355,7 +355,7 @@ Next, prepare the screen.
 <span id="8844"></span>
 <div class="comments">
 <div class="paragraph">
-The following loop scans the top two-thirds of the attribute file, which contains values 0, 4, 5, 8, 9, 36, 37, 40, 41, 44, 45 and 211 (copied from <a href="9800.html">9800</a>). Whenever a value other than 0, 9, 36, 45 or 211 is found, a triangle UDG is drawn at the corresponding location in the display file.
+The following loop scans the top two-thirds of the attribute file, which contains values 0x00, 0x04, 0x05, 0x08, 0x09, 0x24, 0x25, 0x28, 0x29, 0x2C, 0x2D and 0xD3 (copied from <a href="9800.html">9800</a>). Whenever a value other than 0x00, 0x09, 0x24, 0x2D or 0xD3 is found, a triangle UDG is drawn at the corresponding location in the display file.
 </div>
 </div>
 </td>
@@ -370,7 +370,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8845"></span>8845</td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Is it 0 (INK 0: PAPER 0)?</td>
+<td class="comment-11" rowspan="1">Is it 0x00 (INK 0: PAPER 0)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -382,7 +382,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8848"></span>8848</td>
 <td class="instruction">CP $D3</td>
-<td class="comment-11" rowspan="1">Is it 211 (INK 3: PAPER 2: BRIGHT 1: FLASH 1)?</td>
+<td class="comment-11" rowspan="1">Is it 0xD3 (INK 3: PAPER 2: BRIGHT 1: FLASH 1)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -394,7 +394,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="884c"></span>884C</td>
 <td class="instruction">CP $09</td>
-<td class="comment-11" rowspan="1">Is it 9 (INK 1: PAPER 1)?</td>
+<td class="comment-11" rowspan="1">Is it 0x09 (INK 1: PAPER 1)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -406,7 +406,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8850"></span>8850</td>
 <td class="instruction">CP $2D</td>
-<td class="comment-11" rowspan="1">Is it 45 (INK 5: PAPER 5)?</td>
+<td class="comment-11" rowspan="1">Is it 0x2D (INK 5: PAPER 5)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -418,7 +418,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8854"></span>8854</td>
 <td class="instruction">CP $24</td>
-<td class="comment-11" rowspan="1">Is it 36 (INK 4: PAPER 4)?</td>
+<td class="comment-11" rowspan="1">Is it 0x24 (INK 4: PAPER 4)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -436,7 +436,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="885a"></span>885A</td>
 <td class="instruction">CP $08</td>
-<td class="comment-11" rowspan="1">Is the attribute value 8 (INK 0: PAPER 1)?</td>
+<td class="comment-11" rowspan="1">Is the attribute value 0x08 (INK 0: PAPER 1)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -448,7 +448,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="885e"></span>885E</td>
 <td class="instruction">CP $29</td>
-<td class="comment-11" rowspan="1">Is it 41 (INK 1: PAPER 5)?</td>
+<td class="comment-11" rowspan="1">Is it 0x29 (INK 1: PAPER 5)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -460,7 +460,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8862"></span>8862</td>
 <td class="instruction">CP $2C</td>
-<td class="comment-11" rowspan="1">Is it 44 (INK 4: PAPER 5)?</td>
+<td class="comment-11" rowspan="1">Is it 0x2C (INK 4: PAPER 5)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -472,7 +472,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8866"></span>8866</td>
 <td class="instruction">CP $05</td>
-<td class="comment-11" rowspan="1">Is it 5 (INK 5: PAPER 0)?</td>
+<td class="comment-11" rowspan="1">Is it 0x05 (INK 5: PAPER 0)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -484,7 +484,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="886a"></span>886A</td>
 <td class="instruction">LD C,$10</td>
-<td class="comment-11" rowspan="1">Set the triangle UDG offset to 16</td>
+<td class="comment-11" rowspan="1">Set the triangle UDG offset to 0x10</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -496,7 +496,7 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="886e"></span>886E</td>
 <td class="instruction">LD A,$25</td>
-<td class="comment-11" rowspan="2">Change the attribute byte here from 44 (INK 4: PAPER 5) to 37 (INK 5: PAPER 4)</td>
+<td class="comment-11" rowspan="2">Change the attribute byte here from 0x2C (INK 4: PAPER 5) to 0x25 (INK 5: PAPER 4)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -650,7 +650,7 @@ Now check whether there is a joystick connected.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8895"></span>8895</td>
 <td class="instruction">LD BC,$001F</td>
-<td class="comment-11" rowspan="1"><span class="register">B</span>=0, <span class="register">C</span>=31 (joystick port)</td>
+<td class="comment-11" rowspan="1">This is the joystick port</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -756,7 +756,7 @@ And finally, play the theme tune and check for keypresses.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88b8"></span>88B8</td>
 <td class="instruction">LD HL,$5A60</td>
-<td class="comment-11" rowspan="5">Copy the attribute value 79 (INK 7: PAPER 1: BRIGHT 1) into the row of 32 cells from (19,0) to (19,31) on the screen</td>
+<td class="comment-11" rowspan="5">Copy the attribute value 0x4F (INK 7: PAPER 1: BRIGHT 1) into the row of 32 cells from (19,0) to (19,31) on the screen</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -834,7 +834,7 @@ And finally, play the theme tune and check for keypresses.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88d9"></span>88D9</td>
 <td class="instruction">LD A,($85E4)</td>
-<td class="comment-11" rowspan="3">Prepare a value between 50 and 81 in <span class="register">A</span> (for the routine at <a href="96DE.html">96DE</a>)</td>
+<td class="comment-11" rowspan="3">Prepare a value between 0x32 and 0x51 in <span class="register">A</span> (for the routine at <a href="96DE.html">96DE</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -929,9 +929,9 @@ And finally, play the theme tune and check for keypresses.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

@@ -99,8 +99,8 @@ tune played during gameplay is <i>If I Were a Rich Man</i> from the musical
 <div class="paragraph">
 The bed in <a href="../asm/E300.html">Master Bedroom</a> is actually a conveyor moving left to right,
 but it doesn't appear to move because the first and third bytes of the conveyor
-tile (shown below) are 85 (01010101), which remains 85 after being rotated left
-or right twice.
+tile (shown below) are 0x55 (01010101), which remains 0x55 after being rotated
+left or right twice.
 </div>
 <div class="paragraph">
 <table class="">
@@ -224,14 +224,14 @@ bottom of the pit ensures certain (repeated) death.
 <div class="box box-1">
 <div class="box-title">Unused room</div>
 <div class="paragraph">
-There are 61 room definitions occupying pages C0-FC, but the definition
-for room 0x2F in <a href="../asm/EF00.html">page EF</a> is not used. Room 0x2F is
-completely empty and can only be accessed by activating <a href="facts.html#writetyper">cheat
-mode</a> and using the teleport code '123469'.
+There are 61 room definitions occupying pages 0xC0-0xFC, but the definition
+for room 0x2F in <a href="../asm/EF00.html">page 0xEF</a> is not used. Room 0x2F is completely empty
+and can only be accessed by activating <a href="facts.html#writetyper">cheat mode</a> and using
+the teleport code '123469'.
 </div>
 <div class="paragraph">
 However, the (inaccessible) right exit from <a href="../asm/EE00.html">Tree Root</a> is set to
-2F (see <a href="../asm/EE00.html#eee9">EEEA</a>), which suggests that there was an intention to
+0x2F (see <a href="../asm/EE00.html#eee9">EEEA</a>), which suggests that there was an intention to
 place room 0x2F there at some point during the game's development.
 </div>
 </div>
@@ -240,9 +240,9 @@ place room 0x2F there at some point during the game's development.
 <div class="box-title">Unused grid location</div>
 <div class="paragraph">
 The routine at <a href="../asm/86C3.html">86C3</a>, which is responsible for randomly selecting one of the
-180 grid locations on the code sheet by its index (0-179), never selects index
-179 (R9); as a result, the code at grid location R9 is never asked for, even
-though it's present on the code sheet (it's 2423).
+180 grid locations on the code sheet by its index (0x00-0xB3), never selects
+index 0xB3 (R9); as a result, the code at grid location R9 is never asked for,
+even though it's present on the code sheet (it's 2423).
 </div>
 <div class="paragraph">
 To give the code at grid location R9 a chance of being asked for:
@@ -814,7 +814,7 @@ always unused in practice.
 <div class="box box-1">
 <div class="box-title">Unused entity definition</div>
 <div class="paragraph">
-Entity definition 43 at <a href="../asm/A000.html#a158">A158</a> contains data but is not used.
+Entity definition 0x2B at <a href="../asm/A000.html#a158">A158</a> contains data but is not used.
 </div>
 <div class="paragraph">
 Which room might this vertical guardian have inhabited at some point while the
@@ -825,8 +825,8 @@ game was being developed? We'll probably never know.
 <div class="box box-2">
 <div class="box-title">Untouchable entity definition</div>
 <div class="paragraph">
-Entity definition 127 at <a href="../asm/A000.html#a3f8">A3F8</a> should not be modified or used to define an
-actual entity, because its first byte (255) is used to terminate the entity
+Entity definition 0x7F at <a href="../asm/A000.html#a3f8">A3F8</a> should not be modified or used to define an
+actual entity, because its first byte (0xFF) is used to terminate the entity
 buffer at <a href="../asm/8100.html">8100</a>.
 </div>
 </div>
@@ -905,8 +905,8 @@ will be automatically collected as soon as Willy enters the room (see
 <div class="paragraph">
 The demonic face guardian (as seen in <a href="../asm/C600.html">Entrance to Hades</a>, <a href="../asm/DB00.html">The
 Chapel</a> and  <a href="../asm/E600.html">Priests' Hole</a>) uses three entity definitions
-(<a href="../asm/A000.html#a080">0x10</a>, <a href="../asm/A000.html#a088">0x11</a> and <a href="../asm/A000.html#a090">0x12</a>), but it could be adjusted
-to use only two, where the upper-left and upper-right portions share an entity
+(<a href="../asm/A000.html#a080">0x10</a>, <a href="../asm/A000.html#a088">0x11</a> and <a href="../asm/A000.html#a090">0x12</a>), but it could be adjusted to
+use only two, where the upper-left and upper-right portions share an entity
 definition with a different base sprite and x-coordinate.
 </div>
 <div class="paragraph">
@@ -1077,9 +1077,9 @@ The room with the most items is <a href="../asm/C000.html">The Off Licence</a> w
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

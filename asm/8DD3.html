@@ -255,7 +255,7 @@ Willy is currently jumping.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e16"></span>8E16</td>
 <td class="instruction">LD C,$20</td>
-<td class="comment-11" rowspan="1"><span class="register">C</span>=32; this value determines the duration of the jumping sound effect</td>
+<td class="comment-11" rowspan="1">This value determines the duration of the jumping sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -557,7 +557,7 @@ If we get here, then Willy is either in the process of falling or just about to 
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e7b"></span>8E7B</td>
 <td class="instruction">LD A,$0C</td>
-<td class="comment-11" rowspan="1">Decrease the airborne status indicator from 16 to 12</td>
+<td class="comment-11" rowspan="1">Decrease the airborne status indicator from 0x10 to 0x0C</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -599,7 +599,7 @@ If we get here, then Willy is either in the process of falling or just about to 
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8e85"></span>8E85</td>
 <td class="instruction">LD C,$20</td>
-<td class="comment-11" rowspan="1"><span class="register">C</span>=32; this value determines the duration of the falling sound effect</td>
+<td class="comment-11" rowspan="1">This value determines the duration of the falling sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -699,7 +699,7 @@ This entry point is used by the routine at <a href="91BE.html">91BE</a> to updat
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8ea2"></span>8EA2</td>
 <td class="instruction">ADC A,$5C</td>
-<td class="comment-11" rowspan="2"><span class="register">H</span>=92 or 93 (MSB of the address of Willy's location in the attribute buffer)</td>
+<td class="comment-11" rowspan="2"><span class="register">H</span>=0x5C or 0x5D (MSB of the address of Willy's location in the attribute buffer)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -757,7 +757,7 @@ Willy has just finished a jump.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8eb0"></span>8EB0</td>
 <td class="instruction">LD A,$06</td>
-<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="85D1.html">85D1</a> to 6: Willy will continue to fall unless he's landed on a wall or floor block</td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="85D1.html">85D1</a> to 0x06: Willy will continue to fall unless he's landed on a wall or floor block</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -785,7 +785,7 @@ Willy has just started falling.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8eb6"></span>8EB6</td>
 <td class="instruction">LD A,$02</td>
-<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="85D1.html">85D1</a> to 2</td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="85D1.html">85D1</a> to 0x02</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -843,7 +843,7 @@ The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8ec9"></span>8EC9</td>
 <td class="instruction">LD A,$02</td>
-<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="85D1.html">85D1</a> to 2: Willy has started falling</td>
+<td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="85D1.html">85D1</a> to 0x02: Willy has started falling</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -878,9 +878,9 @@ The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

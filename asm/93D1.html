@@ -47,7 +47,7 @@ Used by the routine at <a href="89AD.html">89AD</a>.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="93d1"></span>93D1</td>
 <td class="instruction">LD H,$A4</td>
-<td class="comment-11" rowspan="1">Page <a href="A400.html">164</a> holds the first byte of each entry in the item table</td>
+<td class="comment-11" rowspan="1">Page <a href="A400.html">0xA4</a> holds the first byte of each entry in the item table</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -387,7 +387,7 @@ Willy is not touching this item, so draw it and cycle its INK colour.
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9430"></span>9430</td>
 <td class="instruction">LD A,($85CB)</td>
-<td class="comment-11" rowspan="5">Generate the INK colour for the item from the value of the minute counter at <a href="85CB.html">85CB</a> (0-255) and the index of the item in the item table (173-255)</td>
+<td class="comment-11" rowspan="5">Generate the INK colour for the item from the value of the minute counter at <a href="85CB.html">85CB</a> (0x00-0xFF) and the index of the item in the item table (0xAD-0xFF)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -552,9 +552,9 @@ The current item has been dealt with (skipped, collected or drawn) as appropriat
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

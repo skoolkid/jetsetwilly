@@ -205,7 +205,7 @@ Willy's sprite is moving left across a cell boundary. In the comments that follo
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8fef"></span>8FEF</td>
 <td class="instruction">DEC A</td>
-<td class="comment-11" rowspan="3">Now <span class="register">A</span>=31 if the ramp goes up to the left, or 65 if it goes up to the right</td>
+<td class="comment-11" rowspan="3">Now <span class="register">A</span>=0x1F if the ramp goes up to the left, or 0x41 if it goes up to the right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -313,7 +313,7 @@ Willy's sprite is moving left across a cell boundary. In the comments that follo
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9013"></span>9013</td>
 <td class="instruction">ADD HL,BC</td>
-<td class="comment-11" rowspan="4">Point <span class="register">HL</span> at the cell at (x-1,y+1), or at the cell at (x-1,y) if Willy is on or approaching a ramp that goes up to the left, or at the cell at (x-1,y+2) if Willy is walking down a ramp</td>
+<td class="comment-11" rowspan="4">Point <span class="register">HL</span> at the cell at (x-1,y+1), or at the cell at (x-1,y) if Willy is on or about to step onto a ramp that goes up to the left, or at the cell at (x-1,y+2) if Willy is walking down a ramp</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -361,7 +361,7 @@ Willy's sprite is moving left across a cell boundary. In the comments that follo
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9021"></span>9021</td>
 <td class="instruction">SRA C</td>
-<td class="comment-11" rowspan="3">Now <span class="register">B</span>=Y (if Willy is neither on nor approaching a ramp), or Y+16 (if Willy is walking down a ramp), or Y-16 (if Willy is on or approaching a ramp that goes up to the left); this will be Willy's new pixel y-coordinate</td>
+<td class="comment-11" rowspan="3">Now <span class="register">B</span>=Y (if Willy is neither on nor about to step onto a ramp), or Y+16 (if Willy is walking down a ramp), or Y-16 (if Willy is on or about to step onto a ramp that goes up to the left); this will be Willy's new pixel y-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -379,13 +379,13 @@ Willy's sprite is moving left across a cell boundary. In the comments that follo
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9025"></span>9025</td>
 <td class="instruction">AND $0F</td>
-<td class="comment-11" rowspan="1">Does Willy's sprite currently occupy only two rows of cells?</td>
+<td class="comment-11" rowspan="1">Is Willy jumping (left)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9027"></span>9027</td>
 <td class="instruction">JR Z,<a href="8FBC.html#9032">$9032</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -397,13 +397,13 @@ Willy's sprite is moving left across a cell boundary. In the comments that follo
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="902c"></span>902C</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x-1,y+2), or at the cell at (x-1,y+1) if Willy is on or approaching a ramp that goes up to the left, or at the cell at (x-1,y+3) if Willy is on a ramp that goes up to the right</td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x-1,y+2)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="902d"></span>902D</td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Is there a wall tile in the cell pointed to by <span class="register">HL</span>?</td>
+<td class="comment-11" rowspan="1">Is there a wall tile there?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -415,7 +415,7 @@ Willy's sprite is moving left across a cell boundary. In the comments that follo
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="902f"></span>902F</td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x-1,y+1), or at the cell at (x-1,y) if Willy is on or approaching a ramp that goes up to the left, or at the cell at (x-1,y+2) if Willy is walking down a ramp</td>
+<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x-1,y+1)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -427,7 +427,7 @@ Willy's sprite is moving left across a cell boundary. In the comments that follo
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9032"></span>9032</td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x-1,y), or at the cell at (x-1,y-1) if Willy is on or approaching a ramp that goes up to the left, or at the cell at (x-1,y+1) if Willy is walking down a ramp</td>
+<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x-1,y), or at the cell at (x-1,y-1) if Willy is on or about to step onto a ramp that goes up to the left, or at the cell at (x-1,y+1) if Willy is walking down a ramp</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -543,7 +543,7 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9054"></span>9054</td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Is Willy jumping or falling?</td>
+<td class="comment-11" rowspan="1">Is Willy jumping?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -567,7 +567,7 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="905d"></span>905D</td>
 <td class="instruction">DEC A</td>
-<td class="comment-11" rowspan="3">Now <span class="register">A</span>=64 if the ramp goes up to the left, or 34 if it goes up to the right</td>
+<td class="comment-11" rowspan="3">Now <span class="register">A</span>=0x40 if the ramp goes up to the left, or 0x22 if it goes up to the right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -657,7 +657,7 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="907b"></span>907B</td>
 <td class="instruction">ADD HL,BC</td>
-<td class="comment-11" rowspan="3">Point <span class="register">HL</span> at the cell at (x+2,y), or at the cell at (x+2,y+1) if Willy is walking down a ramp, or at the cell at (x+2,y-1) if Willy is on or approaching a ramp that goes up to the right</td>
+<td class="comment-11" rowspan="3">Point <span class="register">HL</span> at the cell at (x+2,y), or at the cell at (x+2,y+1) if Willy is walking down a ramp, or at the cell at (x+2,y-1) if Willy is on or about to step onto a ramp that goes up to the right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -705,7 +705,7 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="908a"></span>908A</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x+2,y+1), or at the cell at (x+2,y+2) if Willy is walking down a ramp, or at the cell at (x+2,y) if Willy is on or approaching a ramp that goes up to the right</td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x+2,y+1), or at the cell at (x+2,y+2) if Willy is walking down a ramp, or at the cell at (x+2,y) if Willy is on or about to step onto a ramp that goes up to the right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -729,7 +729,7 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9090"></span>9090</td>
 <td class="instruction">SRA C</td>
-<td class="comment-11" rowspan="3">Now <span class="register">B</span>=Y (if Willy is neither on nor approaching a ramp), or Y+16 (if Willy is walking down a ramp), or Y-16 (if Willy is on or approaching a ramp that goes up to the right); this will be Willy's new pixel y-coordinate</td>
+<td class="comment-11" rowspan="3">Now <span class="register">B</span>=Y (if Willy is neither on nor about to step onto a ramp), or Y+16 (if Willy is walking down a ramp), or Y-16 (if Willy is on or about to step onto a ramp that goes up to the right); this will be Willy's new pixel y-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -747,13 +747,13 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9094"></span>9094</td>
 <td class="instruction">AND $0F</td>
-<td class="comment-11" rowspan="1">Does Willy's sprite currently occupy only two rows of cells?</td>
+<td class="comment-11" rowspan="1">Is Willy jumping (right)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9096"></span>9096</td>
 <td class="instruction">JR Z,<a href="8FBC.html#90a1">$90A1</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -765,13 +765,13 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="909b"></span>909B</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x+2,y+2), or at the cell at (x+2,y+3) if Willy is walking down a ramp, or at the cell at (x+2,y+1) if Willy is on or approaching a ramp that goes up to the right</td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x+2,y+2)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="909c"></span>909C</td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Is there a wall tile in the cell pointed to by <span class="register">HL</span>?</td>
+<td class="comment-11" rowspan="1">Is there a wall tile there?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -783,7 +783,7 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="909e"></span>909E</td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x+2,y+1), or at the cell at (x+2,y+2) if Willy is walking down a ramp, or at the cell at (x+2,y) if Willy is on or approaching a ramp that goes up to the right</td>
+<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x+2,y+1)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -801,7 +801,7 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90a4"></span>90A4</td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x+2,y), or at the cell at (x+2,y+1) if Willy is walking down a ramp, or at the cell at (x+2,y-1) if Willy is on or approaching a ramp that goes up to the right</td>
+<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x+2,y), or at the cell at (x+2,y+1) if Willy is walking down a ramp, or at the cell at (x+2,y-1) if Willy is on or about to step onto a ramp that goes up to the right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -825,7 +825,7 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90a9"></span>90A9</td>
 <td class="instruction">DEC HL</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x+1,y), or at the cell at (x+1,y+1) if Willy is walking down a ramp, or at the cell at (x+1,y-1) if Willy is on or approaching a ramp that goes up to the right</td>
+<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x+1,y), or at the cell at (x+1,y+1) if Willy is walking down a ramp, or at the cell at (x+1,y-1) if Willy is on or about to step onto a ramp that goes up to the right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -872,9 +872,9 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

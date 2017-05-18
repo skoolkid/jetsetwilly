@@ -48,7 +48,7 @@ POKE <a href="../asm/8400.html#8404">33797</a>,135: POKE <a href="../asm/8400.ht
 <div class="box box-2">
 <div class="box-title">Start in any room</div>
 <div class="paragraph">
-To start the game in room N (normally 33: <a href="../asm/E100.html">The Bathroom</a>):
+To start the game in room N (normally 0x21: <a href="../asm/E100.html">The Bathroom</a>):
 </div>
 <div class="paragraph">
 POKE <a href="../asm/87CA.html#87ea">34795</a>,N
@@ -66,7 +66,7 @@ chosen; to change Willy's start location to (y,x):
 <div>POKE <a href="../asm/87CA.html#87ef">34801</a>,92+INT(y/8)</div>
 </div>
 <div class="paragraph">
-For example, to start at (6,28) in room 25 (<a href="../asm/D900.html">Cold Store</a>):
+For example, to start at (6,28) in room 0x19 (<a href="../asm/D900.html">Cold Store</a>):
 </div>
 <div class="paragraph">
 <div>POKE 34795,25</div>
@@ -264,9 +264,9 @@ in <a href="../asm/EB00.html">Conservatory Roof</a> via the ledge on the lower l
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>

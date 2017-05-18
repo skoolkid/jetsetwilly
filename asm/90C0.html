@@ -168,7 +168,7 @@ The rope is swinging left to right.
 <span id="90e6"></span>
 <div class="comments">
 <div class="paragraph">
-The rope is swinging left to right, towards the centre (132&lt;=<span class="register">A</span>&lt;=182).
+The rope is swinging left to right, towards the centre (0x84&lt;=<span class="register">A</span>&lt;=0xB6).
 </div>
 </div>
 </td>
@@ -183,7 +183,7 @@ The rope is swinging left to right, towards the centre (132&lt;=<span class="reg
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90e8"></span>90E8</td>
 <td class="instruction">CP $94</td>
-<td class="comment-11" rowspan="1">Is it still 148 or greater?</td>
+<td class="comment-11" rowspan="1">Is it still 0x94 or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -201,7 +201,7 @@ The rope is swinging left to right, towards the centre (132&lt;=<span class="reg
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90ee"></span>90EE</td>
 <td class="instruction">CP $80</td>
-<td class="comment-11" rowspan="1">Is it 128 now?</td>
+<td class="comment-11" rowspan="1">Is it 0x80 now?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -226,7 +226,7 @@ The rope is swinging left to right, towards the centre (132&lt;=<span class="reg
 <span id="90f5"></span>
 <div class="comments">
 <div class="paragraph">
-The rope is swinging left to right, away from the centre (0&lt;=<span class="register">A</span>&lt;=52).
+The rope is swinging left to right, away from the centre (0x00&lt;=<span class="register">A</span>&lt;=0x34).
 </div>
 </div>
 </td>
@@ -241,7 +241,7 @@ The rope is swinging left to right, away from the centre (0&lt;=<span class="reg
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90f7"></span>90F7</td>
 <td class="instruction">CP $12</td>
-<td class="comment-11" rowspan="1">Is it now 18 or greater?</td>
+<td class="comment-11" rowspan="1">Is it now 0x12 or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -294,7 +294,7 @@ The rope is swinging right to left.
 <span id="9106"></span>
 <div class="comments">
 <div class="paragraph">
-The rope is swinging right to left, towards the centre (4&lt;=<span class="register">A</span>&lt;=54).
+The rope is swinging right to left, towards the centre (0x04&lt;=<span class="register">A</span>&lt;=0x36).
 </div>
 </div>
 </td>
@@ -309,7 +309,7 @@ The rope is swinging right to left, towards the centre (4&lt;=<span class="regis
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9108"></span>9108</td>
 <td class="instruction">CP $14</td>
-<td class="comment-11" rowspan="1">Is it still 20 or greater?</td>
+<td class="comment-11" rowspan="1">Is it still 0x14 or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -339,7 +339,7 @@ The rope is swinging right to left, towards the centre (4&lt;=<span class="regis
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9111"></span>9111</td>
 <td class="instruction">LD A,$80</td>
-<td class="comment-11" rowspan="1">The rope has reached the centre, so the next animation frame index is 128</td>
+<td class="comment-11" rowspan="1">The rope has reached the centre, so the next animation frame index is 0x80</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -352,7 +352,7 @@ The rope is swinging right to left, towards the centre (4&lt;=<span class="regis
 <span id="9115"></span>
 <div class="comments">
 <div class="paragraph">
-The rope is swinging right to left, away from the centre (128&lt;=<span class="register">A</span>&lt;=180).
+The rope is swinging right to left, away from the centre (0x80&lt;=<span class="register">A</span>&lt;=0xB4).
 </div>
 </div>
 </td>
@@ -367,7 +367,7 @@ The rope is swinging right to left, away from the centre (128&lt;=<span class="r
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9117"></span>9117</td>
 <td class="instruction">CP $92</td>
-<td class="comment-11" rowspan="1">Is it now 146 or greater?</td>
+<td class="comment-11" rowspan="1">Is it now 0x92 or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -407,7 +407,7 @@ Now <span class="register">A</span> holds the rope's next animation frame index.
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9122"></span>9122</td>
 <td class="instruction">CP (IX+$07)</td>
-<td class="comment-11" rowspan="1">Does <span class="register">A</span> match the eighth byte of the rope's buffer (54)?</td>
+<td class="comment-11" rowspan="1">Does <span class="register">A</span> match the eighth byte of the rope's buffer (0x36)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -822,9 +822,9 @@ The current entity has been dealt with. Time for the next one.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20161105</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2016 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 5.3.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
 </footer>
 </body>
 </html>
