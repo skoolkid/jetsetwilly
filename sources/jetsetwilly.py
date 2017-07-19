@@ -16,16 +16,15 @@
 from skoolkit.graphics import Frame, Udg
 from skoolkit.skoolasm import AsmWriter
 from skoolkit.skoolhtml import HtmlWriter
-from skoolkit.skoolmacro import parse_ints, parse_brackets, parse_image_macro
+from skoolkit.skoolmacro import parse_ints, parse_image_macro, parse_strings
 
 def parse_gbuf(text, index):
     # #GBUFfrom[,to]
     return parse_ints(text, index, 2, (None,))
 
-def parse_s(text, index):
-    sep = text[index]
-    end, s = parse_brackets(text, index, '', sep, sep)
-    return end, '#IF({{case}}==1){0}{0}{1}{0}{2}{0}{0}'.format(sep, s.lower(), s)
+def parse_s(text, index, case):
+    end, s = parse_strings(text, index, 1)
+    return end, s.lower() if case == 1 else s
 
 class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
@@ -90,7 +89,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
 
     def expand_s(self, text, index, cwd):
         # #S/text/
-        return parse_s(text, index)
+        return parse_s(text, index, self.case)
 
     def expand_willy(self, text, index, cwd):
         # #WILLYroom,x,y,sprite[,left,top,width,height,scale](fname)
@@ -392,4 +391,4 @@ class JetSetWillyAsmWriter(AsmWriter):
 
     def expand_s(self, text, index):
         # #S/text/
-        return parse_s(text, index)
+        return parse_s(text, index, self.case)
