@@ -228,6 +228,8 @@ room, and it doesn't look good:
 
 #UDGTABLE { #ROOM60160,2,22,12,10,4(blank_conveyor) } TABLE#
 
+See also #FACT#unanimatedConveyors().
+
 [Bug:corruptedConveyors:Corrupted conveyors]
 The conveyors in #R55296(West of Kitchen), #R56576(The Nightmare Room),
 #R61696(The Wine Cellar) and #R62208(Tool#SPACE(2)Shed) don't look quite as

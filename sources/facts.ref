@@ -24,6 +24,8 @@ left or right twice.
 { #UDG58318,41(moving_bed) }
 TABLE#
 
+See also #FACT#unanimatedConveyors().
+
 [Fact:theMusicOfLife:The music of life]
 When Willy loses a life, the pitch of the notes in the in-game music decreases,
 and their length increases; see #R35668.
@@ -408,6 +410,21 @@ Entity #b89, defined at #R41672, and appearing in #R51968(The Hall) and
 right.
 
 #UDGTABLE { #UDGARRAY*guardian176-6-6;guardian176-7-6(entity89) } TABLE#
+
+[Fact:unanimatedConveyors:Unanimated conveyors]
+In addition to the bed in #R58112(Master Bedroom) (see #FACT#theMovingBed())
+and the white ledge in #R60160(Conservatory Roof) (see
+#BUG#theBlankConveyor()), there are three other unanimated conveyors in the
+game:
+
+#UDGTABLE(gallery)
+{ #ROOM54528,2,15,10,14,6(unanimated_conveyor1) |
+  #ROOM59136,2,8,8,16,6(unanimated_conveyor2) |
+  #ROOM64512,2,16,10,16,6(unanimated_conveyor3) }
+{ The table in #R54528(Ballroom West) |
+  #R59136(Emergency Generator) |
+  The lower deck of the yacht in #R64512(The Bow) }
+TABLE#
 
 [Fact:unanimatedGuardians:Unanimated guardians]
 There are a few vertical guardians that have only one animation frame, and so
