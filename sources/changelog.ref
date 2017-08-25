@@ -7,6 +7,8 @@ SectionType=BulletPoints
 -
 
 - Added a trivia entry: #FACT#unanimatedConveyors()
+- In #FACT#guardianOrFixture(), added a note about the minimum and maximum
+  pixel y-coordinates
 
 [Changelog:20170518]
 -

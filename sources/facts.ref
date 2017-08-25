@@ -411,6 +411,10 @@ right.
 
 #UDGTABLE { #UDGARRAY*guardian176-6-6;guardian176-7-6(entity89) } TABLE#
 
+However, the minimum and maximum pixel y-coordinates for this guardian are
+defined as 40 and 56 respectively, which suggests that it did move up and down
+at some point during the development of the game.
+
 [Fact:unanimatedConveyors:Unanimated conveyors]
 In addition to the bed in #R58112(Master Bedroom) (see #FACT#theMovingBed())
 and the white ledge in #R60160(Conservatory Roof) (see
