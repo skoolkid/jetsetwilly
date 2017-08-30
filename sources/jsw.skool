@@ -2432,8 +2432,9 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
  36900 LD B,A        ; or Y-16 (if Willy is on or about to step onto a ramp
                      ; that goes up to the left); this will be Willy's new
                      ; pixel y-coordinate}
- 36901 AND 15        ; Is Willy jumping (left)?
- 36903 JR Z,36914    ; Jump if not
+ 36901 AND 15        ; Is Willy at a point in a jump (left) where his sprite
+                     ; occupies three rows of cells?
+ 36903 JR Z,36914    ; Jump if not (Willy's sprite is cell-aligned)
  36905 LD A,(32946)  ; Pick up the attribute byte of the wall tile for the
                      ; current room from #R32946
  36908 ADD HL,DE     ; Point #REGhl at the cell at (x-1,y+2)
@@ -2512,8 +2513,9 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
  37011 LD B,A        ; or Y-16 (if Willy is on or about to step onto a ramp
                      ; that goes up to the right); this will be Willy's new
                      ; pixel y-coordinate}
- 37012 AND 15        ; Is Willy jumping (right)?
- 37014 JR Z,37025    ; Jump if not
+ 37012 AND 15        ; Is Willy at a point in a jump (right) where his sprite
+                     ; occupies three rows of cells?
+ 37014 JR Z,37025    ; Jump if not (Willy's sprite is cell-aligned)
  37016 LD A,(32946)  ; Pick up the attribute byte of the wall tile for the
                      ; current room from #R32946
  37019 ADD HL,DE     ; Point #REGhl at the cell at (x+2,y+2)
