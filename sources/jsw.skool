@@ -707,10 +707,10 @@ g34256 DEFB 0
 ; Airborne status indicator
 ;
 @ignoreua
-; Initialised by the routine at #R34762, checked by the routines at #R35591 and
-; #R38344, updated by the routines at #R37046, #R37310 and #R38064, and checked
-; and updated by the routines at #R36307, #R36564 and #R38098. Possible values
-; are:
+; Initialised by the routine at #R34762, checked by the routines at #R35591,
+; #R36796 and #R38344, updated by the routines at #R37046, #R37310 and #R38064,
+; and checked and updated by the routines at #R36307, #R36564 and #R38098.
+; Possible values are:
 ; .
 ; #TABLE(default,centre,:w)
 ; { =h Value  | =h Meaning }
