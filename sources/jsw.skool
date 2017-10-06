@@ -747,9 +747,9 @@ g34261 DEFB 0
 
 ; Rope status indicator
 ;
-; Initialised by the routine at #R35090, checked by the routine at #R36307, and
-; checked and updated by the routines at #R36564 and #R37310. Possible values
-; are:
+; Initialised by the routine at #R35090, checked by the routines at #R36307 and
+; #R36796, and checked and updated by the routines at #R36564 and #R37310.
+; Possible values are:
 ; .
 ; #TABLE(default,centre,:w)
 ; { =h Value    | =h Meaning }
