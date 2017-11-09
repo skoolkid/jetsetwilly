@@ -323,6 +323,12 @@ To see this happen in #R64000(The Beach):
 <div>POKE #R34799(34800),2: POKE #R34799(34801),93 (set Willy's initial
      attribute buffer location)</div>
 
+[Fact:flickeringClock:The flickering clock]
+When a room is initialised - upon Willy dying or entering a room - the item
+count and clock are briefly reset to '000' and '00:00&#160;m' respectively by
+the routine at #R35090 before being restored by the section of code at #R35377
+in the main loop.
+
 [Fact:quadridirectionalGuardian:The quadridirectional guardian]
 The cyan guardian in #R51456(On a Branch Over the Drive) moves up and down (not
 very gracefully), while its red and green cousins in #R54784(To the

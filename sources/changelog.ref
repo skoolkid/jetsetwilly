@@ -6,7 +6,9 @@ SectionType=BulletPoints
 [Changelog:YYYYMMDD]
 -
 
-- Added a trivia entry: #FACT#unanimatedConveyors()
+- Added trivia entries:
+  - #FACT#flickeringClock() (thanks Spider)
+  - #FACT#unanimatedConveyors()
 - In #FACT#guardianOrFixture(), added a note about the minimum and maximum
   pixel y-coordinates
 
