@@ -754,7 +754,7 @@ g34261 DEFB 0
 ; #TABLE(default,centre,:w)
 ; { =h Value    | =h Meaning }
 ; { #b0         | Willy is not on the rope }
-; { #b2-#b32    | Willy is on the rope, with the centre of his sprite anchored
+; { #b3-#b32    | Willy is on the rope, with the centre of his sprite anchored
 ; at this segment }
 ; { #b240-#b255 | Willy has just jumped or fallen off the rope }
 ; TABLE#
