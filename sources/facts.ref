@@ -436,6 +436,10 @@ game:
   The lower deck of the yacht in #R64512(The Bow) }
 TABLE#
 
+Note also that if it weren't for a bug in how conveyors are drawn (see
+#BUG#corruptedConveyors()), the conveyor in #R61696(The Wine Cellar) would be
+unanimated as well.
+
 [Fact:unanimatedGuardians:Unanimated guardians]
 There are a few vertical guardians that have only one animation frame, and so
 are in a sense unanimated (though they do still move up and down).
