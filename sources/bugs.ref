@@ -185,6 +185,10 @@ However, the code at #R36942 onwards that moves Willy right does check for a
 wall tile at head height (at #R37031), so Willy (correctly) cannot move left to
 right through a wall tile at that position.
 
+Note that the ability to walk from right to left through a wall tile at head
+height comes in handy in #R54016(The Forgotten Abbey) - without that ability,
+Willy would not be able to collect the item without sacrificing a life.
+
 [Bug:stuckInTheWall:Stuck in the wall]
 If Willy enters #R61696(The Wine Cellar) from the ledge in #R54016(The
 Forgotten Abbey), he must keep moving left until he clears all the wall tiles,

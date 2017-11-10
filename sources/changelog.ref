@@ -11,6 +11,8 @@ SectionType=BulletPoints
   - #FACT#unanimatedConveyors()
 - In #FACT#guardianOrFixture(), added a note about the minimum and maximum
   pixel y-coordinates
+- In #BUG#dontMindYourHead(), added a note about collecting the item in
+  #R54016(The Forgotten Abbey) (thanks IRF)
 
 [Changelog:20170518]
 -
