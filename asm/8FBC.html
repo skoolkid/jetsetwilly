@@ -379,13 +379,13 @@ Willy's sprite is moving left across a cell boundary. In the comments that follo
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9025"></span>9025</td>
 <td class="instruction">AND $0F</td>
-<td class="comment-11" rowspan="1">Is Willy jumping (left)?</td>
+<td class="comment-11" rowspan="1">Is Willy at a point in a jump (left) where his sprite occupies three rows of cells?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9027"></span>9027</td>
 <td class="instruction">JR Z,<a href="8FBC.html#9032">$9032</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-11" rowspan="1">Jump if not (Willy's sprite is cell-aligned)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -747,13 +747,13 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9094"></span>9094</td>
 <td class="instruction">AND $0F</td>
-<td class="comment-11" rowspan="1">Is Willy jumping (right)?</td>
+<td class="comment-11" rowspan="1">Is Willy at a point in a jump (right) where his sprite occupies three rows of cells?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9096"></span>9096</td>
 <td class="instruction">JR Z,<a href="8FBC.html#90a1">$90A1</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-11" rowspan="1">Jump if not (Willy's sprite is cell-aligned)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
@@ -872,9 +872,9 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20171113</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.1.</div>
 </footer>
 </body>
 </html>

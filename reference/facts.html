@@ -44,12 +44,14 @@
 <li><a href="#ropeClimbingForBeginners">Rope climbing for beginners</a></li>
 <li><a href="#theEncroachingRope">The encroaching rope</a></li>
 <li><a href="#ropesBeforeArrows">Ropes before arrows</a></li>
+<li><a href="#flickeringClock">The flickering clock</a></li>
 <li><a href="#quadridirectionalGuardian">The quadridirectional guardian</a></li>
 <li><a href="#doubleDescent">Double descent</a></li>
 <li><a href="#highJump">High jump</a></li>
 <li><a href="#guardianColours">Guardian colours</a></li>
 <li><a href="#guardiansNeedAClearPath">Guardians need a clear path</a></li>
 <li><a href="#guardianOrFixture">Guardian or fixture?</a></li>
+<li><a href="#unanimatedConveyors">Unanimated conveyors</a></li>
 <li><a href="#unanimatedGuardians">Unanimated guardians</a></li>
 <li><a href="#underanimatedGuardians">Underanimated guardians</a></li>
 <li><a href="#unusedEntityDefinition">Unused entity definition</a></li>
@@ -108,6 +110,9 @@ left or right twice.
 <td class="" colspan="1" rowspan="1"><img alt="moving_bed" src="../images/udgs/moving_bed.png" /></td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+See also <a href="facts.html#unanimatedConveyors">Unanimated conveyors</a>.
 </div>
 </div>
 <div><span id="theMusicOfLife"></span></div>
@@ -631,8 +636,18 @@ the rope)</div>
 attribute buffer location)</div>
 </div>
 </div>
-<div><span id="quadridirectionalGuardian"></span></div>
+<div><span id="flickeringClock"></span></div>
 <div class="box box-1">
+<div class="box-title">The flickering clock</div>
+<div class="paragraph">
+When a room is initialised - upon Willy dying or entering a room - the item
+count and clock are briefly reset to '000' and '00:00&#160;m' respectively by
+the routine at <a href="../asm/8912.html">8912</a> before being restored by the section of code at <a href="../asm/89AD.html#8a31">8A31</a>
+in the main loop.
+</div>
+</div>
+<div><span id="quadridirectionalGuardian"></span></div>
+<div class="box box-2">
 <div class="box-title">The quadridirectional guardian</div>
 <div class="paragraph">
 The cyan guardian in <a href="../asm/C900.html">On a Branch Over the Drive</a> moves up and down (not
@@ -655,7 +670,7 @@ and horizontally in another.
 </div>
 </div>
 <div><span id="doubleDescent"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Double descent</div>
 <div class="paragraph">
 There is a maximum distance that Willy can fall before the landing will kill
@@ -676,7 +691,7 @@ indicator at <a href="../asm/85D1.html">85D1</a> to 2 if it's currently 10 or le
 </div>
 </div>
 <div><span id="highJump"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">High jump</div>
 <div class="paragraph">
 At certain points on a ramp, Willy can jump higher than the normal 20 pixels
@@ -720,7 +735,7 @@ point instead of falling all the way back to the ramp first.
 </div>
 </div>
 <div><span id="guardianColours"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Guardian colours</div>
 <div class="paragraph">
 The most common guardian colour is yellow (25 instances), and the least common
@@ -734,7 +749,7 @@ guardians anywhere.
 </div>
 </div>
 <div><span id="guardiansNeedAClearPath"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Guardians need a clear path</div>
 <div class="paragraph">
 The guardian-drawing code at <a href="../asm/91BE.html#91d6">91D6</a> kills Willy if a guardian collides with
@@ -759,7 +774,7 @@ happen by replacing the first guardian in <a href="../asm/E200.html">Top Landing
 </div>
 </div>
 <div><span id="guardianOrFixture"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Guardian or fixture?</div>
 <div class="paragraph">
 Entity 0x59, defined at <a href="../asm/A000.html#a2c8">A2C8</a>, and appearing in <a href="../asm/CB00.html">The Hall</a> and
@@ -772,6 +787,40 @@ right.
 <td class="" colspan="1" rowspan="1"><img alt="entity89" src="../images/udgs/entity89.gif" /></td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+However, the minimum and maximum pixel y-coordinates for this guardian are
+defined as 40 and 56 respectively, which suggests that it did move up and down
+at some point during the development of the game.
+</div>
+</div>
+<div><span id="unanimatedConveyors"></span></div>
+<div class="box box-2">
+<div class="box-title">Unanimated conveyors</div>
+<div class="paragraph">
+In addition to the bed in <a href="../asm/E300.html">Master Bedroom</a> (see <a href="facts.html#theMovingBed">The moving bed</a>)
+and the white ledge in <a href="../asm/EB00.html">Conservatory Roof</a> (see
+<a href="bugs.html#theBlankConveyor">The blank conveyor</a>), there are three other unanimated conveyors in the
+game:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="unanimated_conveyor1" src="../images/scr/unanimated_conveyor1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="unanimated_conveyor2" src="../images/scr/unanimated_conveyor2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="unanimated_conveyor3" src="../images/scr/unanimated_conveyor3.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">The table in <a href="../asm/D500.html">Ballroom West</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/E700.html">Emergency Generator</a></td>
+<td class="" colspan="1" rowspan="1">The lower deck of the yacht in <a href="../asm/FC00.html">The Bow</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Note also that if it weren't for a bug in how conveyors are drawn (see
+<a href="bugs.html#corruptedConveyors">Corrupted conveyors</a>), the conveyor in <a href="../asm/F100.html">The Wine Cellar</a> would be
+unanimated as well.
 </div>
 </div>
 <div><span id="unanimatedGuardians"></span></div>
@@ -1077,9 +1126,9 @@ The room with the most items is <a href="../asm/C000.html">The Off Licence</a> w
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20170518</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20171113</div>
 <div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.0.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.1.</div>
 </footer>
 </body>
 </html>
