@@ -216,9 +216,17 @@ class JetSetWillyHtmlWriter(HtmlWriter):
     def _get_room_udgs(self, addr, empty=0, fix=0):
         # Collect block graphics
         block_graphics = []
-        for a in range(addr + 160, addr + 196, 9):
+        for a in range(addr + 160, addr + 206, 9):
             attr = self.snapshot[a]
-            block_graphics.append(Udg(attr, self.snapshot[a + 1:a + 9]))
+            if fix:
+                b = a
+            else:
+                # Simulate the 'Cell-Graphics' bug
+                # http://webspace.webring.com/people/ja/andrewbroad/bugs.html
+                b = addr + 160
+                while b < a and self.snapshot[b] != attr:
+                    b += 1
+            block_graphics.append(Udg(attr, self.snapshot[b + 1:b + 9]))
         room_bg = block_graphics[0].attr
 
         # Build the room UDG array
@@ -238,7 +246,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         direction, p1, p2, length = self.snapshot[addr + 218:addr + 222]
         if length:
             attr = self.snapshot[addr + 196]
-            ramp_udg = Udg(attr, self.snapshot[addr + 197:addr + 205])
+            ramp_udg = block_graphics[4]
             direction = direction * 2 - 1
             x = p1 & 31
             y = 8 * (p2 & 1) + (p1 & 224) // 32
@@ -250,16 +258,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         # Conveyor
         p1, p2, length = self.snapshot[addr + 215:addr + 218]
         if length:
-            attr = self.snapshot[addr + 205]
-            if fix:
-                b = addr + 205
-            else:
-                # Simulate the 'Cell-Graphics' bug that affects conveyors
-                # http://webspace.webring.com/people/ja/andrewbroad/bugs.html
-                b = addr + 160
-                while b < addr + 205 and self.snapshot[b] != attr:
-                    b += 1
-            conveyor_udg = Udg(attr, self.snapshot[b + 1:b + 9])
+            conveyor_udg = block_graphics[5]
             x = p1 & 31
             y = 8 * (p2 & 1) + (p1 & 224) // 32
             for i in range(x, x + length):
