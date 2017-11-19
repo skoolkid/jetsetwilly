@@ -10865,7 +10865,9 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
 ; The next 32 bytes are copied to #R32896 and specify the room name.
  58496 DEFM "    A bit of tree               " ; Room name
 ; The next 54 bytes are copied to #R32928 and contain the attributes and
-; graphic data for the tiles used to build the room.
+; graphic data for the tiles used to build the room. Note that because of a
+; #BUG#corruptedNasties(bug) in the game engine, the nasty tile is not drawn
+; correctly (see the room image above).
 ; .
 ; #UDGTABLE
 ; { #tiles36 }

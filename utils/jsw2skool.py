@@ -366,6 +366,8 @@ class JetSetWilly:
         room_num = a // 256 - 192
         tiles_table = '#UDGTABLE {{ #tiles{} }} TABLE#'.format(room_num)
         comment = 'The next 54 bytes are copied to #R32928 and contain the attributes and graphic data for the tiles used to build the room.'
+        if room_num == 36:
+            comment += ' Note that because of a #BUG#corruptedNasties(bug) in the game engine, the nasty tile is not drawn correctly (see the room image above).'
         tile_usage = [' (unused)'] * 6
         for b in self.snapshot[a:a + 128]:
             for i in range(4):

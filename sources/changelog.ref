@@ -3,6 +3,11 @@
 [Page:Changelog]
 SectionType=BulletPoints
 
+[Changelog:YYYYMMDD]
+-
+
+- Documented a bug: #BUG#corruptedNasties() (thanks IRF)
+
 [Changelog:20171113]
 -
 
