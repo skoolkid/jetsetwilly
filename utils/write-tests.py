@@ -12,16 +12,16 @@ if not os.path.isdir(SKOOLKIT_HOME):
 sys.path.insert(0, '{}/tools'.format(SKOOLKIT_HOME))
 from testwriter import write_tests
 
-SKOOL = '../sources/jsw.skool'
+SKOOL = 'sources/jsw.skool'
 
-SNAPSHOT = '../build/jet_set_willy.z80'
+SNAPSHOT = 'build/jet_set_willy.z80'
 
 OUTPUT = """Using skool file: {skoolfile}
-Using ref files: ../sources/jsw.ref, ../sources/bugs.ref, ../sources/changelog.ref, ../sources/facts.ref, ../sources/glossary.ref, ../sources/pokes.ref
+Using ref files: sources/jsw.ref, sources/bugs.ref, sources/changelog.ref, sources/facts.ref, sources/glossary.ref, sources/pokes.ref
 Parsing {skoolfile}
 Creating directory {odir}/jet_set_willy
 Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/jet_set_willy/skoolkit.css
-Copying ../sources/jsw.css to {odir}/jet_set_willy/jsw.css
+Copying sources/jsw.css to {odir}/jet_set_willy/jsw.css
   Writing disassembly files in jet_set_willy/asm
   Writing jet_set_willy/maps/all.html
   Writing jet_set_willy/maps/routines.html
@@ -39,8 +39,8 @@ Copying ../sources/jsw.css to {odir}/jet_set_willy/jsw.css
   Writing jet_set_willy/reference/credits.html
   Writing jet_set_willy/index.html"""
 
-HTML_WRITER = '../sources:jetsetwilly.JetSetWillyHtmlWriter'
+HTML_WRITER = 'sources:jetsetwilly.JetSetWillyHtmlWriter'
 
-ASM_WRITER = '../sources:jetsetwilly.JetSetWillyAsmWriter'
+ASM_WRITER = 'sources:jetsetwilly.JetSetWillyAsmWriter'
 
 write_tests(SKOOL, SNAPSHOT, OUTPUT, HTML_WRITER, ASM_WRITER)
