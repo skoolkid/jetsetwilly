@@ -934,11 +934,8 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
  34552 LD (23672),A  ; that the value collected on the second pass through this
                      ; routine is different from the value collected on the
                      ; first pass}
-@bfix-begin
+@bfix=CP 180         ; Is the value between #b0 and #b179?
  34555 CP 179        ; Is the value between #b0 and #b178?
-@bfix+else
- 34555 CP 180        ; Is the value between #b0 and #b179?
-@bfix+end
  34557 JR C,34561    ; Jump if so
 @bfix-begin
  34559 SUB 180       ; Otherwise subtract #b180; note that if the original
