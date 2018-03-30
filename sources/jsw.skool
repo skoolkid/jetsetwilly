@@ -35,7 +35,7 @@ b28672 DEFS 4096
 @replace=/#item\i/#UDG(49377+256*\1,(#PEEK(49312+256*\1)&120)+3)(item#EVAL\1,,2)
 @replace=/#sprite\i,\i/#UDGARRAY2,\2,2,2;\1-(\1+17)-1-16
 @replace=/#n\i/#N\1,,,1($)
-@replace=/#b\i/#N\1,,,1(0x)
+@replace=/#b\i/#N(\1,,,1)(0x)
 @replace=/#BUG(?![A-Z])/#LINK:Bugs
 @replace=/#FACT(?![A-Z])/#LINK:Facts
 @replace=/#POKE(?![A-Z])/#LINK:Pokes
@@ -937,24 +937,16 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
 @bfix=CP 180         ; Is the value between #b0 and #b179?
  34555 CP 179        ; Is the value between #b0 and #b178?
  34557 JR C,34561    ; Jump if so
-@bfix-begin
- 34559 SUB 180       ; Otherwise subtract #b180; note that if the original
-                     ; value of the LSB of the system variable FRAMES was
-                     ; #b142, this leaves #REGa holding #b255, which is a
-                     ; #BUG#invalidGridLocation(bug)
-*34561 LD L,A        ; Now #REGl holds either #b255 or some number between #b0
-                     ; and #b178
+ 34559 SUB 180       ; Otherwise subtract #b180#IF({fix}<2)//; note that if the
+                     ; original value of the LSB of the system variable FRAMES
+                     ; was #b142, this leaves #REGa holding #b255, which is a
+                     ; #BUG#invalidGridLocation(bug)//
+*34561 LD L,A        ; Now #REGl holds #IF({fix}<2)(either #b255 or )some
+                     ; number between #b0 and #IF({fix}<2)(#b178,#b179)
 @ignoreua
 @ssub=LD H,40448/256
  34562 LD H,158      ; Point #REGhl at one of the entries in the table at
-                     ; #R40448 (or at #N40703 if #REGl=#b255)
-@bfix+else
- 34559 SUB 180       ; Otherwise subtract #b180
-*34561 LD L,A        ; Now #REGl holds some number between #b0 and #b179
-@ssub=LD H,40448/256
- 34562 LD H,158      ; Point #REGhl at one of the entries in the table at
-                     ; #R40448
-@bfix+end
+                     ; #R40448 #IF({fix}<2)((or at #N40703 if #REGl=#b255))
  34564 LD A,(HL)     ; Pick up the table entry
  34565 ADD A,L       ; Add #REGl to obtain the actual code
  34566 LD (34276),A  ; Store the code at #R34276
