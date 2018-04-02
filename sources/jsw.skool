@@ -1559,11 +1559,8 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
                      ; Maria?
  35612 JP Z,35841    ; If so, lose a life
 ; Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
-@bfix-begin
+@bfix=LD A,191       ; Prepare #REGa for reading keys H-J-K-L-ENTER
  35615 LD B,191      ; Prepare #REGb for reading keys H-J-K-L-ENTER
-@bfix+else
- 35615 LD A,191      ; Prepare #REGa for reading keys H-J-K-L-ENTER
-@bfix+end
  35617 LD HL,34274   ; Point #REGhl at the music flags at #R34274
 @bfix-begin
  35620 IN A,(C)      ; Read keys H-J-K-L-ENTER; note that if the game has just
