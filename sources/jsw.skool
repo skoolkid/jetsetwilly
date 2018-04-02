@@ -1562,13 +1562,10 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
 @bfix=LD A,191       ; Prepare #REGa for reading keys H-J-K-L-ENTER
  35615 LD B,191      ; Prepare #REGb for reading keys H-J-K-L-ENTER
  35617 LD HL,34274   ; Point #REGhl at the music flags at #R34274
-@bfix-begin
- 35620 IN A,(C)      ; Read keys H-J-K-L-ENTER; note that if the game has just
-                     ; resumed after being paused, #REGc holds #b0 instead of
-                     ; #b254, which is a #BUG#thePauseBug(bug)
-@bfix+else
- 35620 IN A,(254)    ; Read keys H-J-K-L-ENTER
-@bfix+end
+@bfix=IN A,(254)
+ 35620 IN A,(C)      ; Read keys H-J-K-L-ENTER#IF({fix}<2)//; note that if the
+                     ; game has just resumed after being paused, #REGc holds
+                     ; #b0 instead of #b254, which is a #BUG#thePauseBug(bug)//
  35622 AND 31        ; {Are any of these keys being pressed?
  35624 CP 31         ; }
  35626 JR Z,35638    ; Jump if not
