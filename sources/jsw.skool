@@ -2968,11 +2968,8 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37777 CP C          ; Is there a room above this one?
  37778 JR NZ,37787   ; Jump if so
  37780 LD A,(HL)     ; Pick up the rope status indicator at #R34262
-@bfix-begin
+@bfix=CP 15          ; Is it #b15 or greater?
  37781 CP 12         ; Is it #b12 or greater?
-@bfix+else
- 37781 CP 15         ; Is it #b15 or greater?
-@bfix+end
  37783 JR NC,37787   ; Jump if so
 @bfix-begin
  37785 LD (HL),12    ; Set the rope status indicator at #R34262 to #b12 (there
