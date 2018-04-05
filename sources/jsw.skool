@@ -3502,14 +3502,10 @@ c38430 LD A,(32928)  ; Pick up the attribute byte of the background tile in the
                      ; #R23552
 *38447 LD A,(32955)  ; Pick up the attribute byte of the nasty tile in the
                      ; current room from #R32955
-@bfix-begin
+@bfix=CP (HL)        ; Is there a nasty here?
  38450 CP (HL)       ; Has Willy hit a nasty?
+@bfix=JP Z,64976     ; If so, kill Willy if he's collided with it
  38451 JP Z,37046    ; Kill Willy if so
-@bfix+else
-@rem=Long distance nasties fix
- 38450 CP (HL)       ; Is there a nasty here?
- 38451 JP Z,64976    ; If so, kill Willy if he's collided with it
-@bfix+end
  38454 RET           ;
 
 ; Draw Willy to the screen buffer at #N24576
