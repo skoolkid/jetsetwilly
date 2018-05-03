@@ -16,27 +16,26 @@ SKOOL = 'jsw.skool'
 
 SNAPSHOT = 'build/jet_set_willy.z80'
 
-OUTPUT = """Using skool file: {skoolfile}
-Using ref files: jsw.ref, bugs.ref, changelog.ref, facts.ref, glossary.ref, pokes.ref
+OUTPUT = """Using ref files: jsw.ref, bugs.ref, changelog.ref, facts.ref, glossary.ref, pokes.ref
 Parsing {skoolfile}
-Creating directory {odir}/jet_set_willy
-Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to {odir}/jet_set_willy/skoolkit.css
-Copying jsw.css to {odir}/jet_set_willy/jsw.css
-  Writing disassembly files in jet_set_willy/asm
-  Writing jet_set_willy/maps/all.html
-  Writing jet_set_willy/maps/routines.html
-  Writing jet_set_willy/maps/data.html
-  Writing jet_set_willy/maps/messages.html
-  Writing jet_set_willy/maps/unused.html
-  Writing jet_set_willy/buffers/gbuffer.html
-  Writing jet_set_willy/reference/bugs.html
-  Writing jet_set_willy/reference/changelog.html
-  Writing jet_set_willy/reference/facts.html
-  Writing jet_set_willy/reference/glossary.html
-  Writing jet_set_willy/reference/pokes.html
-  Writing jet_set_willy/tables/rooms.html
-  Writing jet_set_willy/tables/codes.html
-  Writing jet_set_willy/reference/credits.html
-  Writing jet_set_willy/index.html"""
+Output directory: {odir}/jet_set_willy
+Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to skoolkit.css
+Copying jsw.css to jsw.css
+Writing disassembly files in asm
+Writing maps/all.html
+Writing maps/routines.html
+Writing maps/data.html
+Writing maps/messages.html
+Writing maps/unused.html
+Writing buffers/gbuffer.html
+Writing reference/bugs.html
+Writing reference/changelog.html
+Writing reference/facts.html
+Writing reference/glossary.html
+Writing reference/pokes.html
+Writing tables/rooms.html
+Writing tables/codes.html
+Writing reference/credits.html
+Writing index.html"""
 
 write_tests(SKOOL, SNAPSHOT, OUTPUT)
