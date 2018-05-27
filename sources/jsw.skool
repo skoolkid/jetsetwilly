@@ -13224,18 +13224,17 @@ u64768 ADD HL,BC
  64969 LD DE,26629
  64972 CALL NZ,25694
  64975 POP HL
-@bfix-begin
+@if({fix}>1)(label=CHKNASTY)
+@bfix=BIT 1,H        ; Is #REGhl pointing to a tile in the buffer at #N23552?
  64976 LD A,(HL)
+@bfix=
  64977 INC HL
+@bfix=JP Z,37046     ; Kill Willy if so
  64978 LD H,(HL)
+@bfix=
  64979 LD L,A
+@bfix=
  64980 POP DE
-@bfix+else
-@rem=Long distance nasties fix
-@label=CHKNASTY
- 64976 BIT 1,H       ; Is #REGhl pointing to a tile in the buffer at #N23552?
- 64978 JP Z,37046    ; Kill Willy if so
-@bfix+end
  64981 RET
 *64982 LD A,(HL)
  64983 OR A
