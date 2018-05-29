@@ -13227,13 +13227,10 @@ u64768 ADD HL,BC
 @if({fix}>1)(label=CHKNASTY)
 @bfix=BIT 1,H        ; Is #REGhl pointing to a tile in the buffer at #N23552?
  64976 LD A,(HL)
-@bfix=
  64977 INC HL
 @bfix=JP Z,37046     ; Kill Willy if so
  64978 LD H,(HL)
-@bfix=
  64979 LD L,A
-@bfix=
  64980 POP DE
  64981 RET
 *64982 LD A,(HL)
