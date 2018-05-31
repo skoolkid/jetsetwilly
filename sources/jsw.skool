@@ -3009,12 +3009,8 @@ u37819 LD (HL),A     ; Store the INK colour (bits 0-2)
  37830 INC HL        ; {Move right one cell and store the attribute byte there
  37831 LD (HL),A     ; }
  37832 ADD HL,DE     ; {Move left one cell and down a row and store the
-@bfix-begin
+@if({fix}>1)(label=*)
  37833 LD (HL),A     ; attribute byte there}
-@bfix+else
-@rem=Guardian halos fix
-*37833 LD (HL),A     ; attribute byte there}
-@bfix+end
  37834 INC HL        ; {Move right one cell and store the attribute byte there
  37835 LD (HL),A     ; }
  37836 ADD HL,DE     ; {Move left one cell and down a row and store the
