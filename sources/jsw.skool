@@ -1891,23 +1891,19 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
  36174 LD A,(IX+0)   ; Pick up an attribute byte from the buffer at #R24064;
                      ; this identifies the type of tile (background, floor,
                      ; wall, nasty, ramp or conveyor) to be drawn
-@bfix-begin
+@if({asm}>1)//bfix=LD HL,32928-9/bfix=LD HL,32919//
  36177 LD HL,32928   ; {Move #REGhl through the attribute bytes and graphic
+@bfix=LD BC,9
  36180 LD BC,54      ; data of the background, floor, wall, nasty, ramp and
+@bfix=CALL 65318
+@bfix=               ; that matches the attribute byte of the tile to be drawn}
+@bfix=               ;
  36183 CPIR          ; conveyor tiles starting at #R32928 until we find a byte
                      ; that matches the attribute byte of the tile to be drawn;
                      ; note that if a graphic data byte matches the attribute
                      ; byte being searched for, the #S/CPIR/ instruction can
                      ; exit early, which is a #BUG#corruptedConveyors(bug)}
  36185 LD C,E        ; Restore the value of the tile counter in #REGc
-@bfix+else
-@rem=Corrupted conveyors fix
-@ssub=LD HL,32928-9
- 36177 LD HL,32919   ; {Move #REGhl through the attribute bytes and graphic
- 36180 LD BC,9       ; data of the background, floor, wall, nasty, ramp and
- 36183 CALL 65318    ; conveyor tiles starting at #R32928 until we find a byte
-                     ; that matches the attribute byte of the tile to be drawn}
-@bfix+end
  36186 LD B,8        ; There are eight bytes in the tile
 @label=BUFMSB
  36188 LD D,0        ; This instruction is set to either '#S/LD D/,#n112' or
