@@ -2717,26 +2717,22 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37368 LD A,(HL)     ; Pick up the room attribute byte at the guardian's
                      ; location from the buffer at #R23552
  37369 AND 56        ; Keep only bits 3-5 (PAPER colour)
-@bfix-begin
+@bfix=JR Z,37375     ; Jump if the room background is black
  37371 XOR C         ; Merge the INK colour and BRIGHT value from #REGc
  37372 LD C,A        ; Copy this attribute value to #REGc
+@bfix=RES 6,C        ; Reset the BRIGHT bit of the guardian's colour
  37373 LD (HL),C     ; {Set the attribute bytes in the buffer at #R23552 for
  37374 INC HL        ; the top two rows of cells occupied by the guardian's
+@if({fix}>1)(label=BLACKBG)
+@bfix=OR C           ; Merge the INK colour and BRIGHT value from #REGc
  37375 LD (HL),C     ; sprite
+@bfix=CALL 37833     ; Set the attribute bytes in the buffer at #R23552 for the
+@bfix=               ; top two rows of cells occupied by the guardian's sprite
  37376 ADD HL,DE     ;
  37377 LD (HL),C     ;
  37378 INC HL        ;
+@bfix=LD C,A         ; Copy the guardian's attribute byte to #REGc
  37379 LD (HL),C     ; }
-@bfix+else
-@rem=Guardian halos fix
- 37371 JR Z,37375    ; Jump if the room background is black
- 37373 RES 6,C       ; Reset the BRIGHT bit of the guardian's colour
-@label=BLACKBG
- 37375 OR C          ; Merge the INK colour and BRIGHT value from #REGc
- 37376 CALL 37833    ; Set the attribute bytes in the buffer at #R23552 for the
-                     ; top two rows of cells occupied by the guardian's sprite
- 37379 LD C,A        ; Copy the guardian's attribute byte to #REGc
-@bfix+end
  37380 LD A,(IX+3)   ; Pick up the fourth byte of the guardian's buffer
  37383 AND 14        ; Does the guardian's sprite occupy only two rows of cells
                      ; at the moment?
