@@ -13326,22 +13326,16 @@ u64768 ADD HL,BC
  65312 AND 3
  65314 LD C,A
  65315 IN A,(192)
-@bfix-begin
+@bfix=DEFB 220
+@bfix=FINDTILE: ADD HL,BC
+@bfix=CP (HL)
  65317 CALL C,3335
 @nowarn
  65320 JR NZ,65318
+@bfix=LD C,E
+@bfix=INC HL
+@bfix=RET
  65322 OR (IY+3)
-@bfix+else
- 65317 DEFB 220
-@rem=Corrupted conveyors fix
-@label=FINDTILE
- 65318 ADD HL,BC
- 65319 CP (HL)
- 65320 JR NZ,65318
- 65322 LD C,E
- 65323 INC HL
- 65324 RET
-@bfix+end
  65325 BIT 7,A
  65327 LD A,64
  65329 RET NZ
