@@ -3901,7 +3901,7 @@ b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
 ; Used by the routine at #R34499. These code remnants define the
 ; #LINK:Codes(codes) for grid locations A0-Q9.
 @label=CODES
-@assemble=1
+@assemble=2
 b40448 DEC HL
  40449 LD C,E
 *40450 DEC C
@@ -4002,7 +4002,7 @@ b40448 DEC HL
  40621 JR Z,40630
 *40623 RST 16
  40624 JP C,7874
-@assemble=0
+@assemble=1
 
 ; Unused
 u40627 JP 7519
