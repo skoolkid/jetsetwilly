@@ -1896,8 +1896,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
 @bfix=LD BC,9
  36180 LD BC,54      ; data of the background, floor, wall, nasty, ramp and
 @bfix=CALL 65318
-@bfix=               ; that matches the attribute byte of the tile to be drawn}
-@bfix=               ;
+@bfix=/              ; that matches the attribute byte of the tile to be drawn}
  36183 CPIR          ; conveyor tiles starting at #R32928 until we find a byte
                      ; that matches the attribute byte of the tile to be drawn;
                      ; note that if a graphic data byte matches the attribute
