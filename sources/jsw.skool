@@ -937,12 +937,14 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
 @bfix=CP 180         ; Is the value between #b0 and #b179?
  34555 CP 179        ; Is the value between #b0 and #b178?
  34557 JR C,34561    ; Jump if so
- 34559 SUB 180       ; Otherwise subtract #b180#IF({fix}<2)//; note that if the
-                     ; original value of the LSB of the system variable FRAMES
-                     ; was #b142, this leaves #REGa holding #b255, which is a
-                     ; #BUG#invalidGridLocation(bug)//
-*34561 LD L,A        ; Now #REGl holds #IF({fix}<2)(either #b255 or )some
-                     ; number between #b0 and #IF({fix}<2)(#b178,#b179)
+@bfix=/              ; Otherwise subtract #b180
+ 34559 SUB 180       ; Otherwise subtract #b180; note that if the original
+                     ; value of the LSB of the system variable FRAMES was
+                     ; #b142, this leaves #REGa holding #b255, which is a
+                     ; #BUG#invalidGridLocation(bug)
+@bfix=/              ; Now #REGl holds some number between #b0 and #b179
+*34561 LD L,A        ; Now #REGl holds either #b255 or some number between #b0
+                     ; and #b178
 @ignoreua
 @ssub=LD H,40448/256
  34562 LD H,158      ; Point #REGhl at one of the entries in the table at
@@ -1562,10 +1564,10 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
 @bfix=LD A,191       ; Prepare #REGa for reading keys H-J-K-L-ENTER
  35615 LD B,191      ; Prepare #REGb for reading keys H-J-K-L-ENTER
  35617 LD HL,34274   ; Point #REGhl at the music flags at #R34274
-@bfix=IN A,(254)
- 35620 IN A,(C)      ; Read keys H-J-K-L-ENTER#IF({fix}<2)//; note that if the
-                     ; game has just resumed after being paused, #REGc holds
-                     ; #b0 instead of #b254, which is a #BUG#thePauseBug(bug)//
+@bfix=/IN A,(254)    ; Read keys H-J-K-L-ENTER
+ 35620 IN A,(C)      ; Read keys H-J-K-L-ENTER; note that if the game has just
+                     ; resumed after being paused, #REGc holds #b0 instead of
+                     ; #b254, which is a #BUG#thePauseBug(bug)
  35622 AND 31        ; {Are any of these keys being pressed?
  35624 CP 31         ; }
  35626 JR Z,35638    ; Jump if not
