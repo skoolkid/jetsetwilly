@@ -1897,7 +1897,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
  36177 LD HL,32928   ; {Move #REGhl through the attribute bytes and graphic
 @bfix=LD BC,9
  36180 LD BC,54      ; data of the background, floor, wall, nasty, ramp and
-@bfix=CALL 65318
+@bfix=|CALL 65318
 @bfix=/              ; that matches the attribute byte of the tile to be drawn}
  36183 CPIR          ; conveyor tiles starting at #R32928 until we find a byte
                      ; that matches the attribute byte of the tile to be drawn;
@@ -2718,16 +2718,15 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37368 LD A,(HL)     ; Pick up the room attribute byte at the guardian's
                      ; location from the buffer at #R23552
  37369 AND 56        ; Keep only bits 3-5 (PAPER colour)
-@bfix=JR Z,37375     ; Jump if the room background is black
+@bfix=|JR Z,37375    ; Jump if the room background is black
  37371 XOR C         ; Merge the INK colour and BRIGHT value from #REGc
  37372 LD C,A        ; Copy this attribute value to #REGc
-@bfix=RES 6,C        ; Reset the BRIGHT bit of the guardian's colour
+@bfix=|RES 6,C       ; Reset the BRIGHT bit of the guardian's colour
  37373 LD (HL),C     ; {Set the attribute bytes in the buffer at #R23552 for
  37374 INC HL        ; the top two rows of cells occupied by the guardian's
-@if({fix}>1)(label=BLACKBG)
-@bfix=OR C           ; Merge the INK colour and BRIGHT value from #REGc
+@bfix=BLACKBG: OR C  ; Merge the INK colour and BRIGHT value from #REGc
  37375 LD (HL),C     ; sprite
-@bfix=CALL 37833     ; Set the attribute bytes in the buffer at #R23552 for the
+@bfix=|CALL 37833    ; Set the attribute bytes in the buffer at #R23552 for the
 @bfix=               ; top two rows of cells occupied by the guardian's sprite
  37376 ADD HL,DE     ;
  37377 LD (HL),C     ;
@@ -13213,11 +13212,11 @@ u64768 ADD HL,BC
  64969 LD DE,26629
  64972 CALL NZ,25694
  64975 POP HL
-@if({fix}>1)(label=CHKNASTY)
-@bfix=BIT 1,H        ; Is #REGhl pointing to a tile in the buffer at #N23552?
+@bfix=|CHKNASTY: BIT 1,H ; Is #REGhl pointing to a tile in the buffer at
+@bfix=                   ; #N23552?
  64976 LD A,(HL)
  64977 INC HL
-@bfix=JP Z,37046     ; Kill Willy if so
+@bfix=|JP Z,37046        ; Kill Willy if so
  64978 LD H,(HL)
  64979 LD L,A
  64980 POP DE
@@ -13327,15 +13326,15 @@ u64768 ADD HL,BC
  65312 AND 3
  65314 LD C,A
  65315 IN A,(192)
-@bfix=DEFB 220
-@bfix=FINDTILE: ADD HL,BC
-@bfix=CP (HL)
+@bfix=|DEFB 220
+@bfix=|FINDTILE: ADD HL,BC
+@bfix=|CP (HL)
  65317 CALL C,3335
 @nowarn
  65320 JR NZ,65318
-@bfix=LD C,E
-@bfix=INC HL
-@bfix=RET
+@bfix=|LD C,E
+@bfix=|INC HL
+@bfix=|RET
  65322 OR (IY+3)
  65325 BIT 7,A
  65327 LD A,64
