@@ -945,8 +945,8 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
 @bfix=/              ; Now #REGl holds some number between #b0 and #b179
 *34561 LD L,A        ; Now #REGl holds either #b255 or some number between #b0
                      ; and #b178
-@ignoreua
 @ssub=LD H,40448/256
+@ignoreua
  34562 LD H,158      ; Point #REGhl at one of the entries in the table at
                      ; #R40448 #IF({fix}<2)((or at #N40703 if #REGl=#b255))
  34564 LD A,(HL)     ; Pick up the table entry
@@ -1250,8 +1250,8 @@ c34762 XOR A         ; #REGa=0
 ;
 ; Used by the routine at #R34762.
 @label=STARTGAME
-c35068 LD HL,34181   ; {Initialise the time by copying the text at #R34181
- 35071 LD DE,34175   ; (" 7:00a") to #R34175
+c35068 LD HL,34181   ; {Copy the text at #R34181 (" 7:00a") to #R34175, thus
+ 35071 LD DE,34175   ; resetting the clock
  35074 LD BC,6       ;
  35077 LDIR          ; }
  35079 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
@@ -3870,12 +3870,10 @@ b40064 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
 ; Used by the routines at #R35211, #R35914 and #R38455.
 ; .
 ; #UDGTABLE
-; { #sprite40192,7(willy0*) | #sprite40224,7(willy1*) |
-; #sprite40256,7(willy2*) | #sprite40288,7(willy3*) |
-; #UDGARRAY*willy0;willy1;willy2;willy3(willy_r) }
-; { #sprite40320,7(willy4*) | #sprite40352,7(willy5*) |
-; #sprite40384,7(willy6*) | #sprite40416,7(willy7*) |
-; #UDGARRAY*willy7;willy6;willy5;willy4(willy_l) }
+; { #sprite40192,7(willy0*) | #sprite40224,7(willy1*) | #sprite40256,7(willy2*)
+; | #sprite40288,7(willy3*) | #UDGARRAY*willy0;willy1;willy2;willy3(willy_r) }
+; { #sprite40320,7(willy4*) | #sprite40352,7(willy5*) | #sprite40384,7(willy6*)
+; | #sprite40416,7(willy7*) | #UDGARRAY*willy7;willy6;willy5;willy4(willy_l) }
 ; TABLE#
 @label=MANDAT
 b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
@@ -3896,12 +3894,12 @@ b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
  40416 DEFB 0,60,0,60,0,126,0,44,0,124,0,60,0,24,0,60
  40432 DEFB 0,126,0,126,0,239,0,223,0,60,0,110,0,118,0,238
 
+@assemble=2
 ; Codes
 ;
 ; Used by the routine at #R34499. These code remnants define the
 ; #LINK:Codes(codes) for grid locations A0-Q9.
 @label=CODES
-@assemble=2
 b40448 DEC HL
  40449 LD C,E
 *40450 DEC C
@@ -4002,8 +4000,8 @@ b40448 DEC HL
  40621 JR Z,40630
 *40623 RST 16
  40624 JP C,7874
-@assemble=1
 
+@assemble=1
 ; Unused
 u40627 JP 7519
 *40630 LD D,1
