@@ -1,4 +1,4 @@
-; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2018 Richard Dymond (rjdymond@gmail.com)
 
 [Page:Changelog]
 SectionType=BulletPoints
@@ -6,6 +6,7 @@ SectionType=BulletPoints
 [Changelog:YYYYMMDD]
 -
 
+- Ported the disassembly to SkoolKit 7
 - Documented a bug: #BUG#corruptedNasties() (thanks IRF)
 
 [Changelog:20171113]
