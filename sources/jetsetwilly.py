@@ -1,4 +1,4 @@
-# Copyright 2012, 2014-2017 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014-2018 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -41,6 +41,17 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             y = 8 * (b1 >> 7) + b2 // 32
             self.items.setdefault(room_num, []).append((x, y))
         self.room_names, self.room_names_wp = self._get_room_names()
+
+    def init_page(self, skoolkit, game):
+        if 'alt_base' in game:
+            path = skoolkit['path']
+            if skoolkit['page_id'].startswith('Asm'):
+                addr_str = path.rsplit('/', 1)[-1][:-5]
+                if game['alt_base'] == 'decimal':
+                    path = path.replace(addr_str, str(int(addr_str, 16)))
+                else:
+                    path = path.replace(addr_str, '{:04X}'.format(int(addr_str)))
+            skoolkit['Path'] = path
 
     def _build_logo(self):
         udgs = []
