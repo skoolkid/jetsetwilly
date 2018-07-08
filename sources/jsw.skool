@@ -1785,8 +1785,8 @@ c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
  35981 XOR A         ; #REGa=0 (black border)
  35982 LD BC,64      ; #REGc=#b64; this value determines the duration of the
                      ; sound effect
-*35985 OUT (254),A   ; {Produce a short note whose pitch is determined by
- 35987 XOR 24        ; #REGe
+*35985 OUT (254),A   ; {Produce a short note whose pitch is determined by #REGe
+ 35987 XOR 24        ;
  35989 LD B,E        ;
 *35990 DJNZ 35990    ;
  35992 DEC C         ;
@@ -2090,8 +2090,8 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36411 JR NZ,36450   ; Jump if not
  36413 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
                      ; #R34259
- 36416 LD DE,64      ; {Point #REGhl at the left-hand cell below Willy's
- 36419 ADD HL,DE     ; sprite}
+ 36416 LD DE,64      ; {Point #REGhl at the left-hand cell below Willy's sprite
+ 36419 ADD HL,DE     ; }
  36420 BIT 1,H       ; Is this location below the floor of the current room?
  36422 JP NZ,38098   ; If so, move Willy into the room below
  36425 LD A,(32955)  ; Pick up the attribute byte of the nasty tile for the
@@ -2618,8 +2618,8 @@ c37056 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37187 CP 96         ; Is it time to update the x-coordinate of the guardian
                      ; sprite?
  37189 JR C,37302    ; If not, jump to consider the next entity
- 37191 LD A,(IX+2)   ; {Pick up the sprite's current screen x-coordinate
- 37194 AND 31        ; (0-31)}
+ 37191 LD A,(IX+2)   ; {Pick up the sprite's current screen x-coordinate (0-31)
+ 37194 AND 31        ; }
  37196 CP (IX+6)     ; Has the guardian reached the leftmost point of its path?
  37199 JR Z,37206    ; Jump if so
  37201 DEC (IX+2)    ; Decrement the sprite's x-coordinate
@@ -2634,8 +2634,8 @@ c37056 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37222 CP 160        ; Is it time to update the x-coordinate of the guardian
                      ; sprite?
  37224 JR NC,37302   ; If not, jump to consider the next entity
- 37226 LD A,(IX+2)   ; {Pick up the sprite's current screen x-coordinate
- 37229 AND 31        ; (0-31)}
+ 37226 LD A,(IX+2)   ; {Pick up the sprite's current screen x-coordinate (0-31)
+ 37229 AND 31        ; }
  37231 CP (IX+7)     ; Has the guardian reached the rightmost point of its
                      ; path?
  37234 JR Z,37241    ; Jump if so
@@ -2738,8 +2738,8 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
                      ; at the moment?
  37385 JR Z,37391    ; Jump if so
  37387 ADD HL,DE     ; {Set the attribute bytes in the buffer at #R23552 for
- 37388 LD (HL),C     ; the third row of cells occupied by the guardian's
- 37389 INC HL        ; sprite
+ 37388 LD (HL),C     ; the third row of cells occupied by the guardian's sprite
+ 37389 INC HL        ;
  37390 LD (HL),C     ; }
 *37391 LD C,1        ; Prepare #REGc for the call to #R37974 later on
  37393 LD A,(IX+1)   ; Now bits 5-7 of #REGa hold the animation frame mask
@@ -2899,8 +2899,8 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37660 LD H,131      ; }
  37662 LD E,(HL)     ; {Add its value to #REGiy; now #REGiy points at the entry
  37663 LD D,0        ; in the screen buffer address lookup table at #R33280
- 37665 ADD IY,DE     ; that corresponds to the next segment of rope to
-                     ; consider}
+ 37665 ADD IY,DE     ; that corresponds to the next segment of rope to consider
+                     ; }
  37667 RES 7,L       ; Point #REGhl at the relevant entry in the first half of
                      ; the rope animation table at #R33536
  37669 LD A,(HL)     ; Pick up its value
@@ -3232,8 +3232,8 @@ c38098 LD A,(33004)  ; Pick up the number of the room below from #R33004
                      ; falling for a while)?
  38113 JR NC,38120   ; Jump if so
  38115 LD A,2        ; {Otherwise set the airborne status indicator to 2 (Willy
- 38117 LD (34257),A  ; will start falling here if there's no floor beneath
-                     ; him)}
+ 38117 LD (34257),A  ; will start falling here if there's no floor beneath him)
+                     ; }
 *38120 LD A,(34259)  ; {Willy should now appear at the top of the room, so
  38123 AND 31        ; adjust his attribute buffer coordinates (at #R34259)
  38125 LD (34259),A  ; accordingly
@@ -3532,8 +3532,8 @@ c38455 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
  38493 XOR 128       ;
  38495 LD E,A        ; }
 *38496 LD B,16       ; There are 16 rows of pixels to copy
- 38498 LD A,(34259)  ; {Pick up Willy's screen x-coordinate (0-31) from
- 38501 AND 31        ; #R34259}
+ 38498 LD A,(34259)  ; {Pick up Willy's screen x-coordinate (0-31) from #R34259
+ 38501 AND 31        ; }
  38503 LD C,A        ; Copy it to #REGc
 ; This entry point is used by the routine at #R38298 to draw the toilet in
 ; #R57600(The Bathroom).
