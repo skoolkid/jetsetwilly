@@ -697,8 +697,8 @@ g34255 DEFB 0
 ; { =h Bit(s) | =h Meaning | =h Used by }
 ; { 0 | Direction Willy is facing (reset=right, set=left) | #R36564, #R36796,
 ; #R38455 }
-; { 1 | Willy's movement flag (set=moving) | #R36307, #R36564, #R36796, #R37310
-; }
+; { 1 | Willy's left/right movement flag (set=moving) | #R36307, #R36564,
+; #R36796, #R37310 }
 ; { 2-7 | Unused (always reset) | }
 ; TABLE#
 @label=DMFLAGS
@@ -2345,7 +2345,7 @@ c36564 LD E,255      ; Initialise #REGe to #b255 (all bits set); it will be
 @label=MOVEWILLY3
 c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; #R34256
- 36799 AND 2         ; Is Willy moving?
+ 36799 AND 2         ; Is Willy moving left or right?
  36801 RET Z         ; Return if not
  36802 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36805 DEC A         ; {Is Willy on a rope?
