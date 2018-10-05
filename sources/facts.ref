@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2017 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014-2018 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:gameOverAt1am:Game over at 1am]
 The game ends abruptly at 1am (see #R35442), even if Willy has collected all
@@ -299,10 +299,31 @@ direction (see #R37756).
 [Fact:theEncroachingRope:The encroaching rope]
 In the entity buffer at #R33024, the definition for a rope uses the second and
 fourth bytes of the following definition (in addition to the eight bytes of its
-own slot); this means that to avoid corrupting another entity, the rope must be
-either the last entity specified in a room (in which case it will use the first
-and third bytes in the otherwise unused area at #R33089), or followed by an
-arrow (which doesn't use the second and fourth bytes of its slot).
+own slot). This means that to avoid corrupting another entity, the rope must be
+followed in the room's list of entity definitions either by an arrow (which
+doesn't use the second and fourth bytes of its slot), or by nothing.
+
+Note, however, that if a rope were the eighth entity specified in a room, byte
+11 of its buffer would occupy the third byte in the otherwise unused area at
+#R33089, and would not be reinitialised by the routine at #R35090 after Willy
+has lost a life. This means that if Willy dies while on the rope, bit 0 of byte
+11 (which indicates whether he is on the rope) remains set; then, if Willy
+starts moving in the same direction as the rope is swinging, he will teleport
+into the room above. This happens because:
+
+#LIST
+{ The section of code at #R37726 erroneously assumes that Willy is on the rope,
+  and updates the rope status indicator at #R34262 from 0 (Willy is not on the
+  rope) to 1 (Willy is on the rope, with the centre of his sprite anchored at
+  segment 1). }
+{ On the next pass through the main loop, the section of code at #R37558
+  erroneously detects Willy on the rope at segment 1, and accordingly sets his
+  pixel y-coordinate at #R34255 to 246; this is the y-coordinate of segment 1
+  of the rope (6) minus 16. }
+{ On the next pass through the main loop, the code at #R35281 picks up Willy's
+  pixel y-coordinate (now 246) from #R34255, finds that it is 225 or greater,
+  and moves Willy into the room above. }
+LIST#
 
 [Fact:ropesBeforeArrows:Ropes before arrows]
 The rope-drawing code at #R37540 places Willy on the rope if it is touching

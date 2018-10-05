@@ -8,6 +8,8 @@ SectionType=BulletPoints
 
 - Ported the disassembly to SkoolKit 7
 - Documented a bug: #BUG#corruptedNasties() (thanks IRF)
+- In #FACT#theEncroachingRope(), added a note about the danger of having a rope
+  defined as the eighth entity in a room (thanks IRF)
 
 [Changelog:20171113]
 -
