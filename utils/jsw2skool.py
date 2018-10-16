@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import sys
-from io import StringIO
 import os
 import argparse
 from collections import OrderedDict
@@ -587,13 +586,7 @@ def run(subcommand):
     ctlfile = '{}/{}.ctl'.format(BUILD_DIR, subcommand)
     with open(ctlfile, 'wt') as f:
         f.write(getattr(jsw, methods[subcommand][0])())
-    stdout = sys.stdout
-    sys.stdout = StringIO()
     sna2skool.main(('-c', ctlfile, JSW_Z80))
-    skool = sys.stdout.getvalue()
-    sys.stdout = stdout
-    for line in skool.split('\n')[2:-1]:
-        print(line)
 
 ###############################################################################
 # Begin
