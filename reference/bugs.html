@@ -29,6 +29,7 @@
 <li><a href="#theBlankConveyor">The blank conveyor</a></li>
 <li><a href="#corruptedConveyors">Corrupted conveyors</a></li>
 <li><a href="#veryCorruptedConveyor">Very corrupted conveyor</a></li>
+<li><a href="#corruptedNasties">Corrupted nasties</a></li>
 <li><a href="#invalidGridLocation">Invalid grid location</a></li>
 <li><a href="#thePauseBug">The pause bug</a></li>
 <li><a href="#theAtticBug">The Attic bug</a></li>
@@ -426,6 +427,9 @@ To fix the bug:
 <div>POKE 65323,35</div>
 <div>POKE 65324,201</div>
 </div>
+<div class="paragraph">
+See also <a href="bugs.html#corruptedNasties">Corrupted nasties</a>.
+</div>
 </div>
 <div><span id="veryCorruptedConveyor"></span></div>
 <div class="box box-1">
@@ -470,8 +474,36 @@ bottom):
 </table>
 </div>
 </div>
-<div><span id="invalidGridLocation"></span></div>
+<div><span id="corruptedNasties"></span></div>
 <div class="box box-2">
+<div class="box-title">Corrupted nasties</div>
+<div class="paragraph">
+The nasty tiles down the right hand side of <a href="../asm/E400.html">A bit of tree</a> don't look
+quite as they should. The reason for this is the same bug in the code at
+<a href="../asm/8D33.html#8d51">8D51</a> that causes the <a href="bugs.html#corruptedConveyors">corrupted conveyors</a>: if a
+graphic data byte of the background, floor or wall tile in a room matches the
+attribute byte of the nasty tile to be drawn, the 'CPIR' instruction exits
+early, leaving <span class="register">HL</span> pointing at the wrong location.
+</div>
+<div class="paragraph">
+Here are the 'before' and 'after' pictures showing what the nasties actually
+look like and what they look like when drawn properly.
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="nasty36_before" src="../images/scr/nasty36_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="nasty36_after" src="../images/scr/nasty36_after.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">Before</td>
+<td class="" colspan="1" rowspan="1">After</td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="invalidGridLocation"></span></div>
+<div class="box box-1">
 <div class="box-title">Invalid grid location</div>
 <div class="paragraph">
 If the LSB of the system variable FRAMES is 0x8E when the game starts, the
@@ -486,7 +518,7 @@ POKE <a href="../asm/86C3.html#86fb">34556</a>,180
 </div>
 </div>
 <div><span id="thePauseBug"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">The pause bug</div>
 <div class="paragraph">
 The Spectrum will hang when trying to resume the game after being paused if an
@@ -499,7 +531,7 @@ POKE <a href="../asm/8B07.html#8b1f">35615</a>,62: POKE <a href="../asm/8B07.htm
 </div>
 </div>
 <div><span id="theAtticBug"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">The Attic bug</div>
 <div class="paragraph">
 Perhaps the most famous of all the bugs in Jet Set Willy, the Attic bug is
@@ -535,9 +567,10 @@ which sets the pixel y-coordinate of the arrow to 41.
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20171113</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.1.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
+<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/reference/bugs.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

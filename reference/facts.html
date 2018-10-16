@@ -605,10 +605,25 @@ direction (see <a href="../asm/91BE.html#937c">937C</a>).
 <div class="paragraph">
 In the entity buffer at <a href="../asm/8100.html">8100</a>, the definition for a rope uses the second and
 fourth bytes of the following definition (in addition to the eight bytes of its
-own slot); this means that to avoid corrupting another entity, the rope must be
-either the last entity specified in a room (in which case it will use the first
-and third bytes in the otherwise unused area at <a href="../asm/8141.html">8141</a>), or followed by an
-arrow (which doesn't use the second and fourth bytes of its slot).
+own slot). This means that to avoid corrupting another entity, the rope must be
+followed in the room's list of entity definitions either by an arrow (which
+doesn't use the second and fourth bytes of its slot), or by nothing.
+</div>
+<div class="paragraph">
+Note, however, that if a rope were the eighth entity specified in a room, byte
+11 of its buffer would occupy the third byte in the otherwise unused area at
+<a href="../asm/8141.html">8141</a>, and would not be reinitialised by the routine at <a href="../asm/8912.html">8912</a> after Willy
+has lost a life. This means that if Willy dies while on the rope, bit 0 of byte
+11 (which indicates whether he is on the rope) remains set; then, if Willy
+starts moving in the same direction as the rope is swinging, he will teleport
+into the room above. This happens because:
+</div>
+<div class="paragraph">
+<ul class="">
+<li>The section of code at <a href="../asm/91BE.html#935e">935E</a> erroneously assumes that Willy is on the rope, and updates the rope status indicator at <a href="../asm/85D6.html">85D6</a> from 0 (Willy is not on the rope) to 1 (Willy is on the rope, with the centre of his sprite anchored at segment 1).</li>
+<li>On the next pass through the main loop, the section of code at <a href="../asm/91BE.html#92b6">92B6</a> erroneously detects Willy on the rope at segment 1, and accordingly sets his pixel y-coordinate at <a href="../asm/85CF.html">85CF</a> to 246; this is the y-coordinate of segment 1 of the rope (6) minus 16.</li>
+<li>On the next pass through the main loop, the code at <a href="../asm/89AD.html#89d1">89D1</a> picks up Willy's pixel y-coordinate (now 246) from <a href="../asm/85CF.html">85CF</a>, finds that it is 225 or greater, and moves Willy into the room above.</li>
+</ul>
 </div>
 </div>
 <div><span id="ropesBeforeArrows"></span></div>
@@ -1126,9 +1141,10 @@ The room with the most items is <a href="../asm/C000.html">The Off Licence</a> w
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20171113</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2017 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 6.1.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
+<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
+<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/reference/facts.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>
