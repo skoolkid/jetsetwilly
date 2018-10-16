@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 D_VERSIONS=(
+  20181016
   20171113
   20170518
   20161105
@@ -123,5 +124,5 @@ HTML_OPTS="$HTML_OPTS -d .."
 if (($SK_VERSION_INT >= 302)); then
   HTML_OPTS="$HTML_OPTS -t"
 fi
-[ -f jsw.ref ] && JSW_REF=jsw.ref || JSW_REF=jet_set_willy.ref
-./skool2html.py $HTML_OPTS $JSW_REF
+[ -f jsw.skool ] && JSW_SKOOL=jsw.skool || JSW_SKOOL=jet_set_willy.skool
+./skool2html.py $HTML_OPTS $JSW_SKOOL

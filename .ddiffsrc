@@ -1,5 +1,5 @@
 # rc file for disassembly-diff, skooldiff and write-files
 
-OLD_VERSION=20171113
-SK_OLD_VERSION=6.1
+OLD_VERSION=20181016
+SK_OLD_VERSION=7.0
 SNAPSHOT=$JETSETWILLY_HOME/build/jet_set_willy.z80
