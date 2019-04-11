@@ -1,4 +1,4 @@
-; Copyright 2012-2018 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2019 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
 HtmlWriterClass=:jetsetwilly.JetSetWillyHtmlWriter
@@ -15,7 +15,7 @@ LinkInternalOperands=1
 AddressAnchor={address#IF({base}==16)(:04x)}
 
 [ImageWriter]
-DefaultAnimationFormat=gif
+DefaultAnimationFormat=png
 
 [Font]
 32=0000000000000000
