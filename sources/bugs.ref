@@ -1,4 +1,4 @@
-; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017, 2019 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:faultyClock:12:30am in the afternoon]
 The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm
@@ -206,7 +206,7 @@ Cellar.
   #WILLY49,29,80,3,26,9,6,6(sitw1_3)
 } TABLE#
 
-Willy can get also stuck in the wall tiles that make up the elephant's head in
+Willy can also get stuck in the wall tiles that make up the elephant's head in
 #R59392(Dr Jones will never believe this). Start at the location shown in the
 first image below, and then walk left.
 
