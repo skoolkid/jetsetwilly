@@ -1,4 +1,4 @@
-# Copyright 2012, 2014-2018 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014-2019 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -233,7 +233,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 b = a
             else:
                 # Simulate the 'Cell-Graphics' bug
-                # http://webspace.webring.com/people/ja/andrewbroad/bugs.html
+                # https://www.oocities.org/andrewbroad/spectrum/willy/bugs.html
                 b = addr + 160
                 while b < a and self.snapshot[b] != attr:
                     b += 1

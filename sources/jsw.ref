@@ -139,8 +139,8 @@ PageContent=#INCLUDE(Credits)
 This disassembly would have taken a lot longer to finish if it weren't for the
 research and documentation already done and made available by:
 #LIST
-{ <a href="http://webspace.webring.com/people/ja/andrewbroad/">Andrew Broad</a>
-  (and Carl Woffenden) }
+{ <a href="https://www.oocities.org/andrewbroad/spectrum/willy/">Andrew
+  Broad</a> (and Carl Woffenden) }
 { <a href="http://mdfs.net/Software/JSW/Docs/">J. G. Harston</a> }
 LIST#
 In particular, their partial disassemblies, bug descriptions and room format

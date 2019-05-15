@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2018 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014-2019 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:gameOverAt1am:Game over at 1am]
 The game ends abruptly at 1am (see #R35442), even if Willy has collected all
@@ -593,7 +593,7 @@ activated (see #R35553).
 The name of the room #R61440(Nomen Luni) is a pun on 'Nomen Ludi', a Latin
 translation of 'The Name of the Game', which appeared in adverts for the
 aeroplane shoot-em-up game
-<a href="http://worldofspectrum.org/infoseekid.cgi?id=0005894">Zzoom</a> by
+<a href="https://worldofspectrum.org/infoseekid.cgi?id=0005894">Zzoom</a> by
 Imagine Software Ltd.
 
 In #R61440(Nomen Luni) and the room below (#R59904(Under the Roof)) you can see
@@ -613,8 +613,8 @@ The sequence of rooms #R53504(Up on the Battlements), #R53248(We must perform a
 Quirkafleeg), #R52992(I'm sure I've seen this before..) and #R52736(Rescue
 Esmerelda) - with the guards, battlements, rope, bells and Esmerelda - are a
 reference to
-<a href="http://worldofspectrum.org/infoseekid.cgi?id=0002383">Hunchback</a> by
-Ocean Software Ltd.
+<a href="https://worldofspectrum.org/infoseekid.cgi?id=0002383">Hunchback</a>
+by Ocean Software Ltd.
 
 [Fact:drJonesWillNeverBelieveThis:Dr Jones will never believe this?]
 The name of the room #R59392(Dr Jones will never believe this) may be a

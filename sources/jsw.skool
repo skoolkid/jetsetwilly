@@ -43,7 +43,7 @@ b28672 DEFS 4096
 @replace=/#POKE(?![A-Z])/#LINK:Pokes
 @writer=:jetsetwilly.JetSetWillyAsmWriter
 ; Jet Set Willy disassembly
-; http://skoolkit.ca/
+; https://skoolkit.ca
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
 ; Copyright 2012-2019 Richard Dymond (this disassembly)
@@ -62,7 +62,7 @@ b28672 DEFS 4096
 ;   * Long distance nasties
 ;   * From top to bottom
 ;   * The self-collecting item
-; See http://skoolkit.ca/disassemblies/jet_set_willy/reference/bugs.html for
+; See https://skoolkit.ca/disassemblies/jet_set_willy/reference/bugs.html for
 ; full descriptions of these bugs.
 @bfix+end
 
