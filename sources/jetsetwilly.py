@@ -51,7 +51,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                     path = path.replace(addr_str, str(int(addr_str, 16)))
                 else:
                     path = path.replace(addr_str, '{:04X}'.format(int(addr_str)))
-            skoolkit['Path'] = path
+            skoolkit['Path'] = skoolkit['index_href'][:-10] + game['alt_dir'] + path
 
     def _build_logo(self):
         udgs = []
