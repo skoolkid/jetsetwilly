@@ -23,7 +23,7 @@
 <div class="description">96A2: Play the theme tune (Moonlight Sonata)</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="87CA.html">87CA</a>. For each of the 99 bytes in the tune data table at <a href="85FB.html">85FB</a>, this routine produces two notes, each lasting approximately 0.15s; the second note is played at half the frequency of the first. Returns with the zero flag reset if ENTER, 0 or the fire button is pressed while the tune is being played.
@@ -49,150 +49,175 @@ Used by the routine at <a href="87CA.html">87CA</a>. For each of the 99 bytes in
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="96a2"></span>96A2</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-11" rowspan="1">Pick up the next byte of tune data from the table at <a href="85FB.html">85FB</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96a3"></span>96A3</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $FF</td>
 <td class="comment-11" rowspan="1">Has the tune finished?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96a5"></span>96A5</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
 <td class="comment-11" rowspan="1">Return (with the zero flag set) if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96a6"></span>96A6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0064</td>
 <td class="comment-11" rowspan="1"><span class="register">B</span>=0 (short note duration counter), <span class="register">C</span>=100 (short note counter)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96a9"></span>96A9</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
 <td class="comment-11" rowspan="1"><span class="register">A</span>=0 (border colour and speaker state)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96aa"></span>96AA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,(HL)</td>
 <td class="comment-11" rowspan="1">Save the byte of tune data in <span class="register">E</span> for retrieval during the short note loop</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96ab"></span>96AB</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,E</td>
 <td class="comment-11" rowspan="1">Initialise <span class="register">D</span> (pitch delay counter)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="96ac"></span>96AC</td>
+<td class="bytes-0"></td>
 <td class="instruction">OUT ($FE),A</td>
 <td class="comment-11" rowspan="6">Produce a short note (approximately 0.003s) whose pitch is determined by the value in <span class="register">E</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96ae"></span>96AE</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC D</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96af"></span>96AF</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="96A2.html#96b4">$96B4</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96b1"></span>96B1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,E</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96b2"></span>96B2</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR $18</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="96b4"></span>96B4</td>
+<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="96A2.html#96ac">$96AC</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96b6"></span>96B6</td>
+<td class="bytes-0"></td>
 <td class="instruction">EX AF,AF'</td>
 <td class="comment-11" rowspan="1">Save <span class="register">A</span> briefly</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96b7"></span>96B7</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,C</td>
 <td class="comment-11" rowspan="2">Is the short note counter in <span class="register">C</span> (which starts off at 100) down to 50 yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96b8"></span>96B8</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $32</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96ba"></span>96BA</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="96A2.html#96be">$96BE</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96bc"></span>96BC</td>
+<td class="bytes-0"></td>
 <td class="instruction">RL E</td>
 <td class="comment-11" rowspan="1">Otherwise double the value in <span class="register">E</span> (which halves the note frequency)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="96be"></span>96BE</td>
+<td class="bytes-0"></td>
 <td class="instruction">EX AF,AF'</td>
 <td class="comment-11" rowspan="1">Restore the value of <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96bf"></span>96BF</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC C</td>
 <td class="comment-11" rowspan="1">Decrement the short note counter in <span class="register">C</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96c0"></span>96C0</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="96A2.html#96ac">$96AC</a></td>
 <td class="comment-11" rowspan="1">Jump back unless we've finished playing 50 short notes at the lower frequency</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96c2"></span>96C2</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="96C9.html">$96C9</a></td>
 <td class="comment-11" rowspan="1">Check whether ENTER, 0 or the fire button is being pressed</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96c5"></span>96C5</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET NZ</td>
 <td class="comment-11" rowspan="1">Return (with the zero flag reset) if it is</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96c6"></span>96C6</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-11" rowspan="1">Move <span class="register">HL</span> along to the next byte of tune data</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96c7"></span>96C7</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="96A2.html#96a2">$96A2</a></td>
 <td class="comment-11" rowspan="1">Jump back to play the next batch of 100 short notes</td>
 </tr>
@@ -205,10 +230,10 @@ Used by the routine at <a href="87CA.html">87CA</a>. For each of the 99 bytes in
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/38562.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/38562.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

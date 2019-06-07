@@ -23,7 +23,7 @@
 <div class="description">869F: Give two chances to enter a correct code</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="8400.html">8400</a>.
@@ -46,72 +46,84 @@ Used by the routine at <a href="8400.html">8400</a>.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="869f"></span>869F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$4000</td>
 <td class="comment-11" rowspan="5">Clear the display file and attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86a2"></span>86A2</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$4001</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86a5"></span>86A5</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$1AFF</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86a8"></span>86A8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$00</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86aa"></span>86AA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86ac"></span>86AC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IX,$858B</td>
 <td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the message at <a href="858B.html">858B</a> ("Enter Code at grid location&#160;&#160;&#160;&#160;&#160;")</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86b0"></span>86B0</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="86C3.html">$86C3</a></td>
 <td class="comment-11" rowspan="1">Display the code entry screen and collect a four-digit code from the user</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86b3"></span>86B3</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="87CA.html">$87CA</a></td>
 <td class="comment-11" rowspan="1">Start the game if the code is correct</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86b6"></span>86B6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IX,$85AB</td>
 <td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the message at <a href="85AB.html">85AB</a> ("Sorry, try code at location&#160;&#160;&#160;&#160;&#160;")</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86ba"></span>86BA</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="86C3.html">$86C3</a></td>
 <td class="comment-11" rowspan="1">Display the code entry screen and collect another four-digit code from the user</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86bd"></span>86BD</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="87CA.html">$87CA</a></td>
 <td class="comment-11" rowspan="1">Start the game if the code is correct</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86c0"></span>86C0</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP $0000</td>
 <td class="comment-11" rowspan="1">Otherwise reset the machine</td>
 </tr>
@@ -124,10 +136,10 @@ Used by the routine at <a href="8400.html">8400</a>.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/34463.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/34463.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

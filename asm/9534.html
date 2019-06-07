@@ -23,7 +23,7 @@
 <div class="description">9534: Deal with special rooms (Master Bedroom, The Bathroom)</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="89AD.html">89AD</a>.
@@ -46,41 +46,47 @@ Used by the routine at <a href="89AD.html">89AD</a>.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9534"></span>9534</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($8420)</td>
 <td class="comment-11" rowspan="1">Pick up the number of the current room from <a href="8420.html">8420</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9537"></span>9537</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $23</td>
 <td class="comment-11" rowspan="1">Are we in <a href="E300.html">Master Bedroom</a>?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9539"></span>9539</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="959A.html">$959A</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="953b"></span>953B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85DF)</td>
 <td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="85DF.html">85DF</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="953e"></span>953E</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
 <td class="comment-11" rowspan="1">Has Willy collected all the items?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="953f"></span>953F</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="9534.html#9576">$9576</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="9541"></span>
 <div class="comments">
 <div class="paragraph">
@@ -92,155 +98,180 @@ Willy hasn't collected all the items yet, so Maria is on guard.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9541"></span>9541</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85CB)</td>
 <td class="comment-11" rowspan="1">Pick up the minute counter from <a href="85CB.html">85CB</a>; this will determine Maria's animation frame</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9544"></span>9544</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $02</td>
 <td class="comment-11" rowspan="6">Keep only bit 1, move it to bit 5, and set bit 7</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9546"></span>9546</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9547"></span>9547</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9548"></span>9548</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9549"></span>9549</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="954a"></span>954A</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR $80</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="954c"></span>954C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
 <td class="comment-11" rowspan="1">Now <span class="register">E</span>=0x80 (foot down) or 0xA0 (foot raised)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="954d"></span>954D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85CF)</td>
 <td class="comment-11" rowspan="1">Pick up Willy's pixel y-coordinate from <a href="85CF.html">85CF</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9550"></span>9550</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $D0</td>
 <td class="comment-11" rowspan="1">Is Willy on the floor below the ramp?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9552"></span>9552</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="9534.html#955c">$955C</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9554"></span>9554</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,$C0</td>
 <td class="comment-11" rowspan="1"><span class="register">E</span>=0xC0 (raising arm)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9556"></span>9556</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $C0</td>
 <td class="comment-11" rowspan="1">Is Willy 8 or fewer pixels above floor level?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9558"></span>9558</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NC,<a href="9534.html#955c">$955C</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="955a"></span>955A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,$E0</td>
 <td class="comment-11" rowspan="1"><span class="register">E</span>=0xE0 (arm raised)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="955c"></span>955C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,$9C</td>
 <td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the sprite graphic data for Maria (<a href="9C80.html">9C80</a>, <a href="9C80.html#9ca0">9CA0</a>, <a href="9C80.html#9cc0">9CC0</a> or <a href="9C80.html#9ce0">9CE0</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="955e"></span>955E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$686E</td>
 <td class="comment-11" rowspan="3">Draw Maria at (11,14) in the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9561"></span>9561</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$01</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9563"></span>9563</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9456.html">$9456</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9566"></span>9566</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="90B6.html#90b7">$90B7</a></td>
 <td class="comment-11" rowspan="1">Kill Willy if Maria collided with him</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9569"></span>9569</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$4545</td>
 <td class="comment-11" rowspan="1"><span class="register">H</span>=<span class="register">L</span>=0x45 (INK 5: PAPER 0: BRIGHT 1)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="956c"></span>956C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($5D6E),HL</td>
 <td class="comment-11" rowspan="1">Set the attribute bytes for the top half of Maria's sprite in the buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="956f"></span>956F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$0707</td>
 <td class="comment-11" rowspan="1"><span class="register">H</span>=<span class="register">L</span>=0x07 (INK 7: PAPER 0: BRIGHT 0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9572"></span>9572</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($5D8E),HL</td>
 <td class="comment-11" rowspan="1">Set the attribute bytes for the bottom half of Maria's sprite in the buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9575"></span>9575</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET</td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="9576"></span>
 <div class="comments">
 <div class="paragraph">
@@ -252,42 +283,49 @@ Willy has collected all the items, so Maria is gone.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9576"></span>9576</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D3)</td>
 <td class="comment-11" rowspan="2">Pick up Willy's screen x-coordinate from <a href="85D3.html">85D3</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9579"></span>9579</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="957b"></span>957B</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $06</td>
 <td class="comment-11" rowspan="1">Has Willy reached the bed (at x=5) yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="957d"></span>957D</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET NC</td>
 <td class="comment-11" rowspan="1">Return if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="957e"></span>957E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,$02</td>
 <td class="comment-11" rowspan="2">Update the game mode indicator at <a href="85DF.html">85DF</a> to 2 (Willy is running to the toilet)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9580"></span>9580</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85DF),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9583"></span>9583</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET</td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
@@ -300,10 +338,10 @@ Willy has collected all the items, so Maria is gone.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/38196.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/38196.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

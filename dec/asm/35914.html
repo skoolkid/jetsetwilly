@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Routine at 35914</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="35841.html">35841</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#35914">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="36147.html">36147</a></span></td>
+</tr>
+</table>
+<div class="description">35914: Display the game over sequence</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="35841.html">35841</a>.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="35914"></span>35914</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,16384</td>
+<td class="comment-11" rowspan="5">Clear the top two-thirds of the display file</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35917"></span>35917</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,16385</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35920"></span>35920</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD BC,4095</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35923"></span>35923</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),0</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35925"></span>35925</td>
+<td class="bytes-0"></td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35927"></span>35927</td>
+<td class="bytes-0"></td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="2">Initialise the temporary game status buffer variable at <a href="34276.html">34276</a>; this variable will determine the distance of the foot from the top of the screen</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35928"></span>35928</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (34276),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35931"></span>35931</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,40256</td>
+<td class="comment-11" rowspan="4">Draw Willy at (12,15)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35934"></span>35934</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,18575</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35937"></span>35937</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD C,0</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35939"></span>35939</td>
+<td class="bytes-0"></td>
+<td class="instruction">CALL <a href="37974.html">37974</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35942"></span>35942</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,40032</td>
+<td class="comment-11" rowspan="4">Draw the barrel underneath Willy at (14,15)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35945"></span>35945</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,18639</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35948"></span>35948</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD C,0</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35950"></span>35950</td>
+<td class="bytes-0"></td>
+<td class="instruction">CALL <a href="37974.html">37974</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="35953"></span>
+<div class="comments">
+<div class="paragraph">
+The following loop draws the foot's descent onto the barrel that supports Willy.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="35953"></span>35953</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(34276)</td>
+<td class="comment-11" rowspan="1">Pick up the distance variable from <a href="34276.html">34276</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35956"></span>35956</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD C,A</td>
+<td class="comment-11" rowspan="2">Point <span class="register">BC</span> at the corresponding entry in the screen buffer address lookup table at <a href="33280.html">33280</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35957"></span>35957</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD B,130</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35959"></span>35959</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(BC)</td>
+<td class="comment-11" rowspan="7">Point <span class="register">HL</span> at the corresponding location in the display file</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35960"></span>35960</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 15</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35962"></span>35962</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD L,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35963"></span>35963</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC BC</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35964"></span>35964</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(BC)</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35965"></span>35965</td>
+<td class="bytes-0"></td>
+<td class="instruction">SUB 32</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35967"></span>35967</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD H,A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35968"></span>35968</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,40000</td>
+<td class="comment-11" rowspan="3">Draw the foot at this location, without erasing the foot at the previous location; this leaves the portion of the foot sprite that's above the ankle in place, and makes the foot appear as if it's at the end of a long, extending leg</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35971"></span>35971</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD C,0</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35973"></span>35973</td>
+<td class="bytes-0"></td>
+<td class="instruction">CALL <a href="37974.html">37974</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35976"></span>35976</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(34276)</td>
+<td class="comment-11" rowspan="1">Pick up the distance variable from <a href="34276.html">34276</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35979"></span>35979</td>
+<td class="bytes-0"></td>
+<td class="instruction">CPL</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=255-<span class="register">A</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35980"></span>35980</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD E,A</td>
+<td class="comment-11" rowspan="1">Store this value (63-255) in <span class="register">E</span>; it determines the (rising) pitch of the sound effect that will be made</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35981"></span>35981</td>
+<td class="bytes-0"></td>
+<td class="instruction">XOR A</td>
+<td class="comment-11" rowspan="1"><span class="register">A</span>=0 (black border)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35982"></span>35982</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD BC,64</td>
+<td class="comment-11" rowspan="1"><span class="register">C</span>=64; this value determines the duration of the sound effect</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="35985"></span>35985</td>
+<td class="bytes-0"></td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-11" rowspan="6">Produce a short note whose pitch is determined by <span class="register">E</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35987"></span>35987</td>
+<td class="bytes-0"></td>
+<td class="instruction">XOR 24</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35989"></span>35989</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD B,E</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="35990"></span>35990</td>
+<td class="bytes-0"></td>
+<td class="instruction">DJNZ <a href="35914.html#35990">35990</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35992"></span>35992</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEC C</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35993"></span>35993</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="35914.html#35985">35985</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35995"></span>35995</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD HL,22528</td>
+<td class="comment-11" rowspan="3">Prepare <span class="register">BC</span>, <span class="register">DE</span> and <span class="register">HL</span> for setting the attribute bytes in the top two-thirds of the screen</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="35998"></span>35998</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,22529</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36001"></span>36001</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD BC,511</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36004"></span>36004</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(34276)</td>
+<td class="comment-11" rowspan="1">Pick up the distance variable from <a href="34276.html">34276</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36007"></span>36007</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 12</td>
+<td class="comment-11" rowspan="1">Keep only bits 2 and 3</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36009"></span>36009</td>
+<td class="bytes-0"></td>
+<td class="instruction">RLCA</td>
+<td class="comment-11" rowspan="1">Shift bits 2 and 3 into bits 3 and 4; these bits determine the PAPER colour: 0, 1, 2 or 3</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36010"></span>36010</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 71</td>
+<td class="comment-11" rowspan="1">Set bits 0-2 (INK 7) and 6 (BRIGHT 1)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36012"></span>36012</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-11" rowspan="2">Copy this attribute value into the top two-thirds of the screen</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36013"></span>36013</td>
+<td class="bytes-0"></td>
+<td class="instruction">LDIR</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36015"></span>36015</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 250</td>
+<td class="comment-11" rowspan="1">Reset bits 0 and 2, and retain all other bits</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36017"></span>36017</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 2</td>
+<td class="comment-11" rowspan="1">Set bit 1 (INK 2)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36019"></span>36019</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (22991),A</td>
+<td class="comment-11" rowspan="4">Copy this attribute value to the cells at (14,15), (14,16), (15, 15) and (15, 16) (where the barrel is, so that it remains red)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36022"></span>36022</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (22992),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36025"></span>36025</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (23023),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36028"></span>36028</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (23024),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36031"></span>36031</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(34276)</td>
+<td class="comment-11" rowspan="3">Add 4 to the distance variable at <a href="34276.html">34276</a>; this will move the foot sprite down two pixel rows</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36034"></span>36034</td>
+<td class="bytes-0"></td>
+<td class="instruction">ADD A,4</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36036"></span>36036</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (34276),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36039"></span>36039</td>
+<td class="bytes-0"></td>
+<td class="instruction">CP 196</td>
+<td class="comment-11" rowspan="1">Has the foot met the barrel yet?</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36041"></span>36041</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="35914.html#35953">35953</a></td>
+<td class="comment-11" rowspan="1">Jump back if not</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="36043"></span>
+<div class="comments">
+<div class="paragraph">
+Now print the "Game Over" message, just to drive the point home.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36043"></span>36043</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD IX,34164</td>
+<td class="comment-11" rowspan="4">Print "Game" (see <a href="34164.html">34164</a>) at (6,10)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36047"></span>36047</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD C,4</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36049"></span>36049</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,16586</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36052"></span>36052</td>
+<td class="bytes-0"></td>
+<td class="instruction">CALL <a href="38528.html">38528</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36055"></span>36055</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD IX,34168</td>
+<td class="comment-11" rowspan="4">Print "Over" (see <a href="34168.html">34168</a>) at (6,18)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36059"></span>36059</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD C,4</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36061"></span>36061</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD DE,16594</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36064"></span>36064</td>
+<td class="bytes-0"></td>
+<td class="instruction">CALL <a href="38528.html">38528</a></td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36067"></span>36067</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD BC,0</td>
+<td class="comment-11" rowspan="2">Prepare the delay counters for the following loop; the counter in <span class="register">C</span> will also determine the INK colours to use for the "Game Over" message</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36070"></span>36070</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD D,6</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="36072"></span>
+<div class="comments">
+<div class="paragraph">
+The following loop makes the "Game Over" message glisten for about 1.57s.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="36072"></span>36072</td>
+<td class="bytes-0"></td>
+<td class="instruction">DJNZ <a href="35914.html#36072">36072</a></td>
+<td class="comment-11" rowspan="1">Delay for about a millisecond</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36074"></span>36074</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,C</td>
+<td class="comment-11" rowspan="4">Change the INK colour of the "G" in "Game" at (6,10)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36075"></span>36075</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36077"></span>36077</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 64</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36079"></span>36079</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (22730),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36082"></span>36082</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="4">Change the INK colour of the "a" in "Game" at (6,11)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36083"></span>36083</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36085"></span>36085</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 64</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36087"></span>36087</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (22731),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36090"></span>36090</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="4">Change the INK colour of the "m" in "Game" at (6,12)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36091"></span>36091</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36093"></span>36093</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 64</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36095"></span>36095</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (22732),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36098"></span>36098</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="4">Change the INK colour of the "e" in "Game" at (6,13)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36099"></span>36099</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36101"></span>36101</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 64</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36103"></span>36103</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (22733),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36106"></span>36106</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="4">Change the INK colour of the "O" in "Over" at (6,18)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36107"></span>36107</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36109"></span>36109</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 64</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36111"></span>36111</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (22738),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36114"></span>36114</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="4">Change the INK colour of the "v" in "Over" at (6,19)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36115"></span>36115</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36117"></span>36117</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 64</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36119"></span>36119</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (22739),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36122"></span>36122</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="4">Change the INK colour of the "e" in "Over" at (6,20)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36123"></span>36123</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36125"></span>36125</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 64</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36127"></span>36127</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (22740),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36130"></span>36130</td>
+<td class="bytes-0"></td>
+<td class="instruction">INC A</td>
+<td class="comment-11" rowspan="4">Change the INK colour of the "r" in "Over" at (6,21)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36131"></span>36131</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 7</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36133"></span>36133</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 64</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36135"></span>36135</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (22741),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36138"></span>36138</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEC C</td>
+<td class="comment-11" rowspan="1">Decrement the counter in <span class="register">C</span></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36139"></span>36139</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="35914.html#36072">36072</a></td>
+<td class="comment-11" rowspan="1">Jump back unless it's zero</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36141"></span>36141</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEC D</td>
+<td class="comment-11" rowspan="1">Decrement the counter in <span class="register">D</span> (initially 6)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36142"></span>36142</td>
+<td class="bytes-0"></td>
+<td class="instruction">JR NZ,<a href="35914.html#36072">36072</a></td>
+<td class="comment-11" rowspan="1">Jump back unless it's zero</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="36144"></span>36144</td>
+<td class="bytes-0"></td>
+<td class="instruction">JP <a href="34762.html">34762</a></td>
+<td class="comment-11" rowspan="1">Display the title screen and play the theme tune</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="35841.html">35841</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#35914">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="36147.html">36147</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../asm/8C4A.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -23,7 +23,7 @@
 <div class="description">90B6: Kill Willy</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="961E.html">961E</a> when Willy hits a nasty.
@@ -46,11 +46,12 @@ Used by the routine at <a href="961E.html">961E</a> when Willy hits a nasty.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="90b6"></span>90B6</td>
+<td class="bytes-0"></td>
 <td class="instruction">POP HL</td>
 <td class="comment-11" rowspan="1">Drop the return address from the stack</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="90b7"></span>
 <div class="comments">
 <div class="paragraph">
@@ -62,24 +63,28 @@ This entry point is used by the routines at <a href="8ED4.html">8ED4</a> (when W
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="90b7"></span>90B7</td>
+<td class="bytes-0"></td>
 <td class="instruction">POP HL</td>
 <td class="comment-11" rowspan="1">Drop the return address from the stack</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90b8"></span>90B8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,$FF</td>
 <td class="comment-11" rowspan="2">Set the airborne status indicator at <a href="85D1.html">85D1</a> to 0xFF (meaning Willy has had a fatal accident)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90ba"></span>90BA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85D1),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90bd"></span>90BD</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP <a href="89AD.html#89f5">$89F5</a></td>
 <td class="comment-11" rowspan="1">Jump back into the main loop</td>
 </tr>
@@ -92,10 +97,10 @@ This entry point is used by the routines at <a href="8ED4.html">8ED4</a> (when W
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/37046.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/37046.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

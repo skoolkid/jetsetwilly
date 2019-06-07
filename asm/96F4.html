@@ -23,7 +23,7 @@
 <div class="description">96F4: Unused routine</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 This routine copies the attribute bytes for an empty room to the screen, so perhaps it was used during development of the game to check that the layout of a room had been defined correctly.
@@ -46,84 +46,98 @@ This routine copies the attribute bytes for an empty room to the screen, so perh
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96f4"></span>96F4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$5E00</td>
 <td class="comment-11" rowspan="4">Copy the attribute buffer at <a href="5E00.html">5E00</a> to the top two-thirds of the screen</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96f7"></span>96F7</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$5800</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96fa"></span>96FA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0200</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96fd"></span>96FD</td>
+<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="96ff"></span>96FF</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$4000</td>
 <td class="comment-11" rowspan="5">Fill the top two-thirds of the display file with the byte value 0x18 (00011000)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9702"></span>9702</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$4001</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9705"></span>9705</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0FFF</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9708"></span>9708</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$18</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="970a"></span>970A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="970c"></span>970C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$FEFE</td>
 <td class="comment-11" rowspan="1">Prepare <span class="register">BC</span> for reading keys SHIFT-Z-X-C-V</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="970f"></span>970F</td>
+<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
 <td class="comment-11" rowspan="1">Read these keys</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9711"></span>9711</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 2,A</td>
 <td class="comment-11" rowspan="1">Is 'X' being pressed?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9713"></span>9713</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP Z,$0000</td>
 <td class="comment-11" rowspan="1">Jump if so to reset the machine</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9716"></span>9716</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR $970F</td>
 <td class="comment-11" rowspan="1">Otherwise jump back to read the keyboard again</td>
 </tr>
@@ -136,10 +150,10 @@ This routine copies the attribute bytes for an empty room to the screen, so perh
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/38644.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/38644.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

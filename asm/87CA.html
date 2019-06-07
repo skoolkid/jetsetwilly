@@ -23,7 +23,7 @@
 <div class="description">87CA: Display the title screen and play the theme tune</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routines at <a href="869F.html">869F</a>, <a href="89AD.html">89AD</a> and <a href="8C4A.html">8C4A</a>.
@@ -49,191 +49,222 @@ The first thing this routine does is initialise some game status buffer variable
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="87ca"></span>87CA</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
 <td class="comment-11" rowspan="1"><span class="register">A</span>=0</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87cb"></span>87CB</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85CE),A</td>
 <td class="comment-11" rowspan="1">Initialise the Kempston joystick indicator at <a href="85CE.html">85CE</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87ce"></span>87CE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85E1),A</td>
 <td class="comment-11" rowspan="1">Initialise the in-game music note index at <a href="85E1.html">85E1</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87d1"></span>87D1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85CD),A</td>
 <td class="comment-11" rowspan="1">Initialise the (unused) screen flash counter at <a href="85CD.html">85CD</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87d4"></span>87D4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85D1),A</td>
 <td class="comment-11" rowspan="1">Initialise the airborne status indicator at <a href="85D1.html">85D1</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87d7"></span>87D7</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85CB),A</td>
 <td class="comment-11" rowspan="1">Initialise the minute counter at <a href="85CB.html">85CB</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87da"></span>87DA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85E0),A</td>
 <td class="comment-11" rowspan="1">Initialise the inactivity timer at <a href="85E0.html">85E0</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87dd"></span>87DD</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85DF),A</td>
 <td class="comment-11" rowspan="1">Initialise the game mode indicator at <a href="85DF.html">85DF</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87e0"></span>87E0</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,$07</td>
 <td class="comment-11" rowspan="2">Initialise the number of lives remaining at <a href="85CC.html">85CC</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87e2"></span>87E2</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85CC),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87e5"></span>87E5</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,$D0</td>
 <td class="comment-11" rowspan="2">Initialise Willy's pixel y-coordinate at <a href="85CF.html">85CF</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87e7"></span>87E7</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85CF),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87ea"></span>87EA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,$21</td>
 <td class="comment-11" rowspan="2">Initialise the current room number at <a href="8420.html">8420</a> to 0x21 (<a href="E100.html">The Bathroom</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87ec"></span>87EC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($8420),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87ef"></span>87EF</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$5DB4</td>
 <td class="comment-11" rowspan="2">Initialise Willy's coordinates at <a href="85D3.html">85D3</a> to (13,20)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87f2"></span>87F2</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85D3),HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87f5"></span>87F5</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$857C</td>
 <td class="comment-11" rowspan="6">Initialise the number of items collected at <a href="857C.html">857C</a> to "000"</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87f8"></span>87F8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$30</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87fa"></span>87FA</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87fb"></span>87FB</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$30</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87fd"></span>87FD</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="87fe"></span>87FE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$30</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8800"></span>8800</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,$A4</td>
 <td class="comment-11" rowspan="1">Page <a href="A400.html">0xA4</a> holds the first byte of each entry in the item table</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8802"></span>8802</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($A3FF)</td>
 <td class="comment-11" rowspan="1">Pick up the index of the first item from <a href="A3FF.html">A3FF</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8805"></span>8805</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the entry for the first item</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8806"></span>8806</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85DE),A</td>
 <td class="comment-11" rowspan="1">Initialise the counter of items remaining at <a href="85DE.html">85DE</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8809"></span>8809</td>
+<td class="bytes-0"></td>
 <td class="instruction">SET 6,(HL)</td>
 <td class="comment-11" rowspan="3">Set the collection flag for every item in the item table at <a href="A400.html">A400</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="880b"></span>880B</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC L</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="880c"></span>880C</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="87CA.html#8809">$8809</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="880e"></span>880E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$85E2</td>
 <td class="comment-11" rowspan="2">Initialise the keypress flag in bit 0 at <a href="85E2.html">85E2</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8811"></span>8811</td>
+<td class="bytes-0"></td>
 <td class="instruction">SET 0,(HL)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8813"></span>
 <div class="comments">
 <div class="paragraph">
@@ -245,113 +276,131 @@ Next, prepare the screen.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8813"></span>8813</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$4000</td>
 <td class="comment-11" rowspan="5">Clear the entire display file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8816"></span>8816</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$4001</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8819"></span>8819</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$17FF</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="881c"></span>881C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$00</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="881e"></span>881E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8820"></span>8820</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$9800</td>
 <td class="comment-11" rowspan="3">Copy the attribute bytes for the title screen from <a href="9800.html">9800</a> and <a href="9A00.html">9A00</a> to the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8823"></span>8823</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0300</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8826"></span>8826</td>
+<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8828"></span>8828</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$5A60</td>
 <td class="comment-11" rowspan="5">Copy the attribute value 0x46 (INK 6: PAPER 0: BRIGHT 1) into the row of 32 cells from (19,0) to (19,31) on the screen</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="882b"></span>882B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$5A61</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="882e"></span>882E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$001F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8831"></span>8831</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$46</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8833"></span>8833</td>
+<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8835"></span>8835</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IX,$8454</td>
 <td class="comment-11" rowspan="4">Print "+++++ Press ENTER to Start +++++" (see <a href="8454.html">8454</a>) at (19,0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8839"></span>8839</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$5060</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="883c"></span>883C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$20</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="883e"></span>883E</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9680.html">$9680</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8841"></span>8841</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$5800</td>
 <td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the first byte of the attribute file</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8844"></span>
 <div class="comments">
 <div class="paragraph">
@@ -363,281 +412,327 @@ The following loop scans the top two-thirds of the attribute file, which contain
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8844"></span>8844</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(DE)</td>
 <td class="comment-11" rowspan="1">Pick up a byte from the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8845"></span>8845</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
 <td class="comment-11" rowspan="1">Is it 0x00 (INK 0: PAPER 0)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8846"></span>8846</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="87CA.html#888e">$888E</a></td>
 <td class="comment-11" rowspan="1">If so, jump to consider the next byte in the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8848"></span>8848</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $D3</td>
 <td class="comment-11" rowspan="1">Is it 0xD3 (INK 3: PAPER 2: BRIGHT 1: FLASH 1)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="884a"></span>884A</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="87CA.html#888e">$888E</a></td>
 <td class="comment-11" rowspan="1">If so, jump to consider the next byte in the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="884c"></span>884C</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $09</td>
 <td class="comment-11" rowspan="1">Is it 0x09 (INK 1: PAPER 1)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="884e"></span>884E</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="87CA.html#888e">$888E</a></td>
 <td class="comment-11" rowspan="1">If so, jump to consider the next byte in the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8850"></span>8850</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $2D</td>
 <td class="comment-11" rowspan="1">Is it 0x2D (INK 5: PAPER 5)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8852"></span>8852</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="87CA.html#888e">$888E</a></td>
 <td class="comment-11" rowspan="1">If so, jump to consider the next byte in the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8854"></span>8854</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $24</td>
 <td class="comment-11" rowspan="1">Is it 0x24 (INK 4: PAPER 4)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8856"></span>8856</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="87CA.html#888e">$888E</a></td>
 <td class="comment-11" rowspan="1">If so, jump to consider the next byte in the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8858"></span>8858</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$00</td>
 <td class="comment-11" rowspan="1"><span class="register">C</span>=0; this will be used as an offset from the triangle UDG base address (<a href="8431.html">8431</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="885a"></span>885A</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $08</td>
 <td class="comment-11" rowspan="1">Is the attribute value 0x08 (INK 0: PAPER 1)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="885c"></span>885C</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="87CA.html#8871">$8871</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="885e"></span>885E</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $29</td>
 <td class="comment-11" rowspan="1">Is it 0x29 (INK 1: PAPER 5)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8860"></span>8860</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="87CA.html#8871">$8871</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8862"></span>8862</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $2C</td>
 <td class="comment-11" rowspan="1">Is it 0x2C (INK 4: PAPER 5)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8864"></span>8864</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="87CA.html#886e">$886E</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8866"></span>8866</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $05</td>
 <td class="comment-11" rowspan="1">Is it 0x05 (INK 5: PAPER 0)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8868"></span>8868</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="87CA.html#8871">$8871</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="886a"></span>886A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$10</td>
 <td class="comment-11" rowspan="1">Set the triangle UDG offset to 0x10</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="886c"></span>886C</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="87CA.html#8871">$8871</a></td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="886e"></span>886E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,$25</td>
 <td class="comment-11" rowspan="2">Change the attribute byte here from 0x2C (INK 4: PAPER 5) to 0x25 (INK 5: PAPER 4)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8870"></span>8870</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (DE),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8871"></span>8871</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,E</td>
 <td class="comment-11" rowspan="10">Point <span class="register">HL</span> at the triangle UDG to draw (<a href="8431.html">8431</a>, <a href="8431.html#8439">8439</a>, <a href="8431.html#8441">8441</a> or <a href="8431.html#8449">8449</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8872"></span>8872</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $01</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8874"></span>8874</td>
+<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8875"></span>8875</td>
+<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8876"></span>8876</td>
+<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8877"></span>8877</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8878"></span>8878</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8879"></span>8879</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD B,$00</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="887b"></span>887B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$8431</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="887e"></span>887E</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD HL,BC</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="887f"></span>887F</td>
+<td class="bytes-0"></td>
 <td class="instruction">PUSH DE</td>
 <td class="comment-11" rowspan="1">Save the attribute file address briefly</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8880"></span>8880</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 0,D</td>
 <td class="comment-11" rowspan="1">Set the zero flag if we're still in the top third of the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8882"></span>8882</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,$40</td>
 <td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the top third of the display file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8884"></span>8884</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="87CA.html#8888">$8888</a></td>
 <td class="comment-11" rowspan="1">Jump if we're still in the top third of the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8886"></span>8886</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,$48</td>
 <td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the middle third of the display file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8888"></span>8888</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD B,$08</td>
 <td class="comment-11" rowspan="1">There are eight pixel rows in a triangle UDG</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="888a"></span>888A</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9691.html#969b">$969B</a></td>
 <td class="comment-11" rowspan="1">Draw a triangle UDG on the screen</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="888d"></span>888D</td>
+<td class="bytes-0"></td>
 <td class="instruction">POP DE</td>
 <td class="comment-11" rowspan="1">Restore the attribute file address to <span class="register">DE</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="888e"></span>888E</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC DE</td>
 <td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the next byte in the attribute file</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="888f"></span>888F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,D</td>
 <td class="comment-11" rowspan="2">Have we finished scanning the top two-thirds of the attribute file yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8890"></span>8890</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $5A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8892"></span>8892</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="87CA.html#8844">$8844</a></td>
 <td class="comment-11" rowspan="1">If not, jump back to examine the next byte</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8895"></span>
 <div class="comments">
 <div class="paragraph">
@@ -649,65 +744,75 @@ Now check whether there is a joystick connected.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8895"></span>8895</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$001F</td>
 <td class="comment-11" rowspan="1">This is the joystick port</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8898"></span>8898</td>
+<td class="bytes-0"></td>
 <td class="instruction">DI</td>
 <td class="comment-11" rowspan="1">Disable interrupts (which are already disabled)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8899"></span>8899</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
 <td class="comment-11" rowspan="1"><span class="register">A</span>=0</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="889a"></span>889A</td>
+<td class="bytes-0"></td>
 <td class="instruction">IN E,(C)</td>
 <td class="comment-11" rowspan="3">Combine 256 readings of the joystick port in <span class="register">A</span>; if no joystick is connected, some of these readings will have bit 5 set</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="889c"></span>889C</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR E</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="889d"></span>889D</td>
+<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="87CA.html#889a">$889A</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="889f"></span>889F</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $20</td>
 <td class="comment-11" rowspan="1">Is a joystick connected (bit 5 reset)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88a1"></span>88A1</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="87CA.html#88a8">$88A8</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88a3"></span>88A3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,$01</td>
 <td class="comment-11" rowspan="2">Set the Kempston joystick indicator at <a href="85CE.html">85CE</a> to 1</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88a5"></span>88A5</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85CE),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="88a8"></span>
 <div class="comments">
 <div class="paragraph">
@@ -719,204 +824,238 @@ And finally, play the theme tune and check for keypresses.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="88a8"></span>88A8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$85FB</td>
 <td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the theme tune data at <a href="85FB.html">85FB</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88ab"></span>88AB</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="96A2.html">$96A2</a></td>
 <td class="comment-11" rowspan="1">Play the theme tune</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88ae"></span>88AE</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="88FC.html">$88FC</a></td>
 <td class="comment-11" rowspan="1">Start the game if ENTER, 0 or the fire button was pressed</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88b1"></span>88B1</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
 <td class="comment-11" rowspan="2">Initialise the temporary game status buffer variable at <a href="85E4.html">85E4</a> to 0; this will be used as an index for the message scrolled across the screen (see <a href="8454.html">8454</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88b2"></span>88B2</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85E4),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="88b5"></span>88B5</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="8AEB.html">$8AEB</a></td>
 <td class="comment-11" rowspan="1">Cycle the INK and PAPER colours</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88b8"></span>88B8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$5A60</td>
 <td class="comment-11" rowspan="5">Copy the attribute value 0x4F (INK 7: PAPER 1: BRIGHT 1) into the row of 32 cells from (19,0) to (19,31) on the screen</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88bb"></span>88BB</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$5A61</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88be"></span>88BE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$001F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88c1"></span>88C1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$4F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88c3"></span>88C3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88c5"></span>88C5</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85E4)</td>
 <td class="comment-11" rowspan="1">Pick up the message index from <a href="85E4.html">85E4</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88c8"></span>88C8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IX,$8454</td>
 <td class="comment-11" rowspan="4">Point <span class="register">IX</span> at the corresponding location in the message at <a href="8454.html">8454</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88cc"></span>88CC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88cd"></span>88CD</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,$00</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88cf"></span>88CF</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD IX,DE</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88d1"></span>88D1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$5060</td>
 <td class="comment-11" rowspan="3">Print 32 characters of the message at (19,0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88d4"></span>88D4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$20</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88d6"></span>88D6</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9680.html">$9680</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88d9"></span>88D9</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85E4)</td>
 <td class="comment-11" rowspan="3">Prepare a value between 0x32 and 0x51 in <span class="register">A</span> (for the routine at <a href="96DE.html">96DE</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88dc"></span>88DC</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88de"></span>88DE</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,$32</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88e0"></span>88E0</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="96DE.html">$96DE</a></td>
 <td class="comment-11" rowspan="1">Make a sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88e3"></span>88E3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$AFFE</td>
 <td class="comment-11" rowspan="2">Read keys H-J-K-L-ENTER and 6-7-8-9-0</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88e6"></span>88E6</td>
+<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88e8"></span>88E8</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $01</td>
 <td class="comment-11" rowspan="1">Keep only bit 0 of the result (ENTER, 0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88ea"></span>88EA</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $01</td>
 <td class="comment-11" rowspan="1">Was ENTER or 0 pressed?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88ec"></span>88EC</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="88FC.html">$88FC</a></td>
 <td class="comment-11" rowspan="1">Jump if so to start the game</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88ee"></span>88EE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85E4)</td>
 <td class="comment-11" rowspan="1">Pick up the message index from <a href="85E4.html">85E4</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88f1"></span>88F1</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC A</td>
 <td class="comment-11" rowspan="1">Increment it</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88f2"></span>88F2</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $E0</td>
 <td class="comment-11" rowspan="1">Set the zero flag if we've reached the end of the message</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88f4"></span>88F4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85E4),A</td>
 <td class="comment-11" rowspan="1">Store the new message index at <a href="85E4.html">85E4</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88f7"></span>88F7</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="87CA.html#88b5">$88B5</a></td>
 <td class="comment-11" rowspan="1">Jump back unless we've finished scrolling the message across the screen</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="88f9"></span>88F9</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP <a href="87CA.html#8813">$8813</a></td>
 <td class="comment-11" rowspan="1">Jump back to prepare the screen and play the theme tune again</td>
 </tr>
@@ -929,10 +1068,10 @@ And finally, play the theme tune and check for keypresses.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/34762.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/34762.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

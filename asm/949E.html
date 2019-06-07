@@ -23,7 +23,7 @@
 <div class="description">949E: Move Willy into the room to the right</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="8FBC.html">8FBC</a>.
@@ -46,42 +46,49 @@ Used by the routine at <a href="8FBC.html">8FBC</a>.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="949e"></span>949E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($80EA)</td>
 <td class="comment-11" rowspan="1">Pick up the number of the room to the right from <a href="80E9.html#80ea">80EA</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="94a1"></span>94A1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($8420),A</td>
 <td class="comment-11" rowspan="1">Make it the current room number by copying it to <a href="8420.html">8420</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="94a4"></span>94A4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D3)</td>
 <td class="comment-11" rowspan="3">Adjust Willy's screen x-coordinate (at <a href="85D3.html">85D3</a>) to 0 (on the far left)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="94a7"></span>94A7</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $E0</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="94a9"></span>94A9</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85D3),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="94ac"></span>94AC</td>
+<td class="bytes-0"></td>
 <td class="instruction">POP HL</td>
 <td class="comment-11" rowspan="1">Drop the return address (<a href="89AD.html#89d1">89D1</a>, in the main loop) from the stack</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="94ad"></span>94AD</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP <a href="8912.html">$8912</a></td>
 <td class="comment-11" rowspan="1">Draw the room and re-enter the main loop</td>
 </tr>
@@ -94,10 +101,10 @@ Used by the routine at <a href="8FBC.html">8FBC</a>.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/38046.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/38046.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

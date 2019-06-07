@@ -23,7 +23,7 @@
 <div class="description">9680: Print a message</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routines at <a href="86C3.html">86C3</a>, <a href="87CA.html">87CA</a>, <a href="8912.html">8912</a>, <a href="89AD.html">89AD</a> and <a href="8C4A.html">8C4A</a>.
@@ -57,60 +57,70 @@ Used by the routines at <a href="86C3.html">86C3</a>, <a href="87CA.html">87CA</
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9680"></span>9680</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
 <td class="comment-11" rowspan="1">Collect a character from the message</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9683"></span>9683</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9691.html">$9691</a></td>
 <td class="comment-11" rowspan="1">Print it</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9686"></span>9686</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IX</td>
 <td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the next character in the message</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9688"></span>9688</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC E</td>
 <td class="comment-11" rowspan="4">Point <span class="register">DE</span> at the next character cell (subtracting 8 from <span class="register">D</span> compensates for the operations performed by the routine at <a href="9691.html">9691</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9689"></span>9689</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,D</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="968a"></span>968A</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $08</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="968c"></span>968C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="968d"></span>968D</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC C</td>
 <td class="comment-11" rowspan="1">Have we printed the entire message yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="968e"></span>968E</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="9680.html#9680">$9680</a></td>
 <td class="comment-11" rowspan="1">If not, jump back to print the next character</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9690"></span>9690</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET</td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
@@ -123,10 +133,10 @@ Used by the routines at <a href="86C3.html">86C3</a>, <a href="87CA.html">87CA</
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/38528.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/38528.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

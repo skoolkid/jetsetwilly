@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Routine at 38026</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="37974.html">37974</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#38026">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="38046.html">38046</a></span></td>
+</tr>
+</table>
+<div class="description">38026: Move Willy into the room to the left</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="36796.html">36796</a>.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-2"><span id="38026"></span>38026</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(33001)</td>
+<td class="comment-11" rowspan="1">Pick up the number of the room to the left from <a href="33001.html">33001</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="38029"></span>38029</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (33824),A</td>
+<td class="comment-11" rowspan="1">Make it the current room number by copying it to <a href="33824.html">33824</a></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="38032"></span>38032</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD A,(34259)</td>
+<td class="comment-11" rowspan="4">Adjust Willy's screen x-coordinate (at <a href="34259.html">34259</a>) to 30 (on the far right)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="38035"></span>38035</td>
+<td class="bytes-0"></td>
+<td class="instruction">OR 31</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="38037"></span>38037</td>
+<td class="bytes-0"></td>
+<td class="instruction">AND 254</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="38039"></span>38039</td>
+<td class="bytes-0"></td>
+<td class="instruction">LD (34259),A</td>
+<td class="comment-01" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="38042"></span>38042</td>
+<td class="bytes-0"></td>
+<td class="instruction">POP HL</td>
+<td class="comment-11" rowspan="1">Drop the return address (<a href="35245.html#35281">35281</a>, in the main loop) from the stack</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="38043"></span>38043</td>
+<td class="bytes-0"></td>
+<td class="instruction">JP <a href="35090.html">35090</a></td>
+<td class="comment-11" rowspan="1">Draw the room and re-enter the main loop</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="37974.html">37974</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#38026">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="38046.html">38046</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../asm/948A.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

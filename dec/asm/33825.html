@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Data at 33825</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="33824.html">33824</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#33825">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="33841.html">33841</a></span></td>
+</tr>
+</table>
+<div class="description">33825: Left-right movement table</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="36564.html">36564</a>. The entries in this table are used to map the existing value (V) of Willy's direction and movement flags at <a href="34256.html">34256</a> to a new value (V'), depending on the direction Willy is facing and how he is moving or being moved (by 'left' and 'right' keypresses and joystick input, or by a conveyor, or by an urge to visit the toilet).
+</div>
+<div class="paragraph">
+One of the first four entries is used when Willy is not moving.
+</div>
+</div>
+<table class="input-0">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+
+</table>
+<table class="output-0">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33825"></span>33825</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-11" rowspan="1">V=0 (facing right, no movement) + no movement: V'=0 (no change)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33826"></span>33826</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 1</td>
+<td class="comment-11" rowspan="1">V=1 (facing left, no movement) + no movement: V'=1 (no change)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33827"></span>33827</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-11" rowspan="1">V=2 (facing right, moving) + no movement: V'=0 (facing right, no movement) (i.e. stop)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33828"></span>33828</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 1</td>
+<td class="comment-11" rowspan="1">V=3 (facing left, moving) + no movement: V'=1 (facing left, no movement) (i.e. stop)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="33829"></span>
+<div class="comments">
+<div class="paragraph">
+One of the next four entries is used when Willy is moving left.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33829"></span>33829</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 1</td>
+<td class="comment-11" rowspan="1">V=0 (facing right, no movement) + move left: V'=1 (facing left, no movement) (i.e. turn around)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33830"></span>33830</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 3</td>
+<td class="comment-11" rowspan="1">V=1 (facing left, no movement) + move left: V'=3 (facing left, moving)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33831"></span>33831</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 1</td>
+<td class="comment-11" rowspan="1">V=2 (facing right, moving) + move left: V'=1 (facing left, no movement) (i.e. turn around)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33832"></span>33832</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 3</td>
+<td class="comment-11" rowspan="1">V=3 (facing left, moving) + move left: V'=3 (no change)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="33833"></span>
+<div class="comments">
+<div class="paragraph">
+One of the next four entries is used when Willy is moving right.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33833"></span>33833</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 2</td>
+<td class="comment-11" rowspan="1">V=0 (facing right, no movement) + move right: V'=2 (facing right, moving)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33834"></span>33834</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-11" rowspan="1">V=1 (facing left, no movement) + move right: V'=0 (facing right, no movement) (i.e. turn around)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33835"></span>33835</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 2</td>
+<td class="comment-11" rowspan="1">V=2 (facing right, moving) + move right: V'=2 (no change)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33836"></span>33836</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-11" rowspan="1">V=3 (facing left, moving) + move right: V'=0 (facing right, no movement) (i.e. turn around)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="33837"></span>
+<div class="comments">
+<div class="paragraph">
+One of the final four entries is used when Willy is being pulled both left and right; each entry leaves the flags at <a href="34256.html">34256</a> unchanged (so Willy carries on moving in the direction he's already moving, or remains stationary).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33837"></span>33837</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-11" rowspan="1">V=V'=0 (facing right, no movement)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33838"></span>33838</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 1</td>
+<td class="comment-11" rowspan="1">V=V'=1 (facing left, no movement)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33839"></span>33839</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 2</td>
+<td class="comment-11" rowspan="1">V=V'=2 (facing right, moving)</td>
+</tr>
+<tr>
+<td class="asm-label-0"></td>
+<td class="address-1"><span id="33840"></span>33840</td>
+<td class="bytes-0"></td>
+<td class="instruction">DEFB 3</td>
+<td class="comment-11" rowspan="1">V=V'=3 (facing left, moving)</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev"><span class="prev-1">Prev: <a href="33824.html">33824</a></span></td>
+<td class="up">Up: <a href="../maps/all.html#33825">Map</a></td>
+<td class="next"><span class="next-1">Next: <a href="33841.html">33841</a></span></td>
+</tr>
+</table>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../asm/8421.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

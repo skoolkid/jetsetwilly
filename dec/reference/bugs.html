@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Bugs</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Bugs">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="page-header">Bugs</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a href="#faultyClock">12:30am in the afternoon</a></li>
+<li><a href="#theStickyBed">The sticky bed</a></li>
+<li><a href="#selfCollectingItem">The self-collecting item</a></li>
+<li><a href="#theInvisibleItem">The invisible item</a></li>
+<li><a href="#theInaccessibleItems">The inaccessible items</a></li>
+<li><a href="#theUncollectableItem">The uncollectable item</a></li>
+<li><a href="#guardianHalos">Guardian halos</a></li>
+<li><a href="#fromTopToBottom">From top to bottom</a></li>
+<li><a href="#longDistanceNasties">Long distance nasties</a></li>
+<li><a href="#dontMindYourHead">Don't mind your head</a></li>
+<li><a href="#stuckInTheWall">Stuck in the wall</a></li>
+<li><a href="#missedNote">The missed note</a></li>
+<li><a href="#theBlankConveyor">The blank conveyor</a></li>
+<li><a href="#corruptedConveyors">Corrupted conveyors</a></li>
+<li><a href="#veryCorruptedConveyor">Very corrupted conveyor</a></li>
+<li><a href="#corruptedNasties">Corrupted nasties</a></li>
+<li><a href="#invalidGridLocation">Invalid grid location</a></li>
+<li><a href="#thePauseBug">The pause bug</a></li>
+<li><a href="#theAtticBug">The Attic bug</a></li>
+</ul>
+<div><span id="faultyClock"></span></div>
+<div class="box box-1">
+<div class="box-title">12:30am in the afternoon</div>
+<div class="paragraph">
+The clock-updating code at <a href="../asm/35245.html#35410">35410</a> doesn't switch from 'am' to 'pm' until 1pm
+(instead of 12 noon), and also doesn't switch from 'pm' to 'am' at midnight.
+</div>
+</div>
+<div><span id="theStickyBed"></span></div>
+<div class="box box-2">
+<div class="box-title">The sticky bed</div>
+<div class="paragraph">
+After collecting all the items, if Willy jumps onto the bed in <a href="../asm/58112.html">Master
+Bedroom</a> (which is a conveyor moving right) instead of walking up to the foot
+of it, he will stop moving and the 'P' (right) key becomes unresponsive. This
+happens because the code at <a href="../asm/36564.html#36619">36619</a> flips bit 0 of <span class="register">E</span> - which has already
+been reset because Willy is on a conveyor moving right - to 1, thus preventing
+the conveyor from moving Willy, and also effectively disabling the 'P' key.
+</div>
+<div class="paragraph">
+To see this, use POKE <a href="../asm/41983.html">41983</a>,255 to make the tap in <a href="../asm/57600.html">The
+Bathroom</a> the only item that needs to be collected to complete the game, make
+your way to the bedroom, and jump onto the bed.
+</div>
+<div class="paragraph">
+However, all is not lost. Willy can be moved off the bed by using one of the
+other 'right' keys: 'I', 'Y', 'R', 'W', '7' or '8'.
+</div>
+</div>
+<div><span id="selfCollectingItem"></span></div>
+<div class="box box-1">
+<div class="box-title">The self-collecting item</div>
+<div class="paragraph">
+The item in <a href="../asm/57088.html">Swimming Pool</a> is automatically collected as soon as Willy
+enters the room; this is because the room's background tile has white INK, and
+the routine at <a href="../asm/37841.html">37841</a> collects any item that is drawn on a cell with white
+INK. There are no other rooms whose background tile has white INK.
+</div>
+<div class="paragraph">
+To change the INK of the room's background tile from white to cyan, enabling
+Willy to collect the item himself:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/57088.html#57248">57248</a>,5
+</div>
+<div class="paragraph">
+Note that this changes the rope's colour from white to cyan.
+</div>
+</div>
+<div><span id="theInvisibleItem"></span></div>
+<div class="box box-2">
+<div class="box-title">The invisible item</div>
+<div class="paragraph">
+There is an item in <a href="../asm/56320.html">First Landing</a>, but you could be forgiven for not
+knowing because it's invisible. To give the item a shape and make it visible:
+</div>
+<div class="paragraph">
+POKE 56548,24: POKE 56549,24
+</div>
+<div class="paragraph">
+But now that the item is revealed, we can also see that it's unreachable:
+</div>
+<div class="paragraph">
+<img alt="first_landing_item1" src="../../images/scr/first_landing_item1.png" />
+</div>
+<div class="paragraph">
+To add a ledge and open the wall to make the item reachable:
+</div>
+<div class="paragraph">
+POKE 56350,0: POKE 56358,0: POKE 56365,170
+</div>
+<div class="paragraph">
+<img alt="first_landing_item2" src="../../images/scr/first_landing_item2.png" />
+</div>
+<div class="paragraph">
+The <a href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to
+fix this bug is
+</div>
+<div class="paragraph">
+POKE <a href="../asm/41984.html#42183">42183</a>,11
+</div>
+<div class="paragraph">
+which moves the item to <a href="../asm/51968.html">The Hall</a> (where it is still invisible, but now
+reachable).
+</div>
+</div>
+<div><span id="theInaccessibleItems"></span></div>
+<div class="box box-1">
+<div class="box-title">The inaccessible items</div>
+<div class="paragraph">
+The items in <a href="../asm/60160.html">Conservatory Roof</a> can only be collected by entering the
+room from the ledge on the lower left in <a href="../asm/59904.html">Under the Roof</a>, but that
+ledge is unreachable.
+</div>
+<div class="paragraph">
+The <a href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to
+fix this bug is
+</div>
+<div class="paragraph">
+POKE <a href="../asm/56832.html">56876</a>,4
+</div>
+<div class="paragraph">
+which makes it possible to access the right-hand side of <a href="../asm/58368.html">A bit of tree</a>
+(and from there the lower right side in <a href="../asm/59904.html">Under the Roof</a>) from
+<a href="../asm/56832.html">The Banyan Tree</a>.
+</div>
+</div>
+<div><span id="theUncollectableItem"></span></div>
+<div class="box box-2">
+<div class="box-title">The uncollectable item</div>
+<div class="paragraph">
+The item on the far right in <a href="../asm/60160.html">Conservatory Roof</a> cannot be collected
+because there is an unavoidable nasty in the way.
+</div>
+<div class="paragraph">
+The <a href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to
+fix this bug is
+</div>
+<div class="paragraph">
+POKE <a href="../asm/60160.html#60160">60231</a>,0
+</div>
+<div class="paragraph">
+which removes the nasty next to the item.
+</div>
+</div>
+<div><span id="guardianHalos"></span></div>
+<div class="box box-1">
+<div class="box-title">Guardian halos</div>
+<div class="paragraph">
+In a room with a non-black background, a guardian defined with BRIGHT INK is
+drawn with a 'halo': a BRIGHT sprite background that contrasts with the
+non-BRIGHT room background. There are four guardians affected by this
+phenomenon:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="halo1" src="../../images/scr/halo1.png" /> <img alt="halo2" src="../../images/scr/halo2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="halo3" src="../../images/scr/halo3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="halo4" src="../../images/scr/halo4.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/51456.html">On a Branch Over the Drive</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/52992.html">I'm sure I've seen this before..</a></td>
+<td class="" colspan="1" rowspan="1"><a href="../asm/59136.html">Emergency Generator</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The following POKEs modify the section of code at <a href="../asm/37310.html#37334">37334</a> so that a guardian is
+drawn in non-BRIGHT INK and PAPER when the room background is not black, thus
+preventing any halo:
+</div>
+<div class="paragraph">
+<div>POKE 37371,40</div>
+<div>POKE 37372,2</div>
+<div>POKE 37373,203</div>
+<div>POKE 37374,177</div>
+<div>POKE 37375,177</div>
+<div>POKE 37376,205</div>
+<div>POKE 37377,201</div>
+<div>POKE 37378,147</div>
+<div>POKE 37379,79</div>
+</div>
+</div>
+<div><span id="fromTopToBottom"></span></div>
+<div class="box box-2">
+<div class="box-title">From top to bottom</div>
+<div class="paragraph">
+In a room that contains a rope and has no exit to the room above, Willy can
+jump while at the highest point on the rope (when it's at the leftmost or
+rightmost extent of its swing) through the top of the room and reappear on the
+floor of the same room. The only rooms where this can happen are <a href="../asm/53760.html">On the
+Roof</a> and <a href="../asm/64000.html">The Beach</a>.
+</div>
+<div class="paragraph">
+To prevent Willy from climbing high enough up the rope to be able to jump
+through the top of the room:
+</div>
+<div class="paragraph">
+<div>POKE <a href="../asm/37310.html#37781">37782</a>,15</div>
+<div>POKE 37786,15</div>
+</div>
+<div class="paragraph">
+The number 15 here determines the highest segment of rope that Willy can reach
+(originally 12, three segments higher up). At segment 15, Willy's y-coordinate
+never goes below 25 while he's on the rope, and is adjusted down to 24 (see
+<a href="../asm/36564.html#36782">36782</a>) when he jumps off, which is too far from the top of the room (the
+maximum height Willy can jump is 20 pixels). At segment 14, Willy's
+y-coordinate never goes below 23 while he's on the rope, but is adjusted down
+to 16 when he jumps off, which is close enough to the top of the room to be
+able to jump through it.
+</div>
+<div class="paragraph">
+The code at <a href="../asm/37310.html#37601">37601</a> adjusts Willy's location depending on where he's hanging on
+to the rope. Specifically, his pixel y-coordinate is set to Y-8, where Y is the
+pixel y-coordinate of the segment of rope whose index matches the value of the
+rope status indicator at <a href="../asm/34262.html">34262</a>.
+</div>
+</div>
+<div><span id="longDistanceNasties"></span></div>
+<div class="box box-1">
+<div class="box-title">Long distance nasties</div>
+<div class="paragraph">
+If Willy falls through the bottom of a room and there is a nasty at the top of
+the room in a direct line above him, he will die before he reaches the room
+below.
+</div>
+<div class="paragraph">
+The only room affected by this bug is <a href="../asm/59904.html">Under the Roof</a>. Use the
+following POKE to start the game in that room and see what happens when Willy
+steps off the ledge:
+</div>
+<div class="paragraph">
+POKE 34795,42
+</div>
+<div class="paragraph">
+The problem lies in the section of code at <a href="../asm/38344.html#38392">38392</a>, which sets the attribute
+bytes for the cells occupied by and below Willy's sprite. If Willy is below the
+level of the floor, <span class="register">HL</span> (which holds the address of the cell in the
+attribute buffer at <a href="../asm/23552.html">23552</a>) is eventually incremented so that it points to the
+cell in the ceiling above Willy in the attribute buffer at <a href="../asm/24064.html">24064</a>. Then the
+routine at <a href="../asm/38430.html">38430</a> is called to actually set the attribute byte for the cell,
+detects the nasty there, and kills Willy.
+</div>
+<div class="paragraph">
+<div>POKE 38452,208</div>
+<div>POKE 38453,253</div>
+<div>POKE 64976,203</div>
+<div>POKE 64977,76</div>
+<div>POKE 64978,202</div>
+<div>POKE 64979,182</div>
+<div>POKE 64980,144</div>
+</div>
+</div>
+<div><span id="dontMindYourHead"></span></div>
+<div class="box box-2">
+<div class="box-title">Don't mind your head</div>
+<div class="paragraph">
+The code at <a href="../asm/36796.html#36828">36828</a> onwards that moves Willy left does not check for a wall
+tile at head height, which means Willy can move right to left through a wall
+tile at that position. To see this, add a wall tile at head height in
+<a href="../asm/57600.html">The Bathroom</a> and guide Willy through it:
+</div>
+<div class="paragraph">
+POKE 57708,32
+</div>
+<div class="paragraph">
+<img alt="dmyh" src="../../images/scr/dmyh.png" />
+</div>
+<div class="paragraph">
+However, the code at <a href="../asm/36796.html#36942">36942</a> onwards that moves Willy right does check for a
+wall tile at head height (at <a href="../asm/36796.html#37031">37031</a>), so Willy (correctly) cannot move left to
+right through a wall tile at that position.
+</div>
+<div class="paragraph">
+Note that the ability to walk from right to left through a wall tile at head
+height comes in handy in <a href="../asm/54016.html">The Forgotten Abbey</a> - without that ability,
+Willy would not be able to collect the item without sacrificing a life.
+</div>
+</div>
+<div><span id="stuckInTheWall"></span></div>
+<div class="box box-1">
+<div class="box-title">Stuck in the wall</div>
+<div class="paragraph">
+If Willy enters <a href="../asm/61696.html">The Wine Cellar</a> from the ledge in <a href="../asm/54016.html">The
+Forgotten Abbey</a>, he must keep moving left until he clears all the wall tiles,
+otherwise he can become trapped inside them by the conveyor below trying to
+move him to the right.
+</div>
+<div class="paragraph">
+To get on the conveyor, stand facing left at the top of the ramp in The
+Forgotten Abbey (see the first image below) and jump left towards the exit -
+Willy will land on the ledge (second image). Then walk left into The Wine
+Cellar.
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="sitw1_1" src="../../images/scr/sitw1_1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="sitw1_2" src="../../images/scr/sitw1_2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="sitw1_3" src="../../images/scr/sitw1_3.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Willy can also get stuck in the wall tiles that make up the elephant's head in
+<a href="../asm/59392.html">Dr Jones will never believe this</a>. Start at the location shown in the
+first image below, and then walk left.
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="sitw2_1" src="../../images/scr/sitw2_1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="sitw2_2" src="../../images/scr/sitw2_2.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Getting stuck in these places is possible because Willy can walk right to left
+through wall tiles at head height, but not left to right (see
+<a href="bugs.html#dontMindYourHead">Don't mind your head</a>).
+</div>
+</div>
+<div><span id="missedNote"></span></div>
+<div class="box box-2">
+<div class="box-title">The missed note</div>
+<div class="paragraph">
+Each note of the <a href="../asm/34399.html">in-game tune</a> is played twice by the section of code
+at <a href="../asm/35591.html#35644">35644</a>, <em>except</em> the first note when a new game starts. This is
+because the in-game music note index at <a href="../asm/34273.html">34273</a> is incremented from 0 to 1 on
+the first pass through the code <em>before</em> the first note is played.
+</div>
+</div>
+<div><span id="theBlankConveyor"></span></div>
+<div class="box box-1">
+<div class="box-title">The blank conveyor</div>
+<div class="paragraph">
+The conveyor tile in <a href="../asm/60160.html">Conservatory Roof</a> is completely blank and its
+attribute byte is 255 - a solid, bright white block - which is characteristic
+of unused tiles elsewhere. However, the conveyor tile <em>is</em> used in this
+room, and it doesn't look good:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="blank_conveyor" src="../../images/scr/blank_conveyor.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+See also <a href="facts.html#unanimatedConveyors">Unanimated conveyors</a>.
+</div>
+</div>
+<div><span id="corruptedConveyors"></span></div>
+<div class="box box-2">
+<div class="box-title">Corrupted conveyors</div>
+<div class="paragraph">
+The conveyors in <a href="../asm/55296.html">West of Kitchen</a>, <a href="../asm/56576.html">The Nightmare Room</a>,
+<a href="../asm/61696.html">The Wine Cellar</a> and <a href="../asm/62208.html">Tool&#160;&#160;Shed</a> don't look quite as
+they should. The reason for this is a bug in the code at <a href="../asm/36147.html#36177">36177</a>: if a graphic
+data byte of the background, floor, wall, nasty or ramp tile in a room matches
+the attribute byte of the conveyor tile to be drawn, the 'CPIR' instruction
+exits early, leaving <span class="register">HL</span> pointing at the wrong location.
+</div>
+<div class="paragraph">
+Here are some 'before' and 'after' pictures showing what the conveyors actually
+look like and what they look like when drawn properly.
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/55296.html">West of Kitchen</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor24_before" src="../../images/scr/conveyor24_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor24_after" src="../../images/scr/conveyor24_after.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/56576.html">The Nightmare Room</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor29_before" src="../../images/scr/conveyor29_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor29_after" src="../../images/scr/conveyor29_after.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/61696.html">The Wine Cellar</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor49_before" src="../../images/scr/conveyor49_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor49_after" src="../../images/scr/conveyor49_after.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><a href="../asm/62208.html">Tool&#160;&#160;Shed</a></td>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor51_before" src="../../images/scr/conveyor51_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor51_after" src="../../images/scr/conveyor51_after.png" /></td>
+</tr>
+<tr>
+<td class="transparent" colspan="1" rowspan="1"></td>
+<td class="" colspan="1" rowspan="1">Before</td>
+<td class="" colspan="1" rowspan="1">After</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+To fix the bug:
+</div>
+<div class="paragraph">
+<div>POKE 36178,151</div>
+<div>POKE 36181,9</div>
+<div>POKE 36183,205</div>
+<div>POKE 36184,38</div>
+<div>POKE 36185,255</div>
+<div>POKE 65318,9</div>
+<div>POKE 65319,190</div>
+<div>POKE 65322,75</div>
+<div>POKE 65323,35</div>
+<div>POKE 65324,201</div>
+</div>
+<div class="paragraph">
+See also <a href="bugs.html#corruptedNasties">Corrupted nasties</a>.
+</div>
+</div>
+<div><span id="veryCorruptedConveyor"></span></div>
+<div class="box box-1">
+<div class="box-title">Very corrupted conveyor</div>
+<div class="paragraph">
+You might be thinking that the fix given above for the corrupted conveyors bug
+does not do much for the appearance of the conveyor in <a href="../asm/56576.html">The Nightmare
+Room</a>. Perhaps that's because the real problem with this conveyor is that its
+attribute byte and graphic data - which should occupy addresses
+<a href="../asm/56576.html#56781">56781-56789</a> - appear to have been shifted by one byte back to
+56780-56788 (overwriting the eighth graphic byte of the ramp tile). If they
+are shifted along to the right spot, the conveyor takes on a much more
+reasonable appearance:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor29_before" src="../../images/scr/conveyor29_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="conveyor29_after2" src="../../images/scr/conveyor29_after2.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">Before</td>
+<td class="" colspan="1" rowspan="1">After</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+In addition, if the byte at 56789 (85) is shifted back round to 56780,
+it seems to fix the appearance of the ramp tile (by filling the gap at the
+bottom):
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="ramp29_before" src="../../images/scr/ramp29_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ramp29_after" src="../../images/scr/ramp29_after.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">Before</td>
+<td class="" colspan="1" rowspan="1">After</td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="corruptedNasties"></span></div>
+<div class="box box-2">
+<div class="box-title">Corrupted nasties</div>
+<div class="paragraph">
+The nasty tiles down the right hand side of <a href="../asm/58368.html">A bit of tree</a> don't look
+quite as they should. The reason for this is the same bug in the code at
+<a href="../asm/36147.html#36177">36177</a> that causes the <a href="bugs.html#corruptedConveyors">corrupted conveyors</a>: if a
+graphic data byte of the background, floor or wall tile in a room matches the
+attribute byte of the nasty tile to be drawn, the 'CPIR' instruction exits
+early, leaving <span class="register">HL</span> pointing at the wrong location.
+</div>
+<div class="paragraph">
+Here are the 'before' and 'after' pictures showing what the nasties actually
+look like and what they look like when drawn properly.
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="nasty36_before" src="../../images/scr/nasty36_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="nasty36_after" src="../../images/scr/nasty36_after.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">Before</td>
+<td class="" colspan="1" rowspan="1">After</td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="invalidGridLocation"></span></div>
+<div class="box box-1">
+<div class="box-title">Invalid grid location</div>
+<div class="paragraph">
+If the LSB of the system variable FRAMES is 142 when the game starts, the
+routine at <a href="../asm/34499.html">34499</a> will ask for the code at the grid location 'D>', which
+doesn't exist on the code sheet.
+</div>
+<div class="paragraph">
+Should you ever need it, the code for 'D>' is 1444.
+</div>
+<div class="paragraph">
+POKE <a href="../asm/34499.html#34555">34556</a>,180
+</div>
+</div>
+<div><span id="thePauseBug"></span></div>
+<div class="box box-2">
+<div class="box-title">The pause bug</div>
+<div class="paragraph">
+The Spectrum will hang when trying to resume the game after being paused if an
+Interface 1 is connected. This happens because the <span class="register">C</span> register holds 0
+instead of 254 when the keyboard is read by the 'IN A,(C)' instruction at
+<a href="../asm/35591.html#35620">35620</a>.
+</div>
+<div class="paragraph">
+POKE <a href="../asm/35591.html#35615">35615</a>,62: POKE <a href="../asm/35591.html#35620">35620</a>,219: POKE <a href="../asm/35591.html#35620">35621</a>,254
+</div>
+</div>
+<div><span id="theAtticBug"></span></div>
+<div class="box box-1">
+<div class="box-title">The Attic bug</div>
+<div class="paragraph">
+Perhaps the most famous of all the bugs in Jet Set Willy, the Attic bug is
+responsible for certain rooms becoming impossible to navigate after Willy has
+visited <a href="../asm/59648.html">The Attic</a>, thus making it impossible to complete the game.
+</div>
+<div class="paragraph">
+The root cause of the bug is a misplaced arrow, defined by the entity
+specification at <a href="../asm/59648.html#59900">59900</a>. The second byte of the entity specification is an
+index into the table of screen buffer addresses at <a href="../asm/33280.html">33280</a>, and determines the
+arrow's y-coordinate; the index should be an even number, but the value of the
+second byte is 213, which means the arrow-drawing routine at <a href="../asm/37310.html">37310</a> looks up
+the word at 33493 and finds 41066, way outside the actual screen buffer
+at 24576-28671. As a result, the misplaced arrow is 'drawn' at the
+following addresses:
+</div>
+<div class="paragraph">
+<ul class="">
+<li><a href="../asm/40627.html#40704">40810-40841</a>: unused (set to 65, with no effect on the game)</li>
+<li><a href="../asm/40960.html#41064">41066-41097</a>: the third byte of entity definition 13 through to the second byte of entity definition 17 (set to 255); this affects the guardians in <a href="../asm/52736.html">Rescue Esmerelda</a>, <a href="../asm/52992.html">I'm sure I've seen this before..</a>, <a href="../asm/53248.html">We must perform a Quirkafleeg</a>, <a href="../asm/49408.html">The Bridge</a>, <a href="../asm/50688.html">Entrance to Hades</a>, <a href="../asm/56064.html">The Chapel</a> and <a href="../asm/58880.html">Priests' Hole</a></li>
+<li><a href="../asm/40960.html#41320">41322-41353</a>: the third byte of entity definition 45 through to the second byte of entity definition 49 (set to 65); this affects the guardians in <a href="../asm/52480.html">Out on a limb</a>, <a href="../asm/55808.html">East Wall Base</a>, <a href="../asm/52224.html">Tree Top</a>, <a href="../asm/51200.html">Inside the MegaTrunk</a>, <a href="../asm/55040.html">The Kitchen</a> and <a href="../asm/55296.html">West of Kitchen</a></li>
+</ul>
+</div>
+<div class="paragraph">
+The <a href="pokes.html#theOfficialSoftwareProjectsPOKEs">official Software Projects POKE</a> to
+fix the Attic bug is
+</div>
+<div class="paragraph">
+POKE <a href="../asm/59648.html#59900">59901</a>,82
+</div>
+<div class="paragraph">
+which sets the pixel y-coordinate of the arrow to 41.
+</div>
+</div>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../reference/bugs.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

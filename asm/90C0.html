@@ -23,7 +23,7 @@
 <div class="description">90C0: Move the rope and guardians in the current room</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="89AD.html">89AD</a>.
@@ -46,11 +46,12 @@ Used by the routine at <a href="89AD.html">89AD</a>.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="90c0"></span>90C0</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IX,$8100</td>
 <td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the first byte of the first entity buffer at <a href="8100.html">8100</a></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="90c4"></span>
 <div class="comments">
 <div class="paragraph">
@@ -62,59 +63,68 @@ The entity-moving loop begins here.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="90c4"></span>90C4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
 <td class="comment-11" rowspan="1">Pick up the first byte of the current entity's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90c7"></span>90C7</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $FF</td>
 <td class="comment-11" rowspan="1">Have we already dealt with every entity?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90c9"></span>90C9</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
 <td class="comment-11" rowspan="1">Return if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90ca"></span>90CA</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $03</td>
 <td class="comment-11" rowspan="1">Keep only bits 0 and 1 (which determine the type of entity)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90cc"></span>90CC</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="90C0.html#91b6">$91B6</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity buffer if this one belongs to an arrow or is unused</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90cf"></span>90CF</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $01</td>
 <td class="comment-11" rowspan="1">Is this a horizontal guardian?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90d1"></span>90D1</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="90C0.html#9133">$9133</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90d4"></span>90D4</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $02</td>
 <td class="comment-11" rowspan="1">Is this a vertical guardian?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90d6"></span>90D6</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="90C0.html#917f">$917F</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="90d9"></span>
 <div class="comments">
 <div class="paragraph">
@@ -126,17 +136,19 @@ We are dealing with a rope.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90d9"></span>90D9</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 7,(IX+$00)</td>
 <td class="comment-11" rowspan="1">Is the rope currently swinging right to left?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90dd"></span>90DD</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="90C0.html#90ff">$90FF</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="90df"></span>
 <div class="comments">
 <div class="paragraph">
@@ -148,23 +160,26 @@ The rope is swinging left to right.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90df"></span>90DF</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$01)</td>
 <td class="comment-11" rowspan="1">Pick up the animation frame index</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90e2"></span>90E2</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 7,A</td>
 <td class="comment-11" rowspan="1">Is the rope currently swinging away from the centre?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90e4"></span>90E4</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="90C0.html#90f5">$90F5</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="90e6"></span>
 <div class="comments">
 <div class="paragraph">
@@ -176,53 +191,61 @@ The rope is swinging left to right, towards the centre (0x84&lt;=<span class="re
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90e6"></span>90E6</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $02</td>
 <td class="comment-11" rowspan="1">Subtract 2 from the animation frame index in <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90e8"></span>90E8</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $94</td>
 <td class="comment-11" rowspan="1">Is it still 0x94 or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90ea"></span>90EA</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NC,<a href="90C0.html#911d">$911D</a></td>
 <td class="comment-11" rowspan="1">If so, use it as the next animation frame index</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90ec"></span>90EC</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $02</td>
 <td class="comment-11" rowspan="1">Subtract 2 from the animation frame index again</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90ee"></span>90EE</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $80</td>
 <td class="comment-11" rowspan="1">Is it 0x80 now?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90f0"></span>90F0</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="90C0.html#911d">$911D</a></td>
 <td class="comment-11" rowspan="1">If not, use it as the next animation frame index</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90f2"></span>90F2</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
 <td class="comment-11" rowspan="1">The rope has reached the centre, so the next animation frame index is 0</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90f3"></span>90F3</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="90C0.html#911d">$911D</a></td>
 <td class="comment-11" rowspan="1">Jump to set it</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="90f5"></span>
 <div class="comments">
 <div class="paragraph">
@@ -234,35 +257,40 @@ The rope is swinging left to right, away from the centre (0x00&lt;=<span class="
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="90f5"></span>90F5</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,$02</td>
 <td class="comment-11" rowspan="1">Add 2 to the animation frame index in <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90f7"></span>90F7</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $12</td>
 <td class="comment-11" rowspan="1">Is it now 0x12 or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90f9"></span>90F9</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NC,<a href="90C0.html#911d">$911D</a></td>
 <td class="comment-11" rowspan="1">If so, use it as the next animation frame index</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90fb"></span>90FB</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,$02</td>
 <td class="comment-11" rowspan="1">Add 2 to the animation frame index again</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="90fd"></span>90FD</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="90C0.html#911d">$911D</a></td>
 <td class="comment-11" rowspan="1">Use this value as the next animation frame index</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="90ff"></span>
 <div class="comments">
 <div class="paragraph">
@@ -274,23 +302,26 @@ The rope is swinging right to left.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="90ff"></span>90FF</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$01)</td>
 <td class="comment-11" rowspan="1">Pick up the animation frame index</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9102"></span>9102</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 7,A</td>
 <td class="comment-11" rowspan="1">Is the rope currently swinging away from the centre?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9104"></span>9104</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="90C0.html#9115">$9115</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="9106"></span>
 <div class="comments">
 <div class="paragraph">
@@ -302,53 +333,61 @@ The rope is swinging right to left, towards the centre (0x04&lt;=<span class="re
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9106"></span>9106</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $02</td>
 <td class="comment-11" rowspan="1">Subtract 2 from the animation frame index in <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9108"></span>9108</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $14</td>
 <td class="comment-11" rowspan="1">Is it still 0x14 or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="910a"></span>910A</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NC,<a href="90C0.html#911d">$911D</a></td>
 <td class="comment-11" rowspan="1">If so, use it as the next animation frame index</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="910c"></span>910C</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $02</td>
 <td class="comment-11" rowspan="1">Subtract 2 from the animation frame index again</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="910e"></span>910E</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
 <td class="comment-11" rowspan="1">Is it 0 now?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="910f"></span>910F</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="90C0.html#911d">$911D</a></td>
 <td class="comment-11" rowspan="1">If not, use it as the next animation frame index</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9111"></span>9111</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,$80</td>
 <td class="comment-11" rowspan="1">The rope has reached the centre, so the next animation frame index is 0x80</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9113"></span>9113</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="90C0.html#911d">$911D</a></td>
 <td class="comment-11" rowspan="1">Jump to set it</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="9115"></span>
 <div class="comments">
 <div class="paragraph">
@@ -360,29 +399,33 @@ The rope is swinging right to left, away from the centre (0x80&lt;=<span class="
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9115"></span>9115</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,$02</td>
 <td class="comment-11" rowspan="1">Add 2 to the animation frame index in <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9117"></span>9117</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $92</td>
 <td class="comment-11" rowspan="1">Is it now 0x92 or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9119"></span>9119</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NC,<a href="90C0.html#911d">$911D</a></td>
 <td class="comment-11" rowspan="1">If so, use it as the next animation frame index</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="911b"></span>911B</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,$02</td>
 <td class="comment-11" rowspan="1">Add 2 to the animation frame index again</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="911d"></span>
 <div class="comments">
 <div class="paragraph">
@@ -394,53 +437,61 @@ Now <span class="register">A</span> holds the rope's next animation frame index.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="911d"></span>911D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$01),A</td>
 <td class="comment-11" rowspan="1">Update the animation frame index</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9120"></span>9120</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $7F</td>
 <td class="comment-11" rowspan="1">Reset bit 7</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9122"></span>9122</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP (IX+$07)</td>
 <td class="comment-11" rowspan="1">Does <span class="register">A</span> match the eighth byte of the rope's buffer (0x36)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9125"></span>9125</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="90C0.html#91b6">$91B6</a></td>
 <td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9128"></span>9128</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
 <td class="comment-11" rowspan="3">Flip bit 7 of the first byte of the rope's buffer: the rope has just changed direction and will now swing back towards the centre</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="912b"></span>912B</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR $80</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="912d"></span>912D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$00),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9130"></span>9130</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP <a href="90C0.html#91b6">$91B6</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="9133"></span>
 <div class="comments">
 <div class="paragraph">
@@ -452,17 +503,19 @@ We are dealing with a horizontal guardian.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9133"></span>9133</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 7,(IX+$00)</td>
 <td class="comment-11" rowspan="1">Is the guardian currently moving left to right?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9137"></span>9137</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="90C0.html#915c">$915C</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="9139"></span>
 <div class="comments">
 <div class="paragraph">
@@ -474,89 +527,103 @@ This guardian is moving right to left.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9139"></span>9139</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
 <td class="comment-11" rowspan="4">Update the guardian's animation frame (in bits 5 and 6 of the first byte of its buffer)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="913c"></span>913C</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $20</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="913e"></span>913E</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $7F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9140"></span>9140</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$00),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9143"></span>9143</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $60</td>
 <td class="comment-11" rowspan="1">Is it time to update the x-coordinate of the guardian sprite?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9145"></span>9145</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR C,<a href="90C0.html#91b6">$91B6</a></td>
 <td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9147"></span>9147</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$02)</td>
 <td class="comment-11" rowspan="2">Pick up the sprite's current screen x-coordinate (0-31)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="914a"></span>914A</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="914c"></span>914C</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP (IX+$06)</td>
 <td class="comment-11" rowspan="1">Has the guardian reached the leftmost point of its path?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="914f"></span>914F</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="90C0.html#9156">$9156</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9151"></span>9151</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC (IX+$02)</td>
 <td class="comment-11" rowspan="1">Decrement the sprite's x-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9154"></span>9154</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="90C0.html#91b6">$91B6</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9156"></span>9156</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$00),$81</td>
 <td class="comment-11" rowspan="1">The guardian will now start moving left to right</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="915a"></span>915A</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="90C0.html#91b6">$91B6</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="915c"></span>
 <div class="comments">
 <div class="paragraph">
@@ -568,89 +635,103 @@ This guardian is moving left to right.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="915c"></span>915C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
 <td class="comment-11" rowspan="4">Update the guardian's animation frame (in bits 5 and 6 of the first byte of its buffer)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="915f"></span>915F</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,$20</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9161"></span>9161</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR $80</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9163"></span>9163</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$00),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9166"></span>9166</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $A0</td>
 <td class="comment-11" rowspan="1">Is it time to update the x-coordinate of the guardian sprite?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9168"></span>9168</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NC,<a href="90C0.html#91b6">$91B6</a></td>
 <td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="916a"></span>916A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$02)</td>
 <td class="comment-11" rowspan="2">Pick up the sprite's current screen x-coordinate (0-31)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="916d"></span>916D</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="916f"></span>916F</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP (IX+$07)</td>
 <td class="comment-11" rowspan="1">Has the guardian reached the rightmost point of its path?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9172"></span>9172</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="90C0.html#9179">$9179</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9174"></span>9174</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC (IX+$02)</td>
 <td class="comment-11" rowspan="1">Increment the sprite's x-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9177"></span>9177</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="90C0.html#91b6">$91B6</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9179"></span>9179</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$00),$61</td>
 <td class="comment-11" rowspan="1">The guardian will now start moving right to left</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="917d"></span>917D</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="90C0.html#91b6">$91B6</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="917f"></span>
 <div class="comments">
 <div class="paragraph">
@@ -662,131 +743,152 @@ We are dealing with a vertical guardian.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="917f"></span>917F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
 <td class="comment-11" rowspan="3">Flip bit 3 of the first byte of the guardian's buffer (if bit 4 is set, the guardian's animation frame is updated on every pass through this routine; otherwise, it is updated on every second pass when bit 3 is set)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9182"></span>9182</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR $08</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9184"></span>9184</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$00),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9187"></span>9187</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $18</td>
 <td class="comment-11" rowspan="1">Are bits 3 and 4 both reset now?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9189"></span>9189</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="90C0.html#9193">$9193</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="918b"></span>918B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
 <td class="comment-11" rowspan="3">Update the guardian's animation frame (in bits 5-7 of the first byte of its buffer)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="918e"></span>918E</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,$20</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9190"></span>9190</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$00),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9193"></span>9193</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$03)</td>
 <td class="comment-11" rowspan="3">Update the guardian's y-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9196"></span>9196</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,(IX+$04)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9199"></span>9199</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$03),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="919c"></span>919C</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP (IX+$07)</td>
 <td class="comment-11" rowspan="1">Has the guardian reached the lowest point of its path (maximum y-coordinate)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="919f"></span>919F</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NC,<a href="90C0.html#91ae">$91AE</a></td>
 <td class="comment-11" rowspan="1">If so, jump to change its direction of movement</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91a1"></span>91A1</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP (IX+$06)</td>
 <td class="comment-11" rowspan="1">Compare the new y-coordinate with the minimum value (the highest point of its path)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91a4"></span>91A4</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="90C0.html#91a8">$91A8</a></td>
 <td class="comment-11" rowspan="1">If they match, jump to change the guardian's direction of movement</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91a6"></span>91A6</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NC,<a href="90C0.html#91b6">$91B6</a></td>
 <td class="comment-11" rowspan="1">If the new y-coordinate is above the minimum value, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="91a8"></span>91A8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$06)</td>
 <td class="comment-11" rowspan="2">Make sure that the guardian's y-coordinate is set to its minimum value</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91ab"></span>91AB</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$03),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="91ae"></span>91AE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$04)</td>
 <td class="comment-11" rowspan="3">Negate the y-coordinate increment; this changes the guardian's direction of movement</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91b1"></span>91B1</td>
+<td class="bytes-0"></td>
 <td class="instruction">NEG</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91b3"></span>91B3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$04),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="91b6"></span>
 <div class="comments">
 <div class="paragraph">
@@ -798,18 +900,21 @@ The current entity has been dealt with. Time for the next one.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="91b6"></span>91B6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$0008</td>
 <td class="comment-11" rowspan="2">Point <span class="register">IX</span> at the first byte of the next entity's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91b9"></span>91B9</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD IX,DE</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91bb"></span>91BB</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP <a href="90C0.html#90c4">$90C4</a></td>
 <td class="comment-11" rowspan="1">Jump back to deal with it</td>
 </tr>
@@ -822,10 +927,10 @@ The current entity has been dealt with. Time for the next one.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/37056.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/37056.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

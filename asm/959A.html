@@ -23,7 +23,7 @@
 <div class="description">959A: Animate the toilet in The Bathroom</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="9534.html">9534</a>.
@@ -46,126 +46,147 @@ Used by the routine at <a href="9534.html">9534</a>.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="959a"></span>959A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($8420)</td>
 <td class="comment-11" rowspan="1">Pick up the number of the current room from <a href="8420.html">8420</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="959d"></span>959D</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $21</td>
 <td class="comment-11" rowspan="1">Are we in <a href="E100.html">The Bathroom</a>?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="959f"></span>959F</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET NZ</td>
 <td class="comment-11" rowspan="1">Return if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95a0"></span>95A0</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85CB)</td>
 <td class="comment-11" rowspan="1">Pick up the minute counter from <a href="85CB.html">85CB</a>; this will determine the animation frame to use for the toilet</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95a3"></span>95A3</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $01</td>
 <td class="comment-11" rowspan="4">Keep only bit 0 and move it to bit 5</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95a5"></span>95A5</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95a6"></span>95A6</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95a7"></span>95A7</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95a8"></span>95A8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
 <td class="comment-11" rowspan="1">Now <span class="register">E</span>=0x00 or 0x20</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95a9"></span>95A9</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85DF)</td>
 <td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="85DF.html">85DF</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95ac"></span>95AC</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $03</td>
 <td class="comment-11" rowspan="1">Is Willy's head down the toilet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95ae"></span>95AE</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="959A.html#95b2">$95B2</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95b0"></span>95B0</td>
+<td class="bytes-0"></td>
 <td class="instruction">SET 6,E</td>
 <td class="comment-11" rowspan="1">Now <span class="register">E</span>=0x40 or 0x60</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="95b2"></span>95B2</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,$A6</td>
 <td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the toilet sprite to use (<a href="A600.html">A600</a>, <a href="A600.html#a620">A620</a>, <a href="A600.html#a640">A640</a> or <a href="A600.html#a660">A660</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95b4"></span>95B4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IX,$82D0</td>
 <td class="comment-11" rowspan="3">Draw the toilet at (13,28) in the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95b8"></span>95B8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$101C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95bb"></span>95BB</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9637.html#9668">$9668</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95be"></span>95BE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$0707</td>
 <td class="comment-11" rowspan="1"><span class="register">H</span>=<span class="register">L</span>=0x07 (INK 7: PAPER 0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95c1"></span>95C1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($5DBC),HL</td>
 <td class="comment-11" rowspan="2">Set the attribute bytes for the toilet in the buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95c4"></span>95C4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($5DDC),HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="95c7"></span>95C7</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET</td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
@@ -178,10 +199,10 @@ Used by the routine at <a href="9534.html">9534</a>.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/38298.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/38298.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

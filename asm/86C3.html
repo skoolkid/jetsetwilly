@@ -23,7 +23,7 @@
 <div class="description">86C3: Display the code entry screen</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="869F.html">869F</a>. Displays the code entry screen and waits for a code to be entered. Returns with the zero flag set if the code entered is correct.
@@ -49,269 +49,313 @@ Used by the routine at <a href="869F.html">869F</a>. Displays the code entry scr
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="86c3"></span>86C3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$4800</td>
 <td class="comment-11" rowspan="3">Print the message pointed to by <span class="register">IX</span> at (8,0)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86c6"></span>86C6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$20</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86c8"></span>86C8</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9680.html">$9680</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86cb"></span>86CB</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$4842</td>
 <td class="comment-11" rowspan="4">Print the graphic for the '1' key at (10,2)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86ce"></span>86CE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$9B00</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86d1"></span>86D1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$00</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86d3"></span>86D3</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9456.html">$9456</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86d6"></span>86D6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$4845</td>
 <td class="comment-11" rowspan="2">Print the graphic for the '2' key at (10,5)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86d9"></span>86D9</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9456.html">$9456</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86dc"></span>86DC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$4848</td>
 <td class="comment-11" rowspan="2">Print the graphic for the '3' key at (10,8)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86df"></span>86DF</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9456.html">$9456</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86e2"></span>86E2</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$484B</td>
 <td class="comment-11" rowspan="2">Print the graphic for the '4' key at (10,11)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86e5"></span>86E5</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9456.html">$9456</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86e8"></span>86E8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$9B80</td>
 <td class="comment-11" rowspan="4">Copy the 128 attribute bytes from <a href="9B80.html">9B80</a> to the screen (lines 8, 9, 10 and 11)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86eb"></span>86EB</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$5900</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86ee"></span>86EE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0080</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86f1"></span>86F1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86f3"></span>86F3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($5C78)</td>
 <td class="comment-11" rowspan="1">Collect the LSB of the system variable FRAMES</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86f6"></span>86F6</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,$25</td>
 <td class="comment-11" rowspan="2">Add 0x25 to this value and replace it; this ensures that the value collected on the second pass through this routine is different from the value collected on the first pass</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86f8"></span>86F8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($5C78),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86fb"></span>86FB</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $B3</td>
 <td class="comment-11" rowspan="1">Is the value between 0x00 and 0xB2?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86fd"></span>86FD</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR C,<a href="86C3.html#8701">$8701</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="86ff"></span>86FF</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $B4</td>
 <td class="comment-11" rowspan="1">Otherwise subtract 0xB4; note that if the original value of the LSB of the system variable FRAMES was 0x8E, this leaves <span class="register">A</span> holding 0xFF, which is a <a href="../reference/bugs.html#invalidGridLocation">bug</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8701"></span>8701</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-11" rowspan="1">Now <span class="register">L</span> holds either 0xFF or some number between 0x00 and 0xB2</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8702"></span>8702</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,$9E</td>
 <td class="comment-11" rowspan="1">Point <span class="register">HL</span> at one of the entries in the table at <a href="9E00.html">9E00</a> (or at 9EFF if <span class="register">L</span>=0xFF)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8704"></span>8704</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-11" rowspan="1">Pick up the table entry</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8705"></span>8705</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,L</td>
 <td class="comment-11" rowspan="1">Add <span class="register">L</span> to obtain the actual code</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8706"></span>8706</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85E4),A</td>
 <td class="comment-11" rowspan="1">Store the code at <a href="85E4.html">85E4</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8709"></span>8709</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,L</td>
 <td class="comment-11" rowspan="1">Copy the code index to <span class="register">C</span>; this will be used to compute the grid location</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="870a"></span>870A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,$2F</td>
 <td class="comment-11" rowspan="8">Calculate the ASCII code of the grid location number (0-9) in <span class="register">E</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="870c"></span>870C</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC E</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="870d"></span>870D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="870e"></span>870E</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $12</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8710"></span>8710</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR C,<a href="86C3.html#8717">$8717</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8712"></span>8712</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $12</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8714"></span>8714</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8715"></span>8715</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="86C3.html#870c">$870C</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8717"></span>8717</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,E</td>
 <td class="comment-11" rowspan="3">Print the grid location number at (8,30)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8718"></span>8718</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$481E</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="871b"></span>871B</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9691.html">$9691</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="871e"></span>871E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,C</td>
 <td class="comment-11" rowspan="2">Calculate the ASCII code of the grid location letter (A-R) in <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="871f"></span>871F</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,$41</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8721"></span>8721</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$481D</td>
 <td class="comment-11" rowspan="2">Print the grid location letter at (8,29)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8724"></span>8724</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9691.html">$9691</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="8727"></span>
 <div class="comments">
 <div class="paragraph">
@@ -323,54 +367,63 @@ Here we enter a loop that prints a 2x2 coloured block at (10,16), (10,19), (10,2
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="8727"></span>8727</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IX,$5950</td>
 <td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the attribute file location of the first coloured block at (10,16)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="872b"></span>872B</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="873C.html">$873C</a></td>
 <td class="comment-11" rowspan="1">Print a coloured block when '1', '2', '3' or '4' is pressed, or return to <a href="869F.html">869F</a> if ENTER is pressed</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="872e"></span>872E</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IX</td>
 <td class="comment-11" rowspan="3">Move <span class="register">IX</span> along to the location of the next coloured block</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8730"></span>8730</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IX</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8732"></span>8732</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC IX</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8734"></span>8734</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,IXl</td>
 <td class="comment-11" rowspan="2">Have we just printed the fourth coloured block at (10,25)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8736"></span>8736</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $5C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="8738"></span>8738</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="86C3.html#872b">$872B</a></td>
 <td class="comment-11" rowspan="1">If not, jump back to print the next one</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="873a"></span>873A</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="86C3.html#8727">$8727</a></td>
 <td class="comment-11" rowspan="1">Otherwise rewind <span class="register">IX</span> to the location of the first coloured block</td>
 </tr>
@@ -383,10 +436,10 @@ Here we enter a loop that prints a 2x2 coloured block at (10,16), (10,19), (10,2
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/34499.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/34499.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>

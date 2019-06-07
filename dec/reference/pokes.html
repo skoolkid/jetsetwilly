@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jet Set Willy: Pokes</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
+
+</head>
+<body class="Pokes">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="page-header">Pokes</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a href="#noCodeSheetRequired">No code sheet required</a></li>
+<li><a href="#startInAnyRoom">Start in any room</a></li>
+<li><a href="#gentleGuardians">Gentle guardians</a></li>
+<li><a href="#niceNasties">Nice nasties</a></li>
+<li><a href="#agreeableArrows">Agreeable arrows</a></li>
+<li><a href="#harmlessHeights">Harmless heights</a></li>
+<li><a href="#noConveyors">No conveyors</a></li>
+<li><a href="#dealWithMaria">Deal with Maria</a></li>
+<li><a href="#cheatModeCheat">Cheat mode cheat</a></li>
+<li><a href="#moreLives">More lives</a></li>
+<li><a href="#infiniteLives">Infinite lives</a></li>
+<li><a href="#infiniteTime">Infinite time</a></li>
+<li><a href="#theOfficialSoftwareProjectsPOKEs">The official Software Projects POKEs</a></li>
+</ul>
+<div><span id="noCodeSheetRequired"></span></div>
+<div class="box box-1">
+<div class="box-title">No code sheet required</div>
+<div class="paragraph">
+To make any combination work on the code entry screen:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/34463.html#34483">34483</a>,195
+</div>
+<div class="paragraph">
+Alternatively, to bypass the code entry screen altogether:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/33792.html#33796">33797</a>,135: POKE <a href="../asm/33792.html#33799">33800</a>,202
+</div>
+</div>
+<div><span id="startInAnyRoom"></span></div>
+<div class="box box-2">
+<div class="box-title">Start in any room</div>
+<div class="paragraph">
+To start the game in room N (normally 33: <a href="../asm/57600.html">The Bathroom</a>):
+</div>
+<div class="paragraph">
+POKE <a href="../asm/34762.html#34794">34795</a>,N
+</div>
+<div class="paragraph">
+For a list of all the rooms and their numbers, see the <a href="../tables/rooms.html">Rooms page</a>.
+</div>
+<div class="paragraph">
+The default start location, (13,20), may not be suitable, depending on the room
+chosen; to change Willy's start location to (y,x):
+</div>
+<div class="paragraph">
+<div>POKE <a href="../asm/34762.html#34789">34790</a>,y*16</div>
+<div>POKE <a href="../asm/34762.html#34799">34800</a>,32*(y-8*INT(y/8))+x</div>
+<div>POKE <a href="../asm/34762.html#34799">34801</a>,92+INT(y/8)</div>
+</div>
+<div class="paragraph">
+For example, to start at (6,28) in room 25 (<a href="../asm/55552.html">Cold Store</a>):
+</div>
+<div class="paragraph">
+<div>POKE 34795,25</div>
+<div>POKE 34790,96</div>
+<div>POKE 34800,220</div>
+<div>POKE 34801,92</div>
+</div>
+</div>
+<div><span id="gentleGuardians"></span></div>
+<div class="box box-1">
+<div class="box-title">Gentle guardians</div>
+<div class="paragraph">
+To enable Willy to walk through (or rather, behind) guardians with impunity:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/37310.html#37391">37392</a>,0
+</div>
+</div>
+<div><span id="niceNasties"></span></div>
+<div class="box box-2">
+<div class="box-title">Nice nasties</div>
+<div class="paragraph">
+To enable Willy to survive contact with nasties:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/38430.html#38447">38447</a>,201
+</div>
+</div>
+<div><span id="agreeableArrows"></span></div>
+<div class="box box-1">
+<div class="box-title">Agreeable arrows</div>
+<div class="paragraph">
+To enable Willy to survive contact with arrows:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/37310.html#37505">37505</a>,24
+</div>
+</div>
+<div><span id="harmlessHeights"></span></div>
+<div class="box box-2">
+<div class="box-title">Harmless heights</div>
+<div class="paragraph">
+To enable Willy to survive a fall from any height:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/36564.html#36577">36578</a>,16
+</div>
+</div>
+<div><span id="noConveyors"></span></div>
+<div class="box box-1">
+<div class="box-title">No conveyors</div>
+<div class="paragraph">
+To enable Willy to walk freely in any direction on conveyors:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/36564.html#36601">36601</a>,0
+</div>
+</div>
+<div><span id="dealWithMaria"></span></div>
+<div class="box box-2">
+<div class="box-title">Deal with Maria</div>
+<div class="paragraph">
+To get rid of Maria entirely, leaving the bedroom free to enter without
+collecting any items:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/38196.html#38207">38207</a>,24
+</div>
+<div class="paragraph">
+Or if that makes things a little too easy, try the following POKE that gets rid
+of Maria after N items have been collected:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/41983.html">41983</a>,256-N (1&lt;=N&lt;=83)
+</div>
+<div class="paragraph">
+Exactly which N items need to be collected is determined by the item table at
+<a href="../asm/41984.html">41984</a>. When N=1, the only item that needs to be collected is the one in
+<a href="../asm/57600.html">The Bathroom</a>.
+</div>
+</div>
+<div><span id="cheatModeCheat"></span></div>
+<div class="box box-1">
+<div class="box-title">Cheat mode cheat</div>
+<div class="paragraph">
+To activate the <a href="facts.html#writetyper">WRITETYPER cheat mode</a> immediately (without
+having to type WRITETYPER in <a href="../asm/56320.html">First Landing</a>):
+</div>
+<div class="paragraph">
+POKE <a href="../asm/34275.html">34275</a>,10
+</div>
+<div class="paragraph">
+For a list of all the rooms and their teleport codes, see the <a href="../tables/rooms.html">Rooms
+page</a>.
+</div>
+</div>
+<div><span id="moreLives"></span></div>
+<div class="box box-2">
+<div class="box-title">More lives</div>
+<div class="paragraph">
+To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=7):
+</div>
+<div class="paragraph">
+POKE <a href="../asm/34762.html#34784">34785</a>,N
+</div>
+<div class="paragraph">
+Note that the routine at <a href="../asm/35211.html">35211</a> tries to draw all remaining lives at the
+bottom of the screen, which means that for large N, there is screen corruption
+and the game slows down considerably; to avoid this, disable the routine:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/35211.html">35211</a>,201
+</div>
+</div>
+<div><span id="infiniteLives"></span></div>
+<div class="box box-1">
+<div class="box-title">Infinite lives</div>
+<div class="paragraph">
+To give Willy infinite lives:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/35841.html#35899">35899</a>,0
+</div>
+</div>
+<div><span id="infiniteTime"></span></div>
+<div class="box box-2">
+<div class="box-title">Infinite time</div>
+<div class="paragraph">
+To stop the clock and give Willy infinite time to complete his task:
+</div>
+<div class="paragraph">
+POKE <a href="../asm/35245.html#35408">35408</a>,24
+</div>
+</div>
+<div><span id="theOfficialSoftwareProjectsPOKEs"></span></div>
+<div class="box box-1">
+<div class="box-title">The official Software Projects POKEs</div>
+<div class="paragraph">
+When it became clear that the <a href="bugs.html#theAtticBug">Attic bug</a> was actually a bug
+and not a feature, Software Projects published some POKEs to fix it and some
+other problems with the game:
+</div>
+<div class="paragraph">
+<div>POKE <a href="../asm/60160.html#60160">60231</a>,0</div>
+<div>POKE <a href="../asm/41984.html#42183">42183</a>,11</div>
+<div>POKE <a href="../asm/59648.html#59900">59901</a>,82</div>
+<div>POKE <a href="../asm/56832.html#56832">56876</a>,4</div>
+</div>
+<div class="paragraph">
+The first POKE (<a href="../asm/60160.html#60160">60231</a>,0) removes a nasty from
+<a href="../asm/60160.html">Conservatory Roof</a>, which makes it possible to collect the otherwise
+<a href="bugs.html#theUncollectableItem">uncollectable item</a> on the far right:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="sp_poke1_before" src="../../images/scr/sp_poke1_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="sp_poke1_after" src="../../images/scr/sp_poke1_after.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">Before</td>
+<td class="" colspan="1" rowspan="1">After POKE <a href="../asm/60160.html#60160">60231</a>,0</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The second POKE (<a href="../asm/41984.html#42183">42183</a>,11) moves the unreachable
+<a href="bugs.html#theInvisibleItem">invisible item</a> at (3,26) in <a href="../asm/56320.html">First Landing</a> to
+the same coordinates in <a href="../asm/51968.html">The Hall</a> (where it is still invisible, but now
+reachable).
+</div>
+<div class="paragraph">
+The third POKE (<a href="../asm/59648.html#59900">59901</a>,82) fixes the misplaced arrow in <a href="../asm/59648.html">The
+Attic</a> by setting its pixel y-coordinate to 41.
+</div>
+<div class="paragraph">
+The fourth POKE (<a href="../asm/56832.html#56832">56876</a>,4) replaces a wall block with a floor
+block in <a href="../asm/56832.html">The Banyan Tree</a>, which makes it possible to access the room
+above (<a href="../asm/58368.html">A bit of tree</a>) from the right-hand side (which in turn makes it
+possible to reach the otherwise <a href="bugs.html#theInaccessibleItems">inaccessible items</a>
+in <a href="../asm/60160.html">Conservatory Roof</a> via the ledge on the lower left in
+<a href="../asm/59904.html">Under the Roof</a>):
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="sp_poke4_before" src="../../images/scr/sp_poke4_before.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="sp_poke4_after" src="../../images/scr/sp_poke4_after.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">Before</td>
+<td class="" colspan="1" rowspan="1">After POKE <a href="../asm/56832.html#56832">56876</a>,4</td>
+</tr>
+</table>
+</div>
+</div>
+<footer>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../../reference/pokes.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -23,7 +23,7 @@
 <div class="description">91BE: Draw the rope, arrows and guardians in the current room</div>
 <table class="disassembly">
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
 Used by the routine at <a href="89AD.html">89AD</a>. Draws the rope, arrows and guardians in the current room to the screen buffer at <a href="6000.html">6000</a>.
@@ -46,11 +46,12 @@ Used by the routine at <a href="89AD.html">89AD</a>. Draws the rope, arrows and 
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="91be"></span>91BE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IX,$8100</td>
 <td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the first byte of the first entity buffer at <a href="8100.html">8100</a></td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="91c2"></span>
 <div class="comments">
 <div class="paragraph">
@@ -62,59 +63,68 @@ The drawing loop begins here.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="91c2"></span>91C2</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
 <td class="comment-11" rowspan="1">Pick up the first byte of the current entity's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91c5"></span>91C5</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $FF</td>
 <td class="comment-11" rowspan="1">Have we already dealt with every entity?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91c7"></span>91C7</td>
+<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
 <td class="comment-11" rowspan="1">Return if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91c8"></span>91C8</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $07</td>
 <td class="comment-11" rowspan="1">Keep only bits 0-2 (which determine the type of entity)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91ca"></span>91CA</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity buffer if this one is not being used</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91cd"></span>91CD</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $03</td>
 <td class="comment-11" rowspan="1">Is this a rope?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91cf"></span>91CF</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="91BE.html#92a4">$92A4</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91d2"></span>91D2</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $04</td>
 <td class="comment-11" rowspan="1">Is this an arrow?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91d4"></span>91D4</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#9237">$9237</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="91d6"></span>
 <div class="comments">
 <div class="paragraph">
@@ -126,335 +136,390 @@ We are dealing with a horizontal or vertical guardian.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91d6"></span>91D6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,(IX+$03)</td>
 <td class="comment-11" rowspan="2">Point <span class="register">DE</span> at the entry in the screen buffer address lookup table at <a href="8200.html">8200</a> that corresponds to the guardian's y-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91d9"></span>91D9</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,$82</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91db"></span>91DB</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(DE)</td>
 <td class="comment-11" rowspan="2">Copy the LSB of the screen buffer address to <span class="register">L</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91dc"></span>91DC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91dd"></span>91DD</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$02)</td>
 <td class="comment-11" rowspan="2">Pick up the guardian's x-coordinate from bits 0-4 of the third byte of its buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91e0"></span>91E0</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91e2"></span>91E2</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,L</td>
 <td class="comment-11" rowspan="2">Adjust the LSB of the screen buffer address in <span class="register">L</span> for the guardian's x-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91e3"></span>91E3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91e4"></span>91E4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,E</td>
 <td class="comment-11" rowspan="1">Copy the fourth byte of the guardian's buffer to <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91e5"></span>91E5</td>
+<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
 <td class="comment-11" rowspan="4"><span class="register">H</span>=0x5C or 0x5D; now <span class="register">HL</span> holds the address of the guardian's current location in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91e6"></span>91E6</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $01</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91e8"></span>91E8</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR $5C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91ea"></span>91EA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91eb"></span>91EB</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$001F</td>
 <td class="comment-11" rowspan="1">Prepare <span class="register">DE</span> for later addition</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91ee"></span>91EE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$01)</td>
 <td class="comment-11" rowspan="1">Pick up the second byte of the guardian's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91f1"></span>91F1</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $0F</td>
 <td class="comment-11" rowspan="1">Keep only bits 0-2 (INK colour) and 3 (BRIGHT value)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91f3"></span>91F3</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,$38</td>
 <td class="comment-11" rowspan="1">Push bit 3 up to bit 6</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91f5"></span>91F5</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $47</td>
 <td class="comment-11" rowspan="1">Keep only bits 0-2 (INK colour) and 6 (BRIGHT value)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91f7"></span>91F7</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
 <td class="comment-11" rowspan="1">Save this value in <span class="register">C</span> temporarily</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91f8"></span>91F8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-11" rowspan="1">Pick up the room attribute byte at the guardian's location from the buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91f9"></span>91F9</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $38</td>
 <td class="comment-11" rowspan="1">Keep only bits 3-5 (PAPER colour)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91fb"></span>91FB</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR C</td>
 <td class="comment-11" rowspan="1">Merge the INK colour and BRIGHT value from <span class="register">C</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91fc"></span>91FC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
 <td class="comment-11" rowspan="1">Copy this attribute value to <span class="register">C</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91fd"></span>91FD</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),C</td>
 <td class="comment-11" rowspan="7">Set the attribute bytes in the buffer at <a href="5C00.html">5C00</a> for the top two rows of cells occupied by the guardian's sprite</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91fe"></span>91FE</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="91ff"></span>91FF</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9200"></span>9200</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9201"></span>9201</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9202"></span>9202</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9203"></span>9203</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9204"></span>9204</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$03)</td>
 <td class="comment-11" rowspan="1">Pick up the fourth byte of the guardian's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9207"></span>9207</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $0E</td>
 <td class="comment-11" rowspan="1">Does the guardian's sprite occupy only two rows of cells at the moment?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9209"></span>9209</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#920f">$920F</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="920b"></span>920B</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
 <td class="comment-11" rowspan="4">Set the attribute bytes in the buffer at <a href="5C00.html">5C00</a> for the third row of cells occupied by the guardian's sprite</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="920c"></span>920C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="920d"></span>920D</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="920e"></span>920E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="920f"></span>920F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$01</td>
 <td class="comment-11" rowspan="1">Prepare <span class="register">C</span> for the call to <a href="9456.html">9456</a> later on</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9211"></span>9211</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$01)</td>
 <td class="comment-11" rowspan="1">Now bits 5-7 of <span class="register">A</span> hold the animation frame mask</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9214"></span>9214</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND (IX+$00)</td>
 <td class="comment-11" rowspan="1">'AND' on the current animation frame (bits 5-7)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9217"></span>9217</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR (IX+$02)</td>
 <td class="comment-11" rowspan="1">'OR' on the base sprite index (bits 5-7)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="921a"></span>921A</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $E0</td>
 <td class="comment-11" rowspan="1">Keep only bits 5-7</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="921c"></span>921C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
 <td class="comment-11" rowspan="2">Point <span class="register">DE</span> at the graphic data for the guardian's current animation frame (see <a href="AB00.html">AB00</a>)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="921d"></span>921D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,(IX+$05)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9220"></span>9220</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,$82</td>
 <td class="comment-11" rowspan="8">Point <span class="register">HL</span> at the guardian's current location in the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9222"></span>9222</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,(IX+$03)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9225"></span>9225</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$02)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9228"></span>9228</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="922a"></span>922A</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR (HL)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="922b"></span>922B</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="922c"></span>922C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,(HL)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="922d"></span>922D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="922e"></span>922E</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9456.html">$9456</a></td>
 <td class="comment-11" rowspan="1">Draw the guardian</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9231"></span>9231</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="90B6.html#90b7">$90B7</a></td>
 <td class="comment-11" rowspan="1">Kill Willy if the guardian collided with him</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9234"></span>9234</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP <a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="9237"></span>
 <div class="comments">
 <div class="paragraph">
@@ -466,335 +531,390 @@ We are dealing with an arrow.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9237"></span>9237</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 7,(IX+$00)</td>
 <td class="comment-11" rowspan="1">Is the arrow travelling left to right?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="923b"></span>923B</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="91BE.html#9244">$9244</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="923d"></span>923D</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC (IX+$04)</td>
 <td class="comment-11" rowspan="1">Decrement the arrow's x-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9240"></span>9240</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$2C</td>
 <td class="comment-11" rowspan="1">The sound effect for an arrow travelling right to left is made when the x-coordinate is 44</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9242"></span>9242</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="91BE.html#9249">$9249</a></td>
 <td class="comment-11" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9244"></span>9244</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC (IX+$04)</td>
 <td class="comment-11" rowspan="1">Increment the arrow's x-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9247"></span>9247</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$F4</td>
 <td class="comment-11" rowspan="1">The sound effect for an arrow travelling left to right is made when the x-coordinate is 244</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9249"></span>9249</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$04)</td>
 <td class="comment-11" rowspan="1">Pick up the arrow's x-coordinate (0-255)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="924c"></span>924C</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP C</td>
 <td class="comment-11" rowspan="1">Is it time to make the arrow sound effect?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="924d"></span>924D</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="91BE.html#9262">$9262</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="924f"></span>924F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0280</td>
 <td class="comment-11" rowspan="1">Prepare the delay counters (<span class="register">B</span>=0x02, <span class="register">C</span>=0x80) for the arrow sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9252"></span>9252</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DE)</td>
 <td class="comment-11" rowspan="1">Pick up the border colour for the current room from <a href="80DE.html">80DE</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9255"></span>9255</td>
+<td class="bytes-0"></td>
 <td class="instruction">OUT ($FE),A</td>
 <td class="comment-11" rowspan="6">Produce the arrow sound effect</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9257"></span>9257</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR $18</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9259"></span>9259</td>
+<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="91BE.html#9259">$9259</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="925b"></span>925B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD B,C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="925c"></span>925C</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="925d"></span>925D</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="91BE.html#9255">$9255</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="925f"></span>925F</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP <a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9262"></span>9262</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $E0</td>
 <td class="comment-11" rowspan="1">Is the arrow's x-coordinate in the range 0-31 (i.e. on-screen)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9264"></span>9264</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9267"></span>9267</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,(IX+$02)</td>
 <td class="comment-11" rowspan="2">Point <span class="register">DE</span> at the entry in the screen buffer address lookup table at <a href="8200.html">8200</a> that corresponds to the arrow's y-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="926a"></span>926A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,$82</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="926c"></span>926C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(DE)</td>
 <td class="comment-11" rowspan="1">Pick up the LSB of the screen buffer address</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="926d"></span>926D</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,(IX+$04)</td>
 <td class="comment-11" rowspan="1">Adjust it for the arrow's x-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9270"></span>9270</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-11" rowspan="6">Point <span class="register">HL</span> at the arrow's current location in the attribute buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9271"></span>9271</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,E</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9272"></span>9272</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $80</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9274"></span>9274</td>
+<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9275"></span>9275</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR $5C</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9277"></span>9277</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9278"></span>9278</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$05),$00</td>
 <td class="comment-11" rowspan="1">Initialise the collision detection byte (0x00=off, 0xFF=on)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="927c"></span>927C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-11" rowspan="1">Pick up the room attribute byte at the arrow's location</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="927d"></span>927D</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $07</td>
 <td class="comment-11" rowspan="1">Keep only bits 0-2 (INK colour)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="927f"></span>927F</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $07</td>
 <td class="comment-11" rowspan="1">Is the INK white?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9281"></span>9281</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="91BE.html#9286">$9286</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9283"></span>9283</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC (IX+$05)</td>
 <td class="comment-11" rowspan="1">Activate collision detection</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9286"></span>9286</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-11" rowspan="3">Set the INK colour to white at the arrow's location</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9287"></span>9287</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR $07</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9289"></span>9289</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="928a"></span>928A</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC DE</td>
 <td class="comment-11" rowspan="2">Pick up the MSB of the screen buffer address for the arrow's location</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="928b"></span>928B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(DE)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="928c"></span>928C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,A</td>
 <td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the top pixel row of the arrow's location in the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="928d"></span>928D</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC H</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="928e"></span>928E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$06)</td>
 <td class="comment-11" rowspan="2">Draw the top pixel row of the arrow</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9291"></span>9291</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9292"></span>9292</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC H</td>
 <td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the middle pixel row of the arrow's location in the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9293"></span>9293</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-11" rowspan="1">Pick up the graphic byte that's already here</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9294"></span>9294</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND (IX+$05)</td>
 <td class="comment-11" rowspan="1">Has the arrow hit anything that has white INK (e.g. Willy)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9297"></span>9297</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="90B6.html#90b7">$90B7</a></td>
 <td class="comment-11" rowspan="1">If so, kill Willy</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="929a"></span>929A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$FF</td>
 <td class="comment-11" rowspan="1">Draw the shaft of the arrow</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="929c"></span>929C</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC H</td>
 <td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the bottom pixel row of the arrow's location in the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="929d"></span>929D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$06)</td>
 <td class="comment-11" rowspan="2">Draw the bottom pixel row of the arrow</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92a0"></span>92A0</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92a1"></span>92A1</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP <a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="92a4"></span>
 <div class="comments">
 <div class="paragraph">
@@ -806,35 +926,40 @@ We are dealing with a rope.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="92a4"></span>92A4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD IY,$8200</td>
 <td class="comment-11" rowspan="1">Point <span class="register">IY</span> at the first byte of the screen buffer address lookup table at <a href="8200.html">8200</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92a8"></span>92A8</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$09),$00</td>
 <td class="comment-11" rowspan="1">Initialise the second byte in the following entity buffer to zero; this will count the segments of rope to draw</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ac"></span>92AC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$02)</td>
 <td class="comment-11" rowspan="2">Initialise the fourth byte of the rope's buffer; this holds the x-coordinate of the cell in which the segment of rope under consideration will be drawn</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92af"></span>92AF</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$03),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b2"></span>92B2</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$05),$80</td>
 <td class="comment-11" rowspan="1">Initialise the sixth byte of the rope's buffer to 0x80 (bit 7 set); the value held here is used to draw the segment of rope under consideration</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="92b6"></span>
 <div class="comments">
 <div class="paragraph">
@@ -846,437 +971,509 @@ The following loop draws each segment of the rope from top to bottom.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="92b6"></span>92B6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IY+$00)</td>
 <td class="comment-11" rowspan="4">Point <span class="register">HL</span> at the location of the segment of rope under consideration in the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92b9"></span>92B9</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,(IX+$03)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92bc"></span>92BC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92bd"></span>92BD</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,(IY+$01)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c0"></span>92C0</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D6)</td>
 <td class="comment-11" rowspan="1">Pick up the rope status indicator at <a href="85D6.html">85D6</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c3"></span>92C3</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
 <td class="comment-11" rowspan="1">Is Willy on the rope, or has he recently jumped or dropped off it?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c4"></span>92C4</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="91BE.html#92d6">$92D6</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c6"></span>92C6</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$05)</td>
 <td class="comment-11" rowspan="1">Pick up the drawing byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92c9"></span>92C9</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND (HL)</td>
 <td class="comment-11" rowspan="1">Is this segment of rope touching anything else that's been drawn so far (e.g. Willy)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ca"></span>92CA</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#930e">$930E</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92cc"></span>92CC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$09)</td>
 <td class="comment-11" rowspan="2">Copy the segment counter into the rope status indicator at <a href="85D6.html">85D6</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92cf"></span>92CF</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85D6),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92d2"></span>92D2</td>
+<td class="bytes-0"></td>
 <td class="instruction">SET 0,(IX+$0B)</td>
 <td class="comment-11" rowspan="1">Signal: Willy is on the rope</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="92d6"></span>92D6</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP (IX+$09)</td>
 <td class="comment-11" rowspan="1">Does the rope status indicator at <a href="85D6.html">85D6</a> match the segment counter?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92d9"></span>92D9</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="91BE.html#930e">$930E</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92db"></span>92DB</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 0,(IX+$0B)</td>
 <td class="comment-11" rowspan="1">Is Willy on the rope (and clinging to this particular segment)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92df"></span>92DF</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#930e">$930E</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92e1"></span>92E1</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD B,(IX+$03)</td>
 <td class="comment-11" rowspan="1">Copy the x-coordinate of the cell containing the segment of rope under consideration to <span class="register">B</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92e4"></span>92E4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$05)</td>
 <td class="comment-11" rowspan="1">Pick up the drawing byte in <span class="register">A</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92e7"></span>92E7</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$01</td>
 <td class="comment-11" rowspan="1">The value in <span class="register">C</span> will specify Willy's next animation frame; initialise it to 1</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92e9"></span>92E9</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $04</td>
 <td class="comment-11" rowspan="1">Is the set bit of the drawing byte in bit 0 or 1?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92eb"></span>92EB</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR C,<a href="91BE.html#92fc">$92FC</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ed"></span>92ED</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$00</td>
 <td class="comment-11" rowspan="1">Assume that Willy's next animation frame will be 0</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92ef"></span>92EF</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $10</td>
 <td class="comment-11" rowspan="1">Is the set bit of the drawing byte in bit 2 or 3?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92f1"></span>92F1</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR C,<a href="91BE.html#92fc">$92FC</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92f3"></span>92F3</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC B</td>
 <td class="comment-11" rowspan="1">Decrement the x-coordinate</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92f4"></span>92F4</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$03</td>
 <td class="comment-11" rowspan="1">Assume that Willy's next animation frame will be 3</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92f6"></span>92F6</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $40</td>
 <td class="comment-11" rowspan="1">Is the set bit of the drawing byte in bit 4 or 5?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92f8"></span>92F8</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR C,<a href="91BE.html#92fc">$92FC</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="92fa"></span>92FA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,$02</td>
 <td class="comment-11" rowspan="1">Willy's next animation frame will be 2 (the set bit of the drawing byte is in bit 6 or 7)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="92fc"></span>92FC</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85D2),BC</td>
 <td class="comment-11" rowspan="1">Set Willy's animation frame at <a href="85D2.html">85D2</a>, and temporarily store his x-coordinate at <a href="85D3.html">85D3</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9300"></span>9300</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,IYl</td>
 <td class="comment-11" rowspan="3">Update Willy's pixel y-coordinate at <a href="85CF.html">85CF</a> to account for his change of location as the rope moves</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9302"></span>9302</td>
+<td class="bytes-0"></td>
 <td class="instruction">SUB $10</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9304"></span>9304</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85CF),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9307"></span>9307</td>
+<td class="bytes-0"></td>
 <td class="instruction">PUSH HL</td>
 <td class="comment-11" rowspan="1">Save <span class="register">HL</span> briefly</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9308"></span>9308</td>
+<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="8DD3.html#8e9c">$8E9C</a></td>
 <td class="comment-11" rowspan="1">Update Willy's attribute buffer address at <a href="85D3.html">85D3</a> to account for his change of location as the rope moves</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="930b"></span>930B</td>
+<td class="bytes-0"></td>
 <td class="instruction">POP HL</td>
 <td class="comment-11" rowspan="1">Restore the screen buffer address of the segment of rope under consideration to <span class="register">HL</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="930c"></span>930C</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="91BE.html#930e">$930E</a></td>
 <td class="comment-11" rowspan="1">Make a redundant jump to the next instruction</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="930e"></span>930E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$05)</td>
 <td class="comment-11" rowspan="3">Draw a pixel of the rope to the screen buffer at <a href="6000.html">6000</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9311"></span>9311</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR (HL)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9312"></span>9312</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9313"></span>9313</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$09)</td>
 <td class="comment-11" rowspan="5">Point <span class="register">HL</span> at the relevant entry in the second half of the rope animation table at <a href="8300.html">8300</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9316"></span>9316</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,(IX+$01)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9319"></span>9319</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="931a"></span>931A</td>
+<td class="bytes-0"></td>
 <td class="instruction">SET 7,L</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="931c"></span>931C</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD H,$83</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="931e"></span>931E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD E,(HL)</td>
 <td class="comment-11" rowspan="3">Add its value to <span class="register">IY</span>; now <span class="register">IY</span> points at the entry in the screen buffer address lookup table at <a href="8200.html">8200</a> that corresponds to the next segment of rope to consider</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="931f"></span>931F</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD D,$00</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9321"></span>9321</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD IY,DE</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9323"></span>9323</td>
+<td class="bytes-0"></td>
 <td class="instruction">RES 7,L</td>
 <td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the relevant entry in the first half of the rope animation table at <a href="8300.html">8300</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9325"></span>9325</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-11" rowspan="1">Pick up its value</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9326"></span>9326</td>
+<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
 <td class="comment-11" rowspan="1">Is it zero?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9327"></span>9327</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#9350">$9350</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9329"></span>9329</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD B,A</td>
 <td class="comment-11" rowspan="1">Copy the rope animation table entry value to <span class="register">B</span>; this will count the rotations of the drawing byte</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="932a"></span>932A</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 7,(IX+$01)</td>
 <td class="comment-11" rowspan="1">Is the rope currently right of centre?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="932e"></span>932E</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#9341">$9341</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9330"></span>9330</td>
+<td class="bytes-0"></td>
 <td class="instruction">RLC (IX+$05)</td>
 <td class="comment-11" rowspan="1">Rotate the drawing byte left once</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9334"></span>9334</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 0,(IX+$05)</td>
 <td class="comment-11" rowspan="1">Did that push the set bit from bit 7 into bit 0?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9338"></span>9338</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#933d">$933D</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="933a"></span>933A</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC (IX+$03)</td>
 <td class="comment-11" rowspan="1">Decrement the x-coordinate for the cell containing this segment of rope</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="933d"></span>933D</td>
+<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="91BE.html#9330">$9330</a></td>
 <td class="comment-11" rowspan="1">Jump back until the drawing byte has been rotated as required</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="933f"></span>933F</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="91BE.html#9350">$9350</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next segment of rope</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9341"></span>9341</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRC (IX+$05)</td>
 <td class="comment-11" rowspan="1">Rotate the drawing byte right once</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9345"></span>9345</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 7,(IX+$05)</td>
 <td class="comment-11" rowspan="1">Did that push the set bit from bit 0 into bit 7?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9349"></span>9349</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#934e">$934E</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="934b"></span>934B</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC (IX+$03)</td>
 <td class="comment-11" rowspan="1">Increment the x-coordinate for the cell containing this segment of rope</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="934e"></span>934E</td>
+<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="91BE.html#9341">$9341</a></td>
 <td class="comment-11" rowspan="1">Jump back until the drawing byte has been rotated as required</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="9350"></span>9350</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$09)</td>
 <td class="comment-11" rowspan="1">Pick up the segment counter</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9353"></span>9353</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP (IX+$04)</td>
 <td class="comment-11" rowspan="1">Have we drawn every segment of the rope yet?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9356"></span>9356</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#935e">$935E</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9358"></span>9358</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC (IX+$09)</td>
 <td class="comment-11" rowspan="1">Increment the segment counter</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="935b"></span>935B</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP <a href="91BE.html#92b6">$92B6</a></td>
 <td class="comment-11" rowspan="1">Jump back to draw the next segment of rope</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="935e"></span>
 <div class="comments">
 <div class="paragraph">
@@ -1288,251 +1485,292 @@ Now that the entire rope has been drawn, deal with Willy's movement along it.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="935e"></span>935E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D6)</td>
 <td class="comment-11" rowspan="1">Pick up the rope status indicator at <a href="85D6.html">85D6</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9361"></span>9361</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 7,A</td>
 <td class="comment-11" rowspan="1">Has Willy recently jumped off the rope or dropped off the bottom of it (<span class="register">A</span>&gt;=0xF0)?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9363"></span>9363</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#936f">$936F</a></td>
 <td class="comment-11" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9365"></span>9365</td>
+<td class="bytes-0"></td>
 <td class="instruction">INC A</td>
 <td class="comment-11" rowspan="2">Update the rope status indicator at <a href="85D6.html">85D6</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9366"></span>9366</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85D6),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9369"></span>9369</td>
+<td class="bytes-0"></td>
 <td class="instruction">RES 0,(IX+$0B)</td>
 <td class="comment-11" rowspan="1">Signal: Willy is not on the rope</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="936d"></span>936D</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-11" rowspan="1">Jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="936f"></span>936F</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 0,(IX+$0B)</td>
 <td class="comment-11" rowspan="1">Is Willy on the rope?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9373"></span>9373</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9375"></span>9375</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D0)</td>
 <td class="comment-11" rowspan="1">Pick up Willy's direction and movement flags from <a href="85D0.html">85D0</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9378"></span>9378</td>
+<td class="bytes-0"></td>
 <td class="instruction">BIT 1,A</td>
 <td class="comment-11" rowspan="1">Is Willy moving up or down the rope?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="937a"></span>937A</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-11" rowspan="1">If not, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="937c"></span>937C</td>
+<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
 <td class="comment-11" rowspan="3">XOR Willy's direction bit (0=facing right, 1=facing left) with the rope's direction bit (0=swinging right to left, 1=swinging left to right)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="937d"></span>937D</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR (IX+$00)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9380"></span>9380</td>
+<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9381"></span>9381</td>
+<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
 <td class="comment-11" rowspan="3">Now <span class="register">A</span>=1 if Willy is facing the same direction as the rope is swinging (he will move down the rope), or -1 otherwise (he will move up the rope)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9382"></span>9382</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $02</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9384"></span>9384</td>
+<td class="bytes-0"></td>
 <td class="instruction">DEC A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9385"></span>9385</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD HL,$85D6</td>
 <td class="comment-11" rowspan="3">Increment or decrement the rope status indicator at <a href="85D6.html">85D6</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9388"></span>9388</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD A,(HL)</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9389"></span>9389</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="938a"></span>938A</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($80EB)</td>
 <td class="comment-11" rowspan="2">Pick up the number of the room above from <a href="80E9.html#80eb">80EB</a> and copy it to <span class="register">C</span></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="938d"></span>938D</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="938e"></span>938E</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($8420)</td>
 <td class="comment-11" rowspan="1">Pick up the number of the current room from <a href="8420.html">8420</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9391"></span>9391</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP C</td>
 <td class="comment-11" rowspan="1">Is there a room above this one?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9392"></span>9392</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="91BE.html#939b">$939B</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9394"></span>9394</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-11" rowspan="1">Pick up the rope status indicator at <a href="85D6.html">85D6</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9395"></span>9395</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP $0C</td>
 <td class="comment-11" rowspan="1">Is it 0x0C or greater?</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9397"></span>9397</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR NC,<a href="91BE.html#939b">$939B</a></td>
 <td class="comment-11" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="9399"></span>9399</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$0C</td>
 <td class="comment-11" rowspan="1">Set the rope status indicator at <a href="85D6.html">85D6</a> to 0x0C (there is nowhere to go above this rope)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="939b"></span>939B</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-11" rowspan="1">Pick up the rope status indicator at <a href="85D6.html">85D6</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="939c"></span>939C</td>
+<td class="bytes-0"></td>
 <td class="instruction">CP (IX+$04)</td>
 <td class="comment-11" rowspan="1">Compare it with the length of the rope</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="939f"></span>939F</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR C,<a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-11" rowspan="2">If Willy is at or above the bottom of the rope, jump to consider the next entity</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93a1"></span>93A1</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93a3"></span>93A3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD (HL),$F0</td>
 <td class="comment-11" rowspan="1">Set the rope status indicator at <a href="85D6.html">85D6</a> to 0xF0 (Willy has just dropped off the bottom of the rope)</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93a5"></span>93A5</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD A,($85CF)</td>
 <td class="comment-11" rowspan="3">Round down Willy's pixel y-coordinate at <a href="85CF.html">85CF</a> to the nearest multiple of 8; this might move him upwards a little, but ensures that his actual pixel y-coordinate is a multiple of 4 before he starts falling</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93a8"></span>93A8</td>
+<td class="bytes-0"></td>
 <td class="instruction">AND $F8</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93aa"></span>93AA</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85CF),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93ad"></span>93AD</td>
+<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
 <td class="comment-11" rowspan="2">Initialise the airborne status indicator at <a href="85D1.html">85D1</a></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93ae"></span>93AE</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD ($85D1),A</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93b1"></span>93B1</td>
+<td class="bytes-0"></td>
 <td class="instruction">JR <a href="91BE.html#93b3">$93B3</a></td>
 <td class="comment-11" rowspan="1">Make a redundant jump to the next instruction</td>
 </tr>
 <tr>
-<td class="routine-comment" colspan="4">
+<td class="routine-comment" colspan="5">
 <span id="93b3"></span>
 <div class="comments">
 <div class="paragraph">
@@ -1544,18 +1782,21 @@ The current entity has been dealt with. Time for the next one.
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-2"><span id="93b3"></span>93B3</td>
+<td class="bytes-0"></td>
 <td class="instruction">LD DE,$0008</td>
 <td class="comment-11" rowspan="2">Point <span class="register">IX</span> at the first byte of the next entity's buffer</td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93b6"></span>93B6</td>
+<td class="bytes-0"></td>
 <td class="instruction">ADD IX,DE</td>
 <td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label-0"></td>
 <td class="address-1"><span id="93b8"></span>93B8</td>
+<td class="bytes-0"></td>
 <td class="instruction">JP <a href="91BE.html#91c2">$91C2</a></td>
 <td class="comment-11" rowspan="1">Jump back to deal with it</td>
 </tr>
@@ -1568,10 +1809,10 @@ The current entity has been dealt with. Time for the next one.
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20181016</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2018 Richard Dymond.</div>
-<div class="created">Created using <a href="http://skoolkit.ca/">SkoolKit</a> 7.0.</div>
-<div><a href="http://skoolkit.ca/disassemblies/jet_set_willy/asm/37310.html">Switch to decimal</a>.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div><a href="../dec/asm/37310.html">Switch to decimal</a>.</div>
 </footer>
 </body>
 </html>
