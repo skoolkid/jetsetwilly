@@ -62,6 +62,7 @@ b28672 DEFS 4096
 ;   * Long distance nasties
 ;   * From top to bottom
 ;   * The self-collecting item
+;   * The sticky bed
 ; See https://skoolkit.ca/disassemblies/jet_set_willy/reference/bugs.html for
 ; full descriptions of these bugs.
 @bfix+end
@@ -2232,6 +2233,7 @@ c36564 LD E,255      ; Initialise #REGe to #b255 (all bits set); it will be
  36616 AND 2         ; {Now #REGa=1 if Willy is running to the toilet, 0
  36618 RRCA          ; otherwise}
  36619 XOR E         ; {Flip bit 0 of #REGe if Willy is running to the toilet,
+@bfix=/              ; forcing him to move right}
  36620 LD E,A        ; forcing him to move right (unless he's jumped onto the
                      ; bed, in which case bit 0 of #REGe is now set, meaning
                      ; that the conveyor does not move him, and the 'P' key has
@@ -10752,6 +10754,7 @@ b58112 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
  58317 DEFB 41,85,85,85,85,81,95,64,170        ; Conveyor
 ; The next four bytes are copied to #R32982 and specify the direction, location
 ; and length of the conveyor.
+@bfix=DEFB 254
  58326 DEFB 1                                  ; Direction (right)
  58327 DEFW 24450                              ; Location in the attribute
                                                ; buffer at #R24064: (12,2)

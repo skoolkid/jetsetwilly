@@ -3,6 +3,11 @@
 [Page:Changelog]
 SectionType=BulletPoints
 
+[Changelog:YYYYMMDD]
+-
+
+- In #BUG#theStickyBed(), added a POKE to make the bed unsticky (thanks IRF)
+
 [Changelog:20190607]
 -
 

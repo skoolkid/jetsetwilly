@@ -19,6 +19,10 @@ your way to the bedroom, and jump onto the bed.
 However, all is not lost. Willy can be moved off the bed by using one of the
 other 'right' keys: 'I', 'Y', 'R', 'W', '7' or '8'.
 
+To make the bed unsticky:
+
+POKE #R58326(58326),254
+
 [Bug:selfCollectingItem:The self-collecting item]
 The item in #R57088(Swimming Pool) is automatically collected as soon as Willy
 enters the room; this is because the room's background tile has white INK, and
