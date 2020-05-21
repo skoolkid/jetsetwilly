@@ -1,4 +1,4 @@
-; Copyright 2012-2019 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2020 Richard Dymond (rjdymond@gmail.com)
 
 @defs=23552:512
 ; Attribute buffer (room + Willy + entities + items)
@@ -46,7 +46,7 @@ b28672 DEFS 4096
 ; https://skoolkit.ca
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
-; Copyright 2012-2019 Richard Dymond (this disassembly)
+; Copyright 2012-2020 Richard Dymond (this disassembly)
 @bfix+begin
 ;
 ; This disassembly contains fixes for the following bugs:
@@ -889,6 +889,7 @@ b34399 DEFB 86,96,86,96,102,102,128,128,128,128,102,96,86,96,86,96
 ; Give two chances to enter a correct code
 ;
 ; Used by the routine at #R33792.
+@refs=33792
 @label=ENTERCODES
 c34463 LD HL,16384   ; {Clear the display file and attribute file
  34466 LD DE,16385   ;
