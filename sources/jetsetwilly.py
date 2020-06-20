@@ -1,4 +1,4 @@
-# Copyright 2012, 2014-2019 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014-2020 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -72,11 +72,13 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         udgs.append([Udg(0, (0,) * 8)] * len(udgs[0]))
         return udgs
 
-    def expand_logo(self, text, index, cwd):
-        # #LOGO[{x,y,width,height}](fname)
-        end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index)
+    def expand_jsw(self, text, index, cwd):
+        # #JSWtrans[{x,y,width,height}](fname)
+        end, crop_rect, fname, frame, alt, (trans,) = parse_image_macro(text, index, names=['trans'])
+        tindex = int(trans > 0)
+        alpha = 255 * int(trans == 0)
         udgs = lambda: self._build_logo()
-        frames = [Frame(udgs, 1, 0, *crop_rect, name=frame)]
+        frames = [Frame(udgs, 1, 0, *crop_rect, name=frame, tindex=tindex, alpha=alpha)]
         return end, self.handle_image(frames, fname, cwd, alt)
 
     def expand_room(self, text, index, cwd):
