@@ -28,9 +28,7 @@ def parse_s(text, index, case):
 
 class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
-        self.font = {}
-        for b, h in self.get_dictionary('Font').items():
-            self.font[b] = [int(h[i:i + 2], 16) for i in range(0, 16, 2)]
+        self.font = {c: self.snapshot[15360 + 8 * c:15368 + 8 * c] for c in range(32, 122)}
         start = 41984 + self.snapshot[41983]
         self.items = {}
         for a in range(start, 42240):
