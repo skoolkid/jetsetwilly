@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2019 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014-2020 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:gameOverAt1am:Game over at 1am]
 The game ends abruptly at 1am (see #R35442), even if Willy has collected all
@@ -247,7 +247,7 @@ its base sprite is 0 and its animation frame mask is 011, which means it cycles
 through sprites 0, 1, 2 and 3 only (see #R37393).
 
 #UDGTABLE
-{ #guardian181,0,3 | #guardian181,1,3 | #guardian181,2,3 | #guardian181,3,3 }
+{ #GUARDIAN181,0,3 | #GUARDIAN181,1,3 | #GUARDIAN181,2,3 | #GUARDIAN181,3,3 }
 TABLE#
 
 Use the following POKE to make the saw face right when moving in that
@@ -267,7 +267,7 @@ his animation frame mask is 011, which means he cycles through sprites 0, 1, 2
 and 3 only.
 
 #UDGTABLE
-{ #guardian180,0,3 | #guardian180,1,3 | #guardian180,2,3 | #guardian180,3,3 }
+{ #GUARDIAN180,0,3 | #GUARDIAN180,1,3 | #GUARDIAN180,2,3 | #GUARDIAN180,3,3 }
 TABLE#
 
 Use the following POKE to make the monk face right when walking in that
@@ -356,7 +356,7 @@ very gracefully), while its red and green cousins in #R54784(To the
 Kitchens#SPACE(4)Main Stairway) and #R57600(The Bathroom) move left and right.
 
 #UDGTABLE {
-  #guardian185,0,13 | #guardian185,1,13 | #guardian185,2,13 | #guardian185,3,13
+  #GUARDIAN185,0,13 | #GUARDIAN185,1,13 | #GUARDIAN185,2,13 | #GUARDIAN185,3,13
 } TABLE#
 
 It is the only type of guardian that can be seen moving vertically in one room
@@ -466,9 +466,9 @@ There are a few vertical guardians that have only one animation frame, and so
 are in a sense unanimated (though they do still move up and down).
 
 #UDGTABLE(gallery)
-{ #guardian156,3,66 |
-  #guardian186,2,5 |
-  #guardian156,2,6 #guardian156,4,6 }
+{ #GUARDIAN156,3,66 |
+  #GUARDIAN186,2,5 |
+  #GUARDIAN156,2,6 #GUARDIAN156,4,6 }
 { <div>#R54272(Ballroom East)</div><div>#R57856(Top Landing)</div> |
   #R52480(Out on a limb) |
   #R56576(The Nightmare Room) }
@@ -551,8 +551,8 @@ use only two, where the upper-left and upper-right portions share an entity
 definition with a different base sprite and x-coordinate.
 
 #UDGTABLE(gallery)
-{ #guardian186,4,4 | #guardian186,5,4 }
-{ =c2 #guardian186,6,4 }
+{ #GUARDIAN186,4,4 | #GUARDIAN186,5,4 }
+{ =c2 #GUARDIAN186,6,4 }
 TABLE#
 
 Use the following POKEs to free up entity definition #b16:

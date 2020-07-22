@@ -81,16 +81,15 @@ b28672 DEFS 4096
 
 @start
 @expand=#DEFINE2,1@@LOGO@#JSW(#EVAL({0}+{1})){{4,4,200,120}}({{ImagePath}}/{2}|Jet Set Willy)@@
-@replace=/#guardian\i,\i,\i/#UDGARRAY2,\3,,2;(\1*256+\2*32)-(\1*256+\2*32+17)-1-16(guardian\1-\2-\3*)
-@replace=/#tiles\i/#FOR(49312+\1*256,49357+\1*256,9);;$n;#UDG($n+1,#PEEK$n)(<tmap>#EVAL\1,,2); | ;;
-@replace=/<tmap>/#MAP($n%256)(,160:background,169:floor,178:wall,187:nasty,196:ramp,205:conveyor)
-@replace=/#item\i/#UDG(49377+256*\1,(#PEEK(49312+256*\1)&120)+3)(item#EVAL\1,,2)
-@replace=/#sprite\i,\i/#UDGARRAY2,\2,2,2;\1-(\1+17)-1-16
+@expand=#DEFINE3(GUARDIAN,#UDGARRAY(2,{2},,2);({0}*256+{1}*32)-({0}*256+{1}*32+17)-1-16(guardian{0}-{1}-{2}*))
+@expand=#DEFINE1(TILES,#FOR(49312+{0}*256,49357+{0}*256,9);;$n;#UDG($n+1,#PEEK$n)(#MAP($n%256)(,160:background,169:floor,178:wall,187:nasty,196:ramp,205:conveyor){0:02}); | ;;)
+@expand=#DEFINE1(ITEM,#UDG(49377+256*{0},(#PEEK(49312+256*{0})&120)+3)(item{0:02}))
+@expand=#DEFINE2(SPRITE,#UDGARRAY(2,{1},2,2);{0}-({0}+17)-1-16)
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#b\i/#N(\1,,,1)(0x)
-@replace=/#BUG(?![A-Z])/#LINK:Bugs
-@replace=/#FACT(?![A-Z])/#LINK:Facts
-@replace=/#POKE(?![A-Z])/#LINK:Pokes
+@expand=#DEFINE0(BUG,#LINK:Bugs)
+@expand=#DEFINE0(FACT,#LINK:Facts)
+@expand=#DEFINE0(POKE,#LINK:Pokes)
 @writer=:jetsetwilly.JetSetWillyAsmWriter
 ; Jet Set Willy disassembly
 ; https://skoolkit.ca
@@ -3880,7 +3879,7 @@ u39936 DEFM "NZ,ENDPAUSE"       ; [JR ]NZ,ENDPAUSE
 ; The foot also appears as a guardian in #R56576(The Nightmare Room).
 ; .
 ; #UDGTABLE
-; { #sprite40000,6(foot) }
+; { #SPRITE40000,6(foot) }
 ; TABLE#
 @label=FOOT
 b40000 DEFB 16,128,16,128,16,128,16,128,16,128,16,128,16,128,32,128
@@ -3889,7 +3888,7 @@ b40000 DEFB 16,128,16,128,16,128,16,128,16,128,16,128,16,128,32,128
 ; #R57856(Top Landing).
 ; .
 ; #UDGTABLE
-; { #sprite40032,66(barrel) }
+; { #SPRITE40032,66(barrel) }
 ; TABLE#
 @label=BARREL
  40032 DEFB 55,236,119,238,0,0,111,246,239,247,239,247,213,91,219,187
@@ -3925,10 +3924,10 @@ b40064 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
 ; Used by the routines at #R35211, #R35914 and #R38455.
 ; .
 ; #UDGTABLE
-; { #sprite40192,7(willy0*) | #sprite40224,7(willy1*) | #sprite40256,7(willy2*)
-; | #sprite40288,7(willy3*) | #UDGARRAY*willy0;willy1;willy2;willy3(willy_r) }
-; { #sprite40320,7(willy4*) | #sprite40352,7(willy5*) | #sprite40384,7(willy6*)
-; | #sprite40416,7(willy7*) | #UDGARRAY*willy7;willy6;willy5;willy4(willy_l) }
+; { #SPRITE40192,7(willy0*) | #SPRITE40224,7(willy1*) | #SPRITE40256,7(willy2*)
+; | #SPRITE40288,7(willy3*) | #UDGARRAY*willy0;willy1;willy2;willy3(willy_r) }
+; { #SPRITE40320,7(willy4*) | #SPRITE40352,7(willy5*) | #SPRITE40384,7(willy6*)
+; | #SPRITE40416,7(willy7*) | #UDGARRAY*willy7;willy6;willy5;willy4(willy_l) }
 ; TABLE#
 @label=MANDAT
 b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
@@ -4130,9 +4129,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
-; { #guardian191,4,4 | #guardian191,5,4 }
-; { #guardian191,4,12 | #guardian191,5,12 }
-; { #guardian191,6,20 | #guardian191,7,20 }
+; { #GUARDIAN191,4,4 | #GUARDIAN191,5,4 }
+; { #GUARDIAN191,4,12 | #GUARDIAN191,5,12 }
+; { #GUARDIAN191,6,20 | #GUARDIAN191,7,20 }
 ; TABLE#
 @label=ENTITY2
  40976 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4155,8 +4154,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R52992(I'm sure I've seen this before..) and #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
-; { #guardian191,4,66 | #guardian191,5,66 }
-; { #guardian191,4,74 | #guardian191,5,74 }
+; { #GUARDIAN191,4,66 | #GUARDIAN191,5,66 }
+; { #GUARDIAN191,4,74 | #GUARDIAN191,5,74 }
 ; TABLE#
 @label=ENTITY3
  40984 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4180,9 +4179,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
-; { #guardian191,4,6 | #guardian191,5,6 }
-; { #guardian191,4,14 | #guardian191,5,14 }
-; { #guardian191,6,22 | #guardian191,7,22 }
+; { #GUARDIAN191,4,6 | #GUARDIAN191,5,6 }
+; { #GUARDIAN191,4,14 | #GUARDIAN191,5,14 }
+; { #GUARDIAN191,6,22 | #GUARDIAN191,7,22 }
 ; TABLE#
 @label=ENTITY4
  40992 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4205,8 +4204,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; this before..) and #R53504(Up on the Battlements).
 ; .
 ; #UDGTABLE
-; { #guardian191,4,5 | #guardian191,5,5 }
-; { #guardian191,4,13 | #guardian191,5,13 }
+; { #GUARDIAN191,4,5 | #GUARDIAN191,5,5 }
+; { #GUARDIAN191,4,13 | #GUARDIAN191,5,13 }
 ; TABLE#
 @label=ENTITY5
  41000 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4229,7 +4228,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,5 | #guardian191,1,5 }
+; { #GUARDIAN191,0,5 | #GUARDIAN191,1,5 }
 ; TABLE#
 @label=ENTITY6
  41008 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4252,8 +4251,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree) and #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,5 | #guardian191,1,5 | #guardian191,2,5 | #guardian191,3,5 }
-; { #guardian191,6,5 | #guardian191,7,5 }
+; { #GUARDIAN191,0,5 | #GUARDIAN191,1,5 | #GUARDIAN191,2,5 | #GUARDIAN191,3,5 }
+; { #GUARDIAN191,6,5 | #GUARDIAN191,7,5 }
 ; TABLE#
 @label=ENTITY7
  41016 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4276,8 +4275,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,66 | #guardian191,1,66 | #guardian191,2,66 |
-; #guardian191,3,66 }
+; { #GUARDIAN191,0,66 | #GUARDIAN191,1,66 | #GUARDIAN191,2,66 |
+; #GUARDIAN191,3,66 }
 ; TABLE#
 @label=ENTITY8
  41024 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4300,8 +4299,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTrunk) and #R51456(On a Branch Over the Drive).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,67 | #guardian191,1,67 }
-; { #guardian191,0,75 | #guardian191,1,75 }
+; { #GUARDIAN191,0,67 | #GUARDIAN191,1,67 }
+; { #GUARDIAN191,0,75 | #GUARDIAN191,1,75 }
 ; TABLE#
 @label=ENTITY9
  41032 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -4323,8 +4322,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b10) is used in #R49152(The Off Licence).
 ; .
 ; #UDGTABLE
-; { #guardian190,4,69 | #guardian190,5,69 | #guardian190,6,69 |
-; #guardian190,7,69 }
+; { #GUARDIAN190,4,69 | #GUARDIAN190,5,69 | #GUARDIAN190,6,69 |
+; #GUARDIAN190,7,69 }
 ; TABLE#
 @label=ENTITY10
  41040 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4347,7 +4346,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; believe this) and #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,6 | #guardian191,1,6 | #guardian191,2,6 | #guardian191,3,6 }
+; { #GUARDIAN191,0,6 | #GUARDIAN191,1,6 | #GUARDIAN191,2,6 | #GUARDIAN191,3,6 }
 ; TABLE#
 @label=ENTITY11
  41048 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4369,7 +4368,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b12) is used in #R49152(The Off Licence).
 ; .
 ; #UDGTABLE
-; { #guardian190,0,4 | #guardian190,1,4 | #guardian190,2,4 | #guardian190,3,4 }
+; { #GUARDIAN190,0,4 | #GUARDIAN190,1,4 | #GUARDIAN190,2,4 | #GUARDIAN190,3,4 }
 ; TABLE#
 @label=ENTITY12
  41056 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4392,14 +4391,14 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Quirkafleeg).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,4 | #guardian188,1,4 | #guardian188,2,4 | #guardian188,3,4 |
-; #guardian188,4,4 | #guardian188,5,4 | #guardian188,6,4 | #guardian188,7,4 }
-; { #guardian188,0,12 | #guardian188,1,12 | #guardian188,2,12 |
-; #guardian188,3,12 | #guardian188,4,12 | #guardian188,5,12 | #guardian188,6,12
-; | #guardian188,7,12 }
-; { #guardian188,0,20 | #guardian188,1,20 | #guardian188,2,20 |
-; #guardian188,3,20 | #guardian188,4,20 | #guardian188,5,20 | #guardian188,6,20
-; | #guardian188,7,20 }
+; { #GUARDIAN188,0,4 | #GUARDIAN188,1,4 | #GUARDIAN188,2,4 | #GUARDIAN188,3,4 |
+; #GUARDIAN188,4,4 | #GUARDIAN188,5,4 | #GUARDIAN188,6,4 | #GUARDIAN188,7,4 }
+; { #GUARDIAN188,0,12 | #GUARDIAN188,1,12 | #GUARDIAN188,2,12 |
+; #GUARDIAN188,3,12 | #GUARDIAN188,4,12 | #GUARDIAN188,5,12 | #GUARDIAN188,6,12
+; | #GUARDIAN188,7,12 }
+; { #GUARDIAN188,0,20 | #GUARDIAN188,1,20 | #GUARDIAN188,2,20 |
+; #GUARDIAN188,3,20 | #GUARDIAN188,4,20 | #GUARDIAN188,5,20 | #GUARDIAN188,6,20
+; | #GUARDIAN188,7,20 }
 ; TABLE#
 @label=ENTITY13
  41064 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4420,8 +4419,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b14) is used in #R49408(The Bridge).
 ; .
 ; #UDGTABLE
-; { #guardian185,4,68 | #guardian185,5,68 | #guardian185,6,68 |
-; #guardian185,7,68 }
+; { #GUARDIAN185,4,68 | #GUARDIAN185,5,68 | #GUARDIAN185,6,68 |
+; #GUARDIAN185,7,68 }
 ; TABLE#
 @label=ENTITY14
  41072 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4443,7 +4442,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b15) is used in #R52736(Rescue Esmerelda).
 ; .
 ; #UDGTABLE
-; { #guardian176,4,23 | #guardian176,5,23 }
+; { #GUARDIAN176,4,23 | #GUARDIAN176,5,23 }
 ; TABLE#
 @label=ENTITY15
  41080 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4466,8 +4465,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
-; { #guardian186,4,4 }
-; { #guardian186,4,52 }
+; { #GUARDIAN186,4,4 }
+; { #GUARDIAN186,4,52 }
 ; TABLE#
 @label=ENTITY16
  41088 DEFB %00000010         ; Vertical guardian (bits 0-2), initial animation
@@ -4489,8 +4488,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
-; { #guardian186,5,4 }
-; { #guardian186,5,52 }
+; { #GUARDIAN186,5,4 }
+; { #GUARDIAN186,5,52 }
 ; TABLE#
 @label=ENTITY17
  41096 DEFB %00000010         ; Vertical guardian (bits 0-2), initial animation
@@ -4512,8 +4511,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
-; { #guardian186,6,4 | #guardian186,7,4 }
-; { #guardian186,6,52 | #guardian186,7,52 }
+; { #GUARDIAN186,6,4 | #GUARDIAN186,7,4 }
+; { #GUARDIAN186,6,52 | #GUARDIAN186,7,52 }
 ; TABLE#
 @label=ENTITY18
  41104 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4536,7 +4535,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R57856(Top Landing).
 ; .
 ; #UDGTABLE
-; { #guardian156,3,66 }
+; { #GUARDIAN156,3,66 }
 ; TABLE#
 @label=ENTITY19
  41112 DEFB %00000010         ; Vertical guardian (bits 0-2), initial animation
@@ -4558,9 +4557,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,66 | #guardian188,1,66 | #guardian188,2,66 |
-; #guardian188,3,66 | #guardian188,4,66 | #guardian188,5,66 | #guardian188,6,66
-; | #guardian188,7,66 }
+; { #GUARDIAN188,0,66 | #GUARDIAN188,1,66 | #GUARDIAN188,2,66 |
+; #GUARDIAN188,3,66 | #GUARDIAN188,4,66 | #GUARDIAN188,5,66 | #GUARDIAN188,6,66
+; | #GUARDIAN188,7,66 }
 ; TABLE#
 @label=ENTITY20
  41120 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4582,8 +4581,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R50176(The Drive) and #R54272(Ballroom East).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,3 | #guardian188,1,3 | #guardian188,2,3 | #guardian188,3,3 |
-; #guardian188,4,3 | #guardian188,5,3 | #guardian188,6,3 | #guardian188,7,3 }
+; { #GUARDIAN188,0,3 | #GUARDIAN188,1,3 | #GUARDIAN188,2,3 | #GUARDIAN188,3,3 |
+; #GUARDIAN188,4,3 | #GUARDIAN188,5,3 | #GUARDIAN188,6,3 | #GUARDIAN188,7,3 }
 ; TABLE#
 @label=ENTITY21
  41128 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -4605,8 +4604,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R51200(Inside the MegaTrunk).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,4 | #guardian188,1,4 | #guardian188,2,4 | #guardian188,3,4 |
-; #guardian188,4,4 | #guardian188,5,4 | #guardian188,6,4 | #guardian188,7,4 }
+; { #GUARDIAN188,0,4 | #GUARDIAN188,1,4 | #GUARDIAN188,2,4 | #GUARDIAN188,3,4 |
+; #GUARDIAN188,4,4 | #GUARDIAN188,5,4 | #GUARDIAN188,6,4 | #GUARDIAN188,7,4 }
 ; TABLE#
 @label=ENTITY22
  41136 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4627,8 +4626,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b23) is used in #R50176(The Drive).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,6 | #guardian188,1,6 | #guardian188,2,6 | #guardian188,3,6 |
-; #guardian188,4,6 | #guardian188,5,6 | #guardian188,6,6 | #guardian188,7,6 }
+; { #GUARDIAN188,0,6 | #GUARDIAN188,1,6 | #GUARDIAN188,2,6 | #GUARDIAN188,3,6 |
+; #GUARDIAN188,4,6 | #GUARDIAN188,5,6 | #GUARDIAN188,6,6 | #GUARDIAN188,7,6 }
 ; TABLE#
 @label=ENTITY23
  41144 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4650,9 +4649,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R51200(Inside the MegaTrunk) and #R52224(Tree Top).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,69 | #guardian188,1,69 | #guardian188,2,69 |
-; #guardian188,3,69 | #guardian188,4,69 | #guardian188,5,69 | #guardian188,6,69
-; | #guardian188,7,69 }
+; { #GUARDIAN188,0,69 | #GUARDIAN188,1,69 | #GUARDIAN188,2,69 |
+; #GUARDIAN188,3,69 | #GUARDIAN188,4,69 | #GUARDIAN188,5,69 | #GUARDIAN188,6,69
+; | #GUARDIAN188,7,69 }
 ; TABLE#
 @label=ENTITY24
  41152 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4673,9 +4672,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b25) is used in #R52480(Out on a limb).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,67 | #guardian188,1,67 | #guardian188,2,67 |
-; #guardian188,3,67 | #guardian188,4,67 | #guardian188,5,67 | #guardian188,6,67
-; | #guardian188,7,67 }
+; { #GUARDIAN188,0,67 | #GUARDIAN188,1,67 | #GUARDIAN188,2,67 |
+; #GUARDIAN188,3,67 | #GUARDIAN188,4,67 | #GUARDIAN188,5,67 | #GUARDIAN188,6,67
+; | #GUARDIAN188,7,67 }
 ; TABLE#
 @label=ENTITY25
  41160 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4698,12 +4697,12 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Generator).
 ; .
 ; #UDGTABLE
-; { #guardian182,0,66 | #guardian182,1,66 | #guardian182,2,66 |
-; #guardian182,3,66 | #guardian182,4,66 | #guardian182,5,66 | #guardian182,6,66
-; | #guardian182,7,66 }
-; { #guardian182,0,74 | #guardian182,1,74 | #guardian182,2,74 |
-; #guardian182,3,74 | #guardian182,4,74 | #guardian182,5,74 | #guardian182,6,74
-; | #guardian182,7,74 }
+; { #GUARDIAN182,0,66 | #GUARDIAN182,1,66 | #GUARDIAN182,2,66 |
+; #GUARDIAN182,3,66 | #GUARDIAN182,4,66 | #GUARDIAN182,5,66 | #GUARDIAN182,6,66
+; | #GUARDIAN182,7,66 }
+; { #GUARDIAN182,0,74 | #GUARDIAN182,1,74 | #GUARDIAN182,2,74 |
+; #GUARDIAN182,3,74 | #GUARDIAN182,4,74 | #GUARDIAN182,5,74 | #GUARDIAN182,6,74
+; | #GUARDIAN182,7,74 }
 ; TABLE#
 @label=ENTITY26
  41168 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4726,12 +4725,12 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R64256(The Yacht).
 ; .
 ; #UDGTABLE
-; { #guardian178,0,66 | #guardian178,1,66 | #guardian178,2,66 |
-; #guardian178,3,66 }
-; { #guardian178,4,66 | #guardian178,5,66 | #guardian178,6,66 |
-; #guardian178,7,66 }
-; { #guardian178,4,74 | #guardian178,5,74 | #guardian178,6,74 |
-; #guardian178,7,74 }
+; { #GUARDIAN178,0,66 | #GUARDIAN178,1,66 | #GUARDIAN178,2,66 |
+; #GUARDIAN178,3,66 }
+; { #GUARDIAN178,4,66 | #GUARDIAN178,5,66 | #GUARDIAN178,6,66 |
+; #GUARDIAN178,7,66 }
+; { #GUARDIAN178,4,74 | #GUARDIAN178,5,74 | #GUARDIAN178,6,74 |
+; #GUARDIAN178,7,74 }
 ; TABLE#
 @label=ENTITY27
  41176 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4754,8 +4753,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; and #R63488(West Wing Roof).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,6 | #guardian188,1,6 | #guardian188,2,6 | #guardian188,3,6 |
-; #guardian188,4,6 | #guardian188,5,6 | #guardian188,6,6 | #guardian188,7,6 }
+; { #GUARDIAN188,0,6 | #GUARDIAN188,1,6 | #GUARDIAN188,2,6 | #GUARDIAN188,3,6 |
+; #GUARDIAN188,4,6 | #GUARDIAN188,5,6 | #GUARDIAN188,6,6 | #GUARDIAN188,7,6 }
 ; TABLE#
 @label=ENTITY28
  41184 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4778,9 +4777,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian178,0,13 | #guardian178,1,13 | #guardian178,2,13 |
-; #guardian178,3,13 }
-; { #guardian178,4,5 | #guardian178,5,5 | #guardian178,6,5 | #guardian178,7,5 }
+; { #GUARDIAN178,0,13 | #GUARDIAN178,1,13 | #GUARDIAN178,2,13 |
+; #GUARDIAN178,3,13 }
+; { #GUARDIAN178,4,5 | #GUARDIAN178,5,5 | #GUARDIAN178,6,5 | #GUARDIAN178,7,5 }
 ; TABLE#
 @label=ENTITY29
  41192 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4803,7 +4802,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R63232(West Bedroom).
 ; .
 ; #UDGTABLE
-; { #guardian173,4,5 | #guardian173,5,5 | #guardian173,6,5 | #guardian173,7,5 }
+; { #GUARDIAN173,4,5 | #GUARDIAN173,5,5 | #GUARDIAN173,6,5 | #GUARDIAN173,7,5 }
 ; TABLE#
 @label=ENTITY30
  41200 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4825,7 +4824,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b31) is used in #R60928(Tree Root).
 ; .
 ; #UDGTABLE
-; { #guardian183,2,3 | #guardian183,3,3 }
+; { #GUARDIAN183,2,3 | #GUARDIAN183,3,3 }
 ; TABLE#
 @label=ENTITY31
  41208 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -4848,8 +4847,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree).
 ; .
 ; #UDGTABLE
-; { #guardian184,0,5 | #guardian184,1,5 | #guardian184,2,5 | #guardian184,3,5 |
-; #guardian184,4,5 | #guardian184,5,5 | #guardian184,6,5 | #guardian184,7,5 }
+; { #GUARDIAN184,0,5 | #GUARDIAN184,1,5 | #GUARDIAN184,2,5 | #GUARDIAN184,3,5 |
+; #GUARDIAN184,4,5 | #GUARDIAN184,5,5 | #GUARDIAN184,6,5 | #GUARDIAN184,7,5 }
 ; TABLE#
 @label=ENTITY32
  41216 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4870,8 +4869,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b33) is used in #R54528(Ballroom West).
 ; .
 ; #UDGTABLE
-; { #guardian184,0,3 | #guardian184,1,3 | #guardian184,2,3 | #guardian184,3,3 |
-; #guardian184,4,3 | #guardian184,5,3 | #guardian184,6,3 | #guardian184,7,3 }
+; { #GUARDIAN184,0,3 | #GUARDIAN184,1,3 | #GUARDIAN184,2,3 | #GUARDIAN184,3,3 |
+; #GUARDIAN184,4,3 | #GUARDIAN184,5,3 | #GUARDIAN184,6,3 | #GUARDIAN184,7,3 }
 ; TABLE#
 @label=ENTITY33
  41224 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4892,8 +4891,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b34) is used in #R53760(On the Roof).
 ; .
 ; #UDGTABLE
-; { #guardian184,0,5 | #guardian184,1,5 | #guardian184,2,5 | #guardian184,3,5 |
-; #guardian184,4,5 | #guardian184,5,5 | #guardian184,6,5 | #guardian184,7,5 }
+; { #GUARDIAN184,0,5 | #GUARDIAN184,1,5 | #GUARDIAN184,2,5 | #GUARDIAN184,3,5 |
+; #GUARDIAN184,4,5 | #GUARDIAN184,5,5 | #GUARDIAN184,6,5 | #GUARDIAN184,7,5 }
 ; TABLE#
 @label=ENTITY34
  41232 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -4914,9 +4913,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b35) is used in #R60928(Tree Root).
 ; .
 ; #UDGTABLE
-; { #guardian184,0,66 | #guardian184,1,66 | #guardian184,2,66 |
-; #guardian184,3,66 | #guardian184,4,66 | #guardian184,5,66 | #guardian184,6,66
-; | #guardian184,7,66 }
+; { #GUARDIAN184,0,66 | #GUARDIAN184,1,66 | #GUARDIAN184,2,66 |
+; #GUARDIAN184,3,66 | #GUARDIAN184,4,66 | #GUARDIAN184,5,66 | #GUARDIAN184,6,66
+; | #GUARDIAN184,7,66 }
 ; TABLE#
 @label=ENTITY35
  41240 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -4938,8 +4937,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R57856(Top Landing) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian175,0,5 | #guardian175,1,5 | #guardian175,2,5 | #guardian175,3,5 }
-; { #guardian175,4,5 | #guardian175,5,5 | #guardian175,6,5 | #guardian175,7,5 }
+; { #GUARDIAN175,0,5 | #GUARDIAN175,1,5 | #GUARDIAN175,2,5 | #GUARDIAN175,3,5 }
+; { #GUARDIAN175,4,5 | #GUARDIAN175,5,5 | #GUARDIAN175,6,5 | #GUARDIAN175,7,5 }
 ; TABLE#
 @label=ENTITY36
  41248 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -4960,9 +4959,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b37) is used in #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,66 | #guardian188,1,66 | #guardian188,2,66 |
-; #guardian188,3,66 | #guardian188,4,66 | #guardian188,5,66 | #guardian188,6,66
-; | #guardian188,7,66 }
+; { #GUARDIAN188,0,66 | #GUARDIAN188,1,66 | #GUARDIAN188,2,66 |
+; #GUARDIAN188,3,66 | #GUARDIAN188,4,66 | #GUARDIAN188,5,66 | #GUARDIAN188,6,66
+; | #GUARDIAN188,7,66 }
 ; TABLE#
 @label=ENTITY37
  41256 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -4984,8 +4983,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Wall).
 ; .
 ; #UDGTABLE
-; { #guardian174,0,70 | #guardian174,1,70 | #guardian174,2,70 |
-; #guardian174,3,70 }
+; { #GUARDIAN174,0,70 | #GUARDIAN174,1,70 | #GUARDIAN174,2,70 |
+; #GUARDIAN174,3,70 }
 ; TABLE#
 @label=ENTITY38
  41264 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5007,9 +5006,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R59904(Under the Roof).
 ; .
 ; #UDGTABLE
-; { #guardian175,0,13 | #guardian175,1,13 | #guardian175,2,13 |
-; #guardian175,3,13 }
-; { #guardian175,4,5 | #guardian175,5,5 | #guardian175,6,5 | #guardian175,7,5 }
+; { #GUARDIAN175,0,13 | #GUARDIAN175,1,13 | #GUARDIAN175,2,13 |
+; #GUARDIAN175,3,13 }
+; { #GUARDIAN175,4,5 | #GUARDIAN175,5,5 | #GUARDIAN175,6,5 | #GUARDIAN175,7,5 }
 ; TABLE#
 @label=ENTITY39
  41272 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5031,7 +5030,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R54528(Ballroom West) and #R60928(Tree Root).
 ; .
 ; #UDGTABLE
-; { #guardian186,0,5 | #guardian186,2,5 }
+; { #GUARDIAN186,0,5 | #GUARDIAN186,2,5 }
 ; TABLE#
 @label=ENTITY40
  41280 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5053,7 +5052,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b41) is used in #R54272(Ballroom East).
 ; .
 ; #UDGTABLE
-; { #guardian186,1,6 | #guardian186,3,6 }
+; { #GUARDIAN186,1,6 | #GUARDIAN186,3,6 }
 ; TABLE#
 @label=ENTITY41
  41288 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5076,7 +5075,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree), #R54272(Ballroom East) and #R54528(Ballroom West).
 ; .
 ; #UDGTABLE
-; { #guardian186,0,67 | #guardian186,2,67 }
+; { #GUARDIAN186,0,67 | #GUARDIAN186,2,67 }
 ; TABLE#
 @label=ENTITY42
  41296 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5117,7 +5116,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; and #R51200(Inside the MegaTrunk).
 ; .
 ; #UDGTABLE
-; { #guardian186,1,66 | #guardian186,3,66 }
+; { #GUARDIAN186,1,66 | #GUARDIAN186,3,66 }
 ; TABLE#
 @label=ENTITY44
  41312 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5140,8 +5139,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R55808(East Wall Base).
 ; .
 ; #UDGTABLE
-; { #guardian186,1,5 | #guardian186,3,5 }
-; { #guardian186,2,5 }
+; { #GUARDIAN186,1,5 | #GUARDIAN186,3,5 }
+; { #GUARDIAN186,2,5 }
 ; TABLE#
 @label=ENTITY45
  41320 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5163,7 +5162,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b46) is used in #R52224(Tree Top).
 ; .
 ; #UDGTABLE
-; { #guardian187,4,6 | #guardian187,5,6 | #guardian187,6,6 | #guardian187,7,6 }
+; { #GUARDIAN187,4,6 | #GUARDIAN187,5,6 | #GUARDIAN187,6,6 | #GUARDIAN187,7,6 }
 ; TABLE#
 @label=ENTITY46
  41328 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5185,8 +5184,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTrunk).
 ; .
 ; #UDGTABLE
-; { #guardian187,4,70 | #guardian187,5,70 | #guardian187,6,70 |
-; #guardian187,7,70 }
+; { #GUARDIAN187,4,70 | #GUARDIAN187,5,70 | #GUARDIAN187,6,70 |
+; #GUARDIAN187,7,70 }
 ; TABLE#
 @label=ENTITY47
  41336 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5208,7 +5207,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
-; { #guardian183,0,67 | #guardian183,1,67 }
+; { #GUARDIAN183,0,67 | #GUARDIAN183,1,67 }
 ; TABLE#
 @label=ENTITY48
  41344 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5231,7 +5230,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
-; { #guardian183,0,6 | #guardian183,1,6 }
+; { #GUARDIAN183,0,6 | #GUARDIAN183,1,6 }
 ; TABLE#
 @label=ENTITY49
  41352 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5254,7 +5253,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
-; { #guardian183,0,4 | #guardian183,1,4 }
+; { #GUARDIAN183,0,4 | #GUARDIAN183,1,4 }
 ; TABLE#
 @label=ENTITY50
  41360 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5277,7 +5276,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
-; { #guardian183,2,66 | #guardian183,3,66 }
+; { #GUARDIAN183,2,66 | #GUARDIAN183,3,66 }
 ; TABLE#
 @label=ENTITY51
  41368 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5300,8 +5299,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R62208(Tool#SPACE(2)Shed) and #R63488(West Wing Roof).
 ; .
 ; #UDGTABLE
-; { #guardian181,0,3 | #guardian181,1,3 | #guardian181,2,3 | #guardian181,3,3 |
-; #guardian181,4,3 | #guardian181,5,3 | #guardian181,6,3 | #guardian181,7,3 }
+; { #GUARDIAN181,0,3 | #GUARDIAN181,1,3 | #GUARDIAN181,2,3 | #GUARDIAN181,3,3 |
+; #GUARDIAN181,4,3 | #GUARDIAN181,5,3 | #GUARDIAN181,6,3 | #GUARDIAN181,7,3 }
 ; TABLE#
 @label=ENTITY52
  41376 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5323,9 +5322,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; MegaTree) and #R64256(The Yacht).
 ; .
 ; #UDGTABLE
-; { #guardian181,0,67 | #guardian181,1,67 | #guardian181,2,67 |
-; #guardian181,3,67 | #guardian181,4,67 | #guardian181,5,67 | #guardian181,6,67
-; | #guardian181,7,67 }
+; { #GUARDIAN181,0,67 | #GUARDIAN181,1,67 | #GUARDIAN181,2,67 |
+; #GUARDIAN181,3,67 | #GUARDIAN181,4,67 | #GUARDIAN181,5,67 | #GUARDIAN181,6,67
+; | #GUARDIAN181,7,67 }
 ; TABLE#
 @label=ENTITY53
  41384 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5346,9 +5345,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b54) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
-; { #guardian189,0,14 | #guardian189,1,14 | #guardian189,2,14 |
-; #guardian189,3,14 | #guardian189,4,14 | #guardian189,5,14 | #guardian189,6,14
-; | #guardian189,7,14 }
+; { #GUARDIAN189,0,14 | #GUARDIAN189,1,14 | #GUARDIAN189,2,14 |
+; #GUARDIAN189,3,14 | #GUARDIAN189,4,14 | #GUARDIAN189,5,14 | #GUARDIAN189,6,14
+; | #GUARDIAN189,7,14 }
 ; TABLE#
 @label=ENTITY54
  41392 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5370,8 +5369,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R59904(Under the Roof).
 ; .
 ; #UDGTABLE
-; { #guardian187,0,15 | #guardian187,1,15 | #guardian187,2,15 |
-; #guardian187,3,15 }
+; { #GUARDIAN187,0,15 | #GUARDIAN187,1,15 | #GUARDIAN187,2,15 |
+; #GUARDIAN187,3,15 }
 ; TABLE#
 @label=ENTITY55
  41400 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5392,9 +5391,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b56) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
-; { #guardian189,0,12 | #guardian189,1,12 | #guardian189,2,12 |
-; #guardian189,3,12 | #guardian189,4,12 | #guardian189,5,12 | #guardian189,6,12
-; | #guardian189,7,12 }
+; { #GUARDIAN189,0,12 | #GUARDIAN189,1,12 | #GUARDIAN189,2,12 |
+; #GUARDIAN189,3,12 | #GUARDIAN189,4,12 | #GUARDIAN189,5,12 | #GUARDIAN189,6,12
+; | #GUARDIAN189,7,12 }
 ; TABLE#
 @label=ENTITY56
  41408 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5415,8 +5414,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b57) is used in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
-; { #guardian187,0,11 | #guardian187,1,11 | #guardian187,2,11 |
-; #guardian187,3,11 }
+; { #GUARDIAN187,0,11 | #GUARDIAN187,1,11 | #GUARDIAN187,2,11 |
+; #GUARDIAN187,3,11 }
 ; TABLE#
 @label=ENTITY57
  41416 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5437,7 +5436,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b58) is used in #R57856(Top Landing).
 ; .
 ; #UDGTABLE
-; { #guardian173,4,7 | #guardian173,5,7 | #guardian173,6,7 | #guardian173,7,7 }
+; { #GUARDIAN173,4,7 | #GUARDIAN173,5,7 | #GUARDIAN173,6,7 | #GUARDIAN173,7,7 }
 ; TABLE#
 @label=ENTITY58
  41424 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5459,7 +5458,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b59) is used in #R57600(The Bathroom).
 ; .
 ; #UDGTABLE
-; { #guardian185,0,4 | #guardian185,1,4 | #guardian185,2,4 | #guardian185,3,4 }
+; { #GUARDIAN185,0,4 | #GUARDIAN185,1,4 | #GUARDIAN185,2,4 | #GUARDIAN185,3,4 }
 ; TABLE#
 @label=ENTITY59
  41432 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5498,9 +5497,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; the Drive) and #R60160(Conservatory Roof).
 ; .
 ; #UDGTABLE
-; { #guardian173,0,6 | #guardian173,1,6 | #guardian173,2,6 | #guardian173,3,6 }
-; { #guardian173,0,14 | #guardian173,1,14 | #guardian173,2,14 |
-; #guardian173,3,14 }
+; { #GUARDIAN173,0,6 | #GUARDIAN173,1,6 | #GUARDIAN173,2,6 | #GUARDIAN173,3,6 }
+; { #GUARDIAN173,0,14 | #GUARDIAN173,1,14 | #GUARDIAN173,2,14 |
+; #GUARDIAN173,3,14 }
 ; TABLE#
 @label=ENTITY61
  41448 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5522,8 +5521,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; the Drive).
 ; .
 ; #UDGTABLE
-; { #guardian185,0,13 | #guardian185,1,13 | #guardian185,2,13 |
-; #guardian185,3,13 }
+; { #GUARDIAN185,0,13 | #GUARDIAN185,1,13 | #GUARDIAN185,2,13 |
+; #GUARDIAN185,3,13 }
 ; TABLE#
 @label=ENTITY62
  41456 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5547,8 +5546,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b64) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,3 | #guardian180,1,3 | #guardian180,2,3 | #guardian180,3,3 |
-; #guardian180,4,3 | #guardian180,5,3 | #guardian180,6,3 | #guardian180,7,3 }
+; { #GUARDIAN180,0,3 | #GUARDIAN180,1,3 | #GUARDIAN180,2,3 | #GUARDIAN180,3,3 |
+; #GUARDIAN180,4,3 | #GUARDIAN180,5,3 | #GUARDIAN180,6,3 | #GUARDIAN180,7,3 }
 ; TABLE#
 @label=ENTITY64
  41472 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5569,8 +5568,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b65) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,6 | #guardian180,1,6 | #guardian180,2,6 | #guardian180,3,6 |
-; #guardian180,4,6 | #guardian180,5,6 | #guardian180,6,6 | #guardian180,7,6 }
+; { #GUARDIAN180,0,6 | #GUARDIAN180,1,6 | #GUARDIAN180,2,6 | #GUARDIAN180,3,6 |
+; #GUARDIAN180,4,6 | #GUARDIAN180,5,6 | #GUARDIAN180,6,6 | #GUARDIAN180,7,6 }
 ; TABLE#
 @label=ENTITY65
  41480 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5591,8 +5590,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b66) is used in #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,4 | #guardian180,1,4 | #guardian180,2,4 | #guardian180,3,4 |
-; #guardian180,4,4 | #guardian180,5,4 | #guardian180,6,4 | #guardian180,7,4 }
+; { #GUARDIAN180,0,4 | #GUARDIAN180,1,4 | #GUARDIAN180,2,4 | #GUARDIAN180,3,4 |
+; #GUARDIAN180,4,4 | #GUARDIAN180,5,4 | #GUARDIAN180,6,4 | #GUARDIAN180,7,4 }
 ; TABLE#
 @label=ENTITY66
  41488 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5613,8 +5612,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b67) is used in #R56320(First Landing).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,6 | #guardian180,1,6 | #guardian180,2,6 | #guardian180,3,6 |
-; #guardian180,4,6 | #guardian180,5,6 | #guardian180,6,6 | #guardian180,7,6 }
+; { #GUARDIAN180,0,6 | #GUARDIAN180,1,6 | #GUARDIAN180,2,6 | #GUARDIAN180,3,6 |
+; #GUARDIAN180,4,6 | #GUARDIAN180,5,6 | #GUARDIAN180,6,6 | #GUARDIAN180,7,6 }
 ; TABLE#
 @label=ENTITY67
  41496 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5635,7 +5634,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b68) is used in #R60672(Under the Drive).
 ; .
 ; #UDGTABLE
-; { #guardian174,4,3 | #guardian174,5,3 | #guardian174,6,3 | #guardian174,7,3 }
+; { #GUARDIAN174,4,3 | #GUARDIAN174,5,3 | #GUARDIAN174,6,3 | #GUARDIAN174,7,3 }
 ; TABLE#
 @label=ENTITY68
  41504 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5672,7 +5671,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Room).
 ; .
 ; #UDGTABLE
-; { #guardian156,4,5 | #guardian156,5,5 | #guardian156,6,5 | #guardian156,7,5 }
+; { #GUARDIAN156,4,5 | #GUARDIAN156,5,5 | #GUARDIAN156,6,5 | #GUARDIAN156,7,5 }
 ; TABLE#
 @label=ENTITY70
  41520 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5695,8 +5694,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Room).
 ; .
 ; #UDGTABLE
-; { #guardian156,4,3 | #guardian156,5,3 }
-; { #guardian156,6,3 | #guardian156,7,3 }
+; { #GUARDIAN156,4,3 | #GUARDIAN156,5,3 }
+; { #GUARDIAN156,6,3 | #GUARDIAN156,7,3 }
 ; TABLE#
 @label=ENTITY71
  41528 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5719,8 +5718,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Room).
 ; .
 ; #UDGTABLE
-; { #guardian156,2,6 }
-; { #guardian156,4,6 }
+; { #GUARDIAN156,2,6 }
+; { #GUARDIAN156,4,6 }
 ; TABLE#
 @label=ENTITY72
  41536 DEFB %00010010         ; Vertical guardian (bits 0-2), initial animation
@@ -5742,7 +5741,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Room).
 ; .
 ; #UDGTABLE
-; { #guardian156,6,66 | #guardian156,7,66 }
+; { #GUARDIAN156,6,66 | #GUARDIAN156,7,66 }
 ; TABLE#
 @label=ENTITY73
  41544 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -5765,8 +5764,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,4 | #guardian180,1,4 | #guardian180,2,4 | #guardian180,3,4 |
-; #guardian180,4,4 | #guardian180,5,4 | #guardian180,6,4 | #guardian180,7,4 }
+; { #GUARDIAN180,0,4 | #GUARDIAN180,1,4 | #GUARDIAN180,2,4 | #GUARDIAN180,3,4 |
+; #GUARDIAN180,4,4 | #GUARDIAN180,5,4 | #GUARDIAN180,6,4 | #GUARDIAN180,7,4 }
 ; TABLE#
 @label=ENTITY74
  41552 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5788,8 +5787,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,6 | #guardian180,1,6 | #guardian180,2,6 | #guardian180,3,6 |
-; #guardian180,4,6 | #guardian180,5,6 | #guardian180,6,6 | #guardian180,7,6 }
+; { #GUARDIAN180,0,6 | #GUARDIAN180,1,6 | #GUARDIAN180,2,6 | #GUARDIAN180,3,6 |
+; #GUARDIAN180,4,6 | #GUARDIAN180,5,6 | #GUARDIAN180,6,6 | #GUARDIAN180,7,6 }
 ; TABLE#
 @label=ENTITY75
  41560 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5811,9 +5810,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,66 | #guardian180,1,66 | #guardian180,2,66 |
-; #guardian180,3,66 | #guardian180,4,66 | #guardian180,5,66 | #guardian180,6,66
-; | #guardian180,7,66 }
+; { #GUARDIAN180,0,66 | #GUARDIAN180,1,66 | #GUARDIAN180,2,66 |
+; #GUARDIAN180,3,66 | #GUARDIAN180,4,66 | #GUARDIAN180,5,66 | #GUARDIAN180,6,66
+; | #GUARDIAN180,7,66 }
 ; TABLE#
 @label=ENTITY76
  41568 DEFB %00100001         ; Horizontal guardian (bits 0-2), initial
@@ -5835,8 +5834,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,7 | #guardian180,1,7 | #guardian180,2,7 | #guardian180,3,7 |
-; #guardian180,4,7 | #guardian180,5,7 | #guardian180,6,7 | #guardian180,7,7 }
+; { #GUARDIAN180,0,7 | #GUARDIAN180,1,7 | #GUARDIAN180,2,7 | #GUARDIAN180,3,7 |
+; #GUARDIAN180,4,7 | #GUARDIAN180,5,7 | #GUARDIAN180,6,7 | #GUARDIAN180,7,7 }
 ; TABLE#
 @label=ENTITY77
  41576 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -5858,8 +5857,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey) and #R57088(Swimming Pool).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,6 | #guardian180,1,6 | #guardian180,2,6 | #guardian180,3,6 |
-; #guardian180,4,6 | #guardian180,5,6 | #guardian180,6,6 | #guardian180,7,6 }
+; { #GUARDIAN180,0,6 | #GUARDIAN180,1,6 | #GUARDIAN180,2,6 | #GUARDIAN180,3,6 |
+; #GUARDIAN180,4,6 | #GUARDIAN180,5,6 | #GUARDIAN180,6,6 | #GUARDIAN180,7,6 }
 ; TABLE#
 @label=ENTITY78
  41584 DEFB %00100001         ; Horizontal guardian (bits 0-2), initial
@@ -5881,9 +5880,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,65 | #guardian180,1,65 | #guardian180,2,65 |
-; #guardian180,3,65 | #guardian180,4,65 | #guardian180,5,65 | #guardian180,6,65
-; | #guardian180,7,65 }
+; { #GUARDIAN180,0,65 | #GUARDIAN180,1,65 | #GUARDIAN180,2,65 |
+; #GUARDIAN180,3,65 | #GUARDIAN180,4,65 | #GUARDIAN180,5,65 | #GUARDIAN180,6,65
+; | #GUARDIAN180,7,65 }
 ; TABLE#
 @label=ENTITY79
  41592 DEFB %01000001         ; Horizontal guardian (bits 0-2), initial
@@ -5905,8 +5904,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,4 | #guardian180,1,4 | #guardian180,2,4 | #guardian180,3,4 |
-; #guardian180,4,4 | #guardian180,5,4 | #guardian180,6,4 | #guardian180,7,4 }
+; { #GUARDIAN180,0,4 | #GUARDIAN180,1,4 | #GUARDIAN180,2,4 | #GUARDIAN180,3,4 |
+; #GUARDIAN180,4,4 | #GUARDIAN180,5,4 | #GUARDIAN180,6,4 | #GUARDIAN180,7,4 }
 ; TABLE#
 @label=ENTITY80
  41600 DEFB %01100001         ; Horizontal guardian (bits 0-2), initial
@@ -5928,8 +5927,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Abbey).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,2 | #guardian180,1,2 | #guardian180,2,2 | #guardian180,3,2 |
-; #guardian180,4,2 | #guardian180,5,2 | #guardian180,6,2 | #guardian180,7,2 }
+; { #GUARDIAN180,0,2 | #GUARDIAN180,1,2 | #GUARDIAN180,2,2 | #GUARDIAN180,3,2 |
+; #GUARDIAN180,4,2 | #GUARDIAN180,5,2 | #GUARDIAN180,6,2 | #GUARDIAN180,7,2 }
 ; TABLE#
 @label=ENTITY81
  41608 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -5950,7 +5949,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b82) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,3 | #guardian176,1,3 }
+; { #GUARDIAN176,0,3 | #GUARDIAN176,1,3 }
 ; TABLE#
 @label=ENTITY82
  41616 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5972,7 +5971,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b83) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,6 | #guardian176,1,6 }
+; { #GUARDIAN176,0,6 | #GUARDIAN176,1,6 }
 ; TABLE#
 @label=ENTITY83
  41624 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -5994,7 +5993,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b84) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,65 | #guardian176,1,65 }
+; { #GUARDIAN176,0,65 | #GUARDIAN176,1,65 }
 ; TABLE#
 @label=ENTITY84
  41632 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -6016,7 +6015,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b85) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,4 | #guardian176,1,4 }
+; { #GUARDIAN176,0,4 | #GUARDIAN176,1,4 }
 ; TABLE#
 @label=ENTITY85
  41640 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -6038,7 +6037,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b86) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,2 | #guardian176,1,2 }
+; { #GUARDIAN176,0,2 | #GUARDIAN176,1,2 }
 ; TABLE#
 @label=ENTITY86
  41648 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -6060,7 +6059,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b87) is used in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,2,5 | #guardian176,3,5 }
+; { #GUARDIAN176,2,5 | #GUARDIAN176,3,5 }
 ; TABLE#
 @label=ENTITY87
  41656 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -6083,8 +6082,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
-; { #guardian181,0,6 | #guardian181,1,6 | #guardian181,2,6 | #guardian181,3,6 |
-; #guardian181,4,6 | #guardian181,5,6 | #guardian181,6,6 | #guardian181,7,6 }
+; { #GUARDIAN181,0,6 | #GUARDIAN181,1,6 | #GUARDIAN181,2,6 | #GUARDIAN181,3,6 |
+; #GUARDIAN181,4,6 | #GUARDIAN181,5,6 | #GUARDIAN181,6,6 | #GUARDIAN181,7,6 }
 ; TABLE#
 @label=ENTITY88
  41664 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6106,7 +6105,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
-; { #guardian176,6,6 | #guardian176,7,6 }
+; { #GUARDIAN176,6,6 | #GUARDIAN176,7,6 }
 ; TABLE#
 @label=ENTITY89
  41672 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -6129,8 +6128,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian174,0,11 | #guardian174,1,11 | #guardian174,2,11 |
-; #guardian174,3,11 }
+; { #GUARDIAN174,0,11 | #GUARDIAN174,1,11 | #GUARDIAN174,2,11 |
+; #GUARDIAN174,3,11 }
 ; TABLE#
 @label=ENTITY90
  41680 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -6152,8 +6151,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian190,0,14 | #guardian190,1,14 | #guardian190,2,14 |
-; #guardian190,3,14 }
+; { #GUARDIAN190,0,14 | #GUARDIAN190,1,14 | #GUARDIAN190,2,14 |
+; #GUARDIAN190,3,14 }
 ; TABLE#
 @label=ENTITY91
  41688 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6175,9 +6174,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Kitchens#SPACE(4)Main Stairway) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian183,4,7 | #guardian183,5,7 | #guardian183,6,7 | #guardian183,7,7 }
-; { #guardian183,4,15 | #guardian183,5,15 | #guardian183,6,15 |
-; #guardian183,7,15 }
+; { #GUARDIAN183,4,7 | #GUARDIAN183,5,7 | #GUARDIAN183,6,7 | #GUARDIAN183,7,7 }
+; { #GUARDIAN183,4,15 | #GUARDIAN183,5,15 | #GUARDIAN183,6,15 |
+; #GUARDIAN183,7,15 }
 ; TABLE#
 @label=ENTITY92
  41696 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6199,8 +6198,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian185,0,10 | #guardian185,1,10 | #guardian185,2,10 |
-; #guardian185,3,10 }
+; { #GUARDIAN185,0,10 | #GUARDIAN185,1,10 | #GUARDIAN185,2,10 |
+; #GUARDIAN185,3,10 }
 ; TABLE#
 @label=ENTITY93
  41704 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -6222,8 +6221,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian175,4,12 | #guardian175,5,12 | #guardian175,6,12 |
-; #guardian175,7,12 }
+; { #GUARDIAN175,4,12 | #GUARDIAN175,5,12 | #GUARDIAN175,6,12 |
+; #GUARDIAN175,7,12 }
 ; TABLE#
 @label=ENTITY94
  41712 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6245,11 +6244,11 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R54784(To the Kitchens#SPACE(4)Main Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,6 | #guardian188,1,6 | #guardian188,2,6 | #guardian188,3,6 |
-; #guardian188,4,6 | #guardian188,5,6 | #guardian188,6,6 | #guardian188,7,6 }
-; { #guardian188,0,14 | #guardian188,1,14 | #guardian188,2,14 |
-; #guardian188,3,14 | #guardian188,4,14 | #guardian188,5,14 | #guardian188,6,14
-; | #guardian188,7,14 }
+; { #GUARDIAN188,0,6 | #GUARDIAN188,1,6 | #GUARDIAN188,2,6 | #GUARDIAN188,3,6 |
+; #GUARDIAN188,4,6 | #GUARDIAN188,5,6 | #GUARDIAN188,6,6 | #GUARDIAN188,7,6 }
+; { #GUARDIAN188,0,14 | #GUARDIAN188,1,14 | #GUARDIAN188,2,14 |
+; #GUARDIAN188,3,14 | #GUARDIAN188,4,14 | #GUARDIAN188,5,14 | #GUARDIAN188,6,14
+; | #GUARDIAN188,7,14 }
 ; TABLE#
 @label=ENTITY95
  41720 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6270,8 +6269,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b96) is used in #R55808(East Wall Base).
 ; .
 ; #UDGTABLE
-; { #guardian172,0,66 | #guardian172,1,66 | #guardian172,2,66 |
-; #guardian172,3,66 }
+; { #GUARDIAN172,0,66 | #GUARDIAN172,1,66 | #GUARDIAN172,2,66 |
+; #GUARDIAN172,3,66 }
 ; TABLE#
 @label=ENTITY96
  41728 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -6294,8 +6293,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
-; { #guardian172,0,5 | #guardian172,1,5 | #guardian172,2,5 | #guardian172,3,5 }
-; { #guardian172,4,5 | #guardian172,5,5 | #guardian172,6,5 | #guardian172,7,5 }
+; { #GUARDIAN172,0,5 | #GUARDIAN172,1,5 | #GUARDIAN172,2,5 | #GUARDIAN172,3,5 }
+; { #GUARDIAN172,4,5 | #GUARDIAN172,5,5 | #GUARDIAN172,6,5 | #GUARDIAN172,7,5 }
 ; TABLE#
 @label=ENTITY97
  41736 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -6317,7 +6316,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b98) is used in #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
-; { #guardian175,0,6 | #guardian175,1,6 | #guardian175,2,6 | #guardian175,3,6 }
+; { #GUARDIAN175,0,6 | #GUARDIAN175,1,6 | #GUARDIAN175,2,6 | #GUARDIAN175,3,6 }
 ; TABLE#
 @label=ENTITY98
  41744 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -6338,7 +6337,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b99) is used in #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
-; { #guardian173,0,4 | #guardian173,1,4 | #guardian173,2,4 | #guardian173,3,4 }
+; { #GUARDIAN173,0,4 | #GUARDIAN173,1,4 | #GUARDIAN173,2,4 | #GUARDIAN173,3,4 }
 ; TABLE#
 @label=ENTITY99
  41752 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6360,8 +6359,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
-; { #guardian172,0,4 | #guardian172,1,4 | #guardian172,2,4 | #guardian172,3,4 }
-; { #guardian172,4,4 | #guardian172,5,4 | #guardian172,6,4 | #guardian172,7,4 }
+; { #GUARDIAN172,0,4 | #GUARDIAN172,1,4 | #GUARDIAN172,2,4 | #GUARDIAN172,3,4 }
+; { #GUARDIAN172,4,4 | #GUARDIAN172,5,4 | #GUARDIAN172,6,4 | #GUARDIAN172,7,4 }
 ; TABLE#
 @label=ENTITY100
  41760 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -6384,10 +6383,10 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; and #R58368(A bit of tree).
 ; .
 ; #UDGTABLE
-; { #guardian171,0,67 | #guardian171,1,67 | #guardian171,2,67 |
-; #guardian171,3,67 }
-; { #guardian171,4,67 | #guardian171,5,67 | #guardian171,6,67 |
-; #guardian171,7,67 }
+; { #GUARDIAN171,0,67 | #GUARDIAN171,1,67 | #GUARDIAN171,2,67 |
+; #GUARDIAN171,3,67 }
+; { #GUARDIAN171,4,67 | #GUARDIAN171,5,67 | #GUARDIAN171,6,67 |
+; #GUARDIAN171,7,67 }
 ; TABLE#
 @label=ENTITY101
  41768 DEFB %00000010         ; Vertical guardian (bits 0-2), animation frame
@@ -6410,8 +6409,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
-; { #guardian171,0,5 | #guardian171,1,5 | #guardian171,2,5 | #guardian171,3,5 }
-; { #guardian171,4,5 | #guardian171,5,5 | #guardian171,6,5 | #guardian171,7,5 }
+; { #GUARDIAN171,0,5 | #GUARDIAN171,1,5 | #GUARDIAN171,2,5 | #GUARDIAN171,3,5 }
+; { #GUARDIAN171,4,5 | #GUARDIAN171,5,5 | #GUARDIAN171,6,5 | #GUARDIAN171,7,5 }
 ; TABLE#
 @label=ENTITY102
  41776 DEFB %00010010         ; Vertical guardian (bits 0-2), animation frame
@@ -6433,7 +6432,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b103) is used in #R56064(The Chapel).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,3 | #guardian180,1,3 | #guardian180,2,3 | #guardian180,3,3 }
+; { #GUARDIAN180,0,3 | #GUARDIAN180,1,3 | #GUARDIAN180,2,3 | #GUARDIAN180,3,3 }
 ; TABLE#
 @label=ENTITY103
  41784 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6455,8 +6454,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,6 | #guardian188,1,6 | #guardian188,2,6 | #guardian188,3,6 |
-; #guardian188,4,6 | #guardian188,5,6 | #guardian188,6,6 | #guardian188,7,6 }
+; { #GUARDIAN188,0,6 | #GUARDIAN188,1,6 | #GUARDIAN188,2,6 | #GUARDIAN188,3,6 |
+; #GUARDIAN188,4,6 | #GUARDIAN188,5,6 | #GUARDIAN188,6,6 | #GUARDIAN188,7,6 }
 ; TABLE#
 @label=ENTITY104
  41792 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6477,7 +6476,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b105) is used in #R64512(The Bow).
 ; .
 ; #UDGTABLE
-; { #guardian190,0,6 | #guardian190,1,6 | #guardian190,2,6 | #guardian190,3,6 }
+; { #GUARDIAN190,0,6 | #GUARDIAN190,1,6 | #GUARDIAN190,2,6 | #GUARDIAN190,3,6 }
 ; TABLE#
 @label=ENTITY105
  41800 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6499,8 +6498,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; Roof).
 ; .
 ; #UDGTABLE
-; { #guardian174,0,66 | #guardian174,1,66 | #guardian174,2,66 |
-; #guardian174,3,66 }
+; { #GUARDIAN174,0,66 | #GUARDIAN174,1,66 | #GUARDIAN174,2,66 |
+; #GUARDIAN174,3,66 }
 ; TABLE#
 @label=ENTITY106
  41808 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6521,7 +6520,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b107) is used in #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
-; { #guardian190,0,4 | #guardian190,1,4 | #guardian190,2,4 | #guardian190,3,4 }
+; { #GUARDIAN190,0,4 | #GUARDIAN190,1,4 | #GUARDIAN190,2,4 | #GUARDIAN190,3,4 }
 ; TABLE#
 @label=ENTITY107
  41816 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -6542,8 +6541,8 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b108) is used in #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
-; { #guardian187,4,11 | #guardian187,5,11 | #guardian187,6,11 |
-; #guardian187,7,11 }
+; { #GUARDIAN187,4,11 | #GUARDIAN187,5,11 | #GUARDIAN187,6,11 |
+; #GUARDIAN187,7,11 }
 ; TABLE#
 @label=ENTITY108
  41824 DEFB %10000001         ; Horizontal guardian (bits 0-2), initial
@@ -6564,9 +6563,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b109) is used in #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,14 | #guardian188,1,14 | #guardian188,2,14 |
-; #guardian188,3,14 | #guardian188,4,14 | #guardian188,5,14 | #guardian188,6,14
-; | #guardian188,7,14 }
+; { #GUARDIAN188,0,14 | #GUARDIAN188,1,14 | #GUARDIAN188,2,14 |
+; #GUARDIAN188,3,14 | #GUARDIAN188,4,14 | #GUARDIAN188,5,14 | #GUARDIAN188,6,14
+; | #GUARDIAN188,7,14 }
 ; TABLE#
 @label=ENTITY109
  41832 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6587,7 +6586,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b110) is used in #R64512(The Bow).
 ; .
 ; #UDGTABLE
-; { #guardian174,0,3 | #guardian174,1,3 | #guardian174,2,3 | #guardian174,3,3 }
+; { #GUARDIAN174,0,3 | #GUARDIAN174,1,3 | #GUARDIAN174,2,3 | #GUARDIAN174,3,3 }
 ; TABLE#
 @label=ENTITY110
  41840 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6608,7 +6607,7 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 ; The following entity definition (#b111) is used in #R50944(Cuckoo's Nest).
 ; .
 ; #UDGTABLE
-; { #guardian181,0,3 | #guardian181,1,3 | #guardian181,2,3 | #guardian181,3,3 }
+; { #GUARDIAN181,0,3 | #GUARDIAN181,1,3 | #GUARDIAN181,2,3 | #GUARDIAN181,3,3 }
 ; TABLE#
 @label=ENTITY111
  41848 DEFB %00000001         ; Horizontal guardian (bits 0-2), initial
@@ -6866,9 +6865,9 @@ b41984 DEFS 173      ; Unused
 ; Used by the routine at #R38298.
 ; .
 ; #UDGTABLE
-; { #sprite42496,7(toilet0*) | #sprite42528,7(toilet1*) |
+; { #SPRITE42496,7(toilet0*) | #SPRITE42528,7(toilet1*) |
 ; #UDGARRAY*toilet0,10;toilet1(toilet_empty) }
-; { #sprite42560,7(toilet2*) | #sprite42592,7(toilet3*) |
+; { #SPRITE42560,7(toilet2*) | #SPRITE42592,7(toilet3*) |
 ; #UDGARRAY*toilet3,10;toilet2(toilet_full) }
 ; TABLE#
 @label=TOILET0
@@ -6905,7 +6904,7 @@ u42624 DEFB 128,128,128,128,140,143,143,143,143,143,128,128,191,143,143,143
 ; and #R58368(A bit of tree).
 ; .
 ; #UDGTABLE
-; { #guardian171,0,5 | #guardian171,1,5 | #guardian171,2,5 | #guardian171,3,5 }
+; { #GUARDIAN171,0,5 | #GUARDIAN171,1,5 | #GUARDIAN171,2,5 | #GUARDIAN171,3,5 }
 ; TABLE#
 @label=GUARDIANS
 b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
@@ -6920,7 +6919,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R56832(The Banyan Tree).
 ; .
 ; #UDGTABLE
-; { #guardian171,4,5 | #guardian171,5,5 | #guardian171,6,5 | #guardian171,7,5 }
+; { #GUARDIAN171,4,5 | #GUARDIAN171,5,5 | #GUARDIAN171,6,5 | #GUARDIAN171,7,5 }
 ; TABLE#
  43904 DEFB 0,0,0,0,0,0,2,2,34,2,169,84,168,216,113,116
  43920 DEFB 34,218,59,174,46,171,36,249,32,219,32,216,1,84,2,138
@@ -6934,8 +6933,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R56064(The Chapel) and #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
-; { #guardian172,0,66 | #guardian172,1,66 | #guardian172,2,66 |
-; #guardian172,3,66 }
+; { #GUARDIAN172,0,66 | #GUARDIAN172,1,66 | #GUARDIAN172,2,66 |
+; #GUARDIAN172,3,66 }
 ; TABLE#
  44032 DEFB 32,4,174,236,187,125,224,7,189,181,160,4,59,124,0,0
  44048 DEFB 29,176,32,4,59,124,162,68,253,183,160,4,59,220,32,4
@@ -6949,7 +6948,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; and #R58624(Orangery).
 ; .
 ; #UDGTABLE
-; { #guardian172,4,4 | #guardian172,5,4 | #guardian172,6,4 | #guardian172,7,4 }
+; { #GUARDIAN172,4,4 | #GUARDIAN172,5,4 | #GUARDIAN172,6,4 | #GUARDIAN172,7,4 }
 ; TABLE#
  44160 DEFB 15,240,23,232,24,24,55,204,40,36,83,146,100,74,169,43
  44176 DEFB 170,43,106,74,105,146,36,36,51,204,24,24,23,232,15,240
@@ -6963,8 +6962,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; the Drive), #R60160(Conservatory Roof) and #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
-; { #guardian173,0,14 | #guardian173,1,14 | #guardian173,2,14 |
-; #guardian173,3,14 }
+; { #GUARDIAN173,0,14 | #GUARDIAN173,1,14 | #GUARDIAN173,2,14 |
+; #GUARDIAN173,3,14 }
 ; TABLE#
  44288 DEFB 12,0,12,0,12,0,12,0,12,0,30,0,18,0,51,0
  44304 DEFB 63,0,115,128,97,128,97,128,192,192,192,192,128,64,128,64
@@ -6978,7 +6977,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R60928(Tree Root) and #R63232(West Bedroom).
 ; .
 ; #UDGTABLE
-; { #guardian173,4,7 | #guardian173,5,7 | #guardian173,6,7 | #guardian173,7,7 }
+; { #GUARDIAN173,4,7 | #GUARDIAN173,5,7 | #GUARDIAN173,6,7 | #GUARDIAN173,7,7 }
 ; TABLE#
  44416 DEFB 0,0,0,0,0,0,127,254,64,2,255,255,222,123,192,3
  44432 DEFB 192,3,222,123,255,255,64,2,127,254,0,0,0,0,0,0
@@ -6993,8 +6992,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R60160(Conservatory Roof) and #R64512(The Bow).
 ; .
 ; #UDGTABLE
-; { #guardian174,0,11 | #guardian174,1,11 | #guardian174,2,11 |
-; #guardian174,3,11 }
+; { #GUARDIAN174,0,11 | #GUARDIAN174,1,11 | #GUARDIAN174,2,11 |
+; #GUARDIAN174,3,11 }
 ; TABLE#
  44544 DEFB 126,0,153,0,255,0,129,0,126,0,24,0,36,0,36,0
  44560 DEFB 66,0,66,0,129,0,231,0,165,0,195,0,165,0,231,0
@@ -7007,7 +7006,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; This guardian (page #b174, sprites 4-7) appears in #R60672(Under the Drive).
 ; .
 ; #UDGTABLE
-; { #guardian174,4,3 | #guardian174,5,3 | #guardian174,6,3 | #guardian174,7,3 }
+; { #GUARDIAN174,4,3 | #GUARDIAN174,5,3 | #GUARDIAN174,6,3 | #GUARDIAN174,7,3 }
 ; TABLE#
  44672 DEFB 12,0,18,0,33,16,18,32,140,64,82,128,47,0,47,0
  44688 DEFB 95,128,95,128,95,128,0,0,255,192,93,128,93,128,255,192
@@ -7021,7 +7020,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R59904(Under the Roof) and #R62208(Tool#SPACE(2)Shed).
 ; .
 ; #UDGTABLE
-; { #guardian175,0,5 | #guardian175,1,5 | #guardian175,2,5 | #guardian175,3,5 }
+; { #GUARDIAN175,0,5 | #GUARDIAN175,1,5 | #GUARDIAN175,2,5 | #GUARDIAN175,3,5 }
 ; TABLE#
  44800 DEFB 56,0,124,0,126,0,109,128,68,64,108,64,124,32,124,0
  44816 DEFB 124,12,124,50,252,204,255,48,252,192,127,0,108,0,56,0
@@ -7036,7 +7035,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian175,4,5 | #guardian175,5,5 | #guardian175,6,5 | #guardian175,7,5 }
+; { #GUARDIAN175,4,5 | #GUARDIAN175,5,5 | #GUARDIAN175,6,5 | #GUARDIAN175,7,5 }
 ; TABLE#
  44928 DEFB 12,0,22,0,47,0,47,0,79,128,95,128,95,128,159,192
  44944 DEFB 191,192,189,192,186,192,189,64,90,128,93,128,63,0,12,0
@@ -7049,7 +7048,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; This guardian (page #b176, sprites 0-3) appears in #R59648(The Attic).
 ; .
 ; #UDGTABLE
-; { #guardian176,0,3 | #guardian176,1,6 | #guardian176,2,5 | #guardian176,3,5 }
+; { #GUARDIAN176,0,3 | #GUARDIAN176,1,6 | #GUARDIAN176,2,5 | #GUARDIAN176,3,5 }
 ; TABLE#
  45056 DEFB 7,192,24,48,35,136,68,68,136,34,144,19,144,19,136,34
  45072 DEFB 68,68,35,136,24,48,7,192,3,0,3,0,3,0,3,128
@@ -7062,7 +7061,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; This guardian (page #b176, sprites 4-5) appears in #R52736(Rescue Esmerelda).
 ; .
 ; #UDGTABLE
-; { #guardian176,4,23 | #guardian176,5,23 }
+; { #GUARDIAN176,4,23 | #GUARDIAN176,5,23 }
 ; TABLE#
  45184 DEFB 7,192,8,32,10,160,8,32,11,160,16,16,37,72,10,160
  45200 DEFB 61,120,70,196,7,192,2,128,5,64,15,224,20,128,8,192
@@ -7072,7 +7071,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R62976(West#SPACE(2)Wing).
 ; .
 ; #UDGTABLE
-; { #guardian176,6,6 | #guardian176,7,6 }
+; { #GUARDIAN176,6,6 | #GUARDIAN176,7,6 }
 ; TABLE#
  45248 DEFB 1,128,0,0,1,128,69,145,1,128,137,162,69,145,1,128
  45264 DEFB 205,179,205,179,205,179,205,179,35,196,18,72,13,176,0,0
@@ -7081,8 +7080,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; This guardian (page #b177, sprites 0-7) is not used.
 ; .
 ; #UDGTABLE
-; { #guardian177,0,7 | #guardian177,1,7 | #guardian177,2,7 | #guardian177,3,7 |
-; #guardian177,4,7 | #guardian177,5,7 | #guardian177,6,7 | #guardian177,7,7 }
+; { #GUARDIAN177,0,7 | #GUARDIAN177,1,7 | #GUARDIAN177,2,7 | #GUARDIAN177,3,7 |
+; #GUARDIAN177,4,7 | #GUARDIAN177,5,7 | #GUARDIAN177,6,7 | #GUARDIAN177,7,7 }
 ; TABLE#
  45312 DEFB 22,0,22,0,22,0,22,0,22,0,22,0,22,0,22,0
  45328 DEFB 255,192,0,0,82,128,192,192,51,0,179,64,8,0,45,0
@@ -7104,8 +7103,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; house) and #R64256(The Yacht).
 ; .
 ; #UDGTABLE
-; { #guardian178,0,13 | #guardian178,1,13 | #guardian178,2,13 |
-; #guardian178,3,13 }
+; { #GUARDIAN178,0,13 | #GUARDIAN178,1,13 | #GUARDIAN178,2,13 |
+; #GUARDIAN178,3,13 }
 ; TABLE#
  45568 DEFB 0,3,0,15,0,31,128,63,192,127,209,255,95,255,159,255
  45584 DEFB 207,255,211,255,223,252,255,240,255,224,127,192,63,128,14,0
@@ -7120,8 +7119,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R60672(Under the Drive), #R61440(Nomen Luni) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian178,4,74 | #guardian178,5,74 | #guardian178,6,74 |
-; #guardian178,7,74 }
+; { #GUARDIAN178,4,74 | #GUARDIAN178,5,74 | #GUARDIAN178,6,74 |
+; #GUARDIAN178,7,74 }
 ; TABLE#
  45696 DEFB 3,192,14,240,29,248,62,252,83,206,101,166,164,39,113,143
  45712 DEFB 191,247,85,239,110,118,83,202,56,28,22,120,11,240,2,192
@@ -7138,8 +7137,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; and #R61696(The Wine Cellar).
 ; .
 ; #UDGTABLE
-; { #guardian180,0,4 | #guardian180,1,4 | #guardian180,2,4 | #guardian180,3,4 |
-; #guardian180,4,4 | #guardian180,5,4 | #guardian180,6,4 | #guardian180,7,4 }
+; { #GUARDIAN180,0,4 | #GUARDIAN180,1,4 | #GUARDIAN180,2,4 | #GUARDIAN180,3,4 |
+; #GUARDIAN180,4,4 | #GUARDIAN180,5,4 | #GUARDIAN180,6,4 | #GUARDIAN180,7,4 }
 ; TABLE#
  46080 DEFB 14,0,21,0,42,128,23,0,255,0,22,0,12,0,31,128
  46096 DEFB 63,128,127,0,42,0,127,0,111,0,127,0,24,0,56,0
@@ -7163,9 +7162,9 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; Wing Roof) and #R64256(The Yacht).
 ; .
 ; #UDGTABLE
-; { #guardian181,0,67 | #guardian181,1,67 | #guardian181,2,67 |
-; #guardian181,3,67 | #guardian181,4,67 | #guardian181,5,67 | #guardian181,6,67
-; | #guardian181,7,67 }
+; { #GUARDIAN181,0,67 | #GUARDIAN181,1,67 | #GUARDIAN181,2,67 |
+; #GUARDIAN181,3,67 | #GUARDIAN181,4,67 | #GUARDIAN181,5,67 | #GUARDIAN181,6,67
+; | #GUARDIAN181,7,67 }
 ; TABLE#
  46336 DEFB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
  46352 DEFB 0,0,0,0,0,0,0,0,6,0,63,0,31,0,13,0
@@ -7188,9 +7187,9 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; Generator).
 ; .
 ; #UDGTABLE
-; { #guardian182,0,66 | #guardian182,1,66 | #guardian182,2,66 |
-; #guardian182,3,66 | #guardian182,4,66 | #guardian182,5,66 | #guardian182,6,66
-; | #guardian182,7,66 }
+; { #GUARDIAN182,0,66 | #GUARDIAN182,1,66 | #GUARDIAN182,2,66 |
+; #GUARDIAN182,3,66 | #GUARDIAN182,4,66 | #GUARDIAN182,5,66 | #GUARDIAN182,6,66
+; | #GUARDIAN182,7,66 }
 ; TABLE#
 @label=FLYINGPIG0
  46592 DEFB 0,0,0,0,0,0,0,0,0,0,19,64,23,128,63,192
@@ -7213,7 +7212,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R55296(West of Kitchen).
 ; .
 ; #UDGTABLE
-; { #guardian183,0,67 | #guardian183,1,67 }
+; { #GUARDIAN183,0,67 | #GUARDIAN183,1,67 }
 ; TABLE#
  46848 DEFB 10,160,21,80,10,160,5,66,5,69,5,69,7,194,13,98
  46864 DEFB 15,227,60,127,123,191,239,227,174,226,71,194,206,192,192,224
@@ -7223,7 +7222,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R63232(West Bedroom) and #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
-; { #guardian183,2,3 | #guardian183,3,3 }
+; { #GUARDIAN183,2,3 | #GUARDIAN183,3,3 }
 ; TABLE#
  46912 DEFB 3,0,4,128,5,192,11,160,21,64,23,96,23,96,31,224
  46928 DEFB 19,144,45,104,47,120,47,120,47,120,47,120,175,121,127,254
@@ -7233,8 +7232,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; Kitchens#SPACE(4)Main Stairway) and #R62464(Back Stairway).
 ; .
 ; #UDGTABLE
-; { #guardian183,4,15 | #guardian183,5,15 | #guardian183,6,15 |
-; #guardian183,7,15 }
+; { #GUARDIAN183,4,15 | #GUARDIAN183,5,15 | #GUARDIAN183,6,15 |
+; #GUARDIAN183,7,15 }
 ; TABLE#
  46976 DEFB 118,0,0,0,110,0,118,0,110,0,0,0,118,0,110,0
  46992 DEFB 0,0,118,0,0,0,0,0,110,0,118,0,0,0,110,0
@@ -7249,8 +7248,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; Root).
 ; .
 ; #UDGTABLE
-; { #guardian184,0,5 | #guardian184,1,5 | #guardian184,2,5 | #guardian184,3,5 |
-; #guardian184,4,5 | #guardian184,5,5 | #guardian184,6,5 | #guardian184,7,5 }
+; { #GUARDIAN184,0,5 | #GUARDIAN184,1,5 | #GUARDIAN184,2,5 | #GUARDIAN184,3,5 |
+; #GUARDIAN184,4,5 | #GUARDIAN184,5,5 | #GUARDIAN184,6,5 | #GUARDIAN184,7,5 }
 ; TABLE#
  47104 DEFB 0,0,6,0,8,0,56,0,80,0,240,0,248,0,60,0
  47120 DEFB 62,0,126,0,159,0,31,0,31,192,14,192,24,0,96,0
@@ -7273,8 +7272,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; Bathroom).
 ; .
 ; #UDGTABLE
-; { #guardian185,0,13 | #guardian185,1,13 | #guardian185,2,13 |
-; #guardian185,3,13 }
+; { #GUARDIAN185,0,13 | #GUARDIAN185,1,13 | #GUARDIAN185,2,13 |
+; #GUARDIAN185,3,13 }
 ; TABLE#
  47360 DEFB 60,0,110,0,167,0,165,0,119,0,163,0,98,0,44,0
  47376 DEFB 52,0,70,0,197,0,238,0,165,0,229,0,118,0,60,0
@@ -7287,8 +7286,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; This guardian (page #b185, sprites 4-7) appears in #R49408(The Bridge).
 ; .
 ; #UDGTABLE
-; { #guardian185,4,68 | #guardian185,5,68 | #guardian185,6,68 |
-; #guardian185,7,68 }
+; { #GUARDIAN185,4,68 | #GUARDIAN185,5,68 | #GUARDIAN185,6,68 |
+; #GUARDIAN185,7,68 }
 ; TABLE#
  47488 DEFB 3,192,6,96,13,240,26,216,53,92,32,4,127,254,215,117
  47504 DEFB 178,39,215,117,127,254,21,120,37,164,2,64,17,136,0,0
@@ -7304,8 +7303,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; Base) and #R60928(Tree Root).
 ; .
 ; #UDGTABLE
-; { #guardian186,0,66 | #guardian186,1,66 | #guardian186,2,66 |
-; #guardian186,3,66 }
+; { #GUARDIAN186,0,66 | #GUARDIAN186,1,66 | #GUARDIAN186,2,66 |
+; #GUARDIAN186,3,66 }
 ; TABLE#
  47616 DEFB 7,224,15,240,223,251,63,252,31,248,31,248,49,140,106,86
  47632 DEFB 177,141,158,249,13,240,29,184,54,108,89,154,140,49,7,224
@@ -7319,8 +7318,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; Hades), #R56064(The Chapel) and #R58880(Priests' Hole).
 ; .
 ; #UDGTABLE
-; { #guardian186,4,52 | #guardian186,5,52 | #guardian186,6,52 |
-; #guardian186,7,52 }
+; { #GUARDIAN186,4,52 | #GUARDIAN186,5,52 | #GUARDIAN186,6,52 |
+; #GUARDIAN186,7,52 }
 ; TABLE#
  47744 DEFB 21,3,42,190,21,94,74,168,53,92,138,174,109,92,153,249
  47760 DEFB 110,191,221,99,46,73,89,129,4,130,43,198,18,252,12,253
@@ -7334,8 +7333,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R59904(Under the Roof).
 ; .
 ; #UDGTABLE
-; { #guardian187,0,15 | #guardian187,1,15 | #guardian187,2,15 |
-; #guardian187,3,15 }
+; { #GUARDIAN187,0,15 | #GUARDIAN187,1,15 | #GUARDIAN187,2,15 |
+; #GUARDIAN187,3,15 }
 ; TABLE#
  47872 DEFB 12,0,54,128,127,64,126,128,253,0,254,128,255,128,255,0
  47888 DEFB 85,0,42,0,20,0,42,0,20,0,8,0,20,0,8,0
@@ -7349,8 +7348,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; MegaTrunk), #R52224(Tree Top) and #R61952(Watch Tower).
 ; .
 ; #UDGTABLE
-; { #guardian187,4,70 | #guardian187,5,70 | #guardian187,6,70 |
-; #guardian187,7,70 }
+; { #GUARDIAN187,4,70 | #GUARDIAN187,5,70 | #GUARDIAN187,6,70 |
+; #GUARDIAN187,7,70 }
 ; TABLE#
  48000 DEFB 4,0,42,128,85,64,43,128,68,64,175,160,95,64,32,128
  48016 DEFB 85,64,42,128,4,0,4,0,8,0,62,0,65,0,129,0
@@ -7370,9 +7369,9 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; and #R63488(West Wing Roof).
 ; .
 ; #UDGTABLE
-; { #guardian188,0,66 | #guardian188,1,66 | #guardian188,2,66 |
-; #guardian188,3,66 | #guardian188,4,66 | #guardian188,5,66 | #guardian188,6,66
-; | #guardian188,7,66 }
+; { #GUARDIAN188,0,66 | #GUARDIAN188,1,66 | #GUARDIAN188,2,66 |
+; #GUARDIAN188,3,66 | #GUARDIAN188,4,66 | #GUARDIAN188,5,66 | #GUARDIAN188,6,66
+; | #GUARDIAN188,7,66 }
 ; TABLE#
  48128 DEFB 0,0,0,0,0,0,0,0,0,0,111,64,187,128,117,64
  48144 DEFB 26,128,5,0,0,128,0,0,0,0,0,0,0,0,0,0
@@ -7393,9 +7392,9 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; This guardian (page #b189, sprites 0-7) appears in #R55552(Cold Store).
 ; .
 ; #UDGTABLE
-; { #guardian189,0,14 | #guardian189,1,14 | #guardian189,2,14 |
-; #guardian189,3,14 | #guardian189,4,14 | #guardian189,5,14 | #guardian189,6,14
-; | #guardian189,7,14 }
+; { #GUARDIAN189,0,14 | #GUARDIAN189,1,14 | #GUARDIAN189,2,14 |
+; #GUARDIAN189,3,14 | #GUARDIAN189,4,14 | #GUARDIAN189,5,14 | #GUARDIAN189,6,14
+; | #GUARDIAN189,7,14 }
 ; TABLE#
  48384 DEFB 24,0,60,0,212,0,46,0,58,0,58,0,90,0,93,0
  48400 DEFB 79,0,67,0,33,128,34,0,30,0,20,0,19,0,60,0
@@ -7418,7 +7417,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; #R64512(The Bow).
 ; .
 ; #UDGTABLE
-; { #guardian190,0,4 | #guardian190,1,4 | #guardian190,2,4 | #guardian190,3,4 }
+; { #GUARDIAN190,0,4 | #GUARDIAN190,1,4 | #GUARDIAN190,2,4 | #GUARDIAN190,3,4 }
 ; TABLE#
  48640 DEFB 12,0,18,0,33,0,45,0,33,0,18,0,12,0,12,0
  48656 DEFB 30,0,0,0,55,0,64,0,13,64,172,64,64,128,46,0
@@ -7431,8 +7430,8 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; This guardian (page #b190, sprites 4-7) appears in #R49152(The Off Licence).
 ; .
 ; #UDGTABLE
-; { #guardian190,4,69 | #guardian190,5,69 | #guardian190,6,69 |
-; #guardian190,7,69 }
+; { #GUARDIAN190,4,69 | #GUARDIAN190,5,69 | #GUARDIAN190,6,69 |
+; #GUARDIAN190,7,69 }
 ; TABLE#
  48768 DEFB 0,0,0,0,7,224,31,184,61,236,127,254,125,246,251,247
  48784 DEFB 251,247,127,238,127,222,63,252,31,248,7,224,0,0,0,0
@@ -7447,7 +7446,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; Drive), #R59392(Dr Jones will never believe this) and #R61440(Nomen Luni).
 ; .
 ; #UDGTABLE
-; { #guardian191,0,5 | #guardian191,1,5 | #guardian191,2,5 | #guardian191,3,5 }
+; { #GUARDIAN191,0,5 | #GUARDIAN191,1,5 | #GUARDIAN191,2,5 | #GUARDIAN191,3,5 }
 ; TABLE#
  48896 DEFB 128,0,64,0,163,96,83,96,41,192,22,160,11,224,7,112
  48912 DEFB 2,168,5,212,2,42,3,229,3,226,3,97,3,98,7,112
@@ -7462,7 +7461,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; Battlements).
 ; .
 ; #UDGTABLE
-; { #guardian191,4,4 | #guardian191,5,4 }
+; { #GUARDIAN191,4,4 | #GUARDIAN191,5,4 }
 ; TABLE#
  49024 DEFB 2,4,5,14,10,132,21,196,23,68,43,228,47,224,18,68
  49040 DEFB 8,130,7,44,21,80,42,164,85,68,170,132,69,0,29,192
@@ -7472,7 +7471,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; and #R63744(Above the West Bedroom).
 ; .
 ; #UDGTABLE
-; { #guardian191,6,22 | #guardian191,7,22 }
+; { #GUARDIAN191,6,22 | #GUARDIAN191,7,22 }
 ; TABLE#
  49088 DEFB 0,4,7,6,47,164,95,212,48,100,66,20,50,96,31,196
  49104 DEFB 8,130,7,44,21,80,42,164,85,68,170,132,69,0,12,192
@@ -7513,7 +7512,7 @@ b49152 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles0 }
+; { #TILES0 }
 ; TABLE#
  49312 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  49321 DEFB 68,255,222,108,136,18,64,4,0       ; Floor
@@ -7540,7 +7539,7 @@ b49152 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item0 }
+; { #ITEM0 }
 ; TABLE#
  49377 DEFB 24,24,60,126,98,98,98,126          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7602,7 +7601,7 @@ b49408 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles1 }
+; { #TILES1 }
 ; TABLE#
  49568 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  49577 DEFB 68,255,255,253,187,214,114,96,64   ; Floor
@@ -7629,7 +7628,7 @@ b49408 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item1 }
+; { #ITEM1 }
 ; TABLE#
  49633 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7694,7 +7693,7 @@ b49664 DEFB 0,3,255,207,252,0,0,0              ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles2 }
+; { #TILES2 }
 ; TABLE#
  49824 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  49833 DEFB 68,215,179,117,109,92,24,8,4       ; Floor
@@ -7723,7 +7722,7 @@ b49664 DEFB 0,3,255,207,252,0,0,0              ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item2 }
+; { #ITEM2 }
 ; TABLE#
  49889 DEFB 129,66,36,24,60,24,60,195          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7788,7 +7787,7 @@ b49920 DEFB 48,195,8,0,8,0,0,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles3 }
+; { #TILES3 }
 ; TABLE#
  50080 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  50089 DEFB 4,240,249,191,31,12,16,40,68       ; Floor
@@ -7816,7 +7815,7 @@ b49920 DEFB 48,195,8,0,8,0,0,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item3 }
+; { #ITEM3 }
 ; TABLE#
  50145 DEFB 64,160,92,34,33,34,20,8            ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7881,7 +7880,7 @@ b50176 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles4 }
+; { #TILES4 }
 ; TABLE#
  50336 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  50345 DEFB 6,170,85,170,255,255,85,170,85     ; Floor
@@ -7908,7 +7907,7 @@ b50176 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item4 }
+; { #ITEM4 }
 ; TABLE#
  50401 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -7978,7 +7977,7 @@ b50432 DEFB 128,0,0,0,0,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles5 }
+; { #TILES5 }
 ; TABLE#
  50592 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  50601 DEFB 4,255,255,170,85,170,85,170,85     ; Floor
@@ -8005,7 +8004,7 @@ b50432 DEFB 128,0,0,0,0,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item5 }
+; { #ITEM5 }
 ; TABLE#
  50657 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8069,7 +8068,7 @@ b50688 DEFB 160,0,0,0,0,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles6 }
+; { #TILES6 }
 ; TABLE#
  50848 DEFB 52,0,0,0,0,0,0,0,0                 ; Background
  50857 DEFB 163,160,20,130,80,10,65,40,5       ; Floor
@@ -8098,7 +8097,7 @@ b50688 DEFB 160,0,0,0,0,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item6 }
+; { #ITEM6 }
 ; TABLE#
  50913 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8161,7 +8160,7 @@ b50944 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles7 }
+; { #TILES7 }
 ; TABLE#
  51104 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  51113 DEFB 4,4,3,201,216,48,54,35,1           ; Floor
@@ -8189,7 +8188,7 @@ b50944 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item7 }
+; { #ITEM7 }
 ; TABLE#
  51169 DEFB 32,24,169,219,126,126,60,90        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8256,7 +8255,7 @@ b51200 DEFB 0,0,8,0,8,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles8 }
+; { #TILES8 }
 ; TABLE#
  51360 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  51369 DEFB 4,245,250,191,31,38,20,34,16       ; Floor
@@ -8284,7 +8283,7 @@ b51200 DEFB 0,0,8,0,8,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item8 }
+; { #ITEM8 }
 ; TABLE#
  51425 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8353,7 +8352,7 @@ b51456 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles9 }
+; { #TILES9 }
 ; TABLE#
  51616 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  51625 DEFB 10,31,243,225,96,48,44,64,128      ; Floor
@@ -8381,7 +8380,7 @@ b51456 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item9 }
+; { #ITEM9 }
 ; TABLE#
  51681 DEFB 48,60,79,67,130,134,228,252        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8449,7 +8448,7 @@ b51712 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles10 }
+; { #TILES10 }
 ; TABLE#
  51872 DEFB 40,0,0,0,0,0,0,0,0                 ; Background
  51881 DEFB 71,255,170,119,170,119,170,85,170  ; Floor
@@ -8477,7 +8476,7 @@ b51712 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item10 }
+; { #ITEM10 }
 ; TABLE#
  51937 DEFB 12,28,28,30,27,63,120,255          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8537,7 +8536,7 @@ b51968 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles11 }
+; { #TILES11 }
 ; TABLE#
  52128 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  52137 DEFB 71,255,170,119,170,119,170,85,170  ; Floor (unused)
@@ -8565,7 +8564,7 @@ b51968 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item11 }
+; { #ITEM11 }
 ; TABLE#
  52193 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8636,7 +8635,7 @@ b52224 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles12 }
+; { #TILES12 }
 ; TABLE#
  52384 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  52393 DEFB 4,170,85,170,88,48,16,16,8         ; Floor
@@ -8664,7 +8663,7 @@ b52224 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item12 }
+; { #ITEM12 }
 ; TABLE#
  52449 DEFB 30,45,55,123,109,94,184,192        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8732,7 +8731,7 @@ b52480 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles13 }
+; { #TILES13 }
 ; TABLE#
  52640 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  52649 DEFB 4,1,30,6,122,26,232,104,160        ; Floor
@@ -8761,7 +8760,7 @@ b52480 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item13 }
+; { #ITEM13 }
 ; TABLE#
  52705 DEFB 96,184,190,93,90,53,42,21          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8826,7 +8825,7 @@ b52736 DEFB 0,0,0,0,0,0,8,2                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles14 }
+; { #TILES14 }
 ; TABLE#
  52896 DEFB 16,0,0,0,0,0,0,0,0                 ; Background
  52905 DEFB 23,3,3,12,12,49,50,196,200         ; Floor
@@ -8854,7 +8853,7 @@ b52736 DEFB 0,0,0,0,0,0,8,2                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item14 }
+; { #ITEM14 }
 ; TABLE#
  52961 DEFB 255,73,73,73,73,73,73,255          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -8919,7 +8918,7 @@ b52992 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles15 }
+; { #TILES15 }
 ; TABLE#
  53152 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  53161 DEFB 12,128,64,32,80,72,84,82,85        ; Floor
@@ -8948,7 +8947,7 @@ b52992 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item15 }
+; { #ITEM15 }
 ; TABLE#
  53217 DEFB 24,36,24,44,94,94,231,102          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9018,7 +9017,7 @@ b53248 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles16 }
+; { #TILES16 }
 ; TABLE#
  53408 DEFB 6,0,0,0,0,0,0,0,0                  ; Background
  53417 DEFB 56,51,187,221,204,85,153,221,238   ; Floor
@@ -9046,7 +9045,7 @@ b53248 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item16 }
+; { #ITEM16 }
 ; TABLE#
  53473 DEFB 24,36,24,44,94,94,231,102          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9110,7 +9109,7 @@ b53504 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles17 }
+; { #TILES17 }
 ; TABLE#
  53664 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  53673 DEFB 4,128,192,224,176,144,148,214,119  ; Floor
@@ -9138,7 +9137,7 @@ b53504 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item17 }
+; { #ITEM17 }
 ; TABLE#
  53729 DEFB 24,36,24,44,94,94,231,102          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9204,7 +9203,7 @@ b53760 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles18 }
+; { #TILES18 }
 ; TABLE#
  53920 DEFB 68,0,0,0,0,0,0,0,0                 ; Background
  53929 DEFB 7,128,192,224,208,88,156,222,205   ; Floor
@@ -9232,7 +9231,7 @@ b53760 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item18 }
+; { #ITEM18 }
 ; TABLE#
  53985 DEFB 1,2,5,10,84,40,48,72               ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9293,7 +9292,7 @@ b54016 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles19 }
+; { #TILES19 }
 ; TABLE#
  54176 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  54185 DEFB 4,255,255,242,36,64,2,0,136        ; Floor
@@ -9320,7 +9319,7 @@ b54016 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item19 }
+; { #ITEM19 }
 ; TABLE#
  54241 DEFB 24,36,219,219,36,24,24,24          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9396,7 +9395,7 @@ b54272 DEFB 160,64,10,0,0,0,0,0                ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles20 }
+; { #TILES20 }
 ; TABLE#
  54432 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  54441 DEFB 6,170,85,34,68,34,68,34,68         ; Floor
@@ -9425,7 +9424,7 @@ b54272 DEFB 160,64,10,0,0,0,0,0                ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item20 }
+; { #ITEM20 }
 ; TABLE#
  54497 DEFB 129,129,66,36,24,24,24,231         ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9491,7 +9490,7 @@ b54528 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles21 }
+; { #TILES21 }
 ; TABLE#
  54688 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  54697 DEFB 50,170,168,173,175,32,170,85,85    ; Floor
@@ -9518,7 +9517,7 @@ b54528 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item21 }
+; { #ITEM21 }
 ; TABLE#
  54753 DEFB 4,4,174,174,162,66,66,238          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9583,7 +9582,7 @@ b54784 DEFB 0,0,128,0,0,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles22 }
+; { #TILES22 }
 ; TABLE#
  54944 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  54953 DEFB 13,255,255,0,255,0,0,0,0           ; Floor
@@ -9610,7 +9609,7 @@ b54784 DEFB 0,0,128,0,0,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item22 }
+; { #ITEM22 }
 ; TABLE#
  55009 DEFB 64,160,240,248,252,122,37,2        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9682,7 +9681,7 @@ b55040 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles23 }
+; { #TILES23 }
 ; TABLE#
  55200 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  55209 DEFB 4,254,1,125,133,129,129,129,1      ; Floor
@@ -9710,7 +9709,7 @@ b55040 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item23 }
+; { #ITEM23 }
 ; TABLE#
  55265 DEFB 32,64,160,24,22,9,8,4              ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9777,7 +9776,7 @@ b55296 DEFB 0,0,1,0,0,0,0,0                    ; {Room layout
 ; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
-; { #tiles24 }
+; { #TILES24 }
 ; TABLE#
  55456 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  55465 DEFB 5,255,189,165,165,165,66,0,0       ; Floor
@@ -9804,7 +9803,7 @@ b55296 DEFB 0,0,1,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item24 }
+; { #ITEM24 }
 ; TABLE#
  55521 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9868,7 +9867,7 @@ b55552 DEFB 0,3,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles25 }
+; { #TILES25 }
 ; TABLE#
  55712 DEFB 14,0,0,0,0,0,0,0,0                 ; Background
  55721 DEFB 13,255,255,85,170,85,170,0,0       ; Floor
@@ -9897,7 +9896,7 @@ b55552 DEFB 0,3,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item25 }
+; { #ITEM25 }
 ; TABLE#
  55777 DEFB 112,140,114,250,239,173,37,33      ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -9965,7 +9964,7 @@ b55808 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles26 }
+; { #TILES26 }
 ; TABLE#
  55968 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  55977 DEFB 5,91,164,164,85,10,0,0,0           ; Floor
@@ -9994,7 +9993,7 @@ b55808 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item26 }
+; { #ITEM26 }
 ; TABLE#
  56033 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10056,7 +10055,7 @@ b56064 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles27 }
+; { #TILES27 }
 ; TABLE#
  56224 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  56233 DEFB 13,73,73,73,73,73,73,73,73         ; Floor
@@ -10084,7 +10083,7 @@ b56064 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item27 }
+; { #ITEM27 }
 ; TABLE#
  56289 DEFB 16,48,56,108,198,198,108,16        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10151,7 +10150,7 @@ b56320 DEFB 160,0,0,0,0,0,160,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles28 }
+; { #TILES28 }
 ; TABLE#
  56480 DEFB 0,0,0,0,0,0,0,0,0                   ; Background
  56489 DEFB 4,255,170,85,128,93,148,93,128      ; Floor
@@ -10179,7 +10178,7 @@ b56320 DEFB 160,0,0,0,0,0,160,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item28 }
+; { #ITEM28 }
 ; TABLE#
  56545 DEFB 0,0,0,0,0,0,0,0                     ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10244,7 +10243,7 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
-; { #tiles29 }
+; { #TILES29 }
 ; TABLE#
  56736 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  56745 DEFB 68,255,165,82,36,66,34,64,4        ; Floor
@@ -10272,7 +10271,7 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item29 }
+; { #ITEM29 }
 ; TABLE#
  56801 DEFB 172,174,1,173,173,2,172,88         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10340,7 +10339,7 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles30 }
+; { #TILES30 }
 ; TABLE#
  56992 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  57001 DEFB 72,0,162,0,0,0,70,0,147            ; Floor
@@ -10368,7 +10367,7 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item30 }
+; { #ITEM30 }
 ; TABLE#
  57057 DEFB 5,56,69,130,130,130,68,56          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10433,7 +10432,7 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles31 }
+; { #TILES31 }
 ; TABLE#
 @bfix=DEFB 5,0,0,0,0,0,0,0,0
  57248 DEFB 7,0,0,0,0,0,0,0,0                  ; Background
@@ -10462,7 +10461,7 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item31 }
+; { #ITEM31 }
 ; TABLE#
  57313 DEFB 112,32,32,80,80,136,136,136        ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10523,7 +10522,7 @@ b57344 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles32 }
+; { #TILES32 }
 ; TABLE#
  57504 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  57513 DEFB 5,255,255,90,153,189,90,60,90      ; Floor
@@ -10551,7 +10550,7 @@ b57344 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item32 }
+; { #ITEM32 }
 ; TABLE#
  57569 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10613,7 +10612,7 @@ b57600 DEFB 160,0,0,0,0,0,0,10                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles33 }
+; { #TILES33 }
 ; TABLE#
  57760 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  57769 DEFB 22,0,64,9,100,146,45,150,255       ; Floor
@@ -10640,7 +10639,7 @@ b57600 DEFB 160,0,0,0,0,0,0,10                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item33 }
+; { #ITEM33 }
 ; TABLE#
  57825 DEFB 31,4,10,119,135,177,170,10         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10703,7 +10702,7 @@ b57856 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles34 }
+; { #TILES34 }
 ; TABLE#
  58016 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  58025 DEFB 6,255,170,85,255,0,0,0,0           ; Floor
@@ -10731,7 +10730,7 @@ b57856 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item34 }
+; { #ITEM34 }
 ; TABLE#
  58081 DEFB 24,36,164,202,149,10,21,10         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10795,7 +10794,7 @@ b58112 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles35 }
+; { #TILES35 }
 ; TABLE#
  58272 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  58281 DEFB 6,255,107,181,0,173,0,74,0         ; Floor
@@ -10823,7 +10822,7 @@ b58112 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item35 }
+; { #ITEM35 }
 ; TABLE#
  58337 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10885,7 +10884,7 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
 ; correctly (see the room image above).
 ; .
 ; #UDGTABLE
-; { #tiles36 }
+; { #TILES36 }
 ; TABLE#
  58528 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  58537 DEFB 4,173,82,41,0,1,2,0,0              ; Floor
@@ -10913,7 +10912,7 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item36 }
+; { #ITEM36 }
 ; TABLE#
  58593 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -10978,7 +10977,7 @@ b58624 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles37 }
+; { #TILES37 }
 ; TABLE#
  58784 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  58793 DEFB 4,165,74,36,2,4,0,2,0              ; Floor
@@ -11005,7 +11004,7 @@ b58624 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item37 }
+; { #ITEM37 }
 ; TABLE#
  58849 DEFB 2,20,46,85,42,69,42,20             ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11069,7 +11068,7 @@ b58880 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles38 }
+; { #TILES38 }
 ; TABLE#
  59040 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  59049 DEFB 6,85,85,93,215,112,0,0,0           ; Floor
@@ -11098,7 +11097,7 @@ b58880 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item38 }
+; { #ITEM38 }
 ; TABLE#
  59105 DEFB 191,191,187,177,187,187,191,191    ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11162,7 +11161,7 @@ b59136 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles39 }
+; { #TILES39 }
 ; TABLE#
  59296 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  59305 DEFB 47,102,102,102,102,102,102,102,102 ; Floor
@@ -11189,7 +11188,7 @@ b59136 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item39 }
+; { #ITEM39 }
 ; TABLE#
  59361 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11252,7 +11251,7 @@ b59392 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles40 }
+; { #TILES40 }
 ; TABLE#
  59552 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  59561 DEFB 2,254,85,42,170,85,170,170,255     ; Floor
@@ -11279,7 +11278,7 @@ b59392 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item40 }
+; { #ITEM40 }
 ; TABLE#
  59617 DEFB 240,240,120,184,76,50,13,3         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11341,7 +11340,7 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles41 }
+; { #TILES41 }
 ; TABLE#
  59808 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  59817 DEFB 22,206,255,0,231,0,127,0,251       ; Floor
@@ -11369,7 +11368,7 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item41 }
+; { #ITEM41 }
 ; TABLE#
  59873 DEFB 17,34,51,68,85,102,119,136         ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11441,7 +11440,7 @@ b59904 DEFB 0,0,0,255,255,255,255,240          ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles42 }
+; { #TILES42 }
 ; TABLE#
  60064 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  60073 DEFB 12,181,170,85,74,37,66,1,2         ; Floor
@@ -11468,7 +11467,7 @@ b59904 DEFB 0,0,0,255,255,255,255,240          ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item42 }
+; { #ITEM42 }
 ; TABLE#
  60129 DEFB 255,255,255,255,255,255,255,255    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11535,7 +11534,7 @@ b60160 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles43 }
+; { #TILES43 }
 ; TABLE#
  60320 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  60329 DEFB 4,172,83,42,208,138,36,34,4        ; Floor
@@ -11562,7 +11561,7 @@ b60160 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item43 }
+; { #ITEM43 }
 ; TABLE#
  60385 DEFB 24,24,248,60,126,96,96,126         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11625,7 +11624,7 @@ b60416 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles44 }
+; { #TILES44 }
 ; TABLE#
  60576 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  60585 DEFB 14,160,64,128,0,0,0,0,0            ; Floor
@@ -11653,7 +11652,7 @@ b60416 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item44 }
+; { #ITEM44 }
 ; TABLE#
  60641 DEFB 0,0,24,20,26,53,107,208            ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11714,7 +11713,7 @@ b60672 DEFB 160,0,0,0,0,0,170,170              ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles45 }
+; { #TILES45 }
 ; TABLE#
  60832 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  60841 DEFB 6,255,255,165,88,36,66,32,0        ; Floor
@@ -11741,7 +11740,7 @@ b60672 DEFB 160,0,0,0,0,0,170,170              ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item45 }
+; { #ITEM45 }
 ; TABLE#
  60897 DEFB 129,100,205,15,97,218,51,26        ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11806,7 +11805,7 @@ b60928 DEFB 170,10,170,170,170,170,170,170     ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles46 }
+; { #TILES46 }
 ; TABLE#
  61088 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  61097 DEFB 6,255,255,0,0,0,0,0,0              ; Floor
@@ -11833,7 +11832,7 @@ b60928 DEFB 170,10,170,170,170,170,170,170     ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item46 }
+; { #ITEM46 }
 ; TABLE#
  61153 DEFB 2,29,34,94,190,124,56,16           ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -11984,7 +11983,7 @@ b61440 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles48 }
+; { #TILES48 }
 ; TABLE#
  61600 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  61609 DEFB 13,255,34,68,136,85,34,0,0         ; Floor
@@ -12012,7 +12011,7 @@ b61440 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item48 }
+; { #ITEM48 }
 ; TABLE#
  61665 DEFB 18,18,18,18,18,18,18,18            ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12080,7 +12079,7 @@ b61696 DEFB 0,0,0,0,0,12,2,170                 ; {Room layout
 ; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
-; { #tiles49 }
+; { #TILES49 }
 ; TABLE#
  61856 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  61865 DEFB 66,255,24,231,16,199,56,0,0        ; Floor
@@ -12107,7 +12106,7 @@ b61696 DEFB 0,0,0,0,0,12,2,170                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item49 }
+; { #ITEM49 }
 ; TABLE#
  61921 DEFB 0,25,249,31,0,25,255,31            ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12175,7 +12174,7 @@ b61952 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles50 }
+; { #TILES50 }
 ; TABLE#
  62112 DEFB 8,0,0,0,0,0,0,0,0                  ; Background
  62121 DEFB 6,255,255,170,85,170,85,0,0        ; Floor
@@ -12202,7 +12201,7 @@ b61952 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item50 }
+; { #ITEM50 }
 ; TABLE#
  62177 DEFB 116,56,102,191,191,157,66,60       ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12268,7 +12267,7 @@ b62208 DEFB 0,0,2,170,160,0,0,0                ; {Room layout
 ; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
-; { #tiles51 }
+; { #TILES51 }
 ; TABLE#
  62368 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  62377 DEFB 5,90,255,34,68,34,64,0,0           ; Floor
@@ -12295,7 +12294,7 @@ b62208 DEFB 0,0,2,170,160,0,0,0                ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item51 }
+; { #ITEM51 }
 ; TABLE#
  62433 DEFB 24,24,24,24,24,155,127,59          ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12361,7 +12360,7 @@ b62464 DEFB 0,0,0,0,10,170,170,170             ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles52 }
+; { #TILES52 }
 ; TABLE#
  62624 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  62633 DEFB 67,255,68,68,255,17,17,255,0       ; Floor
@@ -12389,7 +12388,7 @@ b62464 DEFB 0,0,0,0,10,170,170,170             ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item52 }
+; { #ITEM52 }
 ; TABLE#
  62689 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12454,7 +12453,7 @@ b62720 DEFB 0,0,0,0,160,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles53 }
+; { #TILES53 }
 ; TABLE#
  62880 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  62889 DEFB 3,255,255,255,170,85,170,85,0      ; Floor
@@ -12481,7 +12480,7 @@ b62720 DEFB 0,0,0,0,160,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item53 }
+; { #ITEM53 }
 ; TABLE#
  62945 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12541,7 +12540,7 @@ b62976 DEFB 0,160,0,0,0,0,0,0                  ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles54 }
+; { #TILES54 }
 ; TABLE#
  63136 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  63145 DEFB 65,249,255,63,213,170,21,74,132    ; Floor
@@ -12569,7 +12568,7 @@ b62976 DEFB 0,160,0,0,0,0,0,0                  ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item54 }
+; { #ITEM54 }
 ; TABLE#
  63201 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12633,7 +12632,7 @@ b63232 DEFB 0,0,4,0,160,64,0,0                 ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles55 }
+; { #TILES55 }
 ; TABLE#
  63392 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  63401 DEFB 6,170,85,130,65,130,65,130,65      ; Floor
@@ -12661,7 +12660,7 @@ b63232 DEFB 0,0,4,0,160,64,0,0                 ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item55 }
+; { #ITEM55 }
 ; TABLE#
  63457 DEFB 0,0,0,0,0,0,0,0                    ; Item graphic (unused)
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12723,7 +12722,7 @@ b63488 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles56 }
+; { #TILES56 }
 ; TABLE#
  63648 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  63657 DEFB 3,255,170,255,164,164,167,228,60   ; Floor
@@ -12751,7 +12750,7 @@ b63488 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item56 }
+; { #ITEM56 }
 ; TABLE#
  63713 DEFB 0,0,0,10,13,60,242,192             ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12818,7 +12817,7 @@ b63744 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles57 }
+; { #TILES57 }
 ; TABLE#
  63904 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  63913 DEFB 4,247,170,85,239,0,0,0,0           ; Floor
@@ -12846,7 +12845,7 @@ b63744 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item57 }
+; { #ITEM57 }
 ; TABLE#
  63969 DEFB 8,16,32,33,18,172,64,32            ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12908,7 +12907,7 @@ b64000 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles58 }
+; { #TILES58 }
 ; TABLE#
  64160 DEFB 13,0,0,0,0,0,0,0,0                 ; Background
  64169 DEFB 50,0,0,64,4,0,16,0,1               ; Floor
@@ -12935,7 +12934,7 @@ b64000 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item58 }
+; { #ITEM58 }
 ; TABLE#
  64225 DEFB 4,5,11,11,23,55,111,239            ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -12996,7 +12995,7 @@ b64256 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles59 }
+; { #TILES59 }
 ; TABLE#
  64416 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  64425 DEFB 6,187,221,221,238,0,0,0,0          ; Floor
@@ -13023,7 +13022,7 @@ b64256 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item59 }
+; { #ITEM59 }
 ; TABLE#
  64481 DEFB 206,241,185,213,239,215,187,255    ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,
@@ -13087,7 +13086,7 @@ b64512 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; graphic data for the tiles used to build the room.
 ; .
 ; #UDGTABLE
-; { #tiles60 }
+; { #TILES60 }
 ; TABLE#
  64672 DEFB 0,0,0,0,0,0,0,0,0                  ; Background
  64681 DEFB 68,255,170,85,255,0,0,0,0          ; Floor
@@ -13114,7 +13113,7 @@ b64512 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; The next eight bytes are copied to #R32993 and define the item graphic.
 ; .
 ; #UDGTABLE
-; { #item60 }
+; { #ITEM60 }
 ; TABLE#
  64737 DEFB 72,57,38,218,91,100,156,18         ; Item graphic
 ; The next four bytes are copied to #R33001 and specify the rooms to the left,

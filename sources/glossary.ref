@@ -1,4 +1,4 @@
-; Copyright 2014, 2017 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014, 2017, 2020 Richard Dymond (rjdymond@gmail.com)
 
 [Glossary:Animation frame index mask]
 The animation frame index mask for a <a href="#guardian">guardian</a> is found
@@ -46,9 +46,9 @@ guardian) or up and down (vertical guardian) in a straight line, or
 examples are:
 
 #UDGTABLE(gallery)
-{ #R50432(The Security Guard)  | #guardian191,4,66 }
-{ #R54016(The Forgotten Abbey) | #guardian180,2,6 }
-{ #R57600(The Bathroom)        | #guardian185,1,4 }
+{ #R50432(The Security Guard)  | #GUARDIAN191,4,66 }
+{ #R54016(The Forgotten Abbey) | #GUARDIAN180,2,6 }
+{ #R57600(The Bathroom)        | #GUARDIAN185,1,4 }
 TABLE#
 
 The graphic data for all the guardians in the game can be found at #R43776.
