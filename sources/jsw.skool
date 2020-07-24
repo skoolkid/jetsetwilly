@@ -731,16 +731,16 @@ g34253 DEFB 0
 @label=JOYSTICK
 g34254 DEFB 0
 
-; Willy's pixel y-coordinate (x2)
+; Willy's y-coordinate
 ;
 ; Initialised to 208 by the routine at #R34762, and used by the routines at
 ; #R35245, #R35591, #R36307, #R36564, #R36796, #R37310, #R38064, #R38098,
 ; #R38196, #R38344 and #R38455. Holds the LSB of the address of the entry in
 ; the screen buffer address lookup table at #R33280 that corresponds to Willy's
-; pixel y-coordinate; in practice, this is twice Willy's actual pixel
+; pixel y-coordinate; in practice, this LSB is twice Willy's actual pixel
 ; y-coordinate. Note that when Willy is standing on a ramp, this holds his
-; pixel y-coordinate rounded down to the nearest multiple of 16 (8x2).
-@label=PIXEL_Y
+; y-coordinate rounded down to the nearest multiple of 16 (8x2).
+@label=WILLY_Y
 g34255 DEFB 0
 
 ; Willy's direction and movement flags
@@ -819,7 +819,7 @@ g34262 DEFB 0
 ; Initialised by the routine at #R35090, and copied back into #GBUF34255,34261
 ; by the routine at #R35841.
 @label=INITSTATE
-g34263 DEFB 0        ; Willy's pixel y-coordinate (copied from #R34255)
+g34263 DEFB 0        ; Willy's y-coordinate (copied from #R34255)
  34264 DEFB 0        ; Willy's direction and movement flags (copied from
                      ; #R34256)
  34265 DEFB 0        ; Airborne status indicator (copied from #R34257)
@@ -1145,7 +1145,7 @@ c34762 XOR A         ; #REGa=0
  34781 LD (34271),A  ; Initialise the game mode indicator at #R34271
  34784 LD A,7        ; {Initialise the number of lives remaining at #R34252
  34786 LD (34252),A  ; }
- 34789 LD A,208      ; {Initialise Willy's pixel y-coordinate at #R34255
+ 34789 LD A,208      ; {Initialise Willy's y-coordinate at #R34255
  34791 LD (34255),A  ; }
  34794 LD A,33       ; {Initialise the current room number at #R33824 to #b33
  34796 LD (33824),A  ; (#R57600(The Bathroom))}
@@ -1432,7 +1432,7 @@ c35245 CALL 35211    ; Draw the remaining lives
  35276 CP 3          ; Is Willy's head down the toilet?
  35278 CALL NZ,36307 ; If not, move Willy
 @label=AFTERMOVE1
- 35281 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
+ 35281 LD A,(34255)  ; Pick up Willy's y-coordinate from #R34255
  35284 CP 225        ; Has Willy just moved up a ramp or a rope past the top of
                      ; the screen?
  35286 CALL NC,38064 ; If so, move Willy into the room above
@@ -1698,7 +1698,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35743 LD A,(33824)  ; Pick up the current room number from #R33824
  35746 CP 28         ; Are we in #R56320(First Landing)?
  35748 JP NZ,35245   ; If not, jump back to the start of the main loop
- 35751 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
+ 35751 LD A,(34255)  ; Pick up Willy's y-coordinate from #R34255
  35754 CP 208        ; Is Willy on the floor at the bottom of the staircase?
  35756 JP NZ,35245   ; If not, jump back to the start of the main loop
  35759 LD A,(34275)  ; Pick up the WRITETYPER key counter (0-9) from #R34275
@@ -2086,13 +2086,13 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
                      ; #R34261
  36326 AND 254       ; Discard bit 0
  36328 SUB 8         ; Now -8<=#REGa<=8 (and #REGa is even)
- 36330 LD HL,34255   ; {Adjust Willy's pixel y-coordinate at #R34255 depending
- 36333 ADD A,(HL)    ; on where Willy is in the jump
+ 36330 LD HL,34255   ; {Adjust Willy's y-coordinate at #R34255 depending on
+ 36333 ADD A,(HL)    ; where Willy is in the jump
  36334 LD (HL),A     ; }
  36335 CP 240        ; Is the new value negative (above the top of the screen)?
  36337 JP NC,38064   ; If so, move Willy into the room above
  36340 CALL 36508    ; Adjust Willy's attribute buffer location at #R34259
-                     ; depending on his pixel y-coordinate
+                     ; depending on his y-coordinate
  36343 LD A,(32946)  ; Pick up the attribute byte of the wall tile for the
                      ; current room from #R32946
  36346 CP (HL)       ; Is the top-left cell of Willy's sprite overlapping a
@@ -2138,7 +2138,7 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
 ; his way down and is exactly two cell-heights above where he started the jump)
 ; or 16 (at which point Willy is on his way down and is exactly one cell-height
 ; above where he started the jump).
-*36406 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
+*36406 LD A,(34255)  ; Pick up Willy's y-coordinate from #R34255
  36409 AND 14        ; Is Willy either on a ramp, or occupying only four cells?
  36411 JR NZ,36450   ; Jump if not
  36413 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
@@ -2197,8 +2197,8 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
 *36495 DJNZ 36495    ;
  36497 DEC C         ;
  36498 JR NZ,36490   ; }
- 36500 LD A,(34255)  ; {Add 8 to Willy's pixel y-coordinate at #R34255; this
- 36503 ADD A,8       ; moves Willy downwards by 4 pixels
+ 36500 LD A,(34255)  ; {Add 8 to Willy's y-coordinate at #R34255; this moves
+ 36503 ADD A,8       ; Willy downwards by 4 pixels
  36505 LD (34255),A  ; }
 ; This entry point is used by the routine at #R37310 to update Willy's
 ; attribute buffer location when he's on a rope.
@@ -2226,12 +2226,12 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36536 LD (34257),A  ; }
  36539 RET           ;
 ; The top-left or top-right cell of Willy's sprite is overlapping a wall tile.
-*36540 LD A,(34255)  ; {Adjust Willy's pixel y-coordinate at #R34255 so that
- 36543 ADD A,16      ; the top row of cells of his sprite is just below the
- 36545 AND 240       ; wall tile
+*36540 LD A,(34255)  ; {Adjust Willy's y-coordinate at #R34255 so that the top
+ 36543 ADD A,16      ; row of cells of his sprite is just below the wall tile
+ 36545 AND 240       ;
  36547 LD (34255),A  ; }
  36550 CALL 36508    ; Adjust Willy's attribute buffer location at #R34259 to
-                     ; account for this new pixel y-coordinate
+                     ; account for this new y-coordinate
  36553 LD A,2        ; {Set the airborne status indicator at #R34257 to #b2:
  36555 LD (34257),A  ; Willy has started falling}
  36558 LD HL,34256   ; {Reset bit 1 at #R34256: Willy is not moving left or
@@ -2383,7 +2383,7 @@ c36564 LD E,255      ; Initialise #REGe to #b255 (all bits set); it will be
  36775 JR NZ,36796   ; Jump if not
  36777 LD A,240      ; {Set the rope status indicator at #R34262 to #b240
  36779 LD (34262),A  ; }
- 36782 LD A,(34255)  ; {Round down Willy's pixel y-coordinate at #R34255 to the
+ 36782 LD A,(34255)  ; {Round down Willy's y-coordinate at #R34255 to the
  36785 AND 240       ; nearest multiple of 16; this might move him upwards a
  36787 LD (34255),A  ; little, but ensures that his actual pixel y-coordinate
                      ; is a multiple of 8 (making his sprite cell-aligned)
@@ -2460,12 +2460,12 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; current room from #R32946
  36892 CP (HL)       ; Is there a wall tile in the cell pointed to by #REGhl?
  36893 RET Z         ; Return if so without moving Willy (his path is blocked)
- 36894 LD A,(34255)  ; Pick up Willy's pixel y-coordinate (Y) from #R34255
+ 36894 LD A,(34255)  ; Pick up Willy's y-coordinate (Y) from #R34255
  36897 SRA C         ; {Now #REGb=Y (if Willy is neither on nor about to step
  36899 ADD A,C       ; onto a ramp), or Y+16 (if Willy is walking down a ramp),
  36900 LD B,A        ; or Y-16 (if Willy is on or about to step onto a ramp
                      ; that goes up to the left); this will be Willy's new
-                     ; pixel y-coordinate}
+                     ; y-coordinate}
  36901 AND 15        ; Is Willy at a point in a jump (left) where his sprite
                      ; occupies three rows of cells?
  36903 JR Z,36914    ; Jump if not (Willy's sprite is cell-aligned)
@@ -2482,7 +2482,7 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; Willy is walking down a ramp}
  36917 LD (34259),HL ; Save Willy's new attribute buffer coordinates (in
                      ; #REGhl) at #R34259
- 36920 LD A,B        ; {Save Willy's new pixel y-coordinate at #R34255
+ 36920 LD A,B        ; {Save Willy's new y-coordinate at #R34255
  36921 LD (34255),A  ; }
  36924 LD A,3        ; {Change Willy's animation frame at #R34258 from 0 to 3
  36926 LD (34258),A  ; }
@@ -2541,12 +2541,12 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; ramp that goes up to the right
  37003 CP (HL)       ; Is there a wall tile in the cell pointed to by #REGhl?
  37004 RET Z         ; Return if so without moving Willy (his path is blocked)
- 37005 LD A,(34255)  ; Pick up Willy's pixel y-coordinate (Y) from #R34255
+ 37005 LD A,(34255)  ; Pick up Willy's y-coordinate (Y) from #R34255
  37008 SRA C         ; {Now #REGb=Y (if Willy is neither on nor about to step
  37010 ADD A,C       ; onto a ramp), or Y+16 (if Willy is walking down a ramp),
  37011 LD B,A        ; or Y-16 (if Willy is on or about to step onto a ramp
                      ; that goes up to the right); this will be Willy's new
-                     ; pixel y-coordinate}
+                     ; y-coordinate}
  37012 AND 15        ; Is Willy at a point in a jump (right) where his sprite
                      ; occupies three rows of cells?
  37014 JR Z,37025    ; Jump if not (Willy's sprite is cell-aligned)
@@ -2573,7 +2573,7 @@ c36796 LD A,(34256)  ; Pick up Willy's direction and movement flags from
                      ; #REGhl) at #R34259
  37037 XOR A         ; {Change Willy's animation frame at #R34258 from 3 to 0
  37038 LD (34258),A  ; }
- 37041 LD A,B        ; {Save Willy's new pixel y-coordinate at #R34255
+ 37041 LD A,B        ; {Save Willy's new y-coordinate at #R34255
  37042 LD (34255),A  ; }
  37045 RET           ;
 
@@ -2933,8 +2933,8 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
                      ; the drawing byte is in bit 6 or 7)
 *37628 LD (34258),BC ; Set Willy's animation frame at #R34258, and temporarily
                      ; store his x-coordinate at #R34259
- 37632 LD A,IYl      ; {Update Willy's pixel y-coordinate at #R34255 to account
- 37634 SUB 16        ; for his change of location as the rope moves
+ 37632 LD A,IYl      ; {Update Willy's y-coordinate at #R34255 to account for
+ 37634 SUB 16        ; his change of location as the rope moves
  37636 LD (34255),A  ; }
  37639 PUSH HL       ; Save #REGhl briefly
  37640 CALL 36508    ; Update Willy's attribute buffer address at #R34259 to
@@ -3026,7 +3026,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37793 JR Z,37811    ; consider the next entity}
  37795 LD (HL),240   ; Set the rope status indicator at #R34262 to #b240 (Willy
                      ; has just dropped off the bottom of the rope)
- 37797 LD A,(34255)  ; {Round down Willy's pixel y-coordinate at #R34255 to the
+ 37797 LD A,(34255)  ; {Round down Willy's y-coordinate at #R34255 to the
  37800 AND 248       ; nearest multiple of 8; this might move him upwards a
  37802 LD (34255),A  ; little, but ensures that his actual pixel y-coordinate
                      ; is a multiple of 4 before he starts falling}
@@ -3265,7 +3265,7 @@ c38064 LD A,(33003)  ; Pick up the number of the room above from #R33003
  38080 LD A,93       ;
 @ssub=LD (34259+1),A
  38082 LD (34260),A  ; }
- 38085 LD A,208      ; {Adjust Willy's pixel y-coordinate (at #R34255) as well
+ 38085 LD A,208      ; {Adjust Willy's y-coordinate (at #R34255) as well
  38087 LD (34255),A  ; }
  38090 XOR A         ; {Reset the airborne status indicator at #R34257
  38091 LD (34257),A  ; }
@@ -3279,7 +3279,7 @@ c38064 LD A,(33003)  ; Pick up the number of the room above from #R33003
 @label=ROOMBELOW
 c38098 LD A,(33004)  ; Pick up the number of the room below from #R33004
  38101 LD (33824),A  ; Make it the current room number by copying it to #R33824
- 38104 XOR A         ; {Set Willy's pixel y-coordinate (at #R34255) to 0
+ 38104 XOR A         ; {Set Willy's y-coordinate (at #R34255) to 0
  38105 LD (34255),A  ; }
  38108 LD A,(34257)  ; Pick up the airborne status indicator from #R34257
  38111 CP 11         ; Is it #b11 or greater (meaning Willy has already been
@@ -3368,7 +3368,7 @@ c38196 LD A,(33824)  ; Pick up the number of the current room from #R33824
  38217 RRCA          ;
  38218 OR 128        ; }
  38220 LD E,A        ; Now #REGe=#b128 (foot down) or #b160 (foot raised)
- 38221 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
+ 38221 LD A,(34255)  ; Pick up Willy's y-coordinate from #R34255
  38224 CP 208        ; Is Willy on the floor below the ramp?
  38226 JR Z,38236    ; Jump if so
  38228 LD E,192      ; #REGe=#b192 (raising arm)
@@ -3472,7 +3472,7 @@ c38344 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
  38369 OR A          ; Is Willy airborne?
  38370 JR NZ,38392   ; Jump if so
 ; Willy is standing on a ramp. Calculate the offset that needs to be added to
-; the y-coordinate stored at #R34255 to obtain Willy's true pixel y-coordinate.
+; the y-coordinate stored at #R34255 to obtain Willy's true y-coordinate.
  38372 LD A,(34258)  ; Pick up Willy's current animation frame (0-3) from
                      ; #R34258
  38375 AND 3         ; {#REGb=0, 4, 8 or 12
@@ -3501,10 +3501,10 @@ c38344 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
  38408 CALL 38430    ; Check and set the attribute byte for the mid-left cell
  38411 INC HL        ; Move #REGhl to the next cell to the right
  38412 CALL 38430    ; Check and set the attribute byte for the mid-right cell
- 38415 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
+ 38415 LD A,(34255)  ; Pick up Willy's y-coordinate from #R34255
  38418 ADD A,B       ; {Add the y-coordinate offset calculated earlier (to get
- 38419 LD C,A        ; Willy's true pixel y-coordinate if he's standing on a
-                     ; ramp) and transfer the result to #REGc}
+ 38419 LD C,A        ; Willy's true y-coordinate if he's standing on a ramp)
+                     ; and transfer the result to #REGc}
  38420 ADD HL,DE     ; Move #REGhl down a row and back one cell to the left; at
                      ; this point #REGhl may be pointing at one of the cells in
                      ; the top row of the buffer at #R24064, which is a
@@ -3521,10 +3521,10 @@ c38344 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
 ; Used by the routine at #R38344. Sets the attribute byte in the buffer at
 ; #R23552 for one of the six cells (in three rows of two) occupied by or under
 ; Willy's sprite, or kills Willy if the cell contains a nasty. On entry, #REGc
-; holds either #b15 if the cell is in the top two rows, or Willy's pixel
-; y-coordinate if the cell is in the bottom row.
+; holds either #b15 if the cell is in the top two rows, or Willy's y-coordinate
+; if the cell is in the bottom row.
 ;
-; C #b15 or Willy's pixel y-coordinate
+; C #b15 or Willy's y-coordinate
 ; HL Address of the attribute byte in the buffer at #R23552
 @label=WILLYATTR
 c38430 LD A,(32928)  ; Pick up the attribute byte of the background tile in the
@@ -3556,8 +3556,8 @@ c38430 LD A,(32928)  ; Pick up the attribute byte of the background tile in the
 ;
 ; B y-coordinate offset (0, 4, 8 or 12)
 @label=DRAWWILLY
-c38455 LD A,(34255)  ; Pick up Willy's pixel y-coordinate from #R34255
- 38458 ADD A,B       ; Add the y-coordinate offset (to get Willy's true pixel
+c38455 LD A,(34255)  ; Pick up Willy's y-coordinate from #R34255
+ 38458 ADD A,B       ; Add the y-coordinate offset (to get Willy's true
                      ; y-coordinate if he's standing on a ramp)
 @ssub=LD IXh,33280/256
  38459 LD IXh,130    ; {Point #REGix at the entry in the screen buffer address
@@ -5484,9 +5484,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 @label=ENTITY60
  41440 DEFB %10000100         ; Arrow (bits 0-2), flying left to right (bit 7)
  41441 DEFB 6                 ; Unused
- 41442 DEFB 0                 ; Replaced by the pixel y-coordinate (copied from
-                              ; the second byte of the entity specification in
-                              ; the room definition)
+ 41442 DEFB 0                 ; Replaced by the y-coordinate (copied from the
+                              ; second byte of the entity specification in the
+                              ; room definition)
  41443 DEFB 0                 ; Unused
  41444 DEFB 208               ; Initial x-coordinate: 208
  41445 DEFB 0                 ; Unused
@@ -5658,9 +5658,9 @@ b40960 DEFB 0,0,0,0,0,0,0,0
 @label=ENTITY69
  41512 DEFB %00000100         ; Arrow (bits 0-2), flying right to left (bit 7)
  41513 DEFB 6                 ; Unused
- 41514 DEFB 0                 ; Replaced by the pixel y-coordinate (copied from
-                              ; the second byte of the entity specification in
-                              ; the room definition)
+ 41514 DEFB 0                 ; Replaced by the y-coordinate (copied from the
+                              ; second byte of the entity specification in the
+                              ; room definition)
  41515 DEFB 0                 ; Unused
  41516 DEFB 28                ; Initial x-coordinate: 28
  41517 DEFB 0                 ; Unused

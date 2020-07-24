@@ -318,11 +318,11 @@ into the room above. This happens because:
   segment 1). }
 { On the next pass through the main loop, the section of code at #R37558
   erroneously detects Willy on the rope at segment 1, and accordingly sets his
-  pixel y-coordinate at #R34255 to 246; this is the y-coordinate of segment 1
-  of the rope (6) minus 16. }
+  y-coordinate at #R34255 to 246; this is the y-coordinate of segment 1 of the
+  rope (6) minus 16. }
 { On the next pass through the main loop, the code at #R35281 picks up Willy's
-  pixel y-coordinate (now 246) from #R34255, finds that it is 225 or greater,
-  and moves Willy into the room above. }
+  y-coordinate (now 246) from #R34255, finds that it is 225 or greater, and
+  moves Willy into the room above. }
 LIST#
 
 [Fact:ropesBeforeArrows:Ropes before arrows]
