@@ -122,7 +122,7 @@ class JetSetWilly:
         return code + '9'
 
     def _get_guardian_macro(self, addr, attr):
-        return '#guardian{},{},{}'.format(addr // 256, (addr % 256) // 32, attr)
+        return '#GUARDIAN{},{},{}'.format(addr // 256, (addr % 256) // 32, attr)
 
     def get_screen_buffer_address_table(self):
         lines = ['w 33280 Screen buffer address lookup table ']
@@ -252,7 +252,7 @@ class JetSetWilly:
                     desc0 = 'Arrow (bits 0-2), flying {} (bit 7)'.format(direction)
                     b1_format = ''
                     desc1 = 'Unused'
-                    desc2 = 'Replaced by the pixel y-coordinate (copied from the second byte of the entity specification in the room definition)'
+                    desc2 = 'Replaced by the y-coordinate (copied from the second byte of the entity specification in the room definition)'
                     desc3 = 'Unused'
                     desc4 = 'Initial x-coordinate: {}'.format(entity_def[4])
                     desc5 = 'Unused'
@@ -363,7 +363,7 @@ class JetSetWilly:
 
     def _write_tiles(self, lines, a):
         room_num = a // 256 - 192
-        tiles_table = '#UDGTABLE {{ #tiles{} }} TABLE#'.format(room_num)
+        tiles_table = '#UDGTABLE {{ #TILES{} }} TABLE#'.format(room_num)
         comment = 'The next 54 bytes are copied to #R32928 and contain the attributes and graphic data for the tiles used to build the room.'
         if room_num == 36:
             comment += ' Note that because of a #BUG#corruptedNasties(bug) in the game engine, the nasty tile is not drawn correctly (see the room image above).'
@@ -405,6 +405,8 @@ class JetSetWilly:
 
     def _write_conveyor(self, lines, a):
         lines.append('N {} The next four bytes are copied to #R32982 and specify the direction, location and length of the conveyor.'.format(a + 214))
+        if a == 58112:
+            lines.append('@ {} bfix=DEFB 254'.format(a + 214))
         conveyor_d, p1, p2 = self.snapshot[a + 214:a + 217]
         coords = self._get_coordinates(p1, p2)
         location_suffix = ': ({},{})'.format(*coords) if coords else ' (unused)'
@@ -561,7 +563,7 @@ class JetSetWilly:
 
                 # Item graphic
                 lines.append('N {} The next eight bytes are copied to #R32993 and define the item graphic.'.format(a + 225))
-                lines.append('N {} #UDGTABLE {{ #item{} }} TABLE#'.format(a + 225, room_num))
+                lines.append('N {} #UDGTABLE {{ #ITEM{} }} TABLE#'.format(a + 225, room_num))
                 lines.append('B {},8,8 Item graphic{}'.format(a + 225, '' if items.get(room_num) else ' (unused)'))
 
                 # Rooms to the left, to the right, above and below
