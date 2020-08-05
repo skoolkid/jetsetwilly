@@ -306,10 +306,10 @@ doesn't use the second and fourth bytes of its slot), or by nothing.
 Note, however, that if a rope were the eighth entity specified in a room, byte
 11 of its buffer would occupy the third byte in the otherwise unused area at
 #R33089, and would not be reinitialised by the routine at #R35090 after Willy
-has lost a life. This means that if Willy dies while on the rope, bit 0 of byte
-11 (which indicates whether he is on the rope) remains set; then, if Willy
-starts moving in the same direction as the rope is swinging, he will teleport
-into the room above. This happens because:
+loses a life or re-enters the room. This means, for example, that if Willy dies
+while on the rope, bit 0 of byte 11 (which indicates whether he is on the rope)
+remains set; then, if Willy starts moving in the same direction as the rope is
+swinging, he will teleport into the room above. This happens because:
 
 #LIST
 { The section of code at #R37726 erroneously assumes that Willy is on the rope,
