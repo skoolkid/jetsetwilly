@@ -1,9 +1,9 @@
-; Copyright 2014-2019 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2020 Richard Dymond (rjdymond@gmail.com)
 
 [Page:Changelog]
 SectionType=BulletPoints
 
-[Changelog:YYYYMMDD]
+[Changelog:20200806]
 -
 
 - In #BUG#theStickyBed(), added a POKE to make the bed unsticky (thanks IRF)
