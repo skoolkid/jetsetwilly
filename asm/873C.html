@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 873C</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="86C3.html">86C3</a></span></td>
+<td class="prev">
+Prev: <a href="86C3.html">86C3</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#873c">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="87CA.html">87CA</a></span></td>
+<td class="next">
+Next: <a href="87CA.html">87CA</a>
+</td>
 </tr>
 </table>
 <div class="description">873C: Read the keyboard during code entry</div>
@@ -29,7 +32,7 @@
 Used by the routine at <a href="86C3.html">86C3</a>. Waits for '1', '2', '3', '4' or ENTER to be pressed and either prints a coloured block or validates the entered code. Returns to the routine at <a href="869F.html">869F</a> if ENTER is being pressed, with the zero flag reset if the entered code is correct.
 </div>
 </div>
-<table class="input-1">
+<table class="input">
 <tr class="asm-input-header">
 <th colspan="2">Input</th>
 </tr>
@@ -38,104 +41,68 @@ Used by the routine at <a href="86C3.html">86C3</a>. Waits for '1', '2', '3', '4
 <td class="register-desc">Attribute file address of the flashing 2x2 block</td>
 </tr>
 </table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="873c"></span>873C</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$F7FE</td>
-<td class="comment-11" rowspan="2">Read keys 1-2-3-4-5</td>
+<td class="comment-1" rowspan="2">Read keys 1-2-3-4-5</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="873f"></span>873F</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8741"></span>8741</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $0F</td>
-<td class="comment-11" rowspan="2">Is '1', '2', '3' or '4' (still) being pressed?</td>
+<td class="comment-1" rowspan="2">Is '1', '2', '3' or '4' (still) being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8743"></span>8743</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $0F</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8745"></span>8745</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="873C.html#873c">$873C</a></td>
-<td class="comment-11" rowspan="1">Jump back if so</td>
+<td class="comment-1" rowspan="1">Jump back if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8747"></span>8747</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,$BF</td>
-<td class="comment-11" rowspan="2">Read keys H-J-K-L-ENTER</td>
+<td class="comment-1" rowspan="2">Read keys H-J-K-L-ENTER</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8749"></span>8749</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="874b"></span>874B</td>
-<td class="bytes-0"></td>
 <td class="instruction">BIT 0,A</td>
-<td class="comment-11" rowspan="1">Is ENTER being pressed?</td>
+<td class="comment-1" rowspan="1">Is ENTER being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="874d"></span>874D</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="873C.html#8785">$8785</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="874f"></span>874F</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($5959)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the fourth 2x2 block at (10,25)</td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the fourth 2x2 block at (10,25)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8752"></span>8752</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $7F</td>
-<td class="comment-11" rowspan="2">Has the fourth digit been entered yet?</td>
+<td class="comment-1" rowspan="2">Has the fourth digit been entered yet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8754"></span>8754</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $07</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8756"></span>8756</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="873C.html#8785">$8785</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -148,207 +115,129 @@ We have four coloured blocks, and ENTER is being pressed. Time to validate the e
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8758"></span>8758</td>
-<td class="bytes-0"></td>
 <td class="instruction">SUB $08</td>
-<td class="comment-11" rowspan="6">Compute bits 0 and 1 of the entered code from the attribute byte of the fourth coloured block at (10,25) and store them in <span class="register">C</span></td>
+<td class="comment-1" rowspan="6">Compute bits 0 and 1 of the entered code from the attribute byte of the fourth coloured block at (10,25) and store them in <span class="register">C</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="875a"></span>875A</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $18</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="875c"></span>875C</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="875d"></span>875D</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="875e"></span>875E</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="875f"></span>875F</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8760"></span>8760</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($5953)</td>
-<td class="comment-11" rowspan="6">Compute bits 4 and 5 of the entered code from the attribute byte of the second coloured block at (10,19) and store them in <span class="register">C</span> (alongside bits 0 and 1)</td>
+<td class="comment-1" rowspan="6">Compute bits 4 and 5 of the entered code from the attribute byte of the second coloured block at (10,19) and store them in <span class="register">C</span> (alongside bits 0 and 1)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8763"></span>8763</td>
-<td class="bytes-0"></td>
 <td class="instruction">SUB $08</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8765"></span>8765</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $18</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8767"></span>8767</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8768"></span>8768</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR C</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8769"></span>8769</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="876a"></span>876A</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($5956)</td>
-<td class="comment-11" rowspan="6">Compute bits 2 and 3 of the entered code from the attribute byte of the third coloured block at (10,22) and store them in <span class="register">C</span> (alongside bits 0, 1, 4 and 5)</td>
+<td class="comment-1" rowspan="6">Compute bits 2 and 3 of the entered code from the attribute byte of the third coloured block at (10,22) and store them in <span class="register">C</span> (alongside bits 0, 1, 4 and 5)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="876d"></span>876D</td>
-<td class="bytes-0"></td>
 <td class="instruction">SUB $08</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="876f"></span>876F</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $18</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8771"></span>8771</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8772"></span>8772</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR C</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8773"></span>8773</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8774"></span>8774</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($5950)</td>
-<td class="comment-11" rowspan="6">Compute bits 6 and 7 of the entered code from the attribute byte of the first coloured block at (10,16) in <span class="register">A</span></td>
+<td class="comment-1" rowspan="6">Compute bits 6 and 7 of the entered code from the attribute byte of the first coloured block at (10,16) in <span class="register">A</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8777"></span>8777</td>
-<td class="bytes-0"></td>
 <td class="instruction">SUB $08</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8779"></span>8779</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $18</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="877b"></span>877B</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="877c"></span>877C</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="877d"></span>877D</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="877e"></span>877E</td>
-<td class="bytes-0"></td>
 <td class="instruction">POP HL</td>
-<td class="comment-11" rowspan="1">Drop the return address from the stack</td>
+<td class="comment-1" rowspan="1">Drop the return address from the stack</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="877f"></span>877F</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR C</td>
-<td class="comment-11" rowspan="1">Merge bits 0-5 of the entered code into <span class="register">A</span>; now <span class="register">A</span> holds all 8 bits of the entered code</td>
+<td class="comment-1" rowspan="1">Merge bits 0-5 of the entered code into <span class="register">A</span>; now <span class="register">A</span> holds all 8 bits of the entered code</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8780"></span>8780</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,$85E4</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at <a href="85E4.html">85E4</a> (where the correct entry code is stored)</td>
+<td class="comment-1" rowspan="1">Point <span class="register">HL</span> at <a href="85E4.html">85E4</a> (where the correct entry code is stored)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8783"></span>8783</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Set the zero flag if the entered code matches</td>
+<td class="comment-1" rowspan="1">Set the zero flag if the entered code matches</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8784"></span>8784</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1">Return to the routine at <a href="869F.html">869F</a></td>
+<td class="comment-1" rowspan="1">Return to the routine at <a href="869F.html">869F</a></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -361,137 +250,95 @@ Here we check whether '1', '2', '3' or '4' is being pressed.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8785"></span>8785</td>
-<td class="bytes-0"></td>
 <td class="instruction">SET 7,(IX+$00)</td>
-<td class="comment-11" rowspan="4">Make sure the current 2x2 block is flashing</td>
+<td class="comment-1" rowspan="4">Make sure the current 2x2 block is flashing</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8789"></span>8789</td>
-<td class="bytes-0"></td>
 <td class="instruction">SET 7,(IX+$01)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="878d"></span>878D</td>
-<td class="bytes-0"></td>
 <td class="instruction">SET 7,(IX+$20)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8791"></span>8791</td>
-<td class="bytes-0"></td>
 <td class="instruction">SET 7,(IX+$21)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8795"></span>8795</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$F7FE</td>
-<td class="comment-11" rowspan="2">Read keys 1-2-3-4-5</td>
+<td class="comment-1" rowspan="2">Read keys 1-2-3-4-5</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8798"></span>8798</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="879a"></span>879A</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $0F</td>
-<td class="comment-11" rowspan="1">Keep only bits 0-3 (keys 1-2-3-4)</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-3 (keys 1-2-3-4)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="879c"></span>879C</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,$08</td>
-<td class="comment-11" rowspan="1"><span class="register">E</span>=0x08 (INK 0: PAPER 1)</td>
+<td class="comment-1" rowspan="1"><span class="register">E</span>=0x08 (INK 0: PAPER 1)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="879e"></span>879E</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $0E</td>
-<td class="comment-11" rowspan="1">Is '1' alone being pressed?</td>
+<td class="comment-1" rowspan="1">Is '1' alone being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87a0"></span>87A0</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="873C.html#87b5">$87B5</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87a2"></span>87A2</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,$10</td>
-<td class="comment-11" rowspan="1"><span class="register">E</span>=0x10 (INK 0: PAPER 2)</td>
+<td class="comment-1" rowspan="1"><span class="register">E</span>=0x10 (INK 0: PAPER 2)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87a4"></span>87A4</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $0D</td>
-<td class="comment-11" rowspan="1">Is '2' alone being pressed?</td>
+<td class="comment-1" rowspan="1">Is '2' alone being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87a6"></span>87A6</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="873C.html#87b5">$87B5</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87a8"></span>87A8</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,$18</td>
-<td class="comment-11" rowspan="1"><span class="register">E</span>=0x18 (INK 0: PAPER 3)</td>
+<td class="comment-1" rowspan="1"><span class="register">E</span>=0x18 (INK 0: PAPER 3)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87aa"></span>87AA</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $0B</td>
-<td class="comment-11" rowspan="1">Is '3' alone being pressed?</td>
+<td class="comment-1" rowspan="1">Is '3' alone being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87ac"></span>87AC</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="873C.html#87b5">$87B5</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87ae"></span>87AE</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,$20</td>
-<td class="comment-11" rowspan="1"><span class="register">E</span>=0x20 (INK 0: PAPER 4)</td>
+<td class="comment-1" rowspan="1"><span class="register">E</span>=0x20 (INK 0: PAPER 4)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87b0"></span>87B0</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $07</td>
-<td class="comment-11" rowspan="1">Is '4' alone being pressed?</td>
+<td class="comment-1" rowspan="1">Is '4' alone being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87b2"></span>87B2</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="873C.html#8747">$8747</a></td>
-<td class="comment-11" rowspan="1">If not, jump back to check the ENTER key</td>
+<td class="comment-1" rowspan="1">If not, jump back to check the ENTER key</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -504,80 +351,60 @@ Exactly one of the number keys '1', '2', '3' or '4' is being pressed. <span clas
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="87b5"></span>87B5</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$00),E</td>
-<td class="comment-11" rowspan="4">Set the colour of the 2x2 block (no longer flashing)</td>
+<td class="comment-1" rowspan="4">Set the colour of the 2x2 block (no longer flashing)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87b8"></span>87B8</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$01),E</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87bb"></span>87BB</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$20),E</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87be"></span>87BE</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+$21),E</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87c1"></span>87C1</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0018</td>
-<td class="comment-11" rowspan="4">Pause for about 0.02s</td>
+<td class="comment-1" rowspan="4">Pause for about 0.02s</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="87c4"></span>87C4</td>
-<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="873C.html#87c4">$87C4</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87c6"></span>87C6</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC C</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87c7"></span>87C7</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="873C.html#87c4">$87C4</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="87c9"></span>87C9</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="86C3.html">86C3</a></span></td>
+<td class="prev">
+Prev: <a href="86C3.html">86C3</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#873c">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="87CA.html">87CA</a></span></td>
+<td class="next">
+Next: <a href="87CA.html">87CA</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/34620.html">Switch to decimal</a>.</div>
 </footer>
 </body>

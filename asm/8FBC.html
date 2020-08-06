@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 8FBC</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8ED4.html">8ED4</a></span></td>
+<td class="prev">
+Prev: <a href="8ED4.html">8ED4</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#8fbc">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="90B6.html">90B6</a></span></td>
+<td class="next">
+Next: <a href="90B6.html">90B6</a>
+</td>
 </tr>
 </table>
 <div class="description">8FBC: Move Willy (3)</div>
@@ -29,89 +32,56 @@
 Used by the routines at <a href="8DD3.html">8DD3</a> and <a href="8ED4.html">8ED4</a>. This routine moves Willy left or right if necessary.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8fbc"></span>8FBC</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D0)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's direction and movement flags from <a href="85D0.html">85D0</a></td>
+<td class="comment-1" rowspan="1">Pick up Willy's direction and movement flags from <a href="85D0.html">85D0</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fbf"></span>8FBF</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $02</td>
-<td class="comment-11" rowspan="1">Is Willy moving left or right?</td>
+<td class="comment-1" rowspan="1">Is Willy moving left or right?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fc1"></span>8FC1</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
-<td class="comment-11" rowspan="1">Return if not</td>
+<td class="comment-1" rowspan="1">Return if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fc2"></span>8FC2</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D6)</td>
-<td class="comment-11" rowspan="1">Pick up the rope status indicator from <a href="85D6.html">85D6</a></td>
+<td class="comment-1" rowspan="1">Pick up the rope status indicator from <a href="85D6.html">85D6</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fc5"></span>8FC5</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC A</td>
-<td class="comment-11" rowspan="2">Is Willy on a rope?</td>
+<td class="comment-1" rowspan="2">Is Willy on a rope?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fc6"></span>8FC6</td>
-<td class="bytes-0"></td>
 <td class="instruction">BIT 7,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fc8"></span>8FC8</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
-<td class="comment-11" rowspan="1">Return if so (Willy's movement along a rope is handled at <a href="91BE.html#935e">935E</a>)</td>
+<td class="comment-1" rowspan="1">Return if so (Willy's movement along a rope is handled at <a href="91BE.html#935e">935E</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fc9"></span>8FC9</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D0)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's direction and movement flags from <a href="85D0.html">85D0</a></td>
+<td class="comment-1" rowspan="1">Pick up Willy's direction and movement flags from <a href="85D0.html">85D0</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fcc"></span>8FCC</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $01</td>
-<td class="comment-11" rowspan="1">Is Willy facing right?</td>
+<td class="comment-1" rowspan="1">Is Willy facing right?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fce"></span>8FCE</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="8FBC.html#9042">$9042</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -124,46 +94,33 @@ Willy is moving left.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fd1"></span>8FD1</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D2)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's animation frame from <a href="85D2.html">85D2</a></td>
+<td class="comment-1" rowspan="1">Pick up Willy's animation frame from <a href="85D2.html">85D2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fd4"></span>8FD4</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Is it 0?</td>
+<td class="comment-1" rowspan="1">Is it 0?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fd5"></span>8FD5</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8FBC.html#8fdc">$8FDC</a></td>
-<td class="comment-11" rowspan="1">If so, jump to move Willy's sprite left across a cell boundary</td>
+<td class="comment-1" rowspan="1">If so, jump to move Willy's sprite left across a cell boundary</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fd7"></span>8FD7</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC A</td>
-<td class="comment-11" rowspan="2">Decrement Willy's animation frame at <a href="85D2.html">85D2</a></td>
+<td class="comment-1" rowspan="2">Decrement Willy's animation frame at <a href="85D2.html">85D2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fd8"></span>8FD8</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85D2),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fdb"></span>8FDB</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -176,368 +133,250 @@ Willy's sprite is moving left across a cell boundary. In the comments that follo
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8fdc"></span>8FDC</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D1)</td>
-<td class="comment-11" rowspan="1">Pick up the airborne status indicator from <a href="85D1.html">85D1</a></td>
+<td class="comment-1" rowspan="1">Pick up the airborne status indicator from <a href="85D1.html">85D1</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fdf"></span>8FDF</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0000</td>
-<td class="comment-11" rowspan="1">Prepare <span class="register">BC</span> for later addition</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">BC</span> for later addition</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fe2"></span>8FE2</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $00</td>
-<td class="comment-11" rowspan="1">Is Willy jumping?</td>
+<td class="comment-1" rowspan="1">Is Willy jumping?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fe4"></span>8FE4</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8FBC.html#900a">$900A</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fe6"></span>8FE6</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,($85D3)</td>
-<td class="comment-11" rowspan="1">Collect Willy's attribute buffer coordinates from <a href="85D3.html">85D3</a></td>
+<td class="comment-1" rowspan="1">Collect Willy's attribute buffer coordinates from <a href="85D3.html">85D3</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fe9"></span>8FE9</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0000</td>
-<td class="comment-11" rowspan="1">Prepare <span class="register">BC</span> for later addition (again, redundantly)</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">BC</span> for later addition (again, redundantly)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fec"></span>8FEC</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DA)</td>
-<td class="comment-11" rowspan="1">Pick up the direction byte of the ramp definition for the current room from <a href="80DA.html">80DA</a></td>
+<td class="comment-1" rowspan="1">Pick up the direction byte of the ramp definition for the current room from <a href="80DA.html">80DA</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8fef"></span>8FEF</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC A</td>
-<td class="comment-11" rowspan="3">Now <span class="register">A</span>=0x1F if the ramp goes up to the left, or 0x41 if it goes up to the right</td>
+<td class="comment-1" rowspan="3">Now <span class="register">A</span>=0x1F if the ramp goes up to the left, or 0x41 if it goes up to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ff0"></span>8FF0</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR $A1</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ff2"></span>8FF2</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR $E0</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ff4"></span>8FF4</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
-<td class="comment-11" rowspan="3">Point <span class="register">HL</span> at the cell at (x-1,y+1) if the ramp goes up to the left, or at the cell at (x+1,y+2) if the ramp goes up to the right</td>
+<td class="comment-1" rowspan="3">Point <span class="register">HL</span> at the cell at (x-1,y+1) if the ramp goes up to the left, or at the cell at (x+1,y+2) if the ramp goes up to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ff5"></span>8FF5</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ff7"></span>8FF7</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ff8"></span>8FF8</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80C4)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the ramp tile for the current room from <a href="80A0.html#80c4">80C4</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the ramp tile for the current room from <a href="80A0.html#80c4">80C4</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ffb"></span>8FFB</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Is there a ramp tile in the cell pointed to by <span class="register">HL</span>?</td>
+<td class="comment-1" rowspan="1">Is there a ramp tile in the cell pointed to by <span class="register">HL</span>?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ffc"></span>8FFC</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8FBC.html#900a">$900A</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ffe"></span>8FFE</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0020</td>
-<td class="comment-11" rowspan="1">Prepare <span class="register">BC</span> for later addition</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">BC</span> for later addition</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9001"></span>9001</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DA)</td>
-<td class="comment-11" rowspan="1">Pick up the direction byte of the ramp definition for the current room from <a href="80DA.html">80DA</a></td>
+<td class="comment-1" rowspan="1">Pick up the direction byte of the ramp definition for the current room from <a href="80DA.html">80DA</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9004"></span>9004</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Does the ramp go up to the right?</td>
+<td class="comment-1" rowspan="1">Does the ramp go up to the right?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9005"></span>9005</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8FBC.html#900a">$900A</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9007"></span>9007</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$FFE0</td>
-<td class="comment-11" rowspan="1"><span class="register">BC</span>=-32 (the ramp goes up to the left)</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=-32 (the ramp goes up to the left)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="900a"></span>900A</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,($85D3)</td>
-<td class="comment-11" rowspan="1">Collect Willy's attribute buffer coordinates from <a href="85D3.html">85D3</a></td>
+<td class="comment-1" rowspan="1">Collect Willy's attribute buffer coordinates from <a href="85D3.html">85D3</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="900d"></span>900D</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,L</td>
-<td class="comment-11" rowspan="2">Is Willy's screen x-coordinate 0 (on the far left)?</td>
+<td class="comment-1" rowspan="2">Is Willy's screen x-coordinate 0 (on the far left)?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="900e"></span>900E</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9010"></span>9010</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="948A.html">$948A</a></td>
-<td class="comment-11" rowspan="1">If so, move Willy into the room to the left</td>
+<td class="comment-1" rowspan="1">If so, move Willy into the room to the left</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9013"></span>9013</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,BC</td>
-<td class="comment-11" rowspan="4">Point <span class="register">HL</span> at the cell at (x-1,y+1), or at the cell at (x-1,y) if Willy is on or about to step onto a ramp that goes up to the left, or at the cell at (x-1,y+2) if Willy is walking down a ramp</td>
+<td class="comment-1" rowspan="4">Point <span class="register">HL</span> at the cell at (x-1,y+1), or at the cell at (x-1,y) if Willy is on or about to step onto a ramp that goes up to the left, or at the cell at (x-1,y+2) if Willy is walking down a ramp</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9014"></span>9014</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC HL</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9015"></span>9015</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,$0020</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9018"></span>9018</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9019"></span>9019</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80B2)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a href="80A0.html#80b2">80B2</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a href="80A0.html#80b2">80B2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="901c"></span>901C</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Is there a wall tile in the cell pointed to by <span class="register">HL</span>?</td>
+<td class="comment-1" rowspan="1">Is there a wall tile in the cell pointed to by <span class="register">HL</span>?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="901d"></span>901D</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
-<td class="comment-11" rowspan="1">Return if so without moving Willy (his path is blocked)</td>
+<td class="comment-1" rowspan="1">Return if so without moving Willy (his path is blocked)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="901e"></span>901E</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85CF)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's pixel y-coordinate (Y) from <a href="85CF.html">85CF</a></td>
+<td class="comment-1" rowspan="1">Pick up Willy's y-coordinate (Y) from <a href="85CF.html">85CF</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9021"></span>9021</td>
-<td class="bytes-0"></td>
 <td class="instruction">SRA C</td>
-<td class="comment-11" rowspan="3">Now <span class="register">B</span>=Y (if Willy is neither on nor about to step onto a ramp), or Y+16 (if Willy is walking down a ramp), or Y-16 (if Willy is on or about to step onto a ramp that goes up to the left); this will be Willy's new pixel y-coordinate</td>
+<td class="comment-1" rowspan="3">Now <span class="register">B</span>=Y (if Willy is neither on nor about to step onto a ramp), or Y+16 (if Willy is walking down a ramp), or Y-16 (if Willy is on or about to step onto a ramp that goes up to the left); this will be Willy's new y-coordinate</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9023"></span>9023</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD A,C</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9024"></span>9024</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9025"></span>9025</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $0F</td>
-<td class="comment-11" rowspan="1">Is Willy at a point in a jump (left) where his sprite occupies three rows of cells?</td>
+<td class="comment-1" rowspan="1">Is Willy at a point in a jump (left) where his sprite occupies three rows of cells?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9027"></span>9027</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8FBC.html#9032">$9032</a></td>
-<td class="comment-11" rowspan="1">Jump if not (Willy's sprite is cell-aligned)</td>
+<td class="comment-1" rowspan="1">Jump if not (Willy's sprite is cell-aligned)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9029"></span>9029</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80B2)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a href="80A0.html#80b2">80B2</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a href="80A0.html#80b2">80B2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="902c"></span>902C</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x-1,y+2)</td>
+<td class="comment-1" rowspan="1">Point <span class="register">HL</span> at the cell at (x-1,y+2)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="902d"></span>902D</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Is there a wall tile there?</td>
+<td class="comment-1" rowspan="1">Is there a wall tile there?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="902e"></span>902E</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
-<td class="comment-11" rowspan="1">Return if so without moving Willy (his path is blocked)</td>
+<td class="comment-1" rowspan="1">Return if so without moving Willy (his path is blocked)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="902f"></span>902F</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x-1,y+1)</td>
+<td class="comment-1" rowspan="2">Point <span class="register">HL</span> at the cell at (x-1,y+1)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9030"></span>9030</td>
-<td class="bytes-0"></td>
 <td class="instruction">SBC HL,DE</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="9032"></span>9032</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x-1,y), or at the cell at (x-1,y-1) if Willy is on or about to step onto a ramp that goes up to the left, or at the cell at (x-1,y+1) if Willy is walking down a ramp</td>
+<td class="comment-1" rowspan="2">Point <span class="register">HL</span> at the cell at (x-1,y), or at the cell at (x-1,y-1) if Willy is on or about to step onto a ramp that goes up to the left, or at the cell at (x-1,y+1) if Willy is walking down a ramp</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9033"></span>9033</td>
-<td class="bytes-0"></td>
 <td class="instruction">SBC HL,DE</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9035"></span>9035</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85D3),HL</td>
-<td class="comment-11" rowspan="1">Save Willy's new attribute buffer coordinates (in <span class="register">HL</span>) at <a href="85D3.html">85D3</a></td>
+<td class="comment-1" rowspan="1">Save Willy's new attribute buffer coordinates (in <span class="register">HL</span>) at <a href="85D3.html">85D3</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9038"></span>9038</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,B</td>
-<td class="comment-11" rowspan="2">Save Willy's new pixel y-coordinate at <a href="85CF.html">85CF</a></td>
+<td class="comment-1" rowspan="2">Save Willy's new y-coordinate at <a href="85CF.html">85CF</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9039"></span>9039</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85CF),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="903c"></span>903C</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,$03</td>
-<td class="comment-11" rowspan="2">Change Willy's animation frame at <a href="85D2.html">85D2</a> from 0 to 3</td>
+<td class="comment-1" rowspan="2">Change Willy's animation frame at <a href="85D2.html">85D2</a> from 0 to 3</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="903e"></span>903E</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85D2),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9041"></span>9041</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -550,46 +389,33 @@ Willy is moving right.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="9042"></span>9042</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D2)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's animation frame from <a href="85D2.html">85D2</a></td>
+<td class="comment-1" rowspan="1">Pick up Willy's animation frame from <a href="85D2.html">85D2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9045"></span>9045</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $03</td>
-<td class="comment-11" rowspan="1">Is it 3?</td>
+<td class="comment-1" rowspan="1">Is it 3?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9047"></span>9047</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8FBC.html#904e">$904E</a></td>
-<td class="comment-11" rowspan="1">If so, jump to move Willy's sprite right across a cell boundary</td>
+<td class="comment-1" rowspan="1">If so, jump to move Willy's sprite right across a cell boundary</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9049"></span>9049</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC A</td>
-<td class="comment-11" rowspan="2">Increment Willy's animation frame at <a href="85D2.html">85D2</a></td>
+<td class="comment-1" rowspan="2">Increment Willy's animation frame at <a href="85D2.html">85D2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="904a"></span>904A</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85D2),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="904d"></span>904D</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -602,409 +428,288 @@ Willy's sprite is moving right across a cell boundary. In the comments that foll
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="904e"></span>904E</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D1)</td>
-<td class="comment-11" rowspan="1">Pick up the airborne status indicator from <a href="85D1.html">85D1</a></td>
+<td class="comment-1" rowspan="1">Pick up the airborne status indicator from <a href="85D1.html">85D1</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9051"></span>9051</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0000</td>
-<td class="comment-11" rowspan="1">Prepare <span class="register">BC</span> for later addition</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">BC</span> for later addition</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9054"></span>9054</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Is Willy jumping?</td>
+<td class="comment-1" rowspan="1">Is Willy jumping?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9055"></span>9055</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8FBC.html#9078">$9078</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9057"></span>9057</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,($85D3)</td>
-<td class="comment-11" rowspan="1">Collect Willy's attribute buffer coordinates from <a href="85D3.html">85D3</a></td>
+<td class="comment-1" rowspan="1">Collect Willy's attribute buffer coordinates from <a href="85D3.html">85D3</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="905a"></span>905A</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DA)</td>
-<td class="comment-11" rowspan="1">Pick up the direction byte of the ramp definition for the current room from <a href="80DA.html">80DA</a></td>
+<td class="comment-1" rowspan="1">Pick up the direction byte of the ramp definition for the current room from <a href="80DA.html">80DA</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="905d"></span>905D</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC A</td>
-<td class="comment-11" rowspan="3">Now <span class="register">A</span>=0x40 if the ramp goes up to the left, or 0x22 if it goes up to the right</td>
+<td class="comment-1" rowspan="3">Now <span class="register">A</span>=0x40 if the ramp goes up to the left, or 0x22 if it goes up to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="905e"></span>905E</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR $9D</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9060"></span>9060</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR $BF</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9062"></span>9062</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
-<td class="comment-11" rowspan="3">Point <span class="register">HL</span> at the cell at (x,y+2) if the ramp goes up to the left, or at the cell at (x+2,y+1) if the ramp goes up to the right</td>
+<td class="comment-1" rowspan="3">Point <span class="register">HL</span> at the cell at (x,y+2) if the ramp goes up to the left, or at the cell at (x+2,y+1) if the ramp goes up to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9063"></span>9063</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9065"></span>9065</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9066"></span>9066</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80C4)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the ramp tile for the current room from <a href="80A0.html#80c4">80C4</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the ramp tile for the current room from <a href="80A0.html#80c4">80C4</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9069"></span>9069</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Is there a ramp tile in the cell pointed to by <span class="register">HL</span>?</td>
+<td class="comment-1" rowspan="1">Is there a ramp tile in the cell pointed to by <span class="register">HL</span>?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="906a"></span>906A</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8FBC.html#9078">$9078</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="906c"></span>906C</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0020</td>
-<td class="comment-11" rowspan="1">Prepare <span class="register">BC</span> for later addition</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">BC</span> for later addition</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="906f"></span>906F</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DA)</td>
-<td class="comment-11" rowspan="1">Pick up the direction byte of the ramp definition for the current room from <a href="80DA.html">80DA</a></td>
+<td class="comment-1" rowspan="1">Pick up the direction byte of the ramp definition for the current room from <a href="80DA.html">80DA</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9072"></span>9072</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Does the ramp go up to the left?</td>
+<td class="comment-1" rowspan="1">Does the ramp go up to the left?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9073"></span>9073</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8FBC.html#9078">$9078</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9075"></span>9075</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$FFE0</td>
-<td class="comment-11" rowspan="1"><span class="register">BC</span>=-32 (the ramp goes up to the right)</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=-32 (the ramp goes up to the right)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="9078"></span>9078</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,($85D3)</td>
-<td class="comment-11" rowspan="1">Collect Willy's attribute buffer coordinates from <a href="85D3.html">85D3</a></td>
+<td class="comment-1" rowspan="1">Collect Willy's attribute buffer coordinates from <a href="85D3.html">85D3</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="907b"></span>907B</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,BC</td>
-<td class="comment-11" rowspan="3">Point <span class="register">HL</span> at the cell at (x+2,y), or at the cell at (x+2,y+1) if Willy is walking down a ramp, or at the cell at (x+2,y-1) if Willy is on or about to step onto a ramp that goes up to the right</td>
+<td class="comment-1" rowspan="3">Point <span class="register">HL</span> at the cell at (x+2,y), or at the cell at (x+2,y+1) if Willy is walking down a ramp, or at the cell at (x+2,y-1) if Willy is on or about to step onto a ramp that goes up to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="907c"></span>907C</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="907d"></span>907D</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="907e"></span>907E</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,L</td>
-<td class="comment-11" rowspan="2">Is Willy's screen x-coordinate 30 (on the far right)?</td>
+<td class="comment-1" rowspan="2">Is Willy's screen x-coordinate 30 (on the far right)?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="907f"></span>907F</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9081"></span>9081</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="949E.html">$949E</a></td>
-<td class="comment-11" rowspan="1">If so, move Willy into the room on the right</td>
+<td class="comment-1" rowspan="1">If so, move Willy into the room on the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9084"></span>9084</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,$0020</td>
-<td class="comment-11" rowspan="1">Prepare <span class="register">DE</span> for addition</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">DE</span> for addition</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9087"></span>9087</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80B2)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a href="80A0.html#80b2">80B2</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a href="80A0.html#80b2">80B2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="908a"></span>908A</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x+2,y+1), or at the cell at (x+2,y+2) if Willy is walking down a ramp, or at the cell at (x+2,y) if Willy is on or about to step onto a ramp that goes up to the right</td>
+<td class="comment-1" rowspan="1">Point <span class="register">HL</span> at the cell at (x+2,y+1), or at the cell at (x+2,y+2) if Willy is walking down a ramp, or at the cell at (x+2,y) if Willy is on or about to step onto a ramp that goes up to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="908b"></span>908B</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Is there a wall tile in the cell pointed to by <span class="register">HL</span>?</td>
+<td class="comment-1" rowspan="1">Is there a wall tile in the cell pointed to by <span class="register">HL</span>?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="908c"></span>908C</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
-<td class="comment-11" rowspan="1">Return if so without moving Willy (his path is blocked)</td>
+<td class="comment-1" rowspan="1">Return if so without moving Willy (his path is blocked)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="908d"></span>908D</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85CF)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's pixel y-coordinate (Y) from <a href="85CF.html">85CF</a></td>
+<td class="comment-1" rowspan="1">Pick up Willy's y-coordinate (Y) from <a href="85CF.html">85CF</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9090"></span>9090</td>
-<td class="bytes-0"></td>
 <td class="instruction">SRA C</td>
-<td class="comment-11" rowspan="3">Now <span class="register">B</span>=Y (if Willy is neither on nor about to step onto a ramp), or Y+16 (if Willy is walking down a ramp), or Y-16 (if Willy is on or about to step onto a ramp that goes up to the right); this will be Willy's new pixel y-coordinate</td>
+<td class="comment-1" rowspan="3">Now <span class="register">B</span>=Y (if Willy is neither on nor about to step onto a ramp), or Y+16 (if Willy is walking down a ramp), or Y-16 (if Willy is on or about to step onto a ramp that goes up to the right); this will be Willy's new y-coordinate</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9092"></span>9092</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD A,C</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9093"></span>9093</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9094"></span>9094</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $0F</td>
-<td class="comment-11" rowspan="1">Is Willy at a point in a jump (right) where his sprite occupies three rows of cells?</td>
+<td class="comment-1" rowspan="1">Is Willy at a point in a jump (right) where his sprite occupies three rows of cells?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9096"></span>9096</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8FBC.html#90a1">$90A1</a></td>
-<td class="comment-11" rowspan="1">Jump if not (Willy's sprite is cell-aligned)</td>
+<td class="comment-1" rowspan="1">Jump if not (Willy's sprite is cell-aligned)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9098"></span>9098</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80B2)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a href="80A0.html#80b2">80B2</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a href="80A0.html#80b2">80B2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="909b"></span>909B</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x+2,y+2)</td>
+<td class="comment-1" rowspan="1">Point <span class="register">HL</span> at the cell at (x+2,y+2)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="909c"></span>909C</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Is there a wall tile there?</td>
+<td class="comment-1" rowspan="1">Is there a wall tile there?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="909d"></span>909D</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
-<td class="comment-11" rowspan="1">Return if so without moving Willy (his path is blocked)</td>
+<td class="comment-1" rowspan="1">Return if so without moving Willy (his path is blocked)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="909e"></span>909E</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x+2,y+1)</td>
+<td class="comment-1" rowspan="2">Point <span class="register">HL</span> at the cell at (x+2,y+1)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="909f"></span>909F</td>
-<td class="bytes-0"></td>
 <td class="instruction">SBC HL,DE</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="90a1"></span>90A1</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80B2)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a href="80A0.html#80b2">80B2</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the wall tile for the current room from <a href="80A0.html#80b2">80B2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90a4"></span>90A4</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="2">Point <span class="register">HL</span> at the cell at (x+2,y), or at the cell at (x+2,y+1) if Willy is walking down a ramp, or at the cell at (x+2,y-1) if Willy is on or about to step onto a ramp that goes up to the right</td>
+<td class="comment-1" rowspan="2">Point <span class="register">HL</span> at the cell at (x+2,y), or at the cell at (x+2,y+1) if Willy is walking down a ramp, or at the cell at (x+2,y-1) if Willy is on or about to step onto a ramp that goes up to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90a5"></span>90A5</td>
-<td class="bytes-0"></td>
 <td class="instruction">SBC HL,DE</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90a7"></span>90A7</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Is there a wall tile in the cell pointed to by <span class="register">HL</span>?</td>
+<td class="comment-1" rowspan="1">Is there a wall tile in the cell pointed to by <span class="register">HL</span>?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90a8"></span>90A8</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
-<td class="comment-11" rowspan="1">Return if so without moving Willy (his path is blocked)</td>
+<td class="comment-1" rowspan="1">Return if so without moving Willy (his path is blocked)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90a9"></span>90A9</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC HL</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the cell at (x+1,y), or at the cell at (x+1,y+1) if Willy is walking down a ramp, or at the cell at (x+1,y-1) if Willy is on or about to step onto a ramp that goes up to the right</td>
+<td class="comment-1" rowspan="1">Point <span class="register">HL</span> at the cell at (x+1,y), or at the cell at (x+1,y+1) if Willy is walking down a ramp, or at the cell at (x+1,y-1) if Willy is on or about to step onto a ramp that goes up to the right</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90aa"></span>90AA</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85D3),HL</td>
-<td class="comment-11" rowspan="1">Save Willy's new attribute buffer coordinates (in <span class="register">HL</span>) at <a href="85D3.html">85D3</a></td>
+<td class="comment-1" rowspan="1">Save Willy's new attribute buffer coordinates (in <span class="register">HL</span>) at <a href="85D3.html">85D3</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90ad"></span>90AD</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
-<td class="comment-11" rowspan="2">Change Willy's animation frame at <a href="85D2.html">85D2</a> from 3 to 0</td>
+<td class="comment-1" rowspan="2">Change Willy's animation frame at <a href="85D2.html">85D2</a> from 3 to 0</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90ae"></span>90AE</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85D2),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90b1"></span>90B1</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,B</td>
-<td class="comment-11" rowspan="2">Save Willy's new pixel y-coordinate at <a href="85CF.html">85CF</a></td>
+<td class="comment-1" rowspan="2">Save Willy's new y-coordinate at <a href="85CF.html">85CF</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90b2"></span>90B2</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85CF),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="90b5"></span>90B5</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8ED4.html">8ED4</a></span></td>
+<td class="prev">
+Prev: <a href="8ED4.html">8ED4</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#8fbc">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="90B6.html">90B6</a></span></td>
+<td class="next">
+Next: <a href="90B6.html">90B6</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/36796.html">Switch to decimal</a>.</div>
 </footer>
 </body>

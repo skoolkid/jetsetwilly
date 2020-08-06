@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Unused RAM at 37819</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-u">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo-dec.png" /></a></td>
 <td class="page-header">Unused</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="37310.html">37310</a></span></td>
+<td class="prev">
+Prev: <a href="37310.html">37310</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#37819">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="37841.html">37841</a></span></td>
+<td class="next">
+Next: <a href="37841.html">37841</a>
+</td>
 </tr>
 </table>
 <div class="description">37819: Unused routine</div>
@@ -29,7 +32,7 @@
 This routine is not used, but if it were, it would set the INK colour for a 3x2 block of cells, maintaining the PAPER, BRIGHT and FLASH attributes of the current room background. It is identical to the code at 36447 in Manic Miner that is used to set the attributes for a vertical guardian.
 </div>
 </div>
-<table class="input-1">
+<table class="input">
 <tr class="asm-input-header">
 <th colspan="2">Input</th>
 </tr>
@@ -42,145 +45,104 @@ This routine is not used, but if it were, it would set the INK colour for a 3x2 
 <td class="register-desc">Attribute buffer address</td>
 </tr>
 </table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37819"></span>37819</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-11" rowspan="1">Store the INK colour (bits 0-2)</td>
+<td class="comment-1" rowspan="1">Store the INK colour (bits 0-2)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37820"></span>37820</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(32928)</td>
-<td class="comment-11" rowspan="1">Collect the current room's background tile attribute from <a href="32928.html">32928</a></td>
+<td class="comment-1" rowspan="1">Collect the current room's background tile attribute from <a href="32928.html">32928</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37823"></span>37823</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND 248</td>
-<td class="comment-11" rowspan="1">Keep only bits 3-7 (PAPER, BRIGHT, FLASH)</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-7 (PAPER, BRIGHT, FLASH)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37825"></span>37825</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR (HL)</td>
-<td class="comment-11" rowspan="1">Merge the INK bits</td>
+<td class="comment-1" rowspan="1">Merge the INK bits</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37826"></span>37826</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-11" rowspan="1">Store the resultant attribute byte</td>
+<td class="comment-1" rowspan="1">Store the resultant attribute byte</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37827"></span>37827</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,31</td>
-<td class="comment-11" rowspan="1">Prepare <span class="register">DE</span> for later addition</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">DE</span> for later addition</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37830"></span>37830</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-11" rowspan="2">Move right one cell and store the attribute byte there</td>
+<td class="comment-1" rowspan="2">Move right one cell and store the attribute byte there</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37831"></span>37831</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37832"></span>37832</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="2">Move left one cell and down a row and store the attribute byte there</td>
+<td class="comment-1" rowspan="2">Move left one cell and down a row and store the attribute byte there</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37833"></span>37833</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37834"></span>37834</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-11" rowspan="2">Move right one cell and store the attribute byte there</td>
+<td class="comment-1" rowspan="2">Move right one cell and store the attribute byte there</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37835"></span>37835</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37836"></span>37836</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-11" rowspan="2">Move left one cell and down a row and store the attribute byte there</td>
+<td class="comment-1" rowspan="2">Move left one cell and down a row and store the attribute byte there</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37837"></span>37837</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37838"></span>37838</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-11" rowspan="2">Move right one cell and store the attribute byte there</td>
+<td class="comment-1" rowspan="2">Move right one cell and store the attribute byte there</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37839"></span>37839</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="37840"></span>37840</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="37310.html">37310</a></span></td>
+<td class="prev">
+Prev: <a href="37310.html">37310</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#37819">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="37841.html">37841</a></span></td>
+<td class="next">
+Next: <a href="37841.html">37841</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../../asm/93BB.html">Switch to hexadecimal</a>.</div>
 </footer>
 </body>

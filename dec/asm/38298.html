@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 38298</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo-dec.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="38276.html">38276</a></span></td>
+<td class="prev">
+Prev: <a href="38276.html">38276</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#38298">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="38344.html">38344</a></span></td>
+<td class="next">
+Next: <a href="38344.html">38344</a>
+</td>
 </tr>
 </table>
 <div class="description">38298: Animate the toilet in The Bathroom</div>
@@ -29,179 +32,123 @@
 Used by the routine at <a href="38196.html">38196</a>.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="38298"></span>38298</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(33824)</td>
-<td class="comment-11" rowspan="1">Pick up the number of the current room from <a href="33824.html">33824</a></td>
+<td class="comment-1" rowspan="1">Pick up the number of the current room from <a href="33824.html">33824</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38301"></span>38301</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 33</td>
-<td class="comment-11" rowspan="1">Are we in <a href="57600.html">The Bathroom</a>?</td>
+<td class="comment-1" rowspan="1">Are we in <a href="57600.html">The Bathroom</a>?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38303"></span>38303</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET NZ</td>
-<td class="comment-11" rowspan="1">Return if not</td>
+<td class="comment-1" rowspan="1">Return if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38304"></span>38304</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34251)</td>
-<td class="comment-11" rowspan="1">Pick up the minute counter from <a href="34251.html">34251</a>; this will determine the animation frame to use for the toilet</td>
+<td class="comment-1" rowspan="1">Pick up the minute counter from <a href="34251.html">34251</a>; this will determine the animation frame to use for the toilet</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38307"></span>38307</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND 1</td>
-<td class="comment-11" rowspan="4">Keep only bit 0 and move it to bit 5</td>
+<td class="comment-1" rowspan="4">Keep only bit 0 and move it to bit 5</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38309"></span>38309</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38310"></span>38310</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38311"></span>38311</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38312"></span>38312</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
-<td class="comment-11" rowspan="1">Now <span class="register">E</span>=0 or 32</td>
+<td class="comment-1" rowspan="1">Now <span class="register">E</span>=0 or 32</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38313"></span>38313</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34271)</td>
-<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="34271.html">34271</a></td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="34271.html">34271</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38316"></span>38316</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 3</td>
-<td class="comment-11" rowspan="1">Is Willy's head down the toilet?</td>
+<td class="comment-1" rowspan="1">Is Willy's head down the toilet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38318"></span>38318</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="38298.html#38322">38322</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38320"></span>38320</td>
-<td class="bytes-0"></td>
 <td class="instruction">SET 6,E</td>
-<td class="comment-11" rowspan="1">Now <span class="register">E</span>=64 or 96</td>
+<td class="comment-1" rowspan="1">Now <span class="register">E</span>=64 or 96</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="38322"></span>38322</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,166</td>
-<td class="comment-11" rowspan="1">Point <span class="register">DE</span> at the toilet sprite to use (<a href="42496.html">42496</a>, <a href="42496.html#42528">42528</a>, <a href="42496.html#42560">42560</a> or <a href="42496.html#42592">42592</a>)</td>
+<td class="comment-1" rowspan="1">Point <span class="register">DE</span> at the toilet sprite to use (<a href="42496.html">42496</a>, <a href="42496.html#42528">42528</a>, <a href="42496.html#42560">42560</a> or <a href="42496.html#42592">42592</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38324"></span>38324</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD IX,33488</td>
-<td class="comment-11" rowspan="3">Draw the toilet at (13,28) in the screen buffer at <a href="24576.html">24576</a></td>
+<td class="comment-1" rowspan="3">Draw the toilet at (13,28) in the screen buffer at <a href="24576.html">24576</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38328"></span>38328</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,4124</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38331"></span>38331</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="38455.html#38504">38504</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38334"></span>38334</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,1799</td>
-<td class="comment-11" rowspan="1"><span class="register">H</span>=<span class="register">L</span>=7 (INK 7: PAPER 0)</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=<span class="register">L</span>=7 (INK 7: PAPER 0)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38337"></span>38337</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (23996),HL</td>
-<td class="comment-11" rowspan="2">Set the attribute bytes for the toilet in the buffer at <a href="23552.html">23552</a></td>
+<td class="comment-1" rowspan="2">Set the attribute bytes for the toilet in the buffer at <a href="23552.html">23552</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38340"></span>38340</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (24028),HL</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38343"></span>38343</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="38276.html">38276</a></span></td>
+<td class="prev">
+Prev: <a href="38276.html">38276</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#38298">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="38344.html">38344</a></span></td>
+<td class="next">
+Next: <a href="38344.html">38344</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../../asm/959A.html">Switch to hexadecimal</a>.</div>
 </footer>
 </body>

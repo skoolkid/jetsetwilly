@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 96DE</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="96C9.html">96C9</a></span></td>
+<td class="prev">
+Prev: <a href="96C9.html">96C9</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#96de">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="96F4.html">96F4</a></span></td>
+<td class="next">
+Next: <a href="96F4.html">96F4</a>
+</td>
 </tr>
 </table>
 <div class="description">96DE: Play an intro message sound effect</div>
@@ -29,7 +32,7 @@
 Used by the routine at <a href="87CA.html">87CA</a>.
 </div>
 </div>
-<table class="input-1">
+<table class="input">
 <tr class="asm-input-header">
 <th colspan="2">Input</th>
 </tr>
@@ -38,124 +41,94 @@ Used by the routine at <a href="87CA.html">87CA</a>.
 <td class="register-desc">Value between 0x32 and 0x51</td>
 </tr>
 </table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="96de"></span>96DE</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
-<td class="comment-11" rowspan="1">Save the value of <span class="register">A</span> in <span class="register">E</span> for later retrieval</td>
+<td class="comment-1" rowspan="1">Save the value of <span class="register">A</span> in <span class="register">E</span> for later retrieval</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="96df"></span>96DF</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,$FE</td>
-<td class="comment-11" rowspan="1">We will output to port 0xFE</td>
+<td class="comment-1" rowspan="1">We will output to port 0xFE</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="96e1"></span>96E1</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,A</td>
-<td class="comment-11" rowspan="1">Copy <span class="register">A</span> into <span class="register">D</span>; bits 0-2 of <span class="register">D</span> determine the initial border colour</td>
+<td class="comment-1" rowspan="1">Copy <span class="register">A</span> into <span class="register">D</span>; bits 0-2 of <span class="register">D</span> determine the initial border colour</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="96e2"></span>96E2</td>
-<td class="bytes-0"></td>
 <td class="instruction">RES 4,D</td>
-<td class="comment-11" rowspan="1">Reset bit 4 of <span class="register">D</span> (initial speaker state)</td>
+<td class="comment-1" rowspan="1">Reset bit 4 of <span class="register">D</span> (initial speaker state)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="96e4"></span>96E4</td>
-<td class="bytes-0"></td>
 <td class="instruction">RES 3,D</td>
-<td class="comment-11" rowspan="1">Reset bit 3 of <span class="register">D</span> (initial MIC state)</td>
+<td class="comment-1" rowspan="1">Reset bit 3 of <span class="register">D</span> (initial MIC state)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="96e6"></span>96E6</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,E</td>
-<td class="comment-11" rowspan="1">Initialise <span class="register">B</span> (delay counter for the inner loop)</td>
+<td class="comment-1" rowspan="1">Initialise <span class="register">B</span> (delay counter for the inner loop)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="96e7"></span>96E7</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP B</td>
-<td class="comment-11" rowspan="1">Is it time to flip the MIC and speaker and make the border black?</td>
+<td class="comment-1" rowspan="1">Is it time to flip the MIC and speaker and make the border black?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="96e8"></span>96E8</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="96DE.html#96ec">$96EC</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="96ea"></span>96EA</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,$18</td>
-<td class="comment-11" rowspan="1">Set bits 3 (MIC) and 4 (speaker) of <span class="register">D</span>, and reset bits 0-2 (black border)</td>
+<td class="comment-1" rowspan="1">Set bits 3 (MIC) and 4 (speaker) of <span class="register">D</span>, and reset bits 0-2 (black border)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="96ec"></span>96EC</td>
-<td class="bytes-0"></td>
 <td class="instruction">OUT (C),D</td>
-<td class="comment-11" rowspan="1">Set the MIC state, speaker state and border colour</td>
+<td class="comment-1" rowspan="1">Set the MIC state, speaker state and border colour</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="96ee"></span>96EE</td>
-<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="96DE.html#96e7">$96E7</a></td>
-<td class="comment-11" rowspan="1">Jump back until the inner loop is finished</td>
+<td class="comment-1" rowspan="1">Jump back until the inner loop is finished</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="96f0"></span>96F0</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC A</td>
-<td class="comment-11" rowspan="1">Is the outer loop finished too?</td>
+<td class="comment-1" rowspan="1">Is the outer loop finished too?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="96f1"></span>96F1</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="96DE.html#96e1">$96E1</a></td>
-<td class="comment-11" rowspan="1">Jump back if not</td>
+<td class="comment-1" rowspan="1">Jump back if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="96f3"></span>96F3</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="96C9.html">96C9</a></span></td>
+<td class="prev">
+Prev: <a href="96C9.html">96C9</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#96de">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="96F4.html">96F4</a></span></td>
+<td class="next">
+Next: <a href="96F4.html">96F4</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/38622.html">Switch to decimal</a>.</div>
 </footer>
 </body>

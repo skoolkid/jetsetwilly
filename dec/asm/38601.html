@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 38601</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo-dec.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="38562.html">38562</a></span></td>
+<td class="prev">
+Prev: <a href="38562.html">38562</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#38601">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="38622.html">38622</a></span></td>
+<td class="next">
+Next: <a href="38622.html">38622</a>
+</td>
 </tr>
 </table>
 <div class="description">38601: Check whether ENTER, 0 or the fire button is being pressed</div>
@@ -29,109 +32,78 @@
 Used by the routine at <a href="38562.html">38562</a>. Returns with the zero flag reset if ENTER, 0 or the fire button on the joystick is being pressed.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="38601"></span>38601</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34254)</td>
-<td class="comment-11" rowspan="1">Collect the Kempston joystick indicator from <a href="34254.html">34254</a></td>
+<td class="comment-1" rowspan="1">Collect the Kempston joystick indicator from <a href="34254.html">34254</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38604"></span>38604</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Is the joystick connected?</td>
+<td class="comment-1" rowspan="1">Is the joystick connected?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38605"></span>38605</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="38601.html#38612">38612</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38607"></span>38607</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(31)</td>
-<td class="comment-11" rowspan="1">Collect input from the joystick</td>
+<td class="comment-1" rowspan="1">Collect input from the joystick</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38609"></span>38609</td>
-<td class="bytes-0"></td>
 <td class="instruction">BIT 4,A</td>
-<td class="comment-11" rowspan="1">Is the fire button being pressed?</td>
+<td class="comment-1" rowspan="1">Is the fire button being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38611"></span>38611</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET NZ</td>
-<td class="comment-11" rowspan="1">Return (with the zero flag reset) if so</td>
+<td class="comment-1" rowspan="1">Return (with the zero flag reset) if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="38612"></span>38612</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,45054</td>
-<td class="comment-11" rowspan="2">Read keys H-J-K-L-ENTER and 6-7-8-9-0</td>
+<td class="comment-1" rowspan="2">Read keys H-J-K-L-ENTER and 6-7-8-9-0</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38615"></span>38615</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38617"></span>38617</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND 1</td>
-<td class="comment-11" rowspan="1">Keep only bit 0 of the result (ENTER, 0)</td>
+<td class="comment-1" rowspan="1">Keep only bit 0 of the result (ENTER, 0)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38619"></span>38619</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 1</td>
-<td class="comment-11" rowspan="1">Reset the zero flag if ENTER or 0 is being pressed</td>
+<td class="comment-1" rowspan="1">Reset the zero flag if ENTER or 0 is being pressed</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38621"></span>38621</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="38562.html">38562</a></span></td>
+<td class="prev">
+Prev: <a href="38562.html">38562</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#38601">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="38622.html">38622</a></span></td>
+<td class="next">
+Next: <a href="38622.html">38622</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../../asm/96C9.html">Switch to hexadecimal</a>.</div>
 </footer>
 </body>

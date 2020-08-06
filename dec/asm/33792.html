@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 33792</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo-dec.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="33536.html">33536</a></span></td>
+<td class="prev">
+Prev: <a href="33536.html">33536</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#33792">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="33824.html">33824</a></span></td>
+<td class="next">
+Next: <a href="33824.html">33824</a>
+</td>
 </tr>
 </table>
 <div class="description">33792: The game has just loaded</div>
@@ -29,186 +32,117 @@
 After the game has loaded, this is where it all starts.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="33792"></span>33792</td>
-<td class="bytes-0"></td>
 <td class="instruction">DI</td>
-<td class="comment-11" rowspan="1">Disable interrupts</td>
+<td class="comment-1" rowspan="1">Disable interrupts</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33793"></span>33793</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,23551</td>
-<td class="comment-11" rowspan="5">Place the address of the routine at <a href="34463.html">34463</a> on the stack</td>
+<td class="comment-1" rowspan="5">Place the address of the routine at <a href="34463.html">34463</a> on the stack</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33796"></span>33796</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),134</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33798"></span>33798</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC HL</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33799"></span>33799</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),159</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33801"></span>33801</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD SP,23550</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33804"></span>33804</td>
-<td class="bytes-0"></td>
 <td class="instruction">SUB A</td>
-<td class="comment-11" rowspan="7">Set <span class="register">HL</span>=34048 in a roundabout way</td>
+<td class="comment-1" rowspan="7">Set <span class="register">HL</span>=34048 in a roundabout way</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33805"></span>33805</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD L,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33806"></span>33806</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR 10</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33808"></span>33808</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33809"></span>33809</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC B</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33810"></span>33810</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD H,B</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33811"></span>33811</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRC H</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="33813"></span>33813</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,(HL)</td>
-<td class="comment-11" rowspan="8">Read through addresses 34048-65535, without changing their contents; perhaps this code was once used to descramble the contents of pages 133-255, but now all it does is introduce a pause of about 0.47s before displaying the code entry screen</td>
+<td class="comment-1" rowspan="8">Read through addresses 34048-65535, without changing their contents; perhaps this code was once used to descramble the contents of pages 133-255, but now all it does is introduce a pause of about 0.47s before displaying the code entry screen</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33814"></span>33814</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,L</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33815"></span>33815</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR C</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33816"></span>33816</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR H</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33817"></span>33817</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),C</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33818"></span>33818</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33819"></span>33819</td>
-<td class="bytes-0"></td>
 <td class="instruction">BIT 7,H</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33821"></span>33821</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="33792.html#33813">33813</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="33823"></span>33823</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1">Make an indirect jump to <a href="34463.html">34463</a></td>
+<td class="comment-1" rowspan="1">Make an indirect jump to <a href="34463.html">34463</a></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="33536.html">33536</a></span></td>
+<td class="prev">
+Prev: <a href="33536.html">33536</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#33792">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="33824.html">33824</a></span></td>
+<td class="next">
+Next: <a href="33824.html">33824</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../../asm/8400.html">Switch to hexadecimal</a>.</div>
 </footer>
 </body>

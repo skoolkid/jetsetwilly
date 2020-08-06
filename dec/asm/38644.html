@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Unused RAM at 38644</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-u">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo-dec.png" /></a></td>
 <td class="page-header">Unused</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="38622.html">38622</a></span></td>
+<td class="prev">
+Prev: <a href="38622.html">38622</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#38644">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="38680.html">38680</a></span></td>
+<td class="next">
+Next: <a href="38680.html">38680</a>
+</td>
 </tr>
 </table>
 <div class="description">38644: Unused routine</div>
@@ -29,130 +32,87 @@
 This routine copies the attribute bytes for an empty room to the screen, so perhaps it was used during development of the game to check that the layout of a room had been defined correctly.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38644"></span>38644</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,24064</td>
-<td class="comment-11" rowspan="4">Copy the attribute buffer at <a href="24064.html">24064</a> to the top two-thirds of the screen</td>
+<td class="comment-1" rowspan="4">Copy the attribute buffer at <a href="24064.html">24064</a> to the top two-thirds of the screen</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38647"></span>38647</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,22528</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38650"></span>38650</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,512</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38653"></span>38653</td>
-<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38655"></span>38655</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,16384</td>
-<td class="comment-11" rowspan="5">Fill the top two-thirds of the display file with the byte value 24 (00011000)</td>
+<td class="comment-1" rowspan="5">Fill the top two-thirds of the display file with the byte value 24 (00011000)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38658"></span>38658</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,16385</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38661"></span>38661</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,4095</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38664"></span>38664</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),24</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38666"></span>38666</td>
-<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38668"></span>38668</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,65278</td>
-<td class="comment-11" rowspan="1">Prepare <span class="register">BC</span> for reading keys SHIFT-Z-X-C-V</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">BC</span> for reading keys SHIFT-Z-X-C-V</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="38671"></span>38671</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-11" rowspan="1">Read these keys</td>
+<td class="comment-1" rowspan="1">Read these keys</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38673"></span>38673</td>
-<td class="bytes-0"></td>
 <td class="instruction">BIT 2,A</td>
-<td class="comment-11" rowspan="1">Is 'X' being pressed?</td>
+<td class="comment-1" rowspan="1">Is 'X' being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38675"></span>38675</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,0</td>
-<td class="comment-11" rowspan="1">Jump if so to reset the machine</td>
+<td class="comment-1" rowspan="1">Jump if so to reset the machine</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="38678"></span>38678</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR 38671</td>
-<td class="comment-11" rowspan="1">Otherwise jump back to read the keyboard again</td>
+<td class="comment-1" rowspan="1">Otherwise jump back to read the keyboard again</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="38622.html">38622</a></span></td>
+<td class="prev">
+Prev: <a href="38622.html">38622</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#38644">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="38680.html">38680</a></span></td>
+<td class="next">
+Next: <a href="38680.html">38680</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../../asm/96F4.html">Switch to hexadecimal</a>.</div>
 </footer>
 </body>

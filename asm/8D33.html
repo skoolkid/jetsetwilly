@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 8D33</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8C4A.html">8C4A</a></span></td>
+<td class="prev">
+Prev: <a href="8C4A.html">8C4A</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#8d33">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="8D6B.html">8D6B</a></span></td>
+<td class="next">
+Next: <a href="8D6B.html">8D6B</a>
+</td>
 </tr>
 </table>
 <div class="description">8D33: Draw the current room to the screen buffer at 7000</div>
@@ -29,82 +32,50 @@
 Used by the routine at <a href="8912.html">8912</a>.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8d33"></span>8D33</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="8D6B.html">$8D6B</a></td>
-<td class="comment-11" rowspan="1">Fill the buffer at <a href="5E00.html">5E00</a> with attribute bytes for the current room</td>
+<td class="comment-1" rowspan="1">Fill the buffer at <a href="5E00.html">5E00</a> with attribute bytes for the current room</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d36"></span>8D36</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD IX,$5E00</td>
-<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the first byte of the attribute buffer at <a href="5E00.html">5E00</a></td>
+<td class="comment-1" rowspan="1">Point <span class="register">IX</span> at the first byte of the attribute buffer at <a href="5E00.html">5E00</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d3a"></span>8D3A</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,$70</td>
-<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8D33.html#8d5c">8D5C</a> (below) to $70</td>
+<td class="comment-1" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8D33.html#8d5c">8D5C</a> (below) to $70</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d3c"></span>8D3C</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($8D5D),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d3f"></span>8D3F</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="8D33.html#8d4b">$8D4B</a></td>
-<td class="comment-11" rowspan="1">Draw the tiles for the top half of the room to the screen buffer at <a href="7000.html">7000</a></td>
+<td class="comment-1" rowspan="1">Draw the tiles for the top half of the room to the screen buffer at <a href="7000.html">7000</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d42"></span>8D42</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD IX,$5F00</td>
-<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the 256th byte of the attribute buffer at <a href="5E00.html">5E00</a> in preparation for drawing the bottom half of the room; this instruction is redundant, since <span class="register">IX</span> already holds 5F00</td>
+<td class="comment-1" rowspan="1">Point <span class="register">IX</span> at the 256th byte of the attribute buffer at <a href="5E00.html">5E00</a> in preparation for drawing the bottom half of the room; this instruction is redundant, since <span class="register">IX</span> already holds 5F00</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d46"></span>8D46</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,$78</td>
-<td class="comment-11" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8D33.html#8d5c">8D5C</a> (below) to $78</td>
+<td class="comment-1" rowspan="2">Set the operand of the 'LD D,n' instruction at <a href="8D33.html#8d5c">8D5C</a> (below) to $78</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d48"></span>8D48</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($8D5D),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8d4b"></span>8D4B</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,$00</td>
-<td class="comment-11" rowspan="1"><span class="register">C</span> will count 256 tiles</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span> will count 256 tiles</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -117,136 +88,100 @@ The following loop draws 256 tiles (for either the top half or the bottom half o
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8d4d"></span>8D4D</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,C</td>
-<td class="comment-11" rowspan="1"><span class="register">E</span> holds the LSB of the screen buffer address</td>
+<td class="comment-1" rowspan="1"><span class="register">E</span> holds the LSB of the screen buffer address</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d4e"></span>8D4E</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+$00)</td>
-<td class="comment-11" rowspan="1">Pick up an attribute byte from the buffer at <a href="5E00.html">5E00</a>; this identifies the type of tile (background, floor, wall, nasty, ramp or conveyor) to be drawn</td>
+<td class="comment-1" rowspan="1">Pick up an attribute byte from the buffer at <a href="5E00.html">5E00</a>; this identifies the type of tile (background, floor, wall, nasty, ramp or conveyor) to be drawn</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d51"></span>8D51</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,$80A0</td>
-<td class="comment-11" rowspan="3">Move <span class="register">HL</span> through the attribute bytes and graphic data of the background, floor, wall, nasty, ramp and conveyor tiles starting at <a href="80A0.html">80A0</a> until we find a byte that matches the attribute byte of the tile to be drawn; note that if a graphic data byte matches the attribute byte being searched for, the CPIR instruction can exit early, which is a <a href="../reference/bugs.html#corruptedConveyors">bug</a></td>
+<td class="comment-1" rowspan="3">Move <span class="register">HL</span> through the attribute bytes and graphic data of the background, floor, wall, nasty, ramp and conveyor tiles starting at <a href="80A0.html">80A0</a> until we find a byte that matches the attribute byte of the tile to be drawn; note that if a graphic data byte matches the attribute byte being searched for, the CPIR instruction can exit early, which is a <a href="../reference/bugs.html#corruptedConveyors">bug</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d54"></span>8D54</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0036</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d57"></span>8D57</td>
-<td class="bytes-0"></td>
 <td class="instruction">CPIR</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d59"></span>8D59</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,E</td>
-<td class="comment-11" rowspan="1">Restore the value of the tile counter in <span class="register">C</span></td>
+<td class="comment-1" rowspan="1">Restore the value of the tile counter in <span class="register">C</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d5a"></span>8D5A</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,$08</td>
-<td class="comment-11" rowspan="1">There are eight bytes in the tile</td>
+<td class="comment-1" rowspan="1">There are eight bytes in the tile</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d5c"></span>8D5C</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,$00</td>
-<td class="comment-11" rowspan="1">This instruction is set to either 'LD D,$70' or 'LD D,$78' above; now <span class="register">DE</span> holds the appropriate address in the screen buffer at <a href="7000.html">7000</a></td>
+<td class="comment-1" rowspan="1">This instruction is set to either 'LD D,$70' or 'LD D,$78' above; now <span class="register">DE</span> holds the appropriate address in the screen buffer at <a href="7000.html">7000</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8d5e"></span>8D5E</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-11" rowspan="5">Copy the tile graphic data to the screen buffer at <a href="7000.html">7000</a></td>
+<td class="comment-1" rowspan="5">Copy the tile graphic data to the screen buffer at <a href="7000.html">7000</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d5f"></span>8D5F</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (DE),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d60"></span>8D60</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d61"></span>8D61</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC D</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d62"></span>8D62</td>
-<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="8D33.html#8d5e">$8D5E</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d64"></span>8D64</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC IX</td>
-<td class="comment-11" rowspan="1">Move <span class="register">IX</span> along to the next byte in the attribute buffer</td>
+<td class="comment-1" rowspan="1">Move <span class="register">IX</span> along to the next byte in the attribute buffer</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d66"></span>8D66</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC C</td>
-<td class="comment-11" rowspan="1">Have we drawn 256 tiles yet?</td>
+<td class="comment-1" rowspan="1">Have we drawn 256 tiles yet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d67"></span>8D67</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="8D33.html#8d4d">$8D4D</a></td>
-<td class="comment-11" rowspan="1">If not, jump back to draw the next one</td>
+<td class="comment-1" rowspan="1">If not, jump back to draw the next one</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d6a"></span>8D6A</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8C4A.html">8C4A</a></span></td>
+<td class="prev">
+Prev: <a href="8C4A.html">8C4A</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#8d33">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="8D6B.html">8D6B</a></span></td>
+<td class="next">
+Next: <a href="8D6B.html">8D6B</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/36147.html">Switch to decimal</a>.</div>
 </footer>
 </body>

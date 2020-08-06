@@ -4,12 +4,11 @@
 <title>Jet Set Willy: Trivia</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Facts">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo-dec.png" /></a></td>
 <td class="page-header">Trivia</td>
 </tr>
 </table>
@@ -613,16 +612,16 @@ doesn't use the second and fourth bytes of its slot), or by nothing.
 Note, however, that if a rope were the eighth entity specified in a room, byte
 11 of its buffer would occupy the third byte in the otherwise unused area at
 <a href="../asm/33089.html">33089</a>, and would not be reinitialised by the routine at <a href="../asm/35090.html">35090</a> after Willy
-has lost a life. This means that if Willy dies while on the rope, bit 0 of byte
-11 (which indicates whether he is on the rope) remains set; then, if Willy
-starts moving in the same direction as the rope is swinging, he will teleport
-into the room above. This happens because:
+loses a life or re-enters the room. This means, for example, that if Willy dies
+while on the rope, bit 0 of byte 11 (which indicates whether he is on the rope)
+remains set; then, if Willy starts moving in the same direction as the rope is
+swinging, he will teleport into the room above. This happens because:
 </div>
 <div class="paragraph">
 <ul class="">
 <li>The section of code at <a href="../asm/37310.html#37726">37726</a> erroneously assumes that Willy is on the rope, and updates the rope status indicator at <a href="../asm/34262.html">34262</a> from 0 (Willy is not on the rope) to 1 (Willy is on the rope, with the centre of his sprite anchored at segment 1).</li>
-<li>On the next pass through the main loop, the section of code at <a href="../asm/37310.html#37558">37558</a> erroneously detects Willy on the rope at segment 1, and accordingly sets his pixel y-coordinate at <a href="../asm/34255.html">34255</a> to 246; this is the y-coordinate of segment 1 of the rope (6) minus 16.</li>
-<li>On the next pass through the main loop, the code at <a href="../asm/35245.html#35281">35281</a> picks up Willy's pixel y-coordinate (now 246) from <a href="../asm/34255.html">34255</a>, finds that it is 225 or greater, and moves Willy into the room above.</li>
+<li>On the next pass through the main loop, the section of code at <a href="../asm/37310.html#37558">37558</a> erroneously detects Willy on the rope at segment 1, and accordingly sets his y-coordinate at <a href="../asm/34255.html">34255</a> to 246; this is the y-coordinate of segment 1 of the rope (6) minus 16.</li>
+<li>On the next pass through the main loop, the code at <a href="../asm/35245.html#35281">35281</a> picks up Willy's y-coordinate (now 246) from <a href="../asm/34255.html">34255</a>, finds that it is 225 or greater, and moves Willy into the room above.</li>
 </ul>
 </div>
 </div>
@@ -1141,9 +1140,9 @@ The room with the most items is <a href="../asm/49152.html">The Off Licence</a> 
 </div>
 </div>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../../reference/facts.html">Switch to hexadecimal</a>.</div>
 </footer>
 </body>

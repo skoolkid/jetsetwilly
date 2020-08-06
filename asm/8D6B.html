@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 8D6B</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8D33.html">8D33</a></span></td>
+<td class="prev">
+Prev: <a href="8D33.html">8D33</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#8d6b">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="8DC0.html">8DC0</a></span></td>
+<td class="next">
+Next: <a href="8DC0.html">8DC0</a>
+</td>
 </tr>
 </table>
 <div class="description">8D6B: Fill the buffer at 5E00 with attribute bytes for the current room</div>
@@ -29,33 +32,17 @@
 Used by the routine at <a href="8D33.html">8D33</a>. Fills the buffer at <a href="5E00.html">5E00</a> with attribute bytes for the background, floor, wall, nasty, conveyor and ramp tiles in the current room.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8d6b"></span>8D6B</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,$8000</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the first room layout byte at <a href="8000.html">8000</a></td>
+<td class="comment-1" rowspan="1">Point <span class="register">HL</span> at the first room layout byte at <a href="8000.html">8000</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d6e"></span>8D6E</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD IX,$5E00</td>
-<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the first byte of the attribute buffer at <a href="5E00.html">5E00</a></td>
+<td class="comment-1" rowspan="1">Point <span class="register">IX</span> at the first byte of the attribute buffer at <a href="5E00.html">5E00</a></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -68,144 +55,98 @@ The following loop copies the attribute bytes for the background, floor, wall an
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8d72"></span>8D72</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-11" rowspan="1">Pick up a room layout byte</td>
+<td class="comment-1" rowspan="1">Pick up a room layout byte</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d73"></span>8D73</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-11" rowspan="2">Move bits 6 and 7 into bits 0 and 1</td>
+<td class="comment-1" rowspan="2">Move bits 6 and 7 into bits 0 and 1</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d74"></span>8D74</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d75"></span>8D75</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="8DC0.html">$8DC0</a></td>
-<td class="comment-11" rowspan="1">Copy the attribute byte for this tile into the buffer at <a href="5E00.html">5E00</a></td>
+<td class="comment-1" rowspan="1">Copy the attribute byte for this tile into the buffer at <a href="5E00.html">5E00</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d78"></span>8D78</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-11" rowspan="1">Pick up the room layout byte again</td>
+<td class="comment-1" rowspan="1">Pick up the room layout byte again</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d79"></span>8D79</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-11" rowspan="4">Move bits 4 and 5 into bits 0 and 1</td>
+<td class="comment-1" rowspan="4">Move bits 4 and 5 into bits 0 and 1</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d7a"></span>8D7A</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d7b"></span>8D7B</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d7c"></span>8D7C</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d7d"></span>8D7D</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="8DC0.html">$8DC0</a></td>
-<td class="comment-11" rowspan="1">Copy the attribute byte for this tile into the buffer at <a href="5E00.html">5E00</a></td>
+<td class="comment-1" rowspan="1">Copy the attribute byte for this tile into the buffer at <a href="5E00.html">5E00</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d80"></span>8D80</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-11" rowspan="1">Pick up the room layout byte again</td>
+<td class="comment-1" rowspan="1">Pick up the room layout byte again</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d81"></span>8D81</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-11" rowspan="2">Move bits 2 and 3 into bits 0 and 1</td>
+<td class="comment-1" rowspan="2">Move bits 2 and 3 into bits 0 and 1</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d82"></span>8D82</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d83"></span>8D83</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="8DC0.html">$8DC0</a></td>
-<td class="comment-11" rowspan="1">Copy the attribute byte for this tile into the buffer at <a href="5E00.html">5E00</a></td>
+<td class="comment-1" rowspan="1">Copy the attribute byte for this tile into the buffer at <a href="5E00.html">5E00</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d86"></span>8D86</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-11" rowspan="1">Pick up the room layout byte again; this time the required bit-pair is already in bits 0 and 1</td>
+<td class="comment-1" rowspan="1">Pick up the room layout byte again; this time the required bit-pair is already in bits 0 and 1</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d87"></span>8D87</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="8DC0.html">$8DC0</a></td>
-<td class="comment-11" rowspan="1">Copy the attribute byte for this tile into the buffer at <a href="5E00.html">5E00</a></td>
+<td class="comment-1" rowspan="1">Copy the attribute byte for this tile into the buffer at <a href="5E00.html">5E00</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d8a"></span>8D8A</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the next room layout byte</td>
+<td class="comment-1" rowspan="1">Point <span class="register">HL</span> at the next room layout byte</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d8b"></span>8D8B</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,L</td>
-<td class="comment-11" rowspan="2">Have we processed all 128 room layout bytes yet?</td>
+<td class="comment-1" rowspan="2">Have we processed all 128 room layout bytes yet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d8c"></span>8D8C</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $80</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d8e"></span>8D8E</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8D6B.html#8d72">$8D72</a></td>
-<td class="comment-11" rowspan="1">If not, jump back to process the next one</td>
+<td class="comment-1" rowspan="1">If not, jump back to process the next one</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -218,67 +159,47 @@ Next consider the conveyor tiles (if any).
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d90"></span>8D90</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80D9)</td>
-<td class="comment-11" rowspan="1">Pick up the length of the conveyor from <a href="80D6.html#80d9">80D9</a></td>
+<td class="comment-1" rowspan="1">Pick up the length of the conveyor from <a href="80D6.html#80d9">80D9</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d93"></span>8D93</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Is there a conveyor in the room?</td>
+<td class="comment-1" rowspan="1">Is there a conveyor in the room?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d94"></span>8D94</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8D6B.html#8da1">$8DA1</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d96"></span>8D96</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,($80D7)</td>
-<td class="comment-11" rowspan="1">Pick up the address of the conveyor's location in the attribute buffer at <a href="5E00.html">5E00</a> from <a href="80D6.html#80d7">80D7</a></td>
+<td class="comment-1" rowspan="1">Pick up the address of the conveyor's location in the attribute buffer at <a href="5E00.html">5E00</a> from <a href="80D6.html#80d7">80D7</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d99"></span>8D99</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,A</td>
-<td class="comment-11" rowspan="1"><span class="register">B</span> will count the conveyor tiles</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span> will count the conveyor tiles</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d9a"></span>8D9A</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80CD)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte for the conveyor tile from <a href="80A0.html#80cd">80CD</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte for the conveyor tile from <a href="80A0.html#80cd">80CD</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8d9d"></span>8D9D</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-11" rowspan="3">Copy the attribute bytes for the conveyor tiles into the buffer at <a href="5E00.html">5E00</a></td>
+<td class="comment-1" rowspan="3">Copy the attribute bytes for the conveyor tiles into the buffer at <a href="5E00.html">5E00</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d9e"></span>8D9E</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8d9f"></span>8D9F</td>
-<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="8D6B.html#8d9d">$8D9D</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -291,136 +212,100 @@ And finally consider the ramp tiles (if any).
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8da1"></span>8DA1</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DD)</td>
-<td class="comment-11" rowspan="1">Pick up the length of the ramp from <a href="80DA.html#80dd">80DD</a></td>
+<td class="comment-1" rowspan="1">Pick up the length of the ramp from <a href="80DA.html#80dd">80DD</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8da4"></span>8DA4</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Is there a ramp in the room?</td>
+<td class="comment-1" rowspan="1">Is there a ramp in the room?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8da5"></span>8DA5</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
-<td class="comment-11" rowspan="1">Return if not</td>
+<td class="comment-1" rowspan="1">Return if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8da6"></span>8DA6</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,($80DB)</td>
-<td class="comment-11" rowspan="1">Pick up the address of the ramp's location in the attribute buffer at <a href="5E00.html">5E00</a> from <a href="80DA.html#80db">80DB</a></td>
+<td class="comment-1" rowspan="1">Pick up the address of the ramp's location in the attribute buffer at <a href="5E00.html">5E00</a> from <a href="80DA.html#80db">80DB</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8da9"></span>8DA9</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DA)</td>
-<td class="comment-11" rowspan="2">Pick up the ramp direction from <a href="80DA.html">80DA</a>; <span class="register">A</span>=0 (ramp goes up to the left) or 1 (ramp goes up to the right)</td>
+<td class="comment-1" rowspan="2">Pick up the ramp direction from <a href="80DA.html">80DA</a>; <span class="register">A</span>=0 (ramp goes up to the left) or 1 (ramp goes up to the right)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8dac"></span>8DAC</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $01</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8dae"></span>8DAE</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-11" rowspan="4">Now <span class="register">DE</span>=-33 (ramp goes up to the left) or -31 (ramp goes up to the right)</td>
+<td class="comment-1" rowspan="4">Now <span class="register">DE</span>=-33 (ramp goes up to the left) or -31 (ramp goes up to the right)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8daf"></span>8DAF</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD A,$DF</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8db1"></span>8DB1</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8db2"></span>8DB2</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,$FF</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8db4"></span>8DB4</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DD)</td>
-<td class="comment-11" rowspan="1">Pick up the length of the ramp from <a href="80DA.html#80dd">80DD</a></td>
+<td class="comment-1" rowspan="1">Pick up the length of the ramp from <a href="80DA.html#80dd">80DD</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8db7"></span>8DB7</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,A</td>
-<td class="comment-11" rowspan="1"><span class="register">B</span> will count the ramp tiles</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span> will count the ramp tiles</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8db8"></span>8DB8</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80C4)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte for the ramp tile from <a href="80A0.html#80c4">80C4</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte for the ramp tile from <a href="80A0.html#80c4">80C4</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8dbb"></span>8DBB</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-11" rowspan="3">Copy the attribute bytes for the ramp tiles into the buffer at <a href="5E00.html">5E00</a></td>
+<td class="comment-1" rowspan="3">Copy the attribute bytes for the ramp tiles into the buffer at <a href="5E00.html">5E00</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8dbc"></span>8DBC</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8dbd"></span>8DBD</td>
-<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="8D6B.html#8dbb">$8DBB</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8dbf"></span>8DBF</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8D33.html">8D33</a></span></td>
+<td class="prev">
+Prev: <a href="8D33.html">8D33</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#8d6b">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="8DC0.html">8DC0</a></span></td>
+<td class="next">
+Next: <a href="8DC0.html">8DC0</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/36203.html">Switch to decimal</a>.</div>
 </footer>
 </body>

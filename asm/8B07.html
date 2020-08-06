@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 8B07</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8AEB.html">8AEB</a></span></td>
+<td class="prev">
+Prev: <a href="8AEB.html">8AEB</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#8b07">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="8C01.html">8C01</a></span></td>
+<td class="next">
+Next: <a href="8C01.html">8C01</a>
+</td>
 </tr>
 </table>
 <div class="description">8B07: Main loop (2)</div>
@@ -29,61 +32,34 @@
 Used by the routine at <a href="89AD.html">89AD</a>. The main entry point is used when resuming the game after it has been paused.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8b07"></span>8B07</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,$9A00</td>
-<td class="comment-11" rowspan="4">Copy the attribute bytes from <a href="9A00.html">9A00</a> to the bottom third of the screen</td>
+<td class="comment-1" rowspan="4">Copy the attribute bytes from <a href="9A00.html">9A00</a> to the bottom third of the screen</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b0a"></span>8B0A</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,$5A00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b0d"></span>8B0D</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0100</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b10"></span>8B10</td>
-<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b12"></span>8B12</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DE)</td>
-<td class="comment-11" rowspan="1">Pick up the border colour for the current room from <a href="80DE.html">80DE</a></td>
+<td class="comment-1" rowspan="1">Pick up the border colour for the current room from <a href="80DE.html">80DE</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b15"></span>8B15</td>
-<td class="bytes-0"></td>
 <td class="instruction">OUT ($FE),A</td>
-<td class="comment-11" rowspan="1">Restore the border colour</td>
+<td class="comment-1" rowspan="1">Restore the border colour</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -96,25 +72,19 @@ This entry point is used by the routine at <a href="89AD.html">89AD</a>.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8b17"></span>8B17</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85D1)</td>
-<td class="comment-11" rowspan="1">Pick up the airborne status indicator from <a href="85D1.html">85D1</a></td>
+<td class="comment-1" rowspan="1">Pick up the airborne status indicator from <a href="85D1.html">85D1</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b1a"></span>8B1A</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $FF</td>
-<td class="comment-11" rowspan="1">Has Willy landed after falling from too great a height, or collided with a nasty, an arrow, a guardian, or Maria?</td>
+<td class="comment-1" rowspan="1">Has Willy landed after falling from too great a height, or collided with a nasty, an arrow, a guardian, or Maria?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b1c"></span>8B1C</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="8C01.html">$8C01</a></td>
-<td class="comment-11" rowspan="1">If so, lose a life</td>
+<td class="comment-1" rowspan="1">If so, lose a life</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -127,109 +97,76 @@ Now read the keys H, J, K, L and ENTER (which toggle the in-game music).
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b1f"></span>8B1F</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,$BF</td>
-<td class="comment-11" rowspan="1">Prepare <span class="register">B</span> for reading keys H-J-K-L-ENTER</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">B</span> for reading keys H-J-K-L-ENTER</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b21"></span>8B21</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,$85E2</td>
-<td class="comment-11" rowspan="1">Point <span class="register">HL</span> at the music flags at <a href="85E2.html">85E2</a></td>
+<td class="comment-1" rowspan="1">Point <span class="register">HL</span> at the music flags at <a href="85E2.html">85E2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b24"></span>8B24</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-11" rowspan="1">Read keys H-J-K-L-ENTER; note that if the game has just resumed after being paused, <span class="register">C</span> holds 0x00 instead of 0xFE, which is a <a href="../reference/bugs.html#thePauseBug">bug</a></td>
+<td class="comment-1" rowspan="1">Read keys H-J-K-L-ENTER; note that if the game has just resumed after being paused, <span class="register">C</span> holds 0x00 instead of 0xFE, which is a <a href="../reference/bugs.html#thePauseBug">bug</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b26"></span>8B26</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
-<td class="comment-11" rowspan="2">Are any of these keys being pressed?</td>
+<td class="comment-1" rowspan="2">Are any of these keys being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b28"></span>8B28</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $1F</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b2a"></span>8B2A</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8B07.html#8b36">$8B36</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b2c"></span>8B2C</td>
-<td class="bytes-0"></td>
 <td class="instruction">BIT 0,(HL)</td>
-<td class="comment-11" rowspan="1">Were any of these keys being pressed the last time we checked?</td>
+<td class="comment-1" rowspan="1">Were any of these keys being pressed the last time we checked?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b2e"></span>8B2E</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8B07.html#8b38">$8B38</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b30"></span>8B30</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-11" rowspan="3">Set bit 0 (the keypress flag) and flip bit 1 (the in-game music flag) at <a href="85E2.html">85E2</a></td>
+<td class="comment-1" rowspan="3">Set bit 0 (the keypress flag) and flip bit 1 (the in-game music flag) at <a href="85E2.html">85E2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b31"></span>8B31</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR $03</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b33"></span>8B33</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b34"></span>8B34</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR <a href="8B07.html#8b38">$8B38</a></td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8b36"></span>8B36</td>
-<td class="bytes-0"></td>
 <td class="instruction">RES 0,(HL)</td>
-<td class="comment-11" rowspan="1">Reset bit 0 (the keypress flag) at <a href="85E2.html">85E2</a></td>
+<td class="comment-1" rowspan="1">Reset bit 0 (the keypress flag) at <a href="85E2.html">85E2</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8b38"></span>8B38</td>
-<td class="bytes-0"></td>
 <td class="instruction">BIT 1,(HL)</td>
-<td class="comment-11" rowspan="1">Has the in-game music been switched off?</td>
+<td class="comment-1" rowspan="1">Has the in-game music been switched off?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b3a"></span>8B3A</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8B07.html#8b70">$8B70</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -242,207 +179,131 @@ The next section of code plays a note of the in-game music.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b3c"></span>8B3C</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
-<td class="comment-11" rowspan="2">Reset the inactivity timer at <a href="85E0.html">85E0</a> (the game does not automatically pause after a period of inactivity if the in-game music is playing)</td>
+<td class="comment-1" rowspan="2">Reset the inactivity timer at <a href="85E0.html">85E0</a> (the game does not automatically pause after a period of inactivity if the in-game music is playing)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b3d"></span>8B3D</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85E0),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b40"></span>8B40</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85E1)</td>
-<td class="comment-11" rowspan="3">Increment the in-game music note index at <a href="85E1.html">85E1</a></td>
+<td class="comment-1" rowspan="3">Increment the in-game music note index at <a href="85E1.html">85E1</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b43"></span>8B43</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b44"></span>8B44</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85E1),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b47"></span>8B47</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $7E</td>
-<td class="comment-11" rowspan="6">Point <span class="register">HL</span> at the appropriate entry in the tune data table at <a href="865F.html">865F</a></td>
+<td class="comment-1" rowspan="6">Point <span class="register">HL</span> at the appropriate entry in the tune data table at <a href="865F.html">865F</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b49"></span>8B49</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b4a"></span>8B4A</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b4b"></span>8B4B</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b4d"></span>8B4D</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,$865F</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b50"></span>8B50</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b51"></span>8B51</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85CC)</td>
-<td class="comment-11" rowspan="1">Pick up the number of lives remaining (0-7) from <a href="85CC.html">85CC</a></td>
+<td class="comment-1" rowspan="1">Pick up the number of lives remaining (0-7) from <a href="85CC.html">85CC</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b54"></span>8B54</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-11" rowspan="4"><span class="register">A</span>=28-4<span class="register">A</span>; this value adjusts the pitch of the note that is played depending on how many lives are remaining (the more lives remaining, the higher the pitch)</td>
+<td class="comment-1" rowspan="4"><span class="register">A</span>=28-4<span class="register">A</span>; this value adjusts the pitch of the note that is played depending on how many lives are remaining (the more lives remaining, the higher the pitch)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b55"></span>8B55</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b56"></span>8B56</td>
-<td class="bytes-0"></td>
 <td class="instruction">SUB $1C</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b58"></span>8B58</td>
-<td class="bytes-0"></td>
 <td class="instruction">NEG</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b5a"></span>8B5A</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD A,(HL)</td>
-<td class="comment-11" rowspan="1">Add the entry from the tune data table for the current note</td>
+<td class="comment-1" rowspan="1">Add the entry from the tune data table for the current note</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b5b"></span>8B5B</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,A</td>
-<td class="comment-11" rowspan="1">Copy this value to <span class="register">D</span> (which determines the pitch of the note)</td>
+<td class="comment-1" rowspan="1">Copy this value to <span class="register">D</span> (which determines the pitch of the note)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b5c"></span>8B5C</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80DE)</td>
-<td class="comment-11" rowspan="1">Pick up the border colour for the current room from <a href="80DE.html">80DE</a></td>
+<td class="comment-1" rowspan="1">Pick up the border colour for the current room from <a href="80DE.html">80DE</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b5f"></span>8B5F</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,D</td>
-<td class="comment-11" rowspan="1">Initialise the pitch delay counter in <span class="register">E</span></td>
+<td class="comment-1" rowspan="1">Initialise the pitch delay counter in <span class="register">E</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b60"></span>8B60</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$0003</td>
-<td class="comment-11" rowspan="1">Initialise the duration delay counters in <span class="register">B</span> (0) and <span class="register">C</span> (3)</td>
+<td class="comment-1" rowspan="1">Initialise the duration delay counters in <span class="register">B</span> (0) and <span class="register">C</span> (3)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8b63"></span>8B63</td>
-<td class="bytes-0"></td>
 <td class="instruction">OUT ($FE),A</td>
-<td class="comment-11" rowspan="8">Produce a note of the in-game music</td>
+<td class="comment-1" rowspan="8">Produce a note of the in-game music</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b65"></span>8B65</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC E</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b66"></span>8B66</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8B07.html#8b6b">$8B6B</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b68"></span>8B68</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,D</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b69"></span>8B69</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR $18</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8b6b"></span>8B6B</td>
-<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="8B07.html#8b63">$8B63</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b6d"></span>8B6D</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC C</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b6e"></span>8B6E</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="8B07.html#8b63">$8B63</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -455,130 +316,89 @@ Here we check the teleport keys.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8b70"></span>8B70</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$EFFE</td>
-<td class="comment-11" rowspan="2">Read keys 6-7-8-9-0</td>
+<td class="comment-1" rowspan="2">Read keys 6-7-8-9-0</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b73"></span>8B73</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b75"></span>8B75</td>
-<td class="bytes-0"></td>
 <td class="instruction">BIT 1,A</td>
-<td class="comment-11" rowspan="1">Is '9' (the activator key) being pressed?</td>
+<td class="comment-1" rowspan="1">Is '9' (the activator key) being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b77"></span>8B77</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="8B07.html#8b97">$8B97</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b7a"></span>8B7A</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $10</td>
-<td class="comment-11" rowspan="3">Keep only bit 4 (corresponding to the '6' key), flip it, and move it into bit 5</td>
+<td class="comment-1" rowspan="3">Keep only bit 4 (corresponding to the '6' key), flip it, and move it into bit 5</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b7c"></span>8B7C</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR $10</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b7e"></span>8B7E</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b7f"></span>8B7F</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,A</td>
-<td class="comment-11" rowspan="1">Now bit 5 of <span class="register">D</span> is set if '6' is being pressed</td>
+<td class="comment-1" rowspan="1">Now bit 5 of <span class="register">D</span> is set if '6' is being pressed</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b80"></span>8B80</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85E3)</td>
-<td class="comment-11" rowspan="1">Pick up the WRITETYPER key counter from <a href="85E3.html">85E3</a></td>
+<td class="comment-1" rowspan="1">Pick up the WRITETYPER key counter from <a href="85E3.html">85E3</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b83"></span>8B83</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $0A</td>
-<td class="comment-11" rowspan="1">Has WRITETYPER been keyed in yet?</td>
+<td class="comment-1" rowspan="1">Has WRITETYPER been keyed in yet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b85"></span>8B85</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="8B07.html#8b97">$8B97</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b88"></span>8B88</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$F7FE</td>
-<td class="comment-11" rowspan="2">Read keys 1-2-3-4-5</td>
+<td class="comment-1" rowspan="2">Read keys 1-2-3-4-5</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b8b"></span>8B8B</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b8d"></span>8B8D</td>
-<td class="bytes-0"></td>
 <td class="instruction">CPL</td>
-<td class="comment-11" rowspan="2">Keep only bits 0-4 and flip them</td>
+<td class="comment-1" rowspan="2">Keep only bits 0-4 and flip them</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b8e"></span>8B8E</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b90"></span>8B90</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR D</td>
-<td class="comment-11" rowspan="1">Copy bit 5 of <span class="register">D</span> into <span class="register">A</span>; now <span class="register">A</span> holds the number of the room to teleport to</td>
+<td class="comment-1" rowspan="1">Copy bit 5 of <span class="register">D</span> into <span class="register">A</span>; now <span class="register">A</span> holds the number of the room to teleport to</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b91"></span>8B91</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($8420),A</td>
-<td class="comment-11" rowspan="1">Store the room number at <a href="8420.html">8420</a></td>
+<td class="comment-1" rowspan="1">Store the room number at <a href="8420.html">8420</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b94"></span>8B94</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP <a href="8912.html">$8912</a></td>
-<td class="comment-11" rowspan="1">Teleport into the room</td>
+<td class="comment-1" rowspan="1">Teleport into the room</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -591,318 +411,226 @@ Finally, check the WRITETYPER keys.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8b97"></span>8B97</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85E3)</td>
-<td class="comment-11" rowspan="1">Pick up the WRITETYPER key counter from <a href="85E3.html">85E3</a></td>
+<td class="comment-1" rowspan="1">Pick up the WRITETYPER key counter from <a href="85E3.html">85E3</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b9a"></span>8B9A</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $0A</td>
-<td class="comment-11" rowspan="1">Has WRITETYPER been keyed in yet?</td>
+<td class="comment-1" rowspan="1">Has WRITETYPER been keyed in yet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b9c"></span>8B9C</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">If so, jump back to the start of the main loop</td>
+<td class="comment-1" rowspan="1">If so, jump back to the start of the main loop</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8b9f"></span>8B9F</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($8420)</td>
-<td class="comment-11" rowspan="1">Pick up the current room number from <a href="8420.html">8420</a></td>
+<td class="comment-1" rowspan="1">Pick up the current room number from <a href="8420.html">8420</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ba2"></span>8BA2</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $1C</td>
-<td class="comment-11" rowspan="1">Are we in <a href="DC00.html">First Landing</a>?</td>
+<td class="comment-1" rowspan="1">Are we in <a href="DC00.html">First Landing</a>?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ba4"></span>8BA4</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">If not, jump back to the start of the main loop</td>
+<td class="comment-1" rowspan="1">If not, jump back to the start of the main loop</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8ba7"></span>8BA7</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85CF)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's pixel y-coordinate from <a href="85CF.html">85CF</a></td>
+<td class="comment-1" rowspan="1">Pick up Willy's y-coordinate from <a href="85CF.html">85CF</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8baa"></span>8BAA</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $D0</td>
-<td class="comment-11" rowspan="1">Is Willy on the floor at the bottom of the staircase?</td>
+<td class="comment-1" rowspan="1">Is Willy on the floor at the bottom of the staircase?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bac"></span>8BAC</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP NZ,<a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">If not, jump back to the start of the main loop</td>
+<td class="comment-1" rowspan="1">If not, jump back to the start of the main loop</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8baf"></span>8BAF</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85E3)</td>
-<td class="comment-11" rowspan="1">Pick up the WRITETYPER key counter (0-9) from <a href="85E3.html">85E3</a></td>
+<td class="comment-1" rowspan="1">Pick up the WRITETYPER key counter (0-9) from <a href="85E3.html">85E3</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bb2"></span>8BB2</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-11" rowspan="5">Point <span class="register">IX</span> at the corresponding entry in the WRITETYPER table at <a href="85E5.html#85e7">85E7</a></td>
+<td class="comment-1" rowspan="5">Point <span class="register">IX</span> at the corresponding entry in the WRITETYPER table at <a href="85E5.html#85e7">85E7</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bb3"></span>8BB3</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bb4"></span>8BB4</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bb6"></span>8BB6</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD IX,$85E7</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bba"></span>8BBA</td>
-<td class="bytes-0"></td>
 <td class="instruction">ADD IX,DE</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bbc"></span>8BBC</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,$FBFE</td>
-<td class="comment-11" rowspan="2">Read keys Q-W-E-R-T</td>
+<td class="comment-1" rowspan="2">Read keys Q-W-E-R-T</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bbf"></span>8BBF</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bc1"></span>8BC1</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
-<td class="comment-11" rowspan="1">Keep only bits 0-4</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-4</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bc3"></span>8BC3</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (IX+$00)</td>
-<td class="comment-11" rowspan="1">Does this match the first byte of the entry in the WRITETYPER table?</td>
+<td class="comment-1" rowspan="1">Does this match the first byte of the entry in the WRITETYPER table?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bc6"></span>8BC6</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8B07.html#8bda">$8BDA</a></td>
-<td class="comment-11" rowspan="1">Jump if so</td>
+<td class="comment-1" rowspan="1">Jump if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bc8"></span>8BC8</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $1F</td>
-<td class="comment-11" rowspan="1">Are any of the keys Q-W-E-R-T being pressed?</td>
+<td class="comment-1" rowspan="1">Are any of the keys Q-W-E-R-T being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bca"></span>8BCA</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">If not, jump back to the start of the main loop</td>
+<td class="comment-1" rowspan="1">If not, jump back to the start of the main loop</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bcd"></span>8BCD</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (IX-$02)</td>
-<td class="comment-11" rowspan="1">Does the keyboard reading match the first byte of the previous entry in the WRITETYPER table?</td>
+<td class="comment-1" rowspan="1">Does the keyboard reading match the first byte of the previous entry in the WRITETYPER table?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bd0"></span>8BD0</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">If so, jump back to the start of the main loop</td>
+<td class="comment-1" rowspan="1">If so, jump back to the start of the main loop</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bd3"></span>8BD3</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
-<td class="comment-11" rowspan="2">Reset the WRITETYPER key counter at <a href="85E3.html">85E3</a> to 0 (an incorrect key was pressed)</td>
+<td class="comment-1" rowspan="2">Reset the WRITETYPER key counter at <a href="85E3.html">85E3</a> to 0 (an incorrect key was pressed)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bd4"></span>8BD4</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85E3),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bd7"></span>8BD7</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP <a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">Jump back to the start of the main loop</td>
+<td class="comment-1" rowspan="1">Jump back to the start of the main loop</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8bda"></span>8BDA</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,$DF</td>
-<td class="comment-11" rowspan="2">Read keys Y-U-I-O-P</td>
+<td class="comment-1" rowspan="2">Read keys Y-U-I-O-P</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bdc"></span>8BDC</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bde"></span>8BDE</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $1F</td>
-<td class="comment-11" rowspan="1">Keep only bits 0-4</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-4</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8be0"></span>8BE0</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (IX+$01)</td>
-<td class="comment-11" rowspan="1">Does this match the second byte of the entry in the WRITETYPER table?</td>
+<td class="comment-1" rowspan="1">Does this match the second byte of the entry in the WRITETYPER table?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8be3"></span>8BE3</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="8B07.html#8bf7">$8BF7</a></td>
-<td class="comment-11" rowspan="1">If so, jump to increment the WRITETYPER key counter</td>
+<td class="comment-1" rowspan="1">If so, jump to increment the WRITETYPER key counter</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8be5"></span>8BE5</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP $1F</td>
-<td class="comment-11" rowspan="1">Are any of the keys Y-U-I-O-P being pressed?</td>
+<td class="comment-1" rowspan="1">Are any of the keys Y-U-I-O-P being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8be7"></span>8BE7</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">If not, jump back to the start of the main loop</td>
+<td class="comment-1" rowspan="1">If not, jump back to the start of the main loop</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bea"></span>8BEA</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (IX-$01)</td>
-<td class="comment-11" rowspan="1">Does the keyboard reading match the second byte of the previous entry in the WRITETYPER table?</td>
+<td class="comment-1" rowspan="1">Does the keyboard reading match the second byte of the previous entry in the WRITETYPER table?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bed"></span>8BED</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">If so, jump back to the start of the main loop</td>
+<td class="comment-1" rowspan="1">If so, jump back to the start of the main loop</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bf0"></span>8BF0</td>
-<td class="bytes-0"></td>
 <td class="instruction">XOR A</td>
-<td class="comment-11" rowspan="2">Reset the WRITETYPER key counter at <a href="85E3.html">85E3</a> to 0 (an incorrect key was pressed)</td>
+<td class="comment-1" rowspan="2">Reset the WRITETYPER key counter at <a href="85E3.html">85E3</a> to 0 (an incorrect key was pressed)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bf1"></span>8BF1</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85E3),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bf4"></span>8BF4</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP <a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">Jump back to the start of the main loop</td>
+<td class="comment-1" rowspan="1">Jump back to the start of the main loop</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8bf7"></span>8BF7</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85E3)</td>
-<td class="comment-11" rowspan="3">Increment the WRITETYPER key counter at <a href="85E3.html">85E3</a></td>
+<td class="comment-1" rowspan="3">Increment the WRITETYPER key counter at <a href="85E3.html">85E3</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bfa"></span>8BFA</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bfb"></span>8BFB</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD ($85E3),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8bfe"></span>8BFE</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP <a href="89AD.html">$89AD</a></td>
-<td class="comment-11" rowspan="1">Jump back to the start of the main loop</td>
+<td class="comment-1" rowspan="1">Jump back to the start of the main loop</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8AEB.html">8AEB</a></span></td>
+<td class="prev">
+Prev: <a href="8AEB.html">8AEB</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#8b07">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="8C01.html">8C01</a></span></td>
+<td class="next">
+Next: <a href="8C01.html">8C01</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/35591.html">Switch to decimal</a>.</div>
 </footer>
 </body>

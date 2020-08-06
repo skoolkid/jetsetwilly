@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 898B</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8912.html">8912</a></span></td>
+<td class="prev">
+Prev: <a href="8912.html">8912</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#898b">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="89AD.html">89AD</a></span></td>
+<td class="next">
+Next: <a href="89AD.html">89AD</a>
+</td>
 </tr>
 </table>
 <div class="description">898B: Draw the remaining lives</div>
@@ -29,54 +32,32 @@
 Used by the routine at <a href="89AD.html">89AD</a>.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="898b"></span>898B</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85CC)</td>
-<td class="comment-11" rowspan="1">Pick up the number of lives remaining from <a href="85CC.html">85CC</a></td>
+<td class="comment-1" rowspan="1">Pick up the number of lives remaining from <a href="85CC.html">85CC</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="898e"></span>898E</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,$50A0</td>
-<td class="comment-11" rowspan="1">Set <span class="register">HL</span> to the display file address at which to draw the first Willy sprite</td>
+<td class="comment-1" rowspan="1">Set <span class="register">HL</span> to the display file address at which to draw the first Willy sprite</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8991"></span>8991</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Are there any lives remaining?</td>
+<td class="comment-1" rowspan="1">Are there any lives remaining?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8992"></span>8992</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET Z</td>
-<td class="comment-11" rowspan="1">Return if not</td>
+<td class="comment-1" rowspan="1">Return if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8993"></span>8993</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,A</td>
-<td class="comment-11" rowspan="1">Initialise <span class="register">B</span> to the number of lives remaining</td>
+<td class="comment-1" rowspan="1">Initialise <span class="register">B</span> to the number of lives remaining</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -89,136 +70,99 @@ The sprite-drawing loop begins.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="8994"></span>8994</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,$00</td>
-<td class="comment-11" rowspan="1"><span class="register">C</span>=0; this tells the sprite-drawing routine at <a href="9456.html">9456</a> to overwrite any existing graphics</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=0; this tells the sprite-drawing routine at <a href="9456.html">9456</a> to overwrite any existing graphics</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8996"></span>8996</td>
-<td class="bytes-0"></td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-11" rowspan="2">Save <span class="register">HL</span> and <span class="register">BC</span> briefly</td>
+<td class="comment-1" rowspan="2">Save <span class="register">HL</span> and <span class="register">BC</span> briefly</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8997"></span>8997</td>
-<td class="bytes-0"></td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8998"></span>8998</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($85E1)</td>
-<td class="comment-11" rowspan="1">Pick up the in-game music note index from <a href="85E1.html">85E1</a>; this will determine the animation frame for the Willy sprites</td>
+<td class="comment-1" rowspan="1">Pick up the in-game music note index from <a href="85E1.html">85E1</a>; this will determine the animation frame for the Willy sprites</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="899b"></span>899B</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-11" rowspan="4">Now <span class="register">A</span>=0x00 (frame 0), 0x20 (frame 1), 0x40 (frame 2) or 0x60 (frame 3)</td>
+<td class="comment-1" rowspan="4">Now <span class="register">A</span>=0x00 (frame 0), 0x20 (frame 1), 0x40 (frame 2) or 0x60 (frame 3)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="899c"></span>899C</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="899d"></span>899D</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="899e"></span>899E</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $60</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="89a0"></span>89A0</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
-<td class="comment-11" rowspan="2">Point <span class="register">DE</span> at the corresponding Willy sprite (at <a href="9D00.html">9D00</a>+<span class="register">A</span>)</td>
+<td class="comment-1" rowspan="2">Point <span class="register">DE</span> at the corresponding Willy sprite (at <a href="9D00.html">9D00</a>+<span class="register">A</span>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="89a1"></span>89A1</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD D,$9D</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="89a3"></span>89A3</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="9456.html">$9456</a></td>
-<td class="comment-11" rowspan="1">Draw the Willy sprite on the screen</td>
+<td class="comment-1" rowspan="1">Draw the Willy sprite on the screen</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="89a6"></span>89A6</td>
-<td class="bytes-0"></td>
 <td class="instruction">POP BC</td>
-<td class="comment-11" rowspan="2">Restore <span class="register">HL</span> and <span class="register">BC</span></td>
+<td class="comment-1" rowspan="2">Restore <span class="register">HL</span> and <span class="register">BC</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="89a7"></span>89A7</td>
-<td class="bytes-0"></td>
 <td class="instruction">POP HL</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="89a8"></span>89A8</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-11" rowspan="2">Move <span class="register">HL</span> along to the location at which to draw the next Willy sprite</td>
+<td class="comment-1" rowspan="2">Move <span class="register">HL</span> along to the location at which to draw the next Willy sprite</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="89a9"></span>89A9</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC HL</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="89aa"></span>89AA</td>
-<td class="bytes-0"></td>
 <td class="instruction">DJNZ <a href="898B.html#8994">$8994</a></td>
-<td class="comment-11" rowspan="1">Jump back to draw any remaining sprites</td>
+<td class="comment-1" rowspan="1">Jump back to draw any remaining sprites</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="89ac"></span>89AC</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8912.html">8912</a></span></td>
+<td class="prev">
+Prev: <a href="8912.html">8912</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#898b">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="89AD.html">89AD</a></span></td>
+<td class="next">
+Next: <a href="89AD.html">89AD</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/35211.html">Switch to decimal</a>.</div>
 </footer>
 </body>

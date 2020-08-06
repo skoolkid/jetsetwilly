@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Data at CF00</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-b">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Data</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="CE00.html">CE00</a></span></td>
+<td class="prev">
+Prev: <a href="CE00.html">CE00</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#cf00">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="D000.html">D000</a></span></td>
+<td class="next">
+Next: <a href="D000.html">D000</a>
+</td>
 </tr>
 </table>
 <div class="description">CF00: Room 0x0F: I'm sure I've seen this before.. (teleport: 12349)</div>
@@ -39,131 +42,72 @@ Used by the routine at <a href="8912.html">8912</a>.
 The first 128 bytes are copied to <a href="8000.html">8000</a> and define the room layout. Each bit-pair (bits 7 and 6, 5 and 4, 3 and 2, or 1 and 0 of each byte) determines the type of tile (background, floor, wall or nasty) that will be drawn at the corresponding location.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf00"></span>CF00</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-11" rowspan="16">Room layout</td>
+<td class="comment-1" rowspan="16">Room layout</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf08"></span>CF08</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf10"></span>CF10</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf18"></span>CF18</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf20"></span>CF20</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf28"></span>CF28</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf30"></span>CF30</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf38"></span>CF38</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf40"></span>CF40</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf48"></span>CF48</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $AA,$42,$A4,$2A,$A4,$2A,$42,$AA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf50"></span>CF50</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $AA,$C2,$AC,$2A,$AC,$2A,$C2,$AA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf58"></span>CF58</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $AA,$C2,$AC,$2A,$AC,$2A,$C2,$AA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf60"></span>CF60</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $AA,$C2,$AC,$2A,$AC,$2A,$C2,$AA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf68"></span>CF68</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $AA,$C2,$AC,$2A,$AC,$2A,$C2,$AA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf70"></span>CF70</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $AA,$C2,$AC,$2A,$AC,$2A,$C2,$AA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf78"></span>CF78</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -176,11 +120,9 @@ The next 32 bytes are copied to <a href="8080.html">8080</a> and specify the roo
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cf80"></span>CF80</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFM "I'm sure I've seen this before.."</td>
-<td class="comment-11" rowspan="1">Room name</td>
+<td class="comment-1" rowspan="1">Room name</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -205,46 +147,34 @@ The next 54 bytes are copied to <a href="80A0.html">80A0</a> and contain the att
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfa0"></span>CFA0</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $08,$00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-11" rowspan="1">Background</td>
+<td class="comment-1" rowspan="1">Background</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfa9"></span>CFA9</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $0C,$80,$40,$20,$50,$48,$54,$52,$55</td>
-<td class="comment-11" rowspan="1">Floor</td>
+<td class="comment-1" rowspan="1">Floor</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfb2"></span>CFB2</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $53,$66,$66,$66,$00,$66,$66,$66,$66</td>
-<td class="comment-11" rowspan="1">Wall</td>
+<td class="comment-1" rowspan="1">Wall</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfbb"></span>CFBB</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $4C,$51,$55,$54,$55,$15,$55,$45,$55</td>
-<td class="comment-11" rowspan="1">Nasty</td>
+<td class="comment-1" rowspan="1">Nasty</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfc4"></span>CFC4</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $0C,$00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-11" rowspan="1">Ramp (unused)</td>
+<td class="comment-1" rowspan="1">Ramp (unused)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfcd"></span>CFCD</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $FF,$00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-11" rowspan="1">Conveyor (unused)</td>
+<td class="comment-1" rowspan="1">Conveyor (unused)</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -257,25 +187,19 @@ The next four bytes are copied to <a href="80D6.html">80D6</a> and specify the d
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfd6"></span>CFD6</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00</td>
-<td class="comment-11" rowspan="1">Direction (left)</td>
+<td class="comment-1" rowspan="1">Direction (left)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfd7"></span>CFD7</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFW $0000</td>
-<td class="comment-11" rowspan="1">Location in the attribute buffer at <a href="5E00.html">5E00</a> (unused)</td>
+<td class="comment-1" rowspan="1">Location in the attribute buffer at <a href="5E00.html">5E00</a> (unused)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfd9"></span>CFD9</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00</td>
-<td class="comment-11" rowspan="1">Length: 0 (there is no conveyor in this room)</td>
+<td class="comment-1" rowspan="1">Length: 0 (there is no conveyor in this room)</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -288,25 +212,19 @@ The next four bytes are copied to <a href="80DA.html">80DA</a> and specify the d
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfda"></span>CFDA</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00</td>
-<td class="comment-11" rowspan="1">Direction (up to the left)</td>
+<td class="comment-1" rowspan="1">Direction (up to the left)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfdb"></span>CFDB</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFW $0000</td>
-<td class="comment-11" rowspan="1">Location in the attribute buffer at <a href="5E00.html">5E00</a> (unused)</td>
+<td class="comment-1" rowspan="1">Location in the attribute buffer at <a href="5E00.html">5E00</a> (unused)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfdd"></span>CFDD</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00</td>
-<td class="comment-11" rowspan="1">Length: 0 (there is no ramp in this room)</td>
+<td class="comment-1" rowspan="1">Length: 0 (there is no ramp in this room)</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -319,11 +237,9 @@ The next byte is copied to <a href="80DE.html">80DE</a> and specifies the border
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfde"></span>CFDE</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $03</td>
-<td class="comment-11" rowspan="1">Border colour</td>
+<td class="comment-1" rowspan="1">Border colour</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -336,11 +252,9 @@ The next two bytes are copied to <a href="80DF.html">80DF</a>, but are not used.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfdf"></span>CFDF</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00</td>
-<td class="comment-11" rowspan="1">Unused</td>
+<td class="comment-1" rowspan="1">Unused</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -360,11 +274,9 @@ The next eight bytes are copied to <a href="80E1.html">80E1</a> and define the i
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfe1"></span>CFE1</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $18,$24,$18,$2C,$5E,$5E,$E7,$66</td>
-<td class="comment-11" rowspan="1">Item graphic</td>
+<td class="comment-1" rowspan="1">Item graphic</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -377,32 +289,24 @@ The next four bytes are copied to <a href="80E9.html">80E9</a> and specify the r
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfe9"></span>CFE9</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $10</td>
-<td class="comment-11" rowspan="1">Room to the left (<a href="D000.html">We must perform a Quirkafleeg</a>)</td>
+<td class="comment-1" rowspan="1">Room to the left (<a href="D000.html">We must perform a Quirkafleeg</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfea"></span>CFEA</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $0E</td>
-<td class="comment-11" rowspan="1">Room to the right (<a href="CE00.html">Rescue Esmerelda</a>)</td>
+<td class="comment-1" rowspan="1">Room to the right (<a href="CE00.html">Rescue Esmerelda</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfeb"></span>CFEB</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00</td>
-<td class="comment-11" rowspan="1">Room above (<a href="C000.html">The Off Licence</a>)</td>
+<td class="comment-1" rowspan="1">Room above (<a href="C000.html">The Off Licence</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfec"></span>CFEC</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00</td>
-<td class="comment-11" rowspan="1">Room below (<a href="C000.html">The Off Licence</a>)</td>
+<td class="comment-1" rowspan="1">Room below (<a href="C000.html">The Off Licence</a>)</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -415,11 +319,9 @@ The next three bytes are copied to <a href="80ED.html">80ED</a>, but are not use
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cfed"></span>CFED</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00</td>
-<td class="comment-11" rowspan="1">Unused</td>
+<td class="comment-1" rowspan="1">Unused</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -432,73 +334,61 @@ The next eight pairs of bytes are copied to <a href="80F0.html">80F0</a> and spe
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cff0"></span>CFF0</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $04,$85</td>
-<td class="comment-11" rowspan="1">Guardian no. 0x04 (vertical), base sprite 4, x=5 (<a href="A000.html#a020">A020</a>)</td>
+<td class="comment-1" rowspan="1">Guardian no. 0x04 (vertical), base sprite 4, x=5 (<a href="A000.html#a020">A020</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cff2"></span>CFF2</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $03,$8B</td>
-<td class="comment-11" rowspan="1">Guardian no. 0x03 (vertical), base sprite 4, x=11 (<a href="A000.html#a018">A018</a>)</td>
+<td class="comment-1" rowspan="1">Guardian no. 0x03 (vertical), base sprite 4, x=11 (<a href="A000.html#a018">A018</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cff4"></span>CFF4</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $05,$93</td>
-<td class="comment-11" rowspan="1">Guardian no. 0x05 (vertical), base sprite 4, x=19 (<a href="A000.html#a028">A028</a>)</td>
+<td class="comment-1" rowspan="1">Guardian no. 0x05 (vertical), base sprite 4, x=19 (<a href="A000.html#a028">A028</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cff6"></span>CFF6</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $02,$99</td>
-<td class="comment-11" rowspan="1">Guardian no. 0x02 (vertical), base sprite 4, x=25 (<a href="A000.html#a010">A010</a>)</td>
+<td class="comment-1" rowspan="1">Guardian no. 0x02 (vertical), base sprite 4, x=25 (<a href="A000.html#a010">A010</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cff8"></span>CFF8</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $0D,$06</td>
-<td class="comment-11" rowspan="1">Guardian no. 0x0D (horizontal), base sprite 0, initial x=6 (<a href="A000.html#a068">A068</a>)</td>
+<td class="comment-1" rowspan="1">Guardian no. 0x0D (horizontal), base sprite 0, initial x=6 (<a href="A000.html#a068">A068</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cffa"></span>CFFA</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $45,$64</td>
-<td class="comment-11" rowspan="1">Arrow flying right to left at pixel y-coordinate 50 (<a href="A000.html#a228">A228</a>)</td>
+<td class="comment-1" rowspan="1">Arrow flying right to left at pixel y-coordinate 50 (<a href="A000.html#a228">A228</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cffc"></span>CFFC</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $3C,$54</td>
-<td class="comment-11" rowspan="1">Arrow flying left to right at pixel y-coordinate 42 (<a href="A000.html#a1e0">A1E0</a>)</td>
+<td class="comment-1" rowspan="1">Arrow flying left to right at pixel y-coordinate 42 (<a href="A000.html#a1e0">A1E0</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="cffe"></span>CFFE</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $FF,$00</td>
-<td class="comment-11" rowspan="1">Terminator (<a href="A000.html#a3f8">A3F8</a>)</td>
+<td class="comment-1" rowspan="1">Terminator (<a href="A000.html#a3f8">A3F8</a>)</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="CE00.html">CE00</a></span></td>
+<td class="prev">
+Prev: <a href="CE00.html">CE00</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#cf00">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="D000.html">D000</a></span></td>
+<td class="next">
+Next: <a href="D000.html">D000</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/52992.html">Switch to decimal</a>.</div>
 </footer>
 </body>

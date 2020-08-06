@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 961E</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="95C8.html">95C8</a></span></td>
+<td class="prev">
+Prev: <a href="95C8.html">95C8</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#961e">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="9637.html">9637</a></span></td>
+<td class="next">
+Next: <a href="9637.html">9637</a>
+</td>
 </tr>
 </table>
 <div class="description">961E: Check and set the attribute byte for a cell occupied by Willy's sprite</div>
@@ -26,133 +29,104 @@
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a href="95C8.html">95C8</a>. Sets the attribute byte in the buffer at <a href="5C00.html">5C00</a> for one of the six cells (in three rows of two) occupied by or under Willy's sprite, or kills Willy if the cell contains a nasty. On entry, <span class="register">C</span> holds either 0x0F if the cell is in the top two rows, or Willy's pixel y-coordinate if the cell is in the bottom row.
+Used by the routine at <a href="95C8.html">95C8</a>. Sets the attribute byte in the buffer at <a href="5C00.html">5C00</a> for one of the six cells (in three rows of two) occupied by or under Willy's sprite, or kills Willy if the cell contains a nasty. On entry, <span class="register">C</span> holds either 0x0F if the cell is in the top two rows, or Willy's y-coordinate if the cell is in the bottom row.
 </div>
 </div>
-<table class="input-1">
+<table class="input">
 <tr class="asm-input-header">
 <th colspan="2">Input</th>
 </tr>
 <tr>
 <td class="register">C</td>
-<td class="register-desc">0x0F or Willy's pixel y-coordinate</td>
+<td class="register-desc">0x0F or Willy's y-coordinate</td>
 </tr>
 <tr>
 <td class="register">HL</td>
 <td class="register-desc">Address of the attribute byte in the buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 </table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="961e"></span>961E</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80A0)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the background tile in the current room from <a href="80A0.html">80A0</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the background tile in the current room from <a href="80A0.html">80A0</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9621"></span>9621</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Does this cell contain a background tile?</td>
+<td class="comment-1" rowspan="1">Does this cell contain a background tile?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9622"></span>9622</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="961E.html#962f">$962F</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9624"></span>9624</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,C</td>
-<td class="comment-11" rowspan="2">Set the zero flag if we are going to retain the INK colour in this cell; this happens only if the cell is in the bottom row and Willy's sprite is confined to the top two rows</td>
+<td class="comment-1" rowspan="2">Set the zero flag if we are going to retain the INK colour in this cell; this happens only if the cell is in the bottom row and Willy's sprite is confined to the top two rows</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9625"></span>9625</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND $0F</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9627"></span>9627</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="961E.html#962f">$962F</a></td>
-<td class="comment-11" rowspan="1">Jump if we are going to retain the current INK colour in this cell</td>
+<td class="comment-1" rowspan="1">Jump if we are going to retain the current INK colour in this cell</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9629"></span>9629</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80A0)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the background tile in the current room from <a href="80A0.html">80A0</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the background tile in the current room from <a href="80A0.html">80A0</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="962c"></span>962C</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR $07</td>
-<td class="comment-11" rowspan="1">Set bits 0-2, making the INK white</td>
+<td class="comment-1" rowspan="1">Set bits 0-2, making the INK white</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="962e"></span>962E</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-11" rowspan="1">Set the attribute byte for this cell in the buffer at <a href="5C00.html">5C00</a></td>
+<td class="comment-1" rowspan="1">Set the attribute byte for this cell in the buffer at <a href="5C00.html">5C00</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="962f"></span>962F</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,($80BB)</td>
-<td class="comment-11" rowspan="1">Pick up the attribute byte of the nasty tile in the current room from <a href="80A0.html#80bb">80BB</a></td>
+<td class="comment-1" rowspan="1">Pick up the attribute byte of the nasty tile in the current room from <a href="80A0.html#80bb">80BB</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9632"></span>9632</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-11" rowspan="1">Has Willy hit a nasty?</td>
+<td class="comment-1" rowspan="1">Has Willy hit a nasty?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9633"></span>9633</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="90B6.html">$90B6</a></td>
-<td class="comment-11" rowspan="1">Kill Willy if so</td>
+<td class="comment-1" rowspan="1">Kill Willy if so</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="9636"></span>9636</td>
-<td class="bytes-0"></td>
 <td class="instruction">RET</td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="95C8.html">95C8</a></span></td>
+<td class="prev">
+Prev: <a href="95C8.html">95C8</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#961e">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="9637.html">9637</a></span></td>
+<td class="next">
+Next: <a href="9637.html">9637</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/38430.html">Switch to decimal</a>.</div>
 </footer>
 </body>

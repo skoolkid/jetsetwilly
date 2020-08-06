@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Data at 8300</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-b">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../images/logo-hex.png" /></a></td>
 <td class="page-header">Data</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8200.html">8200</a></span></td>
+<td class="prev">
+Prev: <a href="8200.html">8200</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#8300">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="8400.html">8400</a></span></td>
+<td class="next">
+Next: <a href="8400.html">8400</a>
+</td>
 </tr>
 </table>
 <div class="description">8300: Rope animation table</div>
@@ -29,270 +32,164 @@
 Used by the routine at <a href="91BE.html">91BE</a>. The first half of this table controls the x-coordinates at which the segments of rope are drawn, and the second half controls the y-coordinates. For a given rope animation frame F (0x00&lt;=F&lt;=0x36), the 32 entries from F to F+31 inclusive (one for each of the 32 segments of rope below the topmost one) in each half of the table are used; thus the batch of entries used 'slides' up and down the table as F increases and decreases.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8300"></span>8300</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-11" rowspan="11">These values determine how much to rotate the rope drawing byte (which in turn determines the x-coordinate at which each segment of rope is drawn)</td>
+<td class="comment-1" rowspan="11">These values determine how much to rotate the rope drawing byte (which in turn determines the x-coordinate at which each segment of rope is drawn)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8308"></span>8308</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8310"></span>8310</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8318"></span>8318</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8320"></span>8320</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $01,$01,$01,$01,$01,$01,$01,$01</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8328"></span>8328</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $01,$01,$01,$01,$02,$02,$02,$02</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8330"></span>8330</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $02,$02,$02,$02,$02,$02,$02,$02</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8338"></span>8338</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $02,$02,$02,$02,$02,$02,$02,$02</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8340"></span>8340</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $02,$02,$01,$02,$02,$01,$01,$02</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8348"></span>8348</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $01,$01,$02,$02,$03,$02,$03,$02</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8350"></span>8350</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $03,$03,$03,$03,$03,$03</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8356"></span>8356</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-11" rowspan="6">Unused</td>
+<td class="comment-1" rowspan="6">Unused</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="835e"></span>835E</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8366"></span>8366</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="836e"></span>836E</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8376"></span>8376</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="837e"></span>837E</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8380"></span>8380</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $06,$06,$06,$06,$06,$06,$06,$06</td>
-<td class="comment-11" rowspan="11">These values determine the y-coordinate of each segment of rope relative to the one above it</td>
+<td class="comment-1" rowspan="11">These values determine the y-coordinate of each segment of rope relative to the one above it</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8388"></span>8388</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $06,$06,$06,$06,$06,$06,$06,$06</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8390"></span>8390</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $06,$06,$06,$06,$06,$06,$06,$06</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="8398"></span>8398</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $06,$06,$06,$06,$06,$06,$06,$06</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83a0"></span>83A0</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $06,$06,$06,$06,$06,$06,$06,$06</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83a8"></span>83A8</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $06,$06,$06,$06,$06,$06,$06,$06</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83b0"></span>83B0</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $04,$06,$06,$04,$06,$04,$06,$04</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83b8"></span>83B8</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $06,$04,$04,$04,$06,$04,$04,$04</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83c0"></span>83C0</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $04,$04,$04,$04,$04,$04,$04,$04</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83c8"></span>83C8</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $04,$04,$04,$04,$04,$04,$04,$04</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83d0"></span>83D0</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $04,$04,$04,$04,$04,$04</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83d6"></span>83D6</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-11" rowspan="6">Unused</td>
+<td class="comment-1" rowspan="6">Unused</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83de"></span>83DE</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83e6"></span>83E6</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83ee"></span>83EE</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83f6"></span>83F6</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00,$00,$00,$00,$00,$00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="83fe"></span>83FE</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEFB $00,$00</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="8200.html">8200</a></span></td>
+<td class="prev">
+Prev: <a href="8200.html">8200</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#8300">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="8400.html">8400</a></span></td>
+<td class="next">
+Next: <a href="8400.html">8400</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../dec/asm/33536.html">Switch to decimal</a>.</div>
 </footer>
 </body>

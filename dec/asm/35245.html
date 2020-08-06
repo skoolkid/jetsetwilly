@@ -4,20 +4,23 @@
 <title>Jet Set Willy: Routine at 35245</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../style.css" />
-
 </head>
 <body class="Asm-c">
 <table class="header">
 <tr>
-<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo.png" /></a></td>
+<td class="logo"><a href="../index.html"><img alt="Jet Set Willy" src="../../images/logo-dec.png" /></a></td>
 <td class="page-header">Routines</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="35211.html">35211</a></span></td>
+<td class="prev">
+Prev: <a href="35211.html">35211</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#35245">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="35563.html">35563</a></span></td>
+<td class="next">
+Next: <a href="35563.html">35563</a>
+</td>
 </tr>
 </table>
 <div class="description">35245: Main loop (1)</div>
@@ -29,201 +32,131 @@
 Used by the routines at <a href="35090.html">35090</a> and <a href="35591.html">35591</a>.
 </div>
 </div>
-<table class="input-0">
-<tr class="asm-input-header">
-<th colspan="2">Input</th>
-</tr>
-
-</table>
-<table class="output-0">
-<tr class="asm-output-header">
-<th colspan="2">Output</th>
-</tr>
-
-</table>
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="35245"></span>35245</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="35211.html">35211</a></td>
-<td class="comment-11" rowspan="1">Draw the remaining lives</td>
+<td class="comment-1" rowspan="1">Draw the remaining lives</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35248"></span>35248</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,24064</td>
-<td class="comment-11" rowspan="4">Copy the contents of the attribute buffer at <a href="24064.html">24064</a> (the attributes for the empty room) into the attribute buffer at <a href="23552.html">23552</a></td>
+<td class="comment-1" rowspan="4">Copy the contents of the attribute buffer at <a href="24064.html">24064</a> (the attributes for the empty room) into the attribute buffer at <a href="23552.html">23552</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35251"></span>35251</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,23552</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35254"></span>35254</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,512</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35257"></span>35257</td>
-<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35259"></span>35259</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,28672</td>
-<td class="comment-11" rowspan="4">Copy the contents of the screen buffer at <a href="28672.html">28672</a> (the tiles for the empty room) into the screen buffer at <a href="24576.html">24576</a></td>
+<td class="comment-1" rowspan="4">Copy the contents of the screen buffer at <a href="28672.html">28672</a> (the tiles for the empty room) into the screen buffer at <a href="24576.html">24576</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35262"></span>35262</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,24576</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35265"></span>35265</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,4096</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35268"></span>35268</td>
-<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35270"></span>35270</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="37056.html">37056</a></td>
-<td class="comment-11" rowspan="1">Move the rope and guardians in the current room</td>
+<td class="comment-1" rowspan="1">Move the rope and guardians in the current room</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35273"></span>35273</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34271)</td>
-<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="34271.html">34271</a></td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="34271.html">34271</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35276"></span>35276</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 3</td>
-<td class="comment-11" rowspan="1">Is Willy's head down the toilet?</td>
+<td class="comment-1" rowspan="1">Is Willy's head down the toilet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35278"></span>35278</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL NZ,<a href="36307.html">36307</a></td>
-<td class="comment-11" rowspan="1">If not, move Willy</td>
+<td class="comment-1" rowspan="1">If not, move Willy</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35281"></span>35281</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34255)</td>
-<td class="comment-11" rowspan="1">Pick up Willy's pixel y-coordinate from <a href="34255.html">34255</a></td>
+<td class="comment-1" rowspan="1">Pick up Willy's y-coordinate from <a href="34255.html">34255</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35284"></span>35284</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 225</td>
-<td class="comment-11" rowspan="1">Has Willy just moved up a ramp or a rope past the top of the screen?</td>
+<td class="comment-1" rowspan="1">Has Willy just moved up a ramp or a rope past the top of the screen?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35286"></span>35286</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL NC,<a href="38064.html">38064</a></td>
-<td class="comment-11" rowspan="1">If so, move Willy into the room above</td>
+<td class="comment-1" rowspan="1">If so, move Willy into the room above</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35289"></span>35289</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34271)</td>
-<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="34271.html">34271</a></td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="34271.html">34271</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35292"></span>35292</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 3</td>
-<td class="comment-11" rowspan="1">Is Willy's head down the toilet?</td>
+<td class="comment-1" rowspan="1">Is Willy's head down the toilet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35294"></span>35294</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL NZ,<a href="38344.html">38344</a></td>
-<td class="comment-11" rowspan="1">If not, check and set the attribute bytes for Willy's sprite in the buffer at <a href="23552.html">23552</a>, and draw Willy to the screen buffer at <a href="24576.html">24576</a></td>
+<td class="comment-1" rowspan="1">If not, check and set the attribute bytes for Willy's sprite in the buffer at <a href="23552.html">23552</a>, and draw Willy to the screen buffer at <a href="24576.html">24576</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35297"></span>35297</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34271)</td>
-<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="34271.html">34271</a></td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="34271.html">34271</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35300"></span>35300</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 2</td>
-<td class="comment-11" rowspan="1">Is Willy on his way to the toilet?</td>
+<td class="comment-1" rowspan="1">Is Willy on his way to the toilet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35302"></span>35302</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL Z,<a href="38276.html">38276</a></td>
-<td class="comment-11" rowspan="1">If so, check whether he's reached it yet</td>
+<td class="comment-1" rowspan="1">If so, check whether he's reached it yet</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35305"></span>35305</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="38196.html">38196</a></td>
-<td class="comment-11" rowspan="1">Deal with special rooms (<a href="58112.html">Master Bedroom</a>, <a href="57600.html">The Bathroom</a>)</td>
+<td class="comment-1" rowspan="1">Deal with special rooms (<a href="58112.html">Master Bedroom</a>, <a href="57600.html">The Bathroom</a>)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35308"></span>35308</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="37310.html">37310</a></td>
-<td class="comment-11" rowspan="1">Draw the rope, arrows and guardians in the current room</td>
+<td class="comment-1" rowspan="1">Draw the rope, arrows and guardians in the current room</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35311"></span>35311</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="38137.html">38137</a></td>
-<td class="comment-11" rowspan="1">Move the conveyor in the current room (if there is one)</td>
+<td class="comment-1" rowspan="1">Move the conveyor in the current room (if there is one)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35314"></span>35314</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="37841.html">37841</a></td>
-<td class="comment-11" rowspan="1">Draw the items in the current room (if there are any) and collect any that Willy is touching</td>
+<td class="comment-1" rowspan="1">Draw the items in the current room (if there are any) and collect any that Willy is touching</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -236,95 +169,63 @@ This entry point is used by the routine at <a href="37046.html">37046</a>.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="35317"></span>35317</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,24576</td>
-<td class="comment-11" rowspan="4">Copy the contents of the screen buffer at <a href="24576.html">24576</a> to the display file</td>
+<td class="comment-1" rowspan="4">Copy the contents of the screen buffer at <a href="24576.html">24576</a> to the display file</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35320"></span>35320</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,16384</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35323"></span>35323</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,4096</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35326"></span>35326</td>
-<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35328"></span>35328</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34271)</td>
-<td class="comment-11" rowspan="1">Pick up the game mode indicator from <a href="34271.html">34271</a></td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="34271.html">34271</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35331"></span>35331</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND 2</td>
-<td class="comment-11" rowspan="2">Now <span class="register">A</span>=1 if Willy is running to the toilet or already has his head down it, 0 otherwise</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span>=1 if Willy is running to the toilet or already has his head down it, 0 otherwise</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35333"></span>35333</td>
-<td class="bytes-0"></td>
 <td class="instruction">RRCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35334"></span>35334</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,34258</td>
-<td class="comment-11" rowspan="3">Set Willy's animation frame at <a href="34258.html">34258</a> to 1 or 3 if Willy is running to the toilet or already has his head down it; this has the effect of moving Willy at twice his normal speed as he makes his way to the toilet (using animation frames 2 and 0)</td>
+<td class="comment-1" rowspan="3">Set Willy's animation frame at <a href="34258.html">34258</a> to 1 or 3 if Willy is running to the toilet or already has his head down it; this has the effect of moving Willy at twice his normal speed as he makes his way to the toilet (using animation frames 2 and 0)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35337"></span>35337</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR (HL)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35338"></span>35338</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35339"></span>35339</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34253)</td>
-<td class="comment-11" rowspan="1">Pick up the screen flash counter (unused and always 0) from <a href="34253.html">34253</a></td>
+<td class="comment-1" rowspan="1">Pick up the screen flash counter (unused and always 0) from <a href="34253.html">34253</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35342"></span>35342</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR A</td>
-<td class="comment-11" rowspan="1">Is it zero?</td>
+<td class="comment-1" rowspan="1">Is it zero?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35343"></span>35343</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="35245.html#35366">35366</a></td>
-<td class="comment-11" rowspan="1">Jump if so (this jump is always made)</td>
+<td class="comment-1" rowspan="1">Jump if so (this jump is always made)</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -337,81 +238,51 @@ The next section of code is never executed.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35345"></span>35345</td>
-<td class="bytes-0"></td>
 <td class="instruction">DEC A</td>
-<td class="comment-11" rowspan="2">Decrement the screen flash counter at <a href="34253.html">34253</a></td>
+<td class="comment-1" rowspan="2">Decrement the screen flash counter at <a href="34253.html">34253</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35346"></span>35346</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (34253),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35349"></span>35349</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-11" rowspan="4">Move bits 0-2 into bits 3-5 and clear all the other bits</td>
+<td class="comment-1" rowspan="4">Move bits 0-2 into bits 3-5 and clear all the other bits</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35350"></span>35350</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35351"></span>35351</td>
-<td class="bytes-0"></td>
 <td class="instruction">RLCA</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35352"></span>35352</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND 56</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35354"></span>35354</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,23552</td>
-<td class="comment-11" rowspan="5">Set every attribute byte in the buffer at <a href="23552.html">23552</a> to this value</td>
+<td class="comment-1" rowspan="5">Set every attribute byte in the buffer at <a href="23552.html">23552</a> to this value</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35357"></span>35357</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,23553</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35360"></span>35360</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,511</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35363"></span>35363</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35364"></span>35364</td>
-<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -424,116 +295,73 @@ Normal service resumes here.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="35366"></span>35366</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD HL,23552</td>
-<td class="comment-11" rowspan="4">Copy the contents of the attribute buffer at <a href="23552.html">23552</a> to the attribute file</td>
+<td class="comment-1" rowspan="4">Copy the contents of the attribute buffer at <a href="23552.html">23552</a> to the attribute file</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35369"></span>35369</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,22528</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35372"></span>35372</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,512</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35375"></span>35375</td>
-<td class="bytes-0"></td>
 <td class="instruction">LDIR</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35377"></span>35377</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD IX,34175</td>
-<td class="comment-11" rowspan="4">Print the current time (see <a href="34175.html">34175</a>) at (19,25)</td>
+<td class="comment-1" rowspan="4">Print the current time (see <a href="34175.html">34175</a>) at (19,25)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35381"></span>35381</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,20601</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35384"></span>35384</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,6</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35386"></span>35386</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="38528.html">38528</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35389"></span>35389</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD IX,34172</td>
-<td class="comment-11" rowspan="4">Print the number of items collected (see <a href="34172.html">34172</a>) at (19,16)</td>
+<td class="comment-1" rowspan="4">Print the number of items collected (see <a href="34172.html">34172</a>) at (19,16)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35393"></span>35393</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,20592</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35396"></span>35396</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD C,3</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35398"></span>35398</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL <a href="38528.html">38528</a></td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35401"></span>35401</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34251)</td>
-<td class="comment-11" rowspan="3">Increment the minute counter at <a href="34251.html">34251</a></td>
+<td class="comment-1" rowspan="3">Increment the minute counter at <a href="34251.html">34251</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35404"></span>35404</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35405"></span>35405</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (34251),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35408"></span>35408</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="35245.html#35499">35499</a></td>
-<td class="comment-11" rowspan="1">Jump unless the minute counter has ticked over to 0</td>
+<td class="comment-1" rowspan="1">Jump unless the minute counter has ticked over to 0</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -546,221 +374,159 @@ A minute of game time has passed. Update the game clock accordingly.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35410"></span>35410</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD IX,34175</td>
-<td class="comment-11" rowspan="1">Point <span class="register">IX</span> at the current time at <a href="34175.html">34175</a></td>
+<td class="comment-1" rowspan="1">Point <span class="register">IX</span> at the current time at <a href="34175.html">34175</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35414"></span>35414</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC (IX+4)</td>
-<td class="comment-11" rowspan="1">Increment the units digit of the minute</td>
+<td class="comment-1" rowspan="1">Increment the units digit of the minute</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35417"></span>35417</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+4)</td>
-<td class="comment-11" rowspan="1">Pick up the new units digit</td>
+<td class="comment-1" rowspan="1">Pick up the new units digit</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35420"></span>35420</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 58</td>
-<td class="comment-11" rowspan="1">Was it '9' before?</td>
+<td class="comment-1" rowspan="1">Was it '9' before?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35422"></span>35422</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="35245.html#35499">35499</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35424"></span>35424</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+4),48</td>
-<td class="comment-11" rowspan="1">Set the units digit of the minute to '0'</td>
+<td class="comment-1" rowspan="1">Set the units digit of the minute to '0'</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35428"></span>35428</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC (IX+3)</td>
-<td class="comment-11" rowspan="1">Increment the tens digit of the minute</td>
+<td class="comment-1" rowspan="1">Increment the tens digit of the minute</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35431"></span>35431</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+3)</td>
-<td class="comment-11" rowspan="1">Pick up the new tens digit</td>
+<td class="comment-1" rowspan="1">Pick up the new tens digit</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35434"></span>35434</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 54</td>
-<td class="comment-11" rowspan="1">Was it '5' before?</td>
+<td class="comment-1" rowspan="1">Was it '5' before?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35436"></span>35436</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="35245.html#35499">35499</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35438"></span>35438</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+3),48</td>
-<td class="comment-11" rowspan="1">Set the tens digit of the minute to '0'</td>
+<td class="comment-1" rowspan="1">Set the tens digit of the minute to '0'</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35442"></span>35442</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+0)</td>
-<td class="comment-11" rowspan="1">Pick up the tens digit of the hour</td>
+<td class="comment-1" rowspan="1">Pick up the tens digit of the hour</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35445"></span>35445</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 49</td>
-<td class="comment-11" rowspan="1">Is it currently '1'?</td>
+<td class="comment-1" rowspan="1">Is it currently '1'?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35447"></span>35447</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="35245.html#35481">35481</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35449"></span>35449</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC (IX+1)</td>
-<td class="comment-11" rowspan="1">Increment the units digit of the hour</td>
+<td class="comment-1" rowspan="1">Increment the units digit of the hour</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35452"></span>35452</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+1)</td>
-<td class="comment-11" rowspan="1">Pick up the new units digit</td>
+<td class="comment-1" rowspan="1">Pick up the new units digit</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35455"></span>35455</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 51</td>
-<td class="comment-11" rowspan="1">Was it '2' before?</td>
+<td class="comment-1" rowspan="1">Was it '2' before?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35457"></span>35457</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="35245.html#35499">35499</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35459"></span>35459</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+5)</td>
-<td class="comment-11" rowspan="1">Pick up the 'a' or 'p' of 'am/pm'</td>
+<td class="comment-1" rowspan="1">Pick up the 'a' or 'p' of 'am/pm'</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35462"></span>35462</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 112</td>
-<td class="comment-11" rowspan="1">Is it 'p'?</td>
+<td class="comment-1" rowspan="1">Is it 'p'?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35464"></span>35464</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="34762.html">34762</a></td>
-<td class="comment-11" rowspan="1">If so, quit the game (it's 1am)</td>
+<td class="comment-1" rowspan="1">If so, quit the game (it's 1am)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35467"></span>35467</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+0),32</td>
-<td class="comment-11" rowspan="1">Set the tens digit of the hour to ' ' (space)</td>
+<td class="comment-1" rowspan="1">Set the tens digit of the hour to ' ' (space)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35471"></span>35471</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+1),49</td>
-<td class="comment-11" rowspan="1">Set the units digit of the hour to '1'</td>
+<td class="comment-1" rowspan="1">Set the units digit of the hour to '1'</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35475"></span>35475</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+5),112</td>
-<td class="comment-11" rowspan="1">Change the 'a' of 'am' to 'p'</td>
+<td class="comment-1" rowspan="1">Change the 'a' of 'am' to 'p'</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35479"></span>35479</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR <a href="35245.html#35499">35499</a></td>
-<td class="comment-11" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="35481"></span>35481</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC (IX+1)</td>
-<td class="comment-11" rowspan="1">Increment the units digit of the hour</td>
+<td class="comment-1" rowspan="1">Increment the units digit of the hour</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35484"></span>35484</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(IX+1)</td>
-<td class="comment-11" rowspan="1">Pick up the new units digit</td>
+<td class="comment-1" rowspan="1">Pick up the new units digit</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35487"></span>35487</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 58</td>
-<td class="comment-11" rowspan="1">Was it '9' before?</td>
+<td class="comment-1" rowspan="1">Was it '9' before?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35489"></span>35489</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="35245.html#35499">35499</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35491"></span>35491</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+1),48</td>
-<td class="comment-11" rowspan="1">Set the units digit of the hour to '0'</td>
+<td class="comment-1" rowspan="1">Set the units digit of the hour to '0'</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35495"></span>35495</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (IX+0),49</td>
-<td class="comment-11" rowspan="1">Set the tens digit of the hour to '1'</td>
+<td class="comment-1" rowspan="1">Set the tens digit of the hour to '1'</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -773,130 +539,88 @@ Now check whether any non-movement keys are being pressed.
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="35499"></span>35499</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD BC,65278</td>
-<td class="comment-11" rowspan="2">Read keys SHIFT-Z-X-C-V</td>
+<td class="comment-1" rowspan="2">Read keys SHIFT-Z-X-C-V</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35502"></span>35502</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35504"></span>35504</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD E,A</td>
-<td class="comment-11" rowspan="1">Save the result in <span class="register">E</span></td>
+<td class="comment-1" rowspan="1">Save the result in <span class="register">E</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35505"></span>35505</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,127</td>
-<td class="comment-11" rowspan="2">Read keys B-N-M-SS-SPACE</td>
+<td class="comment-1" rowspan="2">Read keys B-N-M-SS-SPACE</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35507"></span>35507</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35509"></span>35509</td>
-<td class="bytes-0"></td>
 <td class="instruction">OR E</td>
-<td class="comment-11" rowspan="1">Combine the results</td>
+<td class="comment-1" rowspan="1">Combine the results</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35510"></span>35510</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND 1</td>
-<td class="comment-11" rowspan="1">Are SHIFT and SPACE being pressed?</td>
+<td class="comment-1" rowspan="1">Are SHIFT and SPACE being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35512"></span>35512</td>
-<td class="bytes-0"></td>
 <td class="instruction">JP Z,<a href="34762.html">34762</a></td>
-<td class="comment-11" rowspan="1">If so, quit the game</td>
+<td class="comment-1" rowspan="1">If so, quit the game</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35515"></span>35515</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34272)</td>
-<td class="comment-11" rowspan="3">Increment the inactivity timer at <a href="34272.html">34272</a></td>
+<td class="comment-1" rowspan="3">Increment the inactivity timer at <a href="34272.html">34272</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35518"></span>35518</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35519"></span>35519</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD (34272),A</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35522"></span>35522</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="35245.html#35537">35537</a></td>
-<td class="comment-11" rowspan="1">Jump if the inactivity timer is now 0 (no keys have been pressed for a while)</td>
+<td class="comment-1" rowspan="1">Jump if the inactivity timer is now 0 (no keys have been pressed for a while)</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35524"></span>35524</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,253</td>
-<td class="comment-11" rowspan="2">Read keys A-S-D-F-G</td>
+<td class="comment-1" rowspan="2">Read keys A-S-D-F-G</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35526"></span>35526</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35528"></span>35528</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND 31</td>
-<td class="comment-11" rowspan="2">Are any of these keys being pressed?</td>
+<td class="comment-1" rowspan="2">Are any of these keys being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35530"></span>35530</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 31</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35532"></span>35532</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR Z,<a href="35591.html#35607">35607</a></td>
-<td class="comment-11" rowspan="1">Jump if not</td>
+<td class="comment-1" rowspan="1">Jump if not</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35534"></span>35534</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD DE,0</td>
-<td class="comment-11" rowspan="1">Prepare the delay counters in <span class="register">D</span> and <span class="register">E</span> for the pause loop that follows</td>
+<td class="comment-1" rowspan="1">Prepare the delay counters in <span class="register">D</span> and <span class="register">E</span> for the pause loop that follows</td>
 </tr>
 <tr>
 <td class="routine-comment" colspan="5">
@@ -909,108 +633,84 @@ The following loop pauses the game until any key except A, S, D, F or G is press
 </td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-2"><span id="35537"></span>35537</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD B,2</td>
-<td class="comment-11" rowspan="2">Read every half-row of keys except A-S-D-F-G</td>
+<td class="comment-1" rowspan="2">Read every half-row of keys except A-S-D-F-G</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35539"></span>35539</td>
-<td class="bytes-0"></td>
 <td class="instruction">IN A,(C)</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35541"></span>35541</td>
-<td class="bytes-0"></td>
 <td class="instruction">AND 31</td>
-<td class="comment-11" rowspan="2">Are any of these keys being pressed?</td>
+<td class="comment-1" rowspan="2">Are any of these keys being pressed?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35543"></span>35543</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 31</td>
-<td class="comment-01" rowspan="1"></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35545"></span>35545</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="35591.html">35591</a></td>
-<td class="comment-11" rowspan="1">If so, resume the game</td>
+<td class="comment-1" rowspan="1">If so, resume the game</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35547"></span>35547</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC E</td>
-<td class="comment-11" rowspan="1">Increment the delay counter in <span class="register">E</span></td>
+<td class="comment-1" rowspan="1">Increment the delay counter in <span class="register">E</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35548"></span>35548</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="35245.html#35537">35537</a></td>
-<td class="comment-11" rowspan="1">Jump back unless it's zero</td>
+<td class="comment-1" rowspan="1">Jump back unless it's zero</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35550"></span>35550</td>
-<td class="bytes-0"></td>
 <td class="instruction">INC D</td>
-<td class="comment-11" rowspan="1">Increment the delay counter in <span class="register">D</span></td>
+<td class="comment-1" rowspan="1">Increment the delay counter in <span class="register">D</span></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35551"></span>35551</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR NZ,<a href="35245.html#35537">35537</a></td>
-<td class="comment-11" rowspan="1">Jump back unless it's zero</td>
+<td class="comment-1" rowspan="1">Jump back unless it's zero</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35553"></span>35553</td>
-<td class="bytes-0"></td>
 <td class="instruction">LD A,(34275)</td>
-<td class="comment-11" rowspan="1">Pick up the WRITETYPER key counter from <a href="34275.html">34275</a></td>
+<td class="comment-1" rowspan="1">Pick up the WRITETYPER key counter from <a href="34275.html">34275</a></td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35556"></span>35556</td>
-<td class="bytes-0"></td>
 <td class="instruction">CP 10</td>
-<td class="comment-11" rowspan="1">Has WRITETYPER been keyed in yet?</td>
+<td class="comment-1" rowspan="1">Has WRITETYPER been keyed in yet?</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35558"></span>35558</td>
-<td class="bytes-0"></td>
 <td class="instruction">CALL NZ,<a href="35563.html">35563</a></td>
-<td class="comment-11" rowspan="1">If not, cycle the INK and PAPER colours</td>
+<td class="comment-1" rowspan="1">If not, cycle the INK and PAPER colours</td>
 </tr>
 <tr>
-<td class="asm-label-0"></td>
 <td class="address-1"><span id="35561"></span>35561</td>
-<td class="bytes-0"></td>
 <td class="instruction">JR <a href="35245.html#35537">35537</a></td>
-<td class="comment-11" rowspan="1">Jump back to the beginning of the pause loop</td>
+<td class="comment-1" rowspan="1">Jump back to the beginning of the pause loop</td>
 </tr>
 </table>
 <table class="asm-navigation">
 <tr>
-<td class="prev"><span class="prev-1">Prev: <a href="35211.html">35211</a></span></td>
+<td class="prev">
+Prev: <a href="35211.html">35211</a>
+</td>
 <td class="up">Up: <a href="../maps/all.html#35245">Map</a></td>
-<td class="next"><span class="next-1">Next: <a href="35563.html">35563</a></span></td>
+<td class="next">
+Next: <a href="35563.html">35563</a>
+</td>
 </tr>
 </table>
 <footer>
-<div class="release">The complete Jet Set Willy RAM disassembly 20190607</div>
-<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2019 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 7.2.</div>
+<div class="release">The complete Jet Set Willy RAM disassembly 20200806</div>
+<div class="copyright">&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.2.</div>
 <div><a href="../../asm/89AD.html">Switch to hexadecimal</a>.</div>
 </footer>
 </body>
