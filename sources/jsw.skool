@@ -1,4 +1,4 @@
-; Copyright 2012-2020 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2021 Richard Dymond (rjdymond@gmail.com)
 
 @defb=$3D00:$00,$00,$00,$00,$00,$00,$00,$00 ; SPACE
 @defb=$3D38:$00,$08,$10,$00,$00,$00,$00,$00 ; '
@@ -90,12 +90,13 @@ b28672 DEFS 4096
 @expand=#DEFINE0(BUG,#LINK:Bugs)
 @expand=#DEFINE0(FACT,#LINK:Facts)
 @expand=#DEFINE0(POKE,#LINK:Pokes)
+@expand=#DEFINE0(S,#FORMAT({{mode[case]}}))
 @writer=:jetsetwilly.JetSetWillyAsmWriter
 ; Jet Set Willy disassembly
 ; https://skoolkit.ca
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
-; Copyright 2012-2020 Richard Dymond (this disassembly)
+; Copyright 2012-2021 Richard Dymond (this disassembly)
 @bfix+begin
 ;
 ; This disassembly contains fixes for the following bugs:
