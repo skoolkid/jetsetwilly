@@ -14,13 +14,8 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
 from skoolkit.graphics import Frame, Udg
-from skoolkit.skoolasm import AsmWriter
 from skoolkit.skoolhtml import HtmlWriter
-from skoolkit.skoolmacro import parse_ints, parse_image_macro
-
-def parse_gbuf(text, index):
-    # #GBUFfrom[,to]
-    return parse_ints(text, index, 2, (None,))
+from skoolkit.skoolmacro import parse_image_macro
 
 class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
@@ -108,13 +103,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         img_udgs = [room_udgs[i][left:left + width] for i in range(top, top + min(height, 17 - top))]
         frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
         return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
-
-    def expand_gbuf(self, text, index, cwd):
-        end, addr_from, addr_to = parse_gbuf(text, index)
-        link_text = '#N{}'.format(addr_from)
-        if addr_to is not None:
-            link_text += '-' + '#N{}'.format(addr_to)
-        return end, '#LINK:GameStatusBuffer#{}({})'.format(addr_from, link_text)
 
     def rooms(self, cwd):
         lines = [
@@ -382,11 +370,3 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 shifted_graphic[-1].append(Udg(attr, shifted_udg_data))
                 prev_row[i] = udg
         return shifted_graphic
-
-class JetSetWillyAsmWriter(AsmWriter):
-    def expand_gbuf(self, text, index):
-        end, addr_from, addr_to = parse_gbuf(text, index)
-        output = '#N{}'.format(addr_from)
-        if addr_to is not None:
-            output += '-#N{}'.format(addr_to)
-        return end, output
