@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
-from skoolkit.graphics import Frame, Udg
+from skoolkit.graphics import Frame, Udg, overlay_udgs
 from skoolkit.skoolhtml import HtmlWriter
 from skoolkit.skoolmacro import parse_image_macro
 
@@ -227,7 +227,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 udg_array.append([])
             b = self.snapshot[a]
             for block_id in (b >> 6, (b >> 4) & 3, (b >> 2) & 3, b & 3):
-                udg_array[-1].append(block_graphics[block_id])
+                udg_array[-1].append(block_graphics[block_id].copy())
 
         # Room name
         name_udgs = [Udg(70, self.font[b]) for b in self.snapshot[addr + 128:addr + 160]]
@@ -242,7 +242,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             x = p1 & 31
             y = 8 * (p2 & 1) + (p1 & 224) // 32
             for i in range(length):
-                udg_array[y][x] = ramp_udg
+                udg_array[y][x] = ramp_udg.copy()
                 y -= 1
                 x += direction
 
@@ -253,18 +253,17 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             x = p1 & 31
             y = 8 * (p2 & 1) + (p1 & 224) // 32
             for i in range(x, x + length):
-                udg_array[y][i] = conveyor_udg
+                udg_array[y][i] = conveyor_udg.copy()
 
         if empty:
             return udg_array
 
         # Items
-        item_udg_data = self.snapshot[addr + 225:addr + 233]
         room_num = addr // 256 - 192
         ink = 3
         for x, y in self.items.get(room_num, ()):
             attr = (udg_array[y][x].attr & 248) + ink
-            udg_array[y][x] = Udg(attr, item_udg_data)
+            udg_array[y][x] = Udg(attr, self.snapshot[addr + 225:addr + 233])
             ink += 1
             if ink == 7:
                 ink = 3
@@ -344,29 +343,5 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         return udgs
 
     def _place_graphic(self, udg_array, graphic, x, pixel_y, bg_attr=None):
-        if pixel_y & 7:
-            graphic = self._shift_graphic(graphic, pixel_y & 7)
-        y = pixel_y // 8
-        for i, row in enumerate(graphic):
-            for j, udg in enumerate(row):
-                old_udg = udg_array[y + i][x + j]
-                if bg_attr is None or old_udg.attr == bg_attr:
-                    new_attr = (old_udg.attr & 56) | (udg.attr & 71)
-                else:
-                    new_attr = old_udg.attr
-                new_data = [old_udg.data[k] | udg.data[k] for k in range(8)]
-                udg_array[y + i][x + j] = Udg(new_attr, new_data)
-
-    def _shift_graphic(self, graphic, y_delta):
-        attr = graphic[0][0].attr
-        blank_udg = Udg(attr, [0] * 8)
-        width = len(graphic[0])
-        prev_row = [blank_udg] * width
-        shifted_graphic = []
-        for row in graphic + [[blank_udg] * width]:
-            shifted_graphic.append([])
-            for i, udg in enumerate(row):
-                shifted_udg_data = prev_row[i].data[-y_delta:] + udg.data[:-y_delta]
-                shifted_graphic[-1].append(Udg(attr, shifted_udg_data))
-                prev_row[i] = udg
-        return shifted_graphic
+        rattr = lambda b, f: b & 56 | f & 71 if bg_attr in (None, b) else b
+        overlay_udgs(udg_array, graphic, x * 8, pixel_y, 0, rattr)
