@@ -31,17 +31,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             self.items.setdefault(room_num, []).append((x, y))
         self.room_names, self.room_names_wp = self._get_room_names()
 
-    def init_page(self, skoolkit, game):
-        if 'alt_base' in game:
-            path = skoolkit['path']
-            if skoolkit['page_id'].startswith('Asm'):
-                addr_str = path.rsplit('/', 1)[-1][:-5]
-                if game['alt_base'] == 'decimal':
-                    path = path.replace(addr_str, str(int(addr_str, 16)))
-                else:
-                    path = path.replace(addr_str, '{:04X}'.format(int(addr_str)))
-            skoolkit['Path'] = skoolkit['index_href'][:-10] + game['alt_dir'] + path
-
     def _build_logo(self):
         udgs = []
         for j in range(38944, 39424, 32):
