@@ -91,7 +91,7 @@ b28672 DEFS 4096
 @expand=#DEFINE0(FACT,#LINK:Facts)
 @expand=#DEFINE0(POKE,#LINK:Pokes)
 @expand=#DEFINE0(S,#FORMAT({{mode[case]}}))
-@expand=#DEFINE2,0,1(0)(GBUF,#LINK:GameStatusBuffer#{0}(#N{0}#IF({1})(-#N{1})))
+@expand=#DEF(#GBUF(a,b=0) #LINK:GameStatusBuffer#$a(#N$a#IF($b)(-#N$b)))
 ; Jet Set Willy disassembly
 ; https://skoolkit.ca
 ;
