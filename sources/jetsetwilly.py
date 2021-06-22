@@ -93,18 +93,8 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
         return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
 
-    def rooms(self, cwd):
-        lines = [
-            '#TABLE(default,centre,centre,,centre)',
-            '{ =h No. | =h Address | =h Name | =h Teleport }'
-        ]
-        for room_num in range(61):
-            address = 49152 + room_num * 256
-            room_name = self.room_names_wp[room_num]
-            teleport_code = self._get_teleport_code(room_num)
-            lines.append('{{ #N{0},,,1(0x) | #N{1} | #R{1}({2}) | {3} }}'.format(room_num, address, room_name, teleport_code))
-        lines.append('TABLE#')
-        return ''.join(lines)
+    def room_name(self, cwd, room_num):
+        return self.room_names_wp[room_num]
 
     def codes(self, cwd):
         lines = [
@@ -142,16 +132,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             rooms[room_num] = room_name
             rooms_wp[room_num] = room_name_wp
         return rooms, rooms_wp
-
-    def _get_teleport_code(self, room_num):
-        code = ''
-        key = 1
-        while room_num:
-            if room_num & 1:
-                code += str(key)
-            room_num //= 2
-            key += 1
-        return code + '9'
 
     def _animate_conveyor(self, udgs, attr, direction, crop_rect, scale):
         mask = 0
