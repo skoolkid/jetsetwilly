@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2020 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012, 2014-2021 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:gameOverAt1am:Game over at 1am]
 The game ends abruptly at 1am (see #R35442), even if Willy has collected all
@@ -599,7 +599,14 @@ Imagine Software Ltd.
 In #R61440(Nomen Luni) and the room below (#R59904(Under the Roof)) you can see
 an aeroplane that has crashed into the roof of Willy's mansion:
 
-#UDGTABLE { #CALL:aeroplane() } TABLE#
+#UDGTABLE {
+  #RFRAME48
+  #RFRAME42
+  #UDGARRAY32,,1;0x1024(*aeroplane)
+  #OVER(0,0,,,3)($f)($f)(aeroplane,48)
+  #OVER(0,16,,,3)($f)($f)(aeroplane,42)
+  #UDGARRAY*aeroplane({ScreenshotImagePath}/aeroplane)
+} TABLE#
 
 [Fact:weMustPerformAQuirkafleeg:We must perform a Quirkafleeg?]
 The name of the room #R53248(We must perform a Quirkafleeg) is a reference to

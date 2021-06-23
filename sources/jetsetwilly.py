@@ -15,7 +15,7 @@
 
 from skoolkit.graphics import Frame, Udg, overlay_udgs
 from skoolkit.skoolhtml import HtmlWriter
-from skoolkit.skoolmacro import parse_image_macro
+from skoolkit.skoolmacro import parse_ints, parse_brackets, parse_image_macro
 
 class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
@@ -30,6 +30,21 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             y = 8 * (b1 >> 7) + b2 // 32
             self.items.setdefault(room_num, []).append((x, y))
         self.room_names, self.room_names_wp = self._get_room_names()
+        self.room_frames = {}
+
+    def expand_rframe(self, text, index, cwd):
+        # #RFRAME(num,force=0,fix=0)(frame=$num)
+        end, num, force, fix = parse_ints(text, index, 0, (0, 0), ('num', 'force', 'fix'), self.fields)
+        if force:
+            end, frame = parse_brackets(text, end)
+        else:
+            frame = str(num)
+        if force or num not in self.room_frames:
+            udgs = self._get_room_udgs(49152 + num * 256, 1, fix)
+            self.handle_image(Frame(udgs, 2, name=frame))
+            if not force:
+                self.room_frames[num] = True
+        return end, ''
 
     def _build_logo(self):
         udgs = []
@@ -109,12 +124,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             lines.append('{{ #N{} | #N{},,,1(0x) | {} | {} }}'.format(addr, self.snapshot[addr], grid_loc, code))
         lines.append('TABLE#')
         return '\n'.join(lines)
-
-    def aeroplane(self, cwd):
-        nomen_luni = self._get_room_udgs(61440, 1)[:-1]
-        under_the_roof = self._get_room_udgs(59904, 1)[:-1]
-        frames = [Frame(nomen_luni + under_the_roof)]
-        return self.handle_image(frames, 'aeroplane', cwd, path_id='ScreenshotImagePath')
 
     def _get_room_names(self):
         rooms = {}
