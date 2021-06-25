@@ -449,9 +449,9 @@ and the white ledge in #R60160(Conservatory Roof) (see
 game:
 
 #UDGTABLE(gallery)
-{ #ROOM54528,2,15,10,14,6(unanimated_conveyor1) |
-  #ROOM59136,2,8,8,16,6(unanimated_conveyor2) |
-  #ROOM64512,2,16,10,16,6(unanimated_conveyor3) }
+{ #ROOM21,2,15,10,14,6(unanimated_conveyor1) |
+  #ROOM39,2,8,8,16,6(unanimated_conveyor2) |
+  #ROOM60,2,16,10,16,6(unanimated_conveyor3) }
 { The table in #R54528(Ballroom West) |
   #R59136(Emergency Generator) |
   The lower deck of the yacht in #R64512(The Bow) }
@@ -637,18 +637,18 @@ in fact there is no such thing there. In this particular room, however, there
 #R62720(Back Door) is the only room that has no items, nasties, rope, arrows or
 guardians.
 
-#ROOM62720
+#ROOM53(back_door)
 
 #R51712(The Front Door) is the only other room that has no rope, arrows or
 guardians; it also has no nasties, but does contain an item.
 
-#ROOM51712
+#ROOM10(the_front_door)
 
 [Fact:mostGuardians:The most guardians]
 #R54016(The Forgotten Abbey) is the only room with a full complement of eight
 guardians.
 
-#ROOM54016
+#ROOM19(the_forgotten_abbey)
 
 #R59648(The Attic) is the only other room with eight entities defined: six
 vertical guardians and two arrows.
@@ -656,4 +656,4 @@ vertical guardians and two arrows.
 [Fact:mostItems:The most items]
 The room with the most items is #R49152(The Off Licence) with 12.
 
-#ROOM49152
+#ROOM0(the_off_licence)

@@ -1,4 +1,4 @@
-; Copyright 2014-2017 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017, 2021 Richard Dymond (rjdymond@gmail.com)
 
 [Poke:noCodeSheetRequired:No code sheet required]
 To make any combination work on the code entry screen:
@@ -115,8 +115,8 @@ The first POKE (#R60160#60160(60231),0) removes a nasty from
 #BUG#theUncollectableItem(uncollectable item) on the far right:
 
 #UDGTABLE(gallery)
-{ #ROOM60160,2,16,4,16,12(sp_poke1_before) |
-  #PUSHS #POKES60231,0 #ROOM60160,2,16,4,16,12(sp_poke1_after) #POPS }
+{ #ROOM43,2,16,4,16,12(sp_poke1_before) |
+  #PUSHS #POKES60231,0 #ROOM43,2,16,4,16,12,5(sp_poke1_after) #POPS }
 { Before | After POKE #R60160#60160(60231),0 }
 TABLE#
 
@@ -136,7 +136,7 @@ in #R60160(Conservatory Roof) via the ledge on the lower left in
 #R59904(Under the Roof)):
 
 #UDGTABLE(gallery)
-{ #ROOM56832,2,8,0,16,13(sp_poke4_before) |
-  #PUSHS #POKES56876,4 #ROOM56832,2,8,0,16,13(sp_poke4_after) #POPS }
+{ #ROOM30,2,8,0,16,13(sp_poke4_before) |
+  #PUSHS #POKES56876,4 #ROOM30,2,8,0,16,13,5(sp_poke4_after) #POPS }
 { Before | After POKE #R56832#56832(56876),4 }
 TABLE#

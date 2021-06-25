@@ -19,16 +19,8 @@ from skoolkit.skoolmacro import parse_ints, parse_brackets, parse_image_macro
 
 class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
+        self.expand(self.get_section('Expand'))
         self.font = {c: self.snapshot[15360 + 8 * c:15368 + 8 * c] for c in range(32, 122)}
-        start = 41984 + self.snapshot[41983]
-        self.items = {}
-        for a in range(start, 42240):
-            b1 = self.snapshot[a]
-            b2 = self.snapshot[a + 256]
-            room_num = b1 & 63
-            x = b2 & 31
-            y = 8 * (b1 >> 7) + b2 // 32
-            self.items.setdefault(room_num, []).append((x, y))
         self.room_names, self.room_names_wp = self._get_room_names()
         self.room_frames = {}
 
@@ -40,7 +32,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         else:
             frame = str(num)
         if force or num not in self.room_frames:
-            udgs = self._get_room_udgs(49152 + num * 256, 1, fix)
+            udgs = self._get_room_udgs(49152 + num * 256, fix)
             self.handle_image(Frame(udgs, 2, name=frame))
             if not force:
                 self.room_frames[num] = True
@@ -74,25 +66,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         frames = [Frame(udgs, 1, 0, *crop_rect, name=frame, tindex=tindex, alpha=alpha)]
         return end, self.handle_image(frames, fname, cwd, alt)
 
-    def expand_room(self, text, index, cwd):
-        # #ROOMaddr[,scale,x,y,w,h,empty,fix,anim][{x,y,width,height}][(fname)]
-        names = ('addr', 'scale', 'x', 'y', 'w', 'h', 'empty', 'fix', 'anim')
-        defaults = (2, 0, 0, 32, 17, 0, 0, 0)
-        end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
-        address, scale, x, y, w, h, empty, fix, anim = params
-        if not fname:
-            room_name = self.room_names[address // 256 - 192]
-            fname = room_name.lower().replace(' ', '_')
-        room_udgs = self._get_room_udgs(address, empty, fix)
-        img_udgs = [room_udgs[i][x:x + w] for i in range(y, y + min(h, 17 - y))]
-        if anim:
-            attr = self.snapshot[address + 205]
-            direction = self.snapshot[address + 214]
-            frames = self._animate_conveyor(img_udgs, attr, direction, crop_rect, scale)
-        else:
-            frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
-        return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
-
     def expand_willy(self, text, index, cwd):
         # #WILLYroom,x,y,sprite[,left,top,width,height,scale](fname)
         names = ('room', 'x', 'y', 'sprite', 'left', 'top', 'width', 'height', 'scale')
@@ -100,7 +73,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
         room, x, pixel_y, sprite, left, top, width, height, scale = params
         room_addr = 49152 + 256 * room
-        room_udgs = self._get_room_udgs(room_addr, 1)
+        room_udgs = self._get_room_udgs(room_addr)
         willy = self._get_graphic(40192 + 32 * sprite, 7)
         room_bg = self.snapshot[room_addr + 160]
         self._place_graphic(room_udgs, willy, x, pixel_y, room_bg)
@@ -142,47 +115,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             rooms_wp[room_num] = room_name_wp
         return rooms, rooms_wp
 
-    def _animate_conveyor(self, udgs, attr, direction, crop_rect, scale):
-        mask = 0
-        x, y, width, height = crop_rect
-        delay = 10
-        frame1 = Frame(udgs, scale, mask, x, y, width, height, delay)
-        frames = [frame1]
-
-        base_udg = None
-        for row in udgs:
-            for udg in row:
-                if udg.attr == attr:
-                    base_udg = udg
-                    break
-        if base_udg is None:
-            return frames
-
-        prev_udg = base_udg
-        while True:
-            next_udg = prev_udg.copy()
-            data = next_udg.data
-            if direction:
-                data[0] = (data[0] >> 2) + (data[0] & 3) * 64
-                data[2] = ((data[2] << 2) & 255) + (data[2] >> 6)
-            else:
-                data[0] = ((data[0] << 2) & 255) + (data[0] >> 6)
-                data[2] = (data[2] >> 2) + (data[2] & 3) * 64
-            if next_udg.data == base_udg.data:
-                break
-            next_udgs = []
-            for row in udgs:
-                next_udgs.append([])
-                for udg in row:
-                    if udg.attr == attr:
-                        next_udgs[-1].append(next_udg)
-                    else:
-                        next_udgs[-1].append(udg)
-            frames.append(Frame(next_udgs, scale, mask, x, y, width, height, delay))
-            prev_udg = next_udg
-        return frames
-
-    def _get_room_udgs(self, addr, empty=0, fix=0):
+    def _get_room_udgs(self, addr, fix=0):
         # Collect block graphics
         block_graphics = []
         for a in range(addr + 160, addr + 206, 9):
@@ -232,81 +165,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
             y = 8 * (p2 & 1) + (p1 & 224) // 32
             for i in range(x, x + length):
                 udg_array[y][i] = conveyor_udg.copy()
-
-        if empty:
-            return udg_array
-
-        # Items
-        room_num = addr // 256 - 192
-        ink = 3
-        for x, y in self.items.get(room_num, ()):
-            attr = (udg_array[y][x].attr & 248) + ink
-            udg_array[y][x] = Udg(attr, self.snapshot[addr + 225:addr + 233])
-            ink += 1
-            if ink == 7:
-                ink = 3
-
-        # Guardians
-        for a in range(addr + 240, addr + 256, 2):
-            num, start = self.snapshot[a:a + 2]
-            if num == 255:
-                break
-            def_addr = 40960 + num * 8
-            guardian_def = self.snapshot[def_addr:def_addr + 8]
-            guardian_type = guardian_def[0] & 7
-            if guardian_type & 3 in (1, 2):
-                # Horizontal and vertical guardians
-                x = start & 31
-                pixel_y = guardian_def[3] // 2
-                b1 = guardian_def[1]
-                bright = 8 * (b1 & 8)
-                ink = b1 & 7
-                attr = bright + ink
-                sprite_addr = 256 * guardian_def[5] + (start & 224)
-                sprite = self._get_graphic(sprite_addr, attr)
-                self._place_graphic(udg_array, sprite, x, pixel_y)
-            elif guardian_type & 3 == 3:
-                # Rope
-                x = start & 31
-                length = guardian_def[4] + 1
-                rope_udg_data = []
-                i = j = 0
-                while i < length:
-                    if j % 3:
-                        rope_udg_data.append(0)
-                    else:
-                        rope_udg_data.append(128)
-                        i += 1
-                    j += 1
-                rope_udg_data += [0] * (8 - (len(rope_udg_data) & 7))
-                rope_udg_array = []
-                for i in range(0, len(rope_udg_data), 8):
-                    rope_udg_array.append([Udg(room_bg, rope_udg_data[i:i + 8])])
-                self._place_graphic(udg_array, rope_udg_array, x, 0, room_bg)
-            elif guardian_type == 4:
-                # Arrow; first get the display file address at which the middle
-                # of the arrow will be drawn
-                df_addr = self.snapshot[start + 33280] + 256 * (self.snapshot[start + 33281] - 32)
-                # Draw the arrow only if the JSW engine would draw it in the
-                # upper two-thirds of the screen (unlike the first arrow in The
-                # Attic!)
-                if 16384 <= df_addr < 20480:
-                    pixel_y = 64 * ((df_addr - 16384) // 2048) + (df_addr % 256) // 4
-                    y_delta = (df_addr // 256) & 7
-                    x = guardian_def[4] & 31
-                    arrow_udg_data = [0] * (y_delta - 1) + [guardian_def[6], 255, guardian_def[6]] + [0] * (6 - y_delta)
-                    arrow_udg = Udg(7, arrow_udg_data)
-                    self._place_graphic(udg_array, [[arrow_udg]], x, pixel_y)
-
-        if addr == 57600:
-            # Toilet in the bathroom
-            toilet = self._get_graphic(42496, 7)
-            self._place_graphic(udg_array, toilet, 28, 13 * 8)
-        elif addr == 58112:
-            # Maria in the master bedroom
-            maria = self._get_graphic(40064, 7)
-            maria[0][0].attr = maria[0][1].attr = 69
-            self._place_graphic(udg_array, maria, 14, 11 * 8)
 
         return udg_array
 

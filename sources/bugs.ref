@@ -1,4 +1,4 @@
-; Copyright 2014-2017, 2019 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017, 2019, 2021 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:faultyClock:12:30am in the afternoon]
 The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm
@@ -46,14 +46,14 @@ But now that the item is revealed, we can also see that it's unreachable:
 
 #PUSHS
 #POKES56548,24,2
-#ROOM56320,2,16,0,16,16(first_landing_item1)
+#ROOM28,2,16,0,16,16,5(first_landing_item1)
 
 To add a ledge and open the wall to make the item reachable:
 
 POKE 56350,0: POKE 56358,0: POKE 56365,170
 
 #POKES56350,0;56358,0;56365,170
-#ROOM56320,2,16,0,16,16(first_landing_item2)
+#ROOM28,2,16,0,16,16,5(first_landing_item2)
 #POPS
 
 The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to
@@ -96,10 +96,10 @@ non-BRIGHT room background. There are four guardians affected by this
 phenomenon:
 
 #UDGTABLE(gallery)
-{ #ROOM51456,2,5,7,6,6(halo1) #ROOM51456,2,26,8,6,6(halo2) |
-  #ROOM52992,2,9,8,6,6(halo3) |
-  #ROOM59136,2,6,1,6,6(halo4) }
-{ #R51456(On a Branch Over the Drive) |
+{ #ROOM9,2,5,7,6,6(halo1) | #ROOM9,2,26,8,6,6(halo2) |
+  #ROOM15,2,9,8,6,6(halo3) |
+  #ROOM39,2,6,1,6,6(halo4) }
+{ =c2 #R51456(On a Branch Over the Drive) |
   #R52992(I'm sure I've seen this before..) |
   #R59136(Emergency Generator) }
 TABLE#
@@ -234,7 +234,7 @@ attribute byte is #b255 - a solid, bright white block - which is characteristic
 of unused tiles elsewhere. However, the conveyor tile <em>is</em> used in this
 room, and it doesn't look good:
 
-#UDGTABLE { #ROOM60160,2,22,12,10,4(blank_conveyor) } TABLE#
+#UDGTABLE { #ROOM43,2,22,12,10,4(blank_conveyor) } TABLE#
 
 See also #FACT#unanimatedConveyors().
 
@@ -251,17 +251,17 @@ look like and what they look like when drawn properly.
 
 #UDGTABLE(gallery)
 { #R55296(West of Kitchen) |
-  #ROOM55296,2,21,11,7,3,1,0,1(conveyor24_before) |
-  #ROOM55296,2,21,11,7,3,1,1,1(conveyor24_after) }
+  #ROOM24,2,21,11,7,3,2(conveyor24_before) |
+  #ROOM24,2,21,11,7,3,14(conveyor24_after) }
 { #R56576(The Nightmare Room) |
-  #ROOM56576,2,26,6,3,3,1(conveyor29_before) |
-  #ROOM56576,2,26,6,3,3,1,1(conveyor29_after) }
+  #ROOM29,2,26,6,3,3,0(conveyor29_before) |
+  #ROOM29,2,26,6,3,3,8(conveyor29_after) }
 { #R61696(The Wine Cellar) |
-  #ROOM61696,2,26,11,7,3,1,0,1(conveyor49_before) |
-  #ROOM61696,2,26,11,7,3,1,1(conveyor49_after) }
+  #ROOM49,2,26,11,7,3,2(conveyor49_before) |
+  #ROOM49,2,26,11,7,3,8(conveyor49_after) }
 { #R62208(Tool#SPACE(2)Shed) |
-  #ROOM62208,2,6,14,20,2,1,0,1(conveyor51_before) |
-  #ROOM62208,2,6,14,20,2,1,1,1(conveyor51_after) }
+  #ROOM51,2,6,14,20,2,2(conveyor51_before) |
+  #ROOM51,2,6,14,20,2,10(conveyor51_after) }
 { =t | Before | After }
 TABLE#
 
@@ -291,9 +291,9 @@ are shifted along to the right spot, the conveyor takes on a much more
 reasonable appearance:
 
 #UDGTABLE(gallery)
-{ #ROOM56576,2,26,6,3,3,1(conveyor29_before) |
+{ #ROOM29,2,26,6,3,3,0(conveyor29_before) |
   #PUSHS #FOR(56789,56781,-1)||n|#POKES(n,#PEEK(n-1))||
-  #ROOM56576,2,26,6,3,3,1,1,1(conveyor29_after2)
+  #ROOM29,2,26,6,3,3,14(conveyor29_after2)
   #POPS }
 { Before | After }
 TABLE#
@@ -303,9 +303,9 @@ it seems to fix the appearance of the ramp tile (by filling the gap at the
 bottom):
 
 #UDGTABLE(gallery)
-{ #ROOM56576,2,6,12,5,4(ramp29_before) |
+{ #ROOM29,2,6,12,5,4,0(ramp29_before) |
   #PUSHS #POKES56780,85
-  #ROOM56576,2,6,12,5,4(ramp29_after)
+  #ROOM29,2,6,12,5,4,8(ramp29_after)
   #POPS }
 { Before | After }
 TABLE#
@@ -322,8 +322,8 @@ Here are the 'before' and 'after' pictures showing what the nasties actually
 look like and what they look like when drawn properly.
 
 #UDGTABLE(gallery)
-{ #ROOM58368,2,28,0,4,4,1,0(nasty36_before) |
-  #ROOM58368,2,28,0,4,4,1,1(nasty36_after) }
+{ #ROOM36,2,28,0,4,4,0(nasty36_before) |
+  #ROOM36,2,28,0,4,4,8(nasty36_after) }
 { Before | After }
 TABLE#
 

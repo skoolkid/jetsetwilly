@@ -7484,7 +7484,7 @@ b43776 DEFB 0,0,0,0,42,170,127,255,127,255,124,63,124,63,127,255
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM49152 }
+; { #ROOM0(the_off_licence) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -7573,7 +7573,7 @@ b49152 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM49408 }
+; { #ROOM1(the_bridge) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -7665,7 +7665,7 @@ b49408 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM49664 }
+; { #ROOM2(under_the_megatree) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -7759,7 +7759,7 @@ b49664 DEFB 0,3,255,207,252,0,0,0              ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM49920 }
+; { #ROOM3(at_the_foot_of_the_megatree) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -7852,7 +7852,7 @@ b49920 DEFB 48,195,8,0,8,0,0,0                 ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM50176 }
+; { #ROOM4(the_drive) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -7949,7 +7949,7 @@ b50176 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM50432 }
+; { #ROOM5(the_security_guard) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8040,7 +8040,7 @@ b50432 DEFB 128,0,0,0,0,0,0,0                  ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM50688 }
+; { #ROOM6(entrance_to_hades) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8132,7 +8132,7 @@ b50688 DEFB 160,0,0,0,0,0,0,0                  ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM50944 }
+; { #ROOM7(cuckoo's_nest) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8227,7 +8227,7 @@ b50944 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM51200 }
+; { #ROOM8(inside_the_megatrunk) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8324,7 +8324,7 @@ b51200 DEFB 0,0,8,0,8,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM51456 }
+; { #ROOM9(on_a_branch_over_the_drive) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8420,7 +8420,7 @@ b51456 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM51712 }
+; { #ROOM10(the_front_door) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8508,7 +8508,7 @@ b51712 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM51968 }
+; { #ROOM11(the_hall) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8607,7 +8607,7 @@ b51968 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM52224 }
+; { #ROOM12(tree_top) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8703,7 +8703,7 @@ b52224 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM52480 }
+; { #ROOM13(out_on_a_limb) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8797,7 +8797,7 @@ b52480 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM52736 }
+; { #ROOM14(rescue_esmerelda) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8890,7 +8890,7 @@ b52736 DEFB 0,0,0,0,0,0,8,2                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM52992 }
+; { #ROOM15(i'm_sure_i've_seen_this_before..) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -8989,7 +8989,7 @@ b52992 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM53248 }
+; { #ROOM16(we_must_perform_a_quirkafleeg) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9081,7 +9081,7 @@ b53248 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM53504 }
+; { #ROOM17(up_on_the_battlements) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9175,7 +9175,7 @@ b53504 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM53760 }
+; { #ROOM18(on_the_roof) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9264,7 +9264,7 @@ b53760 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM54016 }
+; { #ROOM19(the_forgotten_abbey) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9367,7 +9367,7 @@ b54016 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM54272 }
+; { #ROOM20(ballroom_east) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9462,7 +9462,7 @@ b54272 DEFB 160,64,10,0,0,0,0,0                ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM54528 }
+; { #ROOM21(ballroom_west) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9554,7 +9554,7 @@ b54528 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM54784 }
+; { #ROOM22(to_the_kitchens____main_stairway) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9653,7 +9653,7 @@ b54784 DEFB 0,0,128,0,0,0,0,0                  ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM55040 }
+; { #ROOM23(the_kitchen) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9746,7 +9746,7 @@ b55040 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM55296 }
+; { #ROOM24(west_of_kitchen) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9839,7 +9839,7 @@ b55296 DEFB 0,0,1,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM55552 }
+; { #ROOM25(cold_store) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -9936,7 +9936,7 @@ b55552 DEFB 0,3,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM55808 }
+; { #ROOM26(east_wall_base) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10027,7 +10027,7 @@ b55808 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM56064 }
+; { #ROOM27(the_chapel) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10122,7 +10122,7 @@ b56064 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM56320 }
+; { #ROOM28(first_landing) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10213,7 +10213,7 @@ b56320 DEFB 160,0,0,0,0,0,160,0                 ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM56576 }
+; { #ROOM29(the_nightmare_room) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10310,7 +10310,7 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM56832 }
+; { #ROOM30(the_banyan_tree) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10404,7 +10404,7 @@ b56832 DEFB 0,0,0,160,0,0,0,0                  ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM57088 }
+; { #ROOM31(swimming_pool) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10494,7 +10494,7 @@ b57088 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM57344 }
+; { #ROOM32(halfway_up_the_east_wall) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10584,7 +10584,7 @@ b57344 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM57600 }
+; { #ROOM33(the_bathroom) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10674,7 +10674,7 @@ b57600 DEFB 160,0,0,0,0,0,0,10                 ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM57856 }
+; { #ROOM34(top_landing) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10766,7 +10766,7 @@ b57856 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM58112 }
+; { #ROOM35(master_bedroom) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10854,7 +10854,7 @@ b58112 DEFB 170,170,170,170,170,170,170,170    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM58368 }
+; { #ROOM36(a_bit_of_tree) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -10949,7 +10949,7 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM58624 }
+; { #ROOM37(orangery) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11040,7 +11040,7 @@ b58624 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM58880 }
+; { #ROOM38(priests'_hole) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11133,7 +11133,7 @@ b58880 DEFB 160,0,10,0,0,0,0,0                 ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM59136 }
+; { #ROOM39(emergency_generator) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11223,7 +11223,7 @@ b59136 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM59392 }
+; { #ROOM40(dr_jones_will_never_believe_this) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11312,7 +11312,7 @@ b59392 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM59648 }
+; { #ROOM41(the_attic) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11412,7 +11412,7 @@ b59648 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM59904 }
+; { #ROOM42(under_the_roof) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11505,7 +11505,7 @@ b59904 DEFB 0,0,0,255,255,255,255,240          ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM60160 }
+; { #ROOM43(conservatory_roof) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11596,7 +11596,7 @@ b60160 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM60416 }
+; { #ROOM44(on_top_of_the_house) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11685,7 +11685,7 @@ b60416 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM60672 }
+; { #ROOM45(under_the_drive) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11777,7 +11777,7 @@ b60672 DEFB 160,0,0,0,0,0,170,170              ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM60928 }
+; { #ROOM46(tree_root) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -11868,7 +11868,7 @@ b60928 DEFB 170,10,170,170,170,170,170,170     ; {Room layout
 ; This room is not used.
 ; .
 ; #UDGTABLE
-; { #ROOM61184(left_square_bracket) }
+; { #ROOM47(left_square_bracket) }
 ; TABLE#
 ; .
 ; The first 128 bytes define the room layout. Each bit-pair (bits 7 and 6, 5
@@ -11955,7 +11955,7 @@ b61184 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout (completely
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM61440 }
+; { #ROOM48(nomen_luni) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12049,7 +12049,7 @@ b61440 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM61696 }
+; { #ROOM49(the_wine_cellar) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12146,7 +12146,7 @@ b61696 DEFB 0,0,0,0,0,12,2,170                 ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM61952 }
+; { #ROOM50(watch_tower) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12237,7 +12237,7 @@ b61952 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM62208 }
+; { #ROOM51(tool__shed) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12332,7 +12332,7 @@ b62208 DEFB 0,0,2,170,160,0,0,0                ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM62464 }
+; { #ROOM52(back_stairway) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12425,7 +12425,7 @@ b62464 DEFB 0,0,0,0,10,170,170,170             ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM62720 }
+; { #ROOM53(back_door) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12512,7 +12512,7 @@ b62720 DEFB 0,0,0,0,160,0,0,0                  ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM62976 }
+; { #ROOM54(west__wing) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12604,7 +12604,7 @@ b62976 DEFB 0,160,0,0,0,0,0,0                  ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM63232 }
+; { #ROOM55(west_bedroom) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12694,7 +12694,7 @@ b63232 DEFB 0,0,4,0,160,64,0,0                 ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM63488 }
+; { #ROOM56(west_wing_roof) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12789,7 +12789,7 @@ b63488 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM63744 }
+; { #ROOM57(above_the_west_bedroom) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12879,7 +12879,7 @@ b63744 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM64000 }
+; { #ROOM58(the_beach) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -12967,7 +12967,7 @@ b64000 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM64256 }
+; { #ROOM59(the_yacht) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
@@ -13058,7 +13058,7 @@ b64256 DEFB 0,0,0,0,0,0,0,0                    ; {Room layout
 ; Used by the routine at #R35090.
 ; .
 ; #UDGTABLE
-; { #ROOM64512 }
+; { #ROOM60(the_bow) }
 ; TABLE#
 ; .
 ; The first 128 bytes are copied to #R32768 and define the room layout. Each
