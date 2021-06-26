@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 
-from skoolkit.graphics import Frame, Udg, overlay_udgs
+from skoolkit.graphics import Frame, Udg
 from skoolkit.skoolhtml import HtmlWriter
 from skoolkit.skoolmacro import parse_ints, parse_brackets, parse_image_macro
 
@@ -21,7 +21,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
         self.expand(self.get_section('Expand'))
         self.font = {c: self.snapshot[15360 + 8 * c:15368 + 8 * c] for c in range(32, 122)}
-        self.room_names, self.room_names_wp = self._get_room_names()
+        self.room_names_wp = self._get_room_names()
         self.room_frames = {}
 
     def expand_rframe(self, text, index, cwd):
@@ -66,21 +66,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         frames = [Frame(udgs, 1, 0, *crop_rect, name=frame, tindex=tindex, alpha=alpha)]
         return end, self.handle_image(frames, fname, cwd, alt)
 
-    def expand_willy(self, text, index, cwd):
-        # #WILLYroom,x,y,sprite[,left,top,width,height,scale](fname)
-        names = ('room', 'x', 'y', 'sprite', 'left', 'top', 'width', 'height', 'scale')
-        defaults = (0, 0, 32, 17, 2)
-        end, crop_rect, fname, frame, alt, params = parse_image_macro(text, index, defaults, names)
-        room, x, pixel_y, sprite, left, top, width, height, scale = params
-        room_addr = 49152 + 256 * room
-        room_udgs = self._get_room_udgs(room_addr)
-        willy = self._get_graphic(40192 + 32 * sprite, 7)
-        room_bg = self.snapshot[room_addr + 160]
-        self._place_graphic(room_udgs, willy, x, pixel_y, room_bg)
-        img_udgs = [room_udgs[i][left:left + width] for i in range(top, top + min(height, 17 - top))]
-        frames = [Frame(img_udgs, scale, 0, *crop_rect, name=frame)]
-        return end, self.handle_image(frames, fname, cwd, alt, 'ScreenshotImagePath')
-
     def room_name(self, cwd, room_num):
         return self.room_names_wp[room_num]
 
@@ -99,21 +84,18 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         return '\n'.join(lines)
 
     def _get_room_names(self):
-        rooms = {}
         rooms_wp = {}
         for a in range(49152, 64768, 256):
             room_num = a // 256 - 192
-            room_name = ''.join([chr(b) for b in self.snapshot[a + 128:a + 160]]).strip()
-            room_name_wp = room_name
+            room_name_wp = ''.join([chr(b) for b in self.snapshot[a + 128:a + 160]]).strip()
             while room_name_wp.find('  ') > 0:
                 start = room_name_wp.index('  ')
                 end = start + 2
                 while room_name_wp[end] == ' ':
                     end += 1
                 room_name_wp = '{}#SPACE({}){}'.format(room_name_wp[:start], end - start, room_name_wp[end:])
-            rooms[room_num] = room_name
             rooms_wp[room_num] = room_name_wp
-        return rooms, rooms_wp
+        return rooms_wp
 
     def _get_room_udgs(self, addr, fix=0):
         # Collect block graphics
@@ -167,17 +149,3 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 udg_array[y][i] = conveyor_udg.copy()
 
         return udg_array
-
-    def _get_graphic(self, addr, attr=0):
-        # Build a 16x16 graphic
-        udgs = []
-        for offsets in ((0, 1), (16, 17)):
-            o1, o2 = offsets
-            udgs.append([])
-            for a in (addr + o1, addr + o2):
-                udgs[-1].append(Udg(attr, self.snapshot[a:a + 16:2]))
-        return udgs
-
-    def _place_graphic(self, udg_array, graphic, x, pixel_y, bg_attr=None):
-        rattr = lambda b, f: b & 56 | f & 71 if bg_attr in (None, b) else b
-        overlay_udgs(udg_array, graphic, x * 8, pixel_y, 0, rattr)

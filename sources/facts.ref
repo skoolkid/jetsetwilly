@@ -510,7 +510,7 @@ POKE 57682,128
 
 #PUSHS
 #POKES57682,128
-#WILLY33,8,84,1,5,9,8,6(rvw2)
+#WILLY33,8,84,1,5,9,8,6,1(rvw2)
 #POPS
 
 [Fact:oneItemBehindAnother:One item behind another]

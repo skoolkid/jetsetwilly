@@ -182,7 +182,7 @@ POKE 57708,32
 
 #PUSHS
 #POKES57708,32
-#WILLY33,17,104,4,15,12,6,4(dmyh)
+#WILLY33,17,104,4,15,12,6,4,1(dmyh)
 #POPS
 
 However, the code at #R36942 onwards that moves Willy right does check for a
