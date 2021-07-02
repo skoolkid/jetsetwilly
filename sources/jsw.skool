@@ -80,17 +80,17 @@ b24576 DEFS 4096
 b28672 DEFS 4096
 
 @start
-@expand=#DEFINE2,1@@LOGO@#JSW(#EVAL({0}+{1})){{4,4,200,120}}({{ImagePath}}/{2}|Jet Set Willy)@@
-@expand=#DEFINE3(GUARDIAN,#UDGARRAY(2,{2},,2);({0}*256+{1}*32)-({0}*256+{1}*32+17)-1-16(guardian{0}-{1}-{2}*))
-@expand=#DEFINE1(TILES,#FOR(49312+{0}*256,49357+{0}*256,9);;$n;#UDG($n+1,#PEEK$n)(#MAP($n%256)(,160:background,169:floor,178:wall,187:nasty,196:ramp,205:conveyor){0:02}); | ;;)
-@expand=#DEFINE1(ITEM,#UDG(49377+256*{0},(#PEEK(49312+256*{0})&120)+3)(item{0:02}))
-@expand=#DEFINE2(SPRITE,#UDGARRAY(2,{1},2,2);{0}-({0}+17)-1-16)
+@expand=#DEF(#LOGO(dark,trans)(fname) #JSW($dark+$trans){4,4,200,120}({ImagePath}/$fname|Jet Set Willy))
+@expand=#DEF(#GUARDIAN(addr,index,attr) #UDGARRAY(2,$attr,,2);($addr*256+$index*32)-($addr*256+$index*32+17)-1-16(guardian$addr-$index-$attr*))
+@expand=#DEF(#TILES(rnum) #FOR(49312+$rnum*256,49357+$rnum*256,9);;$n;#UDG($n+1,#PEEK$n)(#MAP($n%256)(,160:background,169:floor,178:wall,187:nasty,196:ramp,205:conveyor)#EVAL$rnum,,2); | ;;)
+@expand=#DEF(#ITEM(rnum) #UDG(49377+256*$rnum,(#PEEK(49312+256*$rnum)&120)+3)(item#EVAL$rnum,,2))
+@expand=#DEF(#SPRITE(addr,attr) #UDGARRAY(2,$attr,2,2);$addr-($addr+17)-1-16)
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#b\i/#N(\1,,,1)(0x)
-@expand=#DEFINE0(BUG,#LINK:Bugs)
-@expand=#DEFINE0(FACT,#LINK:Facts)
-@expand=#DEFINE0(POKE,#LINK:Pokes)
-@expand=#DEFINE0(S,#FORMAT({{mode[case]}}))
+@expand=#DEF(#BUG #LINK:Bugs)
+@expand=#DEF(#FACT #LINK:Facts)
+@expand=#DEF(#POKE #LINK:Pokes)
+@expand=#DEF(#S #FORMAT({mode[case]}))
 @expand=#DEF(#GBUF(a,b=0) #LINK:GameStatusBuffer#$a(#N$a#IF($b)(-#N$b)))
 ; Jet Set Willy disassembly
 ; https://skoolkit.ca
