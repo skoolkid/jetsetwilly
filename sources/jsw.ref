@@ -86,7 +86,18 @@ Content=asm/#N41984.html
 Content=asm/#N40960.html
 
 [Page:Codes]
-PageContent=#CALL:codes()
+PageContent=#INCLUDE(Codes)
+
+[Codes]
+#TABLE(default,centre,centre,centre,centre)
+{ =h Address | =h Value | =h Grid | =h Code }
+#FOR(40448,40626)(addr,
+  #LET(gridloc$=#CHR(65+(addr&255)%18,1)#CHR(48+(addr&255)/18,1))
+  #LET(v=#PEEKaddr+addr%256)
+  #LET(code=#FOR(6,0,-2)(q,#EVAL((({v}>>q)&3)+1)))
+  { #Naddr | #N(#PEEKaddr,,,1)(0x) | #FORMAT({gridloc$} | {code}) }
+)
+TABLE#
 
 [Page:Credits]
 PageContent=#INCLUDE(Credits)

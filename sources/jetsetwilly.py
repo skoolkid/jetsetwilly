@@ -69,20 +69,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
     def room_name(self, cwd, room_num):
         return self.room_names_wp[room_num]
 
-    def codes(self, cwd):
-        lines = [
-            '#TABLE(default,centre,centre,centre,centre)',
-            '{ =h Address | =h Value | =h Grid | =h Code }'
-        ]
-        for i in range(179):
-            addr = 40448 + i
-            value = (self.snapshot[addr] + i) & 255
-            code = '{}{}{}{}'.format((value >> 6) + 1, ((value >> 4) & 3) + 1, ((value >> 2) & 3) + 1, (value & 3) + 1)
-            grid_loc = chr(65 + (i % 18)) + chr(48 + i // 18)
-            lines.append('{{ #N{} | #N{},,,1(0x) | {} | {} }}'.format(addr, self.snapshot[addr], grid_loc, code))
-        lines.append('TABLE#')
-        return '\n'.join(lines)
-
     def _get_room_names(self):
         rooms_wp = {}
         for a in range(49152, 64768, 256):
