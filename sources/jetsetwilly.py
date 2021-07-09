@@ -21,7 +21,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
     def init(self):
         self.expand(self.get_section('Expand'))
         self.font = {c: self.snapshot[15360 + 8 * c:15368 + 8 * c] for c in range(32, 122)}
-        self.room_names_wp = self._get_room_names()
         self.room_frames = {}
 
     def expand_rframe(self, text, index, cwd):
@@ -65,23 +64,6 @@ class JetSetWillyHtmlWriter(HtmlWriter):
         udgs = lambda: self._build_logo()
         frames = [Frame(udgs, 1, 0, *crop_rect, name=frame, tindex=tindex, alpha=alpha)]
         return end, self.handle_image(frames, fname, cwd, alt)
-
-    def room_name(self, cwd, room_num):
-        return self.room_names_wp[room_num]
-
-    def _get_room_names(self):
-        rooms_wp = {}
-        for a in range(49152, 64768, 256):
-            room_num = a // 256 - 192
-            room_name_wp = ''.join([chr(b) for b in self.snapshot[a + 128:a + 160]]).strip()
-            while room_name_wp.find('  ') > 0:
-                start = room_name_wp.index('  ')
-                end = start + 2
-                while room_name_wp[end] == ' ':
-                    end += 1
-                room_name_wp = '{}#SPACE({}){}'.format(room_name_wp[:start], end - start, room_name_wp[end:])
-            rooms_wp[room_num] = room_name_wp
-        return rooms_wp
 
     def _get_room_udgs(self, addr, fix=0):
         # Collect block graphics
