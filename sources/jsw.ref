@@ -129,13 +129,7 @@ descriptions were of great help.
 
 #DEF(#BTILEADDR(addr,attr)
   #LET(ta=$addr+160)
-  #LET(done=0)
-  #FOR($addr+160,$addr+205)(z,
-    #IF({done}!=1 && #PEEKz==$attr)(
-      #LET(ta=z)
-      #LET(done=1)
-    )
-  )
+  #WHILE(#PEEK({ta})!=$attr)(#LET(ta={ta}+1))
   #EVAL({ta})
 )
 
