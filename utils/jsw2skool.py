@@ -506,10 +506,10 @@ class JetSetWilly:
             lines.append('b {} Room #b{}: {} (teleport: {})'.format(a, room_num, self.room_names_wp[room_num], self._get_teleport_code(room_num)))
             if a == 61184:
                 # [
-                room_image = '#ROOM{}(left_square_bracket)'.format(a)
+                room_image = '#ROOM{}(left_square_bracket)'.format(room_num)
                 lines.append('D 61184 This room is not used.')
             else:
-                room_image = '#ROOM{}'.format(a)
+                room_image = '#ROOM{}({})'.format(room_num, room_name.lower().replace(' ', '_'))
                 lines.append('D {} Used by the routine at #R35090.'.format(a))
             lines.append('D {} #UDGTABLE {{ {} }} TABLE#'.format(a, room_image))
             if room_num == 47:
