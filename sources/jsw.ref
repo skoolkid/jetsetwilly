@@ -198,10 +198,10 @@ descriptions were of great help.
     #SFRAME(42496,7)(toilet)
     #OVER(28,13,,,1)($b&56|$f&71)($frame,toilet)
   )
-  #IF($addr==58112)//
-    #UDGARRAY2,7,,2;40064,69;40065,69;40080;40081(*maria)
+  #IF($addr==58112)(
+    #UDGARRAY(2,7,,2)(40064,69;40065,69;40080;40081)(*maria)
     #OVER(14,11,,,1)($b&56|$f&71)($frame,maria)
-  //
+  )
 )
 
 #DEF(#ANIMCONV(addr,x,y,fix)(frame)
