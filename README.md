@@ -11,8 +11,11 @@ to browse the latest release:
 * [Jet Set Willy disassembly](https://skoolkid.github.io/jetsetwilly/) (hexadecimal; mirror [here](https://skoolkid.gitlab.io/jetsetwilly/))
 * [Jet Set Willy disassembly](https://skoolkid.github.io/jetsetwilly/dec/) (decimal; mirror [here](https://skoolkid.gitlab.io/jetsetwilly/dec/))
 
-To build the current development version, first either install SkoolKit, or
-make a clone of the [SkoolKit repository](https://github.com/skoolkid/skoolkit)
-and point the environment variable SKOOLKIT_HOME at it. Then:
+To build the current development version of the disassembly, first obtain the
+development version of [SkoolKit](https://github.com/skoolkid/skoolkit). Then:
 
-    $ utils/mkhtml.py
+    $ skool2html.py sources/jsw.skool
+
+To build an assembly language source file that can be fed to an assembler:
+
+    $ skool2asm.py sources/jsw.skool > jsw.asm
