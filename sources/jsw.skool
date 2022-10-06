@@ -1,4 +1,4 @@
-; Copyright 2012-2021 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2022 Richard Dymond (rjdymond@gmail.com)
 
 @defb=$3D00:$00,$00,$00,$00,$00,$00,$00,$00 ; SPACE
 @defb=$3D38:$00,$08,$10,$00,$00,$00,$00,$00 ; '
@@ -96,7 +96,7 @@ b28672 DEFS 4096
 ; https://skoolkit.ca
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
-; Copyright 2012-2021 Richard Dymond (this disassembly)
+; Copyright 2012-2022 Richard Dymond (this disassembly)
 @bfix+begin
 ;
 ; This disassembly contains fixes for the following bugs:
@@ -1815,7 +1815,11 @@ c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
  35948 LD C,0        ;
  35950 CALL 37974    ; }
 ; The following loop draws the foot's descent onto the barrel that supports
-; Willy.
+; Willy while producing a sound effect.
+; .
+; #HTML(#AUDIO(game-over.wav)(
+;   #FOR(255,63,-4,7)(e,[13*e+33]*63,13*e+13227+10*#EVAL(135<=e<=163))
+; ))
 *35953 LD A,(34276)  ; Pick up the distance variable from #R34276
  35956 LD C,A        ; {Point #REGbc at the corresponding entry in the screen
 @ssub=LD B,33280/256
