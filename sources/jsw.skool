@@ -1259,6 +1259,8 @@ c34762 XOR A         ; #REGa=0
  34979 LD A,1        ; {Set the Kempston joystick indicator at #R34254 to 1
  34981 LD (34254),A  ; }
 ; And finally, play the theme tune and check for keypresses.
+; .
+; #HTML(#AUDIO(tune.wav)(#INCLUDE(ThemeTune)))
 *34984 LD HL,34299   ; Point #REGhl at the theme tune data at #R34299
  34987 CALL 38562    ; Play the theme tune
  34990 JP NZ,35068   ; Start the game if ENTER, 0 or the fire button was
