@@ -1638,6 +1638,8 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
 *35640 BIT 1,(HL)    ; Has the in-game music been switched off?
  35642 JR NZ,35696   ; Jump if so
 ; The next section of code plays a note of the in-game music.
+; .
+; #HTML(#AUDIO(in-game-tune.wav)(#INCLUDE(InGameTune)))
  35644 XOR A         ; {Reset the inactivity timer at #R34272 (the game does
  35645 LD (34272),A  ; not automatically pause after a period of inactivity if
                      ; the in-game music is playing)}
