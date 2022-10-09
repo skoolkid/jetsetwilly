@@ -92,6 +92,7 @@ b28672 DEFS 4096
 @expand=#DEF(#POKE #LINK:Pokes)
 @expand=#DEF(#S #FORMAT({mode[case]}))
 @expand=#DEF(#GBUF(a,b=0) #LINK:GameStatusBuffer#$a(#N$a#IF($b)(-#N$b)))
+@set-handle-unsupported-macros=1
 ; Jet Set Willy disassembly
 ; https://skoolkit.ca
 ;
@@ -1260,7 +1261,7 @@ c34762 XOR A         ; #REGa=0
  34981 LD (34254),A  ; }
 ; And finally, play the theme tune and check for keypresses.
 ; .
-; #HTML(#AUDIO(tune.wav)(#INCLUDE(ThemeTune)))
+; #AUDIO(tune.wav)(#INCLUDE(ThemeTune))
 *34984 LD HL,34299   ; Point #REGhl at the theme tune data at #R34299
  34987 CALL 38562    ; Play the theme tune
  34990 JP NZ,35068   ; Start the game if ENTER, 0 or the fire button was
@@ -1639,7 +1640,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35642 JR NZ,35696   ; Jump if so
 ; The next section of code plays a note of the in-game music.
 ; .
-; #HTML(#AUDIO(in-game-tune.wav)(#INCLUDE(InGameTune)))
+; #AUDIO(in-game-tune.wav)(#INCLUDE(InGameTune))
  35644 XOR A         ; {Reset the inactivity timer at #R34272 (the game does
  35645 LD (34272),A  ; not automatically pause after a period of inactivity if
                      ; the in-game music is playing)}
@@ -1754,6 +1755,8 @@ c35841 LD A,71       ; #REGa=#b71 (INK 7: PAPER 0: BRIGHT 1)
 ; The following loop fills the top two thirds of the attribute file with a
 ; single value (#b71, #b70, #b69, #b68, #b67, #b66, #b65 or #b64) and makes a
 ; sound effect.
+; .
+; #AUDIO(die.wav)(#FOR(7,63,8,7)(d,[13*d+33]*(259-4*d),13*d+10895))
 *35843 LD HL,22528   ; {Fill the top two thirds of the attribute file with the
  35846 LD DE,22529   ; value in #REGa
  35849 LD BC,511     ;
@@ -1821,9 +1824,7 @@ c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
 ; The following loop draws the foot's descent onto the barrel that supports
 ; Willy while producing a sound effect.
 ; .
-; #HTML(#AUDIO(game-over.wav)(
-;   #FOR(255,63,-4,7)(e,[13*e+33]*63,13*e+13227+10*#EVAL(135<=e<=163))
-; ))
+; #AUDIO(game-over.wav)(#GAMEOVER)
 *35953 LD A,(34276)  ; Pick up the distance variable from #R34276
  35956 LD C,A        ; {Point #REGbc at the corresponding entry in the screen
 @ssub=LD B,33280/256
