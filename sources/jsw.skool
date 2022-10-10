@@ -1266,9 +1266,14 @@ c34762 XOR A         ; #REGa=0
  34987 CALL 38562    ; Play the theme tune
  34990 JP NZ,35068   ; Start the game if ENTER, 0 or the fire button was
                      ; pressed
+; No key was pressed while the theme tune was playing, so scroll a message
+; across the screen while repeatedly producing a screeching sound effect.
+; .
+; #PUSHS #POKES34276,192 #AUDIO4(screech.wav)(35033,35065) #POPS
  34993 XOR A         ; {Initialise the temporary game status buffer variable at
  34994 LD (34276),A  ; #R34276 to 0; this will be used as an index for the
                      ; message scrolled across the screen (see #R33876)}
+@assemble=2
 *34997 CALL 35563    ; Cycle the INK and PAPER colours
  35000 LD HL,23136   ; {Copy the attribute value #b79 (INK 7: PAPER 1: BRIGHT
  35003 LD DE,23137   ; 1) into the row of 32 cells from (19,0) to (19,31) on
@@ -3958,7 +3963,6 @@ b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
  40416 DEFB 0,60,0,60,0,126,0,44,0,124,0,60,0,24,0,60
  40432 DEFB 0,126,0,126,0,239,0,223,0,60,0,110,0,118,0,238
 
-@assemble=2
 ; Codes
 ;
 ; Used by the routine at #R34499. These code remnants define the
