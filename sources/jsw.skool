@@ -2097,6 +2097,8 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36319 CP 1          ; Is Willy jumping?
  36321 JR NZ,36406   ; Jump if not
 ; Willy is currently jumping.
+; .
+; #AUDIO(jumping.wav)(#FOR1,18,,3(j,[104*(#IF(j>8)(j-8,8-j))+137]*31,280000))
  36323 LD A,(34261)  ; Pick up the jumping animation counter (0-17) from
                      ; #R34261
  36326 AND 254       ; Discard bit 0
