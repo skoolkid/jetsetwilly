@@ -2189,6 +2189,8 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36455 JP Z,36796    ; Jump if so
 ; If we get here, then Willy is either in the process of falling or just about
 ; to start falling.
+; .
+; #AUDIO(falling.wav)(#FOR3,31,,3(a,[208*(#IF(a<16)(a,a%4+12))+33]*31,280000))
  36458 LD HL,34256   ; {Reset bit 1 at #R34256: Willy is not moving left or
  36461 RES 1,(HL)    ; right}
  36463 LD A,(34257)  ; Pick up the airborne status indicator from #R34257
