@@ -3126,6 +3126,8 @@ c37841 LD H,164      ; Page #R41984(#b164) holds the first byte of each entry
  37873 JR NZ,37936   ; Jump if not
 ; Willy is touching this item (or the room's background tile has white INK), so
 ; add it to his collection.
+; .
+; #AUDIO(item.wav)(#FOR(128,4,-2,1)(c,1928-13*c))
  37875 LD IX,34172   ; Point #REGix at the number of items collected at #R34172
 *37879 INC (IX+2)    ; Increment a digit of the number of items collected
  37882 LD A,(IX+2)   ; {Was the digit originally '9'?
