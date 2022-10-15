@@ -2834,6 +2834,8 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37425 JP NZ,37047   ; Kill Willy if the guardian collided with him
  37428 JP 37811      ; Jump to consider the next entity
 ; We are dealing with an arrow.
+; .
+; #AUDIO4(arrow.wav)(37455,37471)
 *37431 BIT 7,(IX+0)  ; Is the arrow travelling left to right?
  37435 JR NZ,37444   ; Jump if so
  37437 DEC (IX+4)    ; Decrement the arrow's x-coordinate
