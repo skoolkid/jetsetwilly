@@ -1,4 +1,4 @@
-# Copyright 2012, 2014-2021 Richard Dymond (rjdymond@gmail.com)
+# Copyright 2012, 2014-2022 Richard Dymond (rjdymond@gmail.com)
 #
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -47,7 +47,7 @@ class JetSetWillyHtmlWriter(HtmlWriter):
                 elif attr in (4, 37, 40):
                     udg_addr = 33857 + 8 * (i & 1)
                 else:
-                    udg_addr = 0
+                    udg_addr = 15616
                 if attr == 44:
                     attr = 37
                 row.append(Udg(attr & 127, self.snapshot[udg_addr:udg_addr + 8]))

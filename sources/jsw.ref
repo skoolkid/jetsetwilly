@@ -166,7 +166,7 @@ descriptions were of great help.
 
 #DEF(#ROPE(addr,start,x,y)(frame)
   #LET(length=#PEEK($addr+4))
-  #UDGARRAY1;0x(({length}*3)/8+1)(*rope)
+  #UDGARRAY1;15616x(({length}*3)/8+1)(*rope)
   #FOR(0,{length})(y,#PLOT(0,y*3)(rope))
   #OVER(($start&31)-$x,-$y,0,0)($frame,rope)
 )
