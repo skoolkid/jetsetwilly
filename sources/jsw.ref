@@ -119,6 +119,33 @@ descriptions were of great help.
 [Expand]
 #DEF(#REM()(remark))
 
+#DEF(#LOGO(dark,trans)(fname)
+  #JSW($dark+$trans){4,4,200,120}({ImagePath}/$fname|Jet Set Willy)
+)
+
+#DEF(#GUARDIAN(addr,index,attr)
+  #LET(a=$addr*256+$index*32)
+  #UDGARRAY(2,$attr,,2);({a})-({a}+17)-1-16(guardian$addr-$index-$attr*)
+)
+
+#DEF(#TILES(rnum)
+  #LET(a=49312+256*$rnum)
+  #UDG({a}+1,#PEEK({a}))(background#EVAL$rnum,,2) |
+  #UDG({a}+10,#PEEK({a}+9))(floor#EVAL$rnum,,2) |
+  #UDG({a}+19,#PEEK({a}+18))(wall#EVAL$rnum,,2) |
+  #UDG({a}+28,#PEEK({a}+27))(nasty#EVAL$rnum,,2) |
+  #UDG({a}+37,#PEEK({a}+36))(ramp#EVAL$rnum,,2) |
+  #UDG({a}+46,#PEEK({a}+45))(conveyor#EVAL$rnum,,2)
+)
+
+#DEF(#ITEM(rnum)
+  #UDG(49377+256*$rnum,(#PEEK(49312+256*$rnum)&120)+3)(item#EVAL$rnum,,2)
+)
+
+#DEF(#SPRITE(addr,attr)
+  #UDGARRAY(2,$attr,2,2);$addr-($addr+17)-1-16
+)
+
 #DEF(#TILE(addr)(frame)
   #UDG($addr+1,#PEEK$addr)(*$frame)
 )

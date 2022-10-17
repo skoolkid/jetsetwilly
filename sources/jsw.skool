@@ -32,11 +32,6 @@ b24576 DEFS 4096
 b28672 DEFS 4096
 
 @start
-@expand=#DEF(#LOGO(dark,trans)(fname) #JSW($dark+$trans){4,4,200,120}({ImagePath}/$fname|Jet Set Willy))
-@expand=#DEF(#GUARDIAN(addr,index,attr) #UDGARRAY(2,$attr,,2);($addr*256+$index*32)-($addr*256+$index*32+17)-1-16(guardian$addr-$index-$attr*))
-@expand=#DEF(#TILES(rnum) #FOR(49312+$rnum*256,49357+$rnum*256,9);;$n;#UDG($n+1,#PEEK$n)(#MAP($n%256)(,160:background,169:floor,178:wall,187:nasty,196:ramp,205:conveyor)#EVAL$rnum,,2); | ;;)
-@expand=#DEF(#ITEM(rnum) #UDG(49377+256*$rnum,(#PEEK(49312+256*$rnum)&120)+3)(item#EVAL$rnum,,2))
-@expand=#DEF(#SPRITE(addr,attr) #UDGARRAY(2,$attr,2,2);$addr-($addr+17)-1-16)
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#b\i/#N(\1,,,1)(0x)
 @expand=#DEF(#BUG #LINK:Bugs)
