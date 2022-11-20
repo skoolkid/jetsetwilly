@@ -1,7 +1,13 @@
-; Copyright 2014-2020 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2020, 2022 Richard Dymond (rjdymond@gmail.com)
 
 [Page:Changelog]
 SectionType=BulletPoints
+
+[Changelog:YYYYMMDD]
+-
+
+- Added the 'Graphics and sound' section to the #LINK:GameIndex(home page)
+- Added the #LINK:Sound() page
 
 [Changelog:20200806]
 -

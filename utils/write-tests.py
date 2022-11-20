@@ -16,7 +16,7 @@ SKOOL = 'jsw.skool'
 
 SNAPSHOT = 'build/jet_set_willy.z80'
 
-OUTPUT = """Using ref files: jsw.ref, bugs.ref, changelog.ref, facts.ref, glossary.ref, pokes.ref
+OUTPUT = """Using ref files: jsw.ref, bugs.ref, changelog.ref, facts.ref, glossary.ref, pokes.ref, sound.ref
 Parsing {skoolfile}
 Output directory: {odir}/jet_set_willy
 Copying {SKOOLKIT_HOME}/skoolkit/resources/skoolkit.css to skoolkit.css
@@ -36,6 +36,7 @@ Writing reference/pokes.html
 Writing tables/rooms.html
 Writing tables/codes.html
 Writing reference/credits.html
+Writing sound/sound.html
 Writing index.html"""
 
 write_tests(SKOOL, SNAPSHOT, OUTPUT)

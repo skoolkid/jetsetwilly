@@ -3,7 +3,7 @@
 [Config]
 Expand=#INCLUDE(Expand)
 HtmlWriterClass=:jetsetwilly.JetSetWillyHtmlWriter
-RefFiles=bugs.ref;changelog.ref;facts.ref;glossary.ref;pokes.ref
+RefFiles=bugs.ref;changelog.ref;facts.ref;glossary.ref;pokes.ref;sound.ref
 GameDir=jet_set_willy
 
 [Game]
@@ -18,9 +18,13 @@ AddressAnchor={address#IF({base}==16)(:04x)}
 [PageHeaders]
 Asm-t=Messages
 
+[Index:Graphics:Graphics and sound]
+Rooms
+Guardians
+Sound
+
 [Index:DataTables:Data tables and buffers]
 GameStatusBuffer
-Rooms
 Items
 Entity definitions
 Codes
@@ -38,6 +42,7 @@ Credits=reference/credits.html
 Rooms=tables/rooms.html
 Codes=tables/codes.html
 CodeFiles={address#IF({base}==16)(:04#S/X/)}.html
+Sound=sound/sound.html
 
 [MemoryMap:MemoryMap]
 PageByteColumns=#IF({base}==16)(0,1)
@@ -79,6 +84,9 @@ PageContent=#INCLUDE(Rooms)
   { #N(rnum,,,1)(0x) | #N({addr}) | #FORMAT(#R({addr})({name$}) | {tcode}) }
 )
 TABLE#
+
+[Page:Guardians]
+Content=asm/#N43776.html
 
 [Page:Items]
 Content=asm/#N41984.html

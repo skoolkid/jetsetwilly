@@ -1,0 +1,55 @@
+; Copyright 2022 Richard Dymond (rjdymond@gmail.com)
+
+[Page:Sound]
+SectionPrefix=Audio
+
+[Audio:themetune:Theme tune]
+This tune is played after the title screen has been prepared (see #R34984).
+
+#AUDIO(tune.wav)(#INCLUDE(ThemeTune))
+
+[Audio:ingametune:In-game tune]
+This tune is played by the main loop while a game is in progress (see #R35644).
+
+#AUDIO(in-game-tune.wav)(#INCLUDE(InGameTune))
+
+[Audio:screech:Title screen screech]
+This sound effect is produced after the theme tune has finished playing, and
+repeats until the 'Press ENTER to Start' message has finished scrolling across
+the screen (see #R34993).
+
+#PUSHS #POKES34276,192 #AUDIO4(screech.wav)(35033,35065) #POPS
+
+[Audio:item:Item]
+This sound effect is produced by the routine at #R37841 when Willy collects an
+item.
+
+#AUDIO(item.wav)(#FOR(128,4,-2,1)(c,1928-13*c))
+
+[Audio:arrow:Arrow]
+This sound effect is produced when an arrow is fired (see #R37431).
+
+#AUDIO4(arrow.wav)(37455,37471)
+
+[Audio:life:Lose a life]
+This sound effect is produced by the routine at #R35841 when Willy loses a
+life.
+
+#AUDIO(die.wav)(#FOR(7,63,8,7)(d,[13*d+33]*(259-4*d),13*d+10895))
+
+[Audio:gameover:Game over]
+This sound effect is produced by the routine at #R35914 during the game over
+sequence.
+
+#AUDIO(game-over.wav)(#GAMEOVER)
+
+[Audio:jumping:Jumping]
+These sound effects are produced by the routine at #R36307 when Willy is
+jumping.
+
+#AUDIO(jumping.wav)(#FOR1,18,,3(j,[104*(#IF(j>8)(j-8,8-j))+137]*31,280000))
+
+[Audio:falling:Falling]
+These sound effects are produced when Willy is falling (see #R36458).
+
+#AUDIO(falling.wav)(#FOR3,31,,3(a,[208*(#IF(a<16)(a,a%4+12))+33]*31,280000))

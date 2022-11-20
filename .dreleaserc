@@ -1,4 +1,4 @@
 GAME=jsw
-SRCFILES=$(echo jsw.skool {jsw,bugs,changelog,facts,glossary,pokes}.ref {jsw,dark,green,plum}.css jetsetwilly.py COPYING)
+SRCFILES=$(echo jsw.skool {jsw,bugs,changelog,facts,glossary,pokes,sound}.ref {jsw,dark,green,plum}.css jetsetwilly.py COPYING)
 SKOOL2BINOPTS="-i -S 32765"
 WAVCONVERT="falling.wav game-over.wav in-game-tune.wav jumping.wav screech.wav tune.wav"
