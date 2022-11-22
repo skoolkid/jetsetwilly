@@ -10,8 +10,8 @@ GameDir=jet_set_willy
 Game=Jet Set Willy
 Logo=#LOGO0,0(logo)
 StyleSheet=skoolkit.css;jsw.css
-Copyright=&#169; 1984 Software Projects Ltd. &#169; 2020 Richard Dymond.
-Release=The complete Jet Set Willy RAM disassembly 20200806
+Copyright=&#169; 1984 Software Projects Ltd. &#169; 2022 Richard Dymond.
+Release=The complete Jet Set Willy RAM disassembly 20221122
 LinkInternalOperands=1
 AddressAnchor={address#IF({base}==16)(:04x)}
 
