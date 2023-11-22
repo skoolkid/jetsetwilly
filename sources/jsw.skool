@@ -1,7 +1,7 @@
-; Copyright 2012-2022 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2023 Richard Dymond (rjdymond@gmail.com)
 
 @rom
-@defs=23552:512
+@defs=23552:9536 ; Clear all buffers
 ; Attribute buffer (room + Willy + entities + items)
 ;
 ; The routine at #R35245 initialises this buffer with the contents of the
@@ -44,7 +44,7 @@ b28672 DEFS 4096
 ; https://skoolkit.ca
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
-; Copyright 2012-2022 Richard Dymond (this disassembly)
+; Copyright 2012-2023 Richard Dymond (this disassembly)
 @bfix+begin
 ;
 ; This disassembly contains fixes for the following bugs:
