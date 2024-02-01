@@ -1,4 +1,4 @@
-; Copyright 2014-2017, 2021 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017, 2021, 2024 Richard Dymond (rjdymond@gmail.com)
 
 [Poke:noCodeSheetRequired:No code sheet required]
 To make any combination work on the code entry screen:
@@ -120,7 +120,7 @@ The first POKE (#R60160#60160(60231),0) removes a nasty from
 { Before | After POKE #R60160#60160(60231),0 }
 TABLE#
 
-The second POKE (#R42183,11) moves the unreachable
+The second POKE (#R42183(42183),11) moves the unreachable
 #BUG#theInvisibleItem(invisible item) at (3,26) in #R56320(First Landing) to
 the same coordinates in #R51968(The Hall) (where it is still invisible, but now
 reachable).
