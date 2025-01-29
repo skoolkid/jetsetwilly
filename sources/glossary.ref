@@ -1,4 +1,4 @@
-; Copyright 2014, 2017, 2020 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014, 2017, 2020, 2025 Richard Dymond (rjdymond@gmail.com)
 
 [Glossary:Animation frame index mask]
 The animation frame index mask for a <a href="#guardian">guardian</a> is found
@@ -42,7 +42,7 @@ One of the eight pairs of bytes at the end of a room definition (e.g. at
 [Glossary:Guardian]
 An inhabitant of a room that continuously moves left and right (horizontal
 guardian) or up and down (vertical guardian) in a straight line, or
-#FACT#guardianOrFixture(stays still). Contact with a guardian is fatal. Some
+#FACT(guardianOrFixture)(stays still). Contact with a guardian is fatal. Some
 examples are:
 
 #UDGTABLE(gallery)

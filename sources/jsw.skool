@@ -1,4 +1,4 @@
-; Copyright 2012-2023 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2023, 2025 Richard Dymond (rjdymond@gmail.com)
 
 @rom
 @defs=23552:9536 ; Clear all buffers
@@ -34,17 +34,17 @@ b28672 DEFS 4096
 @start
 @replace=/#n\i/#N\1,,,1($)
 @replace=/#b\i/#N(\1,,,1)(0x)
-@expand=#DEF(#BUG #LINK:Bugs)
-@expand=#DEF(#FACT #LINK:Facts)
-@expand=#DEF(#POKE #LINK:Pokes)
+@expand=#DEF(#BUG()(a) #LINK(Bugs#$a))
+@expand=#DEF(#FACT()(a) #LINK(Facts#$a))
+@expand=#DEF(#POKE()(a) #LINK(Pokes#$a))
 @expand=#DEF(#S #FORMAT({mode[case]}))
-@expand=#DEF(#GBUF(a,b=0) #LINK:GameStatusBuffer#$a(#N$a#IF($b)(-#N$b)))
+@expand=#DEF(#GBUF(a,b=0) #LINK(GameStatusBuffer#$a)(#N$a#IF($b)(-#N$b)))
 @set-handle-unsupported-macros=1
 ; Jet Set Willy disassembly
 ; https://skoolkit.ca
 ;
 ; Copyright 1984 Software Projects Ltd (Jet Set Willy)
-; Copyright 2012-2023 Richard Dymond (this disassembly)
+; Copyright 2012-2023, 2025 Richard Dymond (this disassembly)
 @bfix+begin
 ;
 ; This disassembly contains fixes for the following bugs:
@@ -205,8 +205,8 @@ g33008 DEFS 2        ; Entity 1
 ; { Bits 5-6: animation frame index }
 ; { Bits 3-4: unused }
 ; { Bits 0-2: entity type (001) }
-; { =r4 1 | Bits 5-7: #LINK:Glossary#animation_frame_index_mask(animation frame
-; index mask) }
+; { =r4 1 | Bits 5-7: #LINK(Glossary#animation_frame_index_mask)(animation
+; frame index mask) }
 ; { Bit 4: unused }
 ; { Bit 3: BRIGHT value }
 ; { Bits 0-2: INK colour }
@@ -226,8 +226,8 @@ g33008 DEFS 2        ; Entity 1
 ; { =r3 0 | Bits 5-7: animation frame index }
 ; { Bits 3-4: animation frame update flags (see #R37247) }
 ; { Bits 0-2: entity type (010) }
-; { =r4 1 | Bits 5-7: #LINK:Glossary#animation_frame_index_mask(animation frame
-; index mask) }
+; { =r4 1 | Bits 5-7: #LINK(Glossary#animation_frame_index_mask)(animation
+; frame index mask) }
 ; { Bit 4: unused }
 ; { Bit 3: BRIGHT value }
 ; { Bits 0-2: INK colour }
@@ -943,7 +943,7 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
  34559 SUB 180       ; Otherwise subtract #b180; note that if the original
                      ; value of the LSB of the system variable FRAMES was
                      ; #b142, this leaves #REGa holding #b255, which is a
-                     ; #BUG#invalidGridLocation(bug)
+                     ; #BUG(invalidGridLocation)(bug)
 @bfix=/              ; Now #REGl holds some number between #b0 and #b179
 *34561 LD L,A        ; Now #REGl holds either #b255 or some number between #b0
                      ; and #b178
@@ -1576,7 +1576,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
 @bfix=/IN A,(254)    ; Read keys H-J-K-L-ENTER
  35620 IN A,(C)      ; Read keys H-J-K-L-ENTER; note that if the game has just
                      ; resumed after being paused, #REGc holds #b0 instead of
-                     ; #b254, which is a #BUG#thePauseBug(bug)
+                     ; #b254, which is a #BUG(thePauseBug)(bug)
  35622 AND 31        ; {Are any of these keys being pressed?
  35624 CP 31         ; }
  35626 JR Z,35638    ; Jump if not
@@ -1918,7 +1918,7 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
                      ; that matches the attribute byte of the tile to be drawn;
                      ; note that if a graphic data byte matches the attribute
                      ; byte being searched for, the #S/CPIR/ instruction can
-                     ; exit early, which is a #BUG#corruptedConveyors(bug)}
+                     ; exit early, which is a #BUG(corruptedConveyors)(bug)}
  36185 LD C,E        ; Restore the value of the tile counter in #REGc
  36186 LD B,8        ; There are eight bytes in the tile
 @label=BUFMSB
@@ -2253,7 +2253,7 @@ c36564 LD E,255      ; Initialise #REGe to #b255 (all bits set); it will be
  36620 LD E,A        ; forcing him to move right (unless he's jumped onto the
                      ; bed, in which case bit 0 of #REGe is now set, meaning
                      ; that the conveyor does not move him, and the 'P' key has
-                     ; no effect; this is a #BUG#theStickyBed(bug))}
+                     ; no effect; this is a #BUG(theStickyBed)(bug))}
 @keep
  36621 LD BC,64510   ; {Read keys Q-W-E-R-T (left, right, left, right, left)
  36624 IN A,(C)      ; into bits 0-4 of #REGa}
@@ -3478,7 +3478,7 @@ c38344 LD HL,(34259) ; Pick up Willy's attribute buffer coordinates from
  38420 ADD HL,DE     ; Move #REGhl down a row and back one cell to the left; at
                      ; this point #REGhl may be pointing at one of the cells in
                      ; the top row of the buffer at #R24064, which is a
-                     ; #BUG#longDistanceNasties(bug)
+                     ; #BUG(longDistanceNasties)(bug)
  38421 CALL 38430    ; Check and set the attribute byte for the bottom-left
                      ; cell
  38424 INC HL        ; Move #REGhl to the next cell to the right
@@ -3793,10 +3793,10 @@ b39424 DEFB 70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70
 ; Used by the routine at #R34499.
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,65,,2;39680;39681,121;39696;39697(number_key0) |
-; #UDGARRAY2,66,,2;39712;39713,122;39728;39729(number_key1) |
-; #UDGARRAY2,3,,2;39744;39745,59;39760;39761(number_key2) |
-; #UDGARRAY2,4,,2;39776;39777,60;39792;39793(number_key3) }
+; { #UDGARRAY2,65,,2(39680;39681,121;39696;39697)(number_key0) |
+; #UDGARRAY2,66,,2(39712;39713,122;39728;39729)(number_key1) |
+; #UDGARRAY2,3,,2(39744;39745,59;39760;39761)(number_key2) |
+; #UDGARRAY2,4,,2(39776;39777,60;39792;39793)(number_key3) }
 ; TABLE#
 @label=NUMBERKEYS
 b39680 DEFB 127,254,195,3,191,253,191,253,255,253,255,253,255,253,249,253
@@ -3871,10 +3871,10 @@ b40000 DEFB 16,128,16,128,16,128,16,128,16,128,16,128,16,128,32,128
 ; Maria also appears as a guardian in #R56576(The Nightmare Room).
 ; .
 ; #UDGTABLE
-; { #UDGARRAY2,step=2;40064,69;40065,69;40080,7;40081,7(maria0) |
-; #UDGARRAY2,step=2;40096,69;40097,69;40112,7;40113,7(maria1) |
-; #UDGARRAY2,step=2;40128,69;40129,69;40144,7;40145,7(maria2) |
-; #UDGARRAY2,step=2;40160,69;40161,69;40176,7;40177,7(maria3) }
+; { #UDGARRAY2,step=2(40064,69;40065,69;40080,7;40081,7)(maria0) |
+; #UDGARRAY2,step=2(40096,69;40097,69;40112,7;40113,7)(maria1) |
+; #UDGARRAY2,step=2(40128,69;40129,69;40144,7;40145,7)(maria2) |
+; #UDGARRAY2,step=2(40160,69;40161,69;40176,7;40177,7)(maria3) }
 ; TABLE#
 @label=MARIA0
 b40064 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
@@ -3895,9 +3895,9 @@ b40064 DEFB 3,0,3,192,1,224,1,64,1,224,7,128,31,248,63,252
 ; .
 ; #UDGTABLE
 ; { #SPRITE40192,7(willy0*) | #SPRITE40224,7(willy1*) | #SPRITE40256,7(willy2*)
-; | #SPRITE40288,7(willy3*) | #UDGARRAY*willy0;willy1;willy2;willy3(willy_r) }
+; | #SPRITE40288,7(willy3*) | #FRAMES(willy0;willy1;willy2;willy3)(willy_r) }
 ; { #SPRITE40320,7(willy4*) | #SPRITE40352,7(willy5*) | #SPRITE40384,7(willy6*)
-; | #SPRITE40416,7(willy7*) | #UDGARRAY*willy7;willy6;willy5;willy4(willy_l) }
+; | #SPRITE40416,7(willy7*) | #FRAMES(willy7;willy6;willy5;willy4)(willy_l) }
 ; TABLE#
 @label=MANDAT
 b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
@@ -3921,7 +3921,7 @@ b40192 DEFB 60,0,60,0,126,0,52,0,62,0,60,0,24,0,60,0
 ; Codes
 ;
 ; Used by the routine at #R34499. These code remnants define the
-; #LINK:Codes(codes) for grid locations A0-Q9.
+; #LINK(Codes)(codes) for grid locations A0-Q9.
 @label=CODES
 b40448 DEC HL
  40449 LD C,E
@@ -6835,9 +6835,9 @@ b41984 DEFS 173      ; Unused
 ; .
 ; #UDGTABLE
 ; { #SPRITE42496,7(toilet0*) | #SPRITE42528,7(toilet1*) |
-; #UDGARRAY*toilet0,10;toilet1(toilet_empty) }
+; #FRAMES(toilet0,10;toilet1)(toilet_empty) }
 ; { #SPRITE42560,7(toilet2*) | #SPRITE42592,7(toilet3*) |
-; #UDGARRAY*toilet3,10;toilet2(toilet_full) }
+; #FRAMES(toilet3,10;toilet2)(toilet_full) }
 ; TABLE#
 @label=TOILET0
 b42496 DEFB 0,15,0,63,0,15,48,15,12,15,3,15,0,207,0,47
@@ -9741,7 +9741,7 @@ b55296 DEFB 0,0,1,0,0,0,0,0                    ; {Room layout
  55424 DEFM "    West of Kitchen             " ; Room name
 ; The next 54 bytes are copied to #R32928 and contain the attributes and
 ; graphic data for the tiles used to build the room. Note that because of a
-; #BUG#corruptedConveyors(bug) in the game engine, the conveyor tile is not
+; #BUG(corruptedConveyors)(bug) in the game engine, the conveyor tile is not
 ; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
@@ -10208,7 +10208,7 @@ b56576 DEFB 0,0,0,0,0,0,0,10                   ; {Room layout
  56704 DEFM "       The Nightmare Room       " ; Room name
 ; The next 54 bytes are copied to #R32928 and contain the attributes and
 ; graphic data for the tiles used to build the room. Note that because of a
-; #BUG#corruptedConveyors(bug) in the game engine, the conveyor tile is not
+; #BUG(corruptedConveyors)(bug) in the game engine, the conveyor tile is not
 ; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
@@ -10849,7 +10849,7 @@ b58368 DEFB 0,0,0,160,0,0,0,3                  ; {Room layout
  58496 DEFM "    A bit of tree               " ; Room name
 ; The next 54 bytes are copied to #R32928 and contain the attributes and
 ; graphic data for the tiles used to build the room. Note that because of a
-; #BUG#corruptedNasties(bug) in the game engine, the nasty tile is not drawn
+; #BUG(corruptedNasties)(bug) in the game engine, the nasty tile is not drawn
 ; correctly (see the room image above).
 ; .
 ; #UDGTABLE
@@ -12044,7 +12044,7 @@ b61696 DEFB 0,0,0,0,0,12,2,170                 ; {Room layout
  61824 DEFM "        The Wine Cellar         " ; Room name
 ; The next 54 bytes are copied to #R32928 and contain the attributes and
 ; graphic data for the tiles used to build the room. Note that because of a
-; #BUG#corruptedConveyors(bug) in the game engine, the conveyor tile is not
+; #BUG(corruptedConveyors)(bug) in the game engine, the conveyor tile is not
 ; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE
@@ -12232,7 +12232,7 @@ b62208 DEFB 0,0,2,170,160,0,0,0                ; {Room layout
  62336 DEFM "           Tool  Shed           " ; Room name
 ; The next 54 bytes are copied to #R32928 and contain the attributes and
 ; graphic data for the tiles used to build the room. Note that because of a
-; #BUG#corruptedConveyors(bug) in the game engine, the conveyor tile is not
+; #BUG(corruptedConveyors)(bug) in the game engine, the conveyor tile is not
 ; drawn correctly (see the room image above).
 ; .
 ; #UDGTABLE

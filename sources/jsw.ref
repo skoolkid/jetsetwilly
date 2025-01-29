@@ -1,4 +1,4 @@
-; Copyright 2012-2022 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2012-2022, 2025 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
 Expand=#INCLUDE(Expand)
@@ -133,7 +133,7 @@ descriptions were of great help.
 
 #DEF(#GUARDIAN(addr,index,attr)
   #LET(a=$addr*256+$index*32)
-  #UDGARRAY(2,$attr,,2);({a})-({a}+17)-1-16(guardian$addr-$index-$attr*)
+  #UDGARRAY(2,$attr,,2)(({a})-({a}+17)-1-16)(guardian$addr-$index-$attr*)
 )
 
 #DEF(#TILES(rnum)
@@ -151,7 +151,7 @@ descriptions were of great help.
 )
 
 #DEF(#SPRITE(addr,attr)
-  #UDGARRAY(2,$attr,2,2);$addr-($addr+17)-1-16
+  #UDGARRAY(2,$attr,2,2)($addr-($addr+17)-1-16)
 )
 
 #DEF(#TILE(addr)(frame)
@@ -159,7 +159,7 @@ descriptions were of great help.
 )
 
 #DEF(#SFRAME(addr,attr)(frame)
-  #UDGARRAY(2,$attr,,2);$addr-($addr+17)-1-16(*$frame)
+  #UDGARRAY(2,$attr,,2)($addr-($addr+17)-1-16)(*$frame)
 )
 
 #DEF(#BTILEADDR(addr,attr)
@@ -201,7 +201,7 @@ descriptions were of great help.
 
 #DEF(#ROPE(addr,start,x,y)(frame)
   #LET(length=#PEEK($addr+4))
-  #UDGARRAY1;15616x(({length}*3)/8+1)(*rope)
+  #UDGARRAY1(15616x(({length}*3)/8+1))(*rope)
   #FOR(0,{length})(y,#PLOT(0,y*3)(rope))
   #OVER(($start&31)-$x,-$y,0,0)($frame,rope)
 )
@@ -299,9 +299,9 @@ descriptions were of great help.
   )
   #IF($flags&2)||
     #ANIMCONV({addr},$x,$y,$flags&8)(room)
-    #UDGARRAY#(*room,10#FOR(0,{lf})(n,;room-n))({ScreenshotImagePath}/$fname)
+    #FRAMES#((room,10#FOR(0,{lf})(n,;room-n)))({ScreenshotImagePath}/$fname)
   |
-    #UDGARRAY*room({ScreenshotImagePath}/$fname)
+    #FRAMES(room)({ScreenshotImagePath}/$fname)
   ||
 )
 
@@ -324,7 +324,7 @@ descriptions were of great help.
   #SFRAME(40192+32*$sprite,7)(willy)
   #LET(bg=#PEEK({addr}+160))
   #OVER($x-$left,0,0,$y-8*$top,1)(#IF($b=={bg})($b&56|$f&71,$b))(room,willy)
-  #UDGARRAY*room({ScreenshotImagePath}/$fname)
+  #FRAMES(room)({ScreenshotImagePath}/$fname)
 )
 
 #DEF(#GAMEOVER

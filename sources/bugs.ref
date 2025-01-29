@@ -1,4 +1,4 @@
-; Copyright 2014-2017, 2019, 2021 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017, 2019, 2021, 2025 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:faultyClock:12:30am in the afternoon]
 The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm
@@ -56,7 +56,7 @@ POKE 56350,0: POKE 56358,0: POKE 56365,170
 #ROOM28,2,16,0,16,16,5(first_landing_item2)
 #POPS
 
-The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to
+The #POKE(theOfficialSoftwareProjectsPOKEs)(official Software Projects POKE) to
 fix this bug is
 
 POKE #R42183(42183),11
@@ -69,7 +69,7 @@ The items in #R60160(Conservatory Roof) can only be collected by entering the
 room from the ledge on the lower left in #R59904(Under the Roof), but that
 ledge is unreachable.
 
-The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to
+The #POKE(theOfficialSoftwareProjectsPOKEs)(official Software Projects POKE) to
 fix this bug is
 
 POKE #R56832(56876),4
@@ -82,7 +82,7 @@ which makes it possible to access the right-hand side of #R58368(A bit of tree)
 The item on the far right in #R60160(Conservatory Roof) cannot be collected
 because there is an unavoidable nasty in the way.
 
-The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to
+The #POKE(theOfficialSoftwareProjectsPOKEs)(official Software Projects POKE) to
 fix this bug is
 
 POKE #R60160#60160(60231),0
@@ -220,7 +220,7 @@ TABLE#
 
 Getting stuck in these places is possible because Willy can walk right to left
 through wall tiles at head height, but not left to right (see
-#BUG#dontMindYourHead()).
+#BUG(dontMindYourHead)()).
 
 [Bug:missedNote:The missed note]
 Each note of the #R34399(in-game tune) is played twice by the section of code
@@ -236,7 +236,7 @@ room, and it doesn't look good:
 
 #UDGTABLE { #ROOM43,2,22,12,10,4(blank_conveyor) } TABLE#
 
-See also #FACT#unanimatedConveyors().
+See also #FACT(unanimatedConveyors)().
 
 [Bug:corruptedConveyors:Corrupted conveyors]
 The conveyors in #R55296(West of Kitchen), #R56576(The Nightmare Room),
@@ -278,7 +278,7 @@ To fix the bug:
 <div>POKE 65323,35</div>
 <div>POKE 65324,201</div>
 
-See also #BUG#corruptedNasties().
+See also #BUG(corruptedNasties)().
 
 [Bug:veryCorruptedConveyor:Very corrupted conveyor]
 You might be thinking that the fix given above for the corrupted conveyors bug
@@ -313,7 +313,7 @@ TABLE#
 [Bug:corruptedNasties:Corrupted nasties]
 The nasty tiles down the right hand side of #R58368(A bit of tree) don't look
 quite as they should. The reason for this is the same bug in the code at
-#R36177 that causes the #BUG#corruptedConveyors(corrupted conveyors): if a
+#R36177 that causes the #BUG(corruptedConveyors)(corrupted conveyors): if a
 graphic data byte of the background, floor or wall tile in a room matches the
 attribute byte of the nasty tile to be drawn, the '#S/CPIR/' instruction exits
 early, leaving #REGhl pointing at the wrong location.
@@ -372,7 +372,7 @@ following addresses:
   Kitchen) }
 LIST#
 
-The #POKE#theOfficialSoftwareProjectsPOKEs(official Software Projects POKE) to
+The #POKE(theOfficialSoftwareProjectsPOKEs)(official Software Projects POKE) to
 fix the Attic bug is
 
 POKE #R59900(59901),82

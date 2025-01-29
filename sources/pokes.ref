@@ -1,4 +1,4 @@
-; Copyright 2014-2017, 2021, 2024 Richard Dymond (rjdymond@gmail.com)
+; Copyright 2014-2017, 2021, 2024, 2025 Richard Dymond (rjdymond@gmail.com)
 
 [Poke:noCodeSheetRequired:No code sheet required]
 To make any combination work on the code entry screen:
@@ -14,7 +14,8 @@ To start the game in room N (normally #b33: #R57600(The Bathroom)):
 
 POKE #R34794(34795),N
 
-For a list of all the rooms and their numbers, see the #LINK:Rooms(Rooms page).
+For a list of all the rooms and their numbers, see the #LINK(Rooms)(Rooms
+page).
 
 The default start location, (13,20), may not be suitable, depending on the room
 chosen; to change Willy's start location to (y,x):
@@ -71,13 +72,13 @@ Exactly which N items need to be collected is determined by the item table at
 #R57600(The Bathroom).
 
 [Poke:cheatModeCheat:Cheat mode cheat]
-To activate the #FACT#writetyper(WRITETYPER cheat mode) immediately (without
+To activate the #FACT(writetyper)(WRITETYPER cheat mode) immediately (without
 having to type WRITETYPER in #R56320(First Landing)):
 
 POKE #R34275(34275),10
 
-For a list of all the rooms and their teleport codes, see the #LINK:Rooms(Rooms
-page).
+For a list of all the rooms and their teleport codes, see the
+#LINK(Rooms)(Rooms page).
 
 [Poke:moreLives:More lives]
 To start the game with N lives remaining (0&lt;=N&lt;=255; normally N=7):
@@ -101,7 +102,7 @@ To stop the clock and give Willy infinite time to complete his task:
 POKE #R35408(35408),24
 
 [Poke:theOfficialSoftwareProjectsPOKEs:The official Software Projects POKEs]
-When it became clear that the #BUG#theAtticBug(Attic bug) was actually a bug
+When it became clear that the #BUG(theAtticBug)(Attic bug) was actually a bug
 and not a feature, Software Projects published some POKEs to fix it and some
 other problems with the game:
 
@@ -112,7 +113,7 @@ other problems with the game:
 
 The first POKE (#R60160#60160(60231),0) removes a nasty from
 #R60160(Conservatory Roof), which makes it possible to collect the otherwise
-#BUG#theUncollectableItem(uncollectable item) on the far right:
+#BUG(theUncollectableItem)(uncollectable item) on the far right:
 
 #UDGTABLE(gallery)
 { #ROOM43,2,16,4,16,12(sp_poke1_before) |
@@ -121,7 +122,7 @@ The first POKE (#R60160#60160(60231),0) removes a nasty from
 TABLE#
 
 The second POKE (#R42183(42183),11) moves the unreachable
-#BUG#theInvisibleItem(invisible item) at (3,26) in #R56320(First Landing) to
+#BUG(theInvisibleItem)(invisible item) at (3,26) in #R56320(First Landing) to
 the same coordinates in #R51968(The Hall) (where it is still invisible, but now
 reachable).
 
@@ -131,7 +132,7 @@ Attic) by setting its pixel y-coordinate to 41.
 The fourth POKE (#R56832#56832(56876),4) replaces a wall block with a floor
 block in #R56832(The Banyan Tree), which makes it possible to access the room
 above (#R58368(A bit of tree)) from the right-hand side (which in turn makes it
-possible to reach the otherwise #BUG#theInaccessibleItems(inaccessible items)
+possible to reach the otherwise #BUG(theInaccessibleItems)(inaccessible items)
 in #R60160(Conservatory Roof) via the ledge on the lower left in
 #R59904(Under the Roof)):
 
