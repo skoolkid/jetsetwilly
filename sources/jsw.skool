@@ -1,4 +1,4 @@
-; Copyright 2012-2023, 2025 Richard Dymond (rjdymond@gmail.com)
+; © 2012-2023, 2025, 2026 Richard Dymond (rjdymond@gmail.com)
 
 @rom
 @defs=23552:9536 ; Clear all buffers
@@ -43,8 +43,8 @@ b28672 DEFS 4096
 ; Jet Set Willy disassembly
 ; https://skoolkit.ca
 ;
-; Copyright 1984 Software Projects Ltd (Jet Set Willy)
-; Copyright 2012-2023, 2025 Richard Dymond (this disassembly)
+; © 1984 Software Projects Ltd (Jet Set Willy)
+; © 2012-2023, 2025, 2026 Richard Dymond (this disassembly)
 @bfix+begin
 ;
 ; This disassembly contains fixes for the following bugs:
@@ -1208,7 +1208,7 @@ c34762 XOR A         ; #REGa=0
  34981 LD (34254),A  ; }
 ; And finally, play the theme tune and check for keypresses.
 ; .
-; #AUDIO(tune.wav)(#INCLUDE(ThemeTune))
+; #AUDIO0(tune.wav)(#INCLUDE(ThemeTune))
 *34984 LD HL,34299   ; Point #REGhl at the theme tune data at #R34299
  34987 CALL 38562    ; Play the theme tune
  34990 JP NZ,35068   ; Start the game if ENTER, 0 or the fire button was
@@ -1216,7 +1216,7 @@ c34762 XOR A         ; #REGa=0
 ; No key was pressed while the theme tune was playing, so scroll a message
 ; across the screen while repeatedly producing a screeching sound effect.
 ; .
-; #PUSHS #POKES34276,192 #AUDIO4(screech.wav)(35033,35065) #POPS
+; #PUSHS #POKES34276,192 #AUDIO1,35033,35065(screech.wav) #POPS
  34993 XOR A         ; {Initialise the temporary game status buffer variable at
  34994 LD (34276),A  ; #R34276 to 0; this will be used as an index for the
                      ; message scrolled across the screen (see #R33876)}
@@ -1592,7 +1592,7 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
  35642 JR NZ,35696   ; Jump if so
 ; The next section of code plays a note of the in-game music.
 ; .
-; #AUDIO(in-game-tune.wav)(#INCLUDE(InGameTune))
+; #AUDIO0(in-game-tune.wav)(#INCLUDE(InGameTune))
  35644 XOR A         ; {Reset the inactivity timer at #R34272 (the game does
  35645 LD (34272),A  ; not automatically pause after a period of inactivity if
                      ; the in-game music is playing)}
@@ -1708,7 +1708,7 @@ c35841 LD A,71       ; #REGa=#b71 (INK 7: PAPER 0: BRIGHT 1)
 ; single value (#b71, #b70, #b69, #b68, #b67, #b66, #b65 or #b64) and makes a
 ; sound effect.
 ; .
-; #AUDIO(die.wav)(#FOR(7,63,8,7)(d,[13*d+33]*(259-4*d),13*d+10895))
+; #AUDIO0(die.wav)(#FOR(7,63,8,7)(d,[13*d+33]*(259-4*d),13*d+10895))
 *35843 LD HL,22528   ; {Fill the top two thirds of the attribute file with the
  35846 LD DE,22529   ; value in #REGa
  35849 LD BC,511     ;
@@ -1776,7 +1776,7 @@ c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
 ; The following loop draws the foot's descent onto the barrel that supports
 ; Willy while producing a sound effect.
 ; .
-; #AUDIO(game-over.wav)(#GAMEOVER)
+; #AUDIO0(game-over.wav)(#GAMEOVER)
 *35953 LD A,(34276)  ; Pick up the distance variable from #R34276
  35956 LD C,A        ; {Point #REGbc at the corresponding entry in the screen
 @ssub=LD B,33280/256
@@ -2045,7 +2045,7 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
  36321 JR NZ,36406   ; Jump if not
 ; Willy is currently jumping.
 ; .
-; #AUDIO(jumping.wav)(#FOR1,18,,3(j,[104*(#IF(j>8)(j-8,8-j))+137]*31,280000))
+; #AUDIO0(jumping.wav)(#FOR1,18,,3(j,[104*(#IF(j>8)(j-8,8-j))+137]*31,280000))
  36323 LD A,(34261)  ; Pick up the jumping animation counter (0-17) from
                      ; #R34261
  36326 AND 254       ; Discard bit 0
@@ -2137,7 +2137,7 @@ c36307 LD A,(34262)  ; Pick up the rope status indicator from #R34262
 ; If we get here, then Willy is either in the process of falling or just about
 ; to start falling.
 ; .
-; #AUDIO(falling.wav)(#FOR3,31,,3(a,[208*(#IF(a<16)(a,a%4+12))+33]*31,280000))
+; #AUDIO0(falling.wav)(#FOR3,31,,3(a,[208*(#IF(a<16)(a,a%4+12))+33]*31,280000))
  36458 LD HL,34256   ; {Reset bit 1 at #R34256: Willy is not moving left or
  36461 RES 1,(HL)    ; right}
  36463 LD A,(34257)  ; Pick up the airborne status indicator from #R34257
@@ -2782,7 +2782,7 @@ c37310 LD IX,33024   ; Point #REGix at the first byte of the first entity
  37428 JP 37811      ; Jump to consider the next entity
 ; We are dealing with an arrow.
 ; .
-; #AUDIO4(arrow.wav)(37455,37471)
+; #AUDIO1,37455,37471(arrow.wav)
 *37431 BIT 7,(IX+0)  ; Is the arrow travelling left to right?
  37435 JR NZ,37444   ; Jump if so
  37437 DEC (IX+4)    ; Decrement the arrow's x-coordinate
@@ -3076,7 +3076,7 @@ c37841 LD H,164      ; Page #R41984(#b164) holds the first byte of each entry
 ; Willy is touching this item (or the room's background tile has white INK), so
 ; add it to his collection.
 ; .
-; #AUDIO(item.wav)(#FOR(128,4,-2,1)(c,1928-13*c))
+; #AUDIO0(item.wav)(#FOR(128,4,-2,1)(c,1928-13*c))
  37875 LD IX,34172   ; Point #REGix at the number of items collected at #R34172
 *37879 INC (IX+2)    ; Increment a digit of the number of items collected
  37882 LD A,(IX+2)   ; {Was the digit originally '9'?
