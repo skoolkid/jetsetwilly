@@ -1,6 +1,7 @@
 # rc file for check-asms, check-bins, disassembly-diff, skooldiff, write-files
 
 OLD_VERSION=20260428
+RZX=$SPECTRUM_RZX/j/jsw/jsw7.56am.rzx
 SK_OLD_VERSION=10.0
 SKOOL2BIN_START=32765
 SNAPSHOT=$JETSETWILLY_HOME/build/jet_set_willy.z80
