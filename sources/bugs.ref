@@ -1,4 +1,4 @@
-; Copyright 2014-2017, 2019, 2021, 2025 Richard Dymond (rjdymond@gmail.com)
+; © 2014-2017, 2019, 2021, 2025, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:faultyClock:12:30am in the afternoon]
 The clock-updating code at #R35410 doesn't switch from 'am' to 'pm' until 1pm
@@ -311,7 +311,7 @@ bottom):
 TABLE#
 
 [Bug:corruptedNasties:Corrupted nasties]
-The nasty tiles down the right hand side of #R58368(A bit of tree) don't look
+The nasty tiles down the right-hand side of #R58368(A bit of tree) don't look
 quite as they should. The reason for this is the same bug in the code at
 #R36177 that causes the #BUG(corruptedConveyors)(corrupted conveyors): if a
 graphic data byte of the background, floor or wall tile in a room matches the

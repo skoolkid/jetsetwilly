@@ -1,4 +1,4 @@
-; Copyright 2012, 2014-2021, 2025 Richard Dymond (rjdymond@gmail.com)
+; © 2012, 2014-2021, 2025, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:gameOverAt1am:Game over at 1am]
 The game ends abruptly at 1am (see #R35442), even if Willy has collected all
@@ -219,9 +219,9 @@ There are 23 instances of this guardian spread over 18 rooms: four in
 MegaTrunk), and one in each of #R51968(The Hall), #R52224(Tree Top),
 #R52480(Out on a limb), #R52736(Rescue Esmerelda), #R52992(I'm sure I've seen
 this before..), #R53248(We must perform a Quirkafleeg), #R54272(Ballroom East),
-#R54784(To the Kitchens Main Stairway), #R58368(A bit of tree),
+#R54784(To the Kitchens#SPACE(4)Main Stairway), #R58368(A bit of tree),
 #R58880(Priests' Hole), #R60672(Under the Drive), #R61440(Nomen Luni),
-#R61952(Watch Tower), #R62976(West  Wing) and #R63488(West Wing Roof).
+#R61952(Watch Tower), #R62976(West#SPACE(2)Wing) and #R63488(West Wing Roof).
 
 [Fact:commonestItem:Commonest item]
 The commonest item is the bell, which appears in #R53504(Up on the
@@ -545,7 +545,7 @@ will be automatically collected as soon as Willy enters the room (see
 
 [Fact:uneconomicalUnderworld:The uneconomical underworld]
 The demonic face guardian (as seen in #R50688(Entrance to Hades), #R56064(The
-Chapel) and  #R58880(Priests' Hole)) uses three entity definitions
+Chapel) and #R58880(Priests' Hole)) uses three entity definitions
 (#R41088(#b16), #R41096(#b17) and #R41104(#b18)), but it could be adjusted to
 use only two, where the upper-left and upper-right portions share an entity
 definition with a different base sprite and x-coordinate.

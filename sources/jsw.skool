@@ -1704,12 +1704,12 @@ c35591 LD HL,39424   ; {Copy the attribute bytes from #R39424 to the bottom
 ; Used by the routine at #R35591.
 @label=LOSELIFE
 c35841 LD A,71       ; #REGa=#b71 (INK 7: PAPER 0: BRIGHT 1)
-; The following loop fills the top two thirds of the attribute file with a
+; The following loop fills the top two-thirds of the attribute file with a
 ; single value (#b71, #b70, #b69, #b68, #b67, #b66, #b65 or #b64) and makes a
 ; sound effect.
 ; .
 ; #AUDIO0(die.wav)(#FOR(7,63,8,7)(d,[13*d+33]*(259-4*d),13*d+10895))
-*35843 LD HL,22528   ; {Fill the top two thirds of the attribute file with the
+*35843 LD HL,22528   ; {Fill the top two-thirds of the attribute file with the
  35846 LD DE,22529   ; value in #REGa
  35849 LD BC,511     ;
  35852 LD (HL),A     ;
@@ -1739,7 +1739,7 @@ c35841 LD A,71       ; #REGa=#b71 (INK 7: PAPER 0: BRIGHT 1)
  35886 DEC A         ; Decrement it (effectively decrementing the INK colour)
  35887 CP 63         ; Have we used attribute value #b64 (INK 0) yet?
  35889 JR NZ,35843   ; If not, jump back to update the INK colour in the top
-                     ; two thirds of the screen and make another sound effect
+                     ; two-thirds of the screen and make another sound effect
 ; Now check whether any lives remain.
  35891 LD HL,34252   ; {Pick up the number of lives remaining from #R34252
  35894 LD A,(HL)     ; }
