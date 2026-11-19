@@ -992,7 +992,7 @@ c34499 LD DE,18432   ; {Print the message pointed to by #REGix at (8,0)
 ; Used by the routine at #R34499. Waits for '1', '2', '3', '4' or ENTER to be
 ; pressed and either prints a coloured block or validates the entered code.
 ; Returns to the routine at #R34463 if ENTER is being pressed, with the zero
-; flag reset if the entered code is correct.
+; flag set if the entered code is correct.
 ;
 ; IX Attribute file address of the flashing 2x2 block
 @label=READCODE
@@ -1819,7 +1819,7 @@ c35914 LD HL,16384   ; {Clear the top two-thirds of the display file
  36015 AND 250       ; Reset bits 0 and 2, and retain all other bits
  36017 OR 2          ; Set bit 1 (INK 2)
  36019 LD (22991),A  ; {Copy this attribute value to the cells at (14,15),
- 36022 LD (22992),A  ; (14,16), (15, 15) and (15, 16) (where the barrel is, so
+ 36022 LD (22992),A  ; (14,16), (15,15) and (15,16) (where the barrel is, so
  36025 LD (23023),A  ; that it remains red)
  36028 LD (23024),A  ; }
  36031 LD A,(34276)  ; {Add 4 to the distance variable at #R34276; this will
@@ -1893,8 +1893,8 @@ c36147 CALL 36203    ; Fill the buffer at #R24064 with attribute bytes for the
  36156 LD (36189),A  ; #R36188 (below) to #n112}
  36159 CALL 36171    ; Draw the tiles for the top half of the room to the
                      ; screen buffer at #R28672
- 36162 LD IX,24320   ; Point #REGix at the 256th byte of the attribute buffer
-                     ; at #R24064 in preparation for drawing the bottom half of
+ 36162 LD IX,24320   ; Point #REGix at byte 256 of the attribute buffer at
+                     ; #R24064 in preparation for drawing the bottom half of
                      ; the room; this instruction is redundant, since #REGix
                      ; already holds #N24320
 @ignoreua
@@ -3548,7 +3548,7 @@ c38455 LD A,(34255)  ; Pick up Willy's y-coordinate from #R34255
 @ssub=LD D,40192/256
  38481 LD D,157      ; }
  38483 LD A,(33824)  ; Pick up the number of the current room from #R33824
- 38486 CP 29         ; Are we in the #R56576(The Nightmare Room)?
+ 38486 CP 29         ; Are we in #R56576(The Nightmare Room)?
  38488 JR NZ,38496   ; Jump if not
 @ssub=LD D,46592/256
  38490 LD D,182      ; {Point #REGde at the graphic data for the flying pig
