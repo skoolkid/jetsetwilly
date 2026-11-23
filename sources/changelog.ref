@@ -6,7 +6,9 @@ SectionType=BulletPoints
 [Changelog:YYYYMMDD]
 -
 
-- Added a trivia entry: #FACT(outOfBounds)()
+- Added trivia entries:
+  - #FACT(moreUnusedRooms)() (thanks Gareth)
+  - #FACT(outOfBounds)()
 
 [Changelog:20260428]
 -

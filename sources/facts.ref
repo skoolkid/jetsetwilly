@@ -104,6 +104,38 @@ However, the (inaccessible) right exit from #R60928(Tree Root) is set to
 #b47 (see #R61161(#N61162)), which suggests that there was an intention to
 place room #b47 there at some point during the game's development.
 
+[Fact:moreUnusedRooms:More unused rooms]
+While there might have been plans for a room #b47 in #R61184(page #b239), it
+doesn't look as if there were ever any plans for rooms #b61-#b63 in
+#R64768(pages #b253-#b255). However, when #FACT(writetyper)(cheat mode) is
+activated, these rooms can be visited by using the following teleport codes:
+
+<div>Room #b61: 134569</div>
+<div>Room #b62: 234569</div>
+<div>Room #b63: 1234569</div>
+
+As you will quickly discover, these rooms are not safe to land in or navigate
+without some harm-reducing POKEs, such as #POKE(gentleGuardians)(),
+#POKE(niceNasties)(), and #POKE(harmlessHeights)():
+
+POKE 37392,0: POKE 38447,201: POKE 36578,16
+
+Also, if your keyboard doesn't register all seven simultaneous keypresses
+required to teleport to room #b63, the following POKE makes the code '69'
+transport Willy to that room:
+
+POKE 35726,62
+
+And finally, because of the invalid conveyor definitions, ramp definitions and
+entity specification tables in these rooms that were never meant to be, memory
+corruption (similar to #BUG(theAtticBug)()) results upon entering them. This
+can be eliminated with the following POKEs:
+
+<div>POKE 65008,255: POKE 65264,255: POKE 65520,255 (empty the entity
+specification tables)</div>
+<div>POKE 64985,0: POKE 65241,0: POKE 65497,0 (remove the conveyors)</div>
+<div>POKE 64989,0: POKE 65245,0: POKE 65501,0 (remove the ramps)</div>
+
 [Fact:unusedGridLocation:Unused grid location]
 The routine at #R34499, which is responsible for randomly selecting one of the
 180 grid locations on the code sheet by its index (#b0-#b179), never selects
