@@ -657,3 +657,42 @@ vertical guardians and two arrows.
 The room with the most items is #R49152(The Off Licence) with 12.
 
 #ROOM0(the_off_licence)
+
+[Fact:outOfBounds:Out of bounds]
+There are three entity definitions that move their corresponding vertical
+guardians past the specified maximum y-coordinate.
+
+The first is #R41000(entity definition #b5). Its minimum and maximum pixel
+y-coordinates are 32 and 96 (64 apart), but its y-coordinate increment is 6,
+which does not divide 64 exactly. So this guardian actually reaches a maximum
+pixel y-coordinate of 98 (32+6*11) before turning round.
+
+The second is #R41008(entity definition #b6). Its minimum and maximum pixel
+y-coordinates are 32 and 88 (56 apart), but its y-coordinate increment is 5,
+which does not divide 56 exactly. So this guardian actually reaches a maximum
+pixel y-coordinate of 92 (32+5*12) before turning round.
+
+The third is #R41016(entity definition #b7). Its minimum and maximum pixel
+y-coordinates are 16 and 80 (64 apart), but its y-coordinate increment is 6,
+which does not divide 64 exactly. So this guardian actually reaches a maximum
+pixel y-coordinate of 82 (16+6*11) before turning round.
+
+The reason this happens is that the section of code at #R37247, while it
+enforces a vertical guardian's specified minimum y-coordinate, simply doesn't
+enforce the specified maximum y-coordinate.
+
+Similarly, there are three entity specifications that place their corresponding
+horizontal guardians in an initial location that they leave and never return
+to.
+
+The first is for the #R50422(cyan bird) in #R50176(The Drive). Its initial
+x-coordinate is 20, but the minimum and maximum x-coordinates specified in the
+#R41152(entity definition) are 0 and 10.
+
+The second is for the #R52212(yellow bird) in #R51968(The Hall). Its initial
+x-coordinate is 19, but the minimum and maximum x-coordinates specified in the
+#R41720(entity definition) are 9 and 17.
+
+The third is for the #R62452(pliers) in #R62208(Tool#SPACE(2)Shed). Their
+initial x-coordinate is 20, but the minimum and maximum x-coordinates specified
+in the #R41752(entity definition) are 7 and 17.
