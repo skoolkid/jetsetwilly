@@ -8,6 +8,7 @@ SectionType=BulletPoints
 
 - Added trivia entries:
   - #FACT(moreUnusedRooms)() (thanks Gareth)
+  - #FACT(emergencyGenerator)() (thanks Adam Sampson)
   - #FACT(outOfBounds)()
 
 [Changelog:20260428]
